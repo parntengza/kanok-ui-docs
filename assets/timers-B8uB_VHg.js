@@ -1,0 +1,1 @@
+var e=globalThis,t=(t,n)=>e.setTimeout(t,n),n=t=>{t!==void 0&&e.clearTimeout(t)};export{t as n,n as t};

@@ -1,0 +1,1 @@
+function e(e,t,n){let r=e.trim()!==t.trim();return{changed:r,canSave:r&&!n,canCancel:r}}function t(e,t){return e===`Enter`?t?`save`:`leave`:e===`Escape`?`cancel`:null}var n=e=>e?`save`:`cancel`;export{e as n,n as r,t};

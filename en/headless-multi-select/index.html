@@ -1,0 +1,964 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Headless Multi-select · @purpurabog/ui</title>
+<link rel="alternate" hreflang="en" href="/kanok-ui-docs/en/headless-multi-select/"  /><link rel="alternate" hreflang="th" href="/kanok-ui-docs/th/headless-multi-select/"  />
+<script>(function(){try{var q=new URLSearchParams(location.search).get("design"),d=q;if(q==="kanok"||q==="carbon")localStorage.setItem("ui-docs-design",q);else d=localStorage.getItem("ui-docs-design");if(d==="kanok")document.documentElement.setAttribute("data-design","kanok")}catch(e){}})();(function(){try{var m=localStorage.getItem("ui-docs-theme");if(m!=="light"&&m!=="dark"&&m!=="system")return;var d=m==="dark"||(m==="system"&&matchMedia("(prefers-color-scheme: dark)").matches),r=document.documentElement,t=d?"g100":"white";if(r.getAttribute("data-design")==="kanok")t=d?"lacquer":"paper";r.setAttribute("data-theme",t)}catch(e){}})();</script>
+<style>ui-header:not(:defined){z-index:8000;box-sizing:border-box;border-block-end:1px solid var(--ui-border-subtle-1);background:var(--ui-canvas);block-size:48px;display:block;position:fixed;inset:0 0 auto}:is(ui-header:not(:defined)>*,ui-side-nav:not(:defined)>*){visibility:hidden}:is(ui-header-panel:not(:defined),ui-modal:not(:defined)){display:none}ui-side-nav:not(:defined){display:none}ui-content:not(:defined){margin-block-start:48px;padding:32px;display:block}@media (width>=1056px){ui-side-nav[expanded]:not(:defined){background:var(--ui-canvas);inline-size:256px;display:block;position:fixed;inset:48px auto 0 0}ui-side-nav[expanded]:not(:defined)~ui-content:not(:defined){margin-inline-start:256px}}ui-tabs:not(:defined){display:block}ui-tabs:not(:defined)>ui-tab{box-sizing:border-box;border-block-end:2px solid var(--ui-hairline);block-size:40px;color:var(--ui-ink-muted);font:var(--ui-font-body-sm);padding:0 16px;line-height:38px;display:inline-block}ui-tabs:not(:defined)>ui-tab:first-of-type{border-block-end-color:var(--ui-interactive);color:var(--ui-ink)}ui-tabs:not(:defined)>ui-tab-panel{padding:16px;display:block}ui-tabs:not(:defined)>ui-tab-panel~ui-tab-panel{display:none}ui-code-snippet:not(:defined){background:var(--ui-layer-1);max-block-size:272px;font:var(--ui-font-code,12px/16px monospace);white-space:pre;padding:16px;display:block;overflow:hidden}[data-react-example]:empty>*{visibility:hidden}.doc-demo:has(:not(:defined))>*{visibility:hidden}[data-react-example]:empty{box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}.doc-demo:has(:not(:defined)){box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}@keyframes doc-skeleton{to{background-position:-200% 0}}@media (prefers-reduced-motion:reduce){[data-react-example]:empty{animation:none}.doc-demo:has(:not(:defined)){animation:none}}</style>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/index-3SaimmKK.js"></script>
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/theme-switcher-BGAHXRgF.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/listbox-gjElSjvA.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/headless-CpcU3xFD.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/flag-D0Ou26eR.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/popup-position-SaIiGkPq.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/required-proxy-DW3H9Hcq.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/typeahead-CDCzrGcR.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/multi-select-BIi7R0qk.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/multi-select-BFrfJPSu.js">
+  <link rel="stylesheet" crossorigin href="/kanok-ui-docs/assets/theme-switcher-CL5yB6XE.css">
+  <link rel="stylesheet" crossorigin href="/kanok-ui-docs/assets/headless-JjfvojKd.css">
+</head>
+<body>
+<ui-header label="@purpurabog/ui">
+<ui-skip-to-content></ui-skip-to-content>
+<ui-header-menu-button></ui-header-menu-button>
+<ui-header-name href="/kanok-ui-docs/en/" prefix="@purpurabog">ui</ui-header-name>
+<ui-header-global-bar>
+<ui-header-global-action id="doc-search-open" label="Search" tooltip-placement="bottom"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="m18.5 17.8-4.9-4.9a7 7 0 1 0-.7.7l4.9 4.9zM3 8.5a5.5 5.5 0 1 1 5.5 5.5A5.5 5.5 0 0 1 3 8.5Z" /></svg></ui-header-global-action>
+<ui-header-global-action label="Settings" panel="doc-settings" tooltip-placement="bottom-end"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="M16.9 10.6a7 7 0 0 0 0-1.2l1.8-1.4-1.6-2.8-2.1.8a6.6 6.6 0 0 0-1-.6L13.6 3h-3.2l-.4 2.4a6.6 6.6 0 0 0-1 .6l-2.1-.8L5.3 8l1.8 1.4a7 7 0 0 0 0 1.2L5.3 12l1.6 2.8 2.1-.8a6.6 6.6 0 0 0 1 .6l.4 2.4h3.2l.4-2.4a6.6 6.6 0 0 0 1-.6l2.1.8 1.6-2.8zM12 13a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" /></svg></ui-header-global-action>
+</ui-header-global-bar>
+<ui-header-panel id="doc-settings" label="Settings">
+<div class="doc-settings">
+<span class="doc-settings-label">Theme</span>
+<ui-theme-switcher storage-key="ui-docs-theme" tooltip-placement="bottom"></ui-theme-switcher>
+<span class="doc-settings-label">Style</span>
+<ui-content-switcher id="doc-design" aria-label="Style" size="sm"><ui-content-switcher-item name="carbon">Carbon</ui-content-switcher-item><ui-content-switcher-item name="kanok">Kanok</ui-content-switcher-item></ui-content-switcher>
+<span class="doc-settings-label">Language</span>
+<ui-link href="/kanok-ui-docs/th/headless-multi-select/" hreflang="th" lang="th">ไทย</ui-link>
+</div>
+</ui-header-panel>
+</ui-header>
+<ui-side-nav label="Documentation"><ui-side-nav-items><ui-side-nav-menu label="Get started"><ui-side-nav-menu-item href="/kanok-ui-docs/en/">Overview</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/installation/">Installation</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/migration-1-0/">Migrating to 1.0</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Guides"><ui-side-nav-menu-item href="/kanok-ui-docs/en/themes/">Themes and layers</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/kanok/">Kanok design</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/customizing/">Customizing</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/icons/">Icons</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/forms/">Forms and validation</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/frameworks/">Frameworks</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/ai/">Using with AI</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Forms and actions"><ui-side-nav-menu-item href="/kanok-ui-docs/en/button/">Button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/file-uploader/">File uploader</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Overlays"><ui-side-nav-menu-item href="/kanok-ui-docs/en/modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/toggletip/">Toggletip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/menu/">Menu</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Data"><ui-side-nav-menu-item href="/kanok-ui-docs/en/data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/contained-list/">Contained list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tree-view/">Tree view</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Navigation"><ui-side-nav-menu-item href="/kanok-ui-docs/en/tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/breadcrumb/">Breadcrumb</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/link/">Link</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/ui-shell/">UI shell</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Content"><ui-side-nav-menu-item href="/kanok-ui-docs/en/tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tile/">Tile</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/user-avatar/">User avatar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/list/">List</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Status and loading"><ui-side-nav-menu-item href="/kanok-ui-docs/en/loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/inline-loading/">Inline loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/progress-bar/">Progress bar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/skeleton/">Skeleton</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/badge-indicator/">Badge indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/status-indicator/">Status indicator</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Layout"><ui-side-nav-menu-item href="/kanok-ui-docs/en/grid/">Grid</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/heading/">Heading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/layer/">Layer</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/action-set/">Action set</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/page-header/">Page header</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/big-number/">Big number</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Headless" expanded><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless/">Introduction</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-multi-select/" current>Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-file-uploader/">File uploader</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-menu/">Menu</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-ui-shell/">UI shell</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tree-view/">Tree view</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu></ui-side-nav-items></ui-side-nav><script>if(matchMedia('(min-width: 66rem)').matches)document.currentScript.previousElementSibling.setAttribute('expanded','')</script>
+<ui-content>
+<div class="doc-page">
+<article class="doc">
+<!-- nav: Multi-select -->
+<h1 id="headless-multi-select">Headless Multi-select</h1>
+<p>The <code>MultiSelect</code> parts give you the behaviour of the styled <a href="/kanok-ui-docs/en/multi-select/">Multi-select</a> with no styles: a field that opens a listbox in the top layer and stays open while people toggle options, chosen options moving to the top, an optional &quot;Select all&quot; row, a filterable text box, the keyboard, and one hidden input per chosen value.</p>
+<p>You own the markup, the label text, the count, the check boxes in the rows, any helper or error message, the &quot;Loading…&quot; text and every style. The parts show their state as <code>data-*</code> attributes for you to style on.</p>
+<h2 id="installation">Installation</h2>
+<p>The headless parts come with the package (there is no shadcn item; the React + Tailwind items are built on them):</p>
+<ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">@purpurabog/ui</span></ui-code-snippet>
+<ui-code-snippet type="single" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { MultiSelect, <span style="color:var(--ui-tag-color-magenta)">type</span> ListOption } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;</ui-code-snippet>
+<h2 id="use-it">Use it</h2>
+<div class="doc-demo" data-react-example="0"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { MultiSelect, <span style="color:var(--ui-tag-color-magenta)">type</span> ListOption } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> people <span style="color:var(--ui-tag-color-magenta)">=</span> [
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'owner'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Contract owner'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'legal'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Legal team'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'finance'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Finance team'</span> },
+];
+
+<span style="color:var(--ui-ink-muted);font-style:italic">// a row with a check box drawn from its data-selected</span>
+<span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Row</span>({ value, label }<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">ListOption</span>) {
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{value} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"group flex cursor-pointer items-center gap-2 px-4 py-3 text-ink-muted hover:bg-layer-hover-1 data-highlighted:bg-layer-hover-1 data-selected:text-ink"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid size-4 shrink-0 place-items-center rounded-xs border border-ink text-transparent group-data-selected:bg-ink group-data-selected:text-icon-inverse"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-3.5 fill-current"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M6 10.6 2.7 7.3 2 8l4 4 8-8-.7-.7z"</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+      {label}
+    &lt;/<span style="color:var(--ui-tag-color-blue)">MultiSelect.Option</span>&gt;
+  );
+}
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid max-w-xs gap-2"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Root</span> <span style="color:var(--ui-tag-color-purple)">items</span><span style="color:var(--ui-tag-color-magenta)">=</span>{people} <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"notify"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Label</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-ink-muted"</span>&gt;Notify&lt;/<span style="color:var(--ui-tag-color-blue)">MultiSelect.Label</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Anchor</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex h-10 items-center border-b border-border-strong-1 bg-field-1 hover:bg-field-hover-1 has-focus-visible:outline-2 has-focus-visible:-outline-offset-2 has-focus-visible:outline-focus has-data-open:outline-2 has-data-open:-outline-offset-2 has-data-open:outline-focus"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Trigger</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"group flex h-full min-w-0 flex-1 items-center justify-between gap-2 px-4 text-start text-sm text-ink outline-none"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Value</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Choose people"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"truncate data-placeholder:text-ink-placeholder"</span> /&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-4 shrink-0 fill-current transition-transform group-data-open:rotate-180"</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M8 11 3 6l.7-.7L8 9.6l4.3-4.3.7.7z"</span> /&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">MultiSelect.Trigger</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">MultiSelect.Anchor</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Popup</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"bg-layer-1 text-sm text-ink shadow-lg"</span>&gt;
+          {(items) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> items.<span style="color:var(--ui-tag-color-cyan)">map</span>((p) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (<span style="color:var(--ui-tag-color-teal)">'options'</span> <span style="color:var(--ui-tag-color-magenta)">in</span> p <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-green)">null</span> <span style="color:var(--ui-tag-color-magenta)">:</span> &lt;<span style="color:var(--ui-tag-color-blue)">Row</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{p.value} {<span style="color:var(--ui-tag-color-magenta)">...</span>p} /&gt;))}
+        &lt;/<span style="color:var(--ui-tag-color-blue)">MultiSelect.Popup</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">MultiSelect.Root</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<p><code>items</code> on <code>Root</code> is every option. <code>Popup</code> calls its children function with the rows to show, in order: filtered by the typed text, chosen ones first, groups kept.</p>
+<h2 id="anatomy">Anatomy</h2>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Root</span> <span style="color:var(--ui-tag-color-purple)">items</span><span style="color:var(--ui-tag-color-magenta)">=</span>{items}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Label</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Anchor</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Trigger</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Value</span> /&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">MultiSelect.Trigger</span>&gt;
+    {<span style="color:var(--ui-ink-muted);font-style:italic">/* or, with filterable: */</span>}
+    &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Input</span> /&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.ClearText</span> /&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Toggle</span> /&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Clear</span> /&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">MultiSelect.Anchor</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Popup</span>&gt;
+    {(items) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+      &lt;&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.SelectAll</span> /&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"…"</span> /&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Group</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.GroupLabel</span> /&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.GroupOptions</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"…"</span> /&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">MultiSelect.GroupOptions</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">MultiSelect.Group</span>&gt;
+      &lt;/&gt;
+    )}
+  &lt;/<span style="color:var(--ui-tag-color-blue)">MultiSelect.Popup</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">MultiSelect.Root</span>&gt;</ui-code-snippet>
+<h2 id="the-count-clear-and-descriptions">The count, clear and descriptions</h2>
+<p><code>Value</code> shows its <code>children</code>, else the placeholder: it doesn't count. Read <code>count</code> from <code>MultiSelect.useMultiSelectContext()</code> to show how many are chosen. <code>Clear</code> empties the choice and keeps focus in the field; it is disabled while <code>Root</code> is disabled or read-only. The example below also leaves it out then, as the styled MultiSelect does.</p>
+<div class="doc-demo" data-react-example="1"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { MultiSelect, <span style="color:var(--ui-tag-color-magenta)">type</span> ListOption } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> people <span style="color:var(--ui-tag-color-magenta)">=</span> [
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'owner'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Contract owner'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'legal'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Legal team'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'finance'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Finance team'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'signer'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Signers'</span>, <span style="color:var(--ui-tag-color-purple)">description:</span> <span style="color:var(--ui-tag-color-teal)">'Only after both parties sign'</span> },
+];
+
+<span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">CountAndClear</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> { count, interactive } <span style="color:var(--ui-tag-color-magenta)">=</span> MultiSelect.<span style="color:var(--ui-tag-color-cyan)">useMultiSelectContext</span>();
+  <span style="color:var(--ui-tag-color-magenta)">if</span> (count <span style="color:var(--ui-tag-color-magenta)">===</span> <span style="color:var(--ui-tag-color-green)">0</span>) <span style="color:var(--ui-tag-color-magenta)">return</span> <span style="color:var(--ui-tag-color-green)">null</span>;
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ms-2 inline-flex h-6 shrink-0 items-center gap-1 rounded-full bg-inverse-canvas ps-2 text-xs text-inverse-ink"</span>&gt;
+      {count}
+      {interactive <span style="color:var(--ui-tag-color-magenta)">?</span> (
+        &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Clear</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Clear all"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid size-6 place-items-center rounded-full hover:bg-inverse-hover"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-3.5 fill-current"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M12 4.7 11.3 4 8 7.3 4.7 4 4 4.7 7.3 8 4 11.3l.7.7L8 8.7l3.3 3.3.7-.7L8.7 8z"</span> /&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">MultiSelect.Clear</span>&gt;
+      ) <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-green)">null</span>}
+    &lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+  );
+}
+
+<span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Row</span>({ value, label, description }<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">ListOption</span>) {
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{value} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"group flex cursor-pointer items-start gap-2 px-4 py-2 text-ink-muted hover:bg-layer-hover-1 data-highlighted:bg-layer-hover-1 data-selected:text-ink"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"mt-0.5 grid size-4 shrink-0 place-items-center rounded-xs border border-ink text-transparent group-data-selected:bg-ink group-data-selected:text-icon-inverse"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-3.5 fill-current"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M6 10.6 2.7 7.3 2 8l4 4 8-8-.7-.7z"</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex flex-col"</span>&gt;
+        {label}
+        &lt;<span style="color:var(--ui-tag-color-blue)">small</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-ink-helper"</span>&gt;{description}&lt;/<span style="color:var(--ui-tag-color-blue)">small</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">MultiSelect.Option</span>&gt;
+  );
+}
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid max-w-xs gap-2"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Root</span> <span style="color:var(--ui-tag-color-purple)">items</span><span style="color:var(--ui-tag-color-magenta)">=</span>{people} <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"notify"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span>{[<span style="color:var(--ui-tag-color-teal)">'owner'</span>]}&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Label</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-ink-muted"</span>&gt;Notify&lt;/<span style="color:var(--ui-tag-color-blue)">MultiSelect.Label</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Anchor</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex h-10 items-center border-b border-border-strong-1 bg-field-1 hover:bg-field-hover-1 has-focus-visible:outline-2 has-focus-visible:-outline-offset-2 has-focus-visible:outline-focus has-data-open:outline-2 has-data-open:-outline-offset-2 has-data-open:outline-focus"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">CountAndClear</span> /&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Trigger</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"group flex h-full min-w-0 flex-1 items-center justify-between gap-2 px-4 text-start text-sm text-ink outline-none"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Value</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Choose people"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"truncate data-placeholder:text-ink-placeholder"</span> /&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-4 shrink-0 fill-current transition-transform group-data-open:rotate-180"</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M8 11 3 6l.7-.7L8 9.6l4.3-4.3.7.7z"</span> /&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">MultiSelect.Trigger</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">MultiSelect.Anchor</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Popup</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"bg-layer-1 text-sm text-ink shadow-lg"</span>&gt;
+          {(items) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> items.<span style="color:var(--ui-tag-color-cyan)">map</span>((p) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (<span style="color:var(--ui-tag-color-teal)">'options'</span> <span style="color:var(--ui-tag-color-magenta)">in</span> p <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-green)">null</span> <span style="color:var(--ui-tag-color-magenta)">:</span> &lt;<span style="color:var(--ui-tag-color-blue)">Row</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{p.value} {<span style="color:var(--ui-tag-color-magenta)">...</span>p} /&gt;))}
+        &lt;/<span style="color:var(--ui-tag-color-blue)">MultiSelect.Popup</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">MultiSelect.Root</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<h2 id="value">Value</h2>
+<p><code>value</code> is an array. Hold it yourself with <code>value</code> and <code>onValueChange</code>, or give a starting <code>defaultValue</code>. With <code>name</code>, <code>Root</code> renders one hidden input per chosen value, so read them with <code>FormData.getAll()</code>.</p>
+<div class="doc-demo" data-react-example="2"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { useState } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { MultiSelect, <span style="color:var(--ui-tag-color-magenta)">type</span> ListOption } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> people <span style="color:var(--ui-tag-color-magenta)">=</span> [
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'owner'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Contract owner'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'legal'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Legal team'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'finance'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Finance team'</span> },
+];
+
+<span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Row</span>({ value, label }<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">ListOption</span>) {
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{value} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"group flex cursor-pointer items-center gap-2 px-4 py-3 text-ink-muted hover:bg-layer-hover-1 data-highlighted:bg-layer-hover-1 data-selected:text-ink"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid size-4 shrink-0 place-items-center rounded-xs border border-ink text-transparent group-data-selected:bg-ink group-data-selected:text-icon-inverse"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-3.5 fill-current"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M6 10.6 2.7 7.3 2 8l4 4 8-8-.7-.7z"</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+      {label}
+    &lt;/<span style="color:var(--ui-tag-color-blue)">MultiSelect.Option</span>&gt;
+  );
+}
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [notify, setNotify] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>([<span style="color:var(--ui-tag-color-teal)">'legal'</span>]);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [sent, setSent] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>&lt;<span style="color:var(--ui-tag-color-cyan)">FormDataEntryValue</span>[]&gt;();
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">form</span>
+      <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid max-w-xs gap-2"</span>
+      <span style="color:var(--ui-tag-color-purple)">onSubmit</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+        e.<span style="color:var(--ui-tag-color-cyan)">preventDefault</span>();
+        <span style="color:var(--ui-tag-color-cyan)">setSent</span>(<span style="color:var(--ui-tag-color-magenta)">new</span> <span style="color:var(--ui-tag-color-cyan)">FormData</span>(e.currentTarget).<span style="color:var(--ui-tag-color-cyan)">getAll</span>(<span style="color:var(--ui-tag-color-teal)">'notify'</span>));
+      }}
+    &gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Root</span> <span style="color:var(--ui-tag-color-purple)">items</span><span style="color:var(--ui-tag-color-magenta)">=</span>{people} <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"notify"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{notify} <span style="color:var(--ui-tag-color-purple)">onValueChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{setNotify}&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Label</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-ink-muted"</span>&gt;Notify&lt;/<span style="color:var(--ui-tag-color-blue)">MultiSelect.Label</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Anchor</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex h-10 items-center border-b border-border-strong-1 bg-field-1 hover:bg-field-hover-1 has-focus-visible:outline-2 has-focus-visible:-outline-offset-2 has-focus-visible:outline-focus has-data-open:outline-2 has-data-open:-outline-offset-2 has-data-open:outline-focus"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Trigger</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"group flex h-full min-w-0 flex-1 items-center justify-between gap-2 px-4 text-start text-sm text-ink outline-none"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Value</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Choose people"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"truncate data-placeholder:text-ink-placeholder"</span> /&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-4 shrink-0 fill-current transition-transform group-data-open:rotate-180"</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M8 11 3 6l.7-.7L8 9.6l4.3-4.3.7.7z"</span> /&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">MultiSelect.Trigger</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">MultiSelect.Anchor</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Popup</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"bg-layer-1 text-sm text-ink shadow-lg"</span>&gt;
+          {(items) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> items.<span style="color:var(--ui-tag-color-cyan)">map</span>((p) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (<span style="color:var(--ui-tag-color-teal)">'options'</span> <span style="color:var(--ui-tag-color-magenta)">in</span> p <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-green)">null</span> <span style="color:var(--ui-tag-color-magenta)">:</span> &lt;<span style="color:var(--ui-tag-color-blue)">Row</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{p.value} {<span style="color:var(--ui-tag-color-magenta)">...</span>p} /&gt;))}
+        &lt;/<span style="color:var(--ui-tag-color-blue)">MultiSelect.Popup</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">MultiSelect.Root</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-ink-muted"</span>&gt;Value: {JSON.<span style="color:var(--ui-tag-color-cyan)">stringify</span>(notify)}&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">button</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"submit"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-10 justify-self-start bg-interactive px-4 text-sm text-on-primary hover:bg-blue-hover focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-focus"</span>&gt;Submit&lt;/<span style="color:var(--ui-tag-color-blue)">button</span>&gt;
+      {sent <span style="color:var(--ui-tag-color-magenta)">?</span> &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-ink-muted"</span>&gt;Sent: notify = {JSON.<span style="color:var(--ui-tag-color-cyan)">stringify</span>(sent)}&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt; <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-green)">null</span>}
+    &lt;/<span style="color:var(--ui-tag-color-blue)">form</span>&gt;
+  );
+}</ui-code-snippet>
+<h2 id="select-all">Select all</h2>
+<p><code>selectAll</code> offers a &quot;Select all&quot; row. Put <code>SelectAll</code> first in the popup: it renders only while offered and something can be chosen. It chooses every enabled option shown, or none when all are chosen. While only some are, it has <code>data-mixed</code> and <code>aria-checked=&quot;mixed&quot;</code>.</p>
+<div class="doc-demo" data-react-example="3"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { MultiSelect, <span style="color:var(--ui-tag-color-magenta)">type</span> ListOption } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> people <span style="color:var(--ui-tag-color-magenta)">=</span> [
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'owner'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Contract owner'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'legal'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Legal team'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'finance'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Finance team'</span> },
+];
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> box <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'grid size-4 shrink-0 place-items-center rounded-xs border border-ink text-transparent group-data-selected:bg-ink group-data-selected:text-icon-inverse'</span>;
+<span style="color:var(--ui-tag-color-magenta)">const</span> check <span style="color:var(--ui-tag-color-magenta)">=</span> &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-3.5 fill-current"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M6 10.6 2.7 7.3 2 8l4 4 8-8-.7-.7z"</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;;
+
+<span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Row</span>({ value, label }<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">ListOption</span>) {
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{value} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"group flex cursor-pointer items-center gap-2 px-4 py-3 text-ink-muted hover:bg-layer-hover-1 data-highlighted:bg-layer-hover-1 data-selected:text-ink"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{box}&gt;{check}&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+      {label}
+    &lt;/<span style="color:var(--ui-tag-color-blue)">MultiSelect.Option</span>&gt;
+  );
+}
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid max-w-xs gap-2"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Root</span> <span style="color:var(--ui-tag-color-purple)">items</span><span style="color:var(--ui-tag-color-magenta)">=</span>{people} <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"notify"</span> <span style="color:var(--ui-tag-color-purple)">selectAll</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Label</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-ink-muted"</span>&gt;Notify&lt;/<span style="color:var(--ui-tag-color-blue)">MultiSelect.Label</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Anchor</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex h-10 items-center border-b border-border-strong-1 bg-field-1 hover:bg-field-hover-1 has-focus-visible:outline-2 has-focus-visible:-outline-offset-2 has-focus-visible:outline-focus has-data-open:outline-2 has-data-open:-outline-offset-2 has-data-open:outline-focus"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Trigger</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"group flex h-full min-w-0 flex-1 items-center justify-between gap-2 px-4 text-start text-sm text-ink outline-none"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Value</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Choose people"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"truncate data-placeholder:text-ink-placeholder"</span> /&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-4 shrink-0 fill-current transition-transform group-data-open:rotate-180"</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M8 11 3 6l.7-.7L8 9.6l4.3-4.3.7.7z"</span> /&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">MultiSelect.Trigger</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">MultiSelect.Anchor</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Popup</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"bg-layer-1 text-sm text-ink shadow-lg"</span>&gt;
+          {(items) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+            &lt;&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.SelectAll</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"group flex cursor-pointer items-center gap-2 px-4 py-3 text-ink-muted hover:bg-layer-hover-1 data-highlighted:bg-layer-hover-1 data-selected:text-ink"</span>&gt;
+                {<span style="color:var(--ui-ink-muted);font-style:italic">/* mixed: a filled box with a dash instead of the check */</span>}
+                &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-teal)">`${</span><span style="color:var(--ui-tag-color-teal)">box</span><span style="color:var(--ui-tag-color-teal)">} relative after:absolute after:top-[6px] after:left-[3px] after:hidden after:h-0.5 after:w-2 after:bg-icon-inverse group-data-mixed:bg-ink group-data-mixed:after:block`</span>}&gt;{check}&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+                Select all
+              &lt;/<span style="color:var(--ui-tag-color-blue)">MultiSelect.SelectAll</span>&gt;
+              {items.<span style="color:var(--ui-tag-color-cyan)">map</span>((p) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (<span style="color:var(--ui-tag-color-teal)">'options'</span> <span style="color:var(--ui-tag-color-magenta)">in</span> p <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-green)">null</span> <span style="color:var(--ui-tag-color-magenta)">:</span> &lt;<span style="color:var(--ui-tag-color-blue)">Row</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{p.value} {<span style="color:var(--ui-tag-color-magenta)">...</span>p} /&gt;))}
+            &lt;/&gt;
+          )}
+        &lt;/<span style="color:var(--ui-tag-color-blue)">MultiSelect.Popup</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">MultiSelect.Root</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<h2 id="where-chosen-options-go">Where chosen options go</h2>
+<p><code>selectionFeedback</code> decides when chosen rows move to the top of the rows <code>Popup</code> hands you:</p>
+<table>
+<thead>
+<tr>
+<th><code>selectionFeedback</code></th>
+<th>Chosen rows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>top-after-reopen</code> (default)</td>
+<td>Move to the top the next time the list opens</td>
+</tr>
+<tr>
+<td><code>top</code></td>
+<td>Move to the top at once</td>
+</tr>
+<tr>
+<td><code>fixed</code></td>
+<td>Stay where they are</td>
+</tr>
+</tbody>
+</table>
+<p>With groups in <code>items</code>, nothing moves.</p>
+<div class="doc-demo" data-react-example="4"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { useState } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { MultiSelect, <span style="color:var(--ui-tag-color-magenta)">type</span> ListOption } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">type</span> <span style="color:var(--ui-tag-color-cyan)">Feedback</span> <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'top-after-reopen'</span> <span style="color:var(--ui-tag-color-magenta)">|</span> <span style="color:var(--ui-tag-color-teal)">'top'</span> <span style="color:var(--ui-tag-color-magenta)">|</span> <span style="color:var(--ui-tag-color-teal)">'fixed'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> people <span style="color:var(--ui-tag-color-magenta)">=</span> [
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'owner'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Contract owner'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'legal'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Legal team'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'finance'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Finance team'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'signer'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Signers'</span> },
+];
+
+<span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Row</span>({ value, label }<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">ListOption</span>) {
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{value} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"group flex cursor-pointer items-center gap-2 px-4 py-3 text-ink-muted hover:bg-layer-hover-1 data-highlighted:bg-layer-hover-1 data-selected:text-ink"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid size-4 shrink-0 place-items-center rounded-xs border border-ink text-transparent group-data-selected:bg-ink group-data-selected:text-icon-inverse"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-3.5 fill-current"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M6 10.6 2.7 7.3 2 8l4 4 8-8-.7-.7z"</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+      {label}
+    &lt;/<span style="color:var(--ui-tag-color-blue)">MultiSelect.Option</span>&gt;
+  );
+}
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [feedback, setFeedback] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>&lt;<span style="color:var(--ui-tag-color-cyan)">Feedback</span>&gt;(<span style="color:var(--ui-tag-color-teal)">'top-after-reopen'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid max-w-xs gap-4"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">label</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid gap-2 text-xs text-ink-muted"</span>&gt;
+        selectionFeedback
+        &lt;<span style="color:var(--ui-tag-color-blue)">select</span>
+          <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{feedback}
+          <span style="color:var(--ui-tag-color-purple)">onChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setFeedback</span>(e.target.value <span style="color:var(--ui-tag-color-magenta)">as</span> <span style="color:var(--ui-tag-color-cyan)">Feedback</span>)}
+          <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-8 border-b border-border-strong-1 bg-field-1 px-2 text-sm text-ink focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus"</span>
+        &gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"top-after-reopen"</span>&gt;top-after-reopen&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"top"</span>&gt;top&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"fixed"</span>&gt;fixed&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">select</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">label</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid gap-2"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Root</span> <span style="color:var(--ui-tag-color-purple)">items</span><span style="color:var(--ui-tag-color-magenta)">=</span>{people} <span style="color:var(--ui-tag-color-purple)">selectionFeedback</span><span style="color:var(--ui-tag-color-magenta)">=</span>{feedback}&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Label</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-ink-muted"</span>&gt;Notify&lt;/<span style="color:var(--ui-tag-color-blue)">MultiSelect.Label</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Anchor</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex h-10 items-center border-b border-border-strong-1 bg-field-1 hover:bg-field-hover-1 has-focus-visible:outline-2 has-focus-visible:-outline-offset-2 has-focus-visible:outline-focus has-data-open:outline-2 has-data-open:-outline-offset-2 has-data-open:outline-focus"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Trigger</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"group flex h-full min-w-0 flex-1 items-center justify-between gap-2 px-4 text-start text-sm text-ink outline-none"</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Value</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Choose people"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"truncate data-placeholder:text-ink-placeholder"</span> /&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-4 shrink-0 fill-current transition-transform group-data-open:rotate-180"</span>&gt;
+                &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M8 11 3 6l.7-.7L8 9.6l4.3-4.3.7.7z"</span> /&gt;
+              &lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">MultiSelect.Trigger</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">MultiSelect.Anchor</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Popup</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"bg-layer-1 text-sm text-ink shadow-lg"</span>&gt;
+            {(items) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> items.<span style="color:var(--ui-tag-color-cyan)">map</span>((p) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (<span style="color:var(--ui-tag-color-teal)">'options'</span> <span style="color:var(--ui-tag-color-magenta)">in</span> p <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-green)">null</span> <span style="color:var(--ui-tag-color-magenta)">:</span> &lt;<span style="color:var(--ui-tag-color-blue)">Row</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{p.value} {<span style="color:var(--ui-tag-color-magenta)">...</span>p} /&gt;))}
+          &lt;/<span style="color:var(--ui-tag-color-blue)">MultiSelect.Popup</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">MultiSelect.Root</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<h2 id="filterable">Filterable</h2>
+<p><code>filterable</code> makes the field a text box: use <code>Input</code> instead of <code>Trigger</code> and <code>Value</code>, and add <code>ClearText</code> and <code>Toggle</code> if you want them. <code>filter</code> is <code>contains</code> (the default) or <code>starts-with</code>. Choosing keeps the text and the list open; focus leaving <code>Anchor</code> or a press outside closes the list and empties the text. &quot;Select all&quot; then acts on the rows shown.</p>
+<div class="doc-demo" data-react-example="5"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { MultiSelect, <span style="color:var(--ui-tag-color-magenta)">type</span> ListOption } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> provinces <span style="color:var(--ui-tag-color-magenta)">=</span> [
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'bkk'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Bangkok'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'cnx'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Chiang Mai'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'cei'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Chiang Rai'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'kkc'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Khon Kaen'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'hkt'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Phuket'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'skh'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Songkhla'</span> },
+];
+
+<span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Row</span>({ value, label }<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">ListOption</span>) {
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{value} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"group flex cursor-pointer items-center gap-2 px-4 py-3 text-ink-muted hover:bg-layer-hover-1 data-highlighted:bg-layer-hover-1 data-selected:text-ink"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid size-4 shrink-0 place-items-center rounded-xs border border-ink text-transparent group-data-selected:bg-ink group-data-selected:text-icon-inverse"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-3.5 fill-current"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M6 10.6 2.7 7.3 2 8l4 4 8-8-.7-.7z"</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+      {label}
+    &lt;/<span style="color:var(--ui-tag-color-blue)">MultiSelect.Option</span>&gt;
+  );
+}
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid max-w-xs gap-2"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Root</span> <span style="color:var(--ui-tag-color-purple)">items</span><span style="color:var(--ui-tag-color-magenta)">=</span>{provinces} <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"provinces"</span> <span style="color:var(--ui-tag-color-purple)">filterable</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Label</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-ink-muted"</span>&gt;Provinces&lt;/<span style="color:var(--ui-tag-color-blue)">MultiSelect.Label</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Anchor</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex h-10 items-center border-b border-border-strong-1 bg-field-1 hover:bg-field-hover-1 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-focus"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Input</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Type to filter"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-full min-w-0 flex-1 bg-transparent ps-4 text-sm text-ink outline-none placeholder:text-ink-placeholder"</span> /&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.ClearText</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Clear text"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid h-full w-8 shrink-0 place-items-center text-ink hover:bg-field-hover-1"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-4 fill-current"</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M12 4.7 11.3 4 8 7.3 4.7 4 4 4.7 7.3 8 4 11.3l.7.7L8 8.7l3.3 3.3.7-.7L8.7 8z"</span> /&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">MultiSelect.ClearText</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Toggle</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Open"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"group grid h-full w-10 shrink-0 place-items-center text-ink"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-4 fill-current transition-transform group-data-open:rotate-180"</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M8 11 3 6l.7-.7L8 9.6l4.3-4.3.7.7z"</span> /&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">MultiSelect.Toggle</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">MultiSelect.Anchor</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Popup</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"max-h-72 overflow-y-auto bg-layer-1 text-sm text-ink shadow-lg"</span>&gt;
+          {(items) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> items.<span style="color:var(--ui-tag-color-cyan)">map</span>((p) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (<span style="color:var(--ui-tag-color-teal)">'options'</span> <span style="color:var(--ui-tag-color-magenta)">in</span> p <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-green)">null</span> <span style="color:var(--ui-tag-color-magenta)">:</span> &lt;<span style="color:var(--ui-tag-color-blue)">Row</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{p.value} {<span style="color:var(--ui-tag-color-magenta)">...</span>p} /&gt;))}
+        &lt;/<span style="color:var(--ui-tag-color-blue)">MultiSelect.Popup</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">MultiSelect.Root</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<p>For a server search, set <code>filter=&quot;none&quot;</code>, get the typed text from <code>onInputValueChange</code>, replace <code>items</code> and set <code>loading</code>. Keep the chosen options in <code>items</code> so their rows stay.</p>
+<div class="doc-demo" data-react-example="6"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { useRef, useState } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { MultiSelect, <span style="color:var(--ui-tag-color-magenta)">type</span> ListOption } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> everyone<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">ListOption</span>[] <span style="color:var(--ui-tag-color-magenta)">=</span> [
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'somchai'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Somchai Jaidee'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'suda'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Suda Rakthai'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'anan'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Anan Srisuk'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'malee'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Malee Wongsa'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'prasert'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Prasert Chaiyo'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'ratana'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Ratana Boonmee'</span> },
+];
+
+<span style="color:var(--ui-ink-muted);font-style:italic">// stands in for the server: the people whose name contains the text, after 500 ms</span>
+<span style="color:var(--ui-tag-color-magenta)">const</span> <span style="color:var(--ui-tag-color-cyan)">search</span> <span style="color:var(--ui-tag-color-magenta)">=</span> (text<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span>
+  <span style="color:var(--ui-tag-color-magenta)">new</span> Promise&lt;<span style="color:var(--ui-tag-color-cyan)">ListOption</span>[]&gt;((resolve) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    <span style="color:var(--ui-tag-color-magenta)">const</span> found <span style="color:var(--ui-tag-color-magenta)">=</span> everyone.<span style="color:var(--ui-tag-color-cyan)">filter</span>((p) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> p.label.<span style="color:var(--ui-tag-color-cyan)">toLowerCase</span>().<span style="color:var(--ui-tag-color-cyan)">includes</span>(text.<span style="color:var(--ui-tag-color-cyan)">trim</span>().<span style="color:var(--ui-tag-color-cyan)">toLowerCase</span>()));
+    <span style="color:var(--ui-tag-color-cyan)">setTimeout</span>(() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">resolve</span>(found), <span style="color:var(--ui-tag-color-green)">500</span>);
+  });
+
+<span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Row</span>({ value, label }<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">ListOption</span>) {
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{value} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"group flex cursor-pointer items-center gap-2 px-4 py-3 text-ink-muted hover:bg-layer-hover-1 data-highlighted:bg-layer-hover-1 data-selected:text-ink"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid size-4 shrink-0 place-items-center rounded-xs border border-ink text-transparent group-data-selected:bg-ink group-data-selected:text-icon-inverse"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-3.5 fill-current"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M6 10.6 2.7 7.3 2 8l4 4 8-8-.7-.7z"</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+      {label}
+    &lt;/<span style="color:var(--ui-tag-color-blue)">MultiSelect.Option</span>&gt;
+  );
+}
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [value, setValue] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>&lt;<span style="color:var(--ui-tag-color-cyan)">string</span>[]&gt;([]);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [found, setFound] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(everyone);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [loading, setLoading] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-green)">false</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> latest <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useRef</span>(<span style="color:var(--ui-tag-color-teal)">''</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> <span style="color:var(--ui-tag-color-cyan)">onText</span> <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-magenta)">async</span> (text<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    latest.current <span style="color:var(--ui-tag-color-magenta)">=</span> text;
+    <span style="color:var(--ui-tag-color-cyan)">setLoading</span>(<span style="color:var(--ui-tag-color-green)">true</span>);
+    <span style="color:var(--ui-tag-color-magenta)">const</span> result <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-magenta)">await</span> <span style="color:var(--ui-tag-color-cyan)">search</span>(text);
+    <span style="color:var(--ui-tag-color-magenta)">if</span> (latest.current <span style="color:var(--ui-tag-color-magenta)">!==</span> text) <span style="color:var(--ui-tag-color-magenta)">return</span>; <span style="color:var(--ui-ink-muted);font-style:italic">// a newer search is on its way</span>
+    <span style="color:var(--ui-tag-color-cyan)">setFound</span>(result);
+    <span style="color:var(--ui-tag-color-cyan)">setLoading</span>(<span style="color:var(--ui-tag-color-green)">false</span>);
+  };
+  <span style="color:var(--ui-ink-muted);font-style:italic">// the chosen options stay in items, so their rows stay</span>
+  <span style="color:var(--ui-tag-color-magenta)">const</span> rows <span style="color:var(--ui-tag-color-magenta)">=</span> [<span style="color:var(--ui-tag-color-magenta)">...</span>everyone.<span style="color:var(--ui-tag-color-cyan)">filter</span>((p) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> value.<span style="color:var(--ui-tag-color-cyan)">includes</span>(p.value) <span style="color:var(--ui-tag-color-magenta)">&amp;&amp;</span> <span style="color:var(--ui-tag-color-magenta)">!</span>found.<span style="color:var(--ui-tag-color-cyan)">includes</span>(p)), <span style="color:var(--ui-tag-color-magenta)">...</span>found];
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid max-w-xs gap-2"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Root</span> <span style="color:var(--ui-tag-color-purple)">items</span><span style="color:var(--ui-tag-color-magenta)">=</span>{rows} <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"people"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{value} <span style="color:var(--ui-tag-color-purple)">onValueChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{setValue} <span style="color:var(--ui-tag-color-purple)">filterable</span> <span style="color:var(--ui-tag-color-purple)">filter</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"none"</span> <span style="color:var(--ui-tag-color-purple)">loading</span><span style="color:var(--ui-tag-color-magenta)">=</span>{loading} <span style="color:var(--ui-tag-color-purple)">onInputValueChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{onText}&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Label</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-ink-muted"</span>&gt;People&lt;/<span style="color:var(--ui-tag-color-blue)">MultiSelect.Label</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Anchor</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex h-10 items-center border-b border-border-strong-1 bg-field-1 hover:bg-field-hover-1 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-focus"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Input</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Type a name"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-full min-w-0 flex-1 bg-transparent ps-4 text-sm text-ink outline-none placeholder:text-ink-placeholder"</span> /&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Toggle</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Open"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"group grid h-full w-10 shrink-0 place-items-center text-ink"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-4 fill-current transition-transform group-data-open:rotate-180"</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M8 11 3 6l.7-.7L8 9.6l4.3-4.3.7.7z"</span> /&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">MultiSelect.Toggle</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">MultiSelect.Anchor</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Popup</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"max-h-72 overflow-y-auto bg-layer-1 text-sm text-ink shadow-lg"</span>&gt;
+          {(items) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+            &lt;&gt;
+              {<span style="color:var(--ui-ink-muted);font-style:italic">/* while loading, items is empty */</span>}
+              {loading <span style="color:var(--ui-tag-color-magenta)">?</span> &lt;<span style="color:var(--ui-tag-color-blue)">li</span> <span style="color:var(--ui-tag-color-purple)">role</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"option"</span> <span style="color:var(--ui-tag-color-purple)">aria-disabled</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">aria-selected</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"false"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"px-4 py-3 text-ink-placeholder"</span>&gt;Searching…&lt;/<span style="color:var(--ui-tag-color-blue)">li</span>&gt; <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-green)">null</span>}
+              {items.<span style="color:var(--ui-tag-color-cyan)">map</span>((p) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (<span style="color:var(--ui-tag-color-teal)">'options'</span> <span style="color:var(--ui-tag-color-magenta)">in</span> p <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-green)">null</span> <span style="color:var(--ui-tag-color-magenta)">:</span> &lt;<span style="color:var(--ui-tag-color-blue)">Row</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{p.value} {<span style="color:var(--ui-tag-color-magenta)">...</span>p} /&gt;))}
+            &lt;/&gt;
+          )}
+        &lt;/<span style="color:var(--ui-tag-color-blue)">MultiSelect.Popup</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">role</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"status"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sr-only"</span>&gt;{loading <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-teal)">'Searching…'</span> <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-teal)">''</span>}&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">MultiSelect.Root</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-ink-muted"</span>&gt;Value: {JSON.<span style="color:var(--ui-tag-color-cyan)">stringify</span>(value)}&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<p><code>onText</code> sets <code>loading</code>, searches (here a stand-in that answers after a short wait), and puts the result in <code>rows</code> together with the chosen options, as on <a href="/kanok-ui-docs/en/multi-select/#search-on-a-server">Multi-select</a>.</p>
+<h2 id="load-the-options-when-the-list-opens">Load the options when the list opens</h2>
+<p><code>onOpenChange</code> fires after the list opens or closes. While <code>loading</code> is true, <code>Popup</code> hands you no rows, &quot;Select all&quot; is hidden, the keys pick nothing and the popup has <code>aria-busy</code>. Render a &quot;Loading…&quot; row and a <code>role=&quot;status&quot;</code> text yourself, as on <a href="/kanok-ui-docs/en/headless-dropdown/#load-the-options-when-the-list-opens">Headless Dropdown</a>.</p>
+<h2 id="read-only-and-disabled">Read-only and disabled</h2>
+<ul>
+<li><code>readOnly</code> shows the choice, but the list doesn't open and the keys do nothing. The field gets <code>aria-readonly</code> (or the input <code>readOnly</code>, filterable), and <code>Toggle</code> and <code>Clear</code> are disabled.</li>
+<li><code>disabled</code> disables the field, <code>Toggle</code> and <code>Clear</code>.</li>
+<li>A disabled field renders no hidden inputs, so it isn't submitted (as a disabled native control). A form reset puts an uncontrolled choice back.</li>
+</ul>
+<div class="doc-demo" data-react-example="7"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { MultiSelect } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> people <span style="color:var(--ui-tag-color-magenta)">=</span> [
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'owner'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Contract owner'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'legal'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Legal team'</span> },
+];
+
+<span style="color:var(--ui-ink-muted);font-style:italic">// the chosen labels, read from the Root's state</span>
+<span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">ChosenValue</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> { value } <span style="color:var(--ui-tag-color-magenta)">=</span> MultiSelect.<span style="color:var(--ui-tag-color-cyan)">useMultiSelectContext</span>();
+  <span style="color:var(--ui-tag-color-magenta)">const</span> labels <span style="color:var(--ui-tag-color-magenta)">=</span> people.<span style="color:var(--ui-tag-color-cyan)">filter</span>((p) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> value.<span style="color:var(--ui-tag-color-cyan)">includes</span>(p.value)).<span style="color:var(--ui-tag-color-cyan)">map</span>((p) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> p.label).<span style="color:var(--ui-tag-color-cyan)">join</span>(<span style="color:var(--ui-tag-color-teal)">', '</span>);
+  <span style="color:var(--ui-tag-color-magenta)">return</span> &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Value</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Choose people"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"truncate data-placeholder:text-ink-placeholder"</span>&gt;{labels <span style="color:var(--ui-tag-color-magenta)">||</span> <span style="color:var(--ui-tag-color-green)">undefined</span>}&lt;/<span style="color:var(--ui-tag-color-blue)">MultiSelect.Value</span>&gt;;
+}
+
+<span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">NotifyField</span>({ label, <span style="color:var(--ui-tag-color-magenta)">...</span>props }<span style="color:var(--ui-tag-color-magenta)">:</span> { label<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>; defaultValue<span style="color:var(--ui-tag-color-magenta)">?:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>[]; readOnly<span style="color:var(--ui-tag-color-magenta)">?:</span> <span style="color:var(--ui-tag-color-cyan)">boolean</span>; disabled<span style="color:var(--ui-tag-color-magenta)">?:</span> <span style="color:var(--ui-tag-color-cyan)">boolean</span> }) {
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Root</span> <span style="color:var(--ui-tag-color-purple)">items</span><span style="color:var(--ui-tag-color-magenta)">=</span>{people} {<span style="color:var(--ui-tag-color-magenta)">...</span>props}&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Label</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-ink-muted data-disabled:text-ink-disabled"</span>&gt;{label}&lt;/<span style="color:var(--ui-tag-color-blue)">MultiSelect.Label</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Anchor</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex h-10 items-center border-b border-border-strong-1 bg-field-1 has-focus-visible:outline-2 has-focus-visible:-outline-offset-2 has-focus-visible:outline-focus has-data-readonly:border-hairline has-data-readonly:bg-transparent has-data-disabled:border-transparent"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Trigger</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"group flex h-full min-w-0 flex-1 items-center justify-between gap-2 px-4 text-start text-sm text-ink outline-none data-readonly:cursor-default data-disabled:cursor-not-allowed data-disabled:text-ink-disabled"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">ChosenValue</span> /&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-4 shrink-0 fill-current group-data-readonly:opacity-25"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M8 11 3 6l.7-.7L8 9.6l4.3-4.3.7.7z"</span> /&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">MultiSelect.Trigger</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">MultiSelect.Anchor</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Popup</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"bg-layer-1 text-sm text-ink shadow-lg"</span>&gt;
+        {(items) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> items.<span style="color:var(--ui-tag-color-cyan)">map</span>((p) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (<span style="color:var(--ui-tag-color-teal)">'options'</span> <span style="color:var(--ui-tag-color-magenta)">in</span> p <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-green)">null</span> <span style="color:var(--ui-tag-color-magenta)">:</span> &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Option</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{p.value} <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{p.value} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"px-4 py-3"</span>&gt;{p.label}&lt;/<span style="color:var(--ui-tag-color-blue)">MultiSelect.Option</span>&gt;))}
+      &lt;/<span style="color:var(--ui-tag-color-blue)">MultiSelect.Popup</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">MultiSelect.Root</span>&gt;
+  );
+}
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid max-w-xs gap-2"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">NotifyField</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Notify (read-only)"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span>{[<span style="color:var(--ui-tag-color-teal)">'owner'</span>, <span style="color:var(--ui-tag-color-teal)">'legal'</span>]} <span style="color:var(--ui-tag-color-purple)">readOnly</span> /&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">NotifyField</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Notify (disabled)"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span> /&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<p><code>required</code> and <code>invalid</code> only set <code>aria-required</code> and <code>aria-invalid</code> (and <code>data-invalid</code>): check the value and show the error yourself (<a href="/kanok-ui-docs/en/forms/">Forms and validation</a>). There are no sizes; the height is your CSS.</p>
+<h2 id="style-it">Style it</h2>
+<div class="doc-demo" data-react-example="8"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { useState } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { MultiSelect, <span style="color:var(--ui-tag-color-magenta)">type</span> ListOption } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> people <span style="color:var(--ui-tag-color-magenta)">=</span> [
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'owner'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Contract owner'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'legal'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Legal team'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'board'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Board (on leave)'</span>, <span style="color:var(--ui-tag-color-purple)">disabled:</span> <span style="color:var(--ui-tag-color-green)">true</span> },
+];
+
+<span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Row</span>({ value, label }<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">ListOption</span>) {
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{value} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"group flex cursor-pointer items-center gap-2 px-4 py-3 text-ink-muted hover:bg-layer-hover-1 data-highlighted:bg-layer-hover-1 data-selected:text-ink data-disabled:cursor-not-allowed data-disabled:bg-transparent data-disabled:text-ink-disabled"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid size-4 shrink-0 place-items-center rounded-xs border border-ink text-transparent group-data-selected:bg-ink group-data-selected:text-icon-inverse group-data-disabled:border-ink-disabled"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-3.5 fill-current"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M6 10.6 2.7 7.3 2 8l4 4 8-8-.7-.7z"</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+      {label}
+    &lt;/<span style="color:var(--ui-tag-color-blue)">MultiSelect.Option</span>&gt;
+  );
+}
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [notify, setNotify] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>&lt;<span style="color:var(--ui-tag-color-cyan)">string</span>[]&gt;([]);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> invalid <span style="color:var(--ui-tag-color-magenta)">=</span> notify.length <span style="color:var(--ui-tag-color-magenta)">===</span> <span style="color:var(--ui-tag-color-green)">0</span>;
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid max-w-xs gap-2"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Root</span> <span style="color:var(--ui-tag-color-purple)">items</span><span style="color:var(--ui-tag-color-magenta)">=</span>{people} <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"notify"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{notify} <span style="color:var(--ui-tag-color-purple)">onValueChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{setNotify} <span style="color:var(--ui-tag-color-purple)">invalid</span><span style="color:var(--ui-tag-color-magenta)">=</span>{invalid} <span style="color:var(--ui-tag-color-purple)">required</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Label</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-ink-muted"</span>&gt;Notify&lt;/<span style="color:var(--ui-tag-color-blue)">MultiSelect.Label</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Anchor</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex h-10 items-center border-b border-border-strong-1 bg-field-1 hover:bg-field-hover-1 has-focus-visible:outline-2 has-focus-visible:-outline-offset-2 has-focus-visible:outline-focus has-data-open:outline-2 has-data-open:-outline-offset-2 has-data-open:outline-focus has-data-invalid:outline-2 has-data-invalid:-outline-offset-2 has-data-invalid:outline-error"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Trigger</span>
+            <span style="color:var(--ui-tag-color-purple)">aria-describedby</span><span style="color:var(--ui-tag-color-magenta)">=</span>{invalid <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-teal)">'notify-style-error'</span> <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-green)">undefined</span>}
+            <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"group flex h-full min-w-0 flex-1 items-center justify-between gap-2 px-4 text-start text-sm text-ink outline-none"</span>
+          &gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Value</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Choose people"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"truncate data-placeholder:text-ink-placeholder"</span> /&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-4 shrink-0 fill-current transition-transform group-data-open:rotate-180"</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M8 11 3 6l.7-.7L8 9.6l4.3-4.3.7.7z"</span> /&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">MultiSelect.Trigger</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">MultiSelect.Anchor</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect.Popup</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"bg-layer-1 text-sm text-ink shadow-lg"</span>&gt;
+          {(items) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> items.<span style="color:var(--ui-tag-color-cyan)">map</span>((p) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (<span style="color:var(--ui-tag-color-teal)">'options'</span> <span style="color:var(--ui-tag-color-magenta)">in</span> p <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-green)">null</span> <span style="color:var(--ui-tag-color-magenta)">:</span> &lt;<span style="color:var(--ui-tag-color-blue)">Row</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{p.value} {<span style="color:var(--ui-tag-color-magenta)">...</span>p} /&gt;))}
+        &lt;/<span style="color:var(--ui-tag-color-blue)">MultiSelect.Popup</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">MultiSelect.Root</span>&gt;
+      {invalid <span style="color:var(--ui-tag-color-magenta)">?</span> &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">id</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"notify-style-error"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-error-text"</span>&gt;Choose at least one person&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt; <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-green)">null</span>}
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<ui-code-snippet type="multi" class="doc-code" data-lang="css"><span style="color:var(--ui-ink-muted);font-style:italic">/* className="trigger" on Trigger, "option" on each Option, "select-all" on SelectAll, "box" on the drawn check boxes */</span>
+<span style="color:var(--ui-tag-color-purple)">.trigger</span>[<span style="color:var(--ui-tag-color-purple)">data-open</span>] { <span style="color:var(--ui-tag-color-purple)">outline</span>: <span style="color:var(--ui-tag-color-green)">2px</span> <span style="color:var(--ui-tag-color-green)">solid</span>; }
+<span style="color:var(--ui-tag-color-purple)">.trigger</span>[<span style="color:var(--ui-tag-color-purple)">data-invalid</span>] { <span style="color:var(--ui-tag-color-purple)">outline</span>: <span style="color:var(--ui-tag-color-green)">2px</span> <span style="color:var(--ui-tag-color-green)">solid</span> #da1e28; }
+<span style="color:var(--ui-tag-color-purple)">.option</span>[<span style="color:var(--ui-tag-color-purple)">data-highlighted</span>] { <span style="color:var(--ui-tag-color-purple)">background</span>: #e8e8e8; }
+<span style="color:var(--ui-tag-color-purple)">.option</span>[<span style="color:var(--ui-tag-color-purple)">data-selected</span>] <span style="color:var(--ui-tag-color-purple)">.box</span> { <span style="color:var(--ui-tag-color-purple)">background</span>: #161616; }
+<span style="color:var(--ui-tag-color-purple)">.select-all</span>[<span style="color:var(--ui-tag-color-purple)">data-mixed</span>] <span style="color:var(--ui-tag-color-purple)">.box</span> { <span style="color:var(--ui-tag-color-purple)">background</span>: <span style="color:var(--ui-tag-color-cyan)">linear-gradient</span>(#161616, #161616) <span style="color:var(--ui-tag-color-green)">center</span> / <span style="color:var(--ui-tag-color-green)">8px</span> <span style="color:var(--ui-tag-color-green)">2px</span> <span style="color:var(--ui-tag-color-green)">no-repeat</span>; }</ui-code-snippet>
+<h2 id="parts">Parts</h2>
+<h3 id="multiselect-root">MultiSelect.Root</h3>
+<p>Renders no element of its own: its children, then one hidden input per chosen value when <code>name</code> is set and <code>disabled</code> isn't.</p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>items</code></td>
+<td><code>ListItem[]</code></td>
+<td></td>
+<td>Options and groups <code>{ label, options }</code></td>
+</tr>
+<tr>
+<td><code>value</code></td>
+<td><code>string[]</code></td>
+<td></td>
+<td>The chosen values (controlled)</td>
+</tr>
+<tr>
+<td><code>defaultValue</code></td>
+<td><code>string[]</code></td>
+<td><code>[]</code></td>
+<td>The starting values (uncontrolled)</td>
+</tr>
+<tr>
+<td><code>onValueChange</code></td>
+<td><code>(value: string[]) =&gt; void</code></td>
+<td></td>
+<td>After the choice changes</td>
+</tr>
+<tr>
+<td><code>onInputValueChange</code></td>
+<td><code>(text: string) =&gt; void</code></td>
+<td></td>
+<td>Filterable: each change of the typed text</td>
+</tr>
+<tr>
+<td><code>selectionFeedback</code></td>
+<td><code>'top-after-reopen' | 'top' | 'fixed'</code></td>
+<td><code>'top-after-reopen'</code></td>
+<td>When chosen options move to the top</td>
+</tr>
+<tr>
+<td><code>selectAll</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Offer the <code>SelectAll</code> row</td>
+</tr>
+<tr>
+<td><code>filterable</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>The field is a text box (<code>Input</code>) that narrows the list</td>
+</tr>
+<tr>
+<td><code>filter</code></td>
+<td><code>'contains' | 'starts-with' | 'none'</code></td>
+<td><code>'contains'</code></td>
+<td>How typed text narrows the list (filterable)</td>
+</tr>
+<tr>
+<td><code>loading</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>No rows, the keys pick nothing, the popup is <code>aria-busy</code></td>
+</tr>
+<tr>
+<td><code>onOpenChange</code></td>
+<td><code>(open: boolean) =&gt; void</code></td>
+<td></td>
+<td>After the list opens or closes</td>
+</tr>
+<tr>
+<td><code>disabled</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Disables the field, <code>Toggle</code> and <code>Clear</code></td>
+</tr>
+<tr>
+<td><code>readOnly</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>The choice can't change</td>
+</tr>
+<tr>
+<td><code>required</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td><code>aria-required</code> on the field</td>
+</tr>
+<tr>
+<td><code>invalid</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td><code>aria-invalid</code> and <code>data-invalid</code> on the field</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Submits each chosen value with the form (hidden inputs), unless disabled</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>generated</td>
+<td>The input's id (filterable), and the base of the ids: <code>&lt;id&gt;-label</code>, <code>&lt;id&gt;-value</code>, <code>&lt;id&gt;-list</code>, <code>&lt;id&gt;-opt-&lt;n&gt;</code>, <code>&lt;id&gt;-opt-all</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>MultiSelect.useMultiSelectContext()</code> returns the <code>Root</code>'s state (<code>value</code>, <code>count</code>, <code>open</code>, <code>text</code>, <code>rows</code>, <code>allState</code>, <code>interactive</code> …) to any component inside it.</p>
+<h3 id="multiselect-label">MultiSelect.Label</h3>
+<p>A <code>&lt;span&gt;</code> with the id <code>&lt;id&gt;-label</code>. It names the field and the popup.</p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-disabled</code></td>
+<td><code>Root</code> is disabled</td>
+</tr>
+</tbody>
+</table>
+<h3 id="multiselect-anchor">MultiSelect.Anchor</h3>
+<p>A <code>&lt;div&gt;</code> around the field, the count and the buttons. The popup lines up with it and matches its width. With <code>filterable</code>, focus leaving it closes the list and empties the text. No props, no data attributes.</p>
+<h3 id="multiselect-trigger">MultiSelect.Trigger</h3>
+<p>A <code>&lt;button type=&quot;button&quot; role=&quot;combobox&quot;&gt;</code>, for a field that isn't filterable. Its <code>aria-labelledby</code> is <code>&lt;id&gt;-label &lt;id&gt;-value</code> unless you pass your own. It takes every button prop except <code>type</code>, <code>role</code> and <code>disabled</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-open</code></td>
+<td>The list is open</td>
+</tr>
+<tr>
+<td><code>data-disabled</code></td>
+<td>Disabled</td>
+</tr>
+<tr>
+<td><code>data-readonly</code></td>
+<td>Read-only</td>
+</tr>
+<tr>
+<td><code>data-invalid</code></td>
+<td><code>invalid</code> is set</td>
+</tr>
+<tr>
+<td><code>data-placeholder</code></td>
+<td>Nothing is chosen</td>
+</tr>
+</tbody>
+</table>
+<h3 id="multiselect-value">MultiSelect.Value</h3>
+<p>A <code>&lt;span&gt;</code> with the id <code>&lt;id&gt;-value</code>: its <code>children</code>, else <code>placeholder</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>placeholder</code></td>
+<td><code>ReactNode</code></td>
+<td></td>
+<td>Shown when there are no children</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-placeholder</code></td>
+<td>Nothing is chosen</td>
+</tr>
+</tbody>
+</table>
+<h3 id="multiselect-input">MultiSelect.Input</h3>
+<p>Filterable: an <code>&lt;input type=&quot;text&quot; role=&quot;combobox&quot; autocomplete=&quot;off&quot;&gt;</code> that narrows the list. Its id is <code>Root</code>'s <code>id</code> and its <code>aria-labelledby</code> is <code>&lt;id&gt;-label</code>, unless you pass your own. It takes every input prop except <code>type</code>, <code>role</code>, <code>value</code>, <code>defaultValue</code>, <code>disabled</code> and <code>readOnly</code>. It has the same data attributes as <code>Trigger</code>.</p>
+<h3 id="multiselect-clear">MultiSelect.Clear</h3>
+<p>A <code>&lt;button type=&quot;button&quot;&gt;</code> with <code>tabIndex={-1}</code>. A click empties the choice and puts focus in the field. It is disabled while <code>Root</code> is disabled or read-only. Give it an <code>aria-label</code>.</p>
+<h3 id="multiselect-cleartext">MultiSelect.ClearText</h3>
+<p>Filterable: a <code>&lt;button type=&quot;button&quot;&gt;</code> with <code>tabIndex={-1}</code>. A click empties the typed text and puts focus in the input. Give it an <code>aria-label</code>.</p>
+<h3 id="multiselect-toggle">MultiSelect.Toggle</h3>
+<p>Filterable: a <code>&lt;button type=&quot;button&quot;&gt;</code> with <code>tabIndex={-1}</code>, <code>aria-expanded</code> and <code>aria-controls</code>. A click opens or closes the list; focus stays in the input. It is disabled while <code>Root</code> is disabled or read-only. Give it an <code>aria-label</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-open</code></td>
+<td>The list is open</td>
+</tr>
+</tbody>
+</table>
+<h3 id="multiselect-popup">MultiSelect.Popup</h3>
+<p>A <code>&lt;ul role=&quot;listbox&quot; aria-multiselectable=&quot;true&quot; popover=&quot;manual&quot;&gt;</code> in the top layer. Its rows render only while the list is open. A press outside closes it and empties the text.</p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>children</code></td>
+<td><code>ReactNode | ((items: ListItem[]) =&gt; ReactNode)</code></td>
+<td></td>
+<td>The rows, or a function of the rows to show</td>
+</tr>
+<tr>
+<td><code>side</code></td>
+<td><code>'bottom' | 'top'</code></td>
+<td><code>'bottom'</code></td>
+<td>Where the list opens; it flips when there is no room</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-open</code></td>
+<td>The list is open</td>
+</tr>
+<tr>
+<td><code>data-side</code></td>
+<td><code>bottom</code> or <code>top</code>: where the list went</td>
+</tr>
+</tbody>
+</table>
+<h3 id="multiselect-selectall">MultiSelect.SelectAll</h3>
+<p>An <code>&lt;li role=&quot;option&quot;&gt;</code> with the id <code>&lt;id&gt;-opt-all</code>, rendered only while <code>selectAll</code> is set, nothing is loading and an enabled option is shown. A click chooses every enabled option shown, or none when all are chosen.</p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-highlighted</code></td>
+<td>The keyboard highlight is on it</td>
+</tr>
+<tr>
+<td><code>data-selected</code></td>
+<td>Every shown option is chosen</td>
+</tr>
+<tr>
+<td><code>data-mixed</code></td>
+<td>Some are chosen</td>
+</tr>
+</tbody>
+</table>
+<h3 id="multiselect-option-group-grouplabel-groupoptions">MultiSelect.Option, Group, GroupLabel, GroupOptions</h3>
+<p>The same parts as in <a href="/kanok-ui-docs/en/headless-dropdown/#parts">Headless Dropdown</a>: <code>Option</code> is an <code>&lt;li role=&quot;option&quot;&gt;</code> with a required <code>value</code> and <code>data-highlighted</code>, <code>data-selected</code> and <code>data-disabled</code>. A click on an enabled option toggles it and keeps the list open.</p>
+<h2 id="keyboard-and-accessibility">Keyboard and accessibility</h2>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>List closed</th>
+<th>List open</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>↓, Enter, Space</td>
+<td>Open the list</td>
+<td>Enter and Space toggle the highlighted row; the list stays open</td>
+</tr>
+<tr>
+<td>↓ / ↑, Page Down / Page Up, Home / End</td>
+<td>↑ does nothing; Home / End open on the first / last row</td>
+<td>Move the highlight</td>
+</tr>
+<tr>
+<td>Letters</td>
+<td>Open on the next option that starts with them</td>
+<td>Jump to the next option that starts with them</td>
+</tr>
+<tr>
+<td>Delete, Backspace, Esc</td>
+<td>Clear every choice</td>
+<td>Esc closes</td>
+</tr>
+<tr>
+<td>Tab</td>
+<td>Moves on</td>
+<td>Closes and moves on</td>
+</tr>
+</tbody>
+</table>
+<p>With <code>filterable</code>, letters, Space, Home, End, Delete and Backspace edit the text. ↓ or Enter open the list, Enter toggles the highlighted row (or closes with nothing highlighted), and Esc on a closed list clears the choices and the text.</p>
+<p>The parts set <code>role=&quot;combobox&quot;</code>, <code>aria-haspopup</code>, <code>aria-expanded</code>, <code>aria-controls</code>, <code>aria-activedescendant</code>, <code>aria-readonly</code>, <code>aria-required</code> and <code>aria-invalid</code> on the field, and <code>aria-multiselectable</code>, <code>aria-selected</code> and <code>aria-checked=&quot;mixed&quot;</code> on the list. Focus stays on the field.</p>
+<p>You add:</p>
+<ul>
+<li>The label text in <code>Label</code>.</li>
+<li><code>aria-label</code> on <code>Clear</code>, <code>ClearText</code> and <code>Toggle</code>.</li>
+<li>The count, if you show one, and a check box drawn in each row (hidden from screen readers; <code>aria-selected</code> already says it).</li>
+<li>Helper and error text, linked with <code>aria-describedby</code> on the field.</li>
+<li>A <code>role=&quot;status&quot;</code> text for &quot;Loading…&quot;, &quot;Searching…&quot; and &quot;No matching items&quot;.</li>
+</ul>
+
+</article>
+<nav class="doc-toc" aria-labelledby="doc-toc-title"><p id="doc-toc-title" class="doc-toc-title">On this page</p><ul><li class="doc-toc-h2"><a href="#installation">Installation</a></li><li class="doc-toc-h2"><a href="#use-it">Use it</a></li><li class="doc-toc-h2"><a href="#anatomy">Anatomy</a></li><li class="doc-toc-h2"><a href="#the-count-clear-and-descriptions">The count, clear and descriptions</a></li><li class="doc-toc-h2"><a href="#value">Value</a></li><li class="doc-toc-h2"><a href="#select-all">Select all</a></li><li class="doc-toc-h2"><a href="#where-chosen-options-go">Where chosen options go</a></li><li class="doc-toc-h2"><a href="#filterable">Filterable</a></li><li class="doc-toc-h2"><a href="#load-the-options-when-the-list-opens">Load the options when the list opens</a></li><li class="doc-toc-h2"><a href="#read-only-and-disabled">Read-only and disabled</a></li><li class="doc-toc-h2"><a href="#style-it">Style it</a></li><li class="doc-toc-h2"><a href="#parts">Parts</a></li><li class="doc-toc-h3"><a href="#multiselect-root">MultiSelect.Root</a></li><li class="doc-toc-h3"><a href="#multiselect-label">MultiSelect.Label</a></li><li class="doc-toc-h3"><a href="#multiselect-anchor">MultiSelect.Anchor</a></li><li class="doc-toc-h3"><a href="#multiselect-trigger">MultiSelect.Trigger</a></li><li class="doc-toc-h3"><a href="#multiselect-value">MultiSelect.Value</a></li><li class="doc-toc-h3"><a href="#multiselect-input">MultiSelect.Input</a></li><li class="doc-toc-h3"><a href="#multiselect-clear">MultiSelect.Clear</a></li><li class="doc-toc-h3"><a href="#multiselect-cleartext">MultiSelect.ClearText</a></li><li class="doc-toc-h3"><a href="#multiselect-toggle">MultiSelect.Toggle</a></li><li class="doc-toc-h3"><a href="#multiselect-popup">MultiSelect.Popup</a></li><li class="doc-toc-h3"><a href="#multiselect-selectall">MultiSelect.SelectAll</a></li><li class="doc-toc-h3"><a href="#multiselect-option-group-grouplabel-groupoptions">MultiSelect.Option, Group, GroupLabel, GroupOptions</a></li><li class="doc-toc-h2"><a href="#keyboard-and-accessibility">Keyboard and accessibility</a></li></ul></nav>
+</div>
+<nav class="doc-pager" aria-label="Next / Previous"><a class="doc-pager-prev" href="/kanok-ui-docs/en/headless-combobox/" rel="prev"><span>Previous</span>Combobox</a><a class="doc-pager-next" href="/kanok-ui-docs/en/headless-checkbox/" rel="next"><span>Next</span>Checkbox</a></nav>
+<footer class="doc-footer">@purpurabog/ui 1.4.3 · MIT · <a href="https://cdn.jsdelivr.net/npm/@purpurabog/ui@1.4.3/THIRD-PARTY-NOTICES.md">Third-party notices</a><br>Built on the Carbon Design System. Not affiliated with or endorsed by IBM; IBM and Carbon are trademarks of IBM Corp.</footer>
+</ui-content>
+<ui-modal id="doc-search" heading="Search" data-count="{n} results" data-empty="No results for “{q}”">
+<ui-search label="Search the docs" placeholder="Search the docs" size="lg"></ui-search>
+<p class="doc-search-status" role="status"></p>
+<ul class="doc-search-results"></ul>
+</ui-modal>
+</body>
+</html>

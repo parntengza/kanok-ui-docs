@@ -1,0 +1,1373 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Date picker · @purpurabog/ui</title>
+<link rel="alternate" hreflang="en" href="/kanok-ui-docs/en/date-picker/"  /><link rel="alternate" hreflang="th" href="/kanok-ui-docs/th/date-picker/"  />
+<script>(function(){try{var q=new URLSearchParams(location.search).get("design"),d=q;if(q==="kanok"||q==="carbon")localStorage.setItem("ui-docs-design",q);else d=localStorage.getItem("ui-docs-design");if(d==="kanok")document.documentElement.setAttribute("data-design","kanok")}catch(e){}})();(function(){try{var m=localStorage.getItem("ui-docs-theme");if(m!=="light"&&m!=="dark"&&m!=="system")return;var d=m==="dark"||(m==="system"&&matchMedia("(prefers-color-scheme: dark)").matches),r=document.documentElement,t=d?"g100":"white";if(r.getAttribute("data-design")==="kanok")t=d?"lacquer":"paper";r.setAttribute("data-theme",t)}catch(e){}})();</script>
+<style>ui-header:not(:defined){z-index:8000;box-sizing:border-box;border-block-end:1px solid var(--ui-border-subtle-1);background:var(--ui-canvas);block-size:48px;display:block;position:fixed;inset:0 0 auto}:is(ui-header:not(:defined)>*,ui-side-nav:not(:defined)>*){visibility:hidden}:is(ui-header-panel:not(:defined),ui-modal:not(:defined)){display:none}ui-side-nav:not(:defined){display:none}ui-content:not(:defined){margin-block-start:48px;padding:32px;display:block}@media (width>=1056px){ui-side-nav[expanded]:not(:defined){background:var(--ui-canvas);inline-size:256px;display:block;position:fixed;inset:48px auto 0 0}ui-side-nav[expanded]:not(:defined)~ui-content:not(:defined){margin-inline-start:256px}}ui-tabs:not(:defined){display:block}ui-tabs:not(:defined)>ui-tab{box-sizing:border-box;border-block-end:2px solid var(--ui-hairline);block-size:40px;color:var(--ui-ink-muted);font:var(--ui-font-body-sm);padding:0 16px;line-height:38px;display:inline-block}ui-tabs:not(:defined)>ui-tab:first-of-type{border-block-end-color:var(--ui-interactive);color:var(--ui-ink)}ui-tabs:not(:defined)>ui-tab-panel{padding:16px;display:block}ui-tabs:not(:defined)>ui-tab-panel~ui-tab-panel{display:none}ui-code-snippet:not(:defined){background:var(--ui-layer-1);max-block-size:272px;font:var(--ui-font-code,12px/16px monospace);white-space:pre;padding:16px;display:block;overflow:hidden}[data-react-example]:empty>*{visibility:hidden}.doc-demo:has(:not(:defined))>*{visibility:hidden}[data-react-example]:empty{box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}.doc-demo:has(:not(:defined)){box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}@keyframes doc-skeleton{to{background-position:-200% 0}}@media (prefers-reduced-motion:reduce){[data-react-example]:empty{animation:none}.doc-demo:has(:not(:defined)){animation:none}}</style>
+
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/theme-switcher-BGAHXRgF.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/date-BacUxW-t.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/sheet-DbjrsMqL.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/date-picker-DTFVj1yW.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/tabs-CvVVO2Pb.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/button-CTeCEJcq.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/skeleton-BESm0w-6.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/date-picker-skeleton-DcjiZ8Bq.js"></script>
+  <link rel="stylesheet" crossorigin href="/kanok-ui-docs/assets/theme-switcher-CL5yB6XE.css">
+</head>
+<body>
+<ui-header label="@purpurabog/ui">
+<ui-skip-to-content></ui-skip-to-content>
+<ui-header-menu-button></ui-header-menu-button>
+<ui-header-name href="/kanok-ui-docs/en/" prefix="@purpurabog">ui</ui-header-name>
+<ui-header-global-bar>
+<ui-header-global-action id="doc-search-open" label="Search" tooltip-placement="bottom"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="m18.5 17.8-4.9-4.9a7 7 0 1 0-.7.7l4.9 4.9zM3 8.5a5.5 5.5 0 1 1 5.5 5.5A5.5 5.5 0 0 1 3 8.5Z" /></svg></ui-header-global-action>
+<ui-header-global-action label="Settings" panel="doc-settings" tooltip-placement="bottom-end"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="M16.9 10.6a7 7 0 0 0 0-1.2l1.8-1.4-1.6-2.8-2.1.8a6.6 6.6 0 0 0-1-.6L13.6 3h-3.2l-.4 2.4a6.6 6.6 0 0 0-1 .6l-2.1-.8L5.3 8l1.8 1.4a7 7 0 0 0 0 1.2L5.3 12l1.6 2.8 2.1-.8a6.6 6.6 0 0 0 1 .6l.4 2.4h3.2l.4-2.4a6.6 6.6 0 0 0 1-.6l2.1.8 1.6-2.8zM12 13a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" /></svg></ui-header-global-action>
+</ui-header-global-bar>
+<ui-header-panel id="doc-settings" label="Settings">
+<div class="doc-settings">
+<span class="doc-settings-label">Theme</span>
+<ui-theme-switcher storage-key="ui-docs-theme" tooltip-placement="bottom"></ui-theme-switcher>
+<span class="doc-settings-label">Style</span>
+<ui-content-switcher id="doc-design" aria-label="Style" size="sm"><ui-content-switcher-item name="carbon">Carbon</ui-content-switcher-item><ui-content-switcher-item name="kanok">Kanok</ui-content-switcher-item></ui-content-switcher>
+<span class="doc-settings-label">Language</span>
+<ui-link href="/kanok-ui-docs/th/date-picker/" hreflang="th" lang="th">ไทย</ui-link>
+</div>
+</ui-header-panel>
+</ui-header>
+<ui-side-nav label="Documentation"><ui-side-nav-items><ui-side-nav-menu label="Get started"><ui-side-nav-menu-item href="/kanok-ui-docs/en/">Overview</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/installation/">Installation</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/migration-1-0/">Migrating to 1.0</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Guides"><ui-side-nav-menu-item href="/kanok-ui-docs/en/themes/">Themes and layers</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/kanok/">Kanok design</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/customizing/">Customizing</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/icons/">Icons</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/forms/">Forms and validation</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/frameworks/">Frameworks</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/ai/">Using with AI</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Forms and actions" expanded><ui-side-nav-menu-item href="/kanok-ui-docs/en/button/">Button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/date-picker/" current>Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/file-uploader/">File uploader</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Overlays"><ui-side-nav-menu-item href="/kanok-ui-docs/en/modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/toggletip/">Toggletip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/menu/">Menu</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Data"><ui-side-nav-menu-item href="/kanok-ui-docs/en/data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/contained-list/">Contained list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tree-view/">Tree view</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Navigation"><ui-side-nav-menu-item href="/kanok-ui-docs/en/tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/breadcrumb/">Breadcrumb</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/link/">Link</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/ui-shell/">UI shell</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Content"><ui-side-nav-menu-item href="/kanok-ui-docs/en/tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tile/">Tile</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/user-avatar/">User avatar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/list/">List</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Status and loading"><ui-side-nav-menu-item href="/kanok-ui-docs/en/loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/inline-loading/">Inline loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/progress-bar/">Progress bar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/skeleton/">Skeleton</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/badge-indicator/">Badge indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/status-indicator/">Status indicator</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Layout"><ui-side-nav-menu-item href="/kanok-ui-docs/en/grid/">Grid</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/heading/">Heading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/layer/">Layer</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/action-set/">Action set</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/page-header/">Page header</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/big-number/">Big number</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Headless"><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless/">Introduction</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-file-uploader/">File uploader</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-menu/">Menu</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-ui-shell/">UI shell</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tree-view/">Tree view</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu></ui-side-nav-items></ui-side-nav><script>if(matchMedia('(min-width: 66rem)').matches)document.currentScript.previousElementSibling.setAttribute('expanded','')</script>
+<ui-content>
+<div class="doc-page">
+<article class="doc">
+<h1 id="date-picker">Date picker</h1>
+<p>A date picker takes a date that users type or pick from a calendar. On a Thai page it shows the Buddhist era (พ.ศ.); your code always gets an ISO date in the Gregorian year.</p>
+<div class="doc-demo"><ui-date-picker label="Contract start" name="start" clearable></ui-date-picker>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-1-0">HTML</ui-tab><ui-tab panel="code-1-1">React</ui-tab><ui-tab panel="code-1-2">React + Tailwind</ui-tab><ui-tab-panel name="code-1-0"><ui-code-snippet type="single" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-date-picker</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Contract start"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"start"</span> <span style="color:var(--ui-tag-color-purple)">clearable</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-date-picker</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-1-1"><ui-code-snippet type="single" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiDatePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contract start"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"start"</span> <span style="color:var(--ui-tag-color-purple)">clearable</span> /&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-1-2"><ui-code-snippet type="single" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">DatePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contract start"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"start"</span> <span style="color:var(--ui-tag-color-purple)">clearable</span> /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="installation">Installation</h2>
+<ui-tabs class="doc-code-tabs" label="Code"><ui-tab panel="code-2-0">npm</ui-tab><ui-tab panel="code-2-1">shadcn · Web component</ui-tab><ui-tab panel="code-2-2">shadcn · React + Tailwind</ui-tab><ui-tab panel="code-2-3">Manual</ui-tab><ui-tab-panel name="code-2-0"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">@purpurabog/ui</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-1"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npx</span> <span style="color:var(--ui-tag-color-teal)">shadcn@4</span> <span style="color:var(--ui-tag-color-teal)">add</span> <span style="color:var(--ui-tag-color-teal)">@kanok-ui/date-picker</span> <span style="color:var(--ui-tag-color-teal)">@kanok-ui/calendar</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-2"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npx</span> <span style="color:var(--ui-tag-color-teal)">shadcn@4</span> <span style="color:var(--ui-tag-color-teal)">add</span> <span style="color:var(--ui-tag-color-teal)">@kanok-ui/tw-date-picker</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-3"><ui-code-snippet type="multi" class="doc-code" data-lang="bash"><span style="color:var(--ui-ink-muted);font-style:italic"># Web component</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 1. Install the dependencies</span>
+<span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">lit@^3.3.0</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 2. Copy each file's "content" from</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    https://cdn.jsdelivr.net/npm/@purpurabog/ui@1.4.3/registry/date-picker.json</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    https://cdn.jsdelivr.net/npm/@purpurabog/ui@1.4.3/registry/calendar.json</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    to its target:</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/date-picker/calendar.styles.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/date-picker/calendar.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/date-picker/date-field.styles.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/date-picker/date-field.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/date-picker/date-picker-skeleton.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/date-picker/date-picker.styles.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/date-picker/date-picker.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/calendar/calendar.styles.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/calendar/calendar.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 3. Do the same for the items it needs (registry/&lt;name&gt;.json):</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    core-date, core-overlay, core-popup, core-sheet, shared-element, shared-field, shared-form-control, shared-localize, shared-position, shared-quiet-focus, shared-skeleton, shared-slots, tokens</span>
+
+<span style="color:var(--ui-ink-muted);font-style:italic"># React + Tailwind</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 1. Install the dependencies</span>
+<span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">@purpurabog/ui@^1.4.3</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 2. Copy each file's "content" from</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    https://cdn.jsdelivr.net/npm/@purpurabog/ui@1.4.3/registry/tw-date-picker.json</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    to its target:</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/react-tw/date-picker.tsx</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 3. Do the same for the items it needs (registry/&lt;name&gt;.json):</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    core-date, core-field, core-i18n, tw-calendar, tw-field, tw-i18n, tw-skeleton, tw-theme, tw-utils</span></ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>npm gives you every component from the package. shadcn copies the source into your app instead: a copy pinned to this version that you can change. The shadcn commands need the <code>@kanok-ui</code> registry in your <code>components.json</code> once, see <a href="/kanok-ui-docs/en/installation/#react-tailwind-with-shadcn">Installation</a>.</p>
+<h2 id="use-it">Use it</h2>
+<ui-tabs class="doc-code-tabs" label="Code"><ui-tab panel="code-3-0">HTML</ui-tab><ui-tab panel="code-3-1">React</ui-tab><ui-tab panel="code-3-2">React + Tailwind</ui-tab><ui-tab-panel name="code-3-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;<span style="color:var(--ui-tag-color-magenta)">import</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/date-picker'</span>;&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-date-picker</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Contract start"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"start"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-date-picker</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-3-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { UiDatePicker } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> <span style="color:var(--ui-tag-color-magenta)">type</span> { UiDatePicker <span style="color:var(--ui-tag-color-magenta)">as</span> DatePickerElement } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiDatePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contract start"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"start"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{start}
+  <span style="color:var(--ui-tag-color-purple)">onChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setStart</span>((e.target <span style="color:var(--ui-tag-color-magenta)">as</span> <span style="color:var(--ui-tag-color-cyan)">DatePickerElement</span>).value)} /&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-3-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { DatePicker } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@/components/ui/react-tw/date-picker'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">DatePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contract start"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"start"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{start} <span style="color:var(--ui-tag-color-purple)">onChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{setStart} /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p><code>UiDatePicker</code> fires a native <code>change</code>, so its React prop is <code>onChange</code> (there is no <code>onUiChange</code>). The Tailwind <code>DatePicker</code> hands <code>onChange</code> the ISO string itself.</p>
+<h2 id="what-users-see-what-you-get">What users see, what you get</h2>
+<p>Users see and type the date in the page's language and era. Your code reads the same ISO date in every language. The two pickers below share one value: change either one.</p>
+<div class="doc-demo"><ui-date-picker id="date-picker-seen-en" label="Signed on" value="2026-10-10"></ui-date-picker>
+<ui-date-picker id="date-picker-seen-th" lang="th" label="วันที่ลงนาม" value="2026-10-10"></ui-date-picker>
+<p>value: <output id="date-picker-seen-out">2026-10-10</output></p>
+
+<script type="text/x-demo">
+  const en = document.getElementById('date-picker-seen-en');
+  const th = document.getElementById('date-picker-seen-th');
+  for (const [from, to] of [[en, th], [th, en]]) {
+    from.addEventListener('change', () => {
+      to.value = from.value;
+      document.getElementById('date-picker-seen-out').textContent = from.value || '(empty)';
+    });
+  }
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-4-0">HTML</ui-tab><ui-tab panel="code-4-1">React</ui-tab><ui-tab panel="code-4-2">React + Tailwind</ui-tab><ui-tab-panel name="code-4-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-date-picker</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"date-picker-seen-en"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Signed on"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"2026-10-10"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-date-picker</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-date-picker</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"date-picker-seen-th"</span> <span style="color:var(--ui-tag-color-purple)">lang</span>=<span style="color:var(--ui-tag-color-teal)">"th"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"วันที่ลงนาม"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"2026-10-10"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-date-picker</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;value: &lt;<span style="color:var(--ui-tag-color-blue)">output</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"date-picker-seen-out"</span>&gt;2026-10-10&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> en <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'date-picker-seen-en'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> th <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'date-picker-seen-th'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">for</span> (<span style="color:var(--ui-tag-color-magenta)">const</span> [from, to] <span style="color:var(--ui-tag-color-magenta)">of</span> [[en, th], [th, en]]) {
+    from.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'change'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+      to.value <span style="color:var(--ui-tag-color-magenta)">=</span> from.value;
+      document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'date-picker-seen-out'</span>).textContent <span style="color:var(--ui-tag-color-magenta)">=</span> from.value <span style="color:var(--ui-tag-color-magenta)">||</span> <span style="color:var(--ui-tag-color-teal)">'(empty)'</span>;
+    });
+  }
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-4-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> [signed, setSigned] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">'2026-10-10'</span>);
+<span style="color:var(--ui-tag-color-magenta)">const</span> <span style="color:var(--ui-tag-color-cyan)">onChange</span> <span style="color:var(--ui-tag-color-magenta)">=</span> (e<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">Event</span>) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setSigned</span>((e.target <span style="color:var(--ui-tag-color-magenta)">as</span> <span style="color:var(--ui-tag-color-cyan)">DatePickerElement</span>).value);
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiDatePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Signed on"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{signed} <span style="color:var(--ui-tag-color-purple)">onChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{onChange} /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiDatePicker</span> <span style="color:var(--ui-tag-color-purple)">lang</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"th"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"วันที่ลงนาม"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{signed} <span style="color:var(--ui-tag-color-purple)">onChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{onChange} /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;value: &lt;<span style="color:var(--ui-tag-color-blue)">output</span>&gt;{signed <span style="color:var(--ui-tag-color-magenta)">||</span> <span style="color:var(--ui-tag-color-teal)">'(empty)'</span>}&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-4-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> [signed, setSigned] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">'2026-10-10'</span>);
+
+&lt;<span style="color:var(--ui-tag-color-blue)">DatePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Signed on"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{signed} <span style="color:var(--ui-tag-color-purple)">onChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{setSigned} /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">DatePicker</span> <span style="color:var(--ui-tag-color-purple)">locale</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"th"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"วันที่ลงนาม"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{signed} <span style="color:var(--ui-tag-color-purple)">onChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{setSigned} /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;value: &lt;<span style="color:var(--ui-tag-color-blue)">output</span>&gt;{signed <span style="color:var(--ui-tag-color-magenta)">||</span> <span style="color:var(--ui-tag-color-teal)">'(empty)'</span>}&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Page in Thai</th>
+<th>Page in English</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The user sees and types</td>
+<td>10/10/2569</td>
+<td>10/10/2026</td>
+</tr>
+<tr>
+<td><code>value</code>, <code>change</code>, the submitted form</td>
+<td><code>2026-10-10</code></td>
+<td><code>2026-10-10</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><code>value</code>, <code>min</code> and <code>max</code> are always <code>yyyy-mm-dd</code> in the Gregorian year. A <code>value</code> that isn't a real date of that form becomes <code>''</code>, as with <code>&lt;input type=&quot;date&quot;&gt;</code>.</li>
+<li>The element fires <code>change</code> when a value is committed: on leaving the field, on Enter, on a pick from the calendar and on clear. Read <code>event.target.value</code> (and <code>endValue</code> in a range).</li>
+<li>An empty field still submits <code>name=</code>, as a native date input does. A disabled picker submits nothing.</li>
+</ul>
+<h2 id="type-it-or-pick-it">Type it or pick it</h2>
+<p>The calendar opens when the text box gets focus, by a click or by Tab, and focus stays in the box so users can keep typing. The calendar follows what they type.</p>
+<ul>
+<li>Text that already reads as a full date in the field's format, such as <code>10/10/2026</code>, becomes the value at once; <code>change</code> fires when it is committed (blur, Enter), not while typing.</li>
+<li>Anything else is read on blur or Enter. The numbers are pulled out of what was typed, so <code>s10/12/2026x</code> becomes 10/12/2026.</li>
+<li>Nothing is guessed. An incomplete date (<code>10/12</code>), an impossible one (<code>31/04/2026</code>) or text with no date in it stays in the field with a message saying what's wrong, and <code>value</code> becomes <code>''</code>.</li>
+<li>A full date outside <code>min</code> / <code>max</code>, or one <code>isDateDisabled</code> refuses, is kept and committed with its own message. The form won't submit until it's fixed.</li>
+</ul>
+<p>Try it: type a date that doesn't exist, or one outside the year, then leave the field.</p>
+<div class="doc-demo"><ui-date-picker label="Contract end" helper-text="Type 31/04/2026, then leave the field"></ui-date-picker>
+<ui-date-picker label="Invoice date" min="2026-01-01" max="2026-12-31" helper-text="Only dates in 2026. Type one in 2025, then leave the field"></ui-date-picker>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-5-0">HTML</ui-tab><ui-tab panel="code-5-1">React</ui-tab><ui-tab panel="code-5-2">React + Tailwind</ui-tab><ui-tab-panel name="code-5-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-date-picker</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Contract end"</span> <span style="color:var(--ui-tag-color-purple)">helper-text</span>=<span style="color:var(--ui-tag-color-teal)">"Type 31/04/2026, then leave the field"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-date-picker</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-date-picker</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Invoice date"</span> <span style="color:var(--ui-tag-color-purple)">min</span>=<span style="color:var(--ui-tag-color-teal)">"2026-01-01"</span> <span style="color:var(--ui-tag-color-purple)">max</span>=<span style="color:var(--ui-tag-color-teal)">"2026-12-31"</span> <span style="color:var(--ui-tag-color-purple)">helper-text</span>=<span style="color:var(--ui-tag-color-teal)">"Only dates in 2026. Type one in 2025, then leave the field"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-date-picker</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-5-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiDatePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contract end"</span> <span style="color:var(--ui-tag-color-purple)">helperText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Type 31/04/2026, then leave the field"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiDatePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Invoice date"</span> <span style="color:var(--ui-tag-color-purple)">min</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"2026-01-01"</span> <span style="color:var(--ui-tag-color-purple)">max</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"2026-12-31"</span> <span style="color:var(--ui-tag-color-purple)">helperText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Only dates in 2026. Type one in 2025, then leave the field"</span> /&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-5-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">DatePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contract end"</span> <span style="color:var(--ui-tag-color-purple)">helperText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Type 31/04/2026, then leave the field"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">DatePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Invoice date"</span> <span style="color:var(--ui-tag-color-purple)">min</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"2026-01-01"</span> <span style="color:var(--ui-tag-color-purple)">max</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"2026-12-31"</span> <span style="color:var(--ui-tag-color-purple)">helperText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Only dates in 2026. Type one in 2025, then leave the field"</span> /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>The messages come built in, in Thai and English. How and when errors show, and how to add your own, is in <a href="/kanok-ui-docs/en/forms/">Forms and validation</a>.</p>
+<h2 id="buddhist-era-and-thai">Buddhist era and Thai</h2>
+<p>The language comes from <code>lang</code> on the element or the closest ancestor, else <code>&lt;html lang&gt;</code>. A Thai language gives Thai labels and messages, Thai month names, and years in พ.ศ. (ค.ศ. + 543). <code>locale</code> overrides the language for this picker alone.</p>
+<div class="doc-demo"><ui-date-picker lang="th" label="วันที่เริ่มสัญญา" value="2026-10-10"></ui-date-picker>
+<ui-date-picker lang="th" era="ce" label="วันที่เริ่มสัญญา (ค.ศ.)" value="2026-10-10"></ui-date-picker>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-6-0">HTML</ui-tab><ui-tab panel="code-6-1">React</ui-tab><ui-tab panel="code-6-2">React + Tailwind</ui-tab><ui-tab-panel name="code-6-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-date-picker</span> <span style="color:var(--ui-tag-color-purple)">lang</span>=<span style="color:var(--ui-tag-color-teal)">"th"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"วันที่เริ่มสัญญา"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"2026-10-10"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-date-picker</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-date-picker</span> <span style="color:var(--ui-tag-color-purple)">lang</span>=<span style="color:var(--ui-tag-color-teal)">"th"</span> <span style="color:var(--ui-tag-color-purple)">era</span>=<span style="color:var(--ui-tag-color-teal)">"ce"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"วันที่เริ่มสัญญา (ค.ศ.)"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"2026-10-10"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-date-picker</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-6-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiDatePicker</span> <span style="color:var(--ui-tag-color-purple)">lang</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"th"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"วันที่เริ่มสัญญา"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"2026-10-10"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiDatePicker</span> <span style="color:var(--ui-tag-color-purple)">lang</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"th"</span> <span style="color:var(--ui-tag-color-purple)">era</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ce"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"วันที่เริ่มสัญญา (ค.ศ.)"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"2026-10-10"</span> /&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-6-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">DatePicker</span> <span style="color:var(--ui-tag-color-purple)">locale</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"th"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"วันที่เริ่มสัญญา"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"2026-10-10"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">DatePicker</span> <span style="color:var(--ui-tag-color-purple)">locale</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"th"</span> <span style="color:var(--ui-tag-color-purple)">era</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ce"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"วันที่เริ่มสัญญา (ค.ศ.)"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"2026-10-10"</span> /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<ul>
+<li><code>era</code> sets the year users see and type: <code>be</code> (พ.ศ., the default for Thai) or <code>ce</code> (ค.ศ., the default otherwise). Any language can use either.</li>
+<li>Typed years follow the same era. In พ.ศ., a year before 2400 (say 2026) gets a message asking for the พ.ศ. year; nothing is converted behind the user's back.</li>
+<li>Users may type Thai digits (๐–๙). They become 0–9 as they type.</li>
+<li>The placeholder and the default helper line show the format in the page's language: <code>วว/ดด/ปปปป</code> in Thai.</li>
+<li>React + Tailwind reads <code>&lt;html lang&gt;</code>, or its <code>locale</code> prop.</li>
+</ul>
+<h2 id="formats">Formats</h2>
+<p><code>format</code> sets the order of day, month and year: <code>dd/mm/yyyy</code> (the default), <code>mm/dd/yyyy</code> or <code>yyyy-mm-dd</code>. Only what users see changes; <code>value</code> stays ISO.</p>
+<div class="doc-demo"><ui-date-picker label="Due date" format="yyyy-mm-dd" value="2026-10-10"></ui-date-picker>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-7-0">HTML</ui-tab><ui-tab panel="code-7-1">React</ui-tab><ui-tab panel="code-7-2">React + Tailwind</ui-tab><ui-tab-panel name="code-7-0"><ui-code-snippet type="single" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-date-picker</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Due date"</span> <span style="color:var(--ui-tag-color-purple)">format</span>=<span style="color:var(--ui-tag-color-teal)">"yyyy-mm-dd"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"2026-10-10"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-date-picker</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-7-1"><ui-code-snippet type="single" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiDatePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Due date"</span> <span style="color:var(--ui-tag-color-purple)">format</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"yyyy-mm-dd"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"2026-10-10"</span> /&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-7-2"><ui-code-snippet type="single" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">DatePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Due date"</span> <span style="color:var(--ui-tag-color-purple)">format</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"yyyy-mm-dd"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"2026-10-10"</span> /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>The format shows as helper text until you set <code>helper-text</code> (<code>helperText</code> in React + Tailwind). Screen readers still hear it after that.</p>
+<h2 id="pick-a-range">Pick a range</h2>
+<p><code>range</code> gives two fields sharing one calendar: <code>value</code> / <code>name</code> / <code>label</code> for the start, <code>end-value</code> / <code>end-name</code> / <code>end-label</code> for the end. With both names the form gets two entries. Without <code>end-name</code>, <code>ui-date-picker</code> submits one <code>name</code> entry, <code>start/end</code> (<code>2026-10-01/2026-10-05</code>), as Carbon's <code>cds-date-picker</code> does; the React + Tailwind <code>DatePicker</code> submits the end only under <code>endName</code>.</p>
+<div class="doc-demo"><ui-date-picker range label="Check-in" end-label="Check-out" name="from" end-name="to"
+  value="2026-10-10" end-value="2026-10-14"></ui-date-picker>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-8-0">HTML</ui-tab><ui-tab panel="code-8-1">React</ui-tab><ui-tab panel="code-8-2">React + Tailwind</ui-tab><ui-tab-panel name="code-8-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-date-picker</span> <span style="color:var(--ui-tag-color-purple)">range</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Check-in"</span> <span style="color:var(--ui-tag-color-purple)">end-label</span>=<span style="color:var(--ui-tag-color-teal)">"Check-out"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"from"</span> <span style="color:var(--ui-tag-color-purple)">end-name</span>=<span style="color:var(--ui-tag-color-teal)">"to"</span>
+  <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"2026-10-10"</span> <span style="color:var(--ui-tag-color-purple)">end-value</span>=<span style="color:var(--ui-tag-color-teal)">"2026-10-14"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-date-picker</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-8-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiDatePicker</span> <span style="color:var(--ui-tag-color-purple)">range</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Check-in"</span> <span style="color:var(--ui-tag-color-purple)">endLabel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Check-out"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"from"</span> <span style="color:var(--ui-tag-color-purple)">endName</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"to"</span>
+  <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"2026-10-10"</span> <span style="color:var(--ui-tag-color-purple)">endValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"2026-10-14"</span> /&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-8-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">DatePicker</span> <span style="color:var(--ui-tag-color-purple)">range</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Check-in"</span> <span style="color:var(--ui-tag-color-purple)">endLabel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Check-out"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"from"</span> <span style="color:var(--ui-tag-color-purple)">endName</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"to"</span>
+  <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{from} <span style="color:var(--ui-tag-color-purple)">onChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{setFrom} <span style="color:var(--ui-tag-color-purple)">endValue</span><span style="color:var(--ui-tag-color-magenta)">=</span>{to} <span style="color:var(--ui-tag-color-purple)">onEndChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{setTo} /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<ul>
+<li>A pick from the start field keeps the calendar open for the end. The days in between are highlighted with a continuous ribbon, with a preview while the end is chosen.</li>
+<li>Picking an end before the start swaps the two.</li>
+<li>A typed end before the start is kept and reported, not swapped.</li>
+</ul>
+<h3 id="two-month-range-view">Two-month range view</h3>
+<p>Set <code>months=&quot;2&quot;</code> to display two side-by-side months in the calendar, ideal for flight/hotel booking and long booking ranges:</p>
+<div class="doc-demo"><ui-date-picker range months="2" label="Depart" end-label="Return" name="depart" end-name="return"
+  value="2026-10-15" end-value="2026-11-05"></ui-date-picker>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-9-0">HTML</ui-tab><ui-tab panel="code-9-1">React</ui-tab><ui-tab panel="code-9-2">React + Tailwind</ui-tab><ui-tab-panel name="code-9-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-date-picker</span> <span style="color:var(--ui-tag-color-purple)">range</span> <span style="color:var(--ui-tag-color-purple)">months</span>=<span style="color:var(--ui-tag-color-teal)">"2"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Depart"</span> <span style="color:var(--ui-tag-color-purple)">end-label</span>=<span style="color:var(--ui-tag-color-teal)">"Return"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"depart"</span> <span style="color:var(--ui-tag-color-purple)">end-name</span>=<span style="color:var(--ui-tag-color-teal)">"return"</span>
+  <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"2026-10-15"</span> <span style="color:var(--ui-tag-color-purple)">end-value</span>=<span style="color:var(--ui-tag-color-teal)">"2026-11-05"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-date-picker</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-9-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiDatePicker</span> <span style="color:var(--ui-tag-color-purple)">range</span> <span style="color:var(--ui-tag-color-purple)">months</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">2</span>} <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Depart"</span> <span style="color:var(--ui-tag-color-purple)">endLabel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Return"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"depart"</span> <span style="color:var(--ui-tag-color-purple)">endName</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"return"</span>
+  <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"2026-10-15"</span> <span style="color:var(--ui-tag-color-purple)">endValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"2026-11-05"</span> /&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-9-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">DatePicker</span> <span style="color:var(--ui-tag-color-purple)">range</span> <span style="color:var(--ui-tag-color-purple)">months</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">2</span>} <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Depart"</span> <span style="color:var(--ui-tag-color-purple)">endLabel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Return"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"depart"</span> <span style="color:var(--ui-tag-color-purple)">endName</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"return"</span>
+  <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{depart} <span style="color:var(--ui-tag-color-purple)">onChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{setDepart} <span style="color:var(--ui-tag-color-purple)">endValue</span><span style="color:var(--ui-tag-color-magenta)">=</span>{ret} <span style="color:var(--ui-tag-color-purple)">onEndChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{setRet} /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="limit-the-dates">Limit the dates</h2>
+<p><code>min</code> and <code>max</code> take ISO dates. Days outside them are greyed out, and the month buttons stop at them.</p>
+<p>To refuse single days (weekends, holidays), set <code>isDateDisabled</code>: a function that returns <code>true</code>, or a string to show as the message. On the web component it's a property, so set it in JavaScript:</p>
+<div class="doc-demo"><ui-date-picker id="date-picker-delivery" label="Delivery date" min="2026-01-01" max="2026-12-31"></ui-date-picker>
+
+<script type="text/x-demo">
+  document.getElementById('date-picker-delivery').isDateDisabled = (date) =>
+    date.getDay() === 0 || date.getDay() === 6 ? 'We don’t deliver at the weekend.' : false;
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-10-0">HTML</ui-tab><ui-tab panel="code-10-1">React</ui-tab><ui-tab panel="code-10-2">React + Tailwind</ui-tab><ui-tab-panel name="code-10-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-date-picker</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"date-picker-delivery"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Delivery date"</span> <span style="color:var(--ui-tag-color-purple)">min</span>=<span style="color:var(--ui-tag-color-teal)">"2026-01-01"</span> <span style="color:var(--ui-tag-color-purple)">max</span>=<span style="color:var(--ui-tag-color-teal)">"2026-12-31"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-date-picker</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'date-picker-delivery'</span>).<span style="color:var(--ui-tag-color-cyan)">isDateDisabled</span> <span style="color:var(--ui-tag-color-magenta)">=</span> (date) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span>
+    date.<span style="color:var(--ui-tag-color-cyan)">getDay</span>() <span style="color:var(--ui-tag-color-magenta)">===</span> <span style="color:var(--ui-tag-color-green)">0</span> <span style="color:var(--ui-tag-color-magenta)">||</span> date.<span style="color:var(--ui-tag-color-cyan)">getDay</span>() <span style="color:var(--ui-tag-color-magenta)">===</span> <span style="color:var(--ui-tag-color-green)">6</span> <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-teal)">'We don’t deliver at the weekend.'</span> <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-green)">false</span>;
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-10-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> <span style="color:var(--ui-tag-color-cyan)">weekend</span> <span style="color:var(--ui-tag-color-magenta)">=</span> (date<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">Date</span>) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span>
+  date.<span style="color:var(--ui-tag-color-cyan)">getDay</span>() <span style="color:var(--ui-tag-color-magenta)">===</span> <span style="color:var(--ui-tag-color-green)">0</span> <span style="color:var(--ui-tag-color-magenta)">||</span> date.<span style="color:var(--ui-tag-color-cyan)">getDay</span>() <span style="color:var(--ui-tag-color-magenta)">===</span> <span style="color:var(--ui-tag-color-green)">6</span> <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-teal)">'We don’t deliver at the weekend.'</span> <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-green)">false</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiDatePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Delivery date"</span> <span style="color:var(--ui-tag-color-purple)">min</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"2026-01-01"</span> <span style="color:var(--ui-tag-color-purple)">max</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"2026-12-31"</span> <span style="color:var(--ui-tag-color-purple)">isDateDisabled</span><span style="color:var(--ui-tag-color-magenta)">=</span>{weekend} /&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-10-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> <span style="color:var(--ui-tag-color-cyan)">weekend</span> <span style="color:var(--ui-tag-color-magenta)">=</span> (date<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">Date</span>) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span>
+  date.<span style="color:var(--ui-tag-color-cyan)">getDay</span>() <span style="color:var(--ui-tag-color-magenta)">===</span> <span style="color:var(--ui-tag-color-green)">0</span> <span style="color:var(--ui-tag-color-magenta)">||</span> date.<span style="color:var(--ui-tag-color-cyan)">getDay</span>() <span style="color:var(--ui-tag-color-magenta)">===</span> <span style="color:var(--ui-tag-color-green)">6</span> <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-teal)">'We don’t deliver at the weekend.'</span> <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-green)">false</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">DatePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Delivery date"</span> <span style="color:var(--ui-tag-color-purple)">min</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"2026-01-01"</span> <span style="color:var(--ui-tag-color-purple)">max</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"2026-12-31"</span> <span style="color:var(--ui-tag-color-purple)">isDateDisabled</span><span style="color:var(--ui-tag-color-magenta)">=</span>{weekend} /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="clear-button-and-today">Clear button and Today</h2>
+<p><code>clearable</code> adds a × inside the field while it has text. <code>show-today</code> adds a Today button under the calendar (Carbon has none; this one is opt-in). <code>first-day</code> sets the first day of the week, from <code>0</code> (Sunday, the default) to <code>6</code>.</p>
+<div class="doc-demo"><ui-date-picker label="Meeting date" clearable show-today first-day="1"></ui-date-picker>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-11-0">HTML</ui-tab><ui-tab panel="code-11-1">React</ui-tab><ui-tab panel="code-11-2">React + Tailwind</ui-tab><ui-tab-panel name="code-11-0"><ui-code-snippet type="single" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-date-picker</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Meeting date"</span> <span style="color:var(--ui-tag-color-purple)">clearable</span> <span style="color:var(--ui-tag-color-purple)">show-today</span> <span style="color:var(--ui-tag-color-purple)">first-day</span>=<span style="color:var(--ui-tag-color-teal)">"1"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-date-picker</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-11-1"><ui-code-snippet type="single" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiDatePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Meeting date"</span> <span style="color:var(--ui-tag-color-purple)">clearable</span> <span style="color:var(--ui-tag-color-purple)">showToday</span> <span style="color:var(--ui-tag-color-purple)">firstDay</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">1</span>} /&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-11-2"><ui-code-snippet type="single" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">DatePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Meeting date"</span> <span style="color:var(--ui-tag-color-purple)">clearable</span> <span style="color:var(--ui-tag-color-purple)">showToday</span> <span style="color:var(--ui-tag-color-purple)">firstDay</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">1</span>} /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="sizes-and-fluid">Sizes and fluid</h2>
+<p><code>size</code>: <code>sm</code> 32px, <code>md</code> 40px (the default, as in Carbon), <code>lg</code> 48px, the same scale as the text input. <code>fluid</code>, or a fluid form around it (<code>&lt;ui-fluid-form&gt;</code>, <code>FluidForm</code> in React + Tailwind), gives Carbon's fluid field: a 64px box with the label inside. Both props have the same names in React and React + Tailwind.</p>
+<div class="doc-demo"><ui-date-picker size="sm" label="Posted on (sm)" value="2026-10-10"></ui-date-picker>
+<ui-date-picker size="lg" label="Posted on (lg)" value="2026-10-10"></ui-date-picker>
+<ui-date-picker fluid range label="Lease start" end-label="Lease end" value="2026-11-01" end-value="2027-10-31"></ui-date-picker>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-12-0">HTML</ui-tab><ui-tab panel="code-12-1">React</ui-tab><ui-tab panel="code-12-2">React + Tailwind</ui-tab><ui-tab-panel name="code-12-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-date-picker</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Posted on (sm)"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"2026-10-10"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-date-picker</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-date-picker</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"lg"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Posted on (lg)"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"2026-10-10"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-date-picker</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-date-picker</span> <span style="color:var(--ui-tag-color-purple)">fluid</span> <span style="color:var(--ui-tag-color-purple)">range</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Lease start"</span> <span style="color:var(--ui-tag-color-purple)">end-label</span>=<span style="color:var(--ui-tag-color-teal)">"Lease end"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"2026-11-01"</span> <span style="color:var(--ui-tag-color-purple)">end-value</span>=<span style="color:var(--ui-tag-color-teal)">"2027-10-31"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-date-picker</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-12-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiDatePicker</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Posted on (sm)"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"2026-10-10"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiDatePicker</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"lg"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Posted on (lg)"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"2026-10-10"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiDatePicker</span> <span style="color:var(--ui-tag-color-purple)">fluid</span> <span style="color:var(--ui-tag-color-purple)">range</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Lease start"</span> <span style="color:var(--ui-tag-color-purple)">endLabel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Lease end"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"2026-11-01"</span> <span style="color:var(--ui-tag-color-purple)">endValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"2027-10-31"</span> /&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-12-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">DatePicker</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Posted on (sm)"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"2026-10-10"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">DatePicker</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"lg"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Posted on (lg)"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"2026-10-10"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">DatePicker</span> <span style="color:var(--ui-tag-color-purple)">fluid</span> <span style="color:var(--ui-tag-color-purple)">range</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Lease start"</span> <span style="color:var(--ui-tag-color-purple)">endLabel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Lease end"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"2026-11-01"</span> <span style="color:var(--ui-tag-color-purple)">defaultEndValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"2027-10-31"</span> /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="helper-text-errors-and-warnings">Helper text, errors and warnings</h2>
+<p><code>helper-text</code> says what the date is for (the <code>helper-text</code> slot takes markup). <code>warn</code> with <code>warn-text</code> flags a date that is allowed but unusual; it doesn't block submit. <code>invalid</code> with <code>invalid-text</code> shows an error from your own check, such as one made on the server. In a range, the warning shows under the start field.</p>
+<div class="doc-demo"><ui-date-picker label="Effective date" helper-text="The day the new rate starts"></ui-date-picker>
+<ui-date-picker label="Payment due" value="2026-10-03" warn warn-text="This is a Saturday. The bank pays on Monday."></ui-date-picker>
+<ui-date-picker label="Contract end" value="2026-09-30" invalid invalid-text="The end must be after the start, 01/10/2026."></ui-date-picker>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-13-0">HTML</ui-tab><ui-tab panel="code-13-1">React</ui-tab><ui-tab panel="code-13-2">React + Tailwind</ui-tab><ui-tab-panel name="code-13-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-date-picker</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Effective date"</span> <span style="color:var(--ui-tag-color-purple)">helper-text</span>=<span style="color:var(--ui-tag-color-teal)">"The day the new rate starts"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-date-picker</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-date-picker</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Payment due"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"2026-10-03"</span> <span style="color:var(--ui-tag-color-purple)">warn</span> <span style="color:var(--ui-tag-color-purple)">warn-text</span>=<span style="color:var(--ui-tag-color-teal)">"This is a Saturday. The bank pays on Monday."</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-date-picker</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-date-picker</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Contract end"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"2026-09-30"</span> <span style="color:var(--ui-tag-color-purple)">invalid</span> <span style="color:var(--ui-tag-color-purple)">invalid-text</span>=<span style="color:var(--ui-tag-color-teal)">"The end must be after the start, 01/10/2026."</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-date-picker</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-13-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiDatePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Effective date"</span> <span style="color:var(--ui-tag-color-purple)">helperText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"The day the new rate starts"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiDatePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Payment due"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"2026-10-03"</span> <span style="color:var(--ui-tag-color-purple)">warn</span> <span style="color:var(--ui-tag-color-purple)">warnText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"This is a Saturday. The bank pays on Monday."</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiDatePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contract end"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"2026-09-30"</span> <span style="color:var(--ui-tag-color-purple)">invalid</span> <span style="color:var(--ui-tag-color-purple)">invalidText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"The end must be after the start, 01/10/2026."</span> /&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-13-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">DatePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Effective date"</span> <span style="color:var(--ui-tag-color-purple)">helperText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"The day the new rate starts"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">DatePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Payment due"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"2026-10-03"</span> <span style="color:var(--ui-tag-color-purple)">warn</span> <span style="color:var(--ui-tag-color-purple)">warnText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"This is a Saturday. The bank pays on Monday."</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">DatePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contract end"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"2026-09-30"</span> <span style="color:var(--ui-tag-color-purple)">invalid</span> <span style="color:var(--ui-tag-color-purple)">invalidText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"The end must be after the start, 01/10/2026."</span> /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="read-only-and-disabled">Read-only and disabled</h2>
+<p><code>readonly</code> shows and submits the value but blocks typing and the calendar. <code>disabled</code> greys the field out; it isn't submitted or validated. A disabled <code>&lt;fieldset&gt;</code> around it does the same.</p>
+<div class="doc-demo"><ui-date-picker label="Signed on" value="2026-10-10" readonly></ui-date-picker>
+<ui-date-picker label="Signed on" value="2026-10-10" disabled></ui-date-picker>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-14-0">HTML</ui-tab><ui-tab panel="code-14-1">React</ui-tab><ui-tab panel="code-14-2">React + Tailwind</ui-tab><ui-tab-panel name="code-14-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-date-picker</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Signed on"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"2026-10-10"</span> <span style="color:var(--ui-tag-color-purple)">readonly</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-date-picker</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-date-picker</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Signed on"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"2026-10-10"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-date-picker</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-14-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiDatePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Signed on"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"2026-10-10"</span> <span style="color:var(--ui-tag-color-purple)">readonly</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiDatePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Signed on"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"2026-10-10"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span> /&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-14-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">DatePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Signed on"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"2026-10-10"</span> <span style="color:var(--ui-tag-color-purple)">readOnly</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">DatePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Signed on"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"2026-10-10"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span> /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>The web component and its React wrapper spell it <code>readonly</code>; React + Tailwind uses <code>readOnly</code>.</p>
+<h2 id="in-a-form">In a form</h2>
+<p>With <code>required</code>, the form won't submit until the date is filled in; in a range, both dates are required. The form gets ISO dates under <code>name</code> (and <code>end-name</code>). Submit the empty form below to see the messages.</p>
+<div class="doc-demo"><form id="date-picker-form" method="dialog" style="display: grid; gap: 16px">
+  <ui-date-picker label="Request date" name="requested" value="2026-10-10" required></ui-date-picker>
+  <ui-date-picker range label="Leave from" end-label="Leave until" name="from" end-name="until" required></ui-date-picker>
+  <div><ui-button type="submit">Send request</ui-button></div>
+</form>
+<p>Submitted: <output id="date-picker-form-out">nothing yet</output></p>
+
+<script type="text/x-demo">
+  const form = document.getElementById('date-picker-form');
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const entries = [...new FormData(form)].map(([key, value]) => `${key}=${value}`);
+    document.getElementById('date-picker-form-out').textContent = entries.join(', ');
+  });
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-15-0">HTML</ui-tab><ui-tab panel="code-15-1">React</ui-tab><ui-tab panel="code-15-2">React + Tailwind</ui-tab><ui-tab-panel name="code-15-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">form</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"date-picker-form"</span> <span style="color:var(--ui-tag-color-purple)">method</span>=<span style="color:var(--ui-tag-color-teal)">"dialog"</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"display: grid; gap: 16px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-date-picker</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Request date"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"requested"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"2026-10-10"</span> <span style="color:var(--ui-tag-color-purple)">required</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-date-picker</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-date-picker</span> <span style="color:var(--ui-tag-color-purple)">range</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Leave from"</span> <span style="color:var(--ui-tag-color-purple)">end-label</span>=<span style="color:var(--ui-tag-color-teal)">"Leave until"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"from"</span> <span style="color:var(--ui-tag-color-purple)">end-name</span>=<span style="color:var(--ui-tag-color-teal)">"until"</span> <span style="color:var(--ui-tag-color-purple)">required</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-date-picker</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">div</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"submit"</span>&gt;Send request&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">form</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;Submitted: &lt;<span style="color:var(--ui-tag-color-blue)">output</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"date-picker-form-out"</span>&gt;nothing yet&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> form <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'date-picker-form'</span>);
+  form.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'submit'</span>, (event) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    event.<span style="color:var(--ui-tag-color-cyan)">preventDefault</span>();
+    <span style="color:var(--ui-tag-color-magenta)">const</span> entries <span style="color:var(--ui-tag-color-magenta)">=</span> [<span style="color:var(--ui-tag-color-magenta)">...new</span> <span style="color:var(--ui-tag-color-cyan)">FormData</span>(form)].<span style="color:var(--ui-tag-color-cyan)">map</span>(([key, value]) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-teal)">`${</span><span style="color:var(--ui-tag-color-teal)">key</span><span style="color:var(--ui-tag-color-teal)">}=${</span><span style="color:var(--ui-tag-color-teal)">value</span><span style="color:var(--ui-tag-color-teal)">}`</span>);
+    document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'date-picker-form-out'</span>).textContent <span style="color:var(--ui-tag-color-magenta)">=</span> entries.<span style="color:var(--ui-tag-color-cyan)">join</span>(<span style="color:var(--ui-tag-color-teal)">', '</span>);
+  });
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-15-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">form</span> <span style="color:var(--ui-tag-color-purple)">onSubmit</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> { e.<span style="color:var(--ui-tag-color-cyan)">preventDefault</span>(); <span style="color:var(--ui-tag-color-cyan)">send</span>(<span style="color:var(--ui-tag-color-magenta)">new</span> <span style="color:var(--ui-tag-color-cyan)">FormData</span>(e.currentTarget)); }}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiDatePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Request date"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"requested"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"2026-10-10"</span> <span style="color:var(--ui-tag-color-purple)">required</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiDatePicker</span> <span style="color:var(--ui-tag-color-purple)">range</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Leave from"</span> <span style="color:var(--ui-tag-color-purple)">endLabel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Leave until"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"from"</span> <span style="color:var(--ui-tag-color-purple)">endName</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"until"</span> <span style="color:var(--ui-tag-color-purple)">required</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiButton</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"submit"</span>&gt;Send request&lt;/<span style="color:var(--ui-tag-color-blue)">UiButton</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">form</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-15-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">form</span> <span style="color:var(--ui-tag-color-purple)">onSubmit</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> { e.<span style="color:var(--ui-tag-color-cyan)">preventDefault</span>(); <span style="color:var(--ui-tag-color-cyan)">send</span>(<span style="color:var(--ui-tag-color-magenta)">new</span> <span style="color:var(--ui-tag-color-cyan)">FormData</span>(e.currentTarget)); }}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">DatePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Request date"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"requested"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"2026-10-10"</span> <span style="color:var(--ui-tag-color-purple)">required</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">DatePicker</span> <span style="color:var(--ui-tag-color-purple)">range</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Leave from"</span> <span style="color:var(--ui-tag-color-purple)">endLabel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Leave until"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"from"</span> <span style="color:var(--ui-tag-color-purple)">endName</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"until"</span> <span style="color:var(--ui-tag-color-purple)">required</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">Button</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"submit"</span>&gt;Send request&lt;/<span style="color:var(--ui-tag-color-blue)">Button</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">form</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p><code>send</code> stands for your own code.</p>
+<h2 id="phones-and-tablets">Phones and tablets</h2>
+<p>On a phone (a touch screen narrower than 42rem), <code>picker=&quot;auto&quot;</code> (the default) opens the calendar in a bottom sheet: a dialog along the bottom edge of the screen, over a dimmed page.</p>
+<ul>
+<li>A tap on the box opens it with a day focused, so no on-screen keyboard comes up over it. Focus alone doesn't open it: after the sheet closes, a tap on the box types.</li>
+<li>Esc, the × button, a swipe down on its top bar or a tap on the dimmed page closes it. Typed text is committed and focus goes back to the box.</li>
+<li>While it is open the page behind can't be reached or scrolled, and the sheet's padding keeps clear of the phone's safe areas (the home indicator, a notch).</li>
+</ul>
+<p>On tablets and larger screens the calendar opens under the box as before.</p>
+<table>
+<thead>
+<tr>
+<th><code>picker</code></th>
+<th>Opens</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>auto</code> (default)</td>
+<td>The bottom sheet on a phone, the calendar under the box everywhere else</td>
+</tr>
+<tr>
+<td><code>custom</code></td>
+<td>The calendar under the box on every device</td>
+</tr>
+<tr>
+<td><code>sheet</code></td>
+<td>The bottom sheet on every device</td>
+</tr>
+<tr>
+<td><code>native</code></td>
+<td>The OS date picker. It can't grey out <code>isDateDisabled</code> days, so its pick is checked like typed text</td>
+</tr>
+</tbody>
+</table>
+<div class="doc-demo"><ui-date-picker label="Visit date" picker="sheet"></ui-date-picker>
+</div>
+<ui-code-snippet type="single" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-date-picker</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Visit date"</span> <span style="color:var(--ui-tag-color-purple)">picker</span>=<span style="color:var(--ui-tag-color-teal)">"sheet"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-date-picker</span>&gt;</ui-code-snippet>
+<p>Style the sheet with <code>::part(sheet)</code> (its scrim with <code>::part(sheet)::backdrop</code>), <code>::part(sheet-grip)</code> and <code>::part(sheet-close)</code>; <code>--ui-sheet-radius</code> rounds its top corners (the menu radius by default). The prop has the same name in every variant.</p>
+<h2 id="the-calendar-on-its-own">The calendar on its own</h2>
+<p>The calendar inside the picker is its own element, <code>ui-calendar</code>, and it comes with the same import. It is a controlled view: it moves its own focus, but you keep the chosen day. Listen to <code>ui-pick</code> (detail <code>{ date }</code>, a <code>Date</code>) and set <code>value</code>:</p>
+<div class="doc-demo"><ui-calendar id="date-picker-calendar" style="max-width: 288px" show-today></ui-calendar>
+
+<script type="text/x-demo">
+  const calendarAlone = document.getElementById('date-picker-calendar');
+  calendarAlone.addEventListener('ui-pick', (event) => {
+    const d = event.detail.date;
+    const pad = (n) => String(n).padStart(2, '0');
+    calendarAlone.value = `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+  });
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-16-0">HTML</ui-tab><ui-tab panel="code-16-1">React</ui-tab><ui-tab panel="code-16-2">React + Tailwind</ui-tab><ui-tab-panel name="code-16-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-calendar</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"date-picker-calendar"</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"max-width: 288px"</span> <span style="color:var(--ui-tag-color-purple)">show-today</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-calendar</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> calendarAlone <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'date-picker-calendar'</span>);
+  calendarAlone.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'ui-pick'</span>, (event) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    <span style="color:var(--ui-tag-color-magenta)">const</span> d <span style="color:var(--ui-tag-color-magenta)">=</span> event.detail.date;
+    <span style="color:var(--ui-tag-color-magenta)">const</span> <span style="color:var(--ui-tag-color-cyan)">pad</span> <span style="color:var(--ui-tag-color-magenta)">=</span> (n) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">String</span>(n).<span style="color:var(--ui-tag-color-cyan)">padStart</span>(<span style="color:var(--ui-tag-color-green)">2</span>, <span style="color:var(--ui-tag-color-teal)">'0'</span>);
+    calendarAlone.value <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">`${</span><span style="color:var(--ui-tag-color-teal)">d.</span><span style="color:var(--ui-tag-color-cyan)">getFullYear</span><span style="color:var(--ui-tag-color-teal)">()</span><span style="color:var(--ui-tag-color-teal)">}-${</span><span style="color:var(--ui-tag-color-cyan)">pad</span><span style="color:var(--ui-tag-color-teal)">(d.</span><span style="color:var(--ui-tag-color-cyan)">getMonth</span><span style="color:var(--ui-tag-color-teal)">() </span><span style="color:var(--ui-tag-color-magenta)">+</span><span style="color:var(--ui-tag-color-teal)"> </span><span style="color:var(--ui-tag-color-green)">1</span><span style="color:var(--ui-tag-color-teal)">)</span><span style="color:var(--ui-tag-color-teal)">}-${</span><span style="color:var(--ui-tag-color-cyan)">pad</span><span style="color:var(--ui-tag-color-teal)">(d.</span><span style="color:var(--ui-tag-color-cyan)">getDate</span><span style="color:var(--ui-tag-color-teal)">())</span><span style="color:var(--ui-tag-color-teal)">}`</span>;
+  });
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-16-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { UiCalendar } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { toIso } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/core'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiCalendar</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{day} <span style="color:var(--ui-tag-color-purple)">showToday</span> <span style="color:var(--ui-tag-color-purple)">onUiPick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setDay</span>(<span style="color:var(--ui-tag-color-cyan)">toIso</span>(e.detail.date))} /&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-16-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-ink-muted);font-style:italic">// npx shadcn@4 add @kanok-ui/tw-calendar</span>
+<span style="color:var(--ui-tag-color-magenta)">import</span> { Calendar } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@/components/ui/react-tw/calendar'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { toIso } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/core'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> [focus, setFocus] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-magenta)">new</span> <span style="color:var(--ui-tag-color-cyan)">Date</span>());
+
+&lt;<span style="color:var(--ui-tag-color-blue)">Calendar</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{day} <span style="color:var(--ui-tag-color-purple)">focusDate</span><span style="color:var(--ui-tag-color-magenta)">=</span>{focus} <span style="color:var(--ui-tag-color-purple)">onFocusDateChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{setFocus}
+  <span style="color:var(--ui-tag-color-purple)">onPick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(date) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setDay</span>(<span style="color:var(--ui-tag-color-cyan)">toIso</span>(date))} <span style="color:var(--ui-tag-color-purple)">showToday</span> /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>The month shown follows the <code>focusDate</code> property (a <code>Date</code>, today by default). Like the picker, <code>ui-calendar</code> follows the page's language (the nearest <code>lang</code>) and shows พ.ศ. in Thai; <code>locale</code> and <code>era</code> override it. It takes <code>min</code>, <code>max</code>, <code>isDateDisabled</code>, <code>range</code> with <code>end-value</code>, <code>first-day</code> and <code>show-today</code> as the picker does. The React + Tailwind <code>Calendar</code> is controlled too: <code>focusDate</code>, <code>onFocusDateChange</code> and <code>onPick</code> are required.</p>
+<h3 id="multiple-dates-multi">Multiple dates (<code>multi</code>)</h3>
+<p><code>&lt;ui-calendar multi&gt;</code> allows selecting multiple arbitrary dates simultaneously (Cally style), toggled into <code>values</code>:</p>
+<div class="doc-demo"><ui-calendar multi values='["2026-10-05","2026-10-12","2026-10-19"]'></ui-calendar>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-17-0">HTML</ui-tab><ui-tab-panel name="code-17-0"><ui-code-snippet type="single" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-calendar</span> <span style="color:var(--ui-tag-color-purple)">multi</span> <span style="color:var(--ui-tag-color-purple)">values</span>=<span style="color:var(--ui-tag-color-teal)">'["2026-10-05","2026-10-12","2026-10-19"]'</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-calendar</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h3 id="dual-month-calendar-months-2">Dual-month calendar (<code>months=&quot;2&quot;</code>)</h3>
+<p><code>&lt;ui-calendar range months=&quot;2&quot;&gt;</code> renders two months side-by-side with a continuous cross-month range ribbon:</p>
+<div class="doc-demo"><ui-calendar range months="2" value="2026-10-10" end-value="2026-11-04"></ui-calendar>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-18-0">HTML</ui-tab><ui-tab-panel name="code-18-0"><ui-code-snippet type="single" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-calendar</span> <span style="color:var(--ui-tag-color-purple)">range</span> <span style="color:var(--ui-tag-color-purple)">months</span>=<span style="color:var(--ui-tag-color-teal)">"2"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"2026-10-10"</span> <span style="color:var(--ui-tag-color-purple)">end-value</span>=<span style="color:var(--ui-tag-color-teal)">"2026-11-04"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-calendar</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="skeleton">Skeleton</h2>
+<p>While the page loads its data, show <code>&lt;ui-date-picker-skeleton&gt;</code> in the picker's place, as Carbon's <code>DatePickerSkeleton</code>; add <code>range</code> for two fields. It has its own import, <code>@purpurabog/ui/date-picker-skeleton</code>, and is hidden from screen readers.</p>
+<div class="doc-demo"><ui-date-picker-skeleton></ui-date-picker-skeleton>
+<ui-date-picker-skeleton range></ui-date-picker-skeleton>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-19-0">HTML</ui-tab><ui-tab panel="code-19-1">React</ui-tab><ui-tab panel="code-19-2">React + Tailwind</ui-tab><ui-tab-panel name="code-19-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-date-picker-skeleton</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-date-picker-skeleton</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-date-picker-skeleton</span> <span style="color:var(--ui-tag-color-purple)">range</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-date-picker-skeleton</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-19-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { UiDatePickerSkeleton } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/react'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiDatePickerSkeleton</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiDatePickerSkeleton</span> <span style="color:var(--ui-tag-color-purple)">range</span> /&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-19-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { DatePickerSkeleton } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@/components/ui/react-tw/date-picker'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">DatePickerSkeleton</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">DatePickerSkeleton</span> <span style="color:var(--ui-tag-color-purple)">range</span> /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="keyboard">Keyboard</h2>
+<p>In the text box:</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Typing</td>
+<td>Enters the date; the open calendar follows a full date</td>
+</tr>
+<tr>
+<td>↓</td>
+<td>Opens the calendar and moves focus into it</td>
+</tr>
+<tr>
+<td>Tab</td>
+<td>With the calendar open: moves into it (the field's date, else today)</td>
+</tr>
+<tr>
+<td>Shift + Tab</td>
+<td>From the start field: closes the calendar and moves back</td>
+</tr>
+<tr>
+<td>Enter</td>
+<td>Commits the typed text, closes the calendar and submits the form it's in</td>
+</tr>
+<tr>
+<td>Esc</td>
+<td>Closes the calendar</td>
+</tr>
+</tbody>
+</table>
+<p>In the calendar:</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>← / →</td>
+<td>Previous / next day</td>
+</tr>
+<tr>
+<td>↑ / ↓</td>
+<td>Same day of the previous / next week</td>
+</tr>
+<tr>
+<td>Home / End</td>
+<td>First / last day of the week</td>
+</tr>
+<tr>
+<td>Page Up / Page Down</td>
+<td>Previous / next month</td>
+</tr>
+<tr>
+<td>Shift + Page Up / Page Down</td>
+<td>Previous / next year</td>
+</tr>
+<tr>
+<td>Enter, Space</td>
+<td>Picks the day; the calendar closes (in a range, after the end)</td>
+</tr>
+<tr>
+<td>Esc</td>
+<td>Closes, focus back in the text box</td>
+</tr>
+<tr>
+<td>Tab</td>
+<td>In a range, from the start: to the end field. Otherwise leaves the picker and closes the calendar. In the bottom sheet, Tab stays in the sheet</td>
+</tr>
+<tr>
+<td>Shift + Tab</td>
+<td>Back to the text box</td>
+</tr>
+</tbody>
+</table>
+<p>With a mouse, click the year in the calendar header to type one, or use its ▲▼ buttons.</p>
+<h2 id="accessibility">Accessibility</h2>
+<ul>
+<li>The text box is a combobox that opens a dialog (<code>aria-haspopup=&quot;dialog&quot;</code>, <code>aria-expanded</code>). The calendar is a dialog named &quot;Choose date&quot; with a grid of day buttons, following the WAI-ARIA date picker dialog pattern.</li>
+<li>Each day is read as a full date (&quot;Saturday, October 10, 2026&quot;). Today has <code>aria-current=&quot;date&quot;</code>, chosen days <code>aria-pressed</code>, refused days <code>aria-disabled</code>.</li>
+<li>Month changes are announced through a polite live region.</li>
+<li>The bottom sheet is a modal dialog with the same name: the page behind it is inert until it closes.</li>
+<li>The calendar icon is decorative, as in Carbon: it is not a Tab stop, and a click on it is a click in the text box.</li>
+<li>An error sets <code>aria-invalid</code> and is linked to the box with <code>aria-describedby</code>, as is the format hint.</li>
+</ul>
+<p>Unstyled React parts with the same behaviour: <a href="/kanok-ui-docs/en/headless-date-picker/">Headless Date picker</a>.</p>
+<h2 id="api">API</h2>
+<p>Generated from the package. In React, pass a property as a prop of the same name; events are props too (the React column).</p>
+<h3 id="ui-date-picker-react-uidatepicker"><code>&lt;ui-date-picker&gt;</code> · React <code>UiDatePicker</code></h3>
+<h4 id="attributes">Attributes</h4>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>label</code></td>
+<td><code>label</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>Visible label text; the <code>label</code> slot replaces it when markup is needed.</td>
+</tr>
+<tr>
+<td><code>hide-label</code></td>
+<td><code>hideLabel</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Keep the label for screen readers but don't show it.</td>
+</tr>
+<tr>
+<td><code>helper-text</code></td>
+<td><code>helperText</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>Helper text under the field, shown while there is no error or warning.</td>
+</tr>
+<tr>
+<td><code>invalid-text</code></td>
+<td><code>invalidText</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>Error text shown while <code>invalid</code> or while the field fails validation.</td>
+</tr>
+<tr>
+<td><code>invalid</code></td>
+<td><code>invalid</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Forces the error state, e.g. after server-side validation.</td>
+</tr>
+<tr>
+<td><code>warn</code></td>
+<td><code>warn</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Non-blocking warning; shown when there is no error.</td>
+</tr>
+<tr>
+<td><code>warn-text</code></td>
+<td><code>warnText</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>Text of the warning shown while <code>warn</code>.</td>
+</tr>
+<tr>
+<td><code>value</code></td>
+<td><code>value</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>ISO yyyy-mm-dd (the start date in <code>range</code> mode).</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>Reflected: form-associated elements submit under the <code>name</code> attribute.</td>
+</tr>
+<tr>
+<td><code>range</code></td>
+<td><code>range</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Two fields sharing one calendar (Carbon <code>datePickerType=&quot;range&quot;</code>).</td>
+</tr>
+<tr>
+<td><code>end-value</code></td>
+<td><code>endValue</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>Range mode: the end date, ISO yyyy-mm-dd.</td>
+</tr>
+<tr>
+<td><code>end-name</code></td>
+<td><code>endName</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>Range mode: form entry name of the end date. Without it the range submits as one <code>name</code> entry <code>start/end</code>.</td>
+</tr>
+<tr>
+<td><code>end-label</code></td>
+<td><code>endLabel</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>Range mode: label of the end field.</td>
+</tr>
+<tr>
+<td><code>min</code></td>
+<td><code>min</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>Earliest selectable date, ISO yyyy-mm-dd.</td>
+</tr>
+<tr>
+<td><code>max</code></td>
+<td><code>max</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>Latest selectable date, ISO yyyy-mm-dd.</td>
+</tr>
+<tr>
+<td><code>format</code></td>
+<td><code>format</code></td>
+<td><code>DateFormat</code></td>
+<td><code>'dd/mm/yyyy'</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>locale</code></td>
+<td><code>locale</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>Locale for names, labels and messages. Defaults to the nearest <code>lang</code>: the element's own, an ancestor's, then <code>&lt;html&gt;</code>'s, else the browser language.</td>
+</tr>
+<tr>
+<td><code>era</code></td>
+<td><code>era</code></td>
+<td><code>Era | ''</code></td>
+<td><code>''</code></td>
+<td>Year era shown and typed: <code>be</code> (พ.ศ.) or <code>ce</code> (ค.ศ.). Defaults to <code>be</code> for Thai locales.</td>
+</tr>
+<tr>
+<td><code>first-day</code></td>
+<td><code>firstDay</code></td>
+<td><code>number</code></td>
+<td><code>0</code></td>
+<td>0 = Sunday … 6 = Saturday.</td>
+</tr>
+<tr>
+<td><code>disabled</code></td>
+<td><code>disabled</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Disables the control; a disabled <code>&lt;fieldset&gt;</code> ancestor does the same.</td>
+</tr>
+<tr>
+<td><code>required</code></td>
+<td><code>required</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Blocks form submission while the field is empty.</td>
+</tr>
+<tr>
+<td><code>readonly</code></td>
+<td><code>readonly</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Shows and submits the value but blocks changes.</td>
+</tr>
+<tr>
+<td><code>fluid</code></td>
+<td><code>fluid</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Carbon <code>FluidDatePicker</code>: each date box is a 64px box with its label inside. <code>&lt;ui-fluid-form&gt;</code> sets it for every field inside.</td>
+</tr>
+<tr>
+<td><code>picker</code></td>
+<td><code>picker</code></td>
+<td><code>'auto' | 'custom' | 'sheet' | 'native'</code></td>
+<td><code>'auto'</code></td>
+<td>Which picker opens: <code>auto</code> (default) = our calendar, in a bottom sheet on a phone; <code>custom</code> = our calendar as a popover on every device; <code>sheet</code> = in a bottom sheet on every device; <code>native</code> = the OS date picker.</td>
+</tr>
+<tr>
+<td><code>clearable</code></td>
+<td><code>clearable</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Shows a clear button inside the field while it has text.</td>
+</tr>
+<tr>
+<td><code>show-today</code></td>
+<td><code>showToday</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Adds a &quot;Today&quot; button under the calendar.</td>
+</tr>
+<tr>
+<td><code>months</code></td>
+<td><code>months</code></td>
+<td><code>number</code></td>
+<td><code>1</code></td>
+<td>Number of months to show side-by-side in the calendar (default 1, e.g. 2 for range picking).</td>
+</tr>
+<tr>
+<td><code>size</code></td>
+<td><code>size</code></td>
+<td><code>'sm' | 'md' | 'lg'</code></td>
+<td><code>'md'</code></td>
+<td>Field height, same scale as ui-text-input.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="properties">Properties</h4>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>isDateDisabled</code></td>
+<td><code>(date: Date) =&gt; boolean | string | undefined</code></td>
+<td>Property only. Return <code>true</code> for days that can't be chosen (weekends, holidays…), or a string to show that reason instead of the generic message.</td>
+</tr>
+<tr>
+<td><code>willValidate</code></td>
+<td></td>
+<td>(read-only) Whether the field takes part in constraint validation (not while disabled), as natively.</td>
+</tr>
+<tr>
+<td><code>labels</code></td>
+<td></td>
+<td>(read-only) The <code>&lt;label&gt;</code>s that point at this field.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="methods">Methods</h4>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>setCustomValidity(message)</code></td>
+<td>Like <code>&lt;input&gt;.setCustomValidity()</code>: a non-empty message makes the field invalid (and is shown as its error once touched) until cleared with ''.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="events">Events</h4>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>React</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>change</code></td>
+<td>none (use a ref)</td>
+<td>When a committed value (start or end) changes: blur, Enter, a calendar pick or clear. A typed date outside min/max is still committed, with the field reporting the range error.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="slots">Slots</h4>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>label</code></td>
+<td>Label content with markup; the <code>label</code> attribute is the plain-text fallback</td>
+</tr>
+<tr>
+<td><code>helper-text</code></td>
+<td>Helper text with markup (links, bold); overrides <code>helper-text</code></td>
+</tr>
+<tr>
+<td><code>warn-text</code></td>
+<td>Warning text shown while <code>warn</code>; overrides <code>warn-text</code></td>
+</tr>
+<tr>
+<td><code>invalid-text</code></td>
+<td>Error text shown while invalid; overrides <code>invalid-text</code></td>
+</tr>
+<tr>
+<td><code>end-label</code></td>
+<td>Label of the end field in range mode; overrides <code>end-label</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="css-parts">CSS parts</h4>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>base</code></td>
+<td>The field box (range: also <code>start-base</code> / <code>end-base</code>; same for every field part)</td>
+</tr>
+<tr>
+<td><code>label</code></td>
+<td>The label</td>
+</tr>
+<tr>
+<td><code>input</code></td>
+<td>The text box</td>
+</tr>
+<tr>
+<td><code>clear-button</code></td>
+<td>The × button</td>
+</tr>
+<tr>
+<td><code>toggle</code></td>
+<td>The calendar icon (decorative, as Carbon)</td>
+</tr>
+<tr>
+<td><code>status-icon</code></td>
+<td>The error / warning icon</td>
+</tr>
+<tr>
+<td><code>helper-text</code></td>
+<td>The helper line</td>
+</tr>
+<tr>
+<td><code>warning-text</code></td>
+<td>The warning line</td>
+</tr>
+<tr>
+<td><code>warn-text</code></td>
+<td>Same line as <code>warning-text</code> (named after the <code>warn-text</code> attribute / slot)</td>
+</tr>
+<tr>
+<td><code>error-text</code></td>
+<td>The error line</td>
+</tr>
+<tr>
+<td><code>invalid-text</code></td>
+<td>Same line as <code>error-text</code> (named after the <code>invalid-text</code> attribute / slot)</td>
+</tr>
+<tr>
+<td><code>calendar</code></td>
+<td>The popover shell (in the bottom sheet: the sheet's panel)</td>
+</tr>
+<tr>
+<td><code>sheet</code></td>
+<td>The bottom sheet <code>&lt;dialog&gt;</code> on a phone (<code>picker=&quot;auto&quot;</code> / <code>sheet</code>; style its scrim with <code>::part(sheet)::backdrop</code>)</td>
+</tr>
+<tr>
+<td><code>sheet-grip</code></td>
+<td>The sheet's top bar, which a swipe down closes</td>
+</tr>
+<tr>
+<td><code>sheet-close</code></td>
+<td>The sheet's × button</td>
+</tr>
+<tr>
+<td><code>header</code></td>
+<td>Calendar month / year row</td>
+</tr>
+<tr>
+<td><code>nav</code></td>
+<td>Previous / next month buttons</td>
+</tr>
+<tr>
+<td><code>month</code></td>
+<td>Month name</td>
+</tr>
+<tr>
+<td><code>year</code></td>
+<td>Year number box</td>
+</tr>
+<tr>
+<td><code>grid</code></td>
+<td>The table of days</td>
+</tr>
+<tr>
+<td><code>day</code></td>
+<td>Each day button</td>
+</tr>
+<tr>
+<td><code>today-button</code></td>
+<td>The optional &quot;Today&quot; button</td>
+</tr>
+</tbody>
+</table>
+<h4 id="css-custom-properties">CSS custom properties</h4>
+<table>
+<thead>
+<tr>
+<th>Custom property</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--ui-field-border</code></td>
+<td></td>
+<td>Border on every side of the box (default none: Carbon's underline only; Kanok: a 1px outline)</td>
+</tr>
+<tr>
+<td><code>--ui-field-disabled-border-color</code></td>
+<td></td>
+<td>Border colour when disabled (default: the underline transparent)</td>
+</tr>
+<tr>
+<td><code>--ui-field-readonly-border-color</code></td>
+<td></td>
+<td>Border colour when read-only (default: a hairline underline)</td>
+</tr>
+<tr>
+<td><code>--ui-field-radius</code></td>
+<td></td>
+<td>Corner radius of the box (default 0; Kanok: 6px)</td>
+</tr>
+<tr>
+<td><code>--ui-field-background</code></td>
+<td></td>
+<td>Fill of the box (default <code>--ui-surface-1</code>; Kanok: transparent)</td>
+</tr>
+<tr>
+<td><code>--ui-label-font</code></td>
+<td></td>
+<td>Font of the label (default <code>--ui-font-caption</code>; Kanok: 14px semibold)</td>
+</tr>
+<tr>
+<td><code>--ui-label-color</code></td>
+<td></td>
+<td>Colour of the label (default <code>--ui-ink-muted</code>; Kanok: <code>--ui-ink</code>)</td>
+</tr>
+<tr>
+<td><code>--ui-menu-radius</code></td>
+<td></td>
+<td>/ --ui-menu-border / --ui-menu-shadow - Corners, border and shadow of the calendar (the menu settings)</td>
+</tr>
+<tr>
+<td><code>--ui-sheet-radius</code></td>
+<td></td>
+<td>The bottom sheet's top corners (default: the menu radius)</td>
+</tr>
+<tr>
+<td><code>--ui-modal-scrim</code></td>
+<td></td>
+<td>The bottom sheet's scrim, as the modal's (default Carbon's overlay)</td>
+</tr>
+<tr>
+<td><code>--ui-calendar-day-radius</code></td>
+<td></td>
+<td>Corner radius of a day (default 0; Kanok: 6px)</td>
+</tr>
+<tr>
+<td><code>--ui-calendar-today-dot-radius</code></td>
+<td></td>
+<td>Corner radius of today's dot (default 0, a square; Kanok: 50%, a dot)</td>
+</tr>
+<tr>
+<td><code>--ui-field-readonly-background</code></td>
+<td></td>
+<td>The box's fill when read-only (default transparent; Kanok: a faint ink tint, so read-only reads as set and never weaker than disabled)</td>
+</tr>
+<tr>
+<td><code>--ui-fluid-background</code></td>
+<td></td>
+<td>/ --ui-fluid-gap - A fluid box's fill and the space under it (default the layer's fill, 0: boxes that touch; Kanok: transparent, 8px)</td>
+</tr>
+<tr>
+<td><code>--ui-icon-control-radius</code></td>
+<td></td>
+<td>Corners of its small icon buttons, their hover fill and ring (default 0; Kanok: round)</td>
+</tr>
+<tr>
+<td><code>--ui-focus-offset</code></td>
+<td></td>
+<td><code>outline-offset</code> of the month arrows' and Today's focus ring (default -2px: inside; Kanok: 2px outside)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ui-calendar-react-uicalendar"><code>&lt;ui-calendar&gt;</code> · React <code>UiCalendar</code></h3>
+<h4 id="attributes-2">Attributes</h4>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>value</code></td>
+<td><code>value</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>Chosen day (start day in range mode), ISO yyyy-mm-dd.</td>
+</tr>
+<tr>
+<td><code>end-value</code></td>
+<td><code>endValue</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>Range mode: chosen end day, ISO yyyy-mm-dd.</td>
+</tr>
+<tr>
+<td><code>range</code></td>
+<td><code>range</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Whether range selection is enabled.</td>
+</tr>
+<tr>
+<td><code>multi</code></td>
+<td><code>multi</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Multi-date selection mode: select multiple individual dates (like Cally's calendar-multi).</td>
+</tr>
+<tr>
+<td><code>values</code></td>
+<td><code>values</code></td>
+<td><code>string[] | string</code></td>
+<td><code>[]</code></td>
+<td>Selected dates in multi mode (array or comma/space-separated ISO string).</td>
+</tr>
+<tr>
+<td><code>months</code></td>
+<td><code>months</code></td>
+<td><code>number</code></td>
+<td><code>1</code></td>
+<td>Number of months to display side-by-side (1 or 2, default 1).</td>
+</tr>
+<tr>
+<td><code>active-field</code></td>
+<td><code>activeField</code></td>
+<td><code>'start' | 'end'</code></td>
+<td><code>'start'</code></td>
+<td>Range mode: which end a pick will set; drives the preview highlight.</td>
+</tr>
+<tr>
+<td><code>min</code></td>
+<td><code>min</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>Minimum selectable ISO date.</td>
+</tr>
+<tr>
+<td><code>max</code></td>
+<td><code>max</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>Maximum selectable ISO date.</td>
+</tr>
+<tr>
+<td><code>locale</code></td>
+<td><code>locale</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>BCP 47 locale for names and labels. Defaults to the nearest <code>lang</code>.</td>
+</tr>
+<tr>
+<td><code>era</code></td>
+<td><code>era</code></td>
+<td><code>Era | ''</code></td>
+<td><code>''</code></td>
+<td>Year era: <code>be</code> (พ.ศ.) or <code>ce</code> (ค.ศ.). Defaults to <code>be</code> for Thai locales.</td>
+</tr>
+<tr>
+<td><code>first-day</code></td>
+<td><code>firstDay</code></td>
+<td><code>number</code></td>
+<td><code>0</code></td>
+<td>0 = Sunday … 6 = Saturday.</td>
+</tr>
+<tr>
+<td><code>show-today</code></td>
+<td><code>showToday</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Whether to display the &quot;Today&quot; footer shortcut button.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="properties-2">Properties</h4>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>focusDate</code></td>
+<td></td>
+<td>Day that holds the roving tab stop; its month is shown.</td>
+</tr>
+<tr>
+<td><code>isDateDisabled</code></td>
+<td><code>(date: Date) =&gt; boolean | string | undefined</code></td>
+<td>Callback to disable individual dates (e.g. weekends, holidays).</td>
+</tr>
+<tr>
+<td><code>multiValues</code></td>
+<td><code>string[]</code></td>
+<td>(read-only) Selected dates as clean ISO array in multi mode.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="methods-2">Methods</h4>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>focusDay()</code></td>
+<td>Puts DOM focus on the day that holds the roving tab stop.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="events-2">Events</h4>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>React</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ui-multi-pick</code></td>
+<td>none (use a ref)</td>
+<td>Detail <code>{ date, values }</code>, in multi mode when a day is toggled</td>
+</tr>
+<tr>
+<td><code>change</code></td>
+<td>none (use a ref)</td>
+<td>Detail <code>{ value, endValue, values }</code>, native-like change event on pick</td>
+</tr>
+<tr>
+<td><code>ui-pick</code></td>
+<td><code>onUiPick</code></td>
+<td>Detail <code>{ date }</code>, when a day is activated</td>
+</tr>
+<tr>
+<td><code>ui-focus-change</code></td>
+<td><code>onUiFocusChange</code></td>
+<td>Detail <code>{ date }</code>, when keyboard or navigation moves the focused date</td>
+</tr>
+</tbody>
+</table>
+<h4 id="css-parts-2">CSS parts</h4>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>months</code></td>
+<td>Multi-month layout container</td>
+</tr>
+<tr>
+<td><code>month-view</code></td>
+<td>Container of a single month</td>
+</tr>
+<tr>
+<td><code>header</code></td>
+<td>Month / year row container</td>
+</tr>
+<tr>
+<td><code>nav</code></td>
+<td>Previous / next navigation buttons</td>
+</tr>
+<tr>
+<td><code>prev-button</code></td>
+<td>The previous month button</td>
+</tr>
+<tr>
+<td><code>next-button</code></td>
+<td>The next month button</td>
+</tr>
+<tr>
+<td><code>heading</code></td>
+<td>Month &amp; year label container</td>
+</tr>
+<tr>
+<td><code>month</code></td>
+<td>Month name</td>
+</tr>
+<tr>
+<td><code>year</code></td>
+<td>Year number box</td>
+</tr>
+<tr>
+<td><code>grid</code></td>
+<td>The table grid of days</td>
+</tr>
+<tr>
+<td><code>table</code></td>
+<td>The table grid of days</td>
+</tr>
+<tr>
+<td><code>thead</code></td>
+<td>The table header row with weekday labels</td>
+</tr>
+<tr>
+<td><code>th</code></td>
+<td>Individual weekday heading cell</td>
+</tr>
+<tr>
+<td><code>tbody</code></td>
+<td>The table body of weeks</td>
+</tr>
+<tr>
+<td><code>row</code></td>
+<td>Each week table row</td>
+</tr>
+<tr>
+<td><code>cell</code></td>
+<td>Each day table cell</td>
+</tr>
+<tr>
+<td><code>day</code></td>
+<td>Each day button</td>
+</tr>
+<tr>
+<td><code>today-button</code></td>
+<td>The optional &quot;Today&quot; footer button</td>
+</tr>
+<tr>
+<td><code>footer</code></td>
+<td>The footer container</td>
+</tr>
+</tbody>
+</table>
+<h4 id="css-custom-properties-2">CSS custom properties</h4>
+<table>
+<thead>
+<tr>
+<th>Custom property</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--ui-calendar-day-radius</code></td>
+<td></td>
+<td>Corner radius of a day button (default 9999px for circular days)</td>
+</tr>
+<tr>
+<td><code>--ui-calendar-today-dot-radius</code></td>
+<td></td>
+<td>Corner radius of today's indicator dot (default 50%)</td>
+</tr>
+<tr>
+<td><code>--ui-calendar-day-focus</code></td>
+<td></td>
+<td>The keyboard focus ring on a day</td>
+</tr>
+<tr>
+<td><code>--ui-calendar-selected-focus</code></td>
+<td></td>
+<td>Focus ring on a selected day</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+<nav class="doc-toc" aria-labelledby="doc-toc-title"><p id="doc-toc-title" class="doc-toc-title">On this page</p><ul><li class="doc-toc-h2"><a href="#installation">Installation</a></li><li class="doc-toc-h2"><a href="#use-it">Use it</a></li><li class="doc-toc-h2"><a href="#what-users-see-what-you-get">What users see, what you get</a></li><li class="doc-toc-h2"><a href="#type-it-or-pick-it">Type it or pick it</a></li><li class="doc-toc-h2"><a href="#buddhist-era-and-thai">Buddhist era and Thai</a></li><li class="doc-toc-h2"><a href="#formats">Formats</a></li><li class="doc-toc-h2"><a href="#pick-a-range">Pick a range</a></li><li class="doc-toc-h3"><a href="#two-month-range-view">Two-month range view</a></li><li class="doc-toc-h2"><a href="#limit-the-dates">Limit the dates</a></li><li class="doc-toc-h2"><a href="#clear-button-and-today">Clear button and Today</a></li><li class="doc-toc-h2"><a href="#sizes-and-fluid">Sizes and fluid</a></li><li class="doc-toc-h2"><a href="#helper-text-errors-and-warnings">Helper text, errors and warnings</a></li><li class="doc-toc-h2"><a href="#read-only-and-disabled">Read-only and disabled</a></li><li class="doc-toc-h2"><a href="#in-a-form">In a form</a></li><li class="doc-toc-h2"><a href="#phones-and-tablets">Phones and tablets</a></li><li class="doc-toc-h2"><a href="#the-calendar-on-its-own">The calendar on its own</a></li><li class="doc-toc-h3"><a href="#multiple-dates-multi">Multiple dates (multi)</a></li><li class="doc-toc-h3"><a href="#dual-month-calendar-months-2">Dual-month calendar (months=&quot;2&quot;)</a></li><li class="doc-toc-h2"><a href="#skeleton">Skeleton</a></li><li class="doc-toc-h2"><a href="#keyboard">Keyboard</a></li><li class="doc-toc-h2"><a href="#accessibility">Accessibility</a></li><li class="doc-toc-h2"><a href="#api">API</a></li><li class="doc-toc-h3"><a href="#ui-date-picker-react-uidatepicker">&lt;ui-date-picker></a></li><li class="doc-toc-h3"><a href="#ui-calendar-react-uicalendar">&lt;ui-calendar></a></li></ul></nav>
+</div>
+<nav class="doc-pager" aria-label="Next / Previous"><a class="doc-pager-prev" href="/kanok-ui-docs/en/toggle/" rel="prev"><span>Previous</span>Toggle</a><a class="doc-pager-next" href="/kanok-ui-docs/en/time-picker/" rel="next"><span>Next</span>Time picker</a></nav>
+<footer class="doc-footer">@purpurabog/ui 1.4.3 · MIT · <a href="https://cdn.jsdelivr.net/npm/@purpurabog/ui@1.4.3/THIRD-PARTY-NOTICES.md">Third-party notices</a><br>Built on the Carbon Design System. Not affiliated with or endorsed by IBM; IBM and Carbon are trademarks of IBM Corp.</footer>
+</ui-content>
+<ui-modal id="doc-search" heading="Search" data-count="{n} results" data-empty="No results for “{q}”">
+<ui-search label="Search the docs" placeholder="Search the docs" size="lg"></ui-search>
+<p class="doc-search-status" role="status"></p>
+<ul class="doc-search-results"></ul>
+</ui-modal>
+</body>
+</html>

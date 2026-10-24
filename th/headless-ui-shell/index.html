@@ -1,0 +1,1032 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Headless UI shell · @purpurabog/ui</title>
+<link rel="alternate" hreflang="en" href="/kanok-ui-docs/en/headless-ui-shell/"  /><link rel="alternate" hreflang="th" href="/kanok-ui-docs/th/headless-ui-shell/"  />
+<script>(function(){try{var q=new URLSearchParams(location.search).get("design"),d=q;if(q==="kanok"||q==="carbon")localStorage.setItem("ui-docs-design",q);else d=localStorage.getItem("ui-docs-design");if(d==="kanok")document.documentElement.setAttribute("data-design","kanok")}catch(e){}})();(function(){try{var m=localStorage.getItem("ui-docs-theme");if(m!=="light"&&m!=="dark"&&m!=="system")return;var d=m==="dark"||(m==="system"&&matchMedia("(prefers-color-scheme: dark)").matches),r=document.documentElement,t=d?"g100":"white";if(r.getAttribute("data-design")==="kanok")t=d?"lacquer":"paper";r.setAttribute("data-theme",t)}catch(e){}})();</script>
+<style>ui-header:not(:defined){z-index:8000;box-sizing:border-box;border-block-end:1px solid var(--ui-border-subtle-1);background:var(--ui-canvas);block-size:48px;display:block;position:fixed;inset:0 0 auto}:is(ui-header:not(:defined)>*,ui-side-nav:not(:defined)>*){visibility:hidden}:is(ui-header-panel:not(:defined),ui-modal:not(:defined)){display:none}ui-side-nav:not(:defined){display:none}ui-content:not(:defined){margin-block-start:48px;padding:32px;display:block}@media (width>=1056px){ui-side-nav[expanded]:not(:defined){background:var(--ui-canvas);inline-size:256px;display:block;position:fixed;inset:48px auto 0 0}ui-side-nav[expanded]:not(:defined)~ui-content:not(:defined){margin-inline-start:256px}}ui-tabs:not(:defined){display:block}ui-tabs:not(:defined)>ui-tab{box-sizing:border-box;border-block-end:2px solid var(--ui-hairline);block-size:40px;color:var(--ui-ink-muted);font:var(--ui-font-body-sm);padding:0 16px;line-height:38px;display:inline-block}ui-tabs:not(:defined)>ui-tab:first-of-type{border-block-end-color:var(--ui-interactive);color:var(--ui-ink)}ui-tabs:not(:defined)>ui-tab-panel{padding:16px;display:block}ui-tabs:not(:defined)>ui-tab-panel~ui-tab-panel{display:none}ui-code-snippet:not(:defined){background:var(--ui-layer-1);max-block-size:272px;font:var(--ui-font-code,12px/16px monospace);white-space:pre;padding:16px;display:block;overflow:hidden}[data-react-example]:empty>*{visibility:hidden}.doc-demo:has(:not(:defined))>*{visibility:hidden}[data-react-example]:empty{box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}.doc-demo:has(:not(:defined)){box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}@keyframes doc-skeleton{to{background-position:-200% 0}}@media (prefers-reduced-motion:reduce){[data-react-example]:empty{animation:none}.doc-demo:has(:not(:defined)){animation:none}}</style>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/index-CGdvJUJ-.js"></script>
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/theme-switcher-BGAHXRgF.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/listbox-gjElSjvA.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/headless-CpcU3xFD.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/flag-D0Ou26eR.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/focus-Hg6AV1y3.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/side-nav-BCvYciJQ.js">
+  <link rel="stylesheet" crossorigin href="/kanok-ui-docs/assets/theme-switcher-CL5yB6XE.css">
+  <link rel="stylesheet" crossorigin href="/kanok-ui-docs/assets/headless-JjfvojKd.css">
+</head>
+<body>
+<ui-header label="@purpurabog/ui">
+<ui-skip-to-content></ui-skip-to-content>
+<ui-header-menu-button></ui-header-menu-button>
+<ui-header-name href="/kanok-ui-docs/th/" prefix="@purpurabog">ui</ui-header-name>
+<ui-header-global-bar>
+<ui-header-global-action id="doc-search-open" label="ค้นหา" tooltip-placement="bottom"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="m18.5 17.8-4.9-4.9a7 7 0 1 0-.7.7l4.9 4.9zM3 8.5a5.5 5.5 0 1 1 5.5 5.5A5.5 5.5 0 0 1 3 8.5Z" /></svg></ui-header-global-action>
+<ui-header-global-action label="ตั้งค่า" panel="doc-settings" tooltip-placement="bottom-end"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="M16.9 10.6a7 7 0 0 0 0-1.2l1.8-1.4-1.6-2.8-2.1.8a6.6 6.6 0 0 0-1-.6L13.6 3h-3.2l-.4 2.4a6.6 6.6 0 0 0-1 .6l-2.1-.8L5.3 8l1.8 1.4a7 7 0 0 0 0 1.2L5.3 12l1.6 2.8 2.1-.8a6.6 6.6 0 0 0 1 .6l.4 2.4h3.2l.4-2.4a6.6 6.6 0 0 0 1-.6l2.1.8 1.6-2.8zM12 13a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" /></svg></ui-header-global-action>
+</ui-header-global-bar>
+<ui-header-panel id="doc-settings" label="ตั้งค่า">
+<div class="doc-settings">
+<span class="doc-settings-label">ธีม</span>
+<ui-theme-switcher storage-key="ui-docs-theme" tooltip-placement="bottom"></ui-theme-switcher>
+<span class="doc-settings-label">รูปแบบ</span>
+<ui-content-switcher id="doc-design" aria-label="รูปแบบ" size="sm"><ui-content-switcher-item name="carbon">Carbon</ui-content-switcher-item><ui-content-switcher-item name="kanok">Kanok</ui-content-switcher-item></ui-content-switcher>
+<span class="doc-settings-label">ภาษา</span>
+<ui-link href="/kanok-ui-docs/en/headless-ui-shell/" hreflang="en" lang="en">English</ui-link>
+</div>
+</ui-header-panel>
+</ui-header>
+<ui-side-nav label="เอกสาร"><ui-side-nav-items><ui-side-nav-menu label="เริ่มต้น"><ui-side-nav-menu-item href="/kanok-ui-docs/th/">ภาพรวม</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/installation/">ติดตั้ง</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/migration-1-0/">การย้ายไป 1.0</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="คู่มือ"><ui-side-nav-menu-item href="/kanok-ui-docs/th/themes/">ธีมและ layer</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/kanok/">ดีไซน์ Kanok</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/customizing/">ปรับแต่งหน้าตา</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/icons/">ไอคอน</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/forms/">ฟอร์มและการตรวจค่า</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/frameworks/">ใช้กับ framework</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/ai/">ใช้กับ AI</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="ฟอร์มและปุ่ม"><ui-side-nav-menu-item href="/kanok-ui-docs/th/button/">Button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/file-uploader/">File uploader</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Overlay"><ui-side-nav-menu-item href="/kanok-ui-docs/th/modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/toggletip/">Toggletip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/menu/">Menu</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="ข้อมูล"><ui-side-nav-menu-item href="/kanok-ui-docs/th/data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/contained-list/">Contained list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tree-view/">Tree view</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="การนำทาง"><ui-side-nav-menu-item href="/kanok-ui-docs/th/tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/breadcrumb/">Breadcrumb</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/link/">Link</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/ui-shell/">UI shell</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="เนื้อหา"><ui-side-nav-menu-item href="/kanok-ui-docs/th/tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tile/">Tile</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/user-avatar/">User avatar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/list/">List</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="สถานะและการโหลด"><ui-side-nav-menu-item href="/kanok-ui-docs/th/loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/inline-loading/">Inline loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/progress-bar/">Progress bar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/skeleton/">Skeleton</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/badge-indicator/">Badge indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/status-indicator/">Status indicator</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="เลย์เอาต์"><ui-side-nav-menu-item href="/kanok-ui-docs/th/grid/">Grid</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/heading/">Heading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/layer/">Layer</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/action-set/">Action set</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/page-header/">Page header</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/big-number/">Big number</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Headless" expanded><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless/">แนะนำ</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-file-uploader/">File uploader</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-menu/">Menu</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-ui-shell/" current>UI shell</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tree-view/">Tree view</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu></ui-side-nav-items></ui-side-nav><script>if(matchMedia('(min-width: 66rem)').matches)document.currentScript.previousElementSibling.setAttribute('expanded','')</script>
+<ui-content>
+<div class="doc-page">
+<article class="doc">
+<!-- nav: UI shell -->
+<h1 id="headless-ui-shell">Headless UI shell</h1>
+<p>namespace สามตัวให้พฤติกรรมเดียวกับ <a href="/kanok-ui-docs/th/ui-shell/">UI shell</a> แบบมี style แต่ไม่มี style เลย:</p>
+<ul>
+<li><code>Shell</code>: <code>Shell.Root</code> เก็บว่าเมนูด้านข้างเปิดอยู่หรือไม่ ปุ่ม hamburger กับเมนูด้านข้างจึงต่อสายกันเอง ส่วน <code>Shell.Content</code> คือ <code>&lt;main&gt;</code> ที่บอกว่าเมนูด้านข้างข้าง ๆ วางตัวแบบไหน</li>
+<li><code>Header</code>: <code>&lt;header&gt;</code> ลิงก์ข้ามไปยังเนื้อหา ปุ่ม hamburger เมนูลิงก์ที่เปิดปิดได้ ปุ่มไอคอน และ panel ใต้ header พร้อม Esc การคลิกข้างนอก และการคืนโฟกัส</li>
+<li><code>SideNav</code>: <code>&lt;nav&gt;</code> พร้อมโหมดต่าง ๆ (ปกติ rail fixed collapsible) พื้นหลังมืด ลิงก์และเมนูย่อย พร้อม Esc และการโฟกัสออก</li>
+</ul>
+<p>ส่วนที่คุณทำเองคือหน้าตาและตำแหน่งของทุก element: แถบสูง 48px เมนูกว้าง 256px การเยื้องเนื้อหา ไอคอน และข้อความ part ต่าง ๆ บอกสถานะผ่าน attribute <code>data-*</code> ให้คุณใช้ใส่ style</p>
+<p>ตัวอย่างอยู่ในกล่องที่มี <code>transform</code> ซึ่งเก็บส่วนที่เป็น <code>position: fixed</code> ไว้ในกล่อง และลิงก์ในตัวอย่างแค่เปลี่ยน state ของตัวอย่าง คลิกจึงไม่พาออกจากหน้านี้ ในแอปของคุณ header และเมนูจะติดกับหน้าต่าง</p>
+<h2 id="ติดตั้ง">ติดตั้ง</h2>
+<p>ส่วน headless มากับแพ็กเกจเลย (ไม่มี item ของ shadcn; item ของ React + Tailwind สร้างบนมัน):</p>
+<ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">@purpurabog/ui</span></ui-code-snippet>
+<ui-code-snippet type="single" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { Header, Shell, SideNav } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;</ui-code-snippet>
+<h2 id="วิธีใช้">วิธีใช้</h2>
+<div class="doc-demo" data-react-example="0"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { useState, <span style="color:var(--ui-tag-color-magenta)">type</span> MouseEvent } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { Header, Shell, SideNav } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> link <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'flex h-8 items-center px-4 text-sm whitespace-nowrap text-ink-muted hover:bg-canvas-hover hover:text-ink focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus data-current:border-s-4 data-current:border-interactive data-current:bg-canvas-selected data-current:ps-3 data-current:font-semibold data-current:text-ink'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [page, setPage] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">'แดชบอร์ด'</span>);
+  <span style="color:var(--ui-ink-muted);font-style:italic">// แทน router: ลิงก์เปลี่ยนหน้าของตัวอย่างแทนการโหลดหน้าใหม่</span>
+  <span style="color:var(--ui-tag-color-magenta)">const</span> <span style="color:var(--ui-tag-color-cyan)">go</span> <span style="color:var(--ui-tag-color-magenta)">=</span> (name<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>, path<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> ({
+    <span style="color:var(--ui-tag-color-purple)">href:</span> <span style="color:var(--ui-tag-color-teal)">`#${</span><span style="color:var(--ui-tag-color-teal)">path</span><span style="color:var(--ui-tag-color-teal)">}`</span>,
+    <span style="color:var(--ui-tag-color-purple)">current:</span> page <span style="color:var(--ui-tag-color-magenta)">===</span> name,
+    <span style="color:var(--ui-tag-color-cyan)">onClick</span><span style="color:var(--ui-tag-color-purple)">:</span> (event<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">MouseEvent</span>) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+      event.<span style="color:var(--ui-tag-color-cyan)">preventDefault</span>();
+      <span style="color:var(--ui-tag-color-cyan)">setPage</span>(name);
+    },
+  });
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"relative h-80 overflow-hidden border border-hairline bg-canvas text-ink [transform:translateZ(0)]"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Shell.Root</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Header.Root</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Metro สัญญา"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"fixed inset-x-0 top-0 z-20 flex h-12 items-center border-b border-border-subtle-1 bg-canvas"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Header.SkipToContent</span> <span style="color:var(--ui-tag-color-purple)">href</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"#headless-shell-main"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"absolute -translate-y-full bg-canvas px-4 py-3 text-sm focus:translate-y-0 focus:outline-2 focus:outline-focus"</span>&gt;
+            ข้ามไปยังเนื้อหาหลัก
+          &lt;/<span style="color:var(--ui-tag-color-blue)">Header.SkipToContent</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Header.MenuButton</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เมนู"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"group flex size-12 items-center justify-center text-icon-primary hover:bg-canvas-hover focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus data-active:bg-surface-1 min-[1056px]:hidden"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 20 20"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-5 fill-current group-data-active:hidden"</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M2 14.8h16v1.2H2zm0-5.4h16v1.2H2zM2 4h16v1.2H2z"</span> /&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 20 20"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"hidden size-5 fill-current group-data-active:block"</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M15 5.8 14.2 5 10 9.2 5.8 5 5 5.8 9.2 10 5 14.2l.8.8 4.2-4.2 4.2 4.2.8-.8L10.8 10z"</span> /&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">Header.MenuButton</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">a</span> {<span style="color:var(--ui-tag-color-magenta)">...</span><span style="color:var(--ui-tag-color-cyan)">go</span>(<span style="color:var(--ui-tag-color-teal)">'แดชบอร์ด'</span>, <span style="color:var(--ui-tag-color-teal)">'dashboard'</span>)} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"px-4 text-sm font-semibold focus-visible:outline-2 focus-visible:outline-focus"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"font-normal"</span>&gt;Metro&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt; สัญญา
+          &lt;/<span style="color:var(--ui-tag-color-blue)">a</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Header.Root</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">SideNav.Root</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">SideNav.Overlay</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"fixed inset-x-0 top-12 bottom-0 z-10 hidden bg-overlay data-open:block min-[1056px]:data-open:hidden"</span> /&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">SideNav.Nav</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"หมวด"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"fixed start-0 top-12 bottom-0 z-20 w-0 overflow-hidden bg-canvas transition-[width] data-open:w-64"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">ul</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"pt-4"</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">li</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">SideNav.Link</span> {<span style="color:var(--ui-tag-color-magenta)">...</span><span style="color:var(--ui-tag-color-cyan)">go</span>(<span style="color:var(--ui-tag-color-teal)">'แดชบอร์ด'</span>, <span style="color:var(--ui-tag-color-teal)">'dashboard'</span>)} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{link}&gt;แดชบอร์ด&lt;/<span style="color:var(--ui-tag-color-blue)">SideNav.Link</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">li</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">SideNav.Menu</span> <span style="color:var(--ui-tag-color-purple)">defaultExpanded</span>&gt;
+                &lt;<span style="color:var(--ui-tag-color-blue)">SideNav.MenuTrigger</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"group flex h-8 w-full items-center justify-between px-4 text-start text-sm font-semibold whitespace-nowrap text-ink-muted hover:bg-canvas-hover hover:text-ink focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus"</span>&gt;
+                  คำขอ
+                  &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-4 fill-current transition-transform group-data-open:rotate-180"</span>&gt;
+                    &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M8 11 3 6l.7-.7L8 9.6l4.3-4.3.7.7z"</span> /&gt;
+                  &lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+                &lt;/<span style="color:var(--ui-tag-color-blue)">SideNav.MenuTrigger</span>&gt;
+                &lt;<span style="color:var(--ui-tag-color-blue)">SideNav.MenuPopup</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"hidden data-open:block"</span>&gt;
+                  &lt;<span style="color:var(--ui-tag-color-blue)">li</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">SideNav.MenuItem</span> {<span style="color:var(--ui-tag-color-magenta)">...</span><span style="color:var(--ui-tag-color-cyan)">go</span>(<span style="color:var(--ui-tag-color-teal)">'เปิดอยู่'</span>, <span style="color:var(--ui-tag-color-teal)">'open'</span>)} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-teal)">`${</span><span style="color:var(--ui-tag-color-teal)">link</span><span style="color:var(--ui-tag-color-teal)">} ps-8 data-current:ps-7`</span>}&gt;เปิดอยู่&lt;/<span style="color:var(--ui-tag-color-blue)">SideNav.MenuItem</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">li</span>&gt;
+                  &lt;<span style="color:var(--ui-tag-color-blue)">li</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">SideNav.MenuItem</span> {<span style="color:var(--ui-tag-color-magenta)">...</span><span style="color:var(--ui-tag-color-cyan)">go</span>(<span style="color:var(--ui-tag-color-teal)">'รอลงนาม'</span>, <span style="color:var(--ui-tag-color-teal)">'signing'</span>)} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-teal)">`${</span><span style="color:var(--ui-tag-color-teal)">link</span><span style="color:var(--ui-tag-color-teal)">} ps-8 data-current:ps-7`</span>}&gt;รอลงนาม&lt;/<span style="color:var(--ui-tag-color-blue)">SideNav.MenuItem</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">li</span>&gt;
+                &lt;/<span style="color:var(--ui-tag-color-blue)">SideNav.MenuPopup</span>&gt;
+              &lt;/<span style="color:var(--ui-tag-color-blue)">SideNav.Menu</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">li</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">SideNav.Link</span> {<span style="color:var(--ui-tag-color-magenta)">...</span><span style="color:var(--ui-tag-color-cyan)">go</span>(<span style="color:var(--ui-tag-color-teal)">'ตั้งค่า'</span>, <span style="color:var(--ui-tag-color-teal)">'settings'</span>)} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{link}&gt;ตั้งค่า&lt;/<span style="color:var(--ui-tag-color-blue)">SideNav.Link</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">li</span>&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">ul</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">SideNav.Nav</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">SideNav.Root</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Shell.Content</span> <span style="color:var(--ui-tag-color-purple)">id</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"headless-shell-main"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"mt-12 p-8 transition-[margin] min-[1056px]:data-[side-nav=default]:ms-64"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-2xl"</span>&gt;{page}&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Shell.Content</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">Shell.Root</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<p>ภายใน <code>Shell.Root</code> ปุ่ม <code>MenuButton</code> เปิดปิดเมนูด้านข้างได้โดยไม่ต้องใส่ prop และได้ <code>aria-expanded</code> กับ <code>aria-controls</code> เมนูเปิดอยู่ข้างเนื้อหาตั้งแต่ breakpoint <code>lg</code> ของ Carbon คือ 1056px (<code>data-open</code>) ต่ำกว่านั้นปุ่ม hamburger เปิดเมนูทับหน้าพร้อมพื้นหลังมืด</p>
+<h2 id="โครงสร้าง">โครงสร้าง</h2>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">Shell.Root</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">Header.Root</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Header.SkipToContent</span> /&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Header.MenuButton</span> /&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">nav</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ul</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">li</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">Header.MenuItem</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">li</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Header.Menu</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Header.MenuTrigger</span> /&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Header.MenuPopup</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">li</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">Header.MenuItem</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">li</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">Header.MenuPopup</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Header.Menu</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">ul</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">nav</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Header.GlobalAction</span> /&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Header.Panel</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Header.PanelContent</span> /&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">Header.Panel</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">Header.Root</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">SideNav.Root</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">SideNav.Overlay</span> /&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">SideNav.Nav</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ul</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">li</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">SideNav.Link</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">li</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">SideNav.Menu</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">SideNav.MenuTrigger</span> /&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">SideNav.MenuPopup</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">li</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">SideNav.MenuItem</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">li</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">SideNav.MenuPopup</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">SideNav.Menu</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">ul</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">SideNav.Nav</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">SideNav.Root</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">Shell.Content</span> /&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Shell.Root</span>&gt;</ui-code-snippet>
+<p>ลิงก์ชื่อผลิตภัณฑ์ <code>&lt;nav&gt;</code> ของแถบเมนู และกลุ่มที่ครอบปุ่มคำสั่งส่วนกลางไม่มีพฤติกรรม เป็น element ของคุณเอง</p>
+<h2 id="เมนูของ-header">เมนูของ header</h2>
+<p><code>Header.Menu</code> คือ <code>&lt;li&gt;</code> ที่มีปุ่ม <code>MenuTrigger</code> และรายการ <code>MenuPopup</code> ของลิงก์ <code>MenuItem</code> เป็น disclosure ไม่ใช่ ARIA menu คลิก Enter หรือ Space เปิดปิดเมนู Esc ปิดเมนูและโฟกัสที่หัวเมนู กดข้างนอกหรือโฟกัสออกจะปิดเมนู การไปตามลิงก์ในเมนูจะปิดเมนูและโฟกัสที่หัวเมนู เมนูที่ปิดอยู่มี <code>data-current</code> เมื่อมีรายการข้างในเป็น <code>current</code></p>
+<div class="doc-demo" data-react-example="1"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { useState, <span style="color:var(--ui-tag-color-magenta)">type</span> MouseEvent } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { Header } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> bar <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'relative flex h-12 items-center px-4 text-sm whitespace-nowrap text-ink-muted hover:bg-canvas-hover hover:text-ink focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus data-current:border-b-[3px] data-current:border-interactive data-current:text-ink'</span>;
+<span style="color:var(--ui-tag-color-magenta)">const</span> row <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'flex h-12 items-center px-4 text-sm text-ink-muted hover:bg-layer-hover-1 hover:text-ink focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus data-current:bg-layer-selected-1 data-current:text-ink'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [page, setPage] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">'รายเดือน'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> <span style="color:var(--ui-tag-color-cyan)">go</span> <span style="color:var(--ui-tag-color-magenta)">=</span> (name<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>, path<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> ({
+    <span style="color:var(--ui-tag-color-purple)">href:</span> <span style="color:var(--ui-tag-color-teal)">`#${</span><span style="color:var(--ui-tag-color-teal)">path</span><span style="color:var(--ui-tag-color-teal)">}`</span>,
+    <span style="color:var(--ui-tag-color-purple)">current:</span> page <span style="color:var(--ui-tag-color-magenta)">===</span> name,
+    <span style="color:var(--ui-tag-color-cyan)">onClick</span><span style="color:var(--ui-tag-color-purple)">:</span> (event<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">MouseEvent</span>) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+      event.<span style="color:var(--ui-tag-color-cyan)">preventDefault</span>();
+      <span style="color:var(--ui-tag-color-cyan)">setPage</span>(name);
+    },
+  });
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"relative h-60 overflow-hidden border border-hairline bg-canvas text-ink [transform:translateZ(0)]"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Header.Root</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Metro สัญญา"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"fixed inset-x-0 top-0 flex h-12 items-center border-b border-border-subtle-1 bg-canvas"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"px-4 text-sm font-semibold"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"font-normal"</span>&gt;Metro&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt; สัญญา&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">nav</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Metro สัญญา"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">ul</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">li</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">Header.MenuItem</span> {<span style="color:var(--ui-tag-color-magenta)">...</span><span style="color:var(--ui-tag-color-cyan)">go</span>(<span style="color:var(--ui-tag-color-teal)">'คำขอ'</span>, <span style="color:var(--ui-tag-color-teal)">'requests'</span>)} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{bar}&gt;คำขอ&lt;/<span style="color:var(--ui-tag-color-blue)">Header.MenuItem</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">li</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">Header.Menu</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"relative"</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">Header.MenuTrigger</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-teal)">`${</span><span style="color:var(--ui-tag-color-teal)">bar</span><span style="color:var(--ui-tag-color-teal)">} group gap-2`</span>}&gt;
+                รายงาน
+                &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-4 fill-current transition-transform group-data-open:rotate-180"</span>&gt;
+                  &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M8 11 3 6l.7-.7L8 9.6l4.3-4.3.7.7z"</span> /&gt;
+                &lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+              &lt;/<span style="color:var(--ui-tag-color-blue)">Header.MenuTrigger</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">Header.MenuPopup</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"รายงาน"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"absolute start-0 top-12 hidden w-50 bg-surface-1 shadow-lg data-open:block"</span>&gt;
+                &lt;<span style="color:var(--ui-tag-color-blue)">li</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">Header.MenuItem</span> {<span style="color:var(--ui-tag-color-magenta)">...</span><span style="color:var(--ui-tag-color-cyan)">go</span>(<span style="color:var(--ui-tag-color-teal)">'รายเดือน'</span>, <span style="color:var(--ui-tag-color-teal)">'monthly'</span>)} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{row}&gt;รายเดือน&lt;/<span style="color:var(--ui-tag-color-blue)">Header.MenuItem</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">li</span>&gt;
+                &lt;<span style="color:var(--ui-tag-color-blue)">li</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">Header.MenuItem</span> {<span style="color:var(--ui-tag-color-magenta)">...</span><span style="color:var(--ui-tag-color-cyan)">go</span>(<span style="color:var(--ui-tag-color-teal)">'รายปี'</span>, <span style="color:var(--ui-tag-color-teal)">'yearly'</span>)} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{row}&gt;รายปี&lt;/<span style="color:var(--ui-tag-color-blue)">Header.MenuItem</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">li</span>&gt;
+                &lt;<span style="color:var(--ui-tag-color-blue)">li</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">Header.MenuItem</span> {<span style="color:var(--ui-tag-color-magenta)">...</span><span style="color:var(--ui-tag-color-cyan)">go</span>(<span style="color:var(--ui-tag-color-teal)">'บันทึกการตรวจสอบ'</span>, <span style="color:var(--ui-tag-color-teal)">'audit'</span>)} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{row}&gt;บันทึกการตรวจสอบ&lt;/<span style="color:var(--ui-tag-color-blue)">Header.MenuItem</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">li</span>&gt;
+              &lt;/<span style="color:var(--ui-tag-color-blue)">Header.MenuPopup</span>&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">Header.Menu</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">ul</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">nav</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">Header.Root</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"mt-12 p-8 text-sm text-ink-muted"</span>&gt;หน้า: {page}&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<p><code>current</code> ที่ <code>Menu</code> แสดงเครื่องหมายแม้เมนูจะเปิดอยู่ (<code>isActive</code> ของ Carbon) เมนูหารายการที่เป็น <code>current</code> โดยอ่าน prop ของ element ที่เขียนไว้ข้างใน จึงต้องตั้ง <code>current</code> ที่ <code>MenuItem</code> เอง ไม่ใช่ที่ component ห่อหุ้มที่ใช้ชื่อ prop อื่น</p>
+<h2 id="คำสั่งส่วนกลางและ-panel">คำสั่งส่วนกลางและ panel</h2>
+<p><code>Header.GlobalAction</code> เป็นปุ่มไอคอนสองแบบ: มี <code>active</code> จะเป็น toggle (<code>aria-pressed</code>) มี <code>expanded</code> จะเป็น disclosure (<code>aria-expanded</code>) สำหรับ panel <code>Header.Panel</code> เป็นแบบ controlled: ขอปิดผ่าน <code>onClose(reason)</code> เมื่อกด Esc (คืนโฟกัสให้สิ่งที่เปิด) เมื่อโฟกัสออก หรือเมื่อกดข้างนอก แต่ไม่นับปุ่มที่มี <code>aria-controls</code> ตรงกับ <code>id</code> ของ panel ซึ่งเป็นตัวเปิดปิด</p>
+<div class="doc-demo" data-react-example="2"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { useState } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { Header } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> action <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'flex size-12 items-center justify-center text-icon-secondary hover:bg-canvas-hover hover:text-icon-primary focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus data-active:bg-surface-1 data-active:text-icon-primary'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [muted, setMuted] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-green)">false</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [open, setOpen] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-green)">false</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [reason, setReason] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">''</span>);
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid gap-4"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"relative h-72 overflow-hidden border border-hairline bg-canvas text-ink [transform:translateZ(0)]"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Header.Root</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Metro สัญญา"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"fixed inset-x-0 top-0 flex h-12 items-center border-b border-border-subtle-1 bg-canvas"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"px-4 text-sm font-semibold"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"font-normal"</span>&gt;Metro&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt; สัญญา&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">role</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"group"</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"การกระทำส่วนกลาง"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ms-auto flex"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">Header.GlobalAction</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ปิดเสียงการแจ้งเตือน"</span> <span style="color:var(--ui-tag-color-purple)">active</span><span style="color:var(--ui-tag-color-magenta)">=</span>{muted} <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setMuted</span>(<span style="color:var(--ui-tag-color-magenta)">!</span>muted)} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{action}&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 20 20"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-5 fill-current"</span>&gt;
+                &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M17 14.3V13l-1.5-1.5V8a5.5 5.5 0 0 0-4.6-5.4V1.4H9.1v1.2A5.5 5.5 0 0 0 4.5 8v3.5L3 13v1.3h4.4a2.6 2.6 0 0 0 5.2 0ZM10 15.9a1.3 1.3 0 0 1-1.3-1.3h2.6a1.3 1.3 0 0 1-1.3 1.3Z"</span> /&gt;
+              &lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">Header.GlobalAction</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">Header.GlobalAction</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"แอปพลิเคชัน"</span> <span style="color:var(--ui-tag-color-purple)">expanded</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">aria-controls</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"headless-shell-apps"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-magenta)">!</span>open)} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{action}&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 20 20"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-5 fill-current"</span>&gt;
+                &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M4 4h3v3H4zm4.5 0h3v3h-3zM13 4h3v3h-3zM4 8.5h3v3H4zm4.5 0h3v3h-3zm4.5 0h3v3h-3zM4 13h3v3H4zm4.5 0h3v3h-3zm4.5 0h3v3h-3z"</span> /&gt;
+              &lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">Header.GlobalAction</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Header.Panel</span>
+            <span style="color:var(--ui-tag-color-purple)">id</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"headless-shell-apps"</span>
+            <span style="color:var(--ui-tag-color-purple)">expanded</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open}
+            <span style="color:var(--ui-tag-color-purple)">onClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(why) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+              <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>);
+              <span style="color:var(--ui-tag-color-cyan)">setReason</span>(why);
+            }}
+            <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"fixed end-0 top-12 bottom-0 w-0 overflow-hidden border-hairline bg-surface-1 transition-[width] data-open:w-64 data-open:border-s"</span>
+          &gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">Header.PanelContent</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"แอปพลิเคชัน"</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">ul</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"py-2"</span>&gt;
+                &lt;<span style="color:var(--ui-tag-color-blue)">li</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">a</span> <span style="color:var(--ui-tag-color-purple)">href</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"#contracts"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> e.<span style="color:var(--ui-tag-color-cyan)">preventDefault</span>()} <span style="color:var(--ui-tag-color-purple)">aria-current</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"page"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"block px-4 py-2 text-sm font-semibold text-ink hover:bg-layer-hover-1 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus"</span>&gt;สัญญา&lt;/<span style="color:var(--ui-tag-color-blue)">a</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">li</span>&gt;
+                &lt;<span style="color:var(--ui-tag-color-blue)">li</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">a</span> <span style="color:var(--ui-tag-color-purple)">href</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"#audit"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> e.<span style="color:var(--ui-tag-color-cyan)">preventDefault</span>()} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"block px-4 py-2 text-sm text-ink-muted hover:bg-layer-hover-1 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus"</span>&gt;ระบบตรวจสอบ&lt;/<span style="color:var(--ui-tag-color-blue)">a</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">li</span>&gt;
+              &lt;/<span style="color:var(--ui-tag-color-blue)">ul</span>&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">Header.PanelContent</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">Header.Panel</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Header.Root</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-ink-muted"</span>&gt;ปิดเสียง: {muted <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-teal)">'ใช่'</span> <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-teal)">'ไม่'</span>} · Panel: {open <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-teal)">'เปิด'</span> <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-teal)">'ปิด'</span>}{reason <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-teal)">` · ปิดครั้งล่าสุด: ${</span><span style="color:var(--ui-tag-color-teal)">reason</span><span style="color:var(--ui-tag-color-teal)">}`</span> <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-teal)">''</span>}&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<p><code>PanelContent</code> เป็น <code>&lt;section&gt;</code> เมื่อตั้งชื่อด้วย <code>aria-label</code> จะเป็น region landmark และมี <code>hidden</code> ขณะ panel ปิดอยู่</p>
+<h2 id="โหมดของเมนูด้านข้าง">โหมดของเมนูด้านข้าง</h2>
+<p><code>SideNav.Root</code> รับโหมด <code>Nav</code> เขียนโหมดไว้ใน <code>data-ui-side-nav</code> และ <code>Shell.Content</code> คัดลอกไปไว้ใน <code>data-side-nav</code> ของตัวเอง ให้คุณใช้เยื้องหน้า:</p>
+<ul>
+<li>ปกติ: ทับหน้าเมื่อต่ำกว่า <code>lg</code> อยู่ข้างหน้าตั้งแต่ <code>lg</code> (<code>data-open</code> ตั้งแต่ 1056px)</li>
+<li><code>rail</code>: แถบไอคอนที่เป็น <code>data-open</code> เมื่อเมาส์อยู่บนแถบหรือโฟกัสอยู่ข้างใน (มี <code>data-expanded</code> ด้วย)</li>
+<li><code>fixed</code>: เป็น <code>data-open</code> ตลอด ไม่มีพื้นหลังมืด</li>
+<li><code>collapsible</code>: ปิดอยู่ทุกความกว้างหน้าจอ จนปุ่ม hamburger เปิดทับหน้า</li>
+</ul>
+<p>เลือกโหมด แล้วลองชี้เมาส์ที่เมนู ใช้ปุ่ม hamburger และกด Esc</p>
+<div class="doc-demo" data-react-example="3"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { useState, <span style="color:var(--ui-tag-color-magenta)">type</span> MouseEvent } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { Header, Shell, SideNav } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> modes<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">SideNav</span>.<span style="color:var(--ui-tag-color-cyan)">SideNavMode</span>[] <span style="color:var(--ui-tag-color-magenta)">=</span> [<span style="color:var(--ui-tag-color-teal)">'default'</span>, <span style="color:var(--ui-tag-color-teal)">'rail'</span>, <span style="color:var(--ui-tag-color-teal)">'fixed'</span>, <span style="color:var(--ui-tag-color-teal)">'collapsible'</span>];
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> link <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'flex h-8 items-center gap-6 px-4 text-sm whitespace-nowrap text-ink-muted hover:bg-canvas-hover hover:text-ink focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus data-current:border-s-4 data-current:border-interactive data-current:bg-canvas-selected data-current:ps-3 data-current:font-semibold data-current:text-ink'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> pages <span style="color:var(--ui-tag-color-magenta)">=</span> [
+  { <span style="color:var(--ui-tag-color-purple)">name:</span> <span style="color:var(--ui-tag-color-teal)">'แดชบอร์ด'</span>, <span style="color:var(--ui-tag-color-purple)">path:</span> <span style="color:var(--ui-tag-color-teal)">'dashboard'</span>, <span style="color:var(--ui-tag-color-purple)">d:</span> <span style="color:var(--ui-tag-color-teal)">'M2 2h5v5H2zm7 0h5v5H9zM2 9h5v5H2zm7 0h5v5H9z'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">name:</span> <span style="color:var(--ui-tag-color-teal)">'คำขอ'</span>, <span style="color:var(--ui-tag-color-purple)">path:</span> <span style="color:var(--ui-tag-color-teal)">'requests'</span>, <span style="color:var(--ui-tag-color-purple)">d:</span> <span style="color:var(--ui-tag-color-teal)">'M13 3.6 10.4 1H3v14h10zM10 2.4 11.6 4H10zM4 14V2h5v3h3v9z'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">name:</span> <span style="color:var(--ui-tag-color-teal)">'ตั้งค่า'</span>, <span style="color:var(--ui-tag-color-purple)">path:</span> <span style="color:var(--ui-tag-color-teal)">'settings'</span>, <span style="color:var(--ui-tag-color-purple)">d:</span> <span style="color:var(--ui-tag-color-teal)">'M13.5 8.4a5.4 5.4 0 0 0 0-.8l1.4-1.1-1.3-2.3-1.7.6a5 5 0 0 0-.7-.4L10.9 2.6H8.3L8 4.4l-.7.4-1.7-.6-1.3 2.3 1.4 1.1a5.4 5.4 0 0 0 0 .8L4.3 9.5l1.3 2.3 1.7-.6.7.4.3 1.8h2.6l.3-1.8.7-.4 1.7.6 1.3-2.3zM9.6 10a2 2 0 1 1 0-4 2 2 0 0 1 0 4Z'</span> },
+];
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [mode, setMode] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>&lt;<span style="color:var(--ui-tag-color-cyan)">SideNav</span>.<span style="color:var(--ui-tag-color-cyan)">SideNavMode</span>&gt;(<span style="color:var(--ui-tag-color-teal)">'rail'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [page, setPage] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">'แดชบอร์ด'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> hamburger <span style="color:var(--ui-tag-color-magenta)">=</span> mode <span style="color:var(--ui-tag-color-magenta)">===</span> <span style="color:var(--ui-tag-color-teal)">'collapsible'</span> <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-teal)">''</span> <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-teal)">'min-[1056px]:hidden'</span>;
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid gap-4"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">fieldset</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex flex-wrap gap-4 text-sm text-ink"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">legend</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"mb-2 text-xs text-ink-muted"</span>&gt;โหมด&lt;/<span style="color:var(--ui-tag-color-blue)">legend</span>&gt;
+        {modes.<span style="color:var(--ui-tag-color-cyan)">map</span>((m) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+          &lt;<span style="color:var(--ui-tag-color-blue)">label</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{m} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex items-center gap-2"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">input</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"radio"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"headless-shell-mode"</span> <span style="color:var(--ui-tag-color-purple)">checked</span><span style="color:var(--ui-tag-color-magenta)">=</span>{mode <span style="color:var(--ui-tag-color-magenta)">===</span> m} <span style="color:var(--ui-tag-color-purple)">onChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setMode</span>(m)} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"accent-interactive"</span> /&gt;
+            {m}
+          &lt;/<span style="color:var(--ui-tag-color-blue)">label</span>&gt;
+        ))}
+      &lt;/<span style="color:var(--ui-tag-color-blue)">fieldset</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"relative h-80 overflow-hidden border border-hairline bg-canvas text-ink [transform:translateZ(0)]"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Shell.Root</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{mode}&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Header.Root</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Metro สัญญา"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"fixed inset-x-0 top-0 z-20 flex h-12 items-center border-b border-border-subtle-1 bg-canvas"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">Header.MenuButton</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เมนู"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-teal)">`flex size-12 items-center justify-center text-icon-primary hover:bg-canvas-hover focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus data-active:bg-surface-1 ${</span><span style="color:var(--ui-tag-color-teal)">hamburger</span><span style="color:var(--ui-tag-color-teal)">}`</span>}&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 20 20"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-5 fill-current"</span>&gt;
+                &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M2 14.8h16v1.2H2zm0-5.4h16v1.2H2zM2 4h16v1.2H2z"</span> /&gt;
+              &lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">Header.MenuButton</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"px-4 text-sm font-semibold"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"font-normal"</span>&gt;Metro&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt; สัญญา&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">Header.Root</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">SideNav.Root</span> <span style="color:var(--ui-tag-color-purple)">rail</span><span style="color:var(--ui-tag-color-magenta)">=</span>{mode <span style="color:var(--ui-tag-color-magenta)">===</span> <span style="color:var(--ui-tag-color-teal)">'rail'</span>} <span style="color:var(--ui-tag-color-purple)">fixed</span><span style="color:var(--ui-tag-color-magenta)">=</span>{mode <span style="color:var(--ui-tag-color-magenta)">===</span> <span style="color:var(--ui-tag-color-teal)">'fixed'</span>} <span style="color:var(--ui-tag-color-purple)">collapsible</span><span style="color:var(--ui-tag-color-magenta)">=</span>{mode <span style="color:var(--ui-tag-color-magenta)">===</span> <span style="color:var(--ui-tag-color-teal)">'collapsible'</span>}&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">SideNav.Overlay</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"fixed inset-x-0 top-12 bottom-0 z-10 hidden bg-overlay data-open:block min-[1056px]:data-open:hidden"</span> /&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">SideNav.Nav</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"หมวด"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"fixed start-0 top-12 bottom-0 z-20 w-0 overflow-hidden bg-canvas transition-[width] data-[ui-side-nav=rail]:w-12 data-open:w-64!"</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">ul</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"pt-4"</span>&gt;
+                {pages.<span style="color:var(--ui-tag-color-cyan)">map</span>((p) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+                  &lt;<span style="color:var(--ui-tag-color-blue)">li</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{p.path}&gt;
+                    &lt;<span style="color:var(--ui-tag-color-blue)">SideNav.Link</span>
+                      <span style="color:var(--ui-tag-color-purple)">href</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-teal)">`#${</span><span style="color:var(--ui-tag-color-teal)">p.path</span><span style="color:var(--ui-tag-color-teal)">}`</span>}
+                      <span style="color:var(--ui-tag-color-purple)">current</span><span style="color:var(--ui-tag-color-magenta)">=</span>{page <span style="color:var(--ui-tag-color-magenta)">===</span> p.name}
+                      <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(event<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">MouseEvent</span>) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+                        event.<span style="color:var(--ui-tag-color-cyan)">preventDefault</span>();
+                        <span style="color:var(--ui-tag-color-cyan)">setPage</span>(p.name);
+                      }}
+                      <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{link}
+                    &gt;
+                      &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-4 shrink-0 fill-current"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span>{p.d} /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+                      {p.name}
+                    &lt;/<span style="color:var(--ui-tag-color-blue)">SideNav.Link</span>&gt;
+                  &lt;/<span style="color:var(--ui-tag-color-blue)">li</span>&gt;
+                ))}
+              &lt;/<span style="color:var(--ui-tag-color-blue)">ul</span>&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">SideNav.Nav</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">SideNav.Root</span>&gt;
+          {<span style="color:var(--ui-ink-muted);font-style:italic">/* หน้านี้มีหลาย shell: บอกโหมดเองแทนการให้ Content หาเอง */</span>}
+          &lt;<span style="color:var(--ui-tag-color-blue)">Shell.Content</span> <span style="color:var(--ui-tag-color-purple)">sideNav</span><span style="color:var(--ui-tag-color-magenta)">=</span>{mode} <span style="color:var(--ui-tag-color-purple)">id</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"headless-shell-modes-main"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"mt-12 p-8 transition-[margin] data-[side-nav=fixed]:ms-64 data-[side-nav=rail]:ms-12 min-[1056px]:data-[side-nav=default]:ms-64"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-2xl"</span>&gt;{page}&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-ink-muted"</span>&gt;data-side-nav="{mode}"&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">Shell.Content</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Shell.Root</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<p>ถ้าไม่ใส่ <code>sideNav</code> <code>Content</code> จะหา <code>[data-ui-side-nav]</code> ตัวแรกใน document (และใน shadow root ของตัวเอง) หลังทุก render หน้าที่มี shell เดียวแบบแอปทั่วไปไม่ต้องใส่ prop นี้ แต่หน้านี้มีหลายอัน ตัวอย่างหลังจากตัวแรกจึงบอกโหมดเอง</p>
+<h2 id="ไม่ใช้-shell-root">ไม่ใช้ Shell.Root</h2>
+<p>ไม่ใส่ <code>Shell.Root</code> เพื่อเก็บสถานะเอง: <code>active</code> และ <code>onToggle</code> ที่ <code>MenuButton</code> และ <code>expanded</code> กับ <code>onToggle</code> ที่ <code>SideNav.Root</code> <code>onToggle</code> ของเมนูด้านข้างจะขอปิดเมื่อกด Esc คลิกที่พื้นหลังมืด หรือโฟกัสออกขณะเมนูทับหน้าอยู่ ไม่มีอะไรเปลี่ยนจนกว่าคุณจะส่งสถานะใหม่กลับเข้าไป</p>
+<div class="doc-demo" data-react-example="4"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { useState } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { Header, SideNav } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [open, setOpen] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-green)">false</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [asked, setAsked] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">'ยังไม่มี'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> <span style="color:var(--ui-tag-color-cyan)">toggle</span> <span style="color:var(--ui-tag-color-magenta)">=</span> (next<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">boolean</span>) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(next);
+    <span style="color:var(--ui-tag-color-cyan)">setAsked</span>(next <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-teal)">'เปิด'</span> <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-teal)">'ปิด'</span>);
+  };
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid gap-4"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"relative h-64 overflow-hidden border border-hairline bg-canvas text-ink [transform:translateZ(0)]"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Header.Root</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Metro สัญญา"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"fixed inset-x-0 top-0 z-20 flex h-12 items-center border-b border-border-subtle-1 bg-canvas"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Header.MenuButton</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เมนู"</span> <span style="color:var(--ui-tag-color-purple)">aria-controls</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"headless-shell-own-nav"</span> <span style="color:var(--ui-tag-color-purple)">active</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">onToggle</span><span style="color:var(--ui-tag-color-magenta)">=</span>{toggle} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex size-12 items-center justify-center text-icon-primary hover:bg-canvas-hover focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus data-active:bg-surface-1"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 20 20"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-5 fill-current"</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M2 14.8h16v1.2H2zm0-5.4h16v1.2H2zM2 4h16v1.2H2z"</span> /&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">Header.MenuButton</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"px-4 text-sm font-semibold"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"font-normal"</span>&gt;Metro&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt; สัญญา&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Header.Root</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">SideNav.Root</span> <span style="color:var(--ui-tag-color-purple)">collapsible</span> <span style="color:var(--ui-tag-color-purple)">expanded</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">onToggle</span><span style="color:var(--ui-tag-color-magenta)">=</span>{toggle}&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">SideNav.Overlay</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"fixed inset-x-0 top-12 bottom-0 z-10 hidden bg-overlay data-open:block"</span> /&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">SideNav.Nav</span> <span style="color:var(--ui-tag-color-purple)">id</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"headless-shell-own-nav"</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"หมวด"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"fixed start-0 top-12 bottom-0 z-20 w-0 overflow-hidden bg-canvas transition-[width] data-open:w-64"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">ul</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"pt-4"</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">li</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">SideNav.Link</span> <span style="color:var(--ui-tag-color-purple)">href</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"#requests"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> e.<span style="color:var(--ui-tag-color-cyan)">preventDefault</span>()} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex h-8 items-center px-4 text-sm whitespace-nowrap text-ink-muted hover:bg-canvas-hover focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus"</span>&gt;คำขอ&lt;/<span style="color:var(--ui-tag-color-blue)">SideNav.Link</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">li</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">li</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">SideNav.Link</span> <span style="color:var(--ui-tag-color-purple)">href</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"#templates"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> e.<span style="color:var(--ui-tag-color-cyan)">preventDefault</span>()} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex h-8 items-center px-4 text-sm whitespace-nowrap text-ink-muted hover:bg-canvas-hover focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus"</span>&gt;แม่แบบ&lt;/<span style="color:var(--ui-tag-color-blue)">SideNav.Link</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">li</span>&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">ul</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">SideNav.Nav</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">SideNav.Root</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"mt-12 p-8 text-sm text-ink-muted"</span>&gt;พื้นหลังมืดจะทับกล่องนี้ขณะเมนูเปิดอยู่&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-ink-muted"</span>&gt;ขอครั้งล่าสุด: {asked}&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<h2 id="ใส่-style">ใส่ style</h2>
+<div class="doc-demo" data-react-example="5"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { useState, <span style="color:var(--ui-tag-color-magenta)">type</span> MouseEvent } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { Header, Shell, SideNav } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> pages <span style="color:var(--ui-tag-color-magenta)">=</span> [
+  { <span style="color:var(--ui-tag-color-purple)">name:</span> <span style="color:var(--ui-tag-color-teal)">'คำขอ'</span>, <span style="color:var(--ui-tag-color-purple)">path:</span> <span style="color:var(--ui-tag-color-teal)">'requests'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">name:</span> <span style="color:var(--ui-tag-color-teal)">'แม่แบบ'</span>, <span style="color:var(--ui-tag-color-purple)">path:</span> <span style="color:var(--ui-tag-color-teal)">'templates'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">name:</span> <span style="color:var(--ui-tag-color-teal)">'ตั้งค่า'</span>, <span style="color:var(--ui-tag-color-purple)">path:</span> <span style="color:var(--ui-tag-color-teal)">'settings'</span> },
+];
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [page, setPage] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">'คำขอ'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"relative h-72 overflow-hidden border border-hairline bg-canvas text-ink [transform:translateZ(0)]"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Shell.Root</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Header.Root</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Metro สัญญา"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"fixed inset-x-0 top-0 z-20 flex h-12 items-center bg-inverse-canvas text-inverse-ink"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Header.MenuButton</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เมนู"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex size-12 items-center justify-center hover:bg-inverse-hover focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus-inverse data-active:bg-interactive"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 20 20"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-5 fill-current"</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M2 14.8h16v1.2H2zm0-5.4h16v1.2H2zM2 4h16v1.2H2z"</span> /&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">Header.MenuButton</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"px-4 text-sm font-semibold"</span>&gt;สัญญา&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Header.Root</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">SideNav.Root</span> <span style="color:var(--ui-tag-color-purple)">collapsible</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">SideNav.Nav</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"หมวด"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"fixed start-0 top-12 bottom-0 z-20 w-0 overflow-hidden bg-layer-1 shadow-lg transition-[width] data-open:w-56"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">ul</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid gap-1 p-2"</span>&gt;
+              {pages.<span style="color:var(--ui-tag-color-cyan)">map</span>((p) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+                &lt;<span style="color:var(--ui-tag-color-blue)">li</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{p.path}&gt;
+                  &lt;<span style="color:var(--ui-tag-color-blue)">SideNav.Link</span>
+                    <span style="color:var(--ui-tag-color-purple)">href</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-teal)">`#${</span><span style="color:var(--ui-tag-color-teal)">p.path</span><span style="color:var(--ui-tag-color-teal)">}`</span>}
+                    <span style="color:var(--ui-tag-color-purple)">current</span><span style="color:var(--ui-tag-color-magenta)">=</span>{page <span style="color:var(--ui-tag-color-magenta)">===</span> p.name}
+                    <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(event<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">MouseEvent</span>) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+                      event.<span style="color:var(--ui-tag-color-cyan)">preventDefault</span>();
+                      <span style="color:var(--ui-tag-color-cyan)">setPage</span>(p.name);
+                    }}
+                    <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex h-8 items-center rounded px-3 text-sm whitespace-nowrap text-ink-muted hover:bg-layer-hover-1 focus-visible:outline-2 focus-visible:outline-focus data-current:bg-interactive data-current:text-on-primary"</span>
+                  &gt;
+                    {p.name}
+                  &lt;/<span style="color:var(--ui-tag-color-blue)">SideNav.Link</span>&gt;
+                &lt;/<span style="color:var(--ui-tag-color-blue)">li</span>&gt;
+              ))}
+            &lt;/<span style="color:var(--ui-tag-color-blue)">ul</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">SideNav.Nav</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">SideNav.Root</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Shell.Content</span> <span style="color:var(--ui-tag-color-purple)">sideNav</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"collapsible"</span> <span style="color:var(--ui-tag-color-purple)">id</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"headless-shell-style-main"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"mt-12 p-8"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-2xl"</span>&gt;{page}&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Shell.Content</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">Shell.Root</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<ui-code-snippet type="multi" class="doc-code" data-lang="css"><span style="color:var(--ui-ink-muted);font-style:italic">/* className="menu-button" ที่ MenuButton, "nav" ที่ Nav, "overlay" ที่ Overlay, "link" ที่ Link และ MenuItem, "content" ที่ Content */</span>
+<span style="color:var(--ui-tag-color-purple)">.menu-button</span>[<span style="color:var(--ui-tag-color-purple)">data-active</span>] { <span style="color:var(--ui-tag-color-purple)">background</span>: #0f62fe; }
+<span style="color:var(--ui-tag-color-purple)">.nav</span> { <span style="color:var(--ui-tag-color-purple)">inline-size</span>: <span style="color:var(--ui-tag-color-green)">0</span>; <span style="color:var(--ui-tag-color-purple)">overflow</span>: <span style="color:var(--ui-tag-color-green)">hidden</span>; }
+<span style="color:var(--ui-tag-color-purple)">.nav</span>[<span style="color:var(--ui-tag-color-purple)">data-open</span>] { <span style="color:var(--ui-tag-color-purple)">inline-size</span>: <span style="color:var(--ui-tag-color-green)">256px</span>; }
+<span style="color:var(--ui-tag-color-purple)">.nav</span>[<span style="color:var(--ui-tag-color-purple)">data-ui-side-nav</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">'rail'</span>]<span style="color:var(--ui-tag-color-purple)">:not</span>([<span style="color:var(--ui-tag-color-purple)">data-open</span>]) { <span style="color:var(--ui-tag-color-purple)">inline-size</span>: <span style="color:var(--ui-tag-color-green)">48px</span>; }
+<span style="color:var(--ui-tag-color-purple)">.overlay</span>[<span style="color:var(--ui-tag-color-purple)">data-open</span>] { <span style="color:var(--ui-tag-color-purple)">position</span>: <span style="color:var(--ui-tag-color-green)">fixed</span>; <span style="color:var(--ui-tag-color-purple)">inset</span>: <span style="color:var(--ui-tag-color-green)">48px</span> <span style="color:var(--ui-tag-color-green)">0</span> <span style="color:var(--ui-tag-color-green)">0</span>; <span style="color:var(--ui-tag-color-purple)">background</span>: <span style="color:var(--ui-tag-color-cyan)">rgb</span>(<span style="color:var(--ui-tag-color-green)">22</span> <span style="color:var(--ui-tag-color-green)">22</span> <span style="color:var(--ui-tag-color-green)">22</span> / <span style="color:var(--ui-tag-color-green)">0.5</span>); }
+<span style="color:var(--ui-tag-color-purple)">.link</span>[<span style="color:var(--ui-tag-color-purple)">data-current</span>] { <span style="color:var(--ui-tag-color-purple)">font-weight</span>: <span style="color:var(--ui-tag-color-green)">600</span>; <span style="color:var(--ui-tag-color-purple)">box-shadow</span>: <span style="color:var(--ui-tag-color-green)">inset</span> <span style="color:var(--ui-tag-color-green)">3px</span> <span style="color:var(--ui-tag-color-green)">0</span> #0f62fe; }
+<span style="color:var(--ui-tag-color-purple)">.content</span>[<span style="color:var(--ui-tag-color-purple)">data-side-nav</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">'fixed'</span>] { <span style="color:var(--ui-tag-color-purple)">margin-inline-start</span>: <span style="color:var(--ui-tag-color-green)">256px</span>; }
+<span style="color:var(--ui-tag-color-purple)">.content</span>[<span style="color:var(--ui-tag-color-purple)">data-side-nav</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">'rail'</span>] { <span style="color:var(--ui-tag-color-purple)">margin-inline-start</span>: <span style="color:var(--ui-tag-color-green)">48px</span>; }
+<span style="color:var(--ui-tag-color-magenta)">@media</span> (<span style="color:var(--ui-tag-color-purple)">min-width</span>: <span style="color:var(--ui-tag-color-green)">1056px</span>) {
+  <span style="color:var(--ui-tag-color-purple)">.content</span>[<span style="color:var(--ui-tag-color-purple)">data-side-nav</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">'default'</span>] { <span style="color:var(--ui-tag-color-purple)">margin-inline-start</span>: <span style="color:var(--ui-tag-color-green)">256px</span>; }
+  <span style="color:var(--ui-tag-color-purple)">.overlay</span>[<span style="color:var(--ui-tag-color-purple)">data-open</span>] { <span style="color:var(--ui-tag-color-purple)">display</span>: <span style="color:var(--ui-tag-color-green)">none</span>; }
+}</ui-code-snippet>
+<h2 id="parts">Parts</h2>
+<h3 id="shell-root">Shell.Root</h3>
+<p>ไม่ render element ของตัวเอง มีแต่ children เก็บสถานะเปิดปิดของเมนูด้านข้างให้ <code>Header.MenuButton</code> และ <code>SideNav.Root</code> ที่อยู่ข้างใน</p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sideNavExpanded</code></td>
+<td><code>boolean</code></td>
+<td></td>
+<td>เมนูด้านข้างเปิดอยู่ (controlled)</td>
+</tr>
+<tr>
+<td><code>defaultSideNavExpanded</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>เปิดตั้งแต่ render ครั้งแรก (uncontrolled)</td>
+</tr>
+<tr>
+<td><code>onSideNavExpandedChange</code></td>
+<td><code>(expanded: boolean) =&gt; void</code></td>
+<td></td>
+<td>ปุ่ม hamburger, Esc, พื้นหลังมืด หรือการโฟกัสออกขอสถานะนี้</td>
+</tr>
+</tbody>
+</table>
+<p><code>Shell.useShellContext()</code> คืน <code>{ sideNavExpanded, setSideNavExpanded, sideNavId }</code> หรือ <code>null</code> เมื่ออยู่นอก <code>Shell.Root</code></p>
+<h3 id="shell-content">Shell.Content</h3>
+<p><code>&lt;main&gt;</code> ที่มี id <code>main-content</code> (เป้าหมายเริ่มต้นของลิงก์ข้ามไปยังเนื้อหา)</p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sideNav</code></td>
+<td><code>'default' | 'rail' | 'fixed' | 'collapsible' | 'none'</code></td>
+<td>หาจากหน้า</td>
+<td>เมนูด้านข้างข้าง ๆ วางตัวแบบไหน</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td><code>'main-content'</code></td>
+<td>เป้าหมายของลิงก์ข้ามไปยังเนื้อหา</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>เมื่อ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-side-nav</code></td>
+<td>โหมด: <code>sideNav</code> ไม่อย่างนั้นใช้ <code>[data-ui-side-nav]</code> ตัวแรกใน document (หรือใน shadow root ของตัวเอง) ไม่อย่างนั้นเป็น <code>none</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="header-root">Header.Root</h3>
+<p><code>&lt;header&gt;</code> เป็น banner landmark ให้ตั้งชื่อด้วย <code>aria-label</code> ตั้ง <code>data-ui-header</code> ซึ่ง toaster ใช้เพื่อเริ่มแสดงใต้ header ไม่มี prop ของตัวเอง</p>
+<h3 id="header-skiptocontent">Header.SkipToContent</h3>
+<p><code>&lt;a&gt;</code> ที่พาไปยังเนื้อหา ซ่อนไว้จนได้รับโฟกัส ภายใน shadow root (micro app) การคลิกจะย้ายโฟกัสไปที่เป้าหมายเอง เพราะ browser หาเป้าหมายในนั้นไม่เจอ</p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>href</code></td>
+<td><code>string</code></td>
+<td><code>'#main-content'</code></td>
+<td>id ของเนื้อหาแบบ fragment</td>
+</tr>
+</tbody>
+</table>
+<h3 id="header-menubutton">Header.MenuButton</h3>
+<p><code>&lt;button type=&quot;button&quot;&gt;</code> ที่มี <code>aria-expanded</code> และ <code>aria-controls</code> (id ของเมนูด้านข้างจาก <code>Shell.Root</code> ถ้าคุณไม่ได้ใส่เอง) ตั้งชื่อด้วย <code>aria-label</code> จะเปลี่ยนตามสถานะก็ได้ (&quot;เปิดเมนู&quot; / &quot;ปิดเมนู&quot;)</p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>active</code></td>
+<td><code>boolean</code></td>
+<td>สถานะของ shell ไม่อย่างนั้น <code>false</code></td>
+<td>เมนูด้านข้างที่ปุ่มควบคุมเปิดอยู่</td>
+</tr>
+<tr>
+<td><code>onToggle</code></td>
+<td><code>(active: boolean) =&gt; void</code></td>
+<td></td>
+<td>ผู้ใช้ขอสถานะตรงข้าม</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>เมื่อ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-active</code></td>
+<td>เมนูด้านข้างเปิดอยู่</td>
+</tr>
+</tbody>
+</table>
+<h3 id="header-menu">Header.Menu</h3>
+<p><code>&lt;li&gt;</code> ที่มี <code>MenuTrigger</code> และ <code>MenuPopup</code></p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>open</code></td>
+<td><code>boolean</code></td>
+<td></td>
+<td>เปิดอยู่ (controlled)</td>
+</tr>
+<tr>
+<td><code>defaultOpen</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>เปิดตั้งแต่ render ครั้งแรก</td>
+</tr>
+<tr>
+<td><code>onOpenChange</code></td>
+<td><code>(open: boolean) =&gt; void</code></td>
+<td></td>
+<td>ผู้ใช้เปิดหรือปิด</td>
+</tr>
+<tr>
+<td><code>current</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>แสดงเครื่องหมายหมวดปัจจุบันแม้เมนูเปิดอยู่ (<code>isActive</code> ของ Carbon)</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>เมื่อ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-open</code></td>
+<td>เปิดอยู่</td>
+</tr>
+<tr>
+<td><code>data-current</code></td>
+<td>ตั้ง <code>current</code> หรือปิดอยู่และมีรายการข้างในเป็น <code>current</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>Header.useMenuContext()</code> คืนสถานะของเมนู <code>Header.useOptionalMenuContext()</code> คืนสถานะนั้นหรือ <code>null</code> เมื่ออยู่ในแถบเมนู</p>
+<h3 id="header-menutrigger">Header.MenuTrigger</h3>
+<p><code>&lt;button type=&quot;button&quot;&gt;</code> ที่มี <code>aria-expanded</code> <code>aria-controls</code> (popup ของตัวเอง) และ <code>tabindex=&quot;0&quot;</code> (Safari จึงโฟกัสเมื่อคลิก และ Tab ไปถึง) มี <code>data-open</code> และ <code>data-current</code> เหมือนเมนูของตัวเอง</p>
+<h3 id="header-menupopup">Header.MenuPopup</h3>
+<p><code>&lt;ul&gt;</code> ที่มี id ของเมนู ตั้งชื่อด้วย <code>aria-label</code> (ข้อความของหัวเมนู) และซ่อนเมื่อไม่มี <code>data-open</code></p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>เมื่อ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-open</code></td>
+<td>เมนูเปิดอยู่</td>
+</tr>
+</tbody>
+</table>
+<h3 id="header-menuitem">Header.MenuItem</h3>
+<p><code>&lt;a&gt;</code> ของแถบเมนูหรือของเมนู ถ้าอยู่ในเมนู การไปตามลิงก์จะปิดเมนูและโฟกัสที่หัวเมนู คง <code>target</code> และ <code>rel</code> ไว้</p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>current</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>หน้าปัจจุบัน (<code>aria-current=&quot;page&quot;</code>)</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>เมื่อ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-current</code></td>
+<td>ตั้ง <code>current</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="header-globalaction">Header.GlobalAction</h3>
+<p><code>&lt;button type=&quot;button&quot;&gt;</code> ที่มี <code>tabindex=&quot;0&quot;</code> ตั้งชื่อด้วย <code>aria-label</code> (หรือ tooltip ที่เป็น label)</p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>active</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>ถูกกดค้าง: เป็น toggle (<code>aria-pressed</code>)</td>
+</tr>
+<tr>
+<td><code>expanded</code></td>
+<td><code>boolean</code></td>
+<td></td>
+<td>panel ของปุ่มเปิดอยู่: เป็น disclosure (<code>aria-expanded</code>) ใช้คู่กับ <code>aria-controls</code> = <code>id</code> ของ panel</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>เมื่อ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-active</code></td>
+<td>ถูกกดค้าง หรือ panel ของปุ่มเปิดอยู่</td>
+</tr>
+</tbody>
+</table>
+<h3 id="header-panel">Header.Panel</h3>
+<p><code>&lt;div&gt;</code>: panel ใต้ header ให้มี <code>id</code> ตามที่ <code>aria-controls</code> ของปุ่มระบุ</p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>expanded</code></td>
+<td><code>boolean</code></td>
+<td></td>
+<td>เปิดอยู่ (ต้องใส่, controlled)</td>
+</tr>
+<tr>
+<td><code>onClose</code></td>
+<td><code>(reason: 'escape' | 'blur' | 'outside') =&gt; void</code></td>
+<td></td>
+<td>ขอปิด: Esc (คืนโฟกัสให้สิ่งที่เปิด) โฟกัสออก หรือกดข้างนอก (ไม่นับปุ่มของ panel)</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>เมื่อ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-open</code></td>
+<td>เปิดอยู่</td>
+</tr>
+</tbody>
+</table>
+<h3 id="header-panelcontent">Header.PanelContent</h3>
+<p><code>&lt;section&gt;</code> ภายใน panel มี <code>hidden</code> ขณะ panel ปิดอยู่ ตั้งชื่อ (<code>aria-label</code>) เพื่อให้เป็น region landmark</p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>เมื่อ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-open</code></td>
+<td>panel เปิดอยู่</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sidenav-root">SideNav.Root</h3>
+<p>ไม่ render element ของตัวเอง มีแต่ children เก็บสถานะเปิดปิด hover และ breakpoint</p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>expanded</code></td>
+<td><code>boolean</code></td>
+<td>สถานะของ shell ไม่อย่างนั้น <code>false</code></td>
+<td>เปิดอยู่ (controlled)</td>
+</tr>
+<tr>
+<td><code>onToggle</code></td>
+<td><code>(expanded: boolean) =&gt; void</code></td>
+<td></td>
+<td>Esc, พื้นหลังมืด หรือการโฟกัสออกขอสถานะนี้</td>
+</tr>
+<tr>
+<td><code>rail</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>แถบไอคอนที่เปิดเมื่อ hover / โฟกัส</td>
+</tr>
+<tr>
+<td><code>fixed</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>เปิดอยู่ข้างหน้าตลอด</td>
+</tr>
+<tr>
+<td><code>collapsible</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>ปิดอยู่ทุกความกว้างหน้าจอจนถูกเปิดทับหน้า</td>
+</tr>
+</tbody>
+</table>
+<p><code>SideNav.useSideNavContext()</code> คืน <code>{ expanded, hoverOpen, open, hidden, mode, rail, fixed, collapsible, large, … }</code></p>
+<h3 id="sidenav-overlay">SideNav.Overlay</h3>
+<p><code>&lt;div aria-hidden=&quot;true&quot;&gt;</code> ที่ทับหน้าขณะเมนูเปิดอยู่ คลิกที่นี่จะขอปิด ให้แสดงเฉพาะเมื่อต่ำกว่า <code>lg</code></p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>เมื่อ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-open</code></td>
+<td>เมนูเปิดอยู่และไม่ได้เป็น <code>fixed</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="sidenav-nav">SideNav.Nav</h3>
+<p><code>&lt;nav tabindex=&quot;-1&quot;&gt;</code> ตั้งชื่อด้วย <code>aria-label</code> id เป็น id ของเมนูด้านข้างจาก shell ถ้าคุณไม่ได้ใส่เอง hover และโฟกัสเปิด rail Esc ขอปิดและคืนโฟกัสให้สิ่งที่เปิด เมื่อทับหน้าอยู่ (ต่ำกว่า <code>lg</code> หรือ <code>collapsible</code>) โฟกัสออกจะขอปิด เมื่อไม่ได้แสดงและไม่ใช่ rail จะเป็น <code>inert</code></p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>เมื่อ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-ui-side-nav</code></td>
+<td>โหมด: <code>default</code>, <code>rail</code>, <code>fixed</code> หรือ <code>collapsible</code></td>
+</tr>
+<tr>
+<td><code>data-open</code></td>
+<td>แสดงเต็มความกว้าง: ถูกเปิด rail ที่ถูก hover, <code>fixed</code> หรือแบบปกติตั้งแต่ <code>lg</code></td>
+</tr>
+<tr>
+<td><code>data-expanded</code></td>
+<td>ถูกขอให้เปิด หรือ rail ที่เมาส์อยู่บนแถบหรือโฟกัสอยู่ข้างใน</td>
+</tr>
+<tr>
+<td><code>data-collapsed</code></td>
+<td>ซ่อนอยู่และเป็น <code>inert</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="sidenav-link">SideNav.Link</h3>
+<p><code>&lt;a&gt;</code> ที่ออกจากลำดับ Tab ขณะเมนูซ่อนอยู่ คง <code>target</code> และ <code>rel</code> ไว้</p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>current</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>หน้าปัจจุบัน (<code>aria-current=&quot;page&quot;</code>)</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>เมื่อ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-current</code></td>
+<td>ตั้ง <code>current</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="sidenav-menu-menutrigger-menupopup-menuitem">SideNav.Menu, MenuTrigger, MenuPopup, MenuItem</h3>
+<p><code>Menu</code> คือ <code>&lt;li&gt;</code> <code>MenuTrigger</code> คือ <code>&lt;button type=&quot;button&quot;&gt;</code> ที่มี <code>aria-expanded</code> และ <code>aria-controls</code> <code>MenuPopup</code> คือ <code>&lt;ul&gt;</code> ที่ต้องซ่อนเมื่อไม่มี <code>data-open</code> และ <code>MenuItem</code> คือ <code>&lt;a&gt;</code> ที่มี <code>current</code> (<code>aria-current=&quot;page&quot;</code>, <code>data-current</code>)</p>
+<table>
+<thead>
+<tr>
+<th>Prop ของ <code>Menu</code></th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>expanded</code></td>
+<td><code>boolean</code></td>
+<td></td>
+<td>เปิดอยู่ (controlled)</td>
+</tr>
+<tr>
+<td><code>defaultExpanded</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>เปิดตั้งแต่ render ครั้งแรก</td>
+</tr>
+<tr>
+<td><code>onExpandedChange</code></td>
+<td><code>(expanded: boolean) =&gt; void</code></td>
+<td></td>
+<td>ผู้ใช้เปิดหรือปิด</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>ที่</th>
+<th>เมื่อ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-open</code></td>
+<td><code>Menu</code>, <code>MenuTrigger</code>, <code>MenuPopup</code></td>
+<td>เมนูเปิดอยู่</td>
+</tr>
+<tr>
+<td><code>data-current</code></td>
+<td><code>Menu</code>, <code>MenuTrigger</code></td>
+<td>มีรายการข้างในเป็น <code>current</code> (ทั้งตอนเปิดและปิด)</td>
+</tr>
+</tbody>
+</table>
+<p><code>SideNav.useMenuContext()</code> คืน <code>{ expanded, current, menuId, toggle }</code></p>
+<h2 id="คีย์บอร์ดและ-accessibility">คีย์บอร์ดและ accessibility</h2>
+<table>
+<thead>
+<tr>
+<th>ปุ่ม</th>
+<th>ที่ไหน</th>
+<th>ทำอะไร</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Enter, Space</td>
+<td><code>MenuButton</code></td>
+<td>เปิดหรือปิดเมนูด้านข้าง</td>
+</tr>
+<tr>
+<td>Enter, Space</td>
+<td><code>Header.MenuTrigger</code></td>
+<td>เปิดหรือปิดเมนู</td>
+</tr>
+<tr>
+<td>Esc</td>
+<td>เมนูของ header ที่เปิดอยู่</td>
+<td>ปิดเมนู คืนโฟกัสให้หัวเมนู</td>
+</tr>
+<tr>
+<td>Esc</td>
+<td>panel ที่เปิดอยู่</td>
+<td>ขอปิด (<code>'escape'</code>) คืนโฟกัสให้สิ่งที่เปิด</td>
+</tr>
+<tr>
+<td>Esc</td>
+<td>เมนูด้านข้างที่เปิดอยู่</td>
+<td>ขอปิด คืนโฟกัสให้สิ่งที่เปิด</td>
+</tr>
+<tr>
+<td>Tab</td>
+<td>ออกจากเมนูของ header, panel หรือเมนูด้านข้างที่ทับหน้าอยู่</td>
+<td>ปิด (ขอปิด)</td>
+</tr>
+<tr>
+<td>Enter, Space</td>
+<td><code>SideNav.MenuTrigger</code></td>
+<td>เปิดหรือปิดเมนูย่อย</td>
+</tr>
+</tbody>
+</table>
+<p>part ตั้ง <code>aria-expanded</code> <code>aria-controls</code> <code>aria-pressed</code> <code>aria-current=&quot;page&quot;</code> <code>inert</code> ที่เมนูที่ซ่อนอยู่ <code>tabindex=&quot;-1&quot;</code> ที่ลิงก์ข้างใน และ <code>aria-hidden</code> ที่พื้นหลังมืด</p>
+<p>ส่วนที่คุณเพิ่มเอง:</p>
+<ul>
+<li>ชื่อ: <code>aria-label</code> ที่ <code>Header.Root</code> <code>&lt;nav&gt;</code> ของแถบเมนู <code>SideNav.Nav</code> <code>MenuButton</code> <code>GlobalAction</code> ทุกอัน และ <code>MenuPopup</code></li>
+<li>ข้อความของลิงก์ข้ามไปยังเนื้อหา และ style ที่แสดงลิงก์เมื่อได้รับโฟกัส</li>
+<li>ไอคอน พร้อม <code>aria-hidden=&quot;true&quot;</code></li>
+</ul>
+
+</article>
+<nav class="doc-toc" aria-labelledby="doc-toc-title"><p id="doc-toc-title" class="doc-toc-title">ในหน้านี้</p><ul><li class="doc-toc-h2"><a href="#ติดตั้ง">ติดตั้ง</a></li><li class="doc-toc-h2"><a href="#วิธีใช้">วิธีใช้</a></li><li class="doc-toc-h2"><a href="#โครงสร้าง">โครงสร้าง</a></li><li class="doc-toc-h2"><a href="#เมนูของ-header">เมนูของ header</a></li><li class="doc-toc-h2"><a href="#คำสั่งส่วนกลางและ-panel">คำสั่งส่วนกลางและ panel</a></li><li class="doc-toc-h2"><a href="#โหมดของเมนูด้านข้าง">โหมดของเมนูด้านข้าง</a></li><li class="doc-toc-h2"><a href="#ไม่ใช้-shell-root">ไม่ใช้ Shell.Root</a></li><li class="doc-toc-h2"><a href="#ใส่-style">ใส่ style</a></li><li class="doc-toc-h2"><a href="#parts">Parts</a></li><li class="doc-toc-h3"><a href="#shell-root">Shell.Root</a></li><li class="doc-toc-h3"><a href="#shell-content">Shell.Content</a></li><li class="doc-toc-h3"><a href="#header-root">Header.Root</a></li><li class="doc-toc-h3"><a href="#header-skiptocontent">Header.SkipToContent</a></li><li class="doc-toc-h3"><a href="#header-menubutton">Header.MenuButton</a></li><li class="doc-toc-h3"><a href="#header-menu">Header.Menu</a></li><li class="doc-toc-h3"><a href="#header-menutrigger">Header.MenuTrigger</a></li><li class="doc-toc-h3"><a href="#header-menupopup">Header.MenuPopup</a></li><li class="doc-toc-h3"><a href="#header-menuitem">Header.MenuItem</a></li><li class="doc-toc-h3"><a href="#header-globalaction">Header.GlobalAction</a></li><li class="doc-toc-h3"><a href="#header-panel">Header.Panel</a></li><li class="doc-toc-h3"><a href="#header-panelcontent">Header.PanelContent</a></li><li class="doc-toc-h3"><a href="#sidenav-root">SideNav.Root</a></li><li class="doc-toc-h3"><a href="#sidenav-overlay">SideNav.Overlay</a></li><li class="doc-toc-h3"><a href="#sidenav-nav">SideNav.Nav</a></li><li class="doc-toc-h3"><a href="#sidenav-link">SideNav.Link</a></li><li class="doc-toc-h3"><a href="#sidenav-menu-menutrigger-menupopup-menuitem">SideNav.Menu, MenuTrigger, MenuPopup, MenuItem</a></li><li class="doc-toc-h2"><a href="#คีย์บอร์ดและ-accessibility">คีย์บอร์ดและ accessibility</a></li></ul></nav>
+</div>
+<nav class="doc-pager" aria-label="ถัดไป / ก่อนหน้า"><a class="doc-pager-prev" href="/kanok-ui-docs/th/headless-progress-indicator/" rel="prev"><span>ก่อนหน้า</span>Progress indicator</a><a class="doc-pager-next" href="/kanok-ui-docs/th/headless-modal/" rel="next"><span>ถัดไป</span>Modal</a></nav>
+<footer class="doc-footer">@purpurabog/ui 1.4.3 · MIT · <a href="https://cdn.jsdelivr.net/npm/@purpurabog/ui@1.4.3/THIRD-PARTY-NOTICES.md">ประกาศของบุคคลที่สาม</a><br>สร้างตาม Carbon Design System ไม่ได้เกี่ยวข้องหรือได้รับการรับรองจาก IBM — IBM และ Carbon เป็นเครื่องหมายการค้าของ IBM Corp.</footer>
+</ui-content>
+<ui-modal id="doc-search" heading="ค้นหา" data-count="พบ {n} รายการ" data-empty="ไม่พบ “{q}”">
+<ui-search label="ค้นหาในเอกสาร" placeholder="ค้นหาในเอกสาร" size="lg"></ui-search>
+<p class="doc-search-status" role="status"></p>
+<ul class="doc-search-results"></ul>
+</ui-modal>
+</body>
+</html>

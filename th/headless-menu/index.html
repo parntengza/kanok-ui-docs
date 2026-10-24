@@ -1,0 +1,729 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Headless Menu · @purpurabog/ui</title>
+<link rel="alternate" hreflang="en" href="/kanok-ui-docs/en/headless-menu/"  /><link rel="alternate" hreflang="th" href="/kanok-ui-docs/th/headless-menu/"  />
+<script>(function(){try{var q=new URLSearchParams(location.search).get("design"),d=q;if(q==="kanok"||q==="carbon")localStorage.setItem("ui-docs-design",q);else d=localStorage.getItem("ui-docs-design");if(d==="kanok")document.documentElement.setAttribute("data-design","kanok")}catch(e){}})();(function(){try{var m=localStorage.getItem("ui-docs-theme");if(m!=="light"&&m!=="dark"&&m!=="system")return;var d=m==="dark"||(m==="system"&&matchMedia("(prefers-color-scheme: dark)").matches),r=document.documentElement,t=d?"g100":"white";if(r.getAttribute("data-design")==="kanok")t=d?"lacquer":"paper";r.setAttribute("data-theme",t)}catch(e){}})();</script>
+<style>ui-header:not(:defined){z-index:8000;box-sizing:border-box;border-block-end:1px solid var(--ui-border-subtle-1);background:var(--ui-canvas);block-size:48px;display:block;position:fixed;inset:0 0 auto}:is(ui-header:not(:defined)>*,ui-side-nav:not(:defined)>*){visibility:hidden}:is(ui-header-panel:not(:defined),ui-modal:not(:defined)){display:none}ui-side-nav:not(:defined){display:none}ui-content:not(:defined){margin-block-start:48px;padding:32px;display:block}@media (width>=1056px){ui-side-nav[expanded]:not(:defined){background:var(--ui-canvas);inline-size:256px;display:block;position:fixed;inset:48px auto 0 0}ui-side-nav[expanded]:not(:defined)~ui-content:not(:defined){margin-inline-start:256px}}ui-tabs:not(:defined){display:block}ui-tabs:not(:defined)>ui-tab{box-sizing:border-box;border-block-end:2px solid var(--ui-hairline);block-size:40px;color:var(--ui-ink-muted);font:var(--ui-font-body-sm);padding:0 16px;line-height:38px;display:inline-block}ui-tabs:not(:defined)>ui-tab:first-of-type{border-block-end-color:var(--ui-interactive);color:var(--ui-ink)}ui-tabs:not(:defined)>ui-tab-panel{padding:16px;display:block}ui-tabs:not(:defined)>ui-tab-panel~ui-tab-panel{display:none}ui-code-snippet:not(:defined){background:var(--ui-layer-1);max-block-size:272px;font:var(--ui-font-code,12px/16px monospace);white-space:pre;padding:16px;display:block;overflow:hidden}[data-react-example]:empty>*{visibility:hidden}.doc-demo:has(:not(:defined))>*{visibility:hidden}[data-react-example]:empty{box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}.doc-demo:has(:not(:defined)){box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}@keyframes doc-skeleton{to{background-position:-200% 0}}@media (prefers-reduced-motion:reduce){[data-react-example]:empty{animation:none}.doc-demo:has(:not(:defined)){animation:none}}</style>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/index-DlZi7tIy.js"></script>
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/theme-switcher-BGAHXRgF.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/listbox-gjElSjvA.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/headless-CpcU3xFD.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/typeahead-CDCzrGcR.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/flag-D0Ou26eR.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/popup-position-SaIiGkPq.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/focus-Hg6AV1y3.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/menu-CbH0kx49.js">
+  <link rel="stylesheet" crossorigin href="/kanok-ui-docs/assets/theme-switcher-CL5yB6XE.css">
+  <link rel="stylesheet" crossorigin href="/kanok-ui-docs/assets/headless-JjfvojKd.css">
+</head>
+<body>
+<ui-header label="@purpurabog/ui">
+<ui-skip-to-content></ui-skip-to-content>
+<ui-header-menu-button></ui-header-menu-button>
+<ui-header-name href="/kanok-ui-docs/th/" prefix="@purpurabog">ui</ui-header-name>
+<ui-header-global-bar>
+<ui-header-global-action id="doc-search-open" label="ค้นหา" tooltip-placement="bottom"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="m18.5 17.8-4.9-4.9a7 7 0 1 0-.7.7l4.9 4.9zM3 8.5a5.5 5.5 0 1 1 5.5 5.5A5.5 5.5 0 0 1 3 8.5Z" /></svg></ui-header-global-action>
+<ui-header-global-action label="ตั้งค่า" panel="doc-settings" tooltip-placement="bottom-end"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="M16.9 10.6a7 7 0 0 0 0-1.2l1.8-1.4-1.6-2.8-2.1.8a6.6 6.6 0 0 0-1-.6L13.6 3h-3.2l-.4 2.4a6.6 6.6 0 0 0-1 .6l-2.1-.8L5.3 8l1.8 1.4a7 7 0 0 0 0 1.2L5.3 12l1.6 2.8 2.1-.8a6.6 6.6 0 0 0 1 .6l.4 2.4h3.2l.4-2.4a6.6 6.6 0 0 0 1-.6l2.1.8 1.6-2.8zM12 13a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" /></svg></ui-header-global-action>
+</ui-header-global-bar>
+<ui-header-panel id="doc-settings" label="ตั้งค่า">
+<div class="doc-settings">
+<span class="doc-settings-label">ธีม</span>
+<ui-theme-switcher storage-key="ui-docs-theme" tooltip-placement="bottom"></ui-theme-switcher>
+<span class="doc-settings-label">รูปแบบ</span>
+<ui-content-switcher id="doc-design" aria-label="รูปแบบ" size="sm"><ui-content-switcher-item name="carbon">Carbon</ui-content-switcher-item><ui-content-switcher-item name="kanok">Kanok</ui-content-switcher-item></ui-content-switcher>
+<span class="doc-settings-label">ภาษา</span>
+<ui-link href="/kanok-ui-docs/en/headless-menu/" hreflang="en" lang="en">English</ui-link>
+</div>
+</ui-header-panel>
+</ui-header>
+<ui-side-nav label="เอกสาร"><ui-side-nav-items><ui-side-nav-menu label="เริ่มต้น"><ui-side-nav-menu-item href="/kanok-ui-docs/th/">ภาพรวม</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/installation/">ติดตั้ง</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/migration-1-0/">การย้ายไป 1.0</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="คู่มือ"><ui-side-nav-menu-item href="/kanok-ui-docs/th/themes/">ธีมและ layer</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/kanok/">ดีไซน์ Kanok</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/customizing/">ปรับแต่งหน้าตา</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/icons/">ไอคอน</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/forms/">ฟอร์มและการตรวจค่า</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/frameworks/">ใช้กับ framework</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/ai/">ใช้กับ AI</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="ฟอร์มและปุ่ม"><ui-side-nav-menu-item href="/kanok-ui-docs/th/button/">Button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/file-uploader/">File uploader</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Overlay"><ui-side-nav-menu-item href="/kanok-ui-docs/th/modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/toggletip/">Toggletip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/menu/">Menu</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="ข้อมูล"><ui-side-nav-menu-item href="/kanok-ui-docs/th/data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/contained-list/">Contained list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tree-view/">Tree view</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="การนำทาง"><ui-side-nav-menu-item href="/kanok-ui-docs/th/tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/breadcrumb/">Breadcrumb</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/link/">Link</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/ui-shell/">UI shell</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="เนื้อหา"><ui-side-nav-menu-item href="/kanok-ui-docs/th/tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tile/">Tile</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/user-avatar/">User avatar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/list/">List</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="สถานะและการโหลด"><ui-side-nav-menu-item href="/kanok-ui-docs/th/loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/inline-loading/">Inline loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/progress-bar/">Progress bar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/skeleton/">Skeleton</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/badge-indicator/">Badge indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/status-indicator/">Status indicator</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="เลย์เอาต์"><ui-side-nav-menu-item href="/kanok-ui-docs/th/grid/">Grid</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/heading/">Heading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/layer/">Layer</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/action-set/">Action set</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/page-header/">Page header</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/big-number/">Big number</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Headless" expanded><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless/">แนะนำ</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-file-uploader/">File uploader</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-menu/" current>Menu</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-ui-shell/">UI shell</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tree-view/">Tree view</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu></ui-side-nav-items></ui-side-nav><script>if(matchMedia('(min-width: 66rem)').matches)document.currentScript.previousElementSibling.setAttribute('expanded','')</script>
+<ui-content>
+<div class="doc-page">
+<article class="doc">
+<!-- nav: Menu -->
+<h1 id="headless-menu">Headless Menu</h1>
+<p>part ของ <code>Menu</code> ให้พฤติกรรมเดียวกับ <a href="/kanok-ui-docs/th/menu/">Menu</a> แบบมี style แต่ไม่มี style เลย ตาม pattern menu button ของ WAI-ARIA ได้แก่ trigger ที่เปิด popup <code>role=&quot;menu&quot;</code> ใน top layer ย้ายโฟกัสไปที่รายการแรก (หรือสุดท้าย) ↑ / ↓ ที่วนรอบและข้ามรายการที่ปิดใช้งาน Home / End พิมพ์ตัวอักษรเพื่อกระโดด และ Esc, Tab, การกดข้างนอก หรือการเลือกรายการที่ปิด menu แล้วคืนโฟกัส รายการเป็นคำสั่ง checkbox หรือ radio ได้ และเปิด submenu ได้</p>
+<p>ส่วนที่คุณทำเองคือหน้าตาของ trigger ทุกแถว เครื่องหมายถูกและลูกศร และ style ทั้งหมด part ต่าง ๆ บอกสถานะผ่าน attribute <code>data-*</code> รายการที่ไฮไลต์คือรายการที่ได้โฟกัส จึงใส่ style ด้วย <code>focus:</code></p>
+<h2 id="ติดตั้ง">ติดตั้ง</h2>
+<p>ส่วน headless มากับแพ็กเกจเลย (ไม่มี item ของ shadcn; item ของ React + Tailwind สร้างบนมัน):</p>
+<ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">@purpurabog/ui</span></ui-code-snippet>
+<ui-code-snippet type="single" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { Menu } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;</ui-code-snippet>
+<h2 id="วิธีใช้">วิธีใช้</h2>
+<div class="doc-demo" data-react-example="0"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { useState } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { Menu } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> item <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'flex h-8 cursor-pointer items-center px-4 text-sm text-ink-muted outline-none hover:bg-ghost-hover hover:text-ink focus:bg-ghost-hover focus:text-ink focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus data-disabled:cursor-not-allowed data-disabled:bg-transparent data-disabled:text-ink-disabled'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [picked, setPicked] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">'ยังไม่ได้เลือก'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid justify-items-start gap-2"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Root</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Trigger</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"group flex h-10 min-w-48 items-center justify-between gap-2 bg-interactive px-4 text-sm text-on-primary hover:bg-blue-hover focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-focus"</span>&gt;
+          คำสั่ง
+          &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-4 fill-current transition-transform group-data-popup-open:rotate-180"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M8 11 3 6l.7-.7L8 9.6l4.3-4.3.7.7z"</span> /&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Trigger</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Popup</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"min-w-48 bg-layer-1 py-1 shadow-lg"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Item</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{item} <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setPicked</span>(<span style="color:var(--ui-tag-color-teal)">'ส่งให้ลงนาม'</span>)}&gt;ส่งให้ลงนาม&lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Item</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Item</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{item} <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setPicked</span>(<span style="color:var(--ui-tag-color-teal)">'บันทึกร่าง'</span>)}&gt;บันทึกร่าง&lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Item</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Item</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{item} <span style="color:var(--ui-tag-color-purple)">disabled</span>&gt;ส่งออก PDF&lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Item</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Separator</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"my-1 h-px border-0 bg-hairline"</span> /&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Item</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-teal)">`${</span><span style="color:var(--ui-tag-color-teal)">item</span><span style="color:var(--ui-tag-color-teal)">} hover:bg-button-danger hover:text-on-primary focus:bg-button-danger focus:text-on-primary`</span>} <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setPicked</span>(<span style="color:var(--ui-tag-color-teal)">'ทิ้ง'</span>)}&gt;
+            ทิ้ง
+          &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Item</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Popup</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Root</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-ink-muted"</span>&gt;เลือก: {picked}&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<p>popup ได้ชื่อจาก trigger (<code>aria-labelledby</code>) ถ้าคุณไม่ให้ <code>aria-label</code> <code>onClick</code> ของรายการทำงานเมื่อคลิกและเมื่อกด Enter หรือ Space จากนั้น menu ทุกชั้นจะปิด</p>
+<h2 id="โครงสร้าง">โครงสร้าง</h2>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">Menu.Root</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Trigger</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Popup</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Item</span> /&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Menu.CheckboxItem</span> /&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Separator</span> /&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Group</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Menu.GroupLabel</span> /&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Item</span> /&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Group</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Menu.RadioGroup</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Menu.RadioItem</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"…"</span> /&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.RadioGroup</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Menu.SubmenuRoot</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Menu.SubmenuTrigger</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Popup</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Item</span> /&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Popup</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.SubmenuTrigger</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.SubmenuRoot</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Popup</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Root</span>&gt;</ui-code-snippet>
+<h2 id="ตำแหน่งและความกว้าง">ตำแหน่งและความกว้าง</h2>
+<p>popup เปิดใต้ trigger ชิดขอบต้น (<code>placement=&quot;bottom-start&quot;</code> ที่ <code>Popup</code>) ใช้ตำแหน่งไหนก็ได้ และจะพลิกเมื่อที่ไม่พอ <code>data-side</code> บอกว่าไปอยู่ฝั่งไหน <code>matchWidth</code> ทำให้กว้างเท่า trigger เหมือน menu button ของ Carbon ที่ใช้ <code>bottom</code></p>
+<div class="doc-demo" data-react-example="1"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { Menu } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> item <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'flex h-10 cursor-pointer items-center px-4 text-sm text-ink-muted outline-none hover:bg-ghost-hover hover:text-ink focus:bg-ghost-hover focus:text-ink focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus'</span>;
+<span style="color:var(--ui-tag-color-magenta)">const</span> trigger <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'h-10 border border-interactive px-4 text-sm text-interactive hover:bg-interactive hover:text-on-primary focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-focus data-popup-open:bg-interactive data-popup-open:text-on-primary'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex flex-wrap items-center gap-4"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Root</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Trigger</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-teal)">`${</span><span style="color:var(--ui-tag-color-teal)">trigger</span><span style="color:var(--ui-tag-color-teal)">} min-w-48 text-start`</span>}&gt;กว้างเท่าปุ่ม&lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Trigger</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Popup</span> <span style="color:var(--ui-tag-color-purple)">matchWidth</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"bg-layer-1 py-1 shadow-lg"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Item</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{item}&gt;ส่งออก PDF&lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Item</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Item</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{item}&gt;ส่งออก Word (.docx)&lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Item</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Popup</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Root</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Root</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Trigger</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{trigger}&gt;ชิดขอบปลาย ด้านบน&lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Trigger</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Popup</span> <span style="color:var(--ui-tag-color-purple)">placement</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"top-end"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"bg-layer-1 py-1 shadow-lg data-[side=top]:shadow-[0_-2px_6px_rgb(0_0_0/0.3)]"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Item</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{item}&gt;ส่งออก PDF&lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Item</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Item</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{item}&gt;ส่งออก Word (.docx) พร้อมความเห็น&lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Item</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Popup</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Root</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<h2 id="checkbox-และกลุ่ม-radio">Checkbox และกลุ่ม radio</h2>
+<ul>
+<li><code>CheckboxItem</code> คือรายการเปิด/ปิด (<code>menuitemcheckbox</code>) ใช้ <code>checked</code> กับ <code>onCheckedChange</code> หรือ <code>defaultChecked</code></li>
+<li><code>RadioGroup</code> เก็บ <code>RadioItem</code> (<code>menuitemradio</code>) ที่ถูกเลือกได้หนึ่งตัวเสมอ ใช้ <code>value</code> กับ <code>onValueChange</code> หรือ <code>defaultValue</code></li>
+<li>ทั้งสองแบบได้ <code>aria-checked</code> และ <code>data-checked</code> ไว้วาดเครื่องหมายถูก <code>Menu.useMenuItemContext()</code> ให้ค่า <code>checked</code> กับ component ที่อยู่ในรายการ</li>
+<li><code>Group</code> ที่มี <code>GroupLabel</code> ตั้งชื่อให้ชุดรายการ <code>RadioGroup</code> ก็เป็น <code>Group</code> เช่นกัน</li>
+<li>ทุกรายการปิด menu เมื่อถูกเลือก <code>closeOnClick={false}</code> ทำให้ menu เปิดค้าง เหมาะกับ checkbox</li>
+</ul>
+<div class="doc-demo" data-react-example="2"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { useState } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { Menu } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> item <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'group flex h-8 cursor-pointer items-center gap-2 px-4 text-sm text-ink-muted outline-none hover:bg-ghost-hover hover:text-ink focus:bg-ghost-hover focus:text-ink focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Check</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"invisible size-4 fill-current group-data-checked:visible"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M6 12.4 2.3 8.7l.7-.7 3 3 6.3-6.3.7.7z"</span> /&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+  );
+}
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [archived, setArchived] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-green)">true</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [drafts, setDrafts] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-green)">false</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [sort, setSort] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">'date'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid justify-items-start gap-2"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Root</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Trigger</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-10 px-4 text-sm text-link hover:bg-ghost-hover focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus"</span>&gt;ตัวเลือกการแสดงผล&lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Trigger</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Popup</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"min-w-56 bg-layer-1 py-1 shadow-lg"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Menu.CheckboxItem</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{item} <span style="color:var(--ui-tag-color-purple)">checked</span><span style="color:var(--ui-tag-color-magenta)">=</span>{archived} <span style="color:var(--ui-tag-color-purple)">onCheckedChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{setArchived} <span style="color:var(--ui-tag-color-purple)">closeOnClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">false</span>}&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">Check</span> /&gt;
+            แสดงที่เก็บถาวร
+          &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.CheckboxItem</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Menu.CheckboxItem</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{item} <span style="color:var(--ui-tag-color-purple)">checked</span><span style="color:var(--ui-tag-color-magenta)">=</span>{drafts} <span style="color:var(--ui-tag-color-purple)">onCheckedChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{setDrafts} <span style="color:var(--ui-tag-color-purple)">closeOnClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">false</span>}&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">Check</span> /&gt;
+            แสดงฉบับร่าง
+          &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.CheckboxItem</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Separator</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"my-1 h-px border-0 bg-hairline"</span> /&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Menu.RadioGroup</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{sort} <span style="color:var(--ui-tag-color-purple)">onValueChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{setSort}&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">Menu.GroupLabel</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"px-4 pt-2 pb-1 text-xs font-semibold text-ink-muted"</span>&gt;เรียงตาม&lt;/<span style="color:var(--ui-tag-color-blue)">Menu.GroupLabel</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">Menu.RadioItem</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"name"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{item}&gt;&lt;<span style="color:var(--ui-tag-color-blue)">Check</span> /&gt;ชื่อ&lt;/<span style="color:var(--ui-tag-color-blue)">Menu.RadioItem</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">Menu.RadioItem</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"date"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{item}&gt;&lt;<span style="color:var(--ui-tag-color-blue)">Check</span> /&gt;วันที่แก้ไข&lt;/<span style="color:var(--ui-tag-color-blue)">Menu.RadioItem</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">Menu.RadioItem</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"expiry"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{item}&gt;&lt;<span style="color:var(--ui-tag-color-blue)">Check</span> /&gt;วันหมดอายุ&lt;/<span style="color:var(--ui-tag-color-blue)">Menu.RadioItem</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.RadioGroup</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Popup</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Root</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-ink-muted"</span>&gt;
+        ที่เก็บถาวร: {<span style="color:var(--ui-tag-color-cyan)">String</span>(archived)} ฉบับร่าง: {<span style="color:var(--ui-tag-color-cyan)">String</span>(drafts)} เรียงตาม: {sort}
+      &lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<h2 id="submenu">Submenu</h2>
+<p><code>SubmenuRoot</code> ใน popup เก็บ <code>SubmenuTrigger</code> ซึ่งเป็นรายการที่เปิด <code>Popup</code> ของ submenu (วางไว้ข้างในมัน) ข้าง ๆ ตัวเอง เมื่อชี้เมาส์ค้าง <code>delay</code> (150ms โฟกัสไม่ย้าย) คลิก กด Enter, Space หรือ → (← ในหน้าขวาไปซ้าย) ← หรือ Esc ปิดเฉพาะชั้นนั้น การเลือกรายการใน submenu ปิดทุกชั้น</p>
+<div class="doc-demo" data-react-example="3"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { useState } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { Menu } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> item <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'flex h-8 cursor-pointer items-center justify-between gap-4 px-4 text-sm text-ink-muted outline-none hover:bg-ghost-hover hover:text-ink focus:bg-ghost-hover focus:text-ink focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus data-popup-open:bg-ghost-hover data-popup-open:text-ink'</span>;
+<span style="color:var(--ui-tag-color-magenta)">const</span> popup <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'min-w-40 bg-layer-1 py-1 shadow-lg'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Chevron</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-4 fill-current rtl:-scale-x-100"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M11 8 6 13l-.7-.7L9.6 8 5.3 3.7 6 3z"</span> /&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+  );
+}
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [picked, setPicked] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">'ยังไม่ได้เลือก'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> <span style="color:var(--ui-tag-color-cyan)">pick</span> <span style="color:var(--ui-tag-color-magenta)">=</span> (label<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setPicked</span>(label);
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid justify-items-start gap-2"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Root</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Trigger</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-10 px-4 text-sm text-link hover:bg-ghost-hover focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus"</span>&gt;คำสั่งของเอกสาร&lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Trigger</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Popup</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{popup}&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Item</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{item} <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-cyan)">pick</span>(<span style="color:var(--ui-tag-color-teal)">'เปิด'</span>)}&gt;เปิด&lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Item</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Menu.SubmenuRoot</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">Menu.SubmenuTrigger</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{item} <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ส่งออกเป็น"</span>&gt;
+              ส่งออกเป็น
+              &lt;<span style="color:var(--ui-tag-color-blue)">Chevron</span> /&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Popup</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{popup}&gt;
+                &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Item</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{item} <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-cyan)">pick</span>(<span style="color:var(--ui-tag-color-teal)">'PDF'</span>)}&gt;PDF&lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Item</span>&gt;
+                &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Item</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{item} <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-cyan)">pick</span>(<span style="color:var(--ui-tag-color-teal)">'Word (.docx)'</span>)}&gt;Word (.docx)&lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Item</span>&gt;
+                &lt;<span style="color:var(--ui-tag-color-blue)">Menu.SubmenuRoot</span>&gt;
+                  &lt;<span style="color:var(--ui-tag-color-blue)">Menu.SubmenuTrigger</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{item} <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"รูปภาพ"</span>&gt;
+                    รูปภาพ
+                    &lt;<span style="color:var(--ui-tag-color-blue)">Chevron</span> /&gt;
+                    &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Popup</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{popup}&gt;
+                      &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Item</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{item} <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-cyan)">pick</span>(<span style="color:var(--ui-tag-color-teal)">'PNG'</span>)}&gt;PNG&lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Item</span>&gt;
+                      &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Item</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{item} <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-cyan)">pick</span>(<span style="color:var(--ui-tag-color-teal)">'JPEG'</span>)}&gt;JPEG&lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Item</span>&gt;
+                    &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Popup</span>&gt;
+                  &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.SubmenuTrigger</span>&gt;
+                &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.SubmenuRoot</span>&gt;
+              &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Popup</span>&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.SubmenuTrigger</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.SubmenuRoot</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Popup</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Root</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-ink-muted"</span>&gt;เลือก: {picked}&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<p><code>label</code> ของรายการคือข้อความที่ใช้จับคู่ตอนพิมพ์ (เก็บเป็น <code>data-label</code>) ให้ใส่เมื่อรายการมีอย่างอื่นนอกจากชื่อ เช่น ลูกศรหรือคีย์ลัด</p>
+<h2 id="combo-button">Combo button</h2>
+<p>trigger เป็นปุ่มแบบไหนก็ได้ <code>render</code> ส่ง prop ของ trigger และสถานะเปิดมาให้ใส่ใน element ของคุณเอง <code>anchor</code> ที่ <code>Popup</code> วาง menu ข้าง element อื่น ในที่นี้คือปุ่มทั้งคู่ และ <code>matchWidth</code> ทำให้กว้างเท่ากัน</p>
+<div class="doc-demo" data-react-example="4"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { useRef, useState } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { Menu } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> item <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'flex h-10 cursor-pointer items-center px-4 text-sm text-ink-muted outline-none hover:bg-ghost-hover hover:text-ink focus:bg-ghost-hover focus:text-ink focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> pair <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useRef</span>&lt;<span style="color:var(--ui-tag-color-cyan)">HTMLDivElement</span>&gt;(<span style="color:var(--ui-tag-color-green)">null</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [last, setLast] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">'ยังไม่มี'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid justify-items-start gap-2"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">ref</span><span style="color:var(--ui-tag-color-magenta)">=</span>{pair} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"inline-flex gap-px"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">button</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"button"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setLast</span>(<span style="color:var(--ui-tag-color-teal)">'บันทึก'</span>)} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-10 min-w-28 bg-interactive px-4 text-start text-sm text-on-primary hover:bg-blue-hover focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-focus"</span>&gt;
+          บันทึก
+        &lt;/<span style="color:var(--ui-tag-color-blue)">button</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Root</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Trigger</span>
+            <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"การกระทำเพิ่มเติม"</span>
+            <span style="color:var(--ui-tag-color-purple)">render</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(props, { open }) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+              &lt;<span style="color:var(--ui-tag-color-blue)">button</span> {<span style="color:var(--ui-tag-color-magenta)">...</span>props} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid size-10 place-items-center bg-interactive text-on-primary hover:bg-blue-hover focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-focus"</span>&gt;
+                &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-teal)">`size-4 fill-current transition-transform ${</span><span style="color:var(--ui-tag-color-teal)">open </span><span style="color:var(--ui-tag-color-magenta)">?</span><span style="color:var(--ui-tag-color-teal)"> </span><span style="color:var(--ui-tag-color-teal)">'rotate-180'</span><span style="color:var(--ui-tag-color-teal)"> </span><span style="color:var(--ui-tag-color-magenta)">:</span><span style="color:var(--ui-tag-color-teal)"> </span><span style="color:var(--ui-tag-color-teal)">''}`</span>}&gt;
+                  &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M8 11 3 6l.7-.7L8 9.6l4.3-4.3.7.7z"</span> /&gt;
+                &lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+              &lt;/<span style="color:var(--ui-tag-color-blue)">button</span>&gt;
+            )}
+          /&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Popup</span> <span style="color:var(--ui-tag-color-purple)">anchor</span><span style="color:var(--ui-tag-color-magenta)">=</span>{pair} <span style="color:var(--ui-tag-color-purple)">matchWidth</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"bg-layer-1 py-1 shadow-lg"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Item</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{item} <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setLast</span>(<span style="color:var(--ui-tag-color-teal)">'บันทึกร่าง'</span>)}&gt;บันทึกร่าง&lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Item</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Item</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{item} <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setLast</span>(<span style="color:var(--ui-tag-color-teal)">'บันทึกแล้วส่ง'</span>)}&gt;บันทึกแล้วส่ง&lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Item</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Popup</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Root</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-ink-muted"</span>&gt;คำสั่งล่าสุด: {last}&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<h2 id="สถานะเปิด">สถานะเปิด</h2>
+<p>ควบคุมสถานะเองด้วย <code>open</code> และ <code>onOpenChange</code> หรือให้ <code>defaultOpen</code> <code>onOpenChange</code> รายงานเฉพาะเมื่อค่าเปลี่ยน พร้อมเหตุผล คือ <code>trigger-press</code>, <code>trigger-hover</code> (submenu), <code>item-press</code>, <code>escape-key</code>, <code>list-navigation</code> (กด ← ออกจาก submenu), <code>focus-out</code> หรือ <code>outside-press</code> <code>initialFocus</code> ที่ <code>Root</code> บังคับว่ารายการไหนได้โฟกัสตอนเปิด (<code>first</code>, <code>last</code> หรือ <code>none</code>) ถ้าไม่ตั้ง กด ↑ ที่ trigger จะเริ่มที่รายการสุดท้าย ส่วนแบบอื่นเริ่มที่รายการแรก</p>
+<div class="doc-demo" data-react-example="5"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { useState } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { Menu } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> item <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'flex h-10 cursor-pointer items-center px-4 text-sm text-ink-muted outline-none hover:bg-ghost-hover hover:text-ink focus:bg-ghost-hover focus:text-ink focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [open, setOpen] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-green)">false</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [why, setWhy] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">'ยังไม่มี'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid justify-items-start gap-2"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Root</span>
+        <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open}
+        <span style="color:var(--ui-tag-color-purple)">onOpenChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(next, reason) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+          <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(next);
+          <span style="color:var(--ui-tag-color-cyan)">setWhy</span>(reason);
+        }}
+      &gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Trigger</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ตัวเลือกของ สัญญาเช่า สำนักงานสีลม"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid size-10 place-items-center text-ink hover:bg-ghost-hover focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus data-popup-open:bg-layer-1 data-popup-open:shadow-lg"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-4 fill-current"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">circle</span> <span style="color:var(--ui-tag-color-purple)">cx</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"8"</span> <span style="color:var(--ui-tag-color-purple)">cy</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"4"</span> <span style="color:var(--ui-tag-color-purple)">r</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"1.5"</span> /&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">circle</span> <span style="color:var(--ui-tag-color-purple)">cx</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"8"</span> <span style="color:var(--ui-tag-color-purple)">cy</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"8"</span> <span style="color:var(--ui-tag-color-purple)">r</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"1.5"</span> /&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">circle</span> <span style="color:var(--ui-tag-color-purple)">cx</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"8"</span> <span style="color:var(--ui-tag-color-purple)">cy</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"12"</span> <span style="color:var(--ui-tag-color-purple)">r</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"1.5"</span> /&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Trigger</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Popup</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"min-w-40 bg-layer-1 py-1 shadow-lg"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Item</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{item}&gt;แก้ไข&lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Item</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Item</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{item}&gt;ทำสำเนา&lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Item</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Item</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{item}&gt;ลบ&lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Item</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Popup</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Root</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-ink-muted"</span>&gt;เปิดอยู่: {<span style="color:var(--ui-tag-color-cyan)">String</span>(open)} เหตุผลล่าสุด: {why}&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<h2 id="ใส่-style">ใส่ style</h2>
+<div class="doc-demo" data-react-example="6"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { Menu } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> item <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'grid h-8 cursor-pointer grid-cols-[1rem_1fr_max-content] items-center gap-x-2 px-4 text-sm text-ink-muted outline-none hover:bg-ghost-hover hover:text-ink focus:bg-ghost-hover focus:text-ink focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus data-disabled:cursor-not-allowed data-disabled:bg-transparent data-disabled:text-ink-disabled'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Root</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Trigger</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-10 border border-interactive px-4 text-sm text-interactive hover:bg-interactive hover:text-on-primary focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-focus data-popup-open:bg-interactive data-popup-open:text-on-primary"</span>&gt;
+        ตัวเลือกของเอกสาร
+      &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Trigger</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Popup</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"min-w-52 bg-layer-1 py-1 shadow-lg outline-none data-[side=top]:shadow-[0_-2px_6px_rgb(0_0_0/0.3)]"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Item</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{item} <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"แก้ไข"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-4 fill-current"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"m13.7 4.3-2-2a1 1 0 0 0-1.4 0L2 10.6V14h3.4l8.3-8.3a1 1 0 0 0 0-1.4ZM5 13H3v-2l6-6 2 2Zm7-7-2-2 1-1 2 2Z"</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+          แก้ไข
+          &lt;<span style="color:var(--ui-tag-color-blue)">kbd</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"font-sans text-xs"</span>&gt;⌘E&lt;/<span style="color:var(--ui-tag-color-blue)">kbd</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Item</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Item</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{item} <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เก็บถาวร"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">span</span> /&gt;
+          เก็บถาวร (เฉพาะที่ลงนามแล้ว)
+          &lt;<span style="color:var(--ui-tag-color-blue)">span</span> /&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Item</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Popup</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Root</span>&gt;
+  );
+}</ui-code-snippet>
+<ui-code-snippet type="multi" class="doc-code" data-lang="css"><span style="color:var(--ui-ink-muted);font-style:italic">/* className="trigger" ที่ Trigger, "menu" ที่ Popup, "item" ที่แต่ละรายการ */</span>
+<span style="color:var(--ui-tag-color-purple)">.trigger</span>[<span style="color:var(--ui-tag-color-purple)">data-popup-open</span>] { <span style="color:var(--ui-tag-color-purple)">background</span>: #0f62fe; <span style="color:var(--ui-tag-color-purple)">color</span>: #fff; }
+<span style="color:var(--ui-tag-color-purple)">.menu</span> { <span style="color:var(--ui-tag-color-purple)">min-width</span>: <span style="color:var(--ui-tag-color-green)">208px</span>; <span style="color:var(--ui-tag-color-purple)">padding-block</span>: <span style="color:var(--ui-tag-color-green)">4px</span>; <span style="color:var(--ui-tag-color-purple)">background</span>: #f4f4f4; <span style="color:var(--ui-tag-color-purple)">box-shadow</span>: <span style="color:var(--ui-tag-color-green)">0</span> <span style="color:var(--ui-tag-color-green)">2px</span> <span style="color:var(--ui-tag-color-green)">6px</span> <span style="color:var(--ui-tag-color-cyan)">rgb</span>(<span style="color:var(--ui-tag-color-green)">0</span> <span style="color:var(--ui-tag-color-green)">0</span> <span style="color:var(--ui-tag-color-green)">0</span> / <span style="color:var(--ui-tag-color-green)">0.3</span>); }
+<span style="color:var(--ui-tag-color-purple)">.menu</span>[<span style="color:var(--ui-tag-color-purple)">data-side</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">'top'</span>] { <span style="color:var(--ui-tag-color-purple)">box-shadow</span>: <span style="color:var(--ui-tag-color-green)">0</span> <span style="color:var(--ui-tag-color-green)">-2px</span> <span style="color:var(--ui-tag-color-green)">6px</span> <span style="color:var(--ui-tag-color-cyan)">rgb</span>(<span style="color:var(--ui-tag-color-green)">0</span> <span style="color:var(--ui-tag-color-green)">0</span> <span style="color:var(--ui-tag-color-green)">0</span> / <span style="color:var(--ui-tag-color-green)">0.3</span>); }
+<span style="color:var(--ui-tag-color-purple)">.item:focus</span> { <span style="color:var(--ui-tag-color-purple)">background</span>: #e8e8e8; <span style="color:var(--ui-tag-color-purple)">outline</span>: <span style="color:var(--ui-tag-color-green)">none</span>; }
+<span style="color:var(--ui-tag-color-purple)">.item:focus-visible</span> { <span style="color:var(--ui-tag-color-purple)">outline</span>: <span style="color:var(--ui-tag-color-green)">2px</span> <span style="color:var(--ui-tag-color-green)">solid</span> #0f62fe; <span style="color:var(--ui-tag-color-purple)">outline-offset</span>: <span style="color:var(--ui-tag-color-green)">-2px</span>; }
+<span style="color:var(--ui-tag-color-purple)">.item</span>[<span style="color:var(--ui-tag-color-purple)">data-disabled</span>] { <span style="color:var(--ui-tag-color-purple)">color</span>: #a8a8a8; <span style="color:var(--ui-tag-color-purple)">cursor</span>: <span style="color:var(--ui-tag-color-green)">not-allowed</span>; }
+<span style="color:var(--ui-tag-color-purple)">.item</span>[<span style="color:var(--ui-tag-color-purple)">data-checked</span>] <span style="color:var(--ui-tag-color-purple)">.check</span> { <span style="color:var(--ui-tag-color-purple)">visibility</span>: <span style="color:var(--ui-tag-color-green)">visible</span>; }</ui-code-snippet>
+<h2 id="parts">Parts</h2>
+<h3 id="menu-root">Menu.Root</h3>
+<p>ไม่ render element ของตัวเอง เก็บสถานะเปิด</p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>ค่าเริ่มต้น</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>open</code></td>
+<td><code>boolean</code></td>
+<td></td>
+<td>เปิดอยู่ (ควบคุมเอง)</td>
+</tr>
+<tr>
+<td><code>defaultOpen</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>เปิดตั้งแต่แรก (ไม่ควบคุมเอง)</td>
+</tr>
+<tr>
+<td><code>onOpenChange</code></td>
+<td><code>(open: boolean, reason: OpenChangeReason) =&gt; void</code></td>
+<td></td>
+<td>หลังเปิดหรือปิด (เฉพาะเมื่อเปลี่ยน) พร้อมเหตุผล</td>
+</tr>
+<tr>
+<td><code>initialFocus</code></td>
+<td><code>'first' | 'last' | 'none'</code></td>
+<td></td>
+<td>รายการที่ได้โฟกัสตอนเปิด ถ้าไม่ตั้ง trigger เป็นคนตัดสิน (↑ รายการสุดท้าย นอกนั้นรายการแรก)</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>สร้างให้</td>
+<td>ฐานของ id คือ <code>&lt;id&gt;-trigger</code>, <code>&lt;id&gt;-menu</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>Menu.useMenuContext()</code> คืนสถานะของ <code>Root</code> หรือ <code>SubmenuRoot</code> ที่ใกล้ที่สุด (<code>open</code>, <code>popupId</code>, <code>setOpen</code> …) เช่น ไว้หมุนลูกศร <code>Menu.ownItems(popup)</code> คืนรายการของ popup นั้นเอง (ไม่รวมของ submenu)</p>
+<h3 id="menu-trigger">Menu.Trigger</h3>
+<p><code>&lt;button type=&quot;button&quot;&gt;</code> ที่มี <code>aria-haspopup=&quot;menu&quot;</code> (ค่าของคุณมาก่อน), <code>aria-expanded</code> และ <code>aria-controls</code> และ id <code>&lt;id&gt;-trigger</code> ซึ่งใช้ตั้งชื่อ popup คลิกแล้วสลับเปิดปิด ↓ เปิดที่รายการแรก ↑ เปิดที่รายการสุดท้าย</p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>ค่าเริ่มต้น</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>render</code></td>
+<td><code>(props, { open }) =&gt; ReactElement</code></td>
+<td></td>
+<td>render element ของคุณเองด้วย prop ของ trigger แทน <code>&lt;button&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>เมื่อ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-popup-open</code></td>
+<td>menu เปิดอยู่</td>
+</tr>
+</tbody>
+</table>
+<h3 id="menu-popup">Menu.Popup</h3>
+<p><code>&lt;div role=&quot;menu&quot; tabindex=&quot;-1&quot; popover=&quot;manual&quot;&gt;</code> ใน top layer มี id <code>&lt;id&gt;-menu</code> ได้ชื่อจาก trigger ถ้าคุณไม่ให้ <code>aria-label</code> หรือ <code>aria-labelledby</code> รายการข้างในถูก render เสมอ (ซ่อนตอนปิด) ถ้าอยู่ใน <code>SubmenuTrigger</code> มันคือ submenu ของรายการนั้น วางข้างรายการทางขอบปลาย</p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>ค่าเริ่มต้น</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>anchor</code></td>
+<td><code>RefObject&lt;Element | null&gt;</code></td>
+<td>trigger</td>
+<td>element ที่ menu วางข้าง</td>
+</tr>
+<tr>
+<td><code>placement</code></td>
+<td><code>Placement</code></td>
+<td><code>'bottom-start'</code></td>
+<td>ตำแหน่งที่เปิดข้าง anchor (ไม่ใช้กับ submenu)</td>
+</tr>
+<tr>
+<td><code>matchWidth</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>กว้างเท่า anchor (ไม่ใช้กับ submenu)</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>เมื่อ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-open</code></td>
+<td>เปิดอยู่</td>
+</tr>
+<tr>
+<td><code>data-side</code></td>
+<td><code>top</code>, <code>bottom</code>, <code>left</code> หรือ <code>right</code> คือฝั่งที่ไปอยู่</td>
+</tr>
+</tbody>
+</table>
+<h3 id="menu-item-checkboxitem-radioitem">Menu.Item, CheckboxItem, RadioItem</h3>
+<p><code>&lt;div tabindex=&quot;-1&quot;&gt;</code> ที่มี <code>role=&quot;menuitem&quot;</code>, <code>&quot;menuitemcheckbox&quot;</code> หรือ <code>&quot;menuitemradio&quot;</code> คลิก กด Enter หรือ Space เพื่อสั่งงาน <code>CheckboxItem</code> จะสลับค่า <code>RadioItem</code> จะกลายเป็นค่าของกลุ่ม จากนั้น <code>onClick</code> ทำงานและ menu ปิด รายการที่ปิดใช้งานยังแสดงและถูกอ่าน (<code>aria-disabled</code>) แต่การกดลูกศรจะข้ามไป และสั่งงานแล้วไม่มีอะไรเกิดขึ้น</p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>ค่าเริ่มต้น</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>onClick</code></td>
+<td><code>(event) =&gt; void</code></td>
+<td></td>
+<td>เมื่อคลิกและเมื่อกด Enter / Space ก่อน menu ปิด (ไม่ทำงานเมื่อปิดใช้งาน)</td>
+</tr>
+<tr>
+<td><code>label</code></td>
+<td><code>string</code></td>
+<td>ข้อความของรายการ</td>
+<td>ข้อความที่ใช้จับคู่ตอนพิมพ์ เก็บเป็น <code>data-label</code></td>
+</tr>
+<tr>
+<td><code>disabled</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>การกดลูกศรจะข้ามไป สั่งงานไม่ได้</td>
+</tr>
+<tr>
+<td><code>closeOnClick</code></td>
+<td><code>boolean</code></td>
+<td><code>true</code></td>
+<td>สั่งงานแล้วปิดทุกชั้น</td>
+</tr>
+<tr>
+<td><code>checked</code></td>
+<td><code>boolean</code></td>
+<td></td>
+<td><code>CheckboxItem</code>: เปิดอยู่ (ควบคุมเอง)</td>
+</tr>
+<tr>
+<td><code>defaultChecked</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td><code>CheckboxItem</code>: เปิดตั้งแต่แรก</td>
+</tr>
+<tr>
+<td><code>onCheckedChange</code></td>
+<td><code>(checked: boolean) =&gt; void</code></td>
+<td></td>
+<td><code>CheckboxItem</code>: หลังสลับค่า</td>
+</tr>
+<tr>
+<td><code>value</code></td>
+<td><code>string</code></td>
+<td></td>
+<td><code>RadioItem</code>: ค่าที่มันแทนในกลุ่ม (ต้องใส่)</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>เมื่อ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-disabled</code></td>
+<td>ปิดใช้งาน</td>
+</tr>
+<tr>
+<td><code>data-checked</code></td>
+<td><code>CheckboxItem</code> หรือ <code>RadioItem</code> ที่ถูกเลือก</td>
+</tr>
+</tbody>
+</table>
+<p><code>Menu.useMenuItemContext()</code> คืน <code>{ checked }</code> ของรายการที่ครอบอยู่</p>
+<h3 id="menu-radiogroup">Menu.RadioGroup</h3>
+<p><code>Group</code> ของ <code>RadioItem</code> ที่ถูกเลือกได้หนึ่งตัวเสมอ</p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>ค่าเริ่มต้น</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>value</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>ค่าของรายการที่ถูกเลือก (ควบคุมเอง)</td>
+</tr>
+<tr>
+<td><code>defaultValue</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>ค่าเริ่มต้น (ไม่ควบคุมเอง)</td>
+</tr>
+<tr>
+<td><code>onValueChange</code></td>
+<td><code>(value: string) =&gt; void</code></td>
+<td></td>
+<td>หลังเลือกรายการอื่น</td>
+</tr>
+</tbody>
+</table>
+<h3 id="menu-group-grouplabel">Menu.Group, GroupLabel</h3>
+<p><code>Group</code> คือ <code>&lt;div role=&quot;group&quot;&gt;</code> ที่ได้ชื่อจาก <code>GroupLabel</code> (เป็น <code>&lt;div&gt;</code>) ถ้าคุณไม่ให้ <code>aria-labelledby</code> ไม่มี prop หรือ data attribute เพิ่ม</p>
+<h3 id="menu-separator">Menu.Separator</h3>
+<p><code>&lt;hr&gt;</code> คั่นระหว่างรายการ</p>
+<h3 id="menu-submenuroot-submenutrigger">Menu.SubmenuRoot, SubmenuTrigger</h3>
+<p><code>SubmenuRoot</code> เก็บสถานะของ submenu และรับ prop เดียวกับ <code>Root</code> <code>SubmenuTrigger</code> คือ <code>&lt;div role=&quot;menuitem&quot; aria-haspopup=&quot;menu&quot;&gt;</code> ที่มี <code>aria-expanded</code> <code>Popup</code> ของ submenu วางไว้ข้างในมัน</p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>ค่าเริ่มต้น</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>label</code></td>
+<td><code>string</code></td>
+<td>ข้อความของรายการ</td>
+<td>ข้อความที่ใช้จับคู่ตอนพิมพ์ เก็บเป็น <code>data-label</code></td>
+</tr>
+<tr>
+<td><code>disabled</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>submenu ไม่เปิด</td>
+</tr>
+<tr>
+<td><code>delay</code></td>
+<td><code>number</code></td>
+<td><code>150</code></td>
+<td>เวลาชี้เมาส์ค้างก่อน submenu เปิดหรือปิด หน่วย ms</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>เมื่อ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-popup-open</code></td>
+<td>submenu เปิดอยู่</td>
+</tr>
+<tr>
+<td><code>data-disabled</code></td>
+<td>ปิดใช้งาน</td>
+</tr>
+</tbody>
+</table>
+<h2 id="คีย์บอร์ดและ-accessibility">คีย์บอร์ดและ accessibility</h2>
+<table>
+<thead>
+<tr>
+<th>ปุ่ม</th>
+<th>ที่ trigger</th>
+<th>ใน menu</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Enter, Space</td>
+<td>เปิดที่รายการแรก</td>
+<td>สั่งงานรายการที่โฟกัสอยู่ (หรือเปิด submenu ของมัน)</td>
+</tr>
+<tr>
+<td>↓</td>
+<td>เปิดที่รายการแรก</td>
+<td>รายการถัดไป วนรอบ ข้ามรายการที่ปิดใช้งาน</td>
+</tr>
+<tr>
+<td>↑</td>
+<td>เปิดที่รายการสุดท้าย</td>
+<td>รายการก่อนหน้า วนรอบ</td>
+</tr>
+<tr>
+<td>Home / End</td>
+<td></td>
+<td>รายการแรก / สุดท้าย</td>
+</tr>
+<tr>
+<td>ตัวอักษร</td>
+<td></td>
+<td>รายการถัดไปที่ <code>label</code> (หรือข้อความ) ขึ้นต้นด้วยตัวอักษรนั้น</td>
+</tr>
+<tr>
+<td>→ (← ในหน้าขวาไปซ้าย)</td>
+<td></td>
+<td>เปิด submenu ของรายการที่โฟกัสอยู่</td>
+</tr>
+<tr>
+<td>← (→ ในหน้าขวาไปซ้าย)</td>
+<td></td>
+<td>ใน submenu: ปิด แล้วโฟกัสกลับไปที่รายการแม่</td>
+</tr>
+<tr>
+<td>Esc</td>
+<td></td>
+<td>ปิดชั้นนี้แล้วคืนโฟกัส</td>
+</tr>
+<tr>
+<td>Tab</td>
+<td></td>
+<td>ปิด menu แล้วคืนโฟกัสไปที่ trigger</td>
+</tr>
+</tbody>
+</table>
+<p>part ต่าง ๆ ตั้ง <code>role=&quot;menu&quot;</code>, role ของรายการ, <code>aria-haspopup</code>, <code>aria-expanded</code>, <code>aria-controls</code>, <code>aria-checked</code> และ <code>aria-disabled</code> และย้ายโฟกัสเข้าออกให้</p>
+<p>ส่วนที่คุณเพิ่มเอง</p>
+<ul>
+<li>ชื่อของ trigger ที่มีแต่ไอคอน (<code>aria-label</code>)</li>
+<li>ไฮไลต์ที่มองเห็นได้บนรายการที่โฟกัสอยู่ (<code>focus:</code>) และเครื่องหมายถูกสำหรับ <code>data-checked</code></li>
+<li>สำหรับรายการอันตราย ให้บอกผลที่ตามมาเป็นคำ (เช่น ข้อความที่ซ่อนจากสายตาว่า &quot;ย้อนกลับไม่ได้&quot;)</li>
+</ul>
+
+</article>
+<nav class="doc-toc" aria-labelledby="doc-toc-title"><p id="doc-toc-title" class="doc-toc-title">ในหน้านี้</p><ul><li class="doc-toc-h2"><a href="#ติดตั้ง">ติดตั้ง</a></li><li class="doc-toc-h2"><a href="#วิธีใช้">วิธีใช้</a></li><li class="doc-toc-h2"><a href="#โครงสร้าง">โครงสร้าง</a></li><li class="doc-toc-h2"><a href="#ตำแหน่งและความกว้าง">ตำแหน่งและความกว้าง</a></li><li class="doc-toc-h2"><a href="#checkbox-และกลุ่ม-radio">Checkbox และกลุ่ม radio</a></li><li class="doc-toc-h2"><a href="#submenu">Submenu</a></li><li class="doc-toc-h2"><a href="#combo-button">Combo button</a></li><li class="doc-toc-h2"><a href="#สถานะเปิด">สถานะเปิด</a></li><li class="doc-toc-h2"><a href="#ใส่-style">ใส่ style</a></li><li class="doc-toc-h2"><a href="#parts">Parts</a></li><li class="doc-toc-h3"><a href="#menu-root">Menu.Root</a></li><li class="doc-toc-h3"><a href="#menu-trigger">Menu.Trigger</a></li><li class="doc-toc-h3"><a href="#menu-popup">Menu.Popup</a></li><li class="doc-toc-h3"><a href="#menu-item-checkboxitem-radioitem">Menu.Item, CheckboxItem, RadioItem</a></li><li class="doc-toc-h3"><a href="#menu-radiogroup">Menu.RadioGroup</a></li><li class="doc-toc-h3"><a href="#menu-group-grouplabel">Menu.Group, GroupLabel</a></li><li class="doc-toc-h3"><a href="#menu-separator">Menu.Separator</a></li><li class="doc-toc-h3"><a href="#menu-submenuroot-submenutrigger">Menu.SubmenuRoot, SubmenuTrigger</a></li><li class="doc-toc-h2"><a href="#คีย์บอร์ดและ-accessibility">คีย์บอร์ดและ accessibility</a></li></ul></nav>
+</div>
+<nav class="doc-pager" aria-label="ถัดไป / ก่อนหน้า"><a class="doc-pager-prev" href="/kanok-ui-docs/th/headless-popover/" rel="prev"><span>ก่อนหน้า</span>Popover</a><a class="doc-pager-next" href="/kanok-ui-docs/th/headless-accordion/" rel="next"><span>ถัดไป</span>Accordion</a></nav>
+<footer class="doc-footer">@purpurabog/ui 1.4.3 · MIT · <a href="https://cdn.jsdelivr.net/npm/@purpurabog/ui@1.4.3/THIRD-PARTY-NOTICES.md">ประกาศของบุคคลที่สาม</a><br>สร้างตาม Carbon Design System ไม่ได้เกี่ยวข้องหรือได้รับการรับรองจาก IBM — IBM และ Carbon เป็นเครื่องหมายการค้าของ IBM Corp.</footer>
+</ui-content>
+<ui-modal id="doc-search" heading="ค้นหา" data-count="พบ {n} รายการ" data-empty="ไม่พบ “{q}”">
+<ui-search label="ค้นหาในเอกสาร" placeholder="ค้นหาในเอกสาร" size="lg"></ui-search>
+<p class="doc-search-status" role="status"></p>
+<ul class="doc-search-results"></ul>
+</ui-modal>
+</body>
+</html>

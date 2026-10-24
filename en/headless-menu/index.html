@@ -1,0 +1,729 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Headless Menu · @purpurabog/ui</title>
+<link rel="alternate" hreflang="en" href="/kanok-ui-docs/en/headless-menu/"  /><link rel="alternate" hreflang="th" href="/kanok-ui-docs/th/headless-menu/"  />
+<script>(function(){try{var q=new URLSearchParams(location.search).get("design"),d=q;if(q==="kanok"||q==="carbon")localStorage.setItem("ui-docs-design",q);else d=localStorage.getItem("ui-docs-design");if(d==="kanok")document.documentElement.setAttribute("data-design","kanok")}catch(e){}})();(function(){try{var m=localStorage.getItem("ui-docs-theme");if(m!=="light"&&m!=="dark"&&m!=="system")return;var d=m==="dark"||(m==="system"&&matchMedia("(prefers-color-scheme: dark)").matches),r=document.documentElement,t=d?"g100":"white";if(r.getAttribute("data-design")==="kanok")t=d?"lacquer":"paper";r.setAttribute("data-theme",t)}catch(e){}})();</script>
+<style>ui-header:not(:defined){z-index:8000;box-sizing:border-box;border-block-end:1px solid var(--ui-border-subtle-1);background:var(--ui-canvas);block-size:48px;display:block;position:fixed;inset:0 0 auto}:is(ui-header:not(:defined)>*,ui-side-nav:not(:defined)>*){visibility:hidden}:is(ui-header-panel:not(:defined),ui-modal:not(:defined)){display:none}ui-side-nav:not(:defined){display:none}ui-content:not(:defined){margin-block-start:48px;padding:32px;display:block}@media (width>=1056px){ui-side-nav[expanded]:not(:defined){background:var(--ui-canvas);inline-size:256px;display:block;position:fixed;inset:48px auto 0 0}ui-side-nav[expanded]:not(:defined)~ui-content:not(:defined){margin-inline-start:256px}}ui-tabs:not(:defined){display:block}ui-tabs:not(:defined)>ui-tab{box-sizing:border-box;border-block-end:2px solid var(--ui-hairline);block-size:40px;color:var(--ui-ink-muted);font:var(--ui-font-body-sm);padding:0 16px;line-height:38px;display:inline-block}ui-tabs:not(:defined)>ui-tab:first-of-type{border-block-end-color:var(--ui-interactive);color:var(--ui-ink)}ui-tabs:not(:defined)>ui-tab-panel{padding:16px;display:block}ui-tabs:not(:defined)>ui-tab-panel~ui-tab-panel{display:none}ui-code-snippet:not(:defined){background:var(--ui-layer-1);max-block-size:272px;font:var(--ui-font-code,12px/16px monospace);white-space:pre;padding:16px;display:block;overflow:hidden}[data-react-example]:empty>*{visibility:hidden}.doc-demo:has(:not(:defined))>*{visibility:hidden}[data-react-example]:empty{box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}.doc-demo:has(:not(:defined)){box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}@keyframes doc-skeleton{to{background-position:-200% 0}}@media (prefers-reduced-motion:reduce){[data-react-example]:empty{animation:none}.doc-demo:has(:not(:defined)){animation:none}}</style>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/index-ZQ6o4hlA.js"></script>
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/theme-switcher-BGAHXRgF.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/listbox-gjElSjvA.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/headless-CpcU3xFD.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/typeahead-CDCzrGcR.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/flag-D0Ou26eR.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/popup-position-SaIiGkPq.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/focus-Hg6AV1y3.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/menu-CbH0kx49.js">
+  <link rel="stylesheet" crossorigin href="/kanok-ui-docs/assets/theme-switcher-CL5yB6XE.css">
+  <link rel="stylesheet" crossorigin href="/kanok-ui-docs/assets/headless-JjfvojKd.css">
+</head>
+<body>
+<ui-header label="@purpurabog/ui">
+<ui-skip-to-content></ui-skip-to-content>
+<ui-header-menu-button></ui-header-menu-button>
+<ui-header-name href="/kanok-ui-docs/en/" prefix="@purpurabog">ui</ui-header-name>
+<ui-header-global-bar>
+<ui-header-global-action id="doc-search-open" label="Search" tooltip-placement="bottom"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="m18.5 17.8-4.9-4.9a7 7 0 1 0-.7.7l4.9 4.9zM3 8.5a5.5 5.5 0 1 1 5.5 5.5A5.5 5.5 0 0 1 3 8.5Z" /></svg></ui-header-global-action>
+<ui-header-global-action label="Settings" panel="doc-settings" tooltip-placement="bottom-end"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="M16.9 10.6a7 7 0 0 0 0-1.2l1.8-1.4-1.6-2.8-2.1.8a6.6 6.6 0 0 0-1-.6L13.6 3h-3.2l-.4 2.4a6.6 6.6 0 0 0-1 .6l-2.1-.8L5.3 8l1.8 1.4a7 7 0 0 0 0 1.2L5.3 12l1.6 2.8 2.1-.8a6.6 6.6 0 0 0 1 .6l.4 2.4h3.2l.4-2.4a6.6 6.6 0 0 0 1-.6l2.1.8 1.6-2.8zM12 13a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" /></svg></ui-header-global-action>
+</ui-header-global-bar>
+<ui-header-panel id="doc-settings" label="Settings">
+<div class="doc-settings">
+<span class="doc-settings-label">Theme</span>
+<ui-theme-switcher storage-key="ui-docs-theme" tooltip-placement="bottom"></ui-theme-switcher>
+<span class="doc-settings-label">Style</span>
+<ui-content-switcher id="doc-design" aria-label="Style" size="sm"><ui-content-switcher-item name="carbon">Carbon</ui-content-switcher-item><ui-content-switcher-item name="kanok">Kanok</ui-content-switcher-item></ui-content-switcher>
+<span class="doc-settings-label">Language</span>
+<ui-link href="/kanok-ui-docs/th/headless-menu/" hreflang="th" lang="th">ไทย</ui-link>
+</div>
+</ui-header-panel>
+</ui-header>
+<ui-side-nav label="Documentation"><ui-side-nav-items><ui-side-nav-menu label="Get started"><ui-side-nav-menu-item href="/kanok-ui-docs/en/">Overview</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/installation/">Installation</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/migration-1-0/">Migrating to 1.0</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Guides"><ui-side-nav-menu-item href="/kanok-ui-docs/en/themes/">Themes and layers</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/kanok/">Kanok design</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/customizing/">Customizing</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/icons/">Icons</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/forms/">Forms and validation</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/frameworks/">Frameworks</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/ai/">Using with AI</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Forms and actions"><ui-side-nav-menu-item href="/kanok-ui-docs/en/button/">Button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/file-uploader/">File uploader</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Overlays"><ui-side-nav-menu-item href="/kanok-ui-docs/en/modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/toggletip/">Toggletip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/menu/">Menu</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Data"><ui-side-nav-menu-item href="/kanok-ui-docs/en/data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/contained-list/">Contained list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tree-view/">Tree view</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Navigation"><ui-side-nav-menu-item href="/kanok-ui-docs/en/tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/breadcrumb/">Breadcrumb</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/link/">Link</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/ui-shell/">UI shell</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Content"><ui-side-nav-menu-item href="/kanok-ui-docs/en/tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tile/">Tile</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/user-avatar/">User avatar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/list/">List</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Status and loading"><ui-side-nav-menu-item href="/kanok-ui-docs/en/loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/inline-loading/">Inline loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/progress-bar/">Progress bar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/skeleton/">Skeleton</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/badge-indicator/">Badge indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/status-indicator/">Status indicator</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Layout"><ui-side-nav-menu-item href="/kanok-ui-docs/en/grid/">Grid</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/heading/">Heading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/layer/">Layer</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/action-set/">Action set</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/page-header/">Page header</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/big-number/">Big number</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Headless" expanded><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless/">Introduction</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-file-uploader/">File uploader</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-menu/" current>Menu</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-ui-shell/">UI shell</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tree-view/">Tree view</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu></ui-side-nav-items></ui-side-nav><script>if(matchMedia('(min-width: 66rem)').matches)document.currentScript.previousElementSibling.setAttribute('expanded','')</script>
+<ui-content>
+<div class="doc-page">
+<article class="doc">
+<!-- nav: Menu -->
+<h1 id="headless-menu">Headless Menu</h1>
+<p>The <code>Menu</code> parts give you the behaviour of the styled <a href="/kanok-ui-docs/en/menu/">Menu</a> with no styles, in the WAI-ARIA menu button pattern: a trigger that opens a <code>role=&quot;menu&quot;</code> popup in the top layer, focus moved to the first item (or the last), ↑ / ↓ that wrap past disabled items, Home / End, typing to jump, and Esc, Tab, a press outside or a picked item closing it with focus given back. Items can be actions, check boxes or radios, and open submenus.</p>
+<p>You own the trigger's look, every row, the check marks and chevrons, and every style. The parts show their state as <code>data-*</code> attributes; the highlighted item is the focused one, so style it with <code>focus:</code>.</p>
+<h2 id="installation">Installation</h2>
+<p>The headless parts come with the package (there is no shadcn item; the React + Tailwind items are built on them):</p>
+<ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">@purpurabog/ui</span></ui-code-snippet>
+<ui-code-snippet type="single" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { Menu } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;</ui-code-snippet>
+<h2 id="use-it">Use it</h2>
+<div class="doc-demo" data-react-example="0"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { useState } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { Menu } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> item <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'flex h-8 cursor-pointer items-center px-4 text-sm text-ink-muted outline-none hover:bg-ghost-hover hover:text-ink focus:bg-ghost-hover focus:text-ink focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus data-disabled:cursor-not-allowed data-disabled:bg-transparent data-disabled:text-ink-disabled'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [picked, setPicked] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">'nothing yet'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid justify-items-start gap-2"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Root</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Trigger</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"group flex h-10 min-w-48 items-center justify-between gap-2 bg-interactive px-4 text-sm text-on-primary hover:bg-blue-hover focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-focus"</span>&gt;
+          Actions
+          &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-4 fill-current transition-transform group-data-popup-open:rotate-180"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M8 11 3 6l.7-.7L8 9.6l4.3-4.3.7.7z"</span> /&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Trigger</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Popup</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"min-w-48 bg-layer-1 py-1 shadow-lg"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Item</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{item} <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setPicked</span>(<span style="color:var(--ui-tag-color-teal)">'Send for signature'</span>)}&gt;Send for signature&lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Item</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Item</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{item} <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setPicked</span>(<span style="color:var(--ui-tag-color-teal)">'Save as draft'</span>)}&gt;Save as draft&lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Item</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Item</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{item} <span style="color:var(--ui-tag-color-purple)">disabled</span>&gt;Export PDF&lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Item</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Separator</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"my-1 h-px border-0 bg-hairline"</span> /&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Item</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-teal)">`${</span><span style="color:var(--ui-tag-color-teal)">item</span><span style="color:var(--ui-tag-color-teal)">} hover:bg-button-danger hover:text-on-primary focus:bg-button-danger focus:text-on-primary`</span>} <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setPicked</span>(<span style="color:var(--ui-tag-color-teal)">'Discard'</span>)}&gt;
+            Discard
+          &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Item</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Popup</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Root</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-ink-muted"</span>&gt;Picked: {picked}&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<p>The popup is named by the trigger (<code>aria-labelledby</code>) unless you give it an <code>aria-label</code>. <code>onClick</code> on an item runs on a click and on Enter or Space, then every level of the menu closes.</p>
+<h2 id="anatomy">Anatomy</h2>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">Menu.Root</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Trigger</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Popup</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Item</span> /&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Menu.CheckboxItem</span> /&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Separator</span> /&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Group</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Menu.GroupLabel</span> /&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Item</span> /&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Group</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Menu.RadioGroup</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Menu.RadioItem</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"…"</span> /&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.RadioGroup</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Menu.SubmenuRoot</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Menu.SubmenuTrigger</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Popup</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Item</span> /&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Popup</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.SubmenuTrigger</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.SubmenuRoot</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Popup</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Root</span>&gt;</ui-code-snippet>
+<h2 id="placement-and-width">Placement and width</h2>
+<p>The popup opens below the trigger, lined up with its start edge (<code>placement=&quot;bottom-start&quot;</code> on <code>Popup</code>). Any placement works, and it flips when there is no room; <code>data-side</code> says where it went. <code>matchWidth</code> makes it as wide as the trigger, as Carbon's menu button with <code>bottom</code>.</p>
+<div class="doc-demo" data-react-example="1"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { Menu } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> item <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'flex h-10 cursor-pointer items-center px-4 text-sm text-ink-muted outline-none hover:bg-ghost-hover hover:text-ink focus:bg-ghost-hover focus:text-ink focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus'</span>;
+<span style="color:var(--ui-tag-color-magenta)">const</span> trigger <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'h-10 border border-interactive px-4 text-sm text-interactive hover:bg-interactive hover:text-on-primary focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-focus data-popup-open:bg-interactive data-popup-open:text-on-primary'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex flex-wrap items-center gap-4"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Root</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Trigger</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-teal)">`${</span><span style="color:var(--ui-tag-color-teal)">trigger</span><span style="color:var(--ui-tag-color-teal)">} min-w-48 text-start`</span>}&gt;As wide as the button&lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Trigger</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Popup</span> <span style="color:var(--ui-tag-color-purple)">matchWidth</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"bg-layer-1 py-1 shadow-lg"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Item</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{item}&gt;Export PDF&lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Item</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Item</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{item}&gt;Export Word (.docx)&lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Item</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Popup</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Root</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Root</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Trigger</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{trigger}&gt;End edge, above&lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Trigger</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Popup</span> <span style="color:var(--ui-tag-color-purple)">placement</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"top-end"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"bg-layer-1 py-1 shadow-lg data-[side=top]:shadow-[0_-2px_6px_rgb(0_0_0/0.3)]"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Item</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{item}&gt;Export PDF&lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Item</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Item</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{item}&gt;Export Word (.docx) with comments&lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Item</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Popup</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Root</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<h2 id="check-boxes-and-radio-groups">Check boxes and radio groups</h2>
+<ul>
+<li><code>CheckboxItem</code> is an on / off item (<code>menuitemcheckbox</code>): <code>checked</code> and <code>onCheckedChange</code>, or <code>defaultChecked</code>.</li>
+<li><code>RadioGroup</code> holds <code>RadioItem</code>s (<code>menuitemradio</code>), exactly one checked: <code>value</code> and <code>onValueChange</code>, or <code>defaultValue</code>.</li>
+<li>Both get <code>aria-checked</code> and <code>data-checked</code> to draw a check mark on. <code>Menu.useMenuItemContext()</code> gives <code>checked</code> to a component inside the item.</li>
+<li><code>Group</code> with a <code>GroupLabel</code> names a set of items. <code>RadioGroup</code> is a <code>Group</code> too.</li>
+<li>Every item closes the menu when picked; <code>closeOnClick={false}</code> keeps it open, handy for check boxes.</li>
+</ul>
+<div class="doc-demo" data-react-example="2"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { useState } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { Menu } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> item <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'group flex h-8 cursor-pointer items-center gap-2 px-4 text-sm text-ink-muted outline-none hover:bg-ghost-hover hover:text-ink focus:bg-ghost-hover focus:text-ink focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Check</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"invisible size-4 fill-current group-data-checked:visible"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M6 12.4 2.3 8.7l.7-.7 3 3 6.3-6.3.7.7z"</span> /&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+  );
+}
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [archived, setArchived] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-green)">true</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [drafts, setDrafts] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-green)">false</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [sort, setSort] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">'date'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid justify-items-start gap-2"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Root</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Trigger</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-10 px-4 text-sm text-link hover:bg-ghost-hover focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus"</span>&gt;View options&lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Trigger</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Popup</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"min-w-56 bg-layer-1 py-1 shadow-lg"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Menu.CheckboxItem</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{item} <span style="color:var(--ui-tag-color-purple)">checked</span><span style="color:var(--ui-tag-color-magenta)">=</span>{archived} <span style="color:var(--ui-tag-color-purple)">onCheckedChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{setArchived} <span style="color:var(--ui-tag-color-purple)">closeOnClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">false</span>}&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">Check</span> /&gt;
+            Show archived
+          &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.CheckboxItem</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Menu.CheckboxItem</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{item} <span style="color:var(--ui-tag-color-purple)">checked</span><span style="color:var(--ui-tag-color-magenta)">=</span>{drafts} <span style="color:var(--ui-tag-color-purple)">onCheckedChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{setDrafts} <span style="color:var(--ui-tag-color-purple)">closeOnClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">false</span>}&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">Check</span> /&gt;
+            Show drafts
+          &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.CheckboxItem</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Separator</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"my-1 h-px border-0 bg-hairline"</span> /&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Menu.RadioGroup</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{sort} <span style="color:var(--ui-tag-color-purple)">onValueChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{setSort}&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">Menu.GroupLabel</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"px-4 pt-2 pb-1 text-xs font-semibold text-ink-muted"</span>&gt;Sort by&lt;/<span style="color:var(--ui-tag-color-blue)">Menu.GroupLabel</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">Menu.RadioItem</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"name"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{item}&gt;&lt;<span style="color:var(--ui-tag-color-blue)">Check</span> /&gt;Name&lt;/<span style="color:var(--ui-tag-color-blue)">Menu.RadioItem</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">Menu.RadioItem</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"date"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{item}&gt;&lt;<span style="color:var(--ui-tag-color-blue)">Check</span> /&gt;Date modified&lt;/<span style="color:var(--ui-tag-color-blue)">Menu.RadioItem</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">Menu.RadioItem</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"expiry"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{item}&gt;&lt;<span style="color:var(--ui-tag-color-blue)">Check</span> /&gt;Expiry date&lt;/<span style="color:var(--ui-tag-color-blue)">Menu.RadioItem</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.RadioGroup</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Popup</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Root</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-ink-muted"</span>&gt;
+        Archived: {<span style="color:var(--ui-tag-color-cyan)">String</span>(archived)}. Drafts: {<span style="color:var(--ui-tag-color-cyan)">String</span>(drafts)}. Sort by: {sort}
+      &lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<h2 id="submenus">Submenus</h2>
+<p>A <code>SubmenuRoot</code> inside the popup holds a <code>SubmenuTrigger</code>, an item that opens the submenu's own <code>Popup</code> (put inside it) beside it: on hover after <code>delay</code> (150ms, focus stays), a click, Enter, Space or → (← right-to-left). ← or Esc closes only that level. Picking an item in a submenu closes every level.</p>
+<div class="doc-demo" data-react-example="3"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { useState } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { Menu } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> item <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'flex h-8 cursor-pointer items-center justify-between gap-4 px-4 text-sm text-ink-muted outline-none hover:bg-ghost-hover hover:text-ink focus:bg-ghost-hover focus:text-ink focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus data-popup-open:bg-ghost-hover data-popup-open:text-ink'</span>;
+<span style="color:var(--ui-tag-color-magenta)">const</span> popup <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'min-w-40 bg-layer-1 py-1 shadow-lg'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Chevron</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-4 fill-current rtl:-scale-x-100"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M11 8 6 13l-.7-.7L9.6 8 5.3 3.7 6 3z"</span> /&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+  );
+}
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [picked, setPicked] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">'nothing yet'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> <span style="color:var(--ui-tag-color-cyan)">pick</span> <span style="color:var(--ui-tag-color-magenta)">=</span> (label<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setPicked</span>(label);
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid justify-items-start gap-2"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Root</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Trigger</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-10 px-4 text-sm text-link hover:bg-ghost-hover focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus"</span>&gt;Document actions&lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Trigger</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Popup</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{popup}&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Item</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{item} <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-cyan)">pick</span>(<span style="color:var(--ui-tag-color-teal)">'Open'</span>)}&gt;Open&lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Item</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Menu.SubmenuRoot</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">Menu.SubmenuTrigger</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{item} <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Export as"</span>&gt;
+              Export as
+              &lt;<span style="color:var(--ui-tag-color-blue)">Chevron</span> /&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Popup</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{popup}&gt;
+                &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Item</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{item} <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-cyan)">pick</span>(<span style="color:var(--ui-tag-color-teal)">'PDF'</span>)}&gt;PDF&lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Item</span>&gt;
+                &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Item</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{item} <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-cyan)">pick</span>(<span style="color:var(--ui-tag-color-teal)">'Word (.docx)'</span>)}&gt;Word (.docx)&lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Item</span>&gt;
+                &lt;<span style="color:var(--ui-tag-color-blue)">Menu.SubmenuRoot</span>&gt;
+                  &lt;<span style="color:var(--ui-tag-color-blue)">Menu.SubmenuTrigger</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{item} <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Image"</span>&gt;
+                    Image
+                    &lt;<span style="color:var(--ui-tag-color-blue)">Chevron</span> /&gt;
+                    &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Popup</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{popup}&gt;
+                      &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Item</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{item} <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-cyan)">pick</span>(<span style="color:var(--ui-tag-color-teal)">'PNG'</span>)}&gt;PNG&lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Item</span>&gt;
+                      &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Item</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{item} <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-cyan)">pick</span>(<span style="color:var(--ui-tag-color-teal)">'JPEG'</span>)}&gt;JPEG&lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Item</span>&gt;
+                    &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Popup</span>&gt;
+                  &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.SubmenuTrigger</span>&gt;
+                &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.SubmenuRoot</span>&gt;
+              &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Popup</span>&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.SubmenuTrigger</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.SubmenuRoot</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Popup</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Root</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-ink-muted"</span>&gt;Picked: {picked}&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<p><code>label</code> on an item is the text typing matches (as <code>data-label</code>); give it when the item holds more than its name, such as a chevron or a shortcut.</p>
+<h2 id="a-combo-button">A combo button</h2>
+<p>A trigger can be any button: <code>render</code> hands you the trigger's props and the open state to put on your own element. <code>anchor</code> on <code>Popup</code> places the menu beside another element, here the whole pair of buttons, and <code>matchWidth</code> makes it as wide.</p>
+<div class="doc-demo" data-react-example="4"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { useRef, useState } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { Menu } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> item <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'flex h-10 cursor-pointer items-center px-4 text-sm text-ink-muted outline-none hover:bg-ghost-hover hover:text-ink focus:bg-ghost-hover focus:text-ink focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> pair <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useRef</span>&lt;<span style="color:var(--ui-tag-color-cyan)">HTMLDivElement</span>&gt;(<span style="color:var(--ui-tag-color-green)">null</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [last, setLast] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">'none'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid justify-items-start gap-2"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">ref</span><span style="color:var(--ui-tag-color-magenta)">=</span>{pair} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"inline-flex gap-px"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">button</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"button"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setLast</span>(<span style="color:var(--ui-tag-color-teal)">'Save'</span>)} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-10 min-w-28 bg-interactive px-4 text-start text-sm text-on-primary hover:bg-blue-hover focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-focus"</span>&gt;
+          Save
+        &lt;/<span style="color:var(--ui-tag-color-blue)">button</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Root</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Trigger</span>
+            <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Additional actions"</span>
+            <span style="color:var(--ui-tag-color-purple)">render</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(props, { open }) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+              &lt;<span style="color:var(--ui-tag-color-blue)">button</span> {<span style="color:var(--ui-tag-color-magenta)">...</span>props} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid size-10 place-items-center bg-interactive text-on-primary hover:bg-blue-hover focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-focus"</span>&gt;
+                &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-teal)">`size-4 fill-current transition-transform ${</span><span style="color:var(--ui-tag-color-teal)">open </span><span style="color:var(--ui-tag-color-magenta)">?</span><span style="color:var(--ui-tag-color-teal)"> </span><span style="color:var(--ui-tag-color-teal)">'rotate-180'</span><span style="color:var(--ui-tag-color-teal)"> </span><span style="color:var(--ui-tag-color-magenta)">:</span><span style="color:var(--ui-tag-color-teal)"> </span><span style="color:var(--ui-tag-color-teal)">''}`</span>}&gt;
+                  &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M8 11 3 6l.7-.7L8 9.6l4.3-4.3.7.7z"</span> /&gt;
+                &lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+              &lt;/<span style="color:var(--ui-tag-color-blue)">button</span>&gt;
+            )}
+          /&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Popup</span> <span style="color:var(--ui-tag-color-purple)">anchor</span><span style="color:var(--ui-tag-color-magenta)">=</span>{pair} <span style="color:var(--ui-tag-color-purple)">matchWidth</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"bg-layer-1 py-1 shadow-lg"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Item</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{item} <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setLast</span>(<span style="color:var(--ui-tag-color-teal)">'Save as draft'</span>)}&gt;Save as draft&lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Item</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Item</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{item} <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setLast</span>(<span style="color:var(--ui-tag-color-teal)">'Save and send'</span>)}&gt;Save and send&lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Item</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Popup</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Root</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-ink-muted"</span>&gt;Last action: {last}&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<h2 id="open-state">Open state</h2>
+<p>Hold the state with <code>open</code> and <code>onOpenChange</code>, or give <code>defaultOpen</code>. <code>onOpenChange</code> reports changes only, with why: <code>trigger-press</code>, <code>trigger-hover</code> (a submenu), <code>item-press</code>, <code>escape-key</code>, <code>list-navigation</code> (← out of a submenu), <code>focus-out</code> or <code>outside-press</code>. <code>initialFocus</code> on <code>Root</code> forces which item takes focus on open (<code>first</code>, <code>last</code> or <code>none</code>); left out, ↑ on the trigger starts on the last item and everything else on the first.</p>
+<div class="doc-demo" data-react-example="5"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { useState } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { Menu } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> item <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'flex h-10 cursor-pointer items-center px-4 text-sm text-ink-muted outline-none hover:bg-ghost-hover hover:text-ink focus:bg-ghost-hover focus:text-ink focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [open, setOpen] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-green)">false</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [why, setWhy] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">'none'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid justify-items-start gap-2"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Root</span>
+        <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open}
+        <span style="color:var(--ui-tag-color-purple)">onOpenChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(next, reason) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+          <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(next);
+          <span style="color:var(--ui-tag-color-cyan)">setWhy</span>(reason);
+        }}
+      &gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Trigger</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Options for Lease, Silom office"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid size-10 place-items-center text-ink hover:bg-ghost-hover focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus data-popup-open:bg-layer-1 data-popup-open:shadow-lg"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-4 fill-current"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">circle</span> <span style="color:var(--ui-tag-color-purple)">cx</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"8"</span> <span style="color:var(--ui-tag-color-purple)">cy</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"4"</span> <span style="color:var(--ui-tag-color-purple)">r</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"1.5"</span> /&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">circle</span> <span style="color:var(--ui-tag-color-purple)">cx</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"8"</span> <span style="color:var(--ui-tag-color-purple)">cy</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"8"</span> <span style="color:var(--ui-tag-color-purple)">r</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"1.5"</span> /&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">circle</span> <span style="color:var(--ui-tag-color-purple)">cx</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"8"</span> <span style="color:var(--ui-tag-color-purple)">cy</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"12"</span> <span style="color:var(--ui-tag-color-purple)">r</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"1.5"</span> /&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Trigger</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Popup</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"min-w-40 bg-layer-1 py-1 shadow-lg"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Item</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{item}&gt;Edit&lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Item</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Item</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{item}&gt;Duplicate&lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Item</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Item</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{item}&gt;Delete&lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Item</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Popup</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Root</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-ink-muted"</span>&gt;Open: {<span style="color:var(--ui-tag-color-cyan)">String</span>(open)}. Last reason: {why}&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<h2 id="style-it">Style it</h2>
+<div class="doc-demo" data-react-example="6"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { Menu } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> item <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'grid h-8 cursor-pointer grid-cols-[1rem_1fr_max-content] items-center gap-x-2 px-4 text-sm text-ink-muted outline-none hover:bg-ghost-hover hover:text-ink focus:bg-ghost-hover focus:text-ink focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus data-disabled:cursor-not-allowed data-disabled:bg-transparent data-disabled:text-ink-disabled'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Root</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Trigger</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-10 border border-interactive px-4 text-sm text-interactive hover:bg-interactive hover:text-on-primary focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-focus data-popup-open:bg-interactive data-popup-open:text-on-primary"</span>&gt;
+        Document options
+      &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Trigger</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Popup</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"min-w-52 bg-layer-1 py-1 shadow-lg outline-none data-[side=top]:shadow-[0_-2px_6px_rgb(0_0_0/0.3)]"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Item</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{item} <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Edit"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-4 fill-current"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"m13.7 4.3-2-2a1 1 0 0 0-1.4 0L2 10.6V14h3.4l8.3-8.3a1 1 0 0 0 0-1.4ZM5 13H3v-2l6-6 2 2Zm7-7-2-2 1-1 2 2Z"</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+          Edit
+          &lt;<span style="color:var(--ui-tag-color-blue)">kbd</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"font-sans text-xs"</span>&gt;⌘E&lt;/<span style="color:var(--ui-tag-color-blue)">kbd</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Item</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Menu.Item</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{item} <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Archive"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">span</span> /&gt;
+          Archive (signed only)
+          &lt;<span style="color:var(--ui-tag-color-blue)">span</span> /&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Item</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Popup</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">Menu.Root</span>&gt;
+  );
+}</ui-code-snippet>
+<ui-code-snippet type="multi" class="doc-code" data-lang="css"><span style="color:var(--ui-ink-muted);font-style:italic">/* className="trigger" on Trigger, "menu" on Popup, "item" on each item */</span>
+<span style="color:var(--ui-tag-color-purple)">.trigger</span>[<span style="color:var(--ui-tag-color-purple)">data-popup-open</span>] { <span style="color:var(--ui-tag-color-purple)">background</span>: #0f62fe; <span style="color:var(--ui-tag-color-purple)">color</span>: #fff; }
+<span style="color:var(--ui-tag-color-purple)">.menu</span> { <span style="color:var(--ui-tag-color-purple)">min-width</span>: <span style="color:var(--ui-tag-color-green)">208px</span>; <span style="color:var(--ui-tag-color-purple)">padding-block</span>: <span style="color:var(--ui-tag-color-green)">4px</span>; <span style="color:var(--ui-tag-color-purple)">background</span>: #f4f4f4; <span style="color:var(--ui-tag-color-purple)">box-shadow</span>: <span style="color:var(--ui-tag-color-green)">0</span> <span style="color:var(--ui-tag-color-green)">2px</span> <span style="color:var(--ui-tag-color-green)">6px</span> <span style="color:var(--ui-tag-color-cyan)">rgb</span>(<span style="color:var(--ui-tag-color-green)">0</span> <span style="color:var(--ui-tag-color-green)">0</span> <span style="color:var(--ui-tag-color-green)">0</span> / <span style="color:var(--ui-tag-color-green)">0.3</span>); }
+<span style="color:var(--ui-tag-color-purple)">.menu</span>[<span style="color:var(--ui-tag-color-purple)">data-side</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">'top'</span>] { <span style="color:var(--ui-tag-color-purple)">box-shadow</span>: <span style="color:var(--ui-tag-color-green)">0</span> <span style="color:var(--ui-tag-color-green)">-2px</span> <span style="color:var(--ui-tag-color-green)">6px</span> <span style="color:var(--ui-tag-color-cyan)">rgb</span>(<span style="color:var(--ui-tag-color-green)">0</span> <span style="color:var(--ui-tag-color-green)">0</span> <span style="color:var(--ui-tag-color-green)">0</span> / <span style="color:var(--ui-tag-color-green)">0.3</span>); }
+<span style="color:var(--ui-tag-color-purple)">.item:focus</span> { <span style="color:var(--ui-tag-color-purple)">background</span>: #e8e8e8; <span style="color:var(--ui-tag-color-purple)">outline</span>: <span style="color:var(--ui-tag-color-green)">none</span>; }
+<span style="color:var(--ui-tag-color-purple)">.item:focus-visible</span> { <span style="color:var(--ui-tag-color-purple)">outline</span>: <span style="color:var(--ui-tag-color-green)">2px</span> <span style="color:var(--ui-tag-color-green)">solid</span> #0f62fe; <span style="color:var(--ui-tag-color-purple)">outline-offset</span>: <span style="color:var(--ui-tag-color-green)">-2px</span>; }
+<span style="color:var(--ui-tag-color-purple)">.item</span>[<span style="color:var(--ui-tag-color-purple)">data-disabled</span>] { <span style="color:var(--ui-tag-color-purple)">color</span>: #a8a8a8; <span style="color:var(--ui-tag-color-purple)">cursor</span>: <span style="color:var(--ui-tag-color-green)">not-allowed</span>; }
+<span style="color:var(--ui-tag-color-purple)">.item</span>[<span style="color:var(--ui-tag-color-purple)">data-checked</span>] <span style="color:var(--ui-tag-color-purple)">.check</span> { <span style="color:var(--ui-tag-color-purple)">visibility</span>: <span style="color:var(--ui-tag-color-green)">visible</span>; }</ui-code-snippet>
+<h2 id="parts">Parts</h2>
+<h3 id="menu-root">Menu.Root</h3>
+<p>Renders no element of its own: it holds the open state.</p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>open</code></td>
+<td><code>boolean</code></td>
+<td></td>
+<td>Open (controlled)</td>
+</tr>
+<tr>
+<td><code>defaultOpen</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Open at first (uncontrolled)</td>
+</tr>
+<tr>
+<td><code>onOpenChange</code></td>
+<td><code>(open: boolean, reason: OpenChangeReason) =&gt; void</code></td>
+<td></td>
+<td>After it opens or closes (changes only), with why</td>
+</tr>
+<tr>
+<td><code>initialFocus</code></td>
+<td><code>'first' | 'last' | 'none'</code></td>
+<td></td>
+<td>Which item takes focus on open; left out, the trigger decides (↑ the last, else the first)</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>generated</td>
+<td>Base of the ids: <code>&lt;id&gt;-trigger</code>, <code>&lt;id&gt;-menu</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>Menu.useMenuContext()</code> returns the nearest <code>Root</code>'s or <code>SubmenuRoot</code>'s state (<code>open</code>, <code>popupId</code>, <code>setOpen</code> …), for example to turn a chevron. <code>Menu.ownItems(popup)</code> lists a popup's own items (not those of its submenus).</p>
+<h3 id="menu-trigger">Menu.Trigger</h3>
+<p>A <code>&lt;button type=&quot;button&quot;&gt;</code> with <code>aria-haspopup=&quot;menu&quot;</code> (yours wins), <code>aria-expanded</code> and <code>aria-controls</code>, and the id <code>&lt;id&gt;-trigger</code>, which names the popup. A click toggles the menu; ↓ opens it on the first item, ↑ on the last.</p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>render</code></td>
+<td><code>(props, { open }) =&gt; ReactElement</code></td>
+<td></td>
+<td>Render your own element with the trigger's props instead of a <code>&lt;button&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-popup-open</code></td>
+<td>The menu is open</td>
+</tr>
+</tbody>
+</table>
+<h3 id="menu-popup">Menu.Popup</h3>
+<p>A <code>&lt;div role=&quot;menu&quot; tabindex=&quot;-1&quot; popover=&quot;manual&quot;&gt;</code> in the top layer, with the id <code>&lt;id&gt;-menu</code>, named by the trigger unless you give <code>aria-label</code> or <code>aria-labelledby</code>. Its items are always rendered (hidden while closed). Inside a <code>SubmenuTrigger</code> it is that item's submenu, placed beside it at the inline end.</p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>anchor</code></td>
+<td><code>RefObject&lt;Element | null&gt;</code></td>
+<td>the trigger</td>
+<td>What the menu sits beside</td>
+</tr>
+<tr>
+<td><code>placement</code></td>
+<td><code>Placement</code></td>
+<td><code>'bottom-start'</code></td>
+<td>Where it opens beside the anchor (not for a submenu)</td>
+</tr>
+<tr>
+<td><code>matchWidth</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>As wide as the anchor (not for a submenu)</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-open</code></td>
+<td>Open</td>
+</tr>
+<tr>
+<td><code>data-side</code></td>
+<td><code>top</code>, <code>bottom</code>, <code>left</code> or <code>right</code>: where it went</td>
+</tr>
+</tbody>
+</table>
+<h3 id="menu-item-checkboxitem-radioitem">Menu.Item, CheckboxItem, RadioItem</h3>
+<p>A <code>&lt;div tabindex=&quot;-1&quot;&gt;</code> with <code>role=&quot;menuitem&quot;</code>, <code>&quot;menuitemcheckbox&quot;</code> or <code>&quot;menuitemradio&quot;</code>. A click, Enter or Space activates it: a <code>CheckboxItem</code> flips, a <code>RadioItem</code> becomes its group's value, then <code>onClick</code> runs and the menu closes. A disabled item stays visible and announced (<code>aria-disabled</code>) but the keys skip it and activating it does nothing.</p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>onClick</code></td>
+<td><code>(event) =&gt; void</code></td>
+<td></td>
+<td>On a click and on Enter / Space, before the menu closes (not when disabled)</td>
+</tr>
+<tr>
+<td><code>label</code></td>
+<td><code>string</code></td>
+<td>the item's text</td>
+<td>What typing matches, as <code>data-label</code></td>
+</tr>
+<tr>
+<td><code>disabled</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Skipped by the keys; does nothing</td>
+</tr>
+<tr>
+<td><code>closeOnClick</code></td>
+<td><code>boolean</code></td>
+<td><code>true</code></td>
+<td>Activating it closes every level</td>
+</tr>
+<tr>
+<td><code>checked</code></td>
+<td><code>boolean</code></td>
+<td></td>
+<td><code>CheckboxItem</code>: on (controlled)</td>
+</tr>
+<tr>
+<td><code>defaultChecked</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td><code>CheckboxItem</code>: on at first</td>
+</tr>
+<tr>
+<td><code>onCheckedChange</code></td>
+<td><code>(checked: boolean) =&gt; void</code></td>
+<td></td>
+<td><code>CheckboxItem</code>: after it flips</td>
+</tr>
+<tr>
+<td><code>value</code></td>
+<td><code>string</code></td>
+<td></td>
+<td><code>RadioItem</code>: what it stands for in its group (required)</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-disabled</code></td>
+<td>Disabled</td>
+</tr>
+<tr>
+<td><code>data-checked</code></td>
+<td>A checked <code>CheckboxItem</code> or <code>RadioItem</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>Menu.useMenuItemContext()</code> returns <code>{ checked }</code> of the enclosing item.</p>
+<h3 id="menu-radiogroup">Menu.RadioGroup</h3>
+<p>A <code>Group</code> of <code>RadioItem</code>s, exactly one checked.</p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>value</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>The checked item's value (controlled)</td>
+</tr>
+<tr>
+<td><code>defaultValue</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>The starting value (uncontrolled)</td>
+</tr>
+<tr>
+<td><code>onValueChange</code></td>
+<td><code>(value: string) =&gt; void</code></td>
+<td></td>
+<td>After another item was picked</td>
+</tr>
+</tbody>
+</table>
+<h3 id="menu-group-grouplabel">Menu.Group, GroupLabel</h3>
+<p><code>Group</code> is a <code>&lt;div role=&quot;group&quot;&gt;</code> named by its <code>GroupLabel</code> (a <code>&lt;div&gt;</code>) unless you give it <code>aria-labelledby</code>. They add no props and no data attributes.</p>
+<h3 id="menu-separator">Menu.Separator</h3>
+<p>An <code>&lt;hr&gt;</code> between items.</p>
+<h3 id="menu-submenuroot-submenutrigger">Menu.SubmenuRoot, SubmenuTrigger</h3>
+<p><code>SubmenuRoot</code> holds a submenu's state and takes the same props as <code>Root</code>. <code>SubmenuTrigger</code> is a <code>&lt;div role=&quot;menuitem&quot; aria-haspopup=&quot;menu&quot;&gt;</code> with <code>aria-expanded</code>; the submenu's <code>Popup</code> goes inside it.</p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>label</code></td>
+<td><code>string</code></td>
+<td>the item's text</td>
+<td>What typing matches, as <code>data-label</code></td>
+</tr>
+<tr>
+<td><code>disabled</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>The submenu doesn't open</td>
+</tr>
+<tr>
+<td><code>delay</code></td>
+<td><code>number</code></td>
+<td><code>150</code></td>
+<td>Hover time in ms before the submenu opens or closes</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-popup-open</code></td>
+<td>Its submenu is open</td>
+</tr>
+<tr>
+<td><code>data-disabled</code></td>
+<td>Disabled</td>
+</tr>
+</tbody>
+</table>
+<h2 id="keyboard-and-accessibility">Keyboard and accessibility</h2>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>On the trigger</th>
+<th>In the menu</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Enter, Space</td>
+<td>Open on the first item</td>
+<td>Activate the focused item (or open its submenu)</td>
+</tr>
+<tr>
+<td>↓</td>
+<td>Open on the first item</td>
+<td>Next item, wrapping; disabled items are skipped</td>
+</tr>
+<tr>
+<td>↑</td>
+<td>Open on the last item</td>
+<td>Previous item, wrapping</td>
+</tr>
+<tr>
+<td>Home / End</td>
+<td></td>
+<td>First / last item</td>
+</tr>
+<tr>
+<td>Letters</td>
+<td></td>
+<td>Next item whose <code>label</code> (or text) starts with them</td>
+</tr>
+<tr>
+<td>→ (← right-to-left)</td>
+<td></td>
+<td>Open the focused item's submenu</td>
+</tr>
+<tr>
+<td>← (→ right-to-left)</td>
+<td></td>
+<td>In a submenu: close it, focus back on its item</td>
+</tr>
+<tr>
+<td>Esc</td>
+<td></td>
+<td>Close this level and give focus back</td>
+</tr>
+<tr>
+<td>Tab</td>
+<td></td>
+<td>Close the menu and give focus back to the trigger</td>
+</tr>
+</tbody>
+</table>
+<p>The parts set <code>role=&quot;menu&quot;</code>, the item roles, <code>aria-haspopup</code>, <code>aria-expanded</code>, <code>aria-controls</code>, <code>aria-checked</code> and <code>aria-disabled</code>, and move focus in and out.</p>
+<p>You add:</p>
+<ul>
+<li>A name for an icon-only trigger (<code>aria-label</code>).</li>
+<li>A visible highlight on the focused item (<code>focus:</code>), and a check mark for <code>data-checked</code>.</li>
+<li>For a danger item, the consequence in words (for example a visually hidden &quot;This cannot be undone&quot;).</li>
+</ul>
+
+</article>
+<nav class="doc-toc" aria-labelledby="doc-toc-title"><p id="doc-toc-title" class="doc-toc-title">On this page</p><ul><li class="doc-toc-h2"><a href="#installation">Installation</a></li><li class="doc-toc-h2"><a href="#use-it">Use it</a></li><li class="doc-toc-h2"><a href="#anatomy">Anatomy</a></li><li class="doc-toc-h2"><a href="#placement-and-width">Placement and width</a></li><li class="doc-toc-h2"><a href="#check-boxes-and-radio-groups">Check boxes and radio groups</a></li><li class="doc-toc-h2"><a href="#submenus">Submenus</a></li><li class="doc-toc-h2"><a href="#a-combo-button">A combo button</a></li><li class="doc-toc-h2"><a href="#open-state">Open state</a></li><li class="doc-toc-h2"><a href="#style-it">Style it</a></li><li class="doc-toc-h2"><a href="#parts">Parts</a></li><li class="doc-toc-h3"><a href="#menu-root">Menu.Root</a></li><li class="doc-toc-h3"><a href="#menu-trigger">Menu.Trigger</a></li><li class="doc-toc-h3"><a href="#menu-popup">Menu.Popup</a></li><li class="doc-toc-h3"><a href="#menu-item-checkboxitem-radioitem">Menu.Item, CheckboxItem, RadioItem</a></li><li class="doc-toc-h3"><a href="#menu-radiogroup">Menu.RadioGroup</a></li><li class="doc-toc-h3"><a href="#menu-group-grouplabel">Menu.Group, GroupLabel</a></li><li class="doc-toc-h3"><a href="#menu-separator">Menu.Separator</a></li><li class="doc-toc-h3"><a href="#menu-submenuroot-submenutrigger">Menu.SubmenuRoot, SubmenuTrigger</a></li><li class="doc-toc-h2"><a href="#keyboard-and-accessibility">Keyboard and accessibility</a></li></ul></nav>
+</div>
+<nav class="doc-pager" aria-label="Next / Previous"><a class="doc-pager-prev" href="/kanok-ui-docs/en/headless-popover/" rel="prev"><span>Previous</span>Popover</a><a class="doc-pager-next" href="/kanok-ui-docs/en/headless-accordion/" rel="next"><span>Next</span>Accordion</a></nav>
+<footer class="doc-footer">@purpurabog/ui 1.4.3 · MIT · <a href="https://cdn.jsdelivr.net/npm/@purpurabog/ui@1.4.3/THIRD-PARTY-NOTICES.md">Third-party notices</a><br>Built on the Carbon Design System. Not affiliated with or endorsed by IBM; IBM and Carbon are trademarks of IBM Corp.</footer>
+</ui-content>
+<ui-modal id="doc-search" heading="Search" data-count="{n} results" data-empty="No results for “{q}”">
+<ui-search label="Search the docs" placeholder="Search the docs" size="lg"></ui-search>
+<p class="doc-search-status" role="status"></p>
+<ul class="doc-search-results"></ul>
+</ui-modal>
+</body>
+</html>

@@ -1,0 +1,612 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Status indicator · @purpurabog/ui</title>
+<link rel="alternate" hreflang="en" href="/kanok-ui-docs/en/status-indicator/"  /><link rel="alternate" hreflang="th" href="/kanok-ui-docs/th/status-indicator/"  />
+<script>(function(){try{var q=new URLSearchParams(location.search).get("design"),d=q;if(q==="kanok"||q==="carbon")localStorage.setItem("ui-docs-design",q);else d=localStorage.getItem("ui-docs-design");if(d==="kanok")document.documentElement.setAttribute("data-design","kanok")}catch(e){}})();(function(){try{var m=localStorage.getItem("ui-docs-theme");if(m!=="light"&&m!=="dark"&&m!=="system")return;var d=m==="dark"||(m==="system"&&matchMedia("(prefers-color-scheme: dark)").matches),r=document.documentElement,t=d?"g100":"white";if(r.getAttribute("data-design")==="kanok")t=d?"lacquer":"paper";r.setAttribute("data-theme",t)}catch(e){}})();</script>
+<style>ui-header:not(:defined){z-index:8000;box-sizing:border-box;border-block-end:1px solid var(--ui-border-subtle-1);background:var(--ui-canvas);block-size:48px;display:block;position:fixed;inset:0 0 auto}:is(ui-header:not(:defined)>*,ui-side-nav:not(:defined)>*){visibility:hidden}:is(ui-header-panel:not(:defined),ui-modal:not(:defined)){display:none}ui-side-nav:not(:defined){display:none}ui-content:not(:defined){margin-block-start:48px;padding:32px;display:block}@media (width>=1056px){ui-side-nav[expanded]:not(:defined){background:var(--ui-canvas);inline-size:256px;display:block;position:fixed;inset:48px auto 0 0}ui-side-nav[expanded]:not(:defined)~ui-content:not(:defined){margin-inline-start:256px}}ui-tabs:not(:defined){display:block}ui-tabs:not(:defined)>ui-tab{box-sizing:border-box;border-block-end:2px solid var(--ui-hairline);block-size:40px;color:var(--ui-ink-muted);font:var(--ui-font-body-sm);padding:0 16px;line-height:38px;display:inline-block}ui-tabs:not(:defined)>ui-tab:first-of-type{border-block-end-color:var(--ui-interactive);color:var(--ui-ink)}ui-tabs:not(:defined)>ui-tab-panel{padding:16px;display:block}ui-tabs:not(:defined)>ui-tab-panel~ui-tab-panel{display:none}ui-code-snippet:not(:defined){background:var(--ui-layer-1);max-block-size:272px;font:var(--ui-font-code,12px/16px monospace);white-space:pre;padding:16px;display:block;overflow:hidden}[data-react-example]:empty>*{visibility:hidden}.doc-demo:has(:not(:defined))>*{visibility:hidden}[data-react-example]:empty{box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}.doc-demo:has(:not(:defined)){box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}@keyframes doc-skeleton{to{background-position:-200% 0}}@media (prefers-reduced-motion:reduce){[data-react-example]:empty{animation:none}.doc-demo:has(:not(:defined)){animation:none}}</style>
+
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/theme-switcher-BGAHXRgF.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/tabs-CvVVO2Pb.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/button-CTeCEJcq.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/structured-list-DsTWMgU1.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/definition-tooltip-18dYgQUo.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/status-indicator-DhbzV_N0.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/shape-indicator-2AYS7OUM.js"></script>
+  <link rel="stylesheet" crossorigin href="/kanok-ui-docs/assets/theme-switcher-CL5yB6XE.css">
+</head>
+<body>
+<ui-header label="@purpurabog/ui">
+<ui-skip-to-content></ui-skip-to-content>
+<ui-header-menu-button></ui-header-menu-button>
+<ui-header-name href="/kanok-ui-docs/en/" prefix="@purpurabog">ui</ui-header-name>
+<ui-header-global-bar>
+<ui-header-global-action id="doc-search-open" label="Search" tooltip-placement="bottom"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="m18.5 17.8-4.9-4.9a7 7 0 1 0-.7.7l4.9 4.9zM3 8.5a5.5 5.5 0 1 1 5.5 5.5A5.5 5.5 0 0 1 3 8.5Z" /></svg></ui-header-global-action>
+<ui-header-global-action label="Settings" panel="doc-settings" tooltip-placement="bottom-end"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="M16.9 10.6a7 7 0 0 0 0-1.2l1.8-1.4-1.6-2.8-2.1.8a6.6 6.6 0 0 0-1-.6L13.6 3h-3.2l-.4 2.4a6.6 6.6 0 0 0-1 .6l-2.1-.8L5.3 8l1.8 1.4a7 7 0 0 0 0 1.2L5.3 12l1.6 2.8 2.1-.8a6.6 6.6 0 0 0 1 .6l.4 2.4h3.2l.4-2.4a6.6 6.6 0 0 0 1-.6l2.1.8 1.6-2.8zM12 13a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" /></svg></ui-header-global-action>
+</ui-header-global-bar>
+<ui-header-panel id="doc-settings" label="Settings">
+<div class="doc-settings">
+<span class="doc-settings-label">Theme</span>
+<ui-theme-switcher storage-key="ui-docs-theme" tooltip-placement="bottom"></ui-theme-switcher>
+<span class="doc-settings-label">Style</span>
+<ui-content-switcher id="doc-design" aria-label="Style" size="sm"><ui-content-switcher-item name="carbon">Carbon</ui-content-switcher-item><ui-content-switcher-item name="kanok">Kanok</ui-content-switcher-item></ui-content-switcher>
+<span class="doc-settings-label">Language</span>
+<ui-link href="/kanok-ui-docs/th/status-indicator/" hreflang="th" lang="th">ไทย</ui-link>
+</div>
+</ui-header-panel>
+</ui-header>
+<ui-side-nav label="Documentation"><ui-side-nav-items><ui-side-nav-menu label="Get started"><ui-side-nav-menu-item href="/kanok-ui-docs/en/">Overview</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/installation/">Installation</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/migration-1-0/">Migrating to 1.0</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Guides"><ui-side-nav-menu-item href="/kanok-ui-docs/en/themes/">Themes and layers</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/kanok/">Kanok design</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/customizing/">Customizing</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/icons/">Icons</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/forms/">Forms and validation</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/frameworks/">Frameworks</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/ai/">Using with AI</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Forms and actions"><ui-side-nav-menu-item href="/kanok-ui-docs/en/button/">Button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/file-uploader/">File uploader</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Overlays"><ui-side-nav-menu-item href="/kanok-ui-docs/en/modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/toggletip/">Toggletip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/menu/">Menu</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Data"><ui-side-nav-menu-item href="/kanok-ui-docs/en/data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/contained-list/">Contained list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tree-view/">Tree view</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Navigation"><ui-side-nav-menu-item href="/kanok-ui-docs/en/tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/breadcrumb/">Breadcrumb</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/link/">Link</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/ui-shell/">UI shell</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Content"><ui-side-nav-menu-item href="/kanok-ui-docs/en/tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tile/">Tile</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/user-avatar/">User avatar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/list/">List</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Status and loading" expanded><ui-side-nav-menu-item href="/kanok-ui-docs/en/loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/inline-loading/">Inline loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/progress-bar/">Progress bar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/skeleton/">Skeleton</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/badge-indicator/">Badge indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/status-indicator/" current>Status indicator</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Layout"><ui-side-nav-menu-item href="/kanok-ui-docs/en/grid/">Grid</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/heading/">Heading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/layer/">Layer</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/action-set/">Action set</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/page-header/">Page header</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/big-number/">Big number</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Headless"><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless/">Introduction</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-file-uploader/">File uploader</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-menu/">Menu</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-ui-shell/">UI shell</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tree-view/">Tree view</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu></ui-side-nav-items></ui-side-nav><script>if(matchMedia('(min-width: 66rem)').matches)document.currentScript.previousElementSibling.setAttribute('expanded','')</script>
+<ui-content>
+<div class="doc-page">
+<article class="doc">
+<h1 id="status-indicator">Status indicator</h1>
+<p>A status indicator shows the state of something with a small coloured icon and a label, such as a job that succeeded or an incident's severity. <code>&lt;ui-icon-indicator&gt;</code> uses Carbon's status icons; <code>&lt;ui-shape-indicator&gt;</code> uses simple shapes for severity and state. Both follow Carbon's status indicators, which Carbon still marks as preview.</p>
+<div class="doc-demo"><div style="display: grid; gap: 8px; justify-items: start">
+  <ui-icon-indicator kind="succeeded" label="Payment received"></ui-icon-indicator>
+  <ui-icon-indicator kind="in-progress" label="Waiting for the second approver"></ui-icon-indicator>
+  <ui-icon-indicator kind="failed" label="Bank transfer rejected"></ui-icon-indicator>
+</div>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-1-0">HTML</ui-tab><ui-tab panel="code-1-1">React</ui-tab><ui-tab panel="code-1-2">React + Tailwind</ui-tab><ui-tab-panel name="code-1-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"display: grid; gap: 8px; justify-items: start"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"succeeded"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Payment received"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"in-progress"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Waiting for the second approver"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"failed"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Bank transfer rejected"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-1-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiIconIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"succeeded"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Payment received"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiIconIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"in-progress"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Waiting for the second approver"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiIconIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"failed"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Bank transfer rejected"</span> /&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-1-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">IconIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"succeeded"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Payment received"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">IconIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"in-progress"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Waiting for the second approver"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">IconIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"failed"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Bank transfer rejected"</span> /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="installation">Installation</h2>
+<ui-tabs class="doc-code-tabs" label="Code"><ui-tab panel="code-2-0">npm</ui-tab><ui-tab panel="code-2-1">shadcn · Web component</ui-tab><ui-tab panel="code-2-2">shadcn · React + Tailwind</ui-tab><ui-tab panel="code-2-3">Manual</ui-tab><ui-tab-panel name="code-2-0"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">@purpurabog/ui</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-1"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npx</span> <span style="color:var(--ui-tag-color-teal)">shadcn@4</span> <span style="color:var(--ui-tag-color-teal)">add</span> <span style="color:var(--ui-tag-color-teal)">@kanok-ui/status-indicator</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-2"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npx</span> <span style="color:var(--ui-tag-color-teal)">shadcn@4</span> <span style="color:var(--ui-tag-color-teal)">add</span> <span style="color:var(--ui-tag-color-teal)">@kanok-ui/tw-status-indicator</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-3"><ui-code-snippet type="multi" class="doc-code" data-lang="bash"><span style="color:var(--ui-ink-muted);font-style:italic"># Web component</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 1. Install the dependencies</span>
+<span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">lit@^3.3.0</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 2. Copy each file's "content" from</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    https://cdn.jsdelivr.net/npm/@purpurabog/ui@1.4.3/registry/status-indicator.json</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    to its target:</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/status-indicator/icon-indicator.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/status-indicator/shape-indicator.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/status-indicator/status-indicator-shared.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/status-indicator/status-indicator.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 3. Do the same for the items it needs (registry/&lt;name&gt;.json):</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    core-position, core-status-indicator, definition-tooltip, shared-align, shared-element, shared-field, tokens</span>
+
+<span style="color:var(--ui-ink-muted);font-style:italic"># React + Tailwind</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 1. Install the dependencies</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># (none)</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 2. Copy each file's "content" from</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    https://cdn.jsdelivr.net/npm/@purpurabog/ui@1.4.3/registry/tw-status-indicator.json</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    to its target:</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/react-tw/status-indicator.tsx</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 3. Do the same for the items it needs (registry/&lt;name&gt;.json):</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    core-position, core-status-indicator, tw-definition-tooltip, tw-theme, tw-utils</span></ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>npm gives you every component from the package. shadcn copies the source into your app instead: a copy pinned to this version that you can change. The shadcn commands need the <code>@kanok-ui</code> registry in your <code>components.json</code> once, see <a href="/kanok-ui-docs/en/installation/#react-tailwind-with-shadcn">Installation</a>.</p>
+<h2 id="use-it">Use it</h2>
+<ui-tabs class="doc-code-tabs" label="Code"><ui-tab panel="code-3-0">HTML</ui-tab><ui-tab panel="code-3-1">React</ui-tab><ui-tab panel="code-3-2">React + Tailwind</ui-tab><ui-tab-panel name="code-3-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;<span style="color:var(--ui-tag-color-magenta)">import</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/status-indicator'</span>;&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"succeeded"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Approved"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"high"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"High"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-3-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { UiIconIndicator, UiShapeIndicator } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/react'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiIconIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"succeeded"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Approved"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiShapeIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"high"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"High"</span> /&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-3-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { IconIndicator, ShapeIndicator } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@/components/ui/react-tw/status-indicator'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">IconIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"succeeded"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Approved"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ShapeIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"high"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"High"</span> /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="icon-or-shape">Icon or shape?</h2>
+<ul>
+<li>Icon indicator: the state of a process or an item, such as a payment, an import or a server.</li>
+<li>Shape indicator: a level, such as the severity of an incident or a risk, and a few states (stable, draft, incomplete).</li>
+<li>For a label the user can click or remove, use a <a href="/kanok-ui-docs/en/tag/">Tag</a> instead.</li>
+</ul>
+<p>Each kind has its own icon and colour, so the state doesn't depend on colour alone. Always write a label.</p>
+<h2 id="icon-indicator-kinds">Icon indicator kinds</h2>
+<p><code>kind</code> picks the icon and its colour. There are 12 kinds; a <code>kind</code> that isn't one of them renders nothing.</p>
+<div class="doc-demo"><div style="display: grid; gap: 8px; justify-items: start">
+  <ui-icon-indicator kind="failed" label="Failed"></ui-icon-indicator>
+  <ui-icon-indicator kind="caution-major" label="Caution major"></ui-icon-indicator>
+  <ui-icon-indicator kind="caution-minor" label="Caution minor"></ui-icon-indicator>
+  <ui-icon-indicator kind="undefined" label="Undefined"></ui-icon-indicator>
+  <ui-icon-indicator kind="succeeded" label="Succeeded"></ui-icon-indicator>
+  <ui-icon-indicator kind="normal" label="Normal"></ui-icon-indicator>
+  <ui-icon-indicator kind="in-progress" label="In progress"></ui-icon-indicator>
+  <ui-icon-indicator kind="incomplete" label="Incomplete"></ui-icon-indicator>
+  <ui-icon-indicator kind="not-started" label="Not started"></ui-icon-indicator>
+  <ui-icon-indicator kind="pending" label="Pending"></ui-icon-indicator>
+  <ui-icon-indicator kind="unknown" label="Unknown"></ui-icon-indicator>
+  <ui-icon-indicator kind="informative" label="Informative"></ui-icon-indicator>
+</div>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-4-0">HTML</ui-tab><ui-tab panel="code-4-1">React</ui-tab><ui-tab panel="code-4-2">React + Tailwind</ui-tab><ui-tab-panel name="code-4-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"display: grid; gap: 8px; justify-items: start"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"failed"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Failed"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"caution-major"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Caution major"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"caution-minor"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Caution minor"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"undefined"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Undefined"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"succeeded"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Succeeded"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"normal"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Normal"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"in-progress"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"In progress"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"incomplete"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Incomplete"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"not-started"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Not started"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"pending"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Pending"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"unknown"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Unknown"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"informative"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Informative"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-4-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiIconIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"failed"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Failed"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiIconIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"caution-major"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Caution major"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiIconIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"caution-minor"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Caution minor"</span> /&gt;
+{<span style="color:var(--ui-ink-muted);font-style:italic">/* … undefined, succeeded, normal, in-progress, incomplete, not-started, pending, unknown, informative */</span>}</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-4-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">IconIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"failed"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Failed"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">IconIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"caution-major"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Caution major"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">IconIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"caution-minor"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Caution minor"</span> /&gt;
+{<span style="color:var(--ui-ink-muted);font-style:italic">/* … undefined, succeeded, normal, in-progress, incomplete, not-started, pending, unknown, informative */</span>}</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="icon-size">Icon size</h2>
+<p><code>size</code> is 16 (the default, with 14px text) or 20 (with 16px text), for a bigger heading or a dashboard tile.</p>
+<div class="doc-demo"><div style="display: grid; gap: 12px; justify-items: start">
+  <ui-icon-indicator kind="succeeded" label="Backup finished" size="16"></ui-icon-indicator>
+  <ui-icon-indicator kind="succeeded" label="Backup finished" size="20"></ui-icon-indicator>
+</div>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-5-0">HTML</ui-tab><ui-tab panel="code-5-1">React</ui-tab><ui-tab panel="code-5-2">React + Tailwind</ui-tab><ui-tab-panel name="code-5-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"display: grid; gap: 12px; justify-items: start"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"succeeded"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Backup finished"</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"16"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"succeeded"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Backup finished"</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"20"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-5-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiIconIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"succeeded"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Backup finished"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">16</span>} /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiIconIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"succeeded"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Backup finished"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">20</span>} /&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-5-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">IconIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"succeeded"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Backup finished"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">16</span>} /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">IconIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"succeeded"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Backup finished"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">20</span>} /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="shape-indicator-kinds">Shape indicator kinds</h2>
+<p><code>&lt;ui-shape-indicator&gt;</code> has 11 kinds: the severities (failed, critical, high, medium, low, cautious) and the states (undefined, stable, informative, incomplete, draft). The shape is always 16px.</p>
+<div class="doc-demo"><div style="display: grid; gap: 8px; justify-items: start">
+  <ui-shape-indicator kind="failed" label="Failed"></ui-shape-indicator>
+  <ui-shape-indicator kind="critical" label="Critical"></ui-shape-indicator>
+  <ui-shape-indicator kind="high" label="High"></ui-shape-indicator>
+  <ui-shape-indicator kind="medium" label="Medium"></ui-shape-indicator>
+  <ui-shape-indicator kind="low" label="Low"></ui-shape-indicator>
+  <ui-shape-indicator kind="cautious" label="Cautious"></ui-shape-indicator>
+  <ui-shape-indicator kind="undefined" label="Undefined"></ui-shape-indicator>
+  <ui-shape-indicator kind="stable" label="Stable"></ui-shape-indicator>
+  <ui-shape-indicator kind="informative" label="Informative"></ui-shape-indicator>
+  <ui-shape-indicator kind="incomplete" label="Incomplete"></ui-shape-indicator>
+  <ui-shape-indicator kind="draft" label="Draft"></ui-shape-indicator>
+</div>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-6-0">HTML</ui-tab><ui-tab panel="code-6-1">React</ui-tab><ui-tab panel="code-6-2">React + Tailwind</ui-tab><ui-tab-panel name="code-6-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"display: grid; gap: 8px; justify-items: start"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"failed"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Failed"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"critical"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Critical"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"high"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"High"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"medium"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Medium"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"low"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Low"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"cautious"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Cautious"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"undefined"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Undefined"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"stable"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Stable"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"informative"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Informative"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"incomplete"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Incomplete"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"draft"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Draft"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-6-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiShapeIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"failed"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Failed"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiShapeIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"critical"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Critical"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiShapeIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"high"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"High"</span> /&gt;
+{<span style="color:var(--ui-ink-muted);font-style:italic">/* … medium, low, cautious, undefined, stable, informative, incomplete, draft */</span>}</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-6-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">ShapeIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"failed"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Failed"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ShapeIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"critical"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Critical"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ShapeIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"high"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"High"</span> /&gt;
+{<span style="color:var(--ui-ink-muted);font-style:italic">/* … medium, low, cautious, undefined, stable, informative, incomplete, draft */</span>}</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="text-size">Text size</h2>
+<p>The shape indicator's text is 12px by default. <code>text-size=&quot;14&quot;</code> (<code>textSize={14}</code> in React) makes it 14px, to match body text around it.</p>
+<div class="doc-demo"><div style="display: grid; gap: 12px; justify-items: start">
+  <ui-shape-indicator kind="medium" label="Medium risk"></ui-shape-indicator>
+  <ui-shape-indicator kind="medium" label="Medium risk" text-size="14"></ui-shape-indicator>
+</div>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-7-0">HTML</ui-tab><ui-tab panel="code-7-1">React</ui-tab><ui-tab panel="code-7-2">React + Tailwind</ui-tab><ui-tab-panel name="code-7-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"display: grid; gap: 12px; justify-items: start"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"medium"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Medium risk"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"medium"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Medium risk"</span> <span style="color:var(--ui-tag-color-purple)">text-size</span>=<span style="color:var(--ui-tag-color-teal)">"14"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-7-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiShapeIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"medium"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Medium risk"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiShapeIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"medium"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Medium risk"</span> <span style="color:var(--ui-tag-color-purple)">textSize</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">14</span>} /&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-7-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">ShapeIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"medium"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Medium risk"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ShapeIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"medium"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Medium risk"</span> <span style="color:var(--ui-tag-color-purple)">textSize</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">14</span>} /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="compact">Compact</h2>
+<p><code>compact</code> shows only the icon or shape. The label moves into a tooltip that opens on hover and on keyboard focus. Screen readers hear the label, or <code>icon-description</code> / <code>shape-description</code> (<code>iconDescription</code> / <code>shapeDescription</code> in React) when you set one, for a longer text than the tooltip.</p>
+<div class="doc-demo"><div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: center">
+  <ui-icon-indicator kind="succeeded" label="Signed" compact></ui-icon-indicator>
+  <ui-icon-indicator kind="pending" label="Pending" compact icon-description="Waiting for the vendor to sign"></ui-icon-indicator>
+  <ui-shape-indicator kind="critical" label="Critical" compact shape-description="Critical severity"></ui-shape-indicator>
+</div>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-8-0">HTML</ui-tab><ui-tab panel="code-8-1">React</ui-tab><ui-tab panel="code-8-2">React + Tailwind</ui-tab><ui-tab-panel name="code-8-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"display: flex; flex-wrap: wrap; gap: 24px; align-items: center"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"succeeded"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Signed"</span> <span style="color:var(--ui-tag-color-purple)">compact</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"pending"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Pending"</span> <span style="color:var(--ui-tag-color-purple)">compact</span> <span style="color:var(--ui-tag-color-purple)">icon-description</span>=<span style="color:var(--ui-tag-color-teal)">"Waiting for the vendor to sign"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"critical"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Critical"</span> <span style="color:var(--ui-tag-color-purple)">compact</span> <span style="color:var(--ui-tag-color-purple)">shape-description</span>=<span style="color:var(--ui-tag-color-teal)">"Critical severity"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-8-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiIconIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"succeeded"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Signed"</span> <span style="color:var(--ui-tag-color-purple)">compact</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiIconIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"pending"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Pending"</span> <span style="color:var(--ui-tag-color-purple)">compact</span> <span style="color:var(--ui-tag-color-purple)">iconDescription</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Waiting for the vendor to sign"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiShapeIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"critical"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Critical"</span> <span style="color:var(--ui-tag-color-purple)">compact</span> <span style="color:var(--ui-tag-color-purple)">shapeDescription</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Critical severity"</span> /&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-8-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">IconIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"succeeded"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Signed"</span> <span style="color:var(--ui-tag-color-purple)">compact</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">IconIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"pending"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Pending"</span> <span style="color:var(--ui-tag-color-purple)">compact</span> <span style="color:var(--ui-tag-color-purple)">iconDescription</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Waiting for the vendor to sign"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ShapeIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"critical"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Critical"</span> <span style="color:var(--ui-tag-color-purple)">compact</span> <span style="color:var(--ui-tag-color-purple)">shapeDescription</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Critical severity"</span> /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="tooltip-placement">Tooltip placement</h2>
+<p><code>placement</code> sets where the compact tooltip opens: <code>top</code>, <code>bottom</code>, <code>left</code> or <code>right</code> (the default), each also with <code>-start</code> or <code>-end</code>. <code>align</code> is Carbon's name for it and takes the same values.</p>
+<div class="doc-demo"><div style="display: flex; flex-wrap: wrap; gap: 48px; align-items: center; padding: 32px 64px">
+  <ui-icon-indicator kind="caution-major" label="Over budget" compact placement="top"></ui-icon-indicator>
+  <ui-icon-indicator kind="caution-minor" label="Close to budget" compact placement="bottom"></ui-icon-indicator>
+  <ui-icon-indicator kind="normal" label="Within budget" compact placement="left"></ui-icon-indicator>
+</div>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-9-0">HTML</ui-tab><ui-tab panel="code-9-1">React</ui-tab><ui-tab panel="code-9-2">React + Tailwind</ui-tab><ui-tab-panel name="code-9-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"display: flex; flex-wrap: wrap; gap: 48px; align-items: center; padding: 32px 64px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"caution-major"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Over budget"</span> <span style="color:var(--ui-tag-color-purple)">compact</span> <span style="color:var(--ui-tag-color-purple)">placement</span>=<span style="color:var(--ui-tag-color-teal)">"top"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"caution-minor"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Close to budget"</span> <span style="color:var(--ui-tag-color-purple)">compact</span> <span style="color:var(--ui-tag-color-purple)">placement</span>=<span style="color:var(--ui-tag-color-teal)">"bottom"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"normal"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Within budget"</span> <span style="color:var(--ui-tag-color-purple)">compact</span> <span style="color:var(--ui-tag-color-purple)">placement</span>=<span style="color:var(--ui-tag-color-teal)">"left"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-9-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiIconIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"caution-major"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Over budget"</span> <span style="color:var(--ui-tag-color-purple)">compact</span> <span style="color:var(--ui-tag-color-purple)">placement</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"top"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiIconIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"caution-minor"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Close to budget"</span> <span style="color:var(--ui-tag-color-purple)">compact</span> <span style="color:var(--ui-tag-color-purple)">placement</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"bottom"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiIconIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"normal"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Within budget"</span> <span style="color:var(--ui-tag-color-purple)">compact</span> <span style="color:var(--ui-tag-color-purple)">placement</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"left"</span> /&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-9-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">IconIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"caution-major"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Over budget"</span> <span style="color:var(--ui-tag-color-purple)">compact</span> <span style="color:var(--ui-tag-color-purple)">placement</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"top"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">IconIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"caution-minor"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Close to budget"</span> <span style="color:var(--ui-tag-color-purple)">compact</span> <span style="color:var(--ui-tag-color-purple)">placement</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"bottom"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">IconIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"normal"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Within budget"</span> <span style="color:var(--ui-tag-color-purple)">compact</span> <span style="color:var(--ui-tag-color-purple)">placement</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"left"</span> /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="in-a-list">In a list</h2>
+<p>Status indicators fit in a column of a list or a table, where each row has its own state.</p>
+<div class="doc-demo"><ui-structured-list label="Contracts">
+  <ui-structured-list-row head>
+    <ui-structured-list-cell>Contract</ui-structured-list-cell>
+    <ui-structured-list-cell>Vendor</ui-structured-list-cell>
+    <ui-structured-list-cell>Status</ui-structured-list-cell>
+  </ui-structured-list-row>
+  <ui-structured-list-row>
+    <ui-structured-list-cell nowrap>CT-2026-118</ui-structured-list-cell>
+    <ui-structured-list-cell>Siam Logistics Co., Ltd.</ui-structured-list-cell>
+    <ui-structured-list-cell><ui-icon-indicator kind="succeeded" label="Signed"></ui-icon-indicator></ui-structured-list-cell>
+  </ui-structured-list-row>
+  <ui-structured-list-row>
+    <ui-structured-list-cell nowrap>CT-2026-121</ui-structured-list-cell>
+    <ui-structured-list-cell>Chao Phraya Printing</ui-structured-list-cell>
+    <ui-structured-list-cell><ui-icon-indicator kind="pending" label="Waiting for signature"></ui-icon-indicator></ui-structured-list-cell>
+  </ui-structured-list-row>
+  <ui-structured-list-row>
+    <ui-structured-list-cell nowrap>CT-2026-097</ui-structured-list-cell>
+    <ui-structured-list-cell>Northern Office Supply</ui-structured-list-cell>
+    <ui-structured-list-cell><ui-icon-indicator kind="caution-major" label="Expires in 7 days"></ui-icon-indicator></ui-structured-list-cell>
+  </ui-structured-list-row>
+</ui-structured-list>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-10-0">HTML</ui-tab><ui-tab panel="code-10-1">React</ui-tab><ui-tab panel="code-10-2">React + Tailwind</ui-tab><ui-tab-panel name="code-10-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Contracts"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span> <span style="color:var(--ui-tag-color-purple)">head</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;Contract&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;Vendor&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;Status&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span> <span style="color:var(--ui-tag-color-purple)">nowrap</span>&gt;CT-2026-118&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;Siam Logistics Co., Ltd.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"succeeded"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Signed"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span> <span style="color:var(--ui-tag-color-purple)">nowrap</span>&gt;CT-2026-121&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;Chao Phraya Printing&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"pending"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Waiting for signature"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span> <span style="color:var(--ui-tag-color-purple)">nowrap</span>&gt;CT-2026-097&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;Northern Office Supply&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"caution-major"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Expires in 7 days"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-10-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredList</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contracts"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListRow</span> <span style="color:var(--ui-tag-color-purple)">head</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;Contract&lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;Vendor&lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;Status&lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListRow</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListRow</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span> <span style="color:var(--ui-tag-color-purple)">nowrap</span>&gt;CT-2026-118&lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;Siam Logistics Co., Ltd.&lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">UiIconIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"succeeded"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Signed"</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListRow</span>&gt;
+  {<span style="color:var(--ui-ink-muted);font-style:italic">/* … */</span>}
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredList</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-10-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">StructuredList</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contracts"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListRow</span> <span style="color:var(--ui-tag-color-purple)">head</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;Contract&lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;Vendor&lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;Status&lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListRow</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListRow</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span> <span style="color:var(--ui-tag-color-purple)">nowrap</span>&gt;CT-2026-118&lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;Siam Logistics Co., Ltd.&lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">IconIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"succeeded"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Signed"</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListRow</span>&gt;
+  {<span style="color:var(--ui-ink-muted);font-style:italic">/* … */</span>}
+&lt;/<span style="color:var(--ui-tag-color-blue)">StructuredList</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="severity">Severity</h2>
+<p>Use the shape indicator for a level, such as the severity of incidents. Pair the shape with a word, so the order is clear without the colours.</p>
+<div class="doc-demo"><div style="display: grid; gap: 8px; justify-items: start">
+  <ui-shape-indicator kind="critical" label="INC-2041 · Critical: invoice export fails for all users" text-size="14"></ui-shape-indicator>
+  <ui-shape-indicator kind="high" label="INC-2038 · High: approval emails are late" text-size="14"></ui-shape-indicator>
+  <ui-shape-indicator kind="medium" label="INC-2035 · Medium: wrong date format in the PDF" text-size="14"></ui-shape-indicator>
+  <ui-shape-indicator kind="low" label="INC-2030 · Low: typo on the vendor form" text-size="14"></ui-shape-indicator>
+</div>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-11-0">HTML</ui-tab><ui-tab panel="code-11-1">React</ui-tab><ui-tab panel="code-11-2">React + Tailwind</ui-tab><ui-tab-panel name="code-11-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"display: grid; gap: 8px; justify-items: start"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"critical"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"INC-2041 · Critical: invoice export fails for all users"</span> <span style="color:var(--ui-tag-color-purple)">text-size</span>=<span style="color:var(--ui-tag-color-teal)">"14"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"high"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"INC-2038 · High: approval emails are late"</span> <span style="color:var(--ui-tag-color-purple)">text-size</span>=<span style="color:var(--ui-tag-color-teal)">"14"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"medium"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"INC-2035 · Medium: wrong date format in the PDF"</span> <span style="color:var(--ui-tag-color-purple)">text-size</span>=<span style="color:var(--ui-tag-color-teal)">"14"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"low"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"INC-2030 · Low: typo on the vendor form"</span> <span style="color:var(--ui-tag-color-purple)">text-size</span>=<span style="color:var(--ui-tag-color-teal)">"14"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-11-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiShapeIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"critical"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"INC-2041 · Critical: invoice export fails for all users"</span> <span style="color:var(--ui-tag-color-purple)">textSize</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">14</span>} /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiShapeIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"high"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"INC-2038 · High: approval emails are late"</span> <span style="color:var(--ui-tag-color-purple)">textSize</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">14</span>} /&gt;
+{<span style="color:var(--ui-ink-muted);font-style:italic">/* … */</span>}</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-11-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">ShapeIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"critical"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"INC-2041 · Critical: invoice export fails for all users"</span> <span style="color:var(--ui-tag-color-purple)">textSize</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">14</span>} /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ShapeIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"high"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"INC-2038 · High: approval emails are late"</span> <span style="color:var(--ui-tag-color-purple)">textSize</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">14</span>} /&gt;
+{<span style="color:var(--ui-ink-muted);font-style:italic">/* … */</span>}</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="change-the-status">Change the status</h2>
+<p>Set <code>kind</code> and <code>label</code> as the state changes. The indicator is not a live region: when the change matters to the user, also announce it, for example in a <code>role=&quot;status&quot;</code> line.</p>
+<div class="doc-demo"><ui-icon-indicator id="status-indicator-job" kind="not-started" label="Import not started"></ui-icon-indicator>
+<ui-button id="status-indicator-run" kind="tertiary">Import vendors</ui-button>
+<p id="status-indicator-msg" role="status" style="margin: 0"></p>
+
+<script type="text/x-demo">
+  const job = document.getElementById('status-indicator-job');
+  const msg = document.getElementById('status-indicator-msg');
+  const set = (kind, label) => {
+    job.kind = kind;
+    job.label = label;
+    msg.textContent = label;
+  };
+  document.getElementById('status-indicator-run').addEventListener('click', () => {
+    set('in-progress', 'Importing vendors…');
+    setTimeout(() => set('succeeded', 'Import finished: 120 vendors'), 2000);
+  });
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-12-0">HTML</ui-tab><ui-tab panel="code-12-1">React</ui-tab><ui-tab panel="code-12-2">React + Tailwind</ui-tab><ui-tab-panel name="code-12-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"status-indicator-job"</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"not-started"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Import not started"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"status-indicator-run"</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"tertiary"</span>&gt;Import vendors&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"status-indicator-msg"</span> <span style="color:var(--ui-tag-color-purple)">role</span>=<span style="color:var(--ui-tag-color-teal)">"status"</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"margin: 0"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> job <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'status-indicator-job'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> msg <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'status-indicator-msg'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> <span style="color:var(--ui-tag-color-cyan)">set</span> <span style="color:var(--ui-tag-color-magenta)">=</span> (kind, label) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    job.kind <span style="color:var(--ui-tag-color-magenta)">=</span> kind;
+    job.label <span style="color:var(--ui-tag-color-magenta)">=</span> label;
+    msg.textContent <span style="color:var(--ui-tag-color-magenta)">=</span> label;
+  };
+  document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'status-indicator-run'</span>).<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    <span style="color:var(--ui-tag-color-cyan)">set</span>(<span style="color:var(--ui-tag-color-teal)">'in-progress'</span>, <span style="color:var(--ui-tag-color-teal)">'Importing vendors…'</span>);
+    <span style="color:var(--ui-tag-color-cyan)">setTimeout</span>(() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">set</span>(<span style="color:var(--ui-tag-color-teal)">'succeeded'</span>, <span style="color:var(--ui-tag-color-teal)">'Import finished: 120 vendors'</span>), <span style="color:var(--ui-tag-color-green)">2000</span>);
+  });
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-12-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiIconIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span>{job.kind} <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span>{job.label} /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">role</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"status"</span>&gt;{job.label}&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-12-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">IconIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span>{job.kind} <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span>{job.label} /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">role</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"status"</span>&gt;{job.label}&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="keyboard">Keyboard</h2>
+<p>Only the compact indicators take focus.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tab</td>
+<td>Moves to a compact icon and opens its tooltip; leaving closes it</td>
+</tr>
+<tr>
+<td>Enter, Space</td>
+<td>Open or close the tooltip</td>
+</tr>
+<tr>
+<td>Esc</td>
+<td>Closes the tooltip</td>
+</tr>
+</tbody>
+</table>
+<h2 id="accessibility">Accessibility</h2>
+<ul>
+<li>The icon or shape is hidden from screen readers; the label says the state. Write it as the state (&quot;Signed&quot;), not the colour.</li>
+<li>Compact: the icon is a button that opens a definition tooltip with the label, and screen readers read the label or the description.</li>
+<li>Status changes are not announced by themselves; add a status message when they matter.</li>
+</ul>
+<h2 id="api">API</h2>
+<p>Generated from the package. In React, pass a property as a prop of the same name; events are props too (the React column).</p>
+<h3 id="ui-icon-indicator-react-uiiconindicator"><code>&lt;ui-icon-indicator&gt;</code> · React <code>UiIconIndicator</code></h3>
+<h4 id="attributes">Attributes</h4>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>align</code></td>
+<td></td>
+<td></td>
+<td></td>
+<td>Carbon's name for <code>placement</code> (same values)</td>
+</tr>
+<tr>
+<td><code>kind</code></td>
+<td><code>kind</code></td>
+<td><code>IconIndicatorKind | undefined</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>label</code></td>
+<td><code>label</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>size</code></td>
+<td><code>size</code></td>
+<td><code>16 | 20</code></td>
+<td><code>16</code></td>
+<td>16 (body-compact-01) or 20 (body-compact-02).</td>
+</tr>
+<tr>
+<td><code>compact</code></td>
+<td><code>compact</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Only the icon; the label in a tooltip.</td>
+</tr>
+<tr>
+<td><code>icon-description</code></td>
+<td><code>iconDescription</code></td>
+<td><code>string | undefined</code></td>
+<td></td>
+<td>Read by screen readers in compact mode instead of the label.</td>
+</tr>
+<tr>
+<td><code>placement</code></td>
+<td><code>placement</code></td>
+<td><code>Placement</code></td>
+<td><code>'right'</code></td>
+<td>Where the compact tooltip opens.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="css-parts">CSS parts</h4>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>icon</code></td>
+<td>The icon</td>
+</tr>
+<tr>
+<td><code>label</code></td>
+<td>The label (not compact)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ui-shape-indicator-react-uishapeindicator"><code>&lt;ui-shape-indicator&gt;</code> · React <code>UiShapeIndicator</code></h3>
+<h4 id="attributes-2">Attributes</h4>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>align</code></td>
+<td></td>
+<td></td>
+<td></td>
+<td>Carbon's name for <code>placement</code> (same values)</td>
+</tr>
+<tr>
+<td><code>kind</code></td>
+<td><code>kind</code></td>
+<td><code>ShapeIndicatorKind | undefined</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>label</code></td>
+<td><code>label</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>text-size</code></td>
+<td><code>textSize</code></td>
+<td><code>12 | 14</code></td>
+<td><code>12</code></td>
+<td>12 (helper-text-01) or 14 (body-compact-01).</td>
+</tr>
+<tr>
+<td><code>compact</code></td>
+<td><code>compact</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Only the shape; the label in a tooltip.</td>
+</tr>
+<tr>
+<td><code>shape-description</code></td>
+<td><code>shapeDescription</code></td>
+<td><code>string | undefined</code></td>
+<td></td>
+<td>Read by screen readers in compact mode instead of the label.</td>
+</tr>
+<tr>
+<td><code>placement</code></td>
+<td><code>placement</code></td>
+<td><code>Placement</code></td>
+<td><code>'right'</code></td>
+<td>Where the compact tooltip opens.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="css-parts-2">CSS parts</h4>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>icon</code></td>
+<td>The shape</td>
+</tr>
+<tr>
+<td><code>label</code></td>
+<td>The label (not compact)</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+<nav class="doc-toc" aria-labelledby="doc-toc-title"><p id="doc-toc-title" class="doc-toc-title">On this page</p><ul><li class="doc-toc-h2"><a href="#installation">Installation</a></li><li class="doc-toc-h2"><a href="#use-it">Use it</a></li><li class="doc-toc-h2"><a href="#icon-or-shape">Icon or shape?</a></li><li class="doc-toc-h2"><a href="#icon-indicator-kinds">Icon indicator kinds</a></li><li class="doc-toc-h2"><a href="#icon-size">Icon size</a></li><li class="doc-toc-h2"><a href="#shape-indicator-kinds">Shape indicator kinds</a></li><li class="doc-toc-h2"><a href="#text-size">Text size</a></li><li class="doc-toc-h2"><a href="#compact">Compact</a></li><li class="doc-toc-h2"><a href="#tooltip-placement">Tooltip placement</a></li><li class="doc-toc-h2"><a href="#in-a-list">In a list</a></li><li class="doc-toc-h2"><a href="#severity">Severity</a></li><li class="doc-toc-h2"><a href="#change-the-status">Change the status</a></li><li class="doc-toc-h2"><a href="#keyboard">Keyboard</a></li><li class="doc-toc-h2"><a href="#accessibility">Accessibility</a></li><li class="doc-toc-h2"><a href="#api">API</a></li><li class="doc-toc-h3"><a href="#ui-icon-indicator-react-uiiconindicator">&lt;ui-icon-indicator></a></li><li class="doc-toc-h3"><a href="#ui-shape-indicator-react-uishapeindicator">&lt;ui-shape-indicator></a></li></ul></nav>
+</div>
+<nav class="doc-pager" aria-label="Next / Previous"><a class="doc-pager-prev" href="/kanok-ui-docs/en/badge-indicator/" rel="prev"><span>Previous</span>Badge indicator</a><a class="doc-pager-next" href="/kanok-ui-docs/en/grid/" rel="next"><span>Next</span>Grid</a></nav>
+<footer class="doc-footer">@purpurabog/ui 1.4.3 · MIT · <a href="https://cdn.jsdelivr.net/npm/@purpurabog/ui@1.4.3/THIRD-PARTY-NOTICES.md">Third-party notices</a><br>Built on the Carbon Design System. Not affiliated with or endorsed by IBM; IBM and Carbon are trademarks of IBM Corp.</footer>
+</ui-content>
+<ui-modal id="doc-search" heading="Search" data-count="{n} results" data-empty="No results for “{q}”">
+<ui-search label="Search the docs" placeholder="Search the docs" size="lg"></ui-search>
+<p class="doc-search-status" role="status"></p>
+<ul class="doc-search-results"></ul>
+</ui-modal>
+</body>
+</html>

@@ -1,0 +1,1371 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Card · @purpurabog/ui</title>
+<link rel="alternate" hreflang="en" href="/kanok-ui-docs/en/card/"  /><link rel="alternate" hreflang="th" href="/kanok-ui-docs/th/card/"  />
+<script>(function(){try{var q=new URLSearchParams(location.search).get("design"),d=q;if(q==="kanok"||q==="carbon")localStorage.setItem("ui-docs-design",q);else d=localStorage.getItem("ui-docs-design");if(d==="kanok")document.documentElement.setAttribute("data-design","kanok")}catch(e){}})();(function(){try{var m=localStorage.getItem("ui-docs-theme");if(m!=="light"&&m!=="dark"&&m!=="system")return;var d=m==="dark"||(m==="system"&&matchMedia("(prefers-color-scheme: dark)").matches),r=document.documentElement,t=d?"g100":"white";if(r.getAttribute("data-design")==="kanok")t=d?"lacquer":"paper";r.setAttribute("data-theme",t)}catch(e){}})();</script>
+<style>ui-header:not(:defined){z-index:8000;box-sizing:border-box;border-block-end:1px solid var(--ui-border-subtle-1);background:var(--ui-canvas);block-size:48px;display:block;position:fixed;inset:0 0 auto}:is(ui-header:not(:defined)>*,ui-side-nav:not(:defined)>*){visibility:hidden}:is(ui-header-panel:not(:defined),ui-modal:not(:defined)){display:none}ui-side-nav:not(:defined){display:none}ui-content:not(:defined){margin-block-start:48px;padding:32px;display:block}@media (width>=1056px){ui-side-nav[expanded]:not(:defined){background:var(--ui-canvas);inline-size:256px;display:block;position:fixed;inset:48px auto 0 0}ui-side-nav[expanded]:not(:defined)~ui-content:not(:defined){margin-inline-start:256px}}ui-tabs:not(:defined){display:block}ui-tabs:not(:defined)>ui-tab{box-sizing:border-box;border-block-end:2px solid var(--ui-hairline);block-size:40px;color:var(--ui-ink-muted);font:var(--ui-font-body-sm);padding:0 16px;line-height:38px;display:inline-block}ui-tabs:not(:defined)>ui-tab:first-of-type{border-block-end-color:var(--ui-interactive);color:var(--ui-ink)}ui-tabs:not(:defined)>ui-tab-panel{padding:16px;display:block}ui-tabs:not(:defined)>ui-tab-panel~ui-tab-panel{display:none}ui-code-snippet:not(:defined){background:var(--ui-layer-1);max-block-size:272px;font:var(--ui-font-code,12px/16px monospace);white-space:pre;padding:16px;display:block;overflow:hidden}[data-react-example]:empty>*{visibility:hidden}.doc-demo:has(:not(:defined))>*{visibility:hidden}[data-react-example]:empty{box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}.doc-demo:has(:not(:defined)){box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}@keyframes doc-skeleton{to{background-position:-200% 0}}@media (prefers-reduced-motion:reduce){[data-react-example]:empty{animation:none}.doc-demo:has(:not(:defined)){animation:none}}</style>
+
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/theme-switcher-BGAHXRgF.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/tabs-CvVVO2Pb.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/button-CTeCEJcq.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/icon-button-CfOs3op2.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/typeahead-CDCzrGcR.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/events-IQD1_DyD.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/overflow-menu-BerTRcGD.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/overflow-Ctnez5Id.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/card-ExYqmkPy.js"></script>
+  <link rel="stylesheet" crossorigin href="/kanok-ui-docs/assets/theme-switcher-CL5yB6XE.css">
+</head>
+<body>
+<ui-header label="@purpurabog/ui">
+<ui-skip-to-content></ui-skip-to-content>
+<ui-header-menu-button></ui-header-menu-button>
+<ui-header-name href="/kanok-ui-docs/th/" prefix="@purpurabog">ui</ui-header-name>
+<ui-header-global-bar>
+<ui-header-global-action id="doc-search-open" label="ค้นหา" tooltip-placement="bottom"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="m18.5 17.8-4.9-4.9a7 7 0 1 0-.7.7l4.9 4.9zM3 8.5a5.5 5.5 0 1 1 5.5 5.5A5.5 5.5 0 0 1 3 8.5Z" /></svg></ui-header-global-action>
+<ui-header-global-action label="ตั้งค่า" panel="doc-settings" tooltip-placement="bottom-end"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="M16.9 10.6a7 7 0 0 0 0-1.2l1.8-1.4-1.6-2.8-2.1.8a6.6 6.6 0 0 0-1-.6L13.6 3h-3.2l-.4 2.4a6.6 6.6 0 0 0-1 .6l-2.1-.8L5.3 8l1.8 1.4a7 7 0 0 0 0 1.2L5.3 12l1.6 2.8 2.1-.8a6.6 6.6 0 0 0 1 .6l.4 2.4h3.2l.4-2.4a6.6 6.6 0 0 0 1-.6l2.1.8 1.6-2.8zM12 13a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" /></svg></ui-header-global-action>
+</ui-header-global-bar>
+<ui-header-panel id="doc-settings" label="ตั้งค่า">
+<div class="doc-settings">
+<span class="doc-settings-label">ธีม</span>
+<ui-theme-switcher storage-key="ui-docs-theme" tooltip-placement="bottom"></ui-theme-switcher>
+<span class="doc-settings-label">รูปแบบ</span>
+<ui-content-switcher id="doc-design" aria-label="รูปแบบ" size="sm"><ui-content-switcher-item name="carbon">Carbon</ui-content-switcher-item><ui-content-switcher-item name="kanok">Kanok</ui-content-switcher-item></ui-content-switcher>
+<span class="doc-settings-label">ภาษา</span>
+<ui-link href="/kanok-ui-docs/en/card/" hreflang="en" lang="en">English</ui-link>
+</div>
+</ui-header-panel>
+</ui-header>
+<ui-side-nav label="เอกสาร"><ui-side-nav-items><ui-side-nav-menu label="เริ่มต้น"><ui-side-nav-menu-item href="/kanok-ui-docs/th/">ภาพรวม</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/installation/">ติดตั้ง</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/migration-1-0/">การย้ายไป 1.0</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="คู่มือ"><ui-side-nav-menu-item href="/kanok-ui-docs/th/themes/">ธีมและ layer</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/kanok/">ดีไซน์ Kanok</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/customizing/">ปรับแต่งหน้าตา</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/icons/">ไอคอน</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/forms/">ฟอร์มและการตรวจค่า</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/frameworks/">ใช้กับ framework</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/ai/">ใช้กับ AI</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="ฟอร์มและปุ่ม"><ui-side-nav-menu-item href="/kanok-ui-docs/th/button/">Button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/file-uploader/">File uploader</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Overlay"><ui-side-nav-menu-item href="/kanok-ui-docs/th/modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/toggletip/">Toggletip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/menu/">Menu</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="ข้อมูล"><ui-side-nav-menu-item href="/kanok-ui-docs/th/data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/contained-list/">Contained list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tree-view/">Tree view</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="การนำทาง"><ui-side-nav-menu-item href="/kanok-ui-docs/th/tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/breadcrumb/">Breadcrumb</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/link/">Link</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/ui-shell/">UI shell</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="เนื้อหา" expanded><ui-side-nav-menu-item href="/kanok-ui-docs/th/tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tile/">Tile</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/card/" current>Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/user-avatar/">User avatar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/list/">List</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="สถานะและการโหลด"><ui-side-nav-menu-item href="/kanok-ui-docs/th/loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/inline-loading/">Inline loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/progress-bar/">Progress bar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/skeleton/">Skeleton</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/badge-indicator/">Badge indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/status-indicator/">Status indicator</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="เลย์เอาต์"><ui-side-nav-menu-item href="/kanok-ui-docs/th/grid/">Grid</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/heading/">Heading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/layer/">Layer</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/action-set/">Action set</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/page-header/">Page header</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/big-number/">Big number</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Headless"><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless/">แนะนำ</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-file-uploader/">File uploader</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-menu/">Menu</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-ui-shell/">UI shell</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tree-view/">Tree view</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu></ui-side-nav-items></ui-side-nav><script>if(matchMedia('(min-width: 66rem)').matches)document.currentScript.previousElementSibling.setAttribute('expanded','')</script>
+<ui-content>
+<div class="doc-page">
+<article class="doc">
+<h1 id="card">Card</h1>
+<p>Card คือกล่องที่ประกอบจาก part ต่าง ๆ ได้แก่ รูป header ที่มีหัวข้อและปุ่ม เนื้อหา และ footer ใช้กับชุดของสิ่งที่ผู้ใช้เลื่อนดูหรือเลือก เช่น โครงการ รายงาน เอกสาร มันคือ <code>Card</code> ของ Carbon (ยังเป็น preview ใน Carbon) เป็นกล่องเหลี่ยม ไม่มีเส้นขอบ ไม่มีเงา ใช้สีของ layer ถัดไป</p>
+<div class="doc-demo"><ui-card style="max-width: 360px">
+  <ui-card-media ratio="16x9">
+    <img alt="" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 90'%3E%3Crect width='160' height='90' fill='%23d0e2ff'/%3E%3Cpath d='M66 20h22l10 10v40H66z' fill='%23ffffff'/%3E%3Cpath d='M72 42h20M72 50h20M72 58h12' stroke='%230f62fe' stroke-width='2'/%3E%3C/svg%3E" />
+  </ui-card-media>
+  <ui-card-header>
+    <ui-card-title label="สัญญา" description="แก้ไขล่าสุด 3 ตุลาคม 2569">สัญญาเช่าสำนักงาน สาขาสีลม</ui-card-title>
+  </ui-card-header>
+  <ui-card-body>สัญญาเช่าสามปี เริ่ม 1 มกราคม 2570 รอผู้ให้เช่าลงนาม</ui-card-body>
+  <ui-card-footer>
+    <ui-card-action><ui-button kind="ghost">เปิดสัญญา</ui-button></ui-card-action>
+  </ui-card-footer>
+</ui-card>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-1-0">HTML</ui-tab><ui-tab panel="code-1-1">React</ui-tab><ui-tab panel="code-1-2">React + Tailwind</ui-tab><ui-tab-panel name="code-1-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-card</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"max-width: 360px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-media</span> <span style="color:var(--ui-tag-color-purple)">ratio</span>=<span style="color:var(--ui-tag-color-teal)">"16x9"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">img</span> <span style="color:var(--ui-tag-color-purple)">alt</span>=<span style="color:var(--ui-tag-color-teal)">""</span> <span style="color:var(--ui-tag-color-purple)">src</span>=<span style="color:var(--ui-tag-color-teal)">"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 90'%3E%3Crect width='160' height='90' fill='%23d0e2ff'/%3E%3Cpath d='M66 20h22l10 10v40H66z' fill='%23ffffff'/%3E%3Cpath d='M72 42h20M72 50h20M72 58h12' stroke='%230f62fe' stroke-width='2'/%3E%3C/svg%3E"</span> /&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-media</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-title</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"สัญญา"</span> <span style="color:var(--ui-tag-color-purple)">description</span>=<span style="color:var(--ui-tag-color-teal)">"แก้ไขล่าสุด 3 ตุลาคม 2569"</span>&gt;สัญญาเช่าสำนักงาน สาขาสีลม&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-title</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;สัญญาเช่าสามปี เริ่ม 1 มกราคม 2570 รอผู้ให้เช่าลงนาม&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-footer</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-action</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"ghost"</span>&gt;เปิดสัญญา&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-action</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-footer</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-1-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiCard</span> <span style="color:var(--ui-tag-color-purple)">style</span><span style="color:var(--ui-tag-color-magenta)">=</span>{{ <span style="color:var(--ui-tag-color-purple)">maxWidth:</span> <span style="color:var(--ui-tag-color-green)">360</span> }}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardMedia</span> <span style="color:var(--ui-tag-color-purple)">ratio</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"16x9"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">img</span> <span style="color:var(--ui-tag-color-purple)">alt</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">""</span> <span style="color:var(--ui-tag-color-purple)">src</span><span style="color:var(--ui-tag-color-magenta)">=</span>{leaseImage} /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardMedia</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"สัญญา"</span> <span style="color:var(--ui-tag-color-purple)">description</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"แก้ไขล่าสุด 3 ตุลาคม 2569"</span>&gt;สัญญาเช่าสำนักงาน สาขาสีลม&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardBody</span>&gt;สัญญาเช่าสามปี เริ่ม 1 มกราคม 2570 รอผู้ให้เช่าลงนาม&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardBody</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardFooter</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiCardAction</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">UiButton</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ghost"</span>&gt;เปิดสัญญา&lt;/<span style="color:var(--ui-tag-color-blue)">UiButton</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardAction</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiCardFooter</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiCard</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-1-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">Card</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"max-w-[360px]"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardMedia</span> <span style="color:var(--ui-tag-color-purple)">ratio</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"16x9"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">img</span> <span style="color:var(--ui-tag-color-purple)">alt</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">""</span> <span style="color:var(--ui-tag-color-purple)">src</span><span style="color:var(--ui-tag-color-magenta)">=</span>{leaseImage} /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">CardMedia</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">CardTitle</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"สัญญา"</span> <span style="color:var(--ui-tag-color-purple)">description</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"แก้ไขล่าสุด 3 ตุลาคม 2569"</span>&gt;สัญญาเช่าสำนักงาน สาขาสีลม&lt;/<span style="color:var(--ui-tag-color-blue)">CardTitle</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardBody</span>&gt;สัญญาเช่าสามปี เริ่ม 1 มกราคม 2570 รอผู้ให้เช่าลงนาม&lt;/<span style="color:var(--ui-tag-color-blue)">CardBody</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardFooter</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">CardAction</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">Button</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ghost"</span>&gt;เปิดสัญญา&lt;/<span style="color:var(--ui-tag-color-blue)">Button</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">CardAction</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">CardFooter</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Card</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="ติดตั้ง">ติดตั้ง</h2>
+<ui-tabs class="doc-code-tabs" label="โค้ด"><ui-tab panel="code-2-0">npm</ui-tab><ui-tab panel="code-2-1">shadcn · Web component</ui-tab><ui-tab panel="code-2-2">shadcn · React + Tailwind</ui-tab><ui-tab panel="code-2-3">คัดลอกเอง</ui-tab><ui-tab-panel name="code-2-0"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">@purpurabog/ui</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-1"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npx</span> <span style="color:var(--ui-tag-color-teal)">shadcn@4</span> <span style="color:var(--ui-tag-color-teal)">add</span> <span style="color:var(--ui-tag-color-teal)">@kanok-ui/card</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-2"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npx</span> <span style="color:var(--ui-tag-color-teal)">shadcn@4</span> <span style="color:var(--ui-tag-color-teal)">add</span> <span style="color:var(--ui-tag-color-teal)">@kanok-ui/tw-card</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-3"><ui-code-snippet type="multi" class="doc-code" data-lang="bash"><span style="color:var(--ui-ink-muted);font-style:italic"># Web component</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 1. ติดตั้ง dependency</span>
+<span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">lit@^3.3.0</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 2. คัดลอก "content" ของแต่ละไฟล์จาก</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    https://cdn.jsdelivr.net/npm/@purpurabog/ui@1.4.3/registry/card.json</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    ไปไว้ที่ target ของมัน:</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/card/card-action.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/card/card-actions.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/card/card-body.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/card/card-footer.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/card/card-header-media.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/card/card-header.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/card/card-media.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/card/card-title-media.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/card/card-title.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/card/card.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 3. ทำแบบเดียวกันกับ item ที่มันใช้ (registry/&lt;name&gt;.json):</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    core-overflow, menu, overflow-menu, shared-element, shared-field, shared-localize, shared-navigate, tokens</span>
+
+<span style="color:var(--ui-ink-muted);font-style:italic"># React + Tailwind</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 1. ติดตั้ง dependency</span>
+<span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">@purpurabog/ui@^1.4.3</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 2. คัดลอก "content" ของแต่ละไฟล์จาก</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    https://cdn.jsdelivr.net/npm/@purpurabog/ui@1.4.3/registry/tw-card.json</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    ไปไว้ที่ target ของมัน:</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/react-tw/card.tsx</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 3. ทำแบบเดียวกันกับ item ที่มันใช้ (registry/&lt;name&gt;.json):</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    core-overflow, tw-i18n, tw-icon-button, tw-menu, tw-refs, tw-theme, tw-utils</span></ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>npm ให้ทุก component จากแพ็กเกจ ส่วน shadcn คัดลอกซอร์สเข้าแอปของคุณแทน เป็นสำเนาที่ล็อกเวอร์ชันนี้และแก้เองได้ คำสั่ง shadcn ต้องตั้ง registry <code>@kanok-ui</code> ใน <code>components.json</code> ครั้งเดียวก่อน ดู <a href="/kanok-ui-docs/th/installation/#react-tailwind-%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2-shadcn">ติดตั้ง</a></p>
+<h2 id="วิธีใช้">วิธีใช้</h2>
+<p>ทุก part โหลดจาก module เดียว ใน React ให้ import wrapper ของแต่ละ element (<code>UiCard</code> <code>UiCardHeader</code> <code>UiCardTitle</code> …) จาก <code>@purpurabog/ui/react</code></p>
+<ui-tabs class="doc-code-tabs" label="โค้ด"><ui-tab panel="code-3-0">HTML</ui-tab><ui-tab panel="code-3-1">React</ui-tab><ui-tab panel="code-3-2">React + Tailwind</ui-tab><ui-tab-panel name="code-3-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;<span style="color:var(--ui-tag-color-magenta)">import</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/card'</span>;&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-card</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-card-title</span>&gt;สัญญาเช่าสำนักงาน&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-title</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;รอผู้ให้เช่าลงนาม&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-3-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { UiCard, UiCardHeader, UiCardTitle, UiCardBody } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/react'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiCard</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span>&gt;สัญญาเช่าสำนักงาน&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardBody</span>&gt;รอผู้ให้เช่าลงนาม&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardBody</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiCard</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-3-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { Card, CardHeader, CardTitle, CardBody } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@/components/ui/react-tw/card'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">Card</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">CardTitle</span>&gt;สัญญาเช่าสำนักงาน&lt;/<span style="color:var(--ui-tag-color-blue)">CardTitle</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardBody</span>&gt;รอผู้ให้เช่าลงนาม&lt;/<span style="color:var(--ui-tag-color-blue)">CardBody</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Card</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="card-tile-หรือ-product-card">Card, Tile หรือ Product card?</h2>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>ใช้เมื่อ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="/kanok-ui-docs/th/tile/">Tile</a></td>
+<td>กล่องเนื้อหาธรรมดา หรือลิงก์เดียว ไม่มี header หรือ footer ของตัวเอง</td>
+</tr>
+<tr>
+<td>Card</td>
+<td>เนื้อหาที่มีหัวข้อ รูป และปุ่ม ประกอบจาก part เป็นตัวเลือกสำหรับงานใหม่</td>
+</tr>
+<tr>
+<td><a href="/kanok-ui-docs/th/product-card/">Product card</a></td>
+<td>หน้าจอต้องเหมือน UI ของผลิตภัณฑ์ IBM ที่ใช้ <code>ProductiveCard</code> หรือ <code>ExpressiveCard</code> ของ Carbon for IBM Products</td>
+</tr>
+</tbody>
+</table>
+<h2 id="part-ต่าง-ๆ">Part ต่าง ๆ</h2>
+<p>ทุก part ไม่บังคับ ให้เรียงตามลำดับนี้</p>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>ใส่อะไร</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ui-card-media</code></td>
+<td>รูปหรือวิดีโอเต็มความกว้าง ตามสัดส่วน <code>ratio</code></td>
+</tr>
+<tr>
+<td><code>ui-card-header</code></td>
+<td>grid ของ header: <code>ui-card-header-media</code>, <code>ui-card-title-media</code>, <code>ui-card-title</code>, <code>ui-card-actions</code></td>
+</tr>
+<tr>
+<td><code>ui-card-header-media</code></td>
+<td>pictogram เต็มความกว้างบนสุดของ header สูงไม่เกิน 64px</td>
+</tr>
+<tr>
+<td><code>ui-card-title-media</code></td>
+<td>โลโก้หน้าหัวข้อ ขนาด 48–64px</td>
+</tr>
+<tr>
+<td><code>ui-card-title</code></td>
+<td>label ด้านบน หัวข้อ และคำอธิบายด้านล่าง</td>
+</tr>
+<tr>
+<td><code>ui-card-actions</code></td>
+<td>ปุ่มเล็ก ๆ ที่มุมบนด้านท้ายของ header</td>
+</tr>
+<tr>
+<td><code>ui-card-body</code></td>
+<td>เนื้อหา มี padding 16px (ไม่มีถ้าใส่ <code>is-flush</code>)</td>
+</tr>
+<tr>
+<td><code>ui-card-footer</code></td>
+<td>ข้อความ หรือแถวของ <code>ui-card-action</code></td>
+</tr>
+<tr>
+<td><code>ui-card-action</code></td>
+<td>ปุ่มหนึ่งปุ่มใน footer หรือใน <code>ui-card-actions</code></td>
+</tr>
+</tbody>
+</table>
+<div class="doc-demo"><ui-card style="max-width: 360px">
+  <ui-card-header>
+    <ui-card-header-media>
+      <svg width="48" height="48" viewBox="0 0 32 32" fill="none" stroke="currentColor" aria-hidden="true"><path d="M8 3h11l5 5v21H8zM19 3v5h5M12 14h8M12 18h8M12 22h5" /></svg>
+    </ui-card-header-media>
+    <ui-card-title label="แม่แบบ" description="ใช้แล้ว 128 ครั้ง">สัญญารักษาความลับ</ui-card-title>
+  </ui-card-header>
+  <ui-card-body>NDA แบบสองฝ่าย ภาษาไทยและอังกฤษ ผ่านการอนุมัติจากฝ่ายกฎหมาย</ui-card-body>
+  <ui-card-footer>ตรวจล่าสุด 1 กันยายน 2569</ui-card-footer>
+</ui-card>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-4-0">HTML</ui-tab><ui-tab panel="code-4-1">React</ui-tab><ui-tab panel="code-4-2">React + Tailwind</ui-tab><ui-tab-panel name="code-4-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-card</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"max-width: 360px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-header-media</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">width</span>=<span style="color:var(--ui-tag-color-teal)">"48"</span> <span style="color:var(--ui-tag-color-purple)">height</span>=<span style="color:var(--ui-tag-color-teal)">"48"</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span>=<span style="color:var(--ui-tag-color-teal)">"0 0 32 32"</span> <span style="color:var(--ui-tag-color-purple)">fill</span>=<span style="color:var(--ui-tag-color-teal)">"none"</span> <span style="color:var(--ui-tag-color-purple)">stroke</span>=<span style="color:var(--ui-tag-color-teal)">"currentColor"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span>=<span style="color:var(--ui-tag-color-teal)">"true"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span>=<span style="color:var(--ui-tag-color-teal)">"M8 3h11l5 5v21H8zM19 3v5h5M12 14h8M12 18h8M12 22h5"</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-header-media</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-title</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"แม่แบบ"</span> <span style="color:var(--ui-tag-color-purple)">description</span>=<span style="color:var(--ui-tag-color-teal)">"ใช้แล้ว 128 ครั้ง"</span>&gt;สัญญารักษาความลับ&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-title</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;NDA แบบสองฝ่าย ภาษาไทยและอังกฤษ ผ่านการอนุมัติจากฝ่ายกฎหมาย&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-footer</span>&gt;ตรวจล่าสุด 1 กันยายน 2569&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-footer</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-4-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiCard</span> <span style="color:var(--ui-tag-color-purple)">style</span><span style="color:var(--ui-tag-color-magenta)">=</span>{{ <span style="color:var(--ui-tag-color-purple)">maxWidth:</span> <span style="color:var(--ui-tag-color-green)">360</span> }}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiCardHeaderMedia</span>&gt;{documentPictogram}&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardHeaderMedia</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"แม่แบบ"</span> <span style="color:var(--ui-tag-color-purple)">description</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ใช้แล้ว 128 ครั้ง"</span>&gt;สัญญารักษาความลับ&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardBody</span>&gt;NDA แบบสองฝ่าย ภาษาไทยและอังกฤษ ผ่านการอนุมัติจากฝ่ายกฎหมาย&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardBody</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardFooter</span>&gt;ตรวจล่าสุด 1 กันยายน 2569&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardFooter</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiCard</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-4-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">Card</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"max-w-[360px]"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">CardHeaderMedia</span>&gt;{documentPictogram}&lt;/<span style="color:var(--ui-tag-color-blue)">CardHeaderMedia</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">CardTitle</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"แม่แบบ"</span> <span style="color:var(--ui-tag-color-purple)">description</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ใช้แล้ว 128 ครั้ง"</span>&gt;สัญญารักษาความลับ&lt;/<span style="color:var(--ui-tag-color-blue)">CardTitle</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardBody</span>&gt;NDA แบบสองฝ่าย ภาษาไทยและอังกฤษ ผ่านการอนุมัติจากฝ่ายกฎหมาย&lt;/<span style="color:var(--ui-tag-color-blue)">CardBody</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardFooter</span>&gt;ตรวจล่าสุด 1 กันยายน 2569&lt;/<span style="color:var(--ui-tag-color-blue)">CardFooter</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Card</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="รูป">รูป</h2>
+<p><code>ui-card-media</code> เต็มความกว้างของ card ตาม <code>ratio</code>: <code>16x9</code>, <code>9x16</code>, <code>2x1</code>, <code>1x2</code>, <code>4x3</code>, <code>3x4</code>, <code>3x2</code>, <code>2x3</code> หรือ <code>1x1</code> รูปจะเต็มกล่องและถูกตัดให้พอดี ถ้าไม่ใส่ <code>ratio</code> จะใช้สัดส่วนของรูปเอง</p>
+<div class="doc-demo"><div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; align-items: start">
+  <ui-card>
+    <ui-card-media ratio="16x9">
+      <img alt="" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 90'%3E%3Crect width='160' height='90' fill='%23d0e2ff'/%3E%3Cpath d='M66 20h22l10 10v40H66z' fill='%23ffffff'/%3E%3Cpath d='M72 42h20M72 50h20M72 58h12' stroke='%230f62fe' stroke-width='2'/%3E%3C/svg%3E" />
+    </ui-card-media>
+    <ui-card-header><ui-card-title>16x9</ui-card-title></ui-card-header>
+  </ui-card>
+  <ui-card>
+    <ui-card-media ratio="2x1">
+      <img alt="" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 90'%3E%3Crect width='160' height='90' fill='%23d0e2ff'/%3E%3Cpath d='M66 20h22l10 10v40H66z' fill='%23ffffff'/%3E%3Cpath d='M72 42h20M72 50h20M72 58h12' stroke='%230f62fe' stroke-width='2'/%3E%3C/svg%3E" />
+    </ui-card-media>
+    <ui-card-header><ui-card-title>2x1</ui-card-title></ui-card-header>
+  </ui-card>
+  <ui-card>
+    <ui-card-media ratio="1x1">
+      <img alt="" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 90'%3E%3Crect width='160' height='90' fill='%23d0e2ff'/%3E%3Cpath d='M66 20h22l10 10v40H66z' fill='%23ffffff'/%3E%3Cpath d='M72 42h20M72 50h20M72 58h12' stroke='%230f62fe' stroke-width='2'/%3E%3C/svg%3E" />
+    </ui-card-media>
+    <ui-card-header><ui-card-title>1x1</ui-card-title></ui-card-header>
+  </ui-card>
+</div>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-5-0">HTML</ui-tab><ui-tab panel="code-5-1">React</ui-tab><ui-tab panel="code-5-2">React + Tailwind</ui-tab><ui-tab-panel name="code-5-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; align-items: start"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-media</span> <span style="color:var(--ui-tag-color-purple)">ratio</span>=<span style="color:var(--ui-tag-color-teal)">"16x9"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">img</span> <span style="color:var(--ui-tag-color-purple)">alt</span>=<span style="color:var(--ui-tag-color-teal)">""</span> <span style="color:var(--ui-tag-color-purple)">src</span>=<span style="color:var(--ui-tag-color-teal)">"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 90'%3E%3Crect width='160' height='90' fill='%23d0e2ff'/%3E%3Cpath d='M66 20h22l10 10v40H66z' fill='%23ffffff'/%3E%3Cpath d='M72 42h20M72 50h20M72 58h12' stroke='%230f62fe' stroke-width='2'/%3E%3C/svg%3E"</span> /&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-media</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-card-title</span>&gt;16x9&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-title</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-media</span> <span style="color:var(--ui-tag-color-purple)">ratio</span>=<span style="color:var(--ui-tag-color-teal)">"2x1"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">img</span> <span style="color:var(--ui-tag-color-purple)">alt</span>=<span style="color:var(--ui-tag-color-teal)">""</span> <span style="color:var(--ui-tag-color-purple)">src</span>=<span style="color:var(--ui-tag-color-teal)">"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 90'%3E%3Crect width='160' height='90' fill='%23d0e2ff'/%3E%3Cpath d='M66 20h22l10 10v40H66z' fill='%23ffffff'/%3E%3Cpath d='M72 42h20M72 50h20M72 58h12' stroke='%230f62fe' stroke-width='2'/%3E%3C/svg%3E"</span> /&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-media</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-card-title</span>&gt;2x1&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-title</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-media</span> <span style="color:var(--ui-tag-color-purple)">ratio</span>=<span style="color:var(--ui-tag-color-teal)">"1x1"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">img</span> <span style="color:var(--ui-tag-color-purple)">alt</span>=<span style="color:var(--ui-tag-color-teal)">""</span> <span style="color:var(--ui-tag-color-purple)">src</span>=<span style="color:var(--ui-tag-color-teal)">"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 90'%3E%3Crect width='160' height='90' fill='%23d0e2ff'/%3E%3Cpath d='M66 20h22l10 10v40H66z' fill='%23ffffff'/%3E%3Cpath d='M72 42h20M72 50h20M72 58h12' stroke='%230f62fe' stroke-width='2'/%3E%3C/svg%3E"</span> /&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-media</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-card-title</span>&gt;1x1&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-title</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-5-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiCard</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardMedia</span> <span style="color:var(--ui-tag-color-purple)">ratio</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"16x9"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">img</span> <span style="color:var(--ui-tag-color-purple)">alt</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">""</span> <span style="color:var(--ui-tag-color-purple)">src</span><span style="color:var(--ui-tag-color-magenta)">=</span>{leaseImage} /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardMedia</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span>&gt;16x9&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiCard</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiCard</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardMedia</span> <span style="color:var(--ui-tag-color-purple)">ratio</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"2x1"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">img</span> <span style="color:var(--ui-tag-color-purple)">alt</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">""</span> <span style="color:var(--ui-tag-color-purple)">src</span><span style="color:var(--ui-tag-color-magenta)">=</span>{leaseImage} /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardMedia</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span>&gt;2x1&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiCard</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiCard</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardMedia</span> <span style="color:var(--ui-tag-color-purple)">ratio</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"1x1"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">img</span> <span style="color:var(--ui-tag-color-purple)">alt</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">""</span> <span style="color:var(--ui-tag-color-purple)">src</span><span style="color:var(--ui-tag-color-magenta)">=</span>{leaseImage} /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardMedia</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span>&gt;1x1&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiCard</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-5-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">Card</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardMedia</span> <span style="color:var(--ui-tag-color-purple)">ratio</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"16x9"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">img</span> <span style="color:var(--ui-tag-color-purple)">alt</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">""</span> <span style="color:var(--ui-tag-color-purple)">src</span><span style="color:var(--ui-tag-color-magenta)">=</span>{leaseImage} /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">CardMedia</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">CardTitle</span>&gt;16x9&lt;/<span style="color:var(--ui-tag-color-blue)">CardTitle</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Card</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">Card</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardMedia</span> <span style="color:var(--ui-tag-color-purple)">ratio</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"2x1"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">img</span> <span style="color:var(--ui-tag-color-purple)">alt</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">""</span> <span style="color:var(--ui-tag-color-purple)">src</span><span style="color:var(--ui-tag-color-magenta)">=</span>{leaseImage} /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">CardMedia</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">CardTitle</span>&gt;2x1&lt;/<span style="color:var(--ui-tag-color-blue)">CardTitle</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Card</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">Card</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardMedia</span> <span style="color:var(--ui-tag-color-purple)">ratio</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"1x1"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">img</span> <span style="color:var(--ui-tag-color-purple)">alt</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">""</span> <span style="color:var(--ui-tag-color-purple)">src</span><span style="color:var(--ui-tag-color-magenta)">=</span>{leaseImage} /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">CardMedia</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">CardTitle</span>&gt;1x1&lt;/<span style="color:var(--ui-tag-color-blue)">CardTitle</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Card</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>ใส่ <code>alt=&quot;&quot;</code> เมื่อรูปเป็นแค่การตกแต่ง และใส่ <code>alt</code> จริงเมื่อรูปมีข้อมูลที่ข้อความไม่ได้บอก</p>
+<h2 id="โลโก้หน้าหัวข้อ">โลโก้หน้าหัวข้อ</h2>
+<p><code>ui-card-title-media</code> วางโลโก้หรือ avatar ไว้หน้าหัวข้อ หัวข้อจะขยับไปให้ที่</p>
+<div class="doc-demo"><ui-card style="max-width: 360px">
+  <ui-card-header>
+    <ui-card-title-media>
+      <svg width="48" height="48" viewBox="0 0 48 48" aria-hidden="true"><rect width="48" height="48" style="fill: var(--ui-primary)" /><text x="24" y="30" fill="#ffffff" font-family="sans-serif" font-size="16" text-anchor="middle">SL</text></svg>
+    </ui-card-title-media>
+    <ui-card-title label="ผู้ขาย" description="กรุงเทพฯ · ตั้งแต่ปี 2562">บริษัท สยามโลจิสติกส์ จำกัด</ui-card-title>
+  </ui-card-header>
+  <ui-card-body>ขนส่งและคลังสินค้า สัญญาที่ยังมีผล 14 ฉบับ</ui-card-body>
+</ui-card>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-6-0">HTML</ui-tab><ui-tab panel="code-6-1">React</ui-tab><ui-tab panel="code-6-2">React + Tailwind</ui-tab><ui-tab-panel name="code-6-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-card</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"max-width: 360px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-title-media</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">width</span>=<span style="color:var(--ui-tag-color-teal)">"48"</span> <span style="color:var(--ui-tag-color-purple)">height</span>=<span style="color:var(--ui-tag-color-teal)">"48"</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span>=<span style="color:var(--ui-tag-color-teal)">"0 0 48 48"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span>=<span style="color:var(--ui-tag-color-teal)">"true"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">rect</span> <span style="color:var(--ui-tag-color-purple)">width</span>=<span style="color:var(--ui-tag-color-teal)">"48"</span> <span style="color:var(--ui-tag-color-purple)">height</span>=<span style="color:var(--ui-tag-color-teal)">"48"</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"fill: var(--ui-primary)"</span> /&gt;&lt;<span style="color:var(--ui-tag-color-blue)">text</span> <span style="color:var(--ui-tag-color-purple)">x</span>=<span style="color:var(--ui-tag-color-teal)">"24"</span> <span style="color:var(--ui-tag-color-purple)">y</span>=<span style="color:var(--ui-tag-color-teal)">"30"</span> <span style="color:var(--ui-tag-color-purple)">fill</span>=<span style="color:var(--ui-tag-color-teal)">"#ffffff"</span> <span style="color:var(--ui-tag-color-purple)">font-family</span>=<span style="color:var(--ui-tag-color-teal)">"sans-serif"</span> <span style="color:var(--ui-tag-color-purple)">font-size</span>=<span style="color:var(--ui-tag-color-teal)">"16"</span> <span style="color:var(--ui-tag-color-purple)">text-anchor</span>=<span style="color:var(--ui-tag-color-teal)">"middle"</span>&gt;SL&lt;/<span style="color:var(--ui-tag-color-blue)">text</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-title-media</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-title</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ผู้ขาย"</span> <span style="color:var(--ui-tag-color-purple)">description</span>=<span style="color:var(--ui-tag-color-teal)">"กรุงเทพฯ · ตั้งแต่ปี 2562"</span>&gt;บริษัท สยามโลจิสติกส์ จำกัด&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-title</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;ขนส่งและคลังสินค้า สัญญาที่ยังมีผล 14 ฉบับ&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-6-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiCard</span> <span style="color:var(--ui-tag-color-purple)">style</span><span style="color:var(--ui-tag-color-magenta)">=</span>{{ <span style="color:var(--ui-tag-color-purple)">maxWidth:</span> <span style="color:var(--ui-tag-color-green)">360</span> }}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiCardTitleMedia</span>&gt;{supplierLogo}&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardTitleMedia</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ผู้ขาย"</span> <span style="color:var(--ui-tag-color-purple)">description</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"กรุงเทพฯ · ตั้งแต่ปี 2562"</span>&gt;บริษัท สยามโลจิสติกส์ จำกัด&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardBody</span>&gt;ขนส่งและคลังสินค้า สัญญาที่ยังมีผล 14 ฉบับ&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardBody</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiCard</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-6-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">Card</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"max-w-[360px]"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">CardTitleMedia</span>&gt;{supplierLogo}&lt;/<span style="color:var(--ui-tag-color-blue)">CardTitleMedia</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">CardTitle</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ผู้ขาย"</span> <span style="color:var(--ui-tag-color-purple)">description</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"กรุงเทพฯ · ตั้งแต่ปี 2562"</span>&gt;บริษัท สยามโลจิสติกส์ จำกัด&lt;/<span style="color:var(--ui-tag-color-blue)">CardTitle</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardBody</span>&gt;ขนส่งและคลังสินค้า สัญญาที่ยังมีผล 14 ฉบับ&lt;/<span style="color:var(--ui-tag-color-blue)">CardBody</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Card</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="หัวข้อ-label-และคำอธิบาย">หัวข้อ label และคำอธิบาย</h2>
+<p><code>ui-card-title</code> ใส่ข้อความหัวข้อ <code>label</code> อยู่ด้านบน <code>description</code> อยู่ด้านล่าง ทั้งสองเป็นตัวเล็กสีจาง ถ้าต้องการ markup ข้างใน ให้ใช้ slot <code>label</code> และ <code>description</code> แทน ไอคอนหน้าหรือหลังหัวข้อใส่ใน slot <code>title-start</code> และ <code>title-end</code> (React + Tailwind ใช้ <code>titleStart</code> และ <code>titleEnd</code>)</p>
+<div class="doc-demo"><ui-card style="max-width: 360px">
+  <ui-card-header>
+    <ui-card-title>
+      สัญญาซื้อขาย C-2026-014
+      <svg slot="title-end" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-label="ลงนามแล้ว" role="img"><path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1ZM7 11 4.3 8.3l.9-.8L7 9.3l4-3.9.9.8L7 11Z" /></svg>
+      <span slot="label">โรงงานเชียงใหม่</span>
+      <span slot="description">ลงนาม<b>ครบทั้งสองฝ่าย</b>เมื่อ 2 ตุลาคม 2569</span>
+    </ui-card-title>
+  </ui-card-header>
+  <ui-card-body>ส่งวัสดุบรรจุภัณฑ์ทุกเดือน ถึงธันวาคม 2570</ui-card-body>
+</ui-card>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-7-0">HTML</ui-tab><ui-tab panel="code-7-1">React</ui-tab><ui-tab panel="code-7-2">React + Tailwind</ui-tab><ui-tab-panel name="code-7-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-card</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"max-width: 360px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-title</span>&gt;
+      สัญญาซื้อขาย C-2026-014
+      &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"title-end"</span> <span style="color:var(--ui-tag-color-purple)">width</span>=<span style="color:var(--ui-tag-color-teal)">"16"</span> <span style="color:var(--ui-tag-color-purple)">height</span>=<span style="color:var(--ui-tag-color-teal)">"16"</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span>=<span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">fill</span>=<span style="color:var(--ui-tag-color-teal)">"currentColor"</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span>=<span style="color:var(--ui-tag-color-teal)">"ลงนามแล้ว"</span> <span style="color:var(--ui-tag-color-purple)">role</span>=<span style="color:var(--ui-tag-color-teal)">"img"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span>=<span style="color:var(--ui-tag-color-teal)">"M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1ZM7 11 4.3 8.3l.9-.8L7 9.3l4-3.9.9.8L7 11Z"</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"label"</span>&gt;โรงงานเชียงใหม่&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"description"</span>&gt;ลงนาม&lt;<span style="color:var(--ui-tag-color-blue)">b</span>&gt;ครบทั้งสองฝ่าย&lt;/<span style="color:var(--ui-tag-color-blue)">b</span>&gt;เมื่อ 2 ตุลาคม 2569&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-title</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;ส่งวัสดุบรรจุภัณฑ์ทุกเดือน ถึงธันวาคม 2570&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-7-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiCard</span> <span style="color:var(--ui-tag-color-purple)">style</span><span style="color:var(--ui-tag-color-magenta)">=</span>{{ <span style="color:var(--ui-tag-color-purple)">maxWidth:</span> <span style="color:var(--ui-tag-color-green)">360</span> }}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span>&gt;
+      สัญญาซื้อขาย C-2026-014
+      &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">slot</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"title-end"</span> <span style="color:var(--ui-tag-color-purple)">width</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"16"</span> <span style="color:var(--ui-tag-color-purple)">height</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"16"</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">fill</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"currentColor"</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ลงนามแล้ว"</span> <span style="color:var(--ui-tag-color-purple)">role</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"img"</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">slot</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"label"</span>&gt;โรงงานเชียงใหม่&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">slot</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"description"</span>&gt;ลงนาม&lt;<span style="color:var(--ui-tag-color-blue)">b</span>&gt;ครบทั้งสองฝ่าย&lt;/<span style="color:var(--ui-tag-color-blue)">b</span>&gt;เมื่อ 2 ตุลาคม 2569&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardBody</span>&gt;ส่งวัสดุบรรจุภัณฑ์ทุกเดือน ถึงธันวาคม 2570&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardBody</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiCard</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-7-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">Card</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"max-w-[360px]"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">CardTitle</span>
+      <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"โรงงานเชียงใหม่"</span>
+      <span style="color:var(--ui-tag-color-purple)">description</span><span style="color:var(--ui-tag-color-magenta)">=</span>{&lt;&gt;ลงนาม&lt;<span style="color:var(--ui-tag-color-blue)">b</span>&gt;ครบทั้งสองฝ่าย&lt;/<span style="color:var(--ui-tag-color-blue)">b</span>&gt;เมื่อ 2 ตุลาคม 2569&lt;/&gt;}
+      <span style="color:var(--ui-tag-color-purple)">titleEnd</span><span style="color:var(--ui-tag-color-magenta)">=</span>{&lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">width</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"16"</span> <span style="color:var(--ui-tag-color-purple)">height</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"16"</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">fill</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"currentColor"</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ลงนามแล้ว"</span> <span style="color:var(--ui-tag-color-purple)">role</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"img"</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;}
+    &gt;
+      สัญญาซื้อขาย C-2026-014
+    &lt;/<span style="color:var(--ui-tag-color-blue)">CardTitle</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardBody</span>&gt;ส่งวัสดุบรรจุภัณฑ์ทุกเดือน ถึงธันวาคม 2570&lt;/<span style="color:var(--ui-tag-color-blue)">CardBody</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Card</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="ตัดข้อความยาว">ตัดข้อความยาว</h2>
+<p>หัวข้อยาวจะขึ้นบรรทัดใหม่ <code>title-truncate</code> ตัดหัวข้อแทน ถ้าใส่เปล่า ๆ จะตัดเหลือบรรทัดเดียวพร้อม ... ถ้าใส่ตัวเลขจะเหลือเท่าจำนวนบรรทัดนั้น <code>label-truncate</code> และ <code>description-truncate</code> ทำงานแบบเดียวกัน <code>max-width</code> จำกัดความกว้างของหัวข้อที่ถูกตัด</p>
+<div class="doc-demo"><div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; align-items: start">
+  <ui-card>
+    <ui-card-header>
+      <ui-card-title title-truncate description="หัวข้อและคำอธิบายอย่างละบรรทัดเดียว" description-truncate>บันทึกความเข้าใจว่าด้วยการจัดซื้อร่วมกันระหว่างสำนักงานจังหวัดสามแห่ง</ui-card-title>
+    </ui-card-header>
+  </ui-card>
+  <ui-card>
+    <ui-card-header>
+      <ui-card-title title-truncate="2" description="คำอธิบายถูกตัดเหลือบรรทัดเดียวเมื่อยาวกว่าความกว้างของ card" description-truncate="1">บันทึกความเข้าใจว่าด้วยการจัดซื้อร่วมกันระหว่างสำนักงานจังหวัดสามแห่ง</ui-card-title>
+    </ui-card-header>
+  </ui-card>
+</div>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-8-0">HTML</ui-tab><ui-tab panel="code-8-1">React</ui-tab><ui-tab panel="code-8-2">React + Tailwind</ui-tab><ui-tab-panel name="code-8-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; align-items: start"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-title</span> <span style="color:var(--ui-tag-color-purple)">title-truncate</span> <span style="color:var(--ui-tag-color-purple)">description</span>=<span style="color:var(--ui-tag-color-teal)">"หัวข้อและคำอธิบายอย่างละบรรทัดเดียว"</span> <span style="color:var(--ui-tag-color-purple)">description-truncate</span>&gt;บันทึกความเข้าใจว่าด้วยการจัดซื้อร่วมกันระหว่างสำนักงานจังหวัดสามแห่ง&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-title</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-title</span> <span style="color:var(--ui-tag-color-purple)">title-truncate</span>=<span style="color:var(--ui-tag-color-teal)">"2"</span> <span style="color:var(--ui-tag-color-purple)">description</span>=<span style="color:var(--ui-tag-color-teal)">"คำอธิบายถูกตัดเหลือบรรทัดเดียวเมื่อยาวกว่าความกว้างของ card"</span> <span style="color:var(--ui-tag-color-purple)">description-truncate</span>=<span style="color:var(--ui-tag-color-teal)">"1"</span>&gt;บันทึกความเข้าใจว่าด้วยการจัดซื้อร่วมกันระหว่างสำนักงานจังหวัดสามแห่ง&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-title</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-8-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiCard</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span> <span style="color:var(--ui-tag-color-purple)">titleTruncate</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">""</span> <span style="color:var(--ui-tag-color-purple)">description</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"หัวข้อและคำอธิบายอย่างละบรรทัดเดียว"</span> <span style="color:var(--ui-tag-color-purple)">descriptionTruncate</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">""</span>&gt;บันทึกความเข้าใจว่าด้วยการจัดซื้อร่วมกันระหว่างสำนักงานจังหวัดสามแห่ง&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiCard</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiCard</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span> <span style="color:var(--ui-tag-color-purple)">titleTruncate</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"2"</span> <span style="color:var(--ui-tag-color-purple)">description</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"คำอธิบายถูกตัดเหลือบรรทัดเดียวเมื่อยาวกว่าความกว้างของ card"</span> <span style="color:var(--ui-tag-color-purple)">descriptionTruncate</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"1"</span>&gt;บันทึกความเข้าใจว่าด้วยการจัดซื้อร่วมกันระหว่างสำนักงานจังหวัดสามแห่ง&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiCard</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-8-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">Card</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">CardTitle</span> <span style="color:var(--ui-tag-color-purple)">titleTruncate</span> <span style="color:var(--ui-tag-color-purple)">description</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"หัวข้อและคำอธิบายอย่างละบรรทัดเดียว"</span> <span style="color:var(--ui-tag-color-purple)">descriptionTruncate</span>&gt;บันทึกความเข้าใจว่าด้วยการจัดซื้อร่วมกันระหว่างสำนักงานจังหวัดสามแห่ง&lt;/<span style="color:var(--ui-tag-color-blue)">CardTitle</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Card</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">Card</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">CardTitle</span> <span style="color:var(--ui-tag-color-purple)">titleTruncate</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">2</span>} <span style="color:var(--ui-tag-color-purple)">description</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"คำอธิบายถูกตัดเหลือบรรทัดเดียวเมื่อยาวกว่าความกว้างของ card"</span> <span style="color:var(--ui-tag-color-purple)">descriptionTruncate</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">1</span>}&gt;บันทึกความเข้าใจว่าด้วยการจัดซื้อร่วมกันระหว่างสำนักงานจังหวัดสามแห่ง&lt;/<span style="color:var(--ui-tag-color-blue)">CardTitle</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Card</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>บน element ค่าเหล่านี้เป็น attribute ที่แค่มีอยู่ก็หมายถึงบรรทัดเดียว (ใน React ให้ส่ง <code>&quot;&quot;</code> หรือจำนวนบรรทัดเป็น string) React + Tailwind รับ <code>true</code> หรือตัวเลข</p>
+<h2 id="ปุ่มใน-header">ปุ่มใน header</h2>
+<p><code>ui-card-actions</code> วางปุ่มเล็ก ๆ ที่มุมบนด้านท้ายของ header ใช้ความกว้างไม่เกินครึ่ง ใส่ <code>ui-icon-button kind=&quot;ghost&quot; size=&quot;sm&quot;</code> แต่ละปุ่มใน <code>ui-card-action</code> ปุ่มที่ไม่พอที่จะย้ายไปอยู่ใน overflow menu เลือกรายการในเมนูแล้วจะกดปุ่มนั้นให้ ดู card แคบในตัวอย่าง</p>
+<div class="doc-demo"><div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: start">
+  <ui-card id="card-actions" style="width: 360px">
+    <ui-card-header>
+      <ui-card-title label="โครงการ" description="ครบกำหนดใน 3 วัน">ปรับปรุงสาขา</ui-card-title>
+      <ui-card-actions>
+        <ui-card-action><ui-icon-button kind="ghost" size="sm" label="แก้ไข"><svg viewBox="0 0 16 16"><path d="M1 13h14v1H1zM12.7 4.5 10.5 2.3a1 1 0 0 0-1.4 0L3 8.4V11h2.6l6.1-6.1a1 1 0 0 0 0-1.4zM5.2 10H4V8.8l4-4 1.2 1.2zm4.7-4.7L8.7 4.1l1.1-1.1L11 4.2z" /></svg></ui-icon-button></ui-card-action>
+        <ui-card-action><ui-icon-button kind="ghost" size="sm" label="ลบ"><svg viewBox="0 0 16 16"><path d="M6 6h1v6H6zm3 0h1v6H9zM2 3v1h1v10a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4h1V3zm2 11V4h8v10zM6 1h4v1H6z" /></svg></ui-icon-button></ui-card-action>
+      </ui-card-actions>
+    </ui-card-header>
+    <ui-card-body>สาขาสีลม ชั้นสอง ผู้รับเหมาเริ่มงาน 1 พฤศจิกายน</ui-card-body>
+  </ui-card>
+  <ui-card id="card-actions-narrow" style="width: 200px">
+    <ui-card-header>
+      <ui-card-title>แคบ</ui-card-title>
+      <ui-card-actions>
+        <ui-card-action><ui-icon-button kind="ghost" size="sm" label="แก้ไข"><svg viewBox="0 0 16 16"><path d="M1 13h14v1H1zM12.7 4.5 10.5 2.3a1 1 0 0 0-1.4 0L3 8.4V11h2.6l6.1-6.1a1 1 0 0 0 0-1.4zM5.2 10H4V8.8l4-4 1.2 1.2zm4.7-4.7L8.7 4.1l1.1-1.1L11 4.2z" /></svg></ui-icon-button></ui-card-action>
+        <ui-card-action label="ทำสำเนา"><ui-icon-button kind="ghost" size="sm" label="ทำสำเนา"><svg viewBox="0 0 16 16"><path d="M14 5v9H5V5h9m0-1H5a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1ZM2 9H1V2a1 1 0 0 1 1-1h7v1H2Z" /></svg></ui-icon-button></ui-card-action>
+        <ui-card-action><ui-icon-button kind="ghost" size="sm" label="ลบ"><svg viewBox="0 0 16 16"><path d="M6 6h1v6H6zm3 0h1v6H9zM2 3v1h1v10a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4h1V3zm2 11V4h8v10zM6 1h4v1H6z" /></svg></ui-icon-button></ui-card-action>
+      </ui-card-actions>
+    </ui-card-header>
+    <ui-card-body>สองปุ่มย้ายไปอยู่ในเมนู</ui-card-body>
+  </ui-card>
+</div>
+<p>กดแล้ว: <output id="card-actions-out">ยังไม่มี</output></p>
+
+<script type="text/x-demo">
+  const out = document.getElementById('card-actions-out');
+  for (const button of document.querySelectorAll('#card-actions ui-icon-button, #card-actions-narrow ui-icon-button')) {
+    button.addEventListener('click', () => (out.value = button.getAttribute('label')));
+  }
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-9-0">HTML</ui-tab><ui-tab panel="code-9-1">React</ui-tab><ui-tab panel="code-9-2">React + Tailwind</ui-tab><ui-tab-panel name="code-9-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"display: flex; flex-wrap: wrap; gap: 16px; align-items: start"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"card-actions"</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"width: 360px"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-title</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"โครงการ"</span> <span style="color:var(--ui-tag-color-purple)">description</span>=<span style="color:var(--ui-tag-color-teal)">"ครบกำหนดใน 3 วัน"</span>&gt;ปรับปรุงสาขา&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-title</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-actions</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-action</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-button</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"ghost"</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"แก้ไข"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span>=<span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span>=<span style="color:var(--ui-tag-color-teal)">"M1 13h14v1H1zM12.7 4.5 10.5 2.3a1 1 0 0 0-1.4 0L3 8.4V11h2.6l6.1-6.1a1 1 0 0 0 0-1.4zM5.2 10H4V8.8l4-4 1.2 1.2zm4.7-4.7L8.7 4.1l1.1-1.1L11 4.2z"</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-button</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-action</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-action</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-button</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"ghost"</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ลบ"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span>=<span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span>=<span style="color:var(--ui-tag-color-teal)">"M6 6h1v6H6zm3 0h1v6H9zM2 3v1h1v10a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4h1V3zm2 11V4h8v10zM6 1h4v1H6z"</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-button</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-action</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-actions</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;สาขาสีลม ชั้นสอง ผู้รับเหมาเริ่มงาน 1 พฤศจิกายน&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"card-actions-narrow"</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"width: 200px"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-title</span>&gt;แคบ&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-title</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-actions</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-action</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-button</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"ghost"</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"แก้ไข"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span>=<span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span>=<span style="color:var(--ui-tag-color-teal)">"M1 13h14v1H1zM12.7 4.5 10.5 2.3a1 1 0 0 0-1.4 0L3 8.4V11h2.6l6.1-6.1a1 1 0 0 0 0-1.4zM5.2 10H4V8.8l4-4 1.2 1.2zm4.7-4.7L8.7 4.1l1.1-1.1L11 4.2z"</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-button</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-action</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-action</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ทำสำเนา"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-button</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"ghost"</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ทำสำเนา"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span>=<span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span>=<span style="color:var(--ui-tag-color-teal)">"M14 5v9H5V5h9m0-1H5a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1ZM2 9H1V2a1 1 0 0 1 1-1h7v1H2Z"</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-button</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-action</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-action</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-button</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"ghost"</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ลบ"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span>=<span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span>=<span style="color:var(--ui-tag-color-teal)">"M6 6h1v6H6zm3 0h1v6H9zM2 3v1h1v10a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4h1V3zm2 11V4h8v10zM6 1h4v1H6z"</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-button</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-action</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-actions</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;สองปุ่มย้ายไปอยู่ในเมนู&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;กดแล้ว: &lt;<span style="color:var(--ui-tag-color-blue)">output</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"card-actions-out"</span>&gt;ยังไม่มี&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> out <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'card-actions-out'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">for</span> (<span style="color:var(--ui-tag-color-magenta)">const</span> button <span style="color:var(--ui-tag-color-magenta)">of</span> document.<span style="color:var(--ui-tag-color-cyan)">querySelectorAll</span>(<span style="color:var(--ui-tag-color-teal)">'#card-actions ui-icon-button, #card-actions-narrow ui-icon-button'</span>)) {
+    button.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (out.value <span style="color:var(--ui-tag-color-magenta)">=</span> button.<span style="color:var(--ui-tag-color-cyan)">getAttribute</span>(<span style="color:var(--ui-tag-color-teal)">'label'</span>)));
+  }
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-9-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiCard</span> <span style="color:var(--ui-tag-color-purple)">style</span><span style="color:var(--ui-tag-color-magenta)">=</span>{{ <span style="color:var(--ui-tag-color-purple)">width:</span> <span style="color:var(--ui-tag-color-green)">360</span> }}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"โครงการ"</span> <span style="color:var(--ui-tag-color-purple)">description</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ครบกำหนดใน 3 วัน"</span>&gt;ปรับปรุงสาขา&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiCardActions</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">UiCardAction</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">UiIconButton</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ghost"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"แก้ไข"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{edit}&gt;{editIcon}&lt;/<span style="color:var(--ui-tag-color-blue)">UiIconButton</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardAction</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">UiCardAction</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">UiIconButton</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ghost"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ลบ"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{remove}&gt;{trashIcon}&lt;/<span style="color:var(--ui-tag-color-blue)">UiIconButton</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardAction</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">UiCardActions</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardBody</span>&gt;สาขาสีลม ชั้นสอง ผู้รับเหมาเริ่มงาน 1 พฤศจิกายน&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardBody</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiCard</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-9-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">Card</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"w-[360px]"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">CardTitle</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"โครงการ"</span> <span style="color:var(--ui-tag-color-purple)">description</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ครบกำหนดใน 3 วัน"</span>&gt;ปรับปรุงสาขา&lt;/<span style="color:var(--ui-tag-color-blue)">CardTitle</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">CardActions</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">CardAction</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">IconButton</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ghost"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"แก้ไข"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{edit}&gt;{editIcon}&lt;/<span style="color:var(--ui-tag-color-blue)">IconButton</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">CardAction</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">CardAction</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">IconButton</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ghost"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ลบ"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{remove}&gt;{trashIcon}&lt;/<span style="color:var(--ui-tag-color-blue)">IconButton</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">CardAction</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">CardActions</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardBody</span>&gt;สาขาสีลม ชั้นสอง ผู้รับเหมาเริ่มงาน 1 พฤศจิกายน&lt;/<span style="color:var(--ui-tag-color-blue)">CardBody</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Card</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>ชื่อของรายการใน overflow menu มาจาก <code>label</code> ของ action ถ้าไม่มีจะใช้ <code>label</code> หรือข้อความของปุ่ม <code>overflow-menu-label</code> ตั้งชื่อปุ่มเมนู (ค่าเริ่มต้น &quot;การกระทำอื่น&quot; แปลตามภาษา)</p>
+<h2 id="ปุ่มใน-footer">ปุ่มใน footer</h2>
+<p><code>ui-card-footer</code> ที่มี <code>ui-card-action</code> จะเป็นแถวปุ่มเต็มความกว้างใต้เส้นบาง ๆ <code>ui-button</code> ขยายแบ่งแถวกัน <code>ui-icon-button</code> คงขนาดอยู่ท้ายแถว footer ที่มีเนื้อหาธรรมดาจะแค่เว้น padding ให้</p>
+<div class="doc-demo"><ui-card id="card-footer" style="max-width: 360px">
+  <ui-card-header>
+    <ui-card-title label="รายงาน" description="กันยายน 2569">สรุปสัญญาประจำเดือน</ui-card-title>
+  </ui-card-header>
+  <ui-card-body>ลงนามแล้ว 48 ฉบับ หมดอายุใน 30 วันข้างหน้า 5 ฉบับ</ui-card-body>
+  <ui-card-footer>
+    <ui-card-action><ui-button kind="ghost">ดูรายงาน</ui-button></ui-card-action>
+    <ui-card-action><ui-icon-button kind="ghost" size="md" label="ดาวน์โหลด"><svg viewBox="0 0 16 16"><path d="M13 12v2H3v-2H2v2a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-2zM13 7l-.7-.7-3.8 3.8V1h-1v9.1L3.7 6.3 3 7l5 5z" /></svg></ui-icon-button></ui-card-action>
+  </ui-card-footer>
+</ui-card>
+<p>กดแล้ว: <output id="card-footer-out">ยังไม่มี</output></p>
+
+<script type="text/x-demo">
+  const out = document.getElementById('card-footer-out');
+  for (const button of document.querySelectorAll('#card-footer ui-card-action > *')) {
+    button.addEventListener('click', () => (out.value = button.getAttribute('label') ?? button.textContent.trim()));
+  }
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-10-0">HTML</ui-tab><ui-tab panel="code-10-1">React</ui-tab><ui-tab panel="code-10-2">React + Tailwind</ui-tab><ui-tab-panel name="code-10-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-card</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"card-footer"</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"max-width: 360px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-title</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"รายงาน"</span> <span style="color:var(--ui-tag-color-purple)">description</span>=<span style="color:var(--ui-tag-color-teal)">"กันยายน 2569"</span>&gt;สรุปสัญญาประจำเดือน&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-title</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;ลงนามแล้ว 48 ฉบับ หมดอายุใน 30 วันข้างหน้า 5 ฉบับ&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-footer</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-action</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"ghost"</span>&gt;ดูรายงาน&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-action</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-action</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-button</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"ghost"</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"md"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ดาวน์โหลด"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span>=<span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span>=<span style="color:var(--ui-tag-color-teal)">"M13 12v2H3v-2H2v2a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-2zM13 7l-.7-.7-3.8 3.8V1h-1v9.1L3.7 6.3 3 7l5 5z"</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-button</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-action</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-footer</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;กดแล้ว: &lt;<span style="color:var(--ui-tag-color-blue)">output</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"card-footer-out"</span>&gt;ยังไม่มี&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> out <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'card-footer-out'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">for</span> (<span style="color:var(--ui-tag-color-magenta)">const</span> button <span style="color:var(--ui-tag-color-magenta)">of</span> document.<span style="color:var(--ui-tag-color-cyan)">querySelectorAll</span>(<span style="color:var(--ui-tag-color-teal)">'#card-footer ui-card-action &gt; *'</span>)) {
+    button.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (out.value <span style="color:var(--ui-tag-color-magenta)">=</span> button.<span style="color:var(--ui-tag-color-cyan)">getAttribute</span>(<span style="color:var(--ui-tag-color-teal)">'label'</span>) <span style="color:var(--ui-tag-color-magenta)">??</span> button.textContent.<span style="color:var(--ui-tag-color-cyan)">trim</span>()));
+  }
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-10-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiCard</span> <span style="color:var(--ui-tag-color-purple)">style</span><span style="color:var(--ui-tag-color-magenta)">=</span>{{ <span style="color:var(--ui-tag-color-purple)">maxWidth:</span> <span style="color:var(--ui-tag-color-green)">360</span> }}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"รายงาน"</span> <span style="color:var(--ui-tag-color-purple)">description</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"กันยายน 2569"</span>&gt;สรุปสัญญาประจำเดือน&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardBody</span>&gt;ลงนามแล้ว 48 ฉบับ หมดอายุใน 30 วันข้างหน้า 5 ฉบับ&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardBody</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardFooter</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiCardAction</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">UiButton</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ghost"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{view}&gt;ดูรายงาน&lt;/<span style="color:var(--ui-tag-color-blue)">UiButton</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardAction</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiCardAction</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">UiIconButton</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ghost"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"md"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ดาวน์โหลด"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{download}&gt;{downloadIcon}&lt;/<span style="color:var(--ui-tag-color-blue)">UiIconButton</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardAction</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiCardFooter</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiCard</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-10-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">Card</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"max-w-[360px]"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">CardTitle</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"รายงาน"</span> <span style="color:var(--ui-tag-color-purple)">description</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"กันยายน 2569"</span>&gt;สรุปสัญญาประจำเดือน&lt;/<span style="color:var(--ui-tag-color-blue)">CardTitle</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardBody</span>&gt;ลงนามแล้ว 48 ฉบับ หมดอายุใน 30 วันข้างหน้า 5 ฉบับ&lt;/<span style="color:var(--ui-tag-color-blue)">CardBody</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardFooter</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">CardAction</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">Button</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ghost"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{view}&gt;ดูรายงาน&lt;/<span style="color:var(--ui-tag-color-blue)">Button</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">CardAction</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">CardAction</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">IconButton</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ghost"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"md"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ดาวน์โหลด"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{download}&gt;{downloadIcon}&lt;/<span style="color:var(--ui-tag-color-blue)">IconButton</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">CardAction</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">CardFooter</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Card</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="card-ที่เป็นลิงก์">Card ที่เป็นลิงก์</h2>
+<p>ถ้าใส่ <code>href</code> ทั้ง card จะเป็นลิงก์เดียวและเป็นจุดหยุดของ Tab จุดเดียว ตั้งชื่อด้วย <code>label</code> เพราะข้อความทั้ง card จะกลายเป็นชื่อลิงก์ที่ยาวมาก card ที่เป็นลิงก์จะมีเส้นขอบและสี hover และซ่อน footer เพราะลิงก์เดียวใส่ control อื่นไม่ได้ จึงไม่ควรใส่ปุ่มใน header ด้วย ถ้าใส่ไว้ปุ่มจะยังแสดงอยู่ข้างในลิงก์ (เหมือน Carbon ซึ่งแนวทางบอกว่า card ที่คลิกได้ไม่ควรมี element ที่โต้ตอบได้) การคลิกธรรมดาจะยิง <code>ui-navigate</code> ที่ยกเลิกได้ก่อน สำหรับ <a href="/kanok-ui-docs/th/frameworks/#%E0%B9%83%E0%B8%AB%E0%B9%89-spa-router-%E0%B9%80%E0%B8%9B%E0%B8%A5%E0%B8%B5%E0%B9%88%E0%B8%A2%E0%B8%99%E0%B8%AB%E0%B8%99%E0%B9%89%E0%B8%B2%E0%B9%80%E0%B8%A1%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%84%E0%B8%A5%E0%B8%B4%E0%B8%81%E0%B8%A5%E0%B8%B4%E0%B8%87%E0%B8%81%E0%B9%8C">router ของ SPA</a></p>
+<div class="doc-demo"><ui-card href="#accessibility" label="เปิดระเบียบการจัดซื้อ" style="max-width: 360px">
+  <ui-card-header>
+    <ui-card-title label="ระเบียบ" description="ฉบับที่ 4 ปี 2569">ระเบียบการจัดซื้อ</ui-card-title>
+  </ui-card-header>
+  <ui-card-body>ใครอนุมัติการจัดซื้อได้ และได้ถึงวงเงินเท่าไร</ui-card-body>
+</ui-card>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-11-0">HTML</ui-tab><ui-tab panel="code-11-1">React</ui-tab><ui-tab panel="code-11-2">React + Tailwind</ui-tab><ui-tab-panel name="code-11-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-card</span> <span style="color:var(--ui-tag-color-purple)">href</span>=<span style="color:var(--ui-tag-color-teal)">"#accessibility"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"เปิดระเบียบการจัดซื้อ"</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"max-width: 360px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-title</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ระเบียบ"</span> <span style="color:var(--ui-tag-color-purple)">description</span>=<span style="color:var(--ui-tag-color-teal)">"ฉบับที่ 4 ปี 2569"</span>&gt;ระเบียบการจัดซื้อ&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-title</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;ใครอนุมัติการจัดซื้อได้ และได้ถึงวงเงินเท่าไร&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-11-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiCard</span> <span style="color:var(--ui-tag-color-purple)">href</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"/policies/procurement"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เปิดระเบียบการจัดซื้อ"</span> <span style="color:var(--ui-tag-color-purple)">style</span><span style="color:var(--ui-tag-color-magenta)">=</span>{{ <span style="color:var(--ui-tag-color-purple)">maxWidth:</span> <span style="color:var(--ui-tag-color-green)">360</span> }}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ระเบียบ"</span> <span style="color:var(--ui-tag-color-purple)">description</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ฉบับที่ 4 ปี 2569"</span>&gt;ระเบียบการจัดซื้อ&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardBody</span>&gt;ใครอนุมัติการจัดซื้อได้ และได้ถึงวงเงินเท่าไร&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardBody</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiCard</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-11-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">Card</span> <span style="color:var(--ui-tag-color-purple)">href</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"/policies/procurement"</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เปิดระเบียบการจัดซื้อ"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"max-w-[360px]"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">CardTitle</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ระเบียบ"</span> <span style="color:var(--ui-tag-color-purple)">description</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ฉบับที่ 4 ปี 2569"</span>&gt;ระเบียบการจัดซื้อ&lt;/<span style="color:var(--ui-tag-color-blue)">CardTitle</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardBody</span>&gt;ใครอนุมัติการจัดซื้อได้ และได้ถึงวงเงินเท่าไร&lt;/<span style="color:var(--ui-tag-color-blue)">CardBody</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Card</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p><code>target=&quot;_blank&quot;</code> เปิดในแท็บใหม่ card จะเติม &quot;(เปิดในแท็บใหม่)&quot; ให้ screen reader และใส่ <code>rel=&quot;noopener noreferrer&quot;</code> ให้</p>
+<h2 id="card-ที่คลิกได้">Card ที่คลิกได้</h2>
+<p><code>clickable</code> ทำให้ทั้ง card เป็นปุ่มเดียว การคลิก หรือกด Enter หรือ Space ขณะที่ card มี focus จะยิง <code>click</code> ลูกศรที่มุมล่างด้านท้ายบอกว่ากดได้ เปลี่ยนไอคอนได้ด้วย slot <code>footer-icon</code> (React + Tailwind ใช้ <code>footerIcon</code>) ตั้งชื่อ card ด้วย <code>label</code> และอย่าใส่ control อื่นข้างใน</p>
+<div class="doc-demo"><div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px">
+  <ui-card id="card-pick-sale" clickable label="เริ่มสัญญาซื้อขาย">
+    <ui-card-header><ui-card-title label="แม่แบบ">สัญญาซื้อขาย</ui-card-title></ui-card-header>
+    <ui-card-body>สินค้า ราคา และการส่งมอบ</ui-card-body>
+  </ui-card>
+  <ui-card id="card-pick-lease" clickable label="เริ่มสัญญาเช่า">
+    <ui-card-header><ui-card-title label="แม่แบบ">สัญญาเช่า</ui-card-title></ui-card-header>
+    <ui-card-body>ทรัพย์สิน ค่าเช่า และระยะเวลา</ui-card-body>
+  </ui-card>
+</div>
+<p>เลือกแล้ว: <output id="card-pick-out">ยังไม่มี</output></p>
+
+<script type="text/x-demo">
+  const out = document.getElementById('card-pick-out');
+  for (const id of ['card-pick-sale', 'card-pick-lease']) {
+    const card = document.getElementById(id);
+    card.addEventListener('click', () => (out.value = card.label));
+  }
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-12-0">HTML</ui-tab><ui-tab panel="code-12-1">React</ui-tab><ui-tab panel="code-12-2">React + Tailwind</ui-tab><ui-tab-panel name="code-12-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"card-pick-sale"</span> <span style="color:var(--ui-tag-color-purple)">clickable</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"เริ่มสัญญาซื้อขาย"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-card-title</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"แม่แบบ"</span>&gt;สัญญาซื้อขาย&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-title</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;สินค้า ราคา และการส่งมอบ&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"card-pick-lease"</span> <span style="color:var(--ui-tag-color-purple)">clickable</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"เริ่มสัญญาเช่า"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-card-title</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"แม่แบบ"</span>&gt;สัญญาเช่า&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-title</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;ทรัพย์สิน ค่าเช่า และระยะเวลา&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;เลือกแล้ว: &lt;<span style="color:var(--ui-tag-color-blue)">output</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"card-pick-out"</span>&gt;ยังไม่มี&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> out <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'card-pick-out'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">for</span> (<span style="color:var(--ui-tag-color-magenta)">const</span> id <span style="color:var(--ui-tag-color-magenta)">of</span> [<span style="color:var(--ui-tag-color-teal)">'card-pick-sale'</span>, <span style="color:var(--ui-tag-color-teal)">'card-pick-lease'</span>]) {
+    <span style="color:var(--ui-tag-color-magenta)">const</span> card <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(id);
+    card.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (out.value <span style="color:var(--ui-tag-color-magenta)">=</span> card.label));
+  }
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-12-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> [chosen, setChosen] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">''</span>);
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiCard</span> <span style="color:var(--ui-tag-color-purple)">clickable</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เริ่มสัญญาซื้อขาย"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setChosen</span>(<span style="color:var(--ui-tag-color-teal)">'sale'</span>)}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"แม่แบบ"</span>&gt;สัญญาซื้อขาย&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardBody</span>&gt;สินค้า ราคา และการส่งมอบ&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardBody</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiCard</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiCard</span> <span style="color:var(--ui-tag-color-purple)">clickable</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เริ่มสัญญาเช่า"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setChosen</span>(<span style="color:var(--ui-tag-color-teal)">'lease'</span>)}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"แม่แบบ"</span>&gt;สัญญาเช่า&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardBody</span>&gt;ทรัพย์สิน ค่าเช่า และระยะเวลา&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardBody</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiCard</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;เลือกแล้ว: &lt;<span style="color:var(--ui-tag-color-blue)">output</span>&gt;{chosen}&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-12-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> [chosen, setChosen] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">''</span>);
+
+&lt;<span style="color:var(--ui-tag-color-blue)">Card</span> <span style="color:var(--ui-tag-color-purple)">clickable</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เริ่มสัญญาซื้อขาย"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setChosen</span>(<span style="color:var(--ui-tag-color-teal)">'sale'</span>)}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">CardTitle</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"แม่แบบ"</span>&gt;สัญญาซื้อขาย&lt;/<span style="color:var(--ui-tag-color-blue)">CardTitle</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardBody</span>&gt;สินค้า ราคา และการส่งมอบ&lt;/<span style="color:var(--ui-tag-color-blue)">CardBody</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Card</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">Card</span> <span style="color:var(--ui-tag-color-purple)">clickable</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เริ่มสัญญาเช่า"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setChosen</span>(<span style="color:var(--ui-tag-color-teal)">'lease'</span>)}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">CardTitle</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"แม่แบบ"</span>&gt;สัญญาเช่า&lt;/<span style="color:var(--ui-tag-color-blue)">CardTitle</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardBody</span>&gt;ทรัพย์สิน ค่าเช่า และระยะเวลา&lt;/<span style="color:var(--ui-tag-color-blue)">CardBody</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Card</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;เลือกแล้ว: &lt;<span style="color:var(--ui-tag-color-blue)">output</span>&gt;{chosen}&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="ปิดใช้งาน">ปิดใช้งาน</h2>
+<p><code>disabled</code> ทำให้ข้อความและลูกศรเป็นสีเทา card ที่คลิกได้แต่ปิดใช้งานจะไม่ยิง <code>click</code> และออกจากลำดับของ Tab card ที่เป็นลิงก์แต่ปิดใช้งานจะไม่เป็นลิงก์อีก บอกเหตุผลไว้ใน card ว่าทำไมใช้ไม่ได้</p>
+<div class="doc-demo"><ui-card clickable disabled label="เริ่มสัญญากู้ยืม (ยังใช้ไม่ได้)" style="max-width: 320px">
+  <ui-card-header><ui-card-title label="แม่แบบ">สัญญากู้ยืม</ui-card-title></ui-card-header>
+  <ui-card-body>ฝ่ายกฎหมายกำลังแก้ไขถึงวันที่ 15 ตุลาคม</ui-card-body>
+</ui-card>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-13-0">HTML</ui-tab><ui-tab panel="code-13-1">React</ui-tab><ui-tab panel="code-13-2">React + Tailwind</ui-tab><ui-tab-panel name="code-13-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-card</span> <span style="color:var(--ui-tag-color-purple)">clickable</span> <span style="color:var(--ui-tag-color-purple)">disabled</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"เริ่มสัญญากู้ยืม (ยังใช้ไม่ได้)"</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"max-width: 320px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-card-title</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"แม่แบบ"</span>&gt;สัญญากู้ยืม&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-title</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;ฝ่ายกฎหมายกำลังแก้ไขถึงวันที่ 15 ตุลาคม&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-13-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiCard</span> <span style="color:var(--ui-tag-color-purple)">clickable</span> <span style="color:var(--ui-tag-color-purple)">disabled</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เริ่มสัญญากู้ยืม (ยังใช้ไม่ได้)"</span> <span style="color:var(--ui-tag-color-purple)">style</span><span style="color:var(--ui-tag-color-magenta)">=</span>{{ <span style="color:var(--ui-tag-color-purple)">maxWidth:</span> <span style="color:var(--ui-tag-color-green)">320</span> }}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"แม่แบบ"</span>&gt;สัญญากู้ยืม&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardBody</span>&gt;ฝ่ายกฎหมายกำลังแก้ไขถึงวันที่ 15 ตุลาคม&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardBody</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiCard</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-13-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">Card</span> <span style="color:var(--ui-tag-color-purple)">clickable</span> <span style="color:var(--ui-tag-color-purple)">disabled</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เริ่มสัญญากู้ยืม (ยังใช้ไม่ได้)"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"max-w-[320px]"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">CardTitle</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"แม่แบบ"</span>&gt;สัญญากู้ยืม&lt;/<span style="color:var(--ui-tag-color-blue)">CardTitle</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardBody</span>&gt;ฝ่ายกฎหมายกำลังแก้ไขถึงวันที่ 15 ตุลาคม&lt;/<span style="color:var(--ui-tag-color-blue)">CardBody</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Card</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="แนวนอน">แนวนอน</h2>
+<p><code>horizontal</code> วางรูปไว้ข้างเนื้อหา ค่าเริ่มต้นอยู่ด้านหน้า ถ้าใส่ <code>media-position=&quot;end&quot;</code> จะอยู่ด้านท้าย รูปกว้างหนึ่งในสามของ card เปลี่ยนได้ด้วย <code>media-width</code> บน <code>ui-card-media</code></p>
+<div class="doc-demo"><ui-card horizontal style="max-width: 560px">
+  <ui-card-media>
+    <img alt="" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 90'%3E%3Crect width='160' height='90' fill='%23d0e2ff'/%3E%3Cpath d='M66 20h22l10 10v40H66z' fill='%23ffffff'/%3E%3Cpath d='M72 42h20M72 50h20M72 58h12' stroke='%230f62fe' stroke-width='2'/%3E%3C/svg%3E" />
+  </ui-card-media>
+  <ui-card-header><ui-card-title label="คู่มือ" description="อ่าน 5 นาที">ลงนามสัญญาออนไลน์</ui-card-title></ui-card-header>
+  <ui-card-body>ตรวจคู่สัญญา ลงนามด้วยรหัสใช้ครั้งเดียว แล้วดาวน์โหลดฉบับที่ลงนามแล้ว</ui-card-body>
+</ui-card>
+<ui-card horizontal media-position="end" style="max-width: 560px">
+  <ui-card-media media-width="40%">
+    <img alt="" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 90'%3E%3Crect width='160' height='90' fill='%23d0e2ff'/%3E%3Cpath d='M66 20h22l10 10v40H66z' fill='%23ffffff'/%3E%3Cpath d='M72 42h20M72 50h20M72 58h12' stroke='%230f62fe' stroke-width='2'/%3E%3C/svg%3E" />
+  </ui-card-media>
+  <ui-card-header><ui-card-title label="คู่มือ" description="อ่าน 3 นาที">ขออนุมัติ</ui-card-title></ui-card-header>
+  <ui-card-body>เลือกผู้อนุมัติ เพิ่มบันทึก แล้วติดตามคำขอจากกล่องข้อความของคุณ</ui-card-body>
+</ui-card>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-14-0">HTML</ui-tab><ui-tab panel="code-14-1">React</ui-tab><ui-tab panel="code-14-2">React + Tailwind</ui-tab><ui-tab-panel name="code-14-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-card</span> <span style="color:var(--ui-tag-color-purple)">horizontal</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"max-width: 560px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-media</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">img</span> <span style="color:var(--ui-tag-color-purple)">alt</span>=<span style="color:var(--ui-tag-color-teal)">""</span> <span style="color:var(--ui-tag-color-purple)">src</span>=<span style="color:var(--ui-tag-color-teal)">"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 90'%3E%3Crect width='160' height='90' fill='%23d0e2ff'/%3E%3Cpath d='M66 20h22l10 10v40H66z' fill='%23ffffff'/%3E%3Cpath d='M72 42h20M72 50h20M72 58h12' stroke='%230f62fe' stroke-width='2'/%3E%3C/svg%3E"</span> /&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-media</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-card-title</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"คู่มือ"</span> <span style="color:var(--ui-tag-color-purple)">description</span>=<span style="color:var(--ui-tag-color-teal)">"อ่าน 5 นาที"</span>&gt;ลงนามสัญญาออนไลน์&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-title</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;ตรวจคู่สัญญา ลงนามด้วยรหัสใช้ครั้งเดียว แล้วดาวน์โหลดฉบับที่ลงนามแล้ว&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-card</span> <span style="color:var(--ui-tag-color-purple)">horizontal</span> <span style="color:var(--ui-tag-color-purple)">media-position</span>=<span style="color:var(--ui-tag-color-teal)">"end"</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"max-width: 560px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-media</span> <span style="color:var(--ui-tag-color-purple)">media-width</span>=<span style="color:var(--ui-tag-color-teal)">"40%"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">img</span> <span style="color:var(--ui-tag-color-purple)">alt</span>=<span style="color:var(--ui-tag-color-teal)">""</span> <span style="color:var(--ui-tag-color-purple)">src</span>=<span style="color:var(--ui-tag-color-teal)">"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 90'%3E%3Crect width='160' height='90' fill='%23d0e2ff'/%3E%3Cpath d='M66 20h22l10 10v40H66z' fill='%23ffffff'/%3E%3Cpath d='M72 42h20M72 50h20M72 58h12' stroke='%230f62fe' stroke-width='2'/%3E%3C/svg%3E"</span> /&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-media</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-card-title</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"คู่มือ"</span> <span style="color:var(--ui-tag-color-purple)">description</span>=<span style="color:var(--ui-tag-color-teal)">"อ่าน 3 นาที"</span>&gt;ขออนุมัติ&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-title</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;เลือกผู้อนุมัติ เพิ่มบันทึก แล้วติดตามคำขอจากกล่องข้อความของคุณ&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-14-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiCard</span> <span style="color:var(--ui-tag-color-purple)">horizontal</span> <span style="color:var(--ui-tag-color-purple)">style</span><span style="color:var(--ui-tag-color-magenta)">=</span>{{ <span style="color:var(--ui-tag-color-purple)">maxWidth:</span> <span style="color:var(--ui-tag-color-green)">560</span> }}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardMedia</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">img</span> <span style="color:var(--ui-tag-color-purple)">alt</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">""</span> <span style="color:var(--ui-tag-color-purple)">src</span><span style="color:var(--ui-tag-color-magenta)">=</span>{guideImage} /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardMedia</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"คู่มือ"</span> <span style="color:var(--ui-tag-color-purple)">description</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"อ่าน 5 นาที"</span>&gt;ลงนามสัญญาออนไลน์&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardBody</span>&gt;ตรวจคู่สัญญา ลงนามด้วยรหัสใช้ครั้งเดียว แล้วดาวน์โหลดฉบับที่ลงนามแล้ว&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardBody</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiCard</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiCard</span> <span style="color:var(--ui-tag-color-purple)">horizontal</span> <span style="color:var(--ui-tag-color-purple)">mediaPosition</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"end"</span> <span style="color:var(--ui-tag-color-purple)">style</span><span style="color:var(--ui-tag-color-magenta)">=</span>{{ <span style="color:var(--ui-tag-color-purple)">maxWidth:</span> <span style="color:var(--ui-tag-color-green)">560</span> }}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardMedia</span> <span style="color:var(--ui-tag-color-purple)">mediaWidth</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"40%"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">img</span> <span style="color:var(--ui-tag-color-purple)">alt</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">""</span> <span style="color:var(--ui-tag-color-purple)">src</span><span style="color:var(--ui-tag-color-magenta)">=</span>{guideImage} /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardMedia</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"คู่มือ"</span> <span style="color:var(--ui-tag-color-purple)">description</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"อ่าน 3 นาที"</span>&gt;ขออนุมัติ&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardBody</span>&gt;เลือกผู้อนุมัติ เพิ่มบันทึก แล้วติดตามคำขอจากกล่องข้อความของคุณ&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardBody</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiCard</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-14-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">Card</span> <span style="color:var(--ui-tag-color-purple)">horizontal</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"max-w-[560px]"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardMedia</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">img</span> <span style="color:var(--ui-tag-color-purple)">alt</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">""</span> <span style="color:var(--ui-tag-color-purple)">src</span><span style="color:var(--ui-tag-color-magenta)">=</span>{guideImage} /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">CardMedia</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">CardTitle</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"คู่มือ"</span> <span style="color:var(--ui-tag-color-purple)">description</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"อ่าน 5 นาที"</span>&gt;ลงนามสัญญาออนไลน์&lt;/<span style="color:var(--ui-tag-color-blue)">CardTitle</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardBody</span>&gt;ตรวจคู่สัญญา ลงนามด้วยรหัสใช้ครั้งเดียว แล้วดาวน์โหลดฉบับที่ลงนามแล้ว&lt;/<span style="color:var(--ui-tag-color-blue)">CardBody</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Card</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">Card</span> <span style="color:var(--ui-tag-color-purple)">horizontal</span> <span style="color:var(--ui-tag-color-purple)">mediaPosition</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"end"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"max-w-[560px]"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardMedia</span> <span style="color:var(--ui-tag-color-purple)">mediaWidth</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"40%"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">img</span> <span style="color:var(--ui-tag-color-purple)">alt</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">""</span> <span style="color:var(--ui-tag-color-purple)">src</span><span style="color:var(--ui-tag-color-magenta)">=</span>{guideImage} /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">CardMedia</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">CardTitle</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"คู่มือ"</span> <span style="color:var(--ui-tag-color-purple)">description</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"อ่าน 3 นาที"</span>&gt;ขออนุมัติ&lt;/<span style="color:var(--ui-tag-color-blue)">CardTitle</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardBody</span>&gt;เลือกผู้อนุมัติ เพิ่มบันทึก แล้วติดตามคำขอจากกล่องข้อความของคุณ&lt;/<span style="color:var(--ui-tag-color-blue)">CardBody</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Card</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="expressive">Expressive</h2>
+<p><code>density=&quot;expressive&quot;</code> ใช้หัวข้อขนาดใหญ่ขึ้นแบบ heading-03 สำหรับหน้าคล้ายหน้าประชาสัมพันธ์ที่มี card ไม่กี่ใบ ค่าเริ่มต้น <code>productive</code> เหมาะกับหน้าจอผลิตภัณฑ์ที่แน่น</p>
+<div class="doc-demo"><ui-card density="expressive" style="max-width: 360px">
+  <ui-card-header><ui-card-title label="ใหม่">ลายเซ็นอิเล็กทรอนิกส์ทุกสาขา</ui-card-title></ui-card-header>
+  <ui-card-body>ตั้งแต่พฤศจิกายน ทุกสาขาลงนามสัญญาออนไลน์ได้</ui-card-body>
+</ui-card>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-15-0">HTML</ui-tab><ui-tab panel="code-15-1">React</ui-tab><ui-tab panel="code-15-2">React + Tailwind</ui-tab><ui-tab-panel name="code-15-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-card</span> <span style="color:var(--ui-tag-color-purple)">density</span>=<span style="color:var(--ui-tag-color-teal)">"expressive"</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"max-width: 360px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-card-title</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ใหม่"</span>&gt;ลายเซ็นอิเล็กทรอนิกส์ทุกสาขา&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-title</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;ตั้งแต่พฤศจิกายน ทุกสาขาลงนามสัญญาออนไลน์ได้&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-15-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiCard</span> <span style="color:var(--ui-tag-color-purple)">density</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"expressive"</span> <span style="color:var(--ui-tag-color-purple)">style</span><span style="color:var(--ui-tag-color-magenta)">=</span>{{ <span style="color:var(--ui-tag-color-purple)">maxWidth:</span> <span style="color:var(--ui-tag-color-green)">360</span> }}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ใหม่"</span>&gt;ลายเซ็นอิเล็กทรอนิกส์ทุกสาขา&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardBody</span>&gt;ตั้งแต่พฤศจิกายน ทุกสาขาลงนามสัญญาออนไลน์ได้&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardBody</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiCard</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-15-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">Card</span> <span style="color:var(--ui-tag-color-purple)">density</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"expressive"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"max-w-[360px]"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">CardTitle</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ใหม่"</span>&gt;ลายเซ็นอิเล็กทรอนิกส์ทุกสาขา&lt;/<span style="color:var(--ui-tag-color-blue)">CardTitle</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardBody</span>&gt;ตั้งแต่พฤศจิกายน ทุกสาขาลงนามสัญญาออนไลน์ได้&lt;/<span style="color:var(--ui-tag-color-blue)">CardBody</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Card</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="บน-layer">บน layer</h2>
+<p>card วาดตัวเองด้วยสีของ layer ที่มันวางอยู่ ใน <code>ui-layer</code> มันจะใช้สีของ layer ถัดไป card บนแผงสีเทาจึงยังเด่น</p>
+<div class="doc-demo"><ui-layer level="1" with-background style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; padding: 16px">
+  <ui-card>
+    <ui-card-header><ui-card-title label="ฝ่ายขาย">ดีลที่เปิดอยู่ 12 ดีล</ui-card-title></ui-card-header>
+    <ui-card-body>มูลค่า 3.4 ล้านบาท</ui-card-body>
+  </ui-card>
+  <ui-card>
+    <ui-card-header><ui-card-title label="ฝ่ายกฎหมาย">รอตรวจ 5 ฉบับ</ui-card-title></ui-card-header>
+    <ui-card-body>ครบกำหนดสัปดาห์นี้ 2 ฉบับ</ui-card-body>
+  </ui-card>
+</ui-layer>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-16-0">HTML</ui-tab><ui-tab panel="code-16-1">React</ui-tab><ui-tab panel="code-16-2">React + Tailwind</ui-tab><ui-tab-panel name="code-16-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-layer</span> <span style="color:var(--ui-tag-color-purple)">level</span>=<span style="color:var(--ui-tag-color-teal)">"1"</span> <span style="color:var(--ui-tag-color-purple)">with-background</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; padding: 16px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-card-title</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ฝ่ายขาย"</span>&gt;ดีลที่เปิดอยู่ 12 ดีล&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-title</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;มูลค่า 3.4 ล้านบาท&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-card-title</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ฝ่ายกฎหมาย"</span>&gt;รอตรวจ 5 ฉบับ&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-title</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;ครบกำหนดสัปดาห์นี้ 2 ฉบับ&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-layer</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-16-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiLayer</span> <span style="color:var(--ui-tag-color-purple)">level</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">1</span>} <span style="color:var(--ui-tag-color-purple)">withBackground</span> <span style="color:var(--ui-tag-color-purple)">style</span><span style="color:var(--ui-tag-color-magenta)">=</span>{{ <span style="color:var(--ui-tag-color-purple)">display:</span> <span style="color:var(--ui-tag-color-teal)">'grid'</span>, <span style="color:var(--ui-tag-color-purple)">gridTemplateColumns:</span> <span style="color:var(--ui-tag-color-teal)">'repeat(auto-fill, minmax(220px, 1fr))'</span>, <span style="color:var(--ui-tag-color-purple)">gap:</span> <span style="color:var(--ui-tag-color-green)">16</span>, <span style="color:var(--ui-tag-color-purple)">padding:</span> <span style="color:var(--ui-tag-color-green)">16</span> }}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCard</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ฝ่ายขาย"</span>&gt;ดีลที่เปิดอยู่ 12 ดีล&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiCardBody</span>&gt;มูลค่า 3.4 ล้านบาท&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardBody</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiCard</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCard</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ฝ่ายกฎหมาย"</span>&gt;รอตรวจ 5 ฉบับ&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiCardBody</span>&gt;ครบกำหนดสัปดาห์นี้ 2 ฉบับ&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardBody</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiCard</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiLayer</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-16-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">Layer</span> <span style="color:var(--ui-tag-color-purple)">level</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">1</span>} <span style="color:var(--ui-tag-color-purple)">withBackground</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid grid-cols-[repeat(auto-fill,minmax(220px,1fr))] gap-4 p-4"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">Card</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">CardTitle</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ฝ่ายขาย"</span>&gt;ดีลที่เปิดอยู่ 12 ดีล&lt;/<span style="color:var(--ui-tag-color-blue)">CardTitle</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">CardBody</span>&gt;มูลค่า 3.4 ล้านบาท&lt;/<span style="color:var(--ui-tag-color-blue)">CardBody</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">Card</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">Card</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">CardTitle</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ฝ่ายกฎหมาย"</span>&gt;รอตรวจ 5 ฉบับ&lt;/<span style="color:var(--ui-tag-color-blue)">CardTitle</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">CardBody</span>&gt;ครบกำหนดสัปดาห์นี้ 2 ฉบับ&lt;/<span style="color:var(--ui-tag-color-blue)">CardBody</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">Card</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Layer</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="คีย์บอร์ด">คีย์บอร์ด</h2>
+<table>
+<thead>
+<tr>
+<th>ปุ่ม</th>
+<th>ทำอะไร</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tab</td>
+<td>ไปที่ card ที่เป็นลิงก์หรือคลิกได้ หรือไปที่ปุ่มใน header และ footer ของ card ธรรมดา</td>
+</tr>
+<tr>
+<td>Enter</td>
+<td>ไปตามลิงก์ของ card ที่เป็นลิงก์ กด card ที่คลิกได้</td>
+</tr>
+<tr>
+<td>Space</td>
+<td>กด card ที่คลิกได้</td>
+</tr>
+</tbody>
+</table>
+<h2 id="accessibility">Accessibility</h2>
+<ul>
+<li>หัวข้อของ card ไม่ใช่ element หัวข้อ ถ้า card เป็นรายการในหน้าที่มีหัวข้อ ให้ครอบข้อความหัวข้อด้วย heading ระดับที่เหมาะสม หรือตั้งชื่อให้รายการ</li>
+<li>card ที่เป็นลิงก์หรือคลิกได้คือ control เดียว ตั้งชื่อด้วย <code>label</code> เพราะข้อความทั้งหมดจะเป็นชื่อที่ยาวมาก และอย่าใส่ control อื่นข้างใน</li>
+<li>card ที่คลิกได้คือ <code>role=&quot;button&quot;</code> ถ้าปิดใช้งานจะมี <code>aria-disabled</code> และออกจากลำดับของ Tab</li>
+<li>ลูกศรของ card ที่คลิกได้และรูปเป็นแค่การตกแต่ง ใส่ <code>alt</code> จริงให้รูปเฉพาะเมื่อรูปมีข้อมูล</li>
+<li>ปุ่มใน header แยกเป็นปุ่มละอัน แต่ละอันมี <code>label</code> ของตัวเอง ปุ่มที่ย้ายไปอยู่ใน overflow menu ยังใช้ชื่อเดิม</li>
+</ul>
+<p>ต้องการแค่พฤติกรรมโดยไม่มี style: <a href="/kanok-ui-docs/th/headless-card/">Headless Card</a></p>
+<h2 id="api">API</h2>
+<p>สร้างจากแพ็กเกจโดยตรง ใน React ส่ง property เป็น prop ชื่อเดียวกัน ส่วน event ก็เป็น prop เช่นกัน (ดูคอลัมน์ React)</p>
+<h3 id="ui-card-react-uicard"><code>&lt;ui-card&gt;</code> · React <code>UiCard</code></h3>
+<h4 id="attribute">Attribute</h4>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Property</th>
+<th>ชนิด</th>
+<th>ค่าเริ่มต้น</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>href</code></td>
+<td><code>href</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>Makes the whole card one link.</td>
+</tr>
+<tr>
+<td><code>target</code></td>
+<td><code>target</code></td>
+<td><code>'_self' | '_blank'</code></td>
+<td><code>'_self'</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>clickable</code></td>
+<td><code>clickable</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Makes the whole card one button (listen for <code>click</code>).</td>
+</tr>
+<tr>
+<td><code>disabled</code></td>
+<td><code>disabled</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>label</code></td>
+<td><code>label</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>The accessible name of a linked or clickable card (Carbon asks for one).</td>
+</tr>
+<tr>
+<td><code>density</code></td>
+<td><code>density</code></td>
+<td><code>CardDensity</code></td>
+<td><code>'productive'</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>horizontal</code></td>
+<td><code>horizontal</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>media-position</code></td>
+<td><code>mediaPosition</code></td>
+<td><code>'start' | 'end'</code></td>
+<td><code>'start'</code></td>
+<td>Where a horizontal card's media goes.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="event">Event</h4>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>React</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ui-navigate</code></td>
+<td>ไม่มี (ใช้ ref)</td>
+<td>detail: { href } (cancelable) on a plain click of a linked card; cancel it to route client-side (README: SPA router)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="slot">Slot</h4>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(ค่าเริ่มต้น)</td>
+<td>The parts</td>
+</tr>
+<tr>
+<td><code>media</code></td>
+<td>(filled for you) the media of a horizontal card</td>
+</tr>
+<tr>
+<td><code>footer-icon</code></td>
+<td>Replaces the clickable card's arrow</td>
+</tr>
+</tbody>
+</table>
+<h4 id="css-part">CSS part</h4>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>base</code></td>
+<td>The card (<code>&lt;div&gt;</code>, or <code>&lt;a&gt;</code> with <code>href</code>)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="css-custom-property">CSS custom property</h4>
+<table>
+<thead>
+<tr>
+<th>Custom property</th>
+<th>ค่าเริ่มต้น</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--ui-card-radius</code></td>
+<td></td>
+<td>Corner radius (default 0; Kanok: 12px)</td>
+</tr>
+<tr>
+<td><code>--ui-card-border</code></td>
+<td></td>
+<td>Border of every card, not only clickable ones (default none; Kanok: a hairline)</td>
+</tr>
+<tr>
+<td><code>--ui-card-background</code></td>
+<td></td>
+<td>Its fill (default <code>--ui-surface-1</code>; Kanok paper: a cool grey that sets it apart from the page, no border)</td>
+</tr>
+<tr>
+<td><code>--ui-card-clickable-border</code></td>
+<td></td>
+<td>Border of a clickable card (default 1px <code>--ui-border-tile-1</code>; Kanok: none)</td>
+</tr>
+<tr>
+<td><code>--ui-card-overflow</code></td>
+<td></td>
+<td><code>overflow</code> of the card (default visible; Kanok: clip, so media follow the rounded corners)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ui-card-media-react-uicardmedia"><code>&lt;ui-card-media&gt;</code> · React <code>UiCardMedia</code></h3>
+<h4 id="attribute-2">Attribute</h4>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Property</th>
+<th>ชนิด</th>
+<th>ค่าเริ่มต้น</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ratio</code></td>
+<td><code>ratio</code></td>
+<td><code>CardMediaRatio | ''</code></td>
+<td><code>''</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>media-width</code></td>
+<td><code>mediaWidth</code></td>
+<td><code>string</code></td>
+<td><code>'33.33%'</code></td>
+<td>A horizontal card's media width (Carbon's default 33.33%).</td>
+</tr>
+</tbody>
+</table>
+<h4 id="slot-2">Slot</h4>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(ค่าเริ่มต้น)</td>
+<td>An <code>&lt;img&gt;</code>, <code>&lt;video&gt;</code>, …</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ui-card-header-react-uicardheader"><code>&lt;ui-card-header&gt;</code> · React <code>UiCardHeader</code></h3>
+<h4 id="slot-3">Slot</h4>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(ค่าเริ่มต้น)</td>
+<td><code>&lt;ui-card-header-media&gt;</code>, <code>&lt;ui-card-title-media&gt;</code>, <code>&lt;ui-card-title&gt;</code>, <code>&lt;ui-card-actions&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="ui-card-header-media-react-uicardheadermedia"><code>&lt;ui-card-header-media&gt;</code> · React <code>UiCardHeaderMedia</code></h3>
+<h4 id="slot-4">Slot</h4>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(ค่าเริ่มต้น)</td>
+<td>The media</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ui-card-title-media-react-uicardtitlemedia"><code>&lt;ui-card-title-media&gt;</code> · React <code>UiCardTitleMedia</code></h3>
+<h4 id="slot-5">Slot</h4>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(ค่าเริ่มต้น)</td>
+<td>The media</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ui-card-title-react-uicardtitle"><code>&lt;ui-card-title&gt;</code> · React <code>UiCardTitle</code></h3>
+<h4 id="attribute-3">Attribute</h4>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Property</th>
+<th>ชนิด</th>
+<th>ค่าเริ่มต้น</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>label</code></td>
+<td><code>label</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td><code>description</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>title-truncate</code></td>
+<td><code>titleTruncate</code></td>
+<td><code>string | null</code></td>
+<td><code>null</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>label-truncate</code></td>
+<td><code>labelTruncate</code></td>
+<td><code>string | null</code></td>
+<td><code>null</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>description-truncate</code></td>
+<td><code>descriptionTruncate</code></td>
+<td><code>string | null</code></td>
+<td><code>null</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>max-width</code></td>
+<td><code>maxWidth</code></td>
+<td><code>string</code></td>
+<td><code>'100%'</code></td>
+<td>A truncated title's widest.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="slot-6">Slot</h4>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(ค่าเริ่มต้น)</td>
+<td>The title text</td>
+</tr>
+<tr>
+<td><code>label</code></td>
+<td>Replaces <code>label</code></td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>Replaces <code>description</code></td>
+</tr>
+<tr>
+<td><code>title-start</code></td>
+<td>An icon before the title</td>
+</tr>
+<tr>
+<td><code>title-end</code></td>
+<td>An icon after the title</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ui-card-body-react-uicardbody"><code>&lt;ui-card-body&gt;</code> · React <code>UiCardBody</code></h3>
+<h4 id="attribute-4">Attribute</h4>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Property</th>
+<th>ชนิด</th>
+<th>ค่าเริ่มต้น</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>is-flush</code></td>
+<td><code>isFlush</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="slot-7">Slot</h4>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(ค่าเริ่มต้น)</td>
+<td>The content</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ui-card-footer-react-uicardfooter"><code>&lt;ui-card-footer&gt;</code> · React <code>UiCardFooter</code></h3>
+<h4 id="slot-8">Slot</h4>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(ค่าเริ่มต้น)</td>
+<td>Content or <code>&lt;ui-card-action&gt;</code>s</td>
+</tr>
+</tbody>
+</table>
+<h4 id="css-custom-property-2">CSS custom property</h4>
+<table>
+<thead>
+<tr>
+<th>Custom property</th>
+<th>ค่าเริ่มต้น</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--ui-card-actions-padding</code></td>
+<td></td>
+<td>/ --ui-card-actions-gap - Around and between the footer's buttons (default 0 and 1px: full-bleed; Kanok: 8px and 8px)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ui-card-action-react-uicardaction"><code>&lt;ui-card-action&gt;</code> · React <code>UiCardAction</code></h3>
+<h4 id="attribute-5">Attribute</h4>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Property</th>
+<th>ชนิด</th>
+<th>ค่าเริ่มต้น</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>label</code></td>
+<td><code>label</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>Its name in the header's overflow menu (else the button's label or text).</td>
+</tr>
+</tbody>
+</table>
+<h4 id="slot-9">Slot</h4>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(ค่าเริ่มต้น)</td>
+<td>A <code>&lt;ui-button&gt;</code> or <code>&lt;ui-icon-button&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="ui-card-actions-react-uicardactions"><code>&lt;ui-card-actions&gt;</code> · React <code>UiCardActions</code></h3>
+<h4 id="attribute-6">Attribute</h4>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Property</th>
+<th>ชนิด</th>
+<th>ค่าเริ่มต้น</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>overflow-menu-label</code></td>
+<td><code>overflowMenuLabel</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>The overflow menu's name (default: the translation's &quot;More actions&quot;).</td>
+</tr>
+</tbody>
+</table>
+<h4 id="slot-10">Slot</h4>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(ค่าเริ่มต้น)</td>
+<td><code>&lt;ui-card-action&gt;</code>s, each with a small <code>&lt;ui-icon-button&gt;</code> (or <code>&lt;ui-button size=&quot;sm&quot;&gt;</code>)</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+<nav class="doc-toc" aria-labelledby="doc-toc-title"><p id="doc-toc-title" class="doc-toc-title">ในหน้านี้</p><ul><li class="doc-toc-h2"><a href="#ติดตั้ง">ติดตั้ง</a></li><li class="doc-toc-h2"><a href="#วิธีใช้">วิธีใช้</a></li><li class="doc-toc-h2"><a href="#card-tile-หรือ-product-card">Card, Tile หรือ Product card?</a></li><li class="doc-toc-h2"><a href="#part-ต่าง-ๆ">Part ต่าง ๆ</a></li><li class="doc-toc-h2"><a href="#รูป">รูป</a></li><li class="doc-toc-h2"><a href="#โลโก้หน้าหัวข้อ">โลโก้หน้าหัวข้อ</a></li><li class="doc-toc-h2"><a href="#หัวข้อ-label-และคำอธิบาย">หัวข้อ label และคำอธิบาย</a></li><li class="doc-toc-h2"><a href="#ตัดข้อความยาว">ตัดข้อความยาว</a></li><li class="doc-toc-h2"><a href="#ปุ่มใน-header">ปุ่มใน header</a></li><li class="doc-toc-h2"><a href="#ปุ่มใน-footer">ปุ่มใน footer</a></li><li class="doc-toc-h2"><a href="#card-ที่เป็นลิงก์">Card ที่เป็นลิงก์</a></li><li class="doc-toc-h2"><a href="#card-ที่คลิกได้">Card ที่คลิกได้</a></li><li class="doc-toc-h2"><a href="#ปิดใช้งาน">ปิดใช้งาน</a></li><li class="doc-toc-h2"><a href="#แนวนอน">แนวนอน</a></li><li class="doc-toc-h2"><a href="#expressive">Expressive</a></li><li class="doc-toc-h2"><a href="#บน-layer">บน layer</a></li><li class="doc-toc-h2"><a href="#คีย์บอร์ด">คีย์บอร์ด</a></li><li class="doc-toc-h2"><a href="#accessibility">Accessibility</a></li><li class="doc-toc-h2"><a href="#api">API</a></li><li class="doc-toc-h3"><a href="#ui-card-react-uicard">&lt;ui-card></a></li><li class="doc-toc-h3"><a href="#ui-card-media-react-uicardmedia">&lt;ui-card-media></a></li><li class="doc-toc-h3"><a href="#ui-card-header-react-uicardheader">&lt;ui-card-header></a></li><li class="doc-toc-h3"><a href="#ui-card-header-media-react-uicardheadermedia">&lt;ui-card-header-media></a></li><li class="doc-toc-h3"><a href="#ui-card-title-media-react-uicardtitlemedia">&lt;ui-card-title-media></a></li><li class="doc-toc-h3"><a href="#ui-card-title-react-uicardtitle">&lt;ui-card-title></a></li><li class="doc-toc-h3"><a href="#ui-card-body-react-uicardbody">&lt;ui-card-body></a></li><li class="doc-toc-h3"><a href="#ui-card-footer-react-uicardfooter">&lt;ui-card-footer></a></li><li class="doc-toc-h3"><a href="#ui-card-action-react-uicardaction">&lt;ui-card-action></a></li><li class="doc-toc-h3"><a href="#ui-card-actions-react-uicardactions">&lt;ui-card-actions></a></li></ul></nav>
+</div>
+<nav class="doc-pager" aria-label="ถัดไป / ก่อนหน้า"><a class="doc-pager-prev" href="/kanok-ui-docs/th/tile/" rel="prev"><span>ก่อนหน้า</span>Tile</a><a class="doc-pager-next" href="/kanok-ui-docs/th/product-card/" rel="next"><span>ถัดไป</span>Product card</a></nav>
+<footer class="doc-footer">@purpurabog/ui 1.4.3 · MIT · <a href="https://cdn.jsdelivr.net/npm/@purpurabog/ui@1.4.3/THIRD-PARTY-NOTICES.md">ประกาศของบุคคลที่สาม</a><br>สร้างตาม Carbon Design System ไม่ได้เกี่ยวข้องหรือได้รับการรับรองจาก IBM — IBM และ Carbon เป็นเครื่องหมายการค้าของ IBM Corp.</footer>
+</ui-content>
+<ui-modal id="doc-search" heading="ค้นหา" data-count="พบ {n} รายการ" data-empty="ไม่พบ “{q}”">
+<ui-search label="ค้นหาในเอกสาร" placeholder="ค้นหาในเอกสาร" size="lg"></ui-search>
+<p class="doc-search-status" role="status"></p>
+<ul class="doc-search-results"></ul>
+</ui-modal>
+</body>
+</html>

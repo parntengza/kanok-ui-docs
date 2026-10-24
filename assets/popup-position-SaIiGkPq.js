@@ -1,0 +1,1 @@
+var e={position:`absolute`,inset:`auto`,margin:0};export{e as t};

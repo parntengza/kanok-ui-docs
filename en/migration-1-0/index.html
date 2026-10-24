@@ -1,0 +1,557 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Migrating to 1.0 · @purpurabog/ui</title>
+<link rel="alternate" hreflang="en" href="/kanok-ui-docs/en/migration-1-0/"  /><link rel="alternate" hreflang="th" href="/kanok-ui-docs/th/migration-1-0/"  />
+<script>(function(){try{var q=new URLSearchParams(location.search).get("design"),d=q;if(q==="kanok"||q==="carbon")localStorage.setItem("ui-docs-design",q);else d=localStorage.getItem("ui-docs-design");if(d==="kanok")document.documentElement.setAttribute("data-design","kanok")}catch(e){}})();(function(){try{var m=localStorage.getItem("ui-docs-theme");if(m!=="light"&&m!=="dark"&&m!=="system")return;var d=m==="dark"||(m==="system"&&matchMedia("(prefers-color-scheme: dark)").matches),r=document.documentElement,t=d?"g100":"white";if(r.getAttribute("data-design")==="kanok")t=d?"lacquer":"paper";r.setAttribute("data-theme",t)}catch(e){}})();</script>
+<style>ui-header:not(:defined){z-index:8000;box-sizing:border-box;border-block-end:1px solid var(--ui-border-subtle-1);background:var(--ui-canvas);block-size:48px;display:block;position:fixed;inset:0 0 auto}:is(ui-header:not(:defined)>*,ui-side-nav:not(:defined)>*){visibility:hidden}:is(ui-header-panel:not(:defined),ui-modal:not(:defined)){display:none}ui-side-nav:not(:defined){display:none}ui-content:not(:defined){margin-block-start:48px;padding:32px;display:block}@media (width>=1056px){ui-side-nav[expanded]:not(:defined){background:var(--ui-canvas);inline-size:256px;display:block;position:fixed;inset:48px auto 0 0}ui-side-nav[expanded]:not(:defined)~ui-content:not(:defined){margin-inline-start:256px}}ui-tabs:not(:defined){display:block}ui-tabs:not(:defined)>ui-tab{box-sizing:border-box;border-block-end:2px solid var(--ui-hairline);block-size:40px;color:var(--ui-ink-muted);font:var(--ui-font-body-sm);padding:0 16px;line-height:38px;display:inline-block}ui-tabs:not(:defined)>ui-tab:first-of-type{border-block-end-color:var(--ui-interactive);color:var(--ui-ink)}ui-tabs:not(:defined)>ui-tab-panel{padding:16px;display:block}ui-tabs:not(:defined)>ui-tab-panel~ui-tab-panel{display:none}ui-code-snippet:not(:defined){background:var(--ui-layer-1);max-block-size:272px;font:var(--ui-font-code,12px/16px monospace);white-space:pre;padding:16px;display:block;overflow:hidden}[data-react-example]:empty>*{visibility:hidden}.doc-demo:has(:not(:defined))>*{visibility:hidden}[data-react-example]:empty{box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}.doc-demo:has(:not(:defined)){box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}@keyframes doc-skeleton{to{background-position:-200% 0}}@media (prefers-reduced-motion:reduce){[data-react-example]:empty{animation:none}.doc-demo:has(:not(:defined)){animation:none}}</style>
+
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/theme-switcher-BGAHXRgF.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/tabs-CvVVO2Pb.js"></script>
+  <link rel="stylesheet" crossorigin href="/kanok-ui-docs/assets/theme-switcher-CL5yB6XE.css">
+</head>
+<body>
+<ui-header label="@purpurabog/ui">
+<ui-skip-to-content></ui-skip-to-content>
+<ui-header-menu-button></ui-header-menu-button>
+<ui-header-name href="/kanok-ui-docs/en/" prefix="@purpurabog">ui</ui-header-name>
+<ui-header-global-bar>
+<ui-header-global-action id="doc-search-open" label="Search" tooltip-placement="bottom"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="m18.5 17.8-4.9-4.9a7 7 0 1 0-.7.7l4.9 4.9zM3 8.5a5.5 5.5 0 1 1 5.5 5.5A5.5 5.5 0 0 1 3 8.5Z" /></svg></ui-header-global-action>
+<ui-header-global-action label="Settings" panel="doc-settings" tooltip-placement="bottom-end"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="M16.9 10.6a7 7 0 0 0 0-1.2l1.8-1.4-1.6-2.8-2.1.8a6.6 6.6 0 0 0-1-.6L13.6 3h-3.2l-.4 2.4a6.6 6.6 0 0 0-1 .6l-2.1-.8L5.3 8l1.8 1.4a7 7 0 0 0 0 1.2L5.3 12l1.6 2.8 2.1-.8a6.6 6.6 0 0 0 1 .6l.4 2.4h3.2l.4-2.4a6.6 6.6 0 0 0 1-.6l2.1.8 1.6-2.8zM12 13a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" /></svg></ui-header-global-action>
+</ui-header-global-bar>
+<ui-header-panel id="doc-settings" label="Settings">
+<div class="doc-settings">
+<span class="doc-settings-label">Theme</span>
+<ui-theme-switcher storage-key="ui-docs-theme" tooltip-placement="bottom"></ui-theme-switcher>
+<span class="doc-settings-label">Style</span>
+<ui-content-switcher id="doc-design" aria-label="Style" size="sm"><ui-content-switcher-item name="carbon">Carbon</ui-content-switcher-item><ui-content-switcher-item name="kanok">Kanok</ui-content-switcher-item></ui-content-switcher>
+<span class="doc-settings-label">Language</span>
+<ui-link href="/kanok-ui-docs/th/migration-1-0/" hreflang="th" lang="th">ไทย</ui-link>
+</div>
+</ui-header-panel>
+</ui-header>
+<ui-side-nav label="Documentation"><ui-side-nav-items><ui-side-nav-menu label="Get started" expanded><ui-side-nav-menu-item href="/kanok-ui-docs/en/">Overview</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/installation/">Installation</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/migration-1-0/" current>Migrating to 1.0</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Guides"><ui-side-nav-menu-item href="/kanok-ui-docs/en/themes/">Themes and layers</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/kanok/">Kanok design</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/customizing/">Customizing</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/icons/">Icons</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/forms/">Forms and validation</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/frameworks/">Frameworks</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/ai/">Using with AI</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Forms and actions"><ui-side-nav-menu-item href="/kanok-ui-docs/en/button/">Button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/file-uploader/">File uploader</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Overlays"><ui-side-nav-menu-item href="/kanok-ui-docs/en/modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/toggletip/">Toggletip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/menu/">Menu</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Data"><ui-side-nav-menu-item href="/kanok-ui-docs/en/data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/contained-list/">Contained list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tree-view/">Tree view</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Navigation"><ui-side-nav-menu-item href="/kanok-ui-docs/en/tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/breadcrumb/">Breadcrumb</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/link/">Link</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/ui-shell/">UI shell</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Content"><ui-side-nav-menu-item href="/kanok-ui-docs/en/tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tile/">Tile</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/user-avatar/">User avatar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/list/">List</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Status and loading"><ui-side-nav-menu-item href="/kanok-ui-docs/en/loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/inline-loading/">Inline loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/progress-bar/">Progress bar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/skeleton/">Skeleton</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/badge-indicator/">Badge indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/status-indicator/">Status indicator</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Layout"><ui-side-nav-menu-item href="/kanok-ui-docs/en/grid/">Grid</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/heading/">Heading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/layer/">Layer</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/action-set/">Action set</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/page-header/">Page header</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/big-number/">Big number</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Headless"><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless/">Introduction</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-file-uploader/">File uploader</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-menu/">Menu</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-ui-shell/">UI shell</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tree-view/">Tree view</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu></ui-side-nav-items></ui-side-nav><script>if(matchMedia('(min-width: 66rem)').matches)document.currentScript.previousElementSibling.setAttribute('expanded','')</script>
+<ui-content>
+<div class="doc-page">
+<article class="doc">
+<h1 id="migrating-to-1-0">Migrating to 1.0</h1>
+<p>1.0 replaces the data-driven web component <code>&lt;ui-data-table&gt;</code> with a family of elements that follow Carbon web components (<code>cds-table</code>): <code>&lt;ui-table&gt;</code>, <code>&lt;ui-table-head&gt;</code>, <code>&lt;ui-table-header-row&gt;</code>, <code>&lt;ui-table-header-cell&gt;</code>, <code>&lt;ui-table-body&gt;</code>, <code>&lt;ui-table-row&gt;</code>, <code>&lt;ui-table-cell&gt;</code> and the toolbar, batch-action and skeleton elements around them. This page lists what to change.</p>
+<h2 id="what-changed-and-why">What changed and why</h2>
+<ul>
+<li><strong>Markup instead of data.</strong> <code>&lt;ui-data-table&gt;</code> took <code>headers</code> and <code>rows</code> as properties and drew the table itself. <code>&lt;ui-table&gt;</code> is written as elements, as Carbon's <code>cds-table</code> is: each header, row and cell is an element you write or render. What a cell shows is whatever you put in it, so <code>renderCell</code> is gone.</li>
+<li><strong>Carbon web components names.</strong> Attributes, events, slots and parts now follow <code>cds-table</code>: <code>is-sortable</code>, <code>is-selectable</code>, <code>use-zebra-styles</code>, <code>ui-table-header-cell-sort</code>, <code>ui-table-row-selected</code> and so on. Features Carbon doesn't have (paging, column settings, pinned and resized columns, CSV, inline editing, loading and empty states) keep working with the same behaviour and get names in the same style.</li>
+<li><strong>The toolbar is elements too.</strong> The search, the batch actions, the Columns button and the Export CSV button are <code>&lt;ui-table-toolbar-search&gt;</code>, <code>&lt;ui-table-batch-actions&gt;</code>, <code>&lt;ui-table-column-settings&gt;</code> and <code>&lt;ui-table-csv-export&gt;</code> inside a <code>&lt;ui-table-toolbar&gt;</code>, instead of switches on the table.</li>
+<li><strong>New entry point.</strong> Import <code>@purpurabog/ui/table</code> instead of <code>@purpurabog/ui/data-table</code>.</li>
+</ul>
+<p><strong>Unchanged:</strong> the React + Tailwind <code>DataTable</code> (<code>tw-data-table</code>, data-driven with <code>headers</code> and <code>rows</code>, including <code>DataTableSkeleton</code>) and the headless <code>useDataTable</code> hook and its parts. Code that uses them needs no change.</p>
+<h2 id="before-and-after">Before and after</h2>
+<ui-tabs class="doc-code-tabs" label="Code"><ui-tab panel="code-1-0">Before</ui-tab><ui-tab panel="code-1-1">After</ui-tab><ui-tab-panel name="code-1-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-data-table</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"contracts"</span> <span style="color:var(--ui-tag-color-purple)">heading</span>=<span style="color:var(--ui-tag-color-teal)">"Contracts"</span> <span style="color:var(--ui-tag-color-purple)">sortable</span> <span style="color:var(--ui-tag-color-purple)">selectable</span> <span style="color:var(--ui-tag-color-purple)">searchable</span> <span style="color:var(--ui-tag-color-purple)">csv-export</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"batch-actions"</span>&gt;Archive&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-data-table</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">import</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/data-table'</span>;
+
+  <span style="color:var(--ui-tag-color-magenta)">const</span> table <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'contracts'</span>);
+  table.headers <span style="color:var(--ui-tag-color-magenta)">=</span> [
+    { <span style="color:var(--ui-tag-color-purple)">key:</span> <span style="color:var(--ui-tag-color-teal)">'name'</span>, <span style="color:var(--ui-tag-color-purple)">header:</span> <span style="color:var(--ui-tag-color-teal)">'Contract'</span> },
+    { <span style="color:var(--ui-tag-color-purple)">key:</span> <span style="color:var(--ui-tag-color-teal)">'amount'</span>, <span style="color:var(--ui-tag-color-purple)">header:</span> <span style="color:var(--ui-tag-color-teal)">'Amount (THB)'</span> },
+  ];
+  table.rows <span style="color:var(--ui-tag-color-magenta)">=</span> [
+    { <span style="color:var(--ui-tag-color-purple)">id:</span> <span style="color:var(--ui-tag-color-teal)">'1'</span>, <span style="color:var(--ui-tag-color-purple)">name:</span> <span style="color:var(--ui-tag-color-teal)">'Service agreement'</span>, <span style="color:var(--ui-tag-color-purple)">amount:</span> <span style="color:var(--ui-tag-color-green)">1250000</span> },
+    { <span style="color:var(--ui-tag-color-purple)">id:</span> <span style="color:var(--ui-tag-color-teal)">'2'</span>, <span style="color:var(--ui-tag-color-purple)">name:</span> <span style="color:var(--ui-tag-color-teal)">'NDA'</span>, <span style="color:var(--ui-tag-color-purple)">amount:</span> <span style="color:var(--ui-tag-color-green)">0</span> },
+  ];
+  table.<span style="color:var(--ui-tag-color-cyan)">renderCell</span> <span style="color:var(--ui-tag-color-magenta)">=</span> (row, header) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (header.key <span style="color:var(--ui-tag-color-magenta)">===</span> <span style="color:var(--ui-tag-color-teal)">'amount'</span> <span style="color:var(--ui-tag-color-magenta)">?</span> row.amount.<span style="color:var(--ui-tag-color-cyan)">toLocaleString</span>(<span style="color:var(--ui-tag-color-teal)">'th-TH'</span>) <span style="color:var(--ui-tag-color-magenta)">:</span> row[header.key]);
+  table.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'ui-select'</span>, (event) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> console.<span style="color:var(--ui-tag-color-cyan)">log</span>(event.detail.selected));
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-1-1"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-table</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"contracts"</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span>=<span style="color:var(--ui-tag-color-teal)">"Contracts"</span> <span style="color:var(--ui-tag-color-purple)">is-sortable</span> <span style="color:var(--ui-tag-color-purple)">is-selectable</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-table-header-title</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"title"</span>&gt;Contracts&lt;/<span style="color:var(--ui-tag-color-blue)">ui-table-header-title</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-table-toolbar</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"toolbar"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-table-batch-actions</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;Archive&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">ui-table-batch-actions</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-table-toolbar-content</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-table-toolbar-search</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-table-toolbar-search</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-table-csv-export</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-table-csv-export</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">ui-table-toolbar-content</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-table-toolbar</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-table-head</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-table-header-row</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-table-header-cell</span> <span style="color:var(--ui-tag-color-purple)">column</span>=<span style="color:var(--ui-tag-color-teal)">"name"</span>&gt;Contract&lt;/<span style="color:var(--ui-tag-color-blue)">ui-table-header-cell</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-table-header-cell</span> <span style="color:var(--ui-tag-color-purple)">column</span>=<span style="color:var(--ui-tag-color-teal)">"amount"</span>&gt;Amount (THB)&lt;/<span style="color:var(--ui-tag-color-blue)">ui-table-header-cell</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">ui-table-header-row</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-table-head</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-table-body</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-table-row</span> <span style="color:var(--ui-tag-color-purple)">data-id</span>=<span style="color:var(--ui-tag-color-teal)">"1"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-table-cell</span>&gt;Service agreement&lt;/<span style="color:var(--ui-tag-color-blue)">ui-table-cell</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-table-cell</span> <span style="color:var(--ui-tag-color-purple)">sort-value</span>=<span style="color:var(--ui-tag-color-teal)">"1250000"</span> <span style="color:var(--ui-tag-color-purple)">csv-value</span>=<span style="color:var(--ui-tag-color-teal)">"1250000"</span>&gt;1,250,000&lt;/<span style="color:var(--ui-tag-color-blue)">ui-table-cell</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">ui-table-row</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-table-row</span> <span style="color:var(--ui-tag-color-purple)">data-id</span>=<span style="color:var(--ui-tag-color-teal)">"2"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-table-cell</span>&gt;NDA&lt;/<span style="color:var(--ui-tag-color-blue)">ui-table-cell</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-table-cell</span> <span style="color:var(--ui-tag-color-purple)">sort-value</span>=<span style="color:var(--ui-tag-color-teal)">"0"</span> <span style="color:var(--ui-tag-color-purple)">csv-value</span>=<span style="color:var(--ui-tag-color-teal)">"0"</span>&gt;0&lt;/<span style="color:var(--ui-tag-color-blue)">ui-table-cell</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">ui-table-row</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-table-body</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-table</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">import</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/table'</span>;
+
+  <span style="color:var(--ui-tag-color-magenta)">const</span> table <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'contracts'</span>);
+  table.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'ui-table-row-selected'</span>, (event) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> console.<span style="color:var(--ui-tag-color-cyan)">log</span>(event.detail.selectedRows.<span style="color:var(--ui-tag-color-cyan)">map</span>((row) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> row.dataset.id)));
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="attributes-and-properties">Attributes and properties</h2>
+<table>
+<thead>
+<tr>
+<th><code>&lt;ui-data-table&gt;</code></th>
+<th>1.0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>headers</code> (<code>{ key, header }[]</code>)</td>
+<td><code>&lt;ui-table-header-cell&gt;</code>s in a <code>&lt;ui-table-head&gt;</code> › <code>&lt;ui-table-header-row&gt;</code>; <code>key</code> → <code>column</code>, <code>header</code> → the cell's content</td>
+</tr>
+<tr>
+<td><code>rows</code> (<code>{ id, … }[]</code>)</td>
+<td><code>&lt;ui-table-row&gt;</code>s of <code>&lt;ui-table-cell&gt;</code>s in a <code>&lt;ui-table-body&gt;</code>; keep the id yourself (<code>data-id</code>, a React <code>key</code>)</td>
+</tr>
+<tr>
+<td><code>renderCell(row, header)</code></td>
+<td>Write the content into the <code>&lt;ui-table-cell&gt;</code></td>
+</tr>
+<tr>
+<td><code>size</code></td>
+<td><code>size</code> (unchanged)</td>
+</tr>
+<tr>
+<td><code>zebra</code></td>
+<td><code>use-zebra-styles</code></td>
+</tr>
+<tr>
+<td><code>static-width</code></td>
+<td><code>use-static-width</code></td>
+</tr>
+<tr>
+<td><code>sortable</code></td>
+<td><code>is-sortable</code> on the table (every header) or on single headers</td>
+</tr>
+<tr>
+<td><code>sort-key</code> + <code>sort-direction</code></td>
+<td><code>sort-direction</code> on that <code>&lt;ui-table-header-cell&gt;</code></td>
+</tr>
+<tr>
+<td><code>manual-sorting</code></td>
+<td><code>preventDefault()</code> on <code>ui-table-header-cell-sort</code>, then sort the data and set <code>sort-direction</code></td>
+</tr>
+<tr>
+<td><code>sortRow(a, b, context)</code></td>
+<td><code>sort-value</code> on cells; <code>customSortRow(lhs, rhs, collator)</code> on the table compares two cells' values</td>
+</tr>
+<tr>
+<td><code>heading</code></td>
+<td><code>&lt;ui-table-header-title slot=&quot;title&quot;&gt;</code></td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td><code>&lt;ui-table-header-description slot=&quot;description&quot;&gt;</code></td>
+</tr>
+<tr>
+<td><code>label</code></td>
+<td><code>aria-label</code> on <code>&lt;ui-table&gt;</code></td>
+</tr>
+<tr>
+<td><code>selectable</code></td>
+<td><code>is-selectable</code></td>
+</tr>
+<tr>
+<td><code>radio</code></td>
+<td><code>radio</code> (unchanged)</td>
+</tr>
+<tr>
+<td><code>selectedIds</code></td>
+<td><code>selected</code> on <code>&lt;ui-table-row&gt;</code>; <code>selectedRows</code> (the row elements) on the table</td>
+</tr>
+<tr>
+<td><code>searchable</code></td>
+<td><code>&lt;ui-table-toolbar-search&gt;</code> in <code>&lt;ui-table-toolbar-content&gt;</code></td>
+</tr>
+<tr>
+<td><code>search-persistent</code></td>
+<td><code>persistent</code> on <code>&lt;ui-table-toolbar-search&gt;</code></td>
+</tr>
+<tr>
+<td><code>search-label</code>, <code>search-placeholder</code></td>
+<td><code>label</code>, <code>placeholder</code> on <code>&lt;ui-table-toolbar-search&gt;</code></td>
+</tr>
+<tr>
+<td><code>filter-text</code></td>
+<td>No attribute: set the search's <code>value</code> and dispatch an <code>input</code> event from it</td>
+</tr>
+<tr>
+<td><code>filterRows(row, text, headers)</code> (true keeps the row)</td>
+<td><code>filterRows(rowText, searchString)</code> on the table — <strong>true now leaves the row out</strong>, as in Carbon</td>
+</tr>
+<tr>
+<td><code>manual-filtering</code></td>
+<td><code>filterRows = () =&gt; false</code>, and listen for <code>input</code> on the search</td>
+</tr>
+<tr>
+<td><code>renderExpandedRow(row)</code></td>
+<td><code>expandable</code> on the table and a <code>&lt;ui-table-expanded-row&gt;</code> right after the row</td>
+</tr>
+<tr>
+<td><code>expandedIds</code></td>
+<td><code>expanded</code> on <code>&lt;ui-table-row&gt;</code></td>
+</tr>
+<tr>
+<td><code>expand-all</code></td>
+<td><code>batch-expansion</code> (with <code>expandable</code>)</td>
+</tr>
+<tr>
+<td><code>sticky-header</code></td>
+<td><code>sticky-header</code> (unchanged)</td>
+</tr>
+<tr>
+<td><code>resizable</code></td>
+<td><code>resizable</code> on the table (every header) or on single headers</td>
+</tr>
+<tr>
+<td><code>columnWidths</code></td>
+<td><code>width</code> on each header; <code>columnWidths</code> on the table is now read-only</td>
+</tr>
+<tr>
+<td><code>loading</code>, <code>loading-rows</code></td>
+<td>Unchanged</td>
+</tr>
+<tr>
+<td><code>page-size</code>, <code>page</code>, <code>page-sizes</code></td>
+<td>Unchanged</td>
+</tr>
+<tr>
+<td><code>total-selected</code></td>
+<td><code>selected-rows-count</code> on <code>&lt;ui-table-batch-actions&gt;</code> (set it in your <code>ui-table-row-selected</code> listener)</td>
+</tr>
+<tr>
+<td><code>total-count</code></td>
+<td><code>total-rows-count</code> on <code>&lt;ui-table-batch-actions&gt;</code></td>
+</tr>
+<tr>
+<td><code>column-settings</code></td>
+<td><code>&lt;ui-table-column-settings&gt;</code> in <code>&lt;ui-table-toolbar-content&gt;</code></td>
+</tr>
+<tr>
+<td><code>hiddenColumns</code></td>
+<td><code>column-hidden</code> on headers, <code>setColumnHidden(column, hidden)</code> and <code>resetColumns()</code>; <code>hiddenColumns</code> on the table is now read-only</td>
+</tr>
+<tr>
+<td><code>csv-export</code></td>
+<td><code>&lt;ui-table-csv-export&gt;</code> in <code>&lt;ui-table-toolbar-content&gt;</code></td>
+</tr>
+<tr>
+<td><code>csv-file-name</code></td>
+<td><code>file-name</code> on <code>&lt;ui-table-csv-export&gt;</code></td>
+</tr>
+<tr>
+<td>Host <code>data-has-selection</code></td>
+<td><code>selected</code> on <code>&lt;ui-table-header-row&gt;</code> while any row is chosen (<code>ui-table:has(ui-table-header-row[selected])</code>)</td>
+</tr>
+</tbody>
+</table>
+<p>Header fields:</p>
+<table>
+<thead>
+<tr>
+<th><code>DataTableHeader</code></th>
+<th><code>&lt;ui-table-header-cell&gt;</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>key</code></td>
+<td><code>column</code></td>
+</tr>
+<tr>
+<td><code>header</code></td>
+<td>The cell's content</td>
+</tr>
+<tr>
+<td><code>sortable: false</code></td>
+<td>Leave <code>is-sortable</code> off the table and put it on the headers that sort</td>
+</tr>
+<tr>
+<td><code>align</code></td>
+<td>No attribute: style the cells, e.g. <code>style=&quot;text-align: end&quot;</code> on <code>&lt;ui-table-cell&gt;</code></td>
+</tr>
+<tr>
+<td><code>editable</code>, <code>options</code></td>
+<td><code>editable</code>, <code>options</code> (a property, or JSON in the attribute)</td>
+</tr>
+<tr>
+<td><code>validate(value, row)</code></td>
+<td><code>validate(value, cell)</code> (a property)</td>
+</tr>
+<tr>
+<td><code>resizable: false</code></td>
+<td>Leave <code>resizable</code> off the table and put it on the headers that resize</td>
+</tr>
+<tr>
+<td><code>width</code>, <code>minWidth</code>, <code>maxWidth</code></td>
+<td><code>width</code>, <code>min-width</code>, <code>max-width</code></td>
+</tr>
+<tr>
+<td><code>hideable: false</code></td>
+<td><code>hideable=&quot;false&quot;</code></td>
+</tr>
+<tr>
+<td><code>hidden: true</code></td>
+<td><code>column-hidden</code></td>
+</tr>
+<tr>
+<td><code>pinned</code></td>
+<td><code>pinned</code></td>
+</tr>
+</tbody>
+</table>
+<p>Row fields: <code>id</code> is yours to keep (<code>data-id</code>); <code>disabled: true</code> → <code>disabled</code> on <code>&lt;ui-table-row&gt;</code>.</p>
+<h2 id="methods">Methods</h2>
+<table>
+<thead>
+<tr>
+<th><code>&lt;ui-data-table&gt;</code></th>
+<th>1.0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>toCsv({ scope })</code>, <code>downloadCsv({ scope, fileName })</code></td>
+<td>Unchanged on <code>&lt;ui-table&gt;</code></td>
+</tr>
+<tr>
+<td><code>focus()</code></td>
+<td>Unchanged</td>
+</tr>
+<tr>
+<td><code>selectedRows</code></td>
+<td><code>selectedRows</code> returns the <code>&lt;ui-table-row&gt;</code> elements</td>
+</tr>
+<tr>
+<td><code>sortBy(key, direction)</code></td>
+<td>None: click the header, or sort the data yourself and set <code>sort-direction</code></td>
+</tr>
+<tr>
+<td><code>filteredRows</code>, <code>visibleRows</code>, <code>shownRows</code></td>
+<td>None: <code>table.querySelectorAll('ui-table-row:not([filtered])')</code>; rows on other pages also have <code>paged-out</code></td>
+</tr>
+<tr>
+<td><code>pageCount</code></td>
+<td>None: <code>Math.ceil(rows / pageSize)</code></td>
+</tr>
+<tr>
+<td><code>visibleHeaders</code></td>
+<td><code>table.columns.filter((header) =&gt; !header.columnHidden)</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="events">Events</h2>
+<table>
+<thead>
+<tr>
+<th><code>&lt;ui-data-table&gt;</code></th>
+<th>1.0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ui-sort</code> <code>{ key, direction }</code></td>
+<td><code>ui-table-header-cell-sort</code> <code>{ oldSortDirection, sortDirection }</code> from the header, cancelable, before the rows move; <code>ui-table-sorted</code> <code>{ sortedHeader }</code> after</td>
+</tr>
+<tr>
+<td><code>ui-select</code> <code>{ selected, rows }</code></td>
+<td><code>ui-table-row-selected</code> <code>{ selectedRow, selectedRows }</code>; <code>ui-table-row-all-selected</code> <code>{ selectedRows }</code> after select-all or Cancel</td>
+</tr>
+<tr>
+<td><code>ui-filter</code> <code>{ value }</code></td>
+<td><code>ui-table-filtered</code> <code>{ unfilteredRows }</code>; <code>input</code> on <code>&lt;ui-table-toolbar-search&gt;</code> for the text</td>
+</tr>
+<tr>
+<td><code>ui-cell-edit</code> <code>{ rowId, key, value, previous, row }</code>, after the save</td>
+<td><code>ui-table-cell-edit</code> <code>{ row, cell, column, value, previous }</code> from the cell, cancelable, before the value is written</td>
+</tr>
+<tr>
+<td><code>ui-page-change</code></td>
+<td><code>ui-table-page-change</code> (same detail)</td>
+</tr>
+<tr>
+<td><code>ui-select-all</code> <code>{ totalCount }</code></td>
+<td><code>ui-table-batch-actions-select-all-clicked</code> from <code>&lt;ui-table-batch-actions&gt;</code></td>
+</tr>
+<tr>
+<td><code>ui-column-resize</code> <code>{ key, width, widths }</code></td>
+<td><code>ui-table-column-resize</code> <code>{ column, width }</code> from the header; read <code>columnWidths</code> on the table for all</td>
+</tr>
+<tr>
+<td><code>ui-expand</code> <code>{ expandedIds, expanded, id }</code></td>
+<td><code>ui-table-row-expando-toggled</code> <code>{ expanded }</code> from the row (cancelable <code>ui-table-row-expando-beingtoggled</code> before)</td>
+</tr>
+<tr>
+<td><code>ui-csv-export</code> <code>{ csv, rows, fileName }</code></td>
+<td><code>ui-table-csv-export</code> <code>{ csv, rows, fileName }</code> from <code>&lt;ui-table-csv-export&gt;</code>, cancelable; <code>rows</code> are now the row elements</td>
+</tr>
+<tr>
+<td><code>ui-columns-change</code> <code>{ hiddenColumns, key, hidden }</code></td>
+<td><code>ui-table-columns-change</code> <code>{ hiddenColumns, column, hidden }</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="slots">Slots</h2>
+<table>
+<thead>
+<tr>
+<th><code>&lt;ui-data-table&gt;</code></th>
+<th>1.0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>toolbar</code></td>
+<td>Your controls go in <code>&lt;ui-table-toolbar-content&gt;</code>, inside <code>&lt;ui-table-toolbar slot=&quot;toolbar&quot;&gt;</code></td>
+</tr>
+<tr>
+<td><code>batch-actions</code></td>
+<td>The children of <code>&lt;ui-table-batch-actions&gt;</code></td>
+</tr>
+<tr>
+<td><code>empty</code>, <code>no-results</code></td>
+<td>Unchanged</td>
+</tr>
+<tr>
+<td>—</td>
+<td>New: <code>title</code>, <code>description</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="css-parts-and-custom-property">CSS parts and custom property</h2>
+<table>
+<thead>
+<tr>
+<th><code>&lt;ui-data-table&gt;</code></th>
+<th>1.0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>base</code></td>
+<td>None: style <code>ui-table</code></td>
+</tr>
+<tr>
+<td><code>header</code>, <code>content</code>, <code>table</code>, <code>pagination</code>, <code>empty</code></td>
+<td>Unchanged on <code>ui-table</code></td>
+</tr>
+<tr>
+<td><code>title</code>, <code>description</code></td>
+<td>Style <code>ui-table-header-title</code>, <code>ui-table-header-description</code></td>
+</tr>
+<tr>
+<td><code>toolbar</code>, <code>toolbar-content</code>, <code>search</code></td>
+<td>Style <code>ui-table-toolbar</code>, <code>ui-table-toolbar-content</code>, <code>ui-table-toolbar-search</code></td>
+</tr>
+<tr>
+<td><code>batch-actions</code></td>
+<td>Style <code>ui-table-batch-actions</code></td>
+</tr>
+<tr>
+<td><code>batch-summary</code>, <code>cancel-button</code>, <code>select-all-button</code></td>
+<td><code>ui-table-batch-actions::part(…)</code>, same names</td>
+</tr>
+<tr>
+<td><code>sort-button</code>, <code>resizer</code></td>
+<td><code>ui-table-header-cell::part(sort-button)</code>, <code>::part(resizer)</code></td>
+</tr>
+<tr>
+<td><code>columns-button</code>, <code>columns-panel</code></td>
+<td><code>ui-table-column-settings::part(button)</code>, <code>::part(panel)</code></td>
+</tr>
+<tr>
+<td><code>export-button</code></td>
+<td><code>ui-table-csv-export::part(button)</code></td>
+</tr>
+<tr>
+<td><code>expand-button</code></td>
+<td><code>ui-table-row::part(expand-button)</code> (<code>ui-table-header-row</code> for expand-all)</td>
+</tr>
+<tr>
+<td><code>expanded-row</code></td>
+<td><code>ui-table-expanded-row::part(cell)</code></td>
+</tr>
+<tr>
+<td><code>--ui-data-table-max-height</code></td>
+<td><code>--ui-table-max-height</code></td>
+</tr>
+</tbody>
+</table>
+<p>React + Tailwind's <code>DataTable</code> still reads <code>--ui-data-table-max-height</code>.</p>
+<h2 id="skeleton">Skeleton</h2>
+<p><code>&lt;ui-data-table-skeleton&gt;</code> (<code>UiDataTableSkeleton</code>) becomes <code>&lt;ui-table-skeleton&gt;</code> (<code>UiTableSkeleton</code>), as Carbon's <code>cds-table-skeleton</code>: <code>headers</code> is a list of strings instead of <code>{ header }</code> objects, <code>hide-header</code> becomes <code>show-header=&quot;false&quot;</code> and <code>hide-toolbar</code> becomes <code>show-toolbar=&quot;false&quot;</code>. <code>row-count</code>, <code>column-count</code> and <code>zebra</code> are unchanged; there is no <code>size</code>.</p>
+<h2 id="screen-reader-announcements">Screen reader announcements</h2>
+<p><code>&lt;ui-data-table&gt;</code> said &quot;Sorted by Contract, ascending&quot; after a sort and &quot;3 of 12 rows&quot; when typing paused. <code>&lt;ui-table&gt;</code> says only &quot;Loading data&quot; while <code>loading</code>, as Carbon's table says nothing; the batch bar's count is still a status. The React + Tailwind <code>DataTable</code> keeps both announcements.</p>
+<h2 id="react">React</h2>
+<p><code>UiDataTable</code> and <code>UiDataTableSkeleton</code> are gone from <code>@purpurabog/ui/react</code>. Pick one of:</p>
+<ul>
+<li><strong>The <code>UiTable*</code> wrappers</strong> (<code>UiTable</code>, <code>UiTableHead</code>, <code>UiTableHeaderRow</code>, <code>UiTableHeaderCell</code>, <code>UiTableBody</code>, <code>UiTableRow</code>, <code>UiTableCell</code>, <code>UiTableExpandedRow</code>, <code>UiTableHeaderTitle</code>, <code>UiTableHeaderDescription</code>, <code>UiTableToolbar</code>, <code>UiTableToolbarContent</code>, <code>UiTableToolbarSearch</code>, <code>UiTableBatchActions</code>, <code>UiTableColumnSettings</code>, <code>UiTableCsvExport</code>, <code>UiTableSkeleton</code>): map your data into them. Events are <code>onUiTable…</code> props, such as <code>onUiTableRowSelected</code>.</li>
+<li><strong>The React + Tailwind <code>DataTable</code></strong>: still data-driven with <code>headers</code> and <code>rows</code>, closest to the old <code>UiDataTable</code> props.</li>
+</ul>
+<p>The table sorts by moving its rows in the DOM, and saves an edit by writing into the cell. Rows React renders belong to React, so sort and save through your state:</p>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiTable</span>
+  <span style="color:var(--ui-tag-color-purple)">onUiTableCellEdit</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    e.<span style="color:var(--ui-tag-color-cyan)">preventDefault</span>(); <span style="color:var(--ui-ink-muted);font-style:italic">// React writes the value</span>
+    <span style="color:var(--ui-tag-color-magenta)">const</span> { row, column, value } <span style="color:var(--ui-tag-color-magenta)">=</span> e.detail;
+    <span style="color:var(--ui-tag-color-cyan)">setRows</span>((all) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> all.<span style="color:var(--ui-tag-color-cyan)">map</span>((r) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (r.id <span style="color:var(--ui-tag-color-magenta)">===</span> row.dataset.id <span style="color:var(--ui-tag-color-magenta)">?</span> { <span style="color:var(--ui-tag-color-magenta)">...</span>r, <span style="color:var(--ui-tag-color-purple)">[column]:</span> value } <span style="color:var(--ui-tag-color-magenta)">:</span> r)));
+  }}
+&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTableHead</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiTableHeaderRow</span>&gt;
+      {headers.<span style="color:var(--ui-tag-color-cyan)">map</span>((h) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+        &lt;<span style="color:var(--ui-tag-color-blue)">UiTableHeaderCell</span>
+          <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{h.key}
+          <span style="color:var(--ui-tag-color-purple)">column</span><span style="color:var(--ui-tag-color-magenta)">=</span>{h.key}
+          <span style="color:var(--ui-tag-color-purple)">editable</span><span style="color:var(--ui-tag-color-magenta)">=</span>{h.editable}
+          <span style="color:var(--ui-tag-color-purple)">sortDirection</span><span style="color:var(--ui-tag-color-magenta)">=</span>{sort.column <span style="color:var(--ui-tag-color-magenta)">===</span> h.key <span style="color:var(--ui-tag-color-magenta)">?</span> sort.direction <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-teal)">'none'</span>}
+          <span style="color:var(--ui-tag-color-purple)">onUiTableHeaderCellSort</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+            e.<span style="color:var(--ui-tag-color-cyan)">preventDefault</span>(); <span style="color:var(--ui-ink-muted);font-style:italic">// React orders the rows</span>
+            <span style="color:var(--ui-tag-color-cyan)">setSort</span>({ <span style="color:var(--ui-tag-color-purple)">column:</span> h.key, <span style="color:var(--ui-tag-color-purple)">direction:</span> e.detail.sortDirection });
+          }}
+        &gt;
+          {h.header}
+        &lt;/<span style="color:var(--ui-tag-color-blue)">UiTableHeaderCell</span>&gt;
+      ))}
+    &lt;/<span style="color:var(--ui-tag-color-blue)">UiTableHeaderRow</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiTableHead</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTableBody</span>&gt;
+    {<span style="color:var(--ui-tag-color-cyan)">sortRows</span>(rows, sort).<span style="color:var(--ui-tag-color-cyan)">map</span>((row) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+      &lt;<span style="color:var(--ui-tag-color-blue)">UiTableRow</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{row.id} <span style="color:var(--ui-tag-color-purple)">data-id</span><span style="color:var(--ui-tag-color-magenta)">=</span>{row.id}&gt;
+        {headers.<span style="color:var(--ui-tag-color-cyan)">map</span>((h) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> &lt;<span style="color:var(--ui-tag-color-blue)">UiTableCell</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{h.key}&gt;{row[h.key]}&lt;/<span style="color:var(--ui-tag-color-blue)">UiTableCell</span>&gt;)}
+      &lt;/<span style="color:var(--ui-tag-color-blue)">UiTableRow</span>&gt;
+    ))}
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiTableBody</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiTable</span>&gt;</ui-code-snippet>
+<p>The same goes for Vue, Angular and any framework that renders the rows. See <a href="/kanok-ui-docs/en/data-table/">Data table</a> for every feature in HTML and React.</p>
+<h2 id="types">Types</h2>
+<p>The <code>DataTable…</code> types of the web component (<code>DataTableHeader</code>, <code>DataTableRow</code>, <code>DataTableSortDetail</code> …) are gone from <code>@purpurabog/ui</code>; the new ones are <code>UiTable</code>, <code>UiTableRow</code>, <code>UiTableHeaderCell</code> …, <code>TableSortDirection</code> and the event details (<code>TableSortedDetail</code>, <code>TableRowSelectedDetail</code>, <code>TableCellEditDetail</code> …). React + Tailwind's own types (<code>DataTableSort</code> …) are unchanged.</p>
+
+</article>
+<nav class="doc-toc" aria-labelledby="doc-toc-title"><p id="doc-toc-title" class="doc-toc-title">On this page</p><ul><li class="doc-toc-h2"><a href="#what-changed-and-why">What changed and why</a></li><li class="doc-toc-h2"><a href="#before-and-after">Before and after</a></li><li class="doc-toc-h2"><a href="#attributes-and-properties">Attributes and properties</a></li><li class="doc-toc-h2"><a href="#methods">Methods</a></li><li class="doc-toc-h2"><a href="#events">Events</a></li><li class="doc-toc-h2"><a href="#slots">Slots</a></li><li class="doc-toc-h2"><a href="#css-parts-and-custom-property">CSS parts and custom property</a></li><li class="doc-toc-h2"><a href="#skeleton">Skeleton</a></li><li class="doc-toc-h2"><a href="#screen-reader-announcements">Screen reader announcements</a></li><li class="doc-toc-h2"><a href="#react">React</a></li><li class="doc-toc-h2"><a href="#types">Types</a></li></ul></nav>
+</div>
+<nav class="doc-pager" aria-label="Next / Previous"><a class="doc-pager-prev" href="/kanok-ui-docs/en/installation/" rel="prev"><span>Previous</span>Installation</a><a class="doc-pager-next" href="/kanok-ui-docs/en/themes/" rel="next"><span>Next</span>Themes and layers</a></nav>
+<footer class="doc-footer">@purpurabog/ui 1.4.3 · MIT · <a href="https://cdn.jsdelivr.net/npm/@purpurabog/ui@1.4.3/THIRD-PARTY-NOTICES.md">Third-party notices</a><br>Built on the Carbon Design System. Not affiliated with or endorsed by IBM; IBM and Carbon are trademarks of IBM Corp.</footer>
+</ui-content>
+<ui-modal id="doc-search" heading="Search" data-count="{n} results" data-empty="No results for “{q}”">
+<ui-search label="Search the docs" placeholder="Search the docs" size="lg"></ui-search>
+<p class="doc-search-status" role="status"></p>
+<ul class="doc-search-results"></ul>
+</ui-modal>
+</body>
+</html>

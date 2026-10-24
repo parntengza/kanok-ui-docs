@@ -1,0 +1,1379 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Headless Date picker · @purpurabog/ui</title>
+<link rel="alternate" hreflang="en" href="/kanok-ui-docs/en/headless-date-picker/"  /><link rel="alternate" hreflang="th" href="/kanok-ui-docs/th/headless-date-picker/"  />
+<script>(function(){try{var q=new URLSearchParams(location.search).get("design"),d=q;if(q==="kanok"||q==="carbon")localStorage.setItem("ui-docs-design",q);else d=localStorage.getItem("ui-docs-design");if(d==="kanok")document.documentElement.setAttribute("data-design","kanok")}catch(e){}})();(function(){try{var m=localStorage.getItem("ui-docs-theme");if(m!=="light"&&m!=="dark"&&m!=="system")return;var d=m==="dark"||(m==="system"&&matchMedia("(prefers-color-scheme: dark)").matches),r=document.documentElement,t=d?"g100":"white";if(r.getAttribute("data-design")==="kanok")t=d?"lacquer":"paper";r.setAttribute("data-theme",t)}catch(e){}})();</script>
+<style>ui-header:not(:defined){z-index:8000;box-sizing:border-box;border-block-end:1px solid var(--ui-border-subtle-1);background:var(--ui-canvas);block-size:48px;display:block;position:fixed;inset:0 0 auto}:is(ui-header:not(:defined)>*,ui-side-nav:not(:defined)>*){visibility:hidden}:is(ui-header-panel:not(:defined),ui-modal:not(:defined)){display:none}ui-side-nav:not(:defined){display:none}ui-content:not(:defined){margin-block-start:48px;padding:32px;display:block}@media (width>=1056px){ui-side-nav[expanded]:not(:defined){background:var(--ui-canvas);inline-size:256px;display:block;position:fixed;inset:48px auto 0 0}ui-side-nav[expanded]:not(:defined)~ui-content:not(:defined){margin-inline-start:256px}}ui-tabs:not(:defined){display:block}ui-tabs:not(:defined)>ui-tab{box-sizing:border-box;border-block-end:2px solid var(--ui-hairline);block-size:40px;color:var(--ui-ink-muted);font:var(--ui-font-body-sm);padding:0 16px;line-height:38px;display:inline-block}ui-tabs:not(:defined)>ui-tab:first-of-type{border-block-end-color:var(--ui-interactive);color:var(--ui-ink)}ui-tabs:not(:defined)>ui-tab-panel{padding:16px;display:block}ui-tabs:not(:defined)>ui-tab-panel~ui-tab-panel{display:none}ui-code-snippet:not(:defined){background:var(--ui-layer-1);max-block-size:272px;font:var(--ui-font-code,12px/16px monospace);white-space:pre;padding:16px;display:block;overflow:hidden}[data-react-example]:empty>*{visibility:hidden}.doc-demo:has(:not(:defined))>*{visibility:hidden}[data-react-example]:empty{box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}.doc-demo:has(:not(:defined)){box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}@keyframes doc-skeleton{to{background-position:-200% 0}}@media (prefers-reduced-motion:reduce){[data-react-example]:empty{animation:none}.doc-demo:has(:not(:defined)){animation:none}}</style>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/index-FeZS86or.js"></script>
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/theme-switcher-BGAHXRgF.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/listbox-gjElSjvA.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/headless-CpcU3xFD.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/date-BacUxW-t.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/sheet-DbjrsMqL.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/flag-D0Ou26eR.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/popup-position-SaIiGkPq.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/focus-Hg6AV1y3.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/language-BMc6Y90P.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/date-picker-Fnr7HejL.js">
+  <link rel="stylesheet" crossorigin href="/kanok-ui-docs/assets/theme-switcher-CL5yB6XE.css">
+  <link rel="stylesheet" crossorigin href="/kanok-ui-docs/assets/headless-JjfvojKd.css">
+</head>
+<body>
+<ui-header label="@purpurabog/ui">
+<ui-skip-to-content></ui-skip-to-content>
+<ui-header-menu-button></ui-header-menu-button>
+<ui-header-name href="/kanok-ui-docs/th/" prefix="@purpurabog">ui</ui-header-name>
+<ui-header-global-bar>
+<ui-header-global-action id="doc-search-open" label="ค้นหา" tooltip-placement="bottom"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="m18.5 17.8-4.9-4.9a7 7 0 1 0-.7.7l4.9 4.9zM3 8.5a5.5 5.5 0 1 1 5.5 5.5A5.5 5.5 0 0 1 3 8.5Z" /></svg></ui-header-global-action>
+<ui-header-global-action label="ตั้งค่า" panel="doc-settings" tooltip-placement="bottom-end"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="M16.9 10.6a7 7 0 0 0 0-1.2l1.8-1.4-1.6-2.8-2.1.8a6.6 6.6 0 0 0-1-.6L13.6 3h-3.2l-.4 2.4a6.6 6.6 0 0 0-1 .6l-2.1-.8L5.3 8l1.8 1.4a7 7 0 0 0 0 1.2L5.3 12l1.6 2.8 2.1-.8a6.6 6.6 0 0 0 1 .6l.4 2.4h3.2l.4-2.4a6.6 6.6 0 0 0 1-.6l2.1.8 1.6-2.8zM12 13a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" /></svg></ui-header-global-action>
+</ui-header-global-bar>
+<ui-header-panel id="doc-settings" label="ตั้งค่า">
+<div class="doc-settings">
+<span class="doc-settings-label">ธีม</span>
+<ui-theme-switcher storage-key="ui-docs-theme" tooltip-placement="bottom"></ui-theme-switcher>
+<span class="doc-settings-label">รูปแบบ</span>
+<ui-content-switcher id="doc-design" aria-label="รูปแบบ" size="sm"><ui-content-switcher-item name="carbon">Carbon</ui-content-switcher-item><ui-content-switcher-item name="kanok">Kanok</ui-content-switcher-item></ui-content-switcher>
+<span class="doc-settings-label">ภาษา</span>
+<ui-link href="/kanok-ui-docs/en/headless-date-picker/" hreflang="en" lang="en">English</ui-link>
+</div>
+</ui-header-panel>
+</ui-header>
+<ui-side-nav label="เอกสาร"><ui-side-nav-items><ui-side-nav-menu label="เริ่มต้น"><ui-side-nav-menu-item href="/kanok-ui-docs/th/">ภาพรวม</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/installation/">ติดตั้ง</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/migration-1-0/">การย้ายไป 1.0</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="คู่มือ"><ui-side-nav-menu-item href="/kanok-ui-docs/th/themes/">ธีมและ layer</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/kanok/">ดีไซน์ Kanok</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/customizing/">ปรับแต่งหน้าตา</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/icons/">ไอคอน</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/forms/">ฟอร์มและการตรวจค่า</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/frameworks/">ใช้กับ framework</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/ai/">ใช้กับ AI</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="ฟอร์มและปุ่ม"><ui-side-nav-menu-item href="/kanok-ui-docs/th/button/">Button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/file-uploader/">File uploader</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Overlay"><ui-side-nav-menu-item href="/kanok-ui-docs/th/modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/toggletip/">Toggletip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/menu/">Menu</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="ข้อมูล"><ui-side-nav-menu-item href="/kanok-ui-docs/th/data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/contained-list/">Contained list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tree-view/">Tree view</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="การนำทาง"><ui-side-nav-menu-item href="/kanok-ui-docs/th/tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/breadcrumb/">Breadcrumb</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/link/">Link</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/ui-shell/">UI shell</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="เนื้อหา"><ui-side-nav-menu-item href="/kanok-ui-docs/th/tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tile/">Tile</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/user-avatar/">User avatar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/list/">List</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="สถานะและการโหลด"><ui-side-nav-menu-item href="/kanok-ui-docs/th/loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/inline-loading/">Inline loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/progress-bar/">Progress bar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/skeleton/">Skeleton</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/badge-indicator/">Badge indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/status-indicator/">Status indicator</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="เลย์เอาต์"><ui-side-nav-menu-item href="/kanok-ui-docs/th/grid/">Grid</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/heading/">Heading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/layer/">Layer</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/action-set/">Action set</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/page-header/">Page header</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/big-number/">Big number</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Headless" expanded><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless/">แนะนำ</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-date-picker/" current>Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-file-uploader/">File uploader</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-menu/">Menu</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-ui-shell/">UI shell</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tree-view/">Tree view</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu></ui-side-nav-items></ui-side-nav><script>if(matchMedia('(min-width: 66rem)').matches)document.currentScript.previousElementSibling.setAttribute('expanded','')</script>
+<ui-content>
+<div class="doc-page">
+<article class="doc">
+<!-- nav: Date picker -->
+<h1 id="headless-date-picker">Headless Date picker</h1>
+<p><code>DatePicker</code> และ <code>Calendar</code> ให้พฤติกรรมของ date picker โดยไม่มี class เลย ชิ้นส่วนเหล่านี้อ่านสิ่งที่ผู้ใช้พิมพ์ (รวมเลขไทย) เปิดปฏิทินเมื่อช่องได้โฟกัส ย้ายโฟกัสระหว่างช่องกับปฏิทิน ตรวจวันที่กับ <code>min</code>, <code>max</code> และ <code>isDateDisabled</code> กันไม่ให้ฟอร์มส่งขณะวันที่ผิด และส่งวันที่แบบ ISO ไปกับฟอร์ม</p>
+<p>markup, label, placeholder, ข้อความ error, ไอคอน และ style ทั้งหมดเป็นของคุณ ชิ้นส่วนไม่แสดงข้อความของตัวเองนอกจากชื่อเดือนและชื่อวัน ตัวที่มี style อยู่ที่ <a href="/kanok-ui-docs/th/date-picker/">Date picker</a></p>
+<h2 id="ติดตั้ง">ติดตั้ง</h2>
+<p>ส่วน headless มากับแพ็กเกจเลย (ไม่มี item ของ shadcn; item ของ React + Tailwind สร้างบนมัน):</p>
+<ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">@purpurabog/ui</span></ui-code-snippet>
+<ui-code-snippet type="single" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { Calendar, DatePicker } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;</ui-code-snippet>
+<h2 id="วิธีใช้">วิธีใช้</h2>
+<div class="doc-demo" data-react-example="0"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { useState } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { Calendar, DatePicker } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> label <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'text-xs text-ink-muted'</span>;
+<span style="color:var(--ui-tag-color-magenta)">const</span> group <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'flex w-72 items-center border-b border-border-strong-1 bg-field-1 data-disabled:border-transparent has-data-readonly:border-border-subtle-1 has-data-readonly:bg-transparent'</span>;
+<span style="color:var(--ui-tag-color-magenta)">const</span> input <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'h-10 min-w-0 flex-1 bg-transparent px-4 text-sm text-ink placeholder:text-ink-placeholder focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus data-invalid:outline-2 data-invalid:-outline-offset-2 data-invalid:outline-error data-disabled:cursor-not-allowed data-disabled:text-ink-disabled'</span>;
+<span style="color:var(--ui-tag-color-magenta)">const</span> popup <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'border border-border-subtle-1 bg-layer-1 shadow-lg'</span>;
+<span style="color:var(--ui-tag-color-magenta)">const</span> note <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'text-xs text-ink-muted'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [start, setStart] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">''</span>);
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">DatePicker.Root</span> <span style="color:var(--ui-tag-color-purple)">id</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"start"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"start"</span> <span style="color:var(--ui-tag-color-purple)">locale</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"th"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{start} <span style="color:var(--ui-tag-color-purple)">onValueChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{setStart}&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid gap-2"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">label</span> <span style="color:var(--ui-tag-color-purple)">htmlFor</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"start"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{label}&gt;วันที่เริ่มสัญญา&lt;/<span style="color:var(--ui-tag-color-blue)">label</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">DatePicker.Group</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{group}&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">DatePicker.Input</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"วว/ดด/ปปปป"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{input} /&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">DatePicker.Group</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{note}&gt;ค่า: "{start}"&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">DatePicker.Popup</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เลือกวันที่"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{popup}&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">MonthGrid</span> /&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">DatePicker.Popup</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">DatePicker.Root</span>&gt;
+  );
+}
+
+<span style="color:var(--ui-ink-muted);font-style:italic">// ชิ้นส่วนของปฏิทิน ตัวอย่างแต่ละอันในหน้านี้เป็นโมดูลเต็ม จึงมี &lt;MonthGrid /&gt; นี้ซ้ำทุกอัน</span>
+<span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">MonthGrid</span>({ children, <span style="color:var(--ui-tag-color-magenta)">...</span>props }<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">Readonly</span>&lt;<span style="color:var(--ui-tag-color-cyan)">Calendar</span>.<span style="color:var(--ui-tag-color-cyan)">RootProps</span>&gt;) {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> nav <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'grid size-10 place-items-center text-ink hover:bg-layer-hover-1 disabled:cursor-not-allowed disabled:text-ink-disabled focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus'</span>;
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.Root</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"w-72 p-2"</span> {<span style="color:var(--ui-tag-color-magenta)">...</span>props}&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex items-center justify-between"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.PrevButton</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เดือนก่อนหน้า"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{nav}&gt;‹&lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.PrevButton</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex items-center gap-1 text-sm font-semibold text-ink"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.MonthName</span> /&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.YearInput</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ปี"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-7 w-16 bg-transparent px-1 hover:bg-layer-hover-1 focus-visible:outline-2 focus-visible:outline-focus"</span> /&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.NextButton</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เดือนถัดไป"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{nav}&gt;›&lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.NextButton</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.Heading</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sr-only"</span> /&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.Grid</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"w-full table-fixed border-collapse text-sm"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.GridHeader</span>&gt;{(d) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.HeaderCell</span> <span style="color:var(--ui-tag-color-purple)">date</span><span style="color:var(--ui-tag-color-magenta)">=</span>{d} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-10 font-normal text-ink"</span> /&gt;}&lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.GridHeader</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.GridBody</span>&gt;
+          {(d) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+            &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.Cell</span> <span style="color:var(--ui-tag-color-purple)">date</span><span style="color:var(--ui-tag-color-magenta)">=</span>{d} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"p-0 text-center"</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.Day</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-10 w-full text-ink hover:bg-layer-hover-1 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus data-outside-month:text-ink-muted data-today:font-semibold data-today:underline data-today:decoration-link data-today:underline-offset-4 data-in-range:bg-layer-selected-1 data-selected:bg-interactive data-selected:text-on-primary data-disabled:cursor-not-allowed data-disabled:text-ink-disabled data-disabled:line-through"</span> /&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.Cell</span>&gt;
+          )}
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.GridBody</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.Grid</span>&gt;
+      {children}
+    &lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.Root</span>&gt;
+  );
+}</ui-code-snippet>
+<p><code>Root</code> เรียก <code>onValueChange</code> พร้อมสตริง ISO (<code>yyyy-mm-dd</code> ปี ค.ศ.) ทุกครั้งที่วันที่ที่ยืนยันแล้วเปลี่ยน: ยืนยันตอนออกจากช่องหรือกด Enter (วันที่ที่พิมพ์ครบเป็นค่าทันทีและแจ้งตอนนั้น) เลือกจากปฏิทิน หรือกดล้าง ถ้าใส่ <code>name</code> จะมี hidden input ส่งสตริงเดียวกันไปกับฟอร์ม <code>Calendar.Root</code> ที่อยู่ใน <code>Popup</code> รับ state ของ picker ไปเอง</p>
+<h2 id="โครงสร้าง">โครงสร้าง</h2>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">DatePicker.Root</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">label</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">DatePicker.Group</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">DatePicker.Input</span> /&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">DatePicker.NativeInput</span> /&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">DatePicker.Clear</span> /&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">DatePicker.Trigger</span> /&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">DatePicker.Group</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">DatePicker.Popup</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.Root</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.PrevButton</span> /&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.MonthName</span> /&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.YearInput</span> /&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.YearStep</span> <span style="color:var(--ui-tag-color-purple)">delta</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">1</span>} /&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.NextButton</span> /&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.Heading</span> /&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.Grid</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.GridHeader</span>&gt;{(d) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.HeaderCell</span> <span style="color:var(--ui-tag-color-purple)">date</span><span style="color:var(--ui-tag-color-magenta)">=</span>{d} /&gt;}&lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.GridHeader</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.GridBody</span>&gt;
+          {(d) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.Cell</span> <span style="color:var(--ui-tag-color-purple)">date</span><span style="color:var(--ui-tag-color-magenta)">=</span>{d}&gt;&lt;<span style="color:var(--ui-tag-color-blue)">Calendar.Day</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.Cell</span>&gt;}
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.GridBody</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.Grid</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.TodayButton</span> /&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.Root</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">DatePicker.Popup</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">DatePicker.Root</span>&gt;</ui-code-snippet>
+<p>วางช่องพิมพ์ <code>Clear</code> และ <code>Trigger</code> ไว้ใน <code>Group</code> โฟกัสและการกดในนั้นไม่นับว่าออกจาก picker โหมดช่วงเพิ่ม <code>&lt;DatePicker.Input field=&quot;end&quot; /&gt;</code> อีกช่อง</p>
+<h2 id="ภาษา-ศักราช-และรูปแบบ">ภาษา ศักราช และรูปแบบ</h2>
+<p><code>Root</code> ใช้ภาษาของหน้า ถ้าไม่ใส่ <code>locale</code> จะใช้ <code>&lt;html lang&gt;</code> หรือภาษาของ browser หน้าภาษาไทยจึงได้ข้อความและชื่อเดือนเป็นภาษาไทย ใส่ <code>locale</code> เพื่อกำหนดเอง เมื่อเป็นภาษาไทย <code>era</code> จะตั้งต้นเป็น <code>be</code> (พ.ศ.) ใส่ <code>era=&quot;ce&quot;</code> ถ้าต้องการ ค.ศ. ส่วน <code>format</code> กำหนดลำดับที่ผู้ใช้เห็นและพิมพ์ <code>value</code> ยังเป็น ISO</p>
+<div class="doc-demo" data-react-example="1"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { useState } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { Calendar, DatePicker } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> label <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'text-xs text-ink-muted'</span>;
+<span style="color:var(--ui-tag-color-magenta)">const</span> group <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'flex w-72 items-center border-b border-border-strong-1 bg-field-1 data-disabled:border-transparent has-data-readonly:border-border-subtle-1 has-data-readonly:bg-transparent'</span>;
+<span style="color:var(--ui-tag-color-magenta)">const</span> input <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'h-10 min-w-0 flex-1 bg-transparent px-4 text-sm text-ink placeholder:text-ink-placeholder focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus data-invalid:outline-2 data-invalid:-outline-offset-2 data-invalid:outline-error data-disabled:cursor-not-allowed data-disabled:text-ink-disabled'</span>;
+<span style="color:var(--ui-tag-color-magenta)">const</span> popup <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'border border-border-subtle-1 bg-layer-1 shadow-lg'</span>;
+<span style="color:var(--ui-tag-color-magenta)">const</span> note <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'text-xs text-ink-muted'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [start, setStart] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">'2026-10-10'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [due, setDue] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">'2026-10-10'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid gap-6"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">DatePicker.Root</span> <span style="color:var(--ui-tag-color-purple)">id</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"th-start"</span> <span style="color:var(--ui-tag-color-purple)">locale</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"th"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{start} <span style="color:var(--ui-tag-color-purple)">onValueChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{setStart}&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid gap-2"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">label</span> <span style="color:var(--ui-tag-color-purple)">htmlFor</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"th-start"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{label}&gt;วันที่เริ่มสัญญา&lt;/<span style="color:var(--ui-tag-color-blue)">label</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">DatePicker.Group</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{group}&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">DatePicker.Input</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"วว/ดด/ปปปป"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{input} /&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">DatePicker.Group</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{note}&gt;ค่า: "{start}"&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">DatePicker.Popup</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เลือกวันที่"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{popup}&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">MonthGrid</span> /&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">DatePicker.Popup</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">DatePicker.Root</span>&gt;
+
+      &lt;<span style="color:var(--ui-tag-color-blue)">DatePicker.Root</span> <span style="color:var(--ui-tag-color-purple)">id</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"due"</span> <span style="color:var(--ui-tag-color-purple)">locale</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"th"</span> <span style="color:var(--ui-tag-color-purple)">format</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"yyyy-mm-dd"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{due} <span style="color:var(--ui-tag-color-purple)">onValueChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{setDue}&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid gap-2"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">label</span> <span style="color:var(--ui-tag-color-purple)">htmlFor</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"due"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{label}&gt;วันครบกำหนด&lt;/<span style="color:var(--ui-tag-color-blue)">label</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">DatePicker.Group</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{group}&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">DatePicker.Input</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ปปปป-ดด-วว"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{input} /&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">DatePicker.Group</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{note}&gt;ค่า: "{due}"&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">DatePicker.Popup</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เลือกวันที่"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{popup}&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">MonthGrid</span> /&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">DatePicker.Popup</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">DatePicker.Root</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}
+
+<span style="color:var(--ui-ink-muted);font-style:italic">// MonthGrid: ชิ้นส่วนของปฏิทินจาก "วิธีใช้"</span>
+<span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">MonthGrid</span>({ children, <span style="color:var(--ui-tag-color-magenta)">...</span>props }<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">Readonly</span>&lt;<span style="color:var(--ui-tag-color-cyan)">Calendar</span>.<span style="color:var(--ui-tag-color-cyan)">RootProps</span>&gt;) {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> nav <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'grid size-10 place-items-center text-ink hover:bg-layer-hover-1 disabled:cursor-not-allowed disabled:text-ink-disabled focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus'</span>;
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.Root</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"w-72 p-2"</span> {<span style="color:var(--ui-tag-color-magenta)">...</span>props}&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex items-center justify-between"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.PrevButton</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เดือนก่อนหน้า"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{nav}&gt;‹&lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.PrevButton</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex items-center gap-1 text-sm font-semibold text-ink"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.MonthName</span> /&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.YearInput</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ปี"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-7 w-16 bg-transparent px-1 hover:bg-layer-hover-1 focus-visible:outline-2 focus-visible:outline-focus"</span> /&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.NextButton</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เดือนถัดไป"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{nav}&gt;›&lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.NextButton</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.Heading</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sr-only"</span> /&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.Grid</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"w-full table-fixed border-collapse text-sm"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.GridHeader</span>&gt;{(d) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.HeaderCell</span> <span style="color:var(--ui-tag-color-purple)">date</span><span style="color:var(--ui-tag-color-magenta)">=</span>{d} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-10 font-normal text-ink"</span> /&gt;}&lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.GridHeader</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.GridBody</span>&gt;
+          {(d) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+            &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.Cell</span> <span style="color:var(--ui-tag-color-purple)">date</span><span style="color:var(--ui-tag-color-magenta)">=</span>{d} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"p-0 text-center"</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.Day</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-10 w-full text-ink hover:bg-layer-hover-1 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus data-outside-month:text-ink-muted data-today:font-semibold data-today:underline data-today:decoration-link data-today:underline-offset-4 data-in-range:bg-layer-selected-1 data-selected:bg-interactive data-selected:text-on-primary data-disabled:cursor-not-allowed data-disabled:text-ink-disabled data-disabled:line-through"</span> /&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.Cell</span>&gt;
+          )}
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.GridBody</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.Grid</span>&gt;
+      {children}
+    &lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.Root</span>&gt;
+  );
+}</ui-code-snippet>
+<p>placeholder เป็นของคุณ ให้เขียนรูปแบบตามภาษาของหน้า</p>
+<h2 id="เลือกเป็นช่วง">เลือกเป็นช่วง</h2>
+<p><code>range</code> ให้สองช่องที่ใช้ปฏิทินร่วมกัน id ของช่องวันเริ่มคือ <code>id</code> ของ <code>Root</code> ส่วนช่องวันสิ้นสุดคือ <code>&lt;id&gt;-end</code> ให้ <code>&lt;label&gt;</code> แต่ละอันชี้ไปที่ id นั้น</p>
+<div class="doc-demo" data-react-example="2"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { useState } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { Calendar, DatePicker } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> label <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'text-xs text-ink-muted'</span>;
+<span style="color:var(--ui-tag-color-magenta)">const</span> note <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'text-xs text-ink-muted'</span>;
+<span style="color:var(--ui-tag-color-magenta)">const</span> popup <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'border border-border-subtle-1 bg-layer-1 shadow-lg'</span>;
+<span style="color:var(--ui-tag-color-magenta)">const</span> box <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'h-10 w-36 border-b border-border-strong-1 bg-field-1 px-4 text-sm text-ink placeholder:text-ink-placeholder focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus data-open:border-interactive data-invalid:outline-2 data-invalid:-outline-offset-2 data-invalid:outline-error'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [from, setFrom] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">''</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [to, setTo] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">''</span>);
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">DatePicker.Root</span> <span style="color:var(--ui-tag-color-purple)">range</span> <span style="color:var(--ui-tag-color-purple)">id</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"stay"</span> <span style="color:var(--ui-tag-color-purple)">locale</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"th"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"from"</span> <span style="color:var(--ui-tag-color-purple)">endName</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"to"</span>
+      <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{from} <span style="color:var(--ui-tag-color-purple)">onValueChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{setFrom} <span style="color:var(--ui-tag-color-purple)">endValue</span><span style="color:var(--ui-tag-color-magenta)">=</span>{to} <span style="color:var(--ui-tag-color-purple)">onEndValueChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{setTo}&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">DatePicker.Group</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex w-fit gap-px"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid gap-2"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">label</span> <span style="color:var(--ui-tag-color-purple)">htmlFor</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"stay"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{label}&gt;วันเช็กอิน&lt;/<span style="color:var(--ui-tag-color-blue)">label</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">DatePicker.Input</span> <span style="color:var(--ui-tag-color-purple)">field</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"start"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"วว/ดด/ปปปป"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{box} /&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid gap-2"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">label</span> <span style="color:var(--ui-tag-color-purple)">htmlFor</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"stay-end"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{label}&gt;วันเช็กเอาต์&lt;/<span style="color:var(--ui-tag-color-blue)">label</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">DatePicker.Input</span> <span style="color:var(--ui-tag-color-purple)">field</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"end"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"วว/ดด/ปปปป"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{box} /&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">DatePicker.Group</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-teal)">`mt-2 ${</span><span style="color:var(--ui-tag-color-teal)">note</span><span style="color:var(--ui-tag-color-teal)">}`</span>}&gt;from: "{from}", to: "{to}"&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">DatePicker.Popup</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เลือกวันที่"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{popup}&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">MonthGrid</span> /&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">DatePicker.Popup</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">DatePicker.Root</span>&gt;
+  );
+}
+
+<span style="color:var(--ui-ink-muted);font-style:italic">// MonthGrid: ชิ้นส่วนของปฏิทินจาก "วิธีใช้"</span>
+<span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">MonthGrid</span>({ children, <span style="color:var(--ui-tag-color-magenta)">...</span>props }<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">Readonly</span>&lt;<span style="color:var(--ui-tag-color-cyan)">Calendar</span>.<span style="color:var(--ui-tag-color-cyan)">RootProps</span>&gt;) {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> nav <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'grid size-10 place-items-center text-ink hover:bg-layer-hover-1 disabled:cursor-not-allowed disabled:text-ink-disabled focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus'</span>;
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.Root</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"w-72 p-2"</span> {<span style="color:var(--ui-tag-color-magenta)">...</span>props}&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex items-center justify-between"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.PrevButton</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เดือนก่อนหน้า"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{nav}&gt;‹&lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.PrevButton</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex items-center gap-1 text-sm font-semibold text-ink"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.MonthName</span> /&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.YearInput</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ปี"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-7 w-16 bg-transparent px-1 hover:bg-layer-hover-1 focus-visible:outline-2 focus-visible:outline-focus"</span> /&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.NextButton</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เดือนถัดไป"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{nav}&gt;›&lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.NextButton</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.Heading</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sr-only"</span> /&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.Grid</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"w-full table-fixed border-collapse text-sm"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.GridHeader</span>&gt;{(d) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.HeaderCell</span> <span style="color:var(--ui-tag-color-purple)">date</span><span style="color:var(--ui-tag-color-magenta)">=</span>{d} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-10 font-normal text-ink"</span> /&gt;}&lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.GridHeader</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.GridBody</span>&gt;
+          {(d) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+            &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.Cell</span> <span style="color:var(--ui-tag-color-purple)">date</span><span style="color:var(--ui-tag-color-magenta)">=</span>{d} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"p-0 text-center"</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.Day</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-10 w-full text-ink hover:bg-layer-hover-1 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus data-outside-month:text-ink-muted data-today:font-semibold data-today:underline data-today:decoration-link data-today:underline-offset-4 data-in-range:bg-layer-selected-1 data-selected:bg-interactive data-selected:text-on-primary data-disabled:cursor-not-allowed data-disabled:text-ink-disabled data-disabled:line-through"</span> /&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.Cell</span>&gt;
+          )}
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.GridBody</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.Grid</span>&gt;
+      {children}
+    &lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.Root</span>&gt;
+  );
+}</ui-code-snippet>
+<p>เลือกวันเริ่มแล้วปฏิทินยังเปิดค้างไว้ให้เลือกวันสิ้นสุด และวันระหว่างกลางได้ <code>data-in-range</code> ถ้าเลือกวันสิ้นสุดก่อนวันเริ่ม ระบบสลับสองค่าให้</p>
+<h2 id="จำกัดวันที่เลือกได้">จำกัดวันที่เลือกได้</h2>
+<div class="doc-demo" data-react-example="3"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { Calendar, DatePicker } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> label <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'text-xs text-ink-muted'</span>;
+<span style="color:var(--ui-tag-color-magenta)">const</span> group <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'flex w-72 items-center border-b border-border-strong-1 bg-field-1 data-disabled:border-transparent has-data-readonly:border-border-subtle-1 has-data-readonly:bg-transparent'</span>;
+<span style="color:var(--ui-tag-color-magenta)">const</span> input <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'h-10 min-w-0 flex-1 bg-transparent px-4 text-sm text-ink placeholder:text-ink-placeholder focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus data-invalid:outline-2 data-invalid:-outline-offset-2 data-invalid:outline-error data-disabled:cursor-not-allowed data-disabled:text-ink-disabled'</span>;
+<span style="color:var(--ui-tag-color-magenta)">const</span> popup <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'border border-border-subtle-1 bg-layer-1 shadow-lg'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> <span style="color:var(--ui-tag-color-cyan)">weekend</span> <span style="color:var(--ui-tag-color-magenta)">=</span> (date<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">Date</span>) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span>
+  date.<span style="color:var(--ui-tag-color-cyan)">getDay</span>() <span style="color:var(--ui-tag-color-magenta)">===</span> <span style="color:var(--ui-tag-color-green)">0</span> <span style="color:var(--ui-tag-color-magenta)">||</span> date.<span style="color:var(--ui-tag-color-cyan)">getDay</span>() <span style="color:var(--ui-tag-color-magenta)">===</span> <span style="color:var(--ui-tag-color-green)">6</span> <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-teal)">'ไม่มีบริการจัดส่งวันเสาร์-อาทิตย์'</span> <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-green)">false</span>;
+
+<span style="color:var(--ui-ink-muted);font-style:italic">// ปัญหาของช่อง เมื่อถึงเวลาแสดง (ลองวันเสาร์ หรือวันที่ในปี 2570)</span>
+<span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Problem</span>({ id }<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">Readonly</span>&lt;{ id<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span> }&gt;) {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> { errors, showsError } <span style="color:var(--ui-tag-color-magenta)">=</span> DatePicker.<span style="color:var(--ui-tag-color-cyan)">useDatePickerContext</span>();
+  <span style="color:var(--ui-tag-color-magenta)">return</span> &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">id</span><span style="color:var(--ui-tag-color-magenta)">=</span>{id} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-error-text"</span>&gt;{<span style="color:var(--ui-tag-color-cyan)">showsError</span>(<span style="color:var(--ui-tag-color-teal)">'start'</span>) <span style="color:var(--ui-tag-color-magenta)">?</span> errors.start <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-green)">null</span>}&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;;
+}
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">DatePicker.Root</span> <span style="color:var(--ui-tag-color-purple)">id</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"delivery"</span> <span style="color:var(--ui-tag-color-purple)">locale</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"th"</span> <span style="color:var(--ui-tag-color-purple)">min</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"2026-01-01"</span> <span style="color:var(--ui-tag-color-purple)">max</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"2026-12-31"</span> <span style="color:var(--ui-tag-color-purple)">isDateDisabled</span><span style="color:var(--ui-tag-color-magenta)">=</span>{weekend}&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid gap-2"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">label</span> <span style="color:var(--ui-tag-color-purple)">htmlFor</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"delivery"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{label}&gt;วันจัดส่ง&lt;/<span style="color:var(--ui-tag-color-blue)">label</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">DatePicker.Group</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{group}&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">DatePicker.Input</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"วว/ดด/ปปปป"</span> <span style="color:var(--ui-tag-color-purple)">aria-describedby</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"delivery-problem"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{input} /&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">DatePicker.Group</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Problem</span> <span style="color:var(--ui-tag-color-purple)">id</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"delivery-problem"</span> /&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">DatePicker.Popup</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เลือกวันที่"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{popup}&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">MonthGrid</span> /&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">DatePicker.Popup</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">DatePicker.Root</span>&gt;
+  );
+}
+
+<span style="color:var(--ui-ink-muted);font-style:italic">// MonthGrid: ชิ้นส่วนของปฏิทินจาก "วิธีใช้"</span>
+<span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">MonthGrid</span>({ children, <span style="color:var(--ui-tag-color-magenta)">...</span>props }<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">Readonly</span>&lt;<span style="color:var(--ui-tag-color-cyan)">Calendar</span>.<span style="color:var(--ui-tag-color-cyan)">RootProps</span>&gt;) {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> nav <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'grid size-10 place-items-center text-ink hover:bg-layer-hover-1 disabled:cursor-not-allowed disabled:text-ink-disabled focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus'</span>;
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.Root</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"w-72 p-2"</span> {<span style="color:var(--ui-tag-color-magenta)">...</span>props}&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex items-center justify-between"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.PrevButton</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เดือนก่อนหน้า"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{nav}&gt;‹&lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.PrevButton</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex items-center gap-1 text-sm font-semibold text-ink"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.MonthName</span> /&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.YearInput</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ปี"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-7 w-16 bg-transparent px-1 hover:bg-layer-hover-1 focus-visible:outline-2 focus-visible:outline-focus"</span> /&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.NextButton</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เดือนถัดไป"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{nav}&gt;›&lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.NextButton</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.Heading</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sr-only"</span> /&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.Grid</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"w-full table-fixed border-collapse text-sm"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.GridHeader</span>&gt;{(d) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.HeaderCell</span> <span style="color:var(--ui-tag-color-purple)">date</span><span style="color:var(--ui-tag-color-magenta)">=</span>{d} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-10 font-normal text-ink"</span> /&gt;}&lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.GridHeader</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.GridBody</span>&gt;
+          {(d) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+            &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.Cell</span> <span style="color:var(--ui-tag-color-purple)">date</span><span style="color:var(--ui-tag-color-magenta)">=</span>{d} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"p-0 text-center"</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.Day</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-10 w-full text-ink hover:bg-layer-hover-1 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus data-outside-month:text-ink-muted data-today:font-semibold data-today:underline data-today:decoration-link data-today:underline-offset-4 data-in-range:bg-layer-selected-1 data-selected:bg-interactive data-selected:text-on-primary data-disabled:cursor-not-allowed data-disabled:text-ink-disabled data-disabled:line-through"</span> /&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.Cell</span>&gt;
+          )}
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.GridBody</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.Grid</span>&gt;
+      {children}
+    &lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.Root</span>&gt;
+  );
+}</ui-code-snippet>
+<p>วันที่เลือกไม่ได้มี <code>data-disabled</code> และ <code>aria-disabled</code> ส่วน <code>PrevButton</code> / <code>NextButton</code> จะปิดเมื่อถึง <code>min</code> / <code>max</code> วันที่ต้องห้ามที่พิมพ์เข้ามาจะค้างอยู่ในช่องพร้อมปัญหาของมัน และฟอร์มจะส่งไม่ได้</p>
+<h2 id="ปุ่มล้างและปุ่มวันนี้">ปุ่มล้างและปุ่มวันนี้</h2>
+<p><code>Clear</code> ล้างช่องของมันและคงโฟกัสไว้ในช่องโดยไม่เปิดปฏิทิน <code>Calendar.TodayButton</code> เลือกวันนี้ ส่วน <code>firstDay</code> ของปฏิทินกำหนดวันแรกของสัปดาห์ (<code>0</code> อาทิตย์ … <code>6</code> เสาร์)</p>
+<div class="doc-demo" data-react-example="4"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { useState } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { Calendar, DatePicker } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> label <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'text-xs text-ink-muted'</span>;
+<span style="color:var(--ui-tag-color-magenta)">const</span> group <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'flex w-72 items-center border-b border-border-strong-1 bg-field-1 data-disabled:border-transparent has-data-readonly:border-border-subtle-1 has-data-readonly:bg-transparent'</span>;
+<span style="color:var(--ui-tag-color-magenta)">const</span> input <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'h-10 min-w-0 flex-1 bg-transparent px-4 text-sm text-ink placeholder:text-ink-placeholder focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus data-invalid:outline-2 data-invalid:-outline-offset-2 data-invalid:outline-error data-disabled:cursor-not-allowed data-disabled:text-ink-disabled'</span>;
+<span style="color:var(--ui-tag-color-magenta)">const</span> popup <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'border border-border-subtle-1 bg-layer-1 shadow-lg'</span>;
+<span style="color:var(--ui-tag-color-magenta)">const</span> note <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'text-xs text-ink-muted'</span>;
+
+<span style="color:var(--ui-ink-muted);font-style:italic">// แสดง × เฉพาะตอนที่ช่องมีข้อความ</span>
+<span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">ClearDate</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> { state } <span style="color:var(--ui-tag-color-magenta)">=</span> DatePicker.<span style="color:var(--ui-tag-color-cyan)">useDatePickerContext</span>();
+  <span style="color:var(--ui-tag-color-magenta)">const</span> look <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'grid size-10 shrink-0 place-items-center text-ink hover:bg-field-hover-1'</span>;
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">DatePicker.Clear</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ล้างวันที่"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{state.text.start <span style="color:var(--ui-tag-color-magenta)">?</span> look <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-teal)">'hidden'</span>}&gt;×&lt;/<span style="color:var(--ui-tag-color-blue)">DatePicker.Clear</span>&gt;
+  );
+}
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [meeting, setMeeting] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">''</span>);
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">DatePicker.Root</span> <span style="color:var(--ui-tag-color-purple)">id</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"meeting"</span> <span style="color:var(--ui-tag-color-purple)">locale</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"th"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{meeting} <span style="color:var(--ui-tag-color-purple)">onValueChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{setMeeting}&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid gap-2"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">label</span> <span style="color:var(--ui-tag-color-purple)">htmlFor</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"meeting"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{label}&gt;วันประชุม&lt;/<span style="color:var(--ui-tag-color-blue)">label</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">DatePicker.Group</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{group}&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">DatePicker.Input</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"วว/ดด/ปปปป"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{input} /&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">ClearDate</span> /&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">DatePicker.Group</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{note}&gt;ค่า: "{meeting}"&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">DatePicker.Popup</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เลือกวันที่"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{popup}&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">MonthGrid</span> <span style="color:var(--ui-tag-color-purple)">firstDay</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">1</span>}&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.TodayButton</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"mt-1 h-10 w-full border-t border-hairline text-sm text-link hover:bg-layer-hover-1 disabled:text-ink-disabled focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus"</span>&gt;
+            วันนี้
+          &lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.TodayButton</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">MonthGrid</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">DatePicker.Popup</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">DatePicker.Root</span>&gt;
+  );
+}
+
+<span style="color:var(--ui-ink-muted);font-style:italic">// MonthGrid: ชิ้นส่วนของปฏิทินจาก "วิธีใช้"</span>
+<span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">MonthGrid</span>({ children, <span style="color:var(--ui-tag-color-magenta)">...</span>props }<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">Readonly</span>&lt;<span style="color:var(--ui-tag-color-cyan)">Calendar</span>.<span style="color:var(--ui-tag-color-cyan)">RootProps</span>&gt;) {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> nav <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'grid size-10 place-items-center text-ink hover:bg-layer-hover-1 disabled:cursor-not-allowed disabled:text-ink-disabled focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus'</span>;
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.Root</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"w-72 p-2"</span> {<span style="color:var(--ui-tag-color-magenta)">...</span>props}&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex items-center justify-between"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.PrevButton</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เดือนก่อนหน้า"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{nav}&gt;‹&lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.PrevButton</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex items-center gap-1 text-sm font-semibold text-ink"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.MonthName</span> /&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.YearInput</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ปี"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-7 w-16 bg-transparent px-1 hover:bg-layer-hover-1 focus-visible:outline-2 focus-visible:outline-focus"</span> /&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.NextButton</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เดือนถัดไป"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{nav}&gt;›&lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.NextButton</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.Heading</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sr-only"</span> /&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.Grid</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"w-full table-fixed border-collapse text-sm"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.GridHeader</span>&gt;{(d) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.HeaderCell</span> <span style="color:var(--ui-tag-color-purple)">date</span><span style="color:var(--ui-tag-color-magenta)">=</span>{d} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-10 font-normal text-ink"</span> /&gt;}&lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.GridHeader</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.GridBody</span>&gt;
+          {(d) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+            &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.Cell</span> <span style="color:var(--ui-tag-color-purple)">date</span><span style="color:var(--ui-tag-color-magenta)">=</span>{d} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"p-0 text-center"</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.Day</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-10 w-full text-ink hover:bg-layer-hover-1 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus data-outside-month:text-ink-muted data-today:font-semibold data-today:underline data-today:decoration-link data-today:underline-offset-4 data-in-range:bg-layer-selected-1 data-selected:bg-interactive data-selected:text-on-primary data-disabled:cursor-not-allowed data-disabled:text-ink-disabled data-disabled:line-through"</span> /&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.Cell</span>&gt;
+          )}
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.GridBody</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.Grid</span>&gt;
+      {children}
+    &lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.Root</span>&gt;
+  );
+}</ui-code-snippet>
+<p><code>Clear</code> แสดงอยู่ตลอด ถ้าต้องการซ่อนตอนช่องว่างให้ทำเอง เหมือนในตัวอย่างที่ใช้ <code>state.text</code> จาก context</p>
+<h2 id="อ่านอย่างเดียวและปิดใช้งาน">อ่านอย่างเดียวและปิดใช้งาน</h2>
+<div class="doc-demo" data-react-example="5"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { Calendar, DatePicker } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> label <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'text-xs text-ink-muted'</span>;
+<span style="color:var(--ui-tag-color-magenta)">const</span> group <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'flex w-72 items-center border-b border-border-strong-1 bg-field-1 data-disabled:border-transparent has-data-readonly:border-border-subtle-1 has-data-readonly:bg-transparent'</span>;
+<span style="color:var(--ui-tag-color-magenta)">const</span> input <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'h-10 min-w-0 flex-1 bg-transparent px-4 text-sm text-ink placeholder:text-ink-placeholder focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus data-invalid:outline-2 data-invalid:-outline-offset-2 data-invalid:outline-error data-disabled:cursor-not-allowed data-disabled:text-ink-disabled'</span>;
+<span style="color:var(--ui-tag-color-magenta)">const</span> popup <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'border border-border-subtle-1 bg-layer-1 shadow-lg'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid gap-6"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">DatePicker.Root</span> <span style="color:var(--ui-tag-color-purple)">id</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"signed"</span> <span style="color:var(--ui-tag-color-purple)">locale</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"th"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"2026-10-10"</span> <span style="color:var(--ui-tag-color-purple)">readOnly</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid gap-2"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">label</span> <span style="color:var(--ui-tag-color-purple)">htmlFor</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"signed"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{label}&gt;วันที่ลงนาม&lt;/<span style="color:var(--ui-tag-color-blue)">label</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">DatePicker.Group</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{group}&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">DatePicker.Input</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{input} /&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">DatePicker.Group</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">DatePicker.Popup</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เลือกวันที่"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{popup}&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">MonthGrid</span> /&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">DatePicker.Popup</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">DatePicker.Root</span>&gt;
+
+      &lt;<span style="color:var(--ui-tag-color-blue)">DatePicker.Root</span> <span style="color:var(--ui-tag-color-purple)">id</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"voided"</span> <span style="color:var(--ui-tag-color-purple)">locale</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"th"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"2026-10-10"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid gap-2"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">label</span> <span style="color:var(--ui-tag-color-purple)">htmlFor</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"voided"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-ink-disabled"</span>&gt;วันที่ยกเลิก&lt;/<span style="color:var(--ui-tag-color-blue)">label</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">DatePicker.Group</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{group}&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">DatePicker.Input</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{input} /&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">DatePicker.Group</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">DatePicker.Popup</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เลือกวันที่"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{popup}&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">MonthGrid</span> /&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">DatePicker.Popup</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">DatePicker.Root</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}
+
+<span style="color:var(--ui-ink-muted);font-style:italic">// MonthGrid: ชิ้นส่วนของปฏิทินจาก "วิธีใช้"</span>
+<span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">MonthGrid</span>({ children, <span style="color:var(--ui-tag-color-magenta)">...</span>props }<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">Readonly</span>&lt;<span style="color:var(--ui-tag-color-cyan)">Calendar</span>.<span style="color:var(--ui-tag-color-cyan)">RootProps</span>&gt;) {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> nav <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'grid size-10 place-items-center text-ink hover:bg-layer-hover-1 disabled:cursor-not-allowed disabled:text-ink-disabled focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus'</span>;
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.Root</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"w-72 p-2"</span> {<span style="color:var(--ui-tag-color-magenta)">...</span>props}&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex items-center justify-between"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.PrevButton</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เดือนก่อนหน้า"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{nav}&gt;‹&lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.PrevButton</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex items-center gap-1 text-sm font-semibold text-ink"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.MonthName</span> /&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.YearInput</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ปี"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-7 w-16 bg-transparent px-1 hover:bg-layer-hover-1 focus-visible:outline-2 focus-visible:outline-focus"</span> /&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.NextButton</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เดือนถัดไป"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{nav}&gt;›&lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.NextButton</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.Heading</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sr-only"</span> /&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.Grid</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"w-full table-fixed border-collapse text-sm"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.GridHeader</span>&gt;{(d) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.HeaderCell</span> <span style="color:var(--ui-tag-color-purple)">date</span><span style="color:var(--ui-tag-color-magenta)">=</span>{d} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-10 font-normal text-ink"</span> /&gt;}&lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.GridHeader</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.GridBody</span>&gt;
+          {(d) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+            &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.Cell</span> <span style="color:var(--ui-tag-color-purple)">date</span><span style="color:var(--ui-tag-color-magenta)">=</span>{d} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"p-0 text-center"</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.Day</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-10 w-full text-ink hover:bg-layer-hover-1 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus data-outside-month:text-ink-muted data-today:font-semibold data-today:underline data-today:decoration-link data-today:underline-offset-4 data-in-range:bg-layer-selected-1 data-selected:bg-interactive data-selected:text-on-primary data-disabled:cursor-not-allowed data-disabled:text-ink-disabled data-disabled:line-through"</span> /&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.Cell</span>&gt;
+          )}
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.GridBody</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.Grid</span>&gt;
+      {children}
+    &lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.Root</span>&gt;
+  );
+}</ui-code-snippet>
+<p><code>readOnly</code> เก็บและส่งค่า แต่พิมพ์ไม่ได้และเปิดปฏิทินไม่ได้ <code>disabled</code> ปิดช่องพิมพ์และ <code>Trigger</code> ไม่ส่งค่าและไม่ตรวจค่า ทั้งสองแบบ <code>Clear</code> และ <code>Trigger</code> ถูกปิดใช้งาน</p>
+<h2 id="มือถือและแท็บเล็ต">มือถือและแท็บเล็ต</h2>
+<p>บนมือถือ (จอสัมผัสที่แคบกว่า 42rem) <code>picker=&quot;auto&quot;</code> (ค่าเริ่มต้น) เปิดปฏิทินใน bottom sheet โดย <code>Popup</code> render อยู่ใน modal <code>&lt;dialog data-sheet&gt;</code> (หน้าเว็บด้านหลังเป็น inert และเลื่อนไม่ได้ โฟกัสอยู่ข้างใน) ปิดได้ด้วย Esc ปุ่ม <code>DatePicker.SheetClose</code> การปัดลงที่ <code>DatePicker.SheetGrip</code> หรือแตะที่ฉากหลัง แค่โฟกัสที่ช่องยังไม่เปิด ช่องจึงยังพิมพ์ได้ ปรับหน้าตา dialog ด้วย <code>sheetClassName</code> (ฉากหลังใช้ <code>backdrop:</code>) และกล่องด้านในด้วย <code>data-sheet</code> โดยให้ระยะขอบเว้น <code>env(safe-area-inset-*)</code> ไว้ <code>SheetGrip</code> กับ <code>SheetClose</code> แสดงเฉพาะใน sheet</p>
+<p><code>picker=&quot;custom&quot;</code> ให้ปฏิทินเปิดใต้ช่องบนมือถือด้วย <code>picker=&quot;sheet&quot;</code> ใช้ sheet ทุกอุปกรณ์ และ <code>picker=&quot;native&quot;</code> เปิดตัวเลือกวันที่ของ OS จาก <code>DatePicker.NativeInput</code> ให้วางไว้ทับแต่ละช่อง แบบมองไม่เห็นและไม่รับ pointer event</p>
+<div class="doc-demo" data-react-example="6"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { useState } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { Calendar, DatePicker } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> label <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'text-xs text-ink-muted'</span>;
+<span style="color:var(--ui-tag-color-magenta)">const</span> group <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'flex w-72 items-center border-b border-border-strong-1 bg-field-1 data-disabled:border-transparent has-data-readonly:border-border-subtle-1 has-data-readonly:bg-transparent'</span>;
+<span style="color:var(--ui-tag-color-magenta)">const</span> input <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'h-10 min-w-0 flex-1 bg-transparent px-4 text-sm text-ink placeholder:text-ink-placeholder focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus data-invalid:outline-2 data-invalid:-outline-offset-2 data-invalid:outline-error data-disabled:cursor-not-allowed data-disabled:text-ink-disabled'</span>;
+<span style="color:var(--ui-tag-color-magenta)">const</span> popup <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'border border-border-subtle-1 bg-layer-1 shadow-lg'</span>;
+<span style="color:var(--ui-tag-color-magenta)">const</span> note <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'text-xs text-ink-muted'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [visit, setVisit] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">''</span>);
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">DatePicker.Root</span> <span style="color:var(--ui-tag-color-purple)">id</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"visit"</span> <span style="color:var(--ui-tag-color-purple)">locale</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"th"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{visit} <span style="color:var(--ui-tag-color-purple)">onValueChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{setVisit}&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid gap-2"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">label</span> <span style="color:var(--ui-tag-color-purple)">htmlFor</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"visit"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{label}&gt;วันที่เข้าชม&lt;/<span style="color:var(--ui-tag-color-blue)">label</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">DatePicker.Group</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-teal)">`relative ${</span><span style="color:var(--ui-tag-color-teal)">group</span><span style="color:var(--ui-tag-color-teal)">}`</span>}&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">DatePicker.Input</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"วว/ดด/ปปปป"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{input} /&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">DatePicker.NativeInput</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"pointer-events-none absolute inset-0 opacity-0"</span> /&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">DatePicker.Group</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{note}&gt;ค่า: "{visit}"&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">DatePicker.Popup</span>
+        <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เลือกวันที่"</span>
+        <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-teal)">`${</span><span style="color:var(--ui-tag-color-teal)">popup</span><span style="color:var(--ui-tag-color-teal)">} data-sheet:w-full data-sheet:pb-[env(safe-area-inset-bottom)]`</span>}
+        <span style="color:var(--ui-tag-color-purple)">sheetClassName</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"fixed inset-x-0 top-auto bottom-0 m-0 w-full max-w-none border-0 bg-transparent p-0 backdrop:bg-black/50"</span>
+      &gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">DatePicker.SheetGrip</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"relative flex h-12 justify-center"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"mt-2 h-1 w-8 rounded-full bg-icon-secondary"</span> /&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">DatePicker.SheetClose</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ปิด"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"absolute end-0 top-0 size-12 text-ink hover:bg-layer-hover-1"</span>&gt;×&lt;/<span style="color:var(--ui-tag-color-blue)">DatePicker.SheetClose</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">DatePicker.SheetGrip</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">MonthGrid</span> /&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">DatePicker.Popup</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">DatePicker.Root</span>&gt;
+  );
+}
+
+<span style="color:var(--ui-ink-muted);font-style:italic">// MonthGrid: ชิ้นส่วนของปฏิทินจาก "วิธีใช้"</span>
+<span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">MonthGrid</span>({ children, <span style="color:var(--ui-tag-color-magenta)">...</span>props }<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">Readonly</span>&lt;<span style="color:var(--ui-tag-color-cyan)">Calendar</span>.<span style="color:var(--ui-tag-color-cyan)">RootProps</span>&gt;) {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> nav <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'grid size-10 place-items-center text-ink hover:bg-layer-hover-1 disabled:cursor-not-allowed disabled:text-ink-disabled focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus'</span>;
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.Root</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"w-72 p-2"</span> {<span style="color:var(--ui-tag-color-magenta)">...</span>props}&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex items-center justify-between"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.PrevButton</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เดือนก่อนหน้า"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{nav}&gt;‹&lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.PrevButton</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex items-center gap-1 text-sm font-semibold text-ink"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.MonthName</span> /&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.YearInput</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ปี"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-7 w-16 bg-transparent px-1 hover:bg-layer-hover-1 focus-visible:outline-2 focus-visible:outline-focus"</span> /&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.NextButton</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เดือนถัดไป"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{nav}&gt;›&lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.NextButton</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.Heading</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sr-only"</span> /&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.Grid</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"w-full table-fixed border-collapse text-sm"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.GridHeader</span>&gt;{(d) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.HeaderCell</span> <span style="color:var(--ui-tag-color-purple)">date</span><span style="color:var(--ui-tag-color-magenta)">=</span>{d} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-10 font-normal text-ink"</span> /&gt;}&lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.GridHeader</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.GridBody</span>&gt;
+          {(d) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+            &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.Cell</span> <span style="color:var(--ui-tag-color-purple)">date</span><span style="color:var(--ui-tag-color-magenta)">=</span>{d} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"p-0 text-center"</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.Day</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-10 w-full text-ink hover:bg-layer-hover-1 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus data-outside-month:text-ink-muted data-today:font-semibold data-today:underline data-today:decoration-link data-today:underline-offset-4 data-in-range:bg-layer-selected-1 data-selected:bg-interactive data-selected:text-on-primary data-disabled:cursor-not-allowed data-disabled:text-ink-disabled data-disabled:line-through"</span> /&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.Cell</span>&gt;
+          )}
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.GridBody</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.Grid</span>&gt;
+      {children}
+    &lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.Root</span>&gt;
+  );
+}</ui-code-snippet>
+<p>ถ้าใช้เมาส์ ตัวอย่างด้านบนเปิดปฏิทิน ถ้าใช้มือถือจะเปิดตัวเลือกของ OS ตัวเลือกของ OS ทำวันที่ <code>isDateDisabled</code> ให้จางไม่ได้ วันที่เลือกจากตัวนั้นจึงถูกตรวจเหมือนข้อความที่พิมพ์</p>
+<h2 id="ใช้ปฏิทินเดี่ยว-ๆ">ใช้ปฏิทินเดี่ยว ๆ</h2>
+<p><code>Calendar.Root</code> ใช้นอก picker ได้ด้วย เมื่อใช้เดี่ยว ๆ มันเก็บเดือนที่แสดงและวันที่เลือกเอง ส่ง <code>value</code> หรือ <code>focusDate</code> (คู่กับ <code>onFocusDateChange</code>) ถ้าต้องการคุมเอง <code>onPick</code> ได้ยินทุกครั้งที่เลือก</p>
+<div class="doc-demo" data-react-example="7"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { useState } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { Calendar } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [picked, setPicked] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>&lt;<span style="color:var(--ui-tag-color-cyan)">Date</span> <span style="color:var(--ui-tag-color-magenta)">|</span> <span style="color:var(--ui-tag-color-cyan)">null</span>&gt;(<span style="color:var(--ui-tag-color-green)">null</span>);
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid gap-2"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">MonthGrid</span> <span style="color:var(--ui-tag-color-purple)">locale</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"th"</span> <span style="color:var(--ui-tag-color-purple)">era</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"be"</span> <span style="color:var(--ui-tag-color-purple)">onPick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{setPicked} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"w-72 border border-border-subtle-1 bg-layer-1 p-2"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.TodayButton</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"mt-1 h-10 w-full border-t border-hairline text-sm text-link hover:bg-layer-hover-1 disabled:text-ink-disabled focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus"</span>&gt;
+          วันนี้
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.TodayButton</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">MonthGrid</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-ink-muted"</span>&gt;เลือก: {picked?.<span style="color:var(--ui-tag-color-cyan)">toLocaleDateString</span>(<span style="color:var(--ui-tag-color-teal)">'th-TH'</span>, { <span style="color:var(--ui-tag-color-purple)">dateStyle:</span> <span style="color:var(--ui-tag-color-teal)">'long'</span> })}&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}
+
+<span style="color:var(--ui-ink-muted);font-style:italic">// MonthGrid: ชิ้นส่วนของปฏิทินจาก "วิธีใช้"</span>
+<span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">MonthGrid</span>({ children, <span style="color:var(--ui-tag-color-magenta)">...</span>props }<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">Readonly</span>&lt;<span style="color:var(--ui-tag-color-cyan)">Calendar</span>.<span style="color:var(--ui-tag-color-cyan)">RootProps</span>&gt;) {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> nav <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'grid size-10 place-items-center text-ink hover:bg-layer-hover-1 disabled:cursor-not-allowed disabled:text-ink-disabled focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus'</span>;
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.Root</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"w-72 p-2"</span> {<span style="color:var(--ui-tag-color-magenta)">...</span>props}&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex items-center justify-between"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.PrevButton</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เดือนก่อนหน้า"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{nav}&gt;‹&lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.PrevButton</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex items-center gap-1 text-sm font-semibold text-ink"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.MonthName</span> /&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.YearInput</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ปี"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-7 w-16 bg-transparent px-1 hover:bg-layer-hover-1 focus-visible:outline-2 focus-visible:outline-focus"</span> /&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.NextButton</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เดือนถัดไป"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{nav}&gt;›&lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.NextButton</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.Heading</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sr-only"</span> /&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.Grid</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"w-full table-fixed border-collapse text-sm"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.GridHeader</span>&gt;{(d) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.HeaderCell</span> <span style="color:var(--ui-tag-color-purple)">date</span><span style="color:var(--ui-tag-color-magenta)">=</span>{d} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-10 font-normal text-ink"</span> /&gt;}&lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.GridHeader</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.GridBody</span>&gt;
+          {(d) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+            &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.Cell</span> <span style="color:var(--ui-tag-color-purple)">date</span><span style="color:var(--ui-tag-color-magenta)">=</span>{d} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"p-0 text-center"</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.Day</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-10 w-full text-ink hover:bg-layer-hover-1 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus data-outside-month:text-ink-muted data-today:font-semibold data-today:underline data-today:decoration-link data-today:underline-offset-4 data-in-range:bg-layer-selected-1 data-selected:bg-interactive data-selected:text-on-primary data-disabled:cursor-not-allowed data-disabled:text-ink-disabled data-disabled:line-through"</span> /&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.Cell</span>&gt;
+          )}
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.GridBody</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.Grid</span>&gt;
+      {children}
+    &lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.Root</span>&gt;
+  );
+}</ui-code-snippet>
+<p>ปฏิทินเดี่ยวในโหมดช่วง (<code>range</code>, <code>value</code>, <code>endValue</code>, <code>activeField</code>) คุณต้องเก็บค่าเอง และ <code>era</code> ของมันตั้งต้นเป็น <code>ce</code> ไม่ว่า <code>locale</code> จะเป็นอะไร สำหรับภาษาไทยให้ใส่ <code>locale=&quot;th&quot;</code> และ <code>era=&quot;be&quot;</code></p>
+<h2 id="ใส่-style">ใส่ style</h2>
+<div class="doc-demo" data-react-example="8"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { Calendar, DatePicker } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> <span style="color:var(--ui-tag-color-cyan)">isSunday</span> <span style="color:var(--ui-tag-color-magenta)">=</span> (date<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">Date</span>) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> date.<span style="color:var(--ui-tag-color-cyan)">getDay</span>() <span style="color:var(--ui-tag-color-magenta)">===</span> <span style="color:var(--ui-tag-color-green)">0</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">DatePicker.Root</span> <span style="color:var(--ui-tag-color-purple)">id</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"styled-date"</span> <span style="color:var(--ui-tag-color-purple)">locale</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"th"</span> <span style="color:var(--ui-tag-color-purple)">range</span> <span style="color:var(--ui-tag-color-purple)">isDateDisabled</span><span style="color:var(--ui-tag-color-magenta)">=</span>{isSunday}&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">DatePicker.Group</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex w-fit gap-px border-b-2 border-transparent data-open:border-interactive"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">DatePicker.Input</span> <span style="color:var(--ui-tag-color-purple)">field</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"start"</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"วันเริ่ม"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"วว/ดด/ปปปป"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-10 w-36 bg-field-1 px-4 text-sm text-ink placeholder:text-ink-placeholder focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus data-invalid:outline-2 data-invalid:-outline-offset-2 data-invalid:outline-error data-disabled:text-ink-disabled"</span> /&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">DatePicker.Input</span> <span style="color:var(--ui-tag-color-purple)">field</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"end"</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"วันสิ้นสุด"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"วว/ดด/ปปปป"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-10 w-36 bg-field-1 px-4 text-sm text-ink placeholder:text-ink-placeholder focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus data-invalid:outline-2 data-invalid:-outline-offset-2 data-invalid:outline-error data-disabled:text-ink-disabled"</span> /&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">DatePicker.Group</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">DatePicker.Popup</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เลือกวันที่"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"w-72 border border-border-subtle-1 bg-layer-1 p-2 shadow-lg"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.Root</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex items-center justify-between"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.PrevButton</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เดือนก่อนหน้า"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-10 text-ink hover:bg-layer-hover-1 disabled:text-ink-disabled"</span>&gt;‹&lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.PrevButton</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.Heading</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-sm font-semibold text-ink"</span> /&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.NextButton</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เดือนถัดไป"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-10 text-ink hover:bg-layer-hover-1 disabled:text-ink-disabled"</span>&gt;›&lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.NextButton</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.Grid</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"w-full border-collapse text-sm"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.GridHeader</span>&gt;{(d) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.HeaderCell</span> <span style="color:var(--ui-tag-color-purple)">date</span><span style="color:var(--ui-tag-color-magenta)">=</span>{d} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-10 font-normal text-ink"</span> /&gt;}&lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.GridHeader</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.GridBody</span>&gt;
+              {(d) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+                &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.Cell</span> <span style="color:var(--ui-tag-color-purple)">date</span><span style="color:var(--ui-tag-color-magenta)">=</span>{d} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"p-0"</span>&gt;
+                  &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.Day</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-10 text-ink hover:bg-layer-hover-1 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus data-outside-month:text-ink-muted data-today:font-semibold data-in-range:bg-layer-selected-1 data-selected:bg-interactive data-selected:text-on-primary data-disabled:text-ink-disabled data-disabled:line-through"</span> /&gt;
+                &lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.Cell</span>&gt;
+              )}
+            &lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.GridBody</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.Grid</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.Root</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">DatePicker.Popup</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">DatePicker.Root</span>&gt;
+  );
+}</ui-code-snippet>
+<ui-code-snippet type="multi" class="doc-code" data-lang="css"><span style="color:var(--ui-tag-color-purple)">.date-group</span>[<span style="color:var(--ui-tag-color-purple)">data-open</span>] { <span style="color:var(--ui-tag-color-purple)">border-bottom-color</span>: #0f62fe; }
+<span style="color:var(--ui-tag-color-purple)">.date-input</span>[<span style="color:var(--ui-tag-color-purple)">data-invalid</span>] { <span style="color:var(--ui-tag-color-purple)">outline</span>: <span style="color:var(--ui-tag-color-green)">2px</span> <span style="color:var(--ui-tag-color-green)">solid</span> #da1e28; }
+<span style="color:var(--ui-tag-color-purple)">.day</span>[<span style="color:var(--ui-tag-color-purple)">data-outside-month</span>] { <span style="color:var(--ui-tag-color-purple)">color</span>: #6f6f6f; }
+<span style="color:var(--ui-tag-color-purple)">.day</span>[<span style="color:var(--ui-tag-color-purple)">data-today</span>] { <span style="color:var(--ui-tag-color-purple)">font-weight</span>: <span style="color:var(--ui-tag-color-green)">600</span>; }
+<span style="color:var(--ui-tag-color-purple)">.day</span>[<span style="color:var(--ui-tag-color-purple)">data-in-range</span>] { <span style="color:var(--ui-tag-color-purple)">background</span>: #d0e2ff; }
+<span style="color:var(--ui-tag-color-purple)">.day</span>[<span style="color:var(--ui-tag-color-purple)">data-selected</span>] { <span style="color:var(--ui-tag-color-purple)">background</span>: #0f62fe; <span style="color:var(--ui-tag-color-purple)">color</span>: #fff; }
+<span style="color:var(--ui-tag-color-purple)">.day</span>[<span style="color:var(--ui-tag-color-purple)">data-disabled</span>] { <span style="color:var(--ui-tag-color-purple)">color</span>: #c6c6c6; <span style="color:var(--ui-tag-color-purple)">text-decoration</span>: <span style="color:var(--ui-tag-color-green)">line-through</span>; }</ui-code-snippet>
+<h2 id="ชิ้นส่วน">ชิ้นส่วน</h2>
+<h3 id="datepicker-root">DatePicker.Root</h3>
+<p>ไม่ render element ของตัวเอง มีแค่ children กับ <code>&lt;input type=&quot;hidden&quot;&gt;</code> สำหรับ <code>name</code> และอีกอันสำหรับ <code>endName</code> (ไม่มีขณะ disabled)</p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>ค่าเริ่มต้น</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>value</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>วันที่ ISO แบบ controlled (วันเริ่มในโหมดช่วง)</td>
+</tr>
+<tr>
+<td><code>defaultValue</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>onValueChange</code></td>
+<td><code>(value: string) =&gt; void</code></td>
+<td></td>
+<td>หลังวันที่เปลี่ยน</td>
+</tr>
+<tr>
+<td><code>range</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>สองช่อง ปฏิทินเดียว</td>
+</tr>
+<tr>
+<td><code>endValue</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>วันสิ้นสุดแบบ controlled</td>
+</tr>
+<tr>
+<td><code>defaultEndValue</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>onEndValueChange</code></td>
+<td><code>(value: string) =&gt; void</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>ส่งวันที่ (วันเริ่ม) ไปกับฟอร์ม</td>
+</tr>
+<tr>
+<td><code>endName</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>ส่งวันสิ้นสุด</td>
+</tr>
+<tr>
+<td><code>min</code>, <code>max</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>วันที่ ISO</td>
+</tr>
+<tr>
+<td><code>isDateDisabled</code></td>
+<td><code>(date: Date) =&gt; boolean | string</code></td>
+<td></td>
+<td>ห้ามเลือกวันนั้น ถ้าคืนสตริงจะใช้เป็นข้อความ</td>
+</tr>
+<tr>
+<td><code>format</code></td>
+<td><code>'dd/mm/yyyy' | 'mm/dd/yyyy' | 'yyyy-mm-dd'</code></td>
+<td><code>'dd/mm/yyyy'</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>era</code></td>
+<td><code>'be' | 'ce'</code></td>
+<td><code>'be'</code> เมื่อ <code>locale</code> เป็นไทย นอกนั้น <code>'ce'</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>locale</code></td>
+<td><code>string</code></td>
+<td><code>&lt;html lang&gt;</code> หรือภาษาของ browser</td>
+<td>ภาษาของข้อความและชื่อในปฏิทิน</td>
+</tr>
+<tr>
+<td><code>disabled</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>readOnly</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>required</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>invalid</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>บังคับสถานะ error ฟอร์มจะส่งไม่ได้</td>
+</tr>
+<tr>
+<td><code>invalidMessage</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>ใช้คู่กับ <code>invalid</code>: ข้อความ validity ของฟอร์ม</td>
+</tr>
+<tr>
+<td><code>picker</code></td>
+<td><code>'auto' | 'custom' | 'sheet' | 'native'</code></td>
+<td><code>'auto'</code></td>
+<td><code>auto</code>: ปฏิทิน ใน bottom sheet บนมือถือ <code>custom</code>: ใต้ช่องทุกอุปกรณ์ <code>sheet</code>: sheet ทุกอุปกรณ์ <code>native</code>: ตัวเลือกของ OS</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>สร้างให้</td>
+<td>id ของช่องวันเริ่ม ช่องวันสิ้นสุดได้ <code>&lt;id&gt;-end</code> และ popup ได้ <code>&lt;id&gt;-calendar</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="datepicker-group">DatePicker.Group</h3>
+<p>render <code>&lt;div&gt;</code> ครอบช่องพิมพ์</p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>เมื่อ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-open</code></td>
+<td>ปฏิทินเปิดอยู่</td>
+</tr>
+<tr>
+<td><code>data-disabled</code></td>
+<td><code>disabled</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="datepicker-input">DatePicker.Input</h3>
+<p>render <code>&lt;input type=&quot;text&quot; role=&quot;combobox&quot;&gt;</code> ค่า <code>disabled</code>, <code>readOnly</code> และ <code>required</code> มาจาก <code>Root</code> ส่วน id มาจาก <code>id</code> ของ <code>Root</code></p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>ค่าเริ่มต้น</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>field</code></td>
+<td><code>'start' | 'end'</code></td>
+<td><code>'start'</code></td>
+<td>ช่องนี้เก็บวันที่ไหน</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>เมื่อ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-open</code></td>
+<td>ปฏิทินเปิดอยู่และเลือกให้ช่องนี้</td>
+</tr>
+<tr>
+<td><code>data-invalid</code></td>
+<td>ช่องแสดง error</td>
+</tr>
+<tr>
+<td><code>data-disabled</code></td>
+<td><code>disabled</code></td>
+</tr>
+<tr>
+<td><code>data-readonly</code></td>
+<td><code>readOnly</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="datepicker-nativeinput">DatePicker.NativeInput</h3>
+<p>render <code>&lt;input type=&quot;date&quot;&gt;</code> ที่มี <code>tabIndex={-1}</code> และ <code>aria-hidden=&quot;true&quot;</code> ค่า <code>min</code> และ <code>max</code> มาจาก <code>Root</code></p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>ค่าเริ่มต้น</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>field</code></td>
+<td><code>'start' | 'end'</code></td>
+<td><code>'start'</code></td>
+<td>เลือกให้วันที่ไหน</td>
+</tr>
+</tbody>
+</table>
+<h3 id="datepicker-clear">DatePicker.Clear</h3>
+<p>render <code>&lt;button type=&quot;button&quot;&gt;</code> ที่มี <code>tabIndex={-1}</code> และถูกปิดใช้งานเมื่อ <code>Root</code> ปิดใช้งานหรืออ่านอย่างเดียว</p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>ค่าเริ่มต้น</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>field</code></td>
+<td><code>'start' | 'end'</code></td>
+<td><code>'start'</code></td>
+<td>ล้างช่องไหน</td>
+</tr>
+</tbody>
+</table>
+<h3 id="datepicker-trigger">DatePicker.Trigger</h3>
+<p>render <code>&lt;button type=&quot;button&quot;&gt;</code> ที่มี <code>tabIndex={-1}</code>, <code>aria-haspopup=&quot;dialog&quot;</code> และ <code>aria-expanded</code> เปิดปฏิทินพร้อมโฟกัสใน grid หรือปิดปฏิทิน และถูกปิดใช้งานเมื่อ <code>Root</code> disabled หรืออ่านอย่างเดียว</p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>เมื่อ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-open</code></td>
+<td>ปฏิทินเปิดอยู่</td>
+</tr>
+</tbody>
+</table>
+<h3 id="datepicker-popup">DatePicker.Popup</h3>
+<p>render <code>&lt;div role=&quot;dialog&quot; popover=&quot;manual&quot;&gt;</code> ใน top layer ใต้ช่องวันเริ่ม (ขึ้นไปอยู่ด้านบนเมื่อด้านล่างไม่มีที่) children แสดงเฉพาะตอนเปิด ใน bottom sheet จะ render <code>&lt;div&gt;</code> เดียวกันแต่ไม่มี <code>popover</code> และ <code>role</code> อยู่ใน modal <code>&lt;dialog data-sheet&gt;</code> ซึ่งรับ <code>aria-label</code></p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sheetClassName</code>, <code>sheetStyle</code></td>
+<td><code>string</code>, <code>CSSProperties</code></td>
+<td><code>&lt;dialog&gt;</code> ของ bottom sheet</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>เมื่อ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-open</code></td>
+<td>เปิดอยู่</td>
+</tr>
+<tr>
+<td><code>data-side</code></td>
+<td>ด้านที่ไปอยู่จริง: <code>bottom</code> หรือ <code>top</code></td>
+</tr>
+<tr>
+<td><code>data-sheet</code></td>
+<td>อยู่ใน bottom sheet (ทั้งบน <code>&lt;dialog&gt;</code> และกล่อง)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="datepicker-sheetgrip">DatePicker.SheetGrip</h3>
+<p>render <code>&lt;div&gt;</code> ที่มี <code>touch-action: none</code> เฉพาะใน bottom sheet ปัดลงบนส่วนนี้เพื่อปิด sheet (64px หรือปัดเร็ว ๆ) ถ้าสั้นกว่านั้น sheet เด้งกลับ ระหว่างที่นิ้วลาก dialog มี <code>data-dragging</code> และ <code>translate</code> ใส่ขีดจับกับ <code>SheetClose</code> ไว้ข้างใน</p>
+<h3 id="datepicker-sheetclose">DatePicker.SheetClose</h3>
+<p>render <code>&lt;button type=&quot;button&quot;&gt;</code> เฉพาะใน bottom sheet ปิด sheet เหมือนกด Esc ใส่ <code>aria-label</code> ให้ด้วย</p>
+<h2 id="ชิ้นส่วนของ-calendar">ชิ้นส่วนของ Calendar</h2>
+<h3 id="calendar-root">Calendar.Root</h3>
+<p>render <code>&lt;div&gt;</code> เมื่ออยู่ใน <code>DatePicker.Popup</code> จะรับค่า ช่วง โฟกัส ขอบเขต <code>locale</code> และ <code>era</code> จาก picker แต่ prop ที่คุณส่งเองยังชนะ</p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>ค่าเริ่มต้น</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>value</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>วันที่เลือก ISO แบบ controlled (วันเริ่มในโหมดช่วง)</td>
+</tr>
+<tr>
+<td><code>defaultValue</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>วันที่เลือกตอนแรก (วันเดียว)</td>
+</tr>
+<tr>
+<td><code>endValue</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>วันสิ้นสุดของช่วง</td>
+</tr>
+<tr>
+<td><code>range</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>activeField</code></td>
+<td><code>'start' | 'end'</code></td>
+<td><code>'start'</code></td>
+<td>การเลือกจะตั้งปลายไหน (ใช้กับ preview)</td>
+</tr>
+<tr>
+<td><code>focusDate</code></td>
+<td><code>Date</code></td>
+<td></td>
+<td>วันที่ถือ tab stop และกำหนดเดือนที่แสดง (controlled)</td>
+</tr>
+<tr>
+<td><code>defaultFocusDate</code></td>
+<td><code>Date</code></td>
+<td>ค่า value ถ้าไม่มีคือวันนี้</td>
+<td></td>
+</tr>
+<tr>
+<td><code>onFocusDateChange</code></td>
+<td><code>(date: Date) =&gt; void</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>onPick</code></td>
+<td><code>(date: Date) =&gt; void</code></td>
+<td></td>
+<td>ผู้ใช้เลือกวันที่เลือกได้</td>
+</tr>
+<tr>
+<td><code>min</code>, <code>max</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>isDateDisabled</code></td>
+<td><code>(date: Date) =&gt; boolean | string</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>locale</code></td>
+<td><code>string</code></td>
+<td><code>&lt;html lang&gt;</code> หรือภาษาของ browser</td>
+<td>locale แบบ BCP 47 สำหรับชื่อเดือนและวัน</td>
+</tr>
+<tr>
+<td><code>era</code></td>
+<td><code>'be' | 'ce'</code></td>
+<td><code>'be'</code> เมื่อ <code>locale</code> เป็นไทย นอกนั้น <code>'ce'</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>firstDay</code></td>
+<td><code>number</code></td>
+<td><code>0</code></td>
+<td><code>0</code> อาทิตย์ … <code>6</code> เสาร์</td>
+</tr>
+<tr>
+<td><code>handle</code></td>
+<td><code>Ref&lt;CalendarHandle&gt;</code></td>
+<td></td>
+<td><code>focusDay()</code> ย้ายโฟกัสไปที่วันที่ถือ tab stop</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>เมื่อ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-range</code></td>
+<td><code>range</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="calendar-prevbutton-calendar-nextbutton">Calendar.PrevButton, Calendar.NextButton</h3>
+<p>แต่ละตัว render <code>&lt;button type=&quot;button&quot;&gt;</code> ที่แสดงเดือนก่อนหน้าหรือถัดไป และถูกปิดเมื่อทั้งเดือนนั้นอยู่นอก <code>min</code> / <code>max</code></p>
+<h3 id="calendar-monthname">Calendar.MonthName</h3>
+<p>render <code>&lt;span aria-hidden=&quot;true&quot;&gt;</code> ที่มีชื่อเดือน children ใช้แทนชื่อได้</p>
+<h3 id="calendar-heading">Calendar.Heading</h3>
+<p>render <code>&lt;div aria-live=&quot;polite&quot;&gt;</code> ที่มีเดือนและปี เป็นชื่อของ grid จึงต้องคงไว้ (ซ่อนจากสายตาได้) children ใช้แทนข้อความได้</p>
+<h3 id="calendar-yearinput">Calendar.YearInput</h3>
+<p>render <code>&lt;input type=&quot;number&quot;&gt;</code> ที่มีปีที่แสดงตามศักราชของปฏิทิน พิมพ์ปีครบสี่หลักแล้วปฏิทินไปที่ปีนั้น ออกจากช่องแล้วช่องกลับเป็นปีที่แสดง</p>
+<h3 id="calendar-yearstep">Calendar.YearStep</h3>
+<p>render <code>&lt;button type=&quot;button&quot;&gt;</code> ที่มี <code>tabIndex={-1}</code> เลื่อนปีที่แสดง และถูกปิดเมื่อเลยปีที่ <code>min</code> / <code>max</code> อนุญาต</p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>ค่าเริ่มต้น</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>delta</code></td>
+<td><code>number</code></td>
+<td></td>
+<td>จำนวนปีที่เลื่อน เช่น <code>1</code> หรือ <code>-1</code> (ต้องใส่)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="calendar-grid">Calendar.Grid</h3>
+<p>render <code>&lt;table role=&quot;grid&quot;&gt;</code> ที่มีชื่อจาก <code>Heading</code> และจัดการปุ่มคีย์บอร์ด</p>
+<h3 id="calendar-gridheader-calendar-headercell">Calendar.GridHeader, Calendar.HeaderCell</h3>
+<p><code>GridHeader</code> render <code>&lt;thead&gt;</code> หนึ่งแถว และเรียกฟังก์ชัน <code>children</code> ทีละวันของสัปดาห์ <code>HeaderCell</code> render <code>&lt;th scope=&quot;col&quot;&gt;</code> ที่มีชื่อวันแบบสั้น และชื่อเต็มใน <code>abbr</code></p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>ค่าเริ่มต้น</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>children</code> (GridHeader)</td>
+<td><code>(date: Date) =&gt; ReactNode</code></td>
+<td></td>
+<td>render วันหนึ่งของสัปดาห์ (ต้องใส่)</td>
+</tr>
+<tr>
+<td><code>date</code> (HeaderCell)</td>
+<td><code>Date</code></td>
+<td></td>
+<td>วันของสัปดาห์ (ต้องใส่)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="calendar-gridbody-calendar-cell">Calendar.GridBody, Calendar.Cell</h3>
+<p><code>GridBody</code> render <code>&lt;tbody&gt;</code> หกสัปดาห์ และเรียกฟังก์ชัน <code>children</code> ทีละวัน <code>Cell</code> render <code>&lt;td role=&quot;gridcell&quot; aria-selected&gt;</code></p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>ค่าเริ่มต้น</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>children</code> (GridBody)</td>
+<td><code>(date: Date) =&gt; ReactNode</code></td>
+<td></td>
+<td>render วันหนึ่ง (ต้องใส่)</td>
+</tr>
+<tr>
+<td><code>date</code> (Cell)</td>
+<td><code>Date</code></td>
+<td></td>
+<td>วันนั้น (ต้องใส่)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="calendar-day">Calendar.Day</h3>
+<p>render <code>&lt;button type=&quot;button&quot;&gt;</code> ที่มีเลขวัน (children ใช้แทนได้) วางไว้ใน <code>Cell</code> มีแค่วันที่ถือ tab stop ที่ได้ <code>tabIndex={0}</code></p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>เมื่อ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-selected</code></td>
+<td>วันที่เลือก (ปลายใดปลายหนึ่งของช่วง)</td>
+</tr>
+<tr>
+<td><code>data-today</code></td>
+<td>วันนี้</td>
+</tr>
+<tr>
+<td><code>data-outside-month</code></td>
+<td>วันของเดือนก่อนหรือเดือนถัดไป</td>
+</tr>
+<tr>
+<td><code>data-disabled</code></td>
+<td>เลือกไม่ได้: อยู่นอก <code>min</code> / <code>max</code> หรือ <code>isDateDisabled</code> ไม่รับ</td>
+</tr>
+<tr>
+<td><code>data-in-range</code></td>
+<td>อยู่ระหว่างวันเริ่มกับวันสิ้นสุดของช่วง (ที่เลือกแล้วหรือกำลัง preview)</td>
+</tr>
+<tr>
+<td><code>data-range-start</code></td>
+<td>วันเริ่มของช่วง</td>
+</tr>
+<tr>
+<td><code>data-range-end</code></td>
+<td>วันสิ้นสุดของช่วง ที่เลือกแล้วหรือกำลัง preview</td>
+</tr>
+</tbody>
+</table>
+<h3 id="calendar-todaybutton">Calendar.TodayButton</h3>
+<p>render <code>&lt;button type=&quot;button&quot;&gt;</code> ที่เลือกวันนี้ และถูกปิดเมื่อวันนี้เลือกไม่ได้</p>
+<h3 id="hook">Hook</h3>
+<p><code>DatePicker.useDatePickerContext()</code> ใน <code>Root</code> ให้ state ของ picker: <code>state</code> (ข้อความ ค่า สถานะเปิด) <code>problems</code> <code>errors</code> (ข้อความตามภาษาของ <code>locale</code>) และ <code>showsError(field)</code> ส่วน <code>Calendar.useCalendarContext()</code> ให้เดือนที่แสดงและชื่อต่าง ๆ และ <code>Calendar.useCellContext()</code> ใน <code>Cell</code> ให้สถานะของวันนั้นเป็นค่า</p>
+<h2 id="คีย์บอร์ดและ-accessibility">คีย์บอร์ดและ accessibility</h2>
+<p>ในช่องพิมพ์:</p>
+<table>
+<thead>
+<tr>
+<th>ปุ่ม</th>
+<th>ผล</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>พิมพ์</td>
+<td>กรอกวันที่ เลขไทยถูกแปลงเป็น 0–9</td>
+</tr>
+<tr>
+<td>↓</td>
+<td>เปิดปฏิทินและย้ายโฟกัสเข้าไป</td>
+</tr>
+<tr>
+<td>Tab</td>
+<td>ขณะปฏิทินเปิด: ย้ายเข้าปฏิทิน</td>
+</tr>
+<tr>
+<td>Shift + Tab</td>
+<td>จากช่องวันเริ่ม: ปิดปฏิทิน</td>
+</tr>
+<tr>
+<td>Enter</td>
+<td>ยืนยันข้อความที่พิมพ์และปิดปฏิทิน แล้ว Enter ของฟอร์มก็ส่งฟอร์มต่อ</td>
+</tr>
+<tr>
+<td>Esc</td>
+<td>ปิดปฏิทิน</td>
+</tr>
+</tbody>
+</table>
+<p>ใน grid ของปฏิทิน:</p>
+<table>
+<thead>
+<tr>
+<th>ปุ่ม</th>
+<th>ผล</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>← / →</td>
+<td>วันก่อนหน้า / ถัดไป</td>
+</tr>
+<tr>
+<td>↑ / ↓</td>
+<td>วันเดียวกันของสัปดาห์ก่อน / ถัดไป</td>
+</tr>
+<tr>
+<td>Home / End</td>
+<td>วันแรก / วันสุดท้ายของสัปดาห์</td>
+</tr>
+<tr>
+<td>Page Up / Page Down</td>
+<td>เดือนก่อน / เดือนถัดไป</td>
+</tr>
+<tr>
+<td>Shift + Page Up / Page Down</td>
+<td>ปีก่อน / ปีถัดไป</td>
+</tr>
+<tr>
+<td>Enter, Space</td>
+<td>เลือกวันนั้น ใน picker ปฏิทินจะปิด (โหมดช่วงปิดหลังเลือกวันสิ้นสุด)</td>
+</tr>
+<tr>
+<td>Esc</td>
+<td>ปิด แล้วโฟกัสกลับไปที่ช่องพิมพ์</td>
+</tr>
+<tr>
+<td>Tab</td>
+<td>โหมดช่วงจากช่องวันเริ่ม: ไปช่องวันสิ้นสุด นอกนั้นโฟกัสกลับไปที่ช่อง ปฏิทินปิด แล้ว Tab ไปต่อ</td>
+</tr>
+<tr>
+<td>Shift + Tab</td>
+<td>กลับไปที่ช่องพิมพ์</td>
+</tr>
+</tbody>
+</table>
+<p>สิ่งที่ชิ้นส่วนจัดการให้:</p>
+<ul>
+<li><code>role=&quot;combobox&quot;</code>, <code>aria-haspopup=&quot;dialog&quot;</code>, <code>aria-expanded</code>, <code>aria-controls</code> และ <code>aria-invalid</code> ที่แต่ละช่อง และ <code>role=&quot;dialog&quot;</code> ที่ <code>Popup</code></li>
+<li>grid ของปุ่มวันที่มี tab stop เดียวแบบ roving แต่ละวันมีชื่อเป็นวันที่เต็ม วันนี้มี <code>aria-current=&quot;date&quot;</code> วันที่เลือกมี <code>aria-pressed</code> และวันที่เลือกไม่ได้มี <code>aria-disabled</code></li>
+<li>การเปลี่ยนเดือนถูกประกาศผ่าน <code>Heading</code></li>
+<li>การตรวจค่าของฟอร์ม: ช่องแรกที่ผิดถือข้อความ ไม่มี bubble ของเบราว์เซอร์ และเมื่อการส่งถูกกัน โฟกัสย้ายไปที่ช่องนั้น</li>
+</ul>
+<p>สิ่งที่คุณต้องใส่เอง:</p>
+<ul>
+<li><code>&lt;label htmlFor&gt;</code> ของแต่ละช่อง และ <code>aria-label</code> ที่ <code>Popup</code> (&quot;เลือกวันที่&quot;), <code>PrevButton</code>, <code>NextButton</code>, <code>YearInput</code>, <code>YearStep</code>, <code>Clear</code> และ <code>Trigger</code></li>
+<li>ข้อความ error และคำอธิบายรูปแบบ ผูกกับช่องด้วย <code>aria-describedby</code>:</li>
+</ul>
+<div class="doc-demo" data-react-example="9"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { useState } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { Calendar, DatePicker } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> label <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'text-xs text-ink-muted'</span>;
+<span style="color:var(--ui-tag-color-magenta)">const</span> group <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'flex w-72 items-center border-b border-border-strong-1 bg-field-1 data-disabled:border-transparent has-data-readonly:border-border-subtle-1 has-data-readonly:bg-transparent'</span>;
+<span style="color:var(--ui-tag-color-magenta)">const</span> input <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'h-10 min-w-0 flex-1 bg-transparent px-4 text-sm text-ink placeholder:text-ink-placeholder focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus data-invalid:outline-2 data-invalid:-outline-offset-2 data-invalid:outline-error data-disabled:cursor-not-allowed data-disabled:text-ink-disabled'</span>;
+<span style="color:var(--ui-tag-color-magenta)">const</span> popup <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'border border-border-subtle-1 bg-layer-1 shadow-lg'</span>;
+<span style="color:var(--ui-tag-color-magenta)">const</span> note <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'text-xs text-ink-muted'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">DateError</span>({ id }<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">Readonly</span>&lt;{ id<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span> }&gt;) {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> { errors, showsError } <span style="color:var(--ui-tag-color-magenta)">=</span> DatePicker.<span style="color:var(--ui-tag-color-cyan)">useDatePickerContext</span>();
+  <span style="color:var(--ui-tag-color-magenta)">return</span> &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">id</span><span style="color:var(--ui-tag-color-magenta)">=</span>{id} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-error-text"</span>&gt;{<span style="color:var(--ui-tag-color-cyan)">showsError</span>(<span style="color:var(--ui-tag-color-teal)">'start'</span>) <span style="color:var(--ui-tag-color-magenta)">?</span> errors.start <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-green)">null</span>}&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;;
+}
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [sent, setSent] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>&lt;<span style="color:var(--ui-tag-color-cyan)">Record</span>&lt;<span style="color:var(--ui-tag-color-cyan)">string</span>, <span style="color:var(--ui-tag-color-cyan)">FormDataEntryValue</span>&gt;&gt;();
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">form</span>
+      <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid gap-4"</span>
+      <span style="color:var(--ui-tag-color-purple)">onSubmit</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+        e.<span style="color:var(--ui-tag-color-cyan)">preventDefault</span>();
+        <span style="color:var(--ui-tag-color-cyan)">setSent</span>(Object.<span style="color:var(--ui-tag-color-cyan)">fromEntries</span>(<span style="color:var(--ui-tag-color-magenta)">new</span> <span style="color:var(--ui-tag-color-cyan)">FormData</span>(e.currentTarget)));
+      }}
+    &gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">DatePicker.Root</span> <span style="color:var(--ui-tag-color-purple)">id</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"contract-start"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"start"</span> <span style="color:var(--ui-tag-color-purple)">locale</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"th"</span> <span style="color:var(--ui-tag-color-purple)">required</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid gap-2"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">label</span> <span style="color:var(--ui-tag-color-purple)">htmlFor</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"contract-start"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{label}&gt;วันที่เริ่มสัญญา&lt;/<span style="color:var(--ui-tag-color-blue)">label</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">DatePicker.Group</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{group}&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">DatePicker.Input</span> <span style="color:var(--ui-tag-color-purple)">aria-describedby</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"contract-start-error"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"วว/ดด/ปปปป"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{input} /&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">DatePicker.Group</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">DateError</span> <span style="color:var(--ui-tag-color-purple)">id</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"contract-start-error"</span> /&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">DatePicker.Popup</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เลือกวันที่"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{popup}&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">MonthGrid</span> /&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">DatePicker.Popup</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">DatePicker.Root</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">button</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"submit"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-10 w-fit bg-primary px-4 text-sm text-on-primary hover:bg-blue-hover focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-focus"</span>&gt;
+        ส่ง
+      &lt;/<span style="color:var(--ui-tag-color-blue)">button</span>&gt;
+      {sent <span style="color:var(--ui-tag-color-magenta)">&amp;&amp;</span> &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{note}&gt;ส่งแล้ว: {JSON.<span style="color:var(--ui-tag-color-cyan)">stringify</span>(sent)}&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;}
+    &lt;/<span style="color:var(--ui-tag-color-blue)">form</span>&gt;
+  );
+}
+
+<span style="color:var(--ui-ink-muted);font-style:italic">// MonthGrid: ชิ้นส่วนของปฏิทินจาก "วิธีใช้"</span>
+<span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">MonthGrid</span>({ children, <span style="color:var(--ui-tag-color-magenta)">...</span>props }<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">Readonly</span>&lt;<span style="color:var(--ui-tag-color-cyan)">Calendar</span>.<span style="color:var(--ui-tag-color-cyan)">RootProps</span>&gt;) {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> nav <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'grid size-10 place-items-center text-ink hover:bg-layer-hover-1 disabled:cursor-not-allowed disabled:text-ink-disabled focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus'</span>;
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.Root</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"w-72 p-2"</span> {<span style="color:var(--ui-tag-color-magenta)">...</span>props}&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex items-center justify-between"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.PrevButton</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เดือนก่อนหน้า"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{nav}&gt;‹&lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.PrevButton</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex items-center gap-1 text-sm font-semibold text-ink"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.MonthName</span> /&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.YearInput</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ปี"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-7 w-16 bg-transparent px-1 hover:bg-layer-hover-1 focus-visible:outline-2 focus-visible:outline-focus"</span> /&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.NextButton</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เดือนถัดไป"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{nav}&gt;›&lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.NextButton</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.Heading</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sr-only"</span> /&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.Grid</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"w-full table-fixed border-collapse text-sm"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.GridHeader</span>&gt;{(d) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.HeaderCell</span> <span style="color:var(--ui-tag-color-purple)">date</span><span style="color:var(--ui-tag-color-magenta)">=</span>{d} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-10 font-normal text-ink"</span> /&gt;}&lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.GridHeader</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.GridBody</span>&gt;
+          {(d) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+            &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.Cell</span> <span style="color:var(--ui-tag-color-purple)">date</span><span style="color:var(--ui-tag-color-magenta)">=</span>{d} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"p-0 text-center"</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">Calendar.Day</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-10 w-full text-ink hover:bg-layer-hover-1 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus data-outside-month:text-ink-muted data-today:font-semibold data-today:underline data-today:decoration-link data-today:underline-offset-4 data-in-range:bg-layer-selected-1 data-selected:bg-interactive data-selected:text-on-primary data-disabled:cursor-not-allowed data-disabled:text-ink-disabled data-disabled:line-through"</span> /&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.Cell</span>&gt;
+          )}
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.GridBody</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.Grid</span>&gt;
+      {children}
+    &lt;/<span style="color:var(--ui-tag-color-blue)">Calendar.Root</span>&gt;
+  );
+}</ui-code-snippet>
+
+</article>
+<nav class="doc-toc" aria-labelledby="doc-toc-title"><p id="doc-toc-title" class="doc-toc-title">ในหน้านี้</p><ul><li class="doc-toc-h2"><a href="#ติดตั้ง">ติดตั้ง</a></li><li class="doc-toc-h2"><a href="#วิธีใช้">วิธีใช้</a></li><li class="doc-toc-h2"><a href="#โครงสร้าง">โครงสร้าง</a></li><li class="doc-toc-h2"><a href="#ภาษา-ศักราช-และรูปแบบ">ภาษา ศักราช และรูปแบบ</a></li><li class="doc-toc-h2"><a href="#เลือกเป็นช่วง">เลือกเป็นช่วง</a></li><li class="doc-toc-h2"><a href="#จำกัดวันที่เลือกได้">จำกัดวันที่เลือกได้</a></li><li class="doc-toc-h2"><a href="#ปุ่มล้างและปุ่มวันนี้">ปุ่มล้างและปุ่มวันนี้</a></li><li class="doc-toc-h2"><a href="#อ่านอย่างเดียวและปิดใช้งาน">อ่านอย่างเดียวและปิดใช้งาน</a></li><li class="doc-toc-h2"><a href="#มือถือและแท็บเล็ต">มือถือและแท็บเล็ต</a></li><li class="doc-toc-h2"><a href="#ใช้ปฏิทินเดี่ยว-ๆ">ใช้ปฏิทินเดี่ยว ๆ</a></li><li class="doc-toc-h2"><a href="#ใส่-style">ใส่ style</a></li><li class="doc-toc-h2"><a href="#ชิ้นส่วน">ชิ้นส่วน</a></li><li class="doc-toc-h3"><a href="#datepicker-root">DatePicker.Root</a></li><li class="doc-toc-h3"><a href="#datepicker-group">DatePicker.Group</a></li><li class="doc-toc-h3"><a href="#datepicker-input">DatePicker.Input</a></li><li class="doc-toc-h3"><a href="#datepicker-nativeinput">DatePicker.NativeInput</a></li><li class="doc-toc-h3"><a href="#datepicker-clear">DatePicker.Clear</a></li><li class="doc-toc-h3"><a href="#datepicker-trigger">DatePicker.Trigger</a></li><li class="doc-toc-h3"><a href="#datepicker-popup">DatePicker.Popup</a></li><li class="doc-toc-h3"><a href="#datepicker-sheetgrip">DatePicker.SheetGrip</a></li><li class="doc-toc-h3"><a href="#datepicker-sheetclose">DatePicker.SheetClose</a></li><li class="doc-toc-h2"><a href="#ชิ้นส่วนของ-calendar">ชิ้นส่วนของ Calendar</a></li><li class="doc-toc-h3"><a href="#calendar-root">Calendar.Root</a></li><li class="doc-toc-h3"><a href="#calendar-prevbutton-calendar-nextbutton">Calendar.PrevButton, Calendar.NextButton</a></li><li class="doc-toc-h3"><a href="#calendar-monthname">Calendar.MonthName</a></li><li class="doc-toc-h3"><a href="#calendar-heading">Calendar.Heading</a></li><li class="doc-toc-h3"><a href="#calendar-yearinput">Calendar.YearInput</a></li><li class="doc-toc-h3"><a href="#calendar-yearstep">Calendar.YearStep</a></li><li class="doc-toc-h3"><a href="#calendar-grid">Calendar.Grid</a></li><li class="doc-toc-h3"><a href="#calendar-gridheader-calendar-headercell">Calendar.GridHeader, Calendar.HeaderCell</a></li><li class="doc-toc-h3"><a href="#calendar-gridbody-calendar-cell">Calendar.GridBody, Calendar.Cell</a></li><li class="doc-toc-h3"><a href="#calendar-day">Calendar.Day</a></li><li class="doc-toc-h3"><a href="#calendar-todaybutton">Calendar.TodayButton</a></li><li class="doc-toc-h3"><a href="#hook">Hook</a></li><li class="doc-toc-h2"><a href="#คีย์บอร์ดและ-accessibility">คีย์บอร์ดและ accessibility</a></li></ul></nav>
+</div>
+<nav class="doc-pager" aria-label="ถัดไป / ก่อนหน้า"><a class="doc-pager-prev" href="/kanok-ui-docs/th/headless-toggle/" rel="prev"><span>ก่อนหน้า</span>Toggle</a><a class="doc-pager-next" href="/kanok-ui-docs/th/headless-time-picker/" rel="next"><span>ถัดไป</span>Time picker</a></nav>
+<footer class="doc-footer">@purpurabog/ui 1.4.3 · MIT · <a href="https://cdn.jsdelivr.net/npm/@purpurabog/ui@1.4.3/THIRD-PARTY-NOTICES.md">ประกาศของบุคคลที่สาม</a><br>สร้างตาม Carbon Design System ไม่ได้เกี่ยวข้องหรือได้รับการรับรองจาก IBM — IBM และ Carbon เป็นเครื่องหมายการค้าของ IBM Corp.</footer>
+</ui-content>
+<ui-modal id="doc-search" heading="ค้นหา" data-count="พบ {n} รายการ" data-empty="ไม่พบ “{q}”">
+<ui-search label="ค้นหาในเอกสาร" placeholder="ค้นหาในเอกสาร" size="lg"></ui-search>
+<p class="doc-search-status" role="status"></p>
+<ul class="doc-search-results"></ul>
+</ui-modal>
+</body>
+</html>

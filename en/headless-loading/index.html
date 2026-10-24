@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Headless Loading · @purpurabog/ui</title>
+<link rel="alternate" hreflang="en" href="/kanok-ui-docs/en/headless-loading/"  /><link rel="alternate" hreflang="th" href="/kanok-ui-docs/th/headless-loading/"  />
+<script>(function(){try{var q=new URLSearchParams(location.search).get("design"),d=q;if(q==="kanok"||q==="carbon")localStorage.setItem("ui-docs-design",q);else d=localStorage.getItem("ui-docs-design");if(d==="kanok")document.documentElement.setAttribute("data-design","kanok")}catch(e){}})();(function(){try{var m=localStorage.getItem("ui-docs-theme");if(m!=="light"&&m!=="dark"&&m!=="system")return;var d=m==="dark"||(m==="system"&&matchMedia("(prefers-color-scheme: dark)").matches),r=document.documentElement,t=d?"g100":"white";if(r.getAttribute("data-design")==="kanok")t=d?"lacquer":"paper";r.setAttribute("data-theme",t)}catch(e){}})();</script>
+<style>ui-header:not(:defined){z-index:8000;box-sizing:border-box;border-block-end:1px solid var(--ui-border-subtle-1);background:var(--ui-canvas);block-size:48px;display:block;position:fixed;inset:0 0 auto}:is(ui-header:not(:defined)>*,ui-side-nav:not(:defined)>*){visibility:hidden}:is(ui-header-panel:not(:defined),ui-modal:not(:defined)){display:none}ui-side-nav:not(:defined){display:none}ui-content:not(:defined){margin-block-start:48px;padding:32px;display:block}@media (width>=1056px){ui-side-nav[expanded]:not(:defined){background:var(--ui-canvas);inline-size:256px;display:block;position:fixed;inset:48px auto 0 0}ui-side-nav[expanded]:not(:defined)~ui-content:not(:defined){margin-inline-start:256px}}ui-tabs:not(:defined){display:block}ui-tabs:not(:defined)>ui-tab{box-sizing:border-box;border-block-end:2px solid var(--ui-hairline);block-size:40px;color:var(--ui-ink-muted);font:var(--ui-font-body-sm);padding:0 16px;line-height:38px;display:inline-block}ui-tabs:not(:defined)>ui-tab:first-of-type{border-block-end-color:var(--ui-interactive);color:var(--ui-ink)}ui-tabs:not(:defined)>ui-tab-panel{padding:16px;display:block}ui-tabs:not(:defined)>ui-tab-panel~ui-tab-panel{display:none}ui-code-snippet:not(:defined){background:var(--ui-layer-1);max-block-size:272px;font:var(--ui-font-code,12px/16px monospace);white-space:pre;padding:16px;display:block;overflow:hidden}[data-react-example]:empty>*{visibility:hidden}.doc-demo:has(:not(:defined))>*{visibility:hidden}[data-react-example]:empty{box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}.doc-demo:has(:not(:defined)){box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}@keyframes doc-skeleton{to{background-position:-200% 0}}@media (prefers-reduced-motion:reduce){[data-react-example]:empty{animation:none}.doc-demo:has(:not(:defined)){animation:none}}</style>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/index-TY_455wQ.js"></script>
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/theme-switcher-BGAHXRgF.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/listbox-gjElSjvA.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/headless-CpcU3xFD.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/timers-B8uB_VHg.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/spin-delay-Ag8fesN_.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/flag-D0Ou26eR.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/focus-Hg6AV1y3.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/loading-ufCNETXr.js">
+  <link rel="stylesheet" crossorigin href="/kanok-ui-docs/assets/theme-switcher-CL5yB6XE.css">
+  <link rel="stylesheet" crossorigin href="/kanok-ui-docs/assets/headless-JjfvojKd.css">
+</head>
+<body>
+<ui-header label="@purpurabog/ui">
+<ui-skip-to-content></ui-skip-to-content>
+<ui-header-menu-button></ui-header-menu-button>
+<ui-header-name href="/kanok-ui-docs/en/" prefix="@purpurabog">ui</ui-header-name>
+<ui-header-global-bar>
+<ui-header-global-action id="doc-search-open" label="Search" tooltip-placement="bottom"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="m18.5 17.8-4.9-4.9a7 7 0 1 0-.7.7l4.9 4.9zM3 8.5a5.5 5.5 0 1 1 5.5 5.5A5.5 5.5 0 0 1 3 8.5Z" /></svg></ui-header-global-action>
+<ui-header-global-action label="Settings" panel="doc-settings" tooltip-placement="bottom-end"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="M16.9 10.6a7 7 0 0 0 0-1.2l1.8-1.4-1.6-2.8-2.1.8a6.6 6.6 0 0 0-1-.6L13.6 3h-3.2l-.4 2.4a6.6 6.6 0 0 0-1 .6l-2.1-.8L5.3 8l1.8 1.4a7 7 0 0 0 0 1.2L5.3 12l1.6 2.8 2.1-.8a6.6 6.6 0 0 0 1 .6l.4 2.4h3.2l.4-2.4a6.6 6.6 0 0 0 1-.6l2.1.8 1.6-2.8zM12 13a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" /></svg></ui-header-global-action>
+</ui-header-global-bar>
+<ui-header-panel id="doc-settings" label="Settings">
+<div class="doc-settings">
+<span class="doc-settings-label">Theme</span>
+<ui-theme-switcher storage-key="ui-docs-theme" tooltip-placement="bottom"></ui-theme-switcher>
+<span class="doc-settings-label">Style</span>
+<ui-content-switcher id="doc-design" aria-label="Style" size="sm"><ui-content-switcher-item name="carbon">Carbon</ui-content-switcher-item><ui-content-switcher-item name="kanok">Kanok</ui-content-switcher-item></ui-content-switcher>
+<span class="doc-settings-label">Language</span>
+<ui-link href="/kanok-ui-docs/th/headless-loading/" hreflang="th" lang="th">ไทย</ui-link>
+</div>
+</ui-header-panel>
+</ui-header>
+<ui-side-nav label="Documentation"><ui-side-nav-items><ui-side-nav-menu label="Get started"><ui-side-nav-menu-item href="/kanok-ui-docs/en/">Overview</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/installation/">Installation</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/migration-1-0/">Migrating to 1.0</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Guides"><ui-side-nav-menu-item href="/kanok-ui-docs/en/themes/">Themes and layers</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/kanok/">Kanok design</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/customizing/">Customizing</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/icons/">Icons</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/forms/">Forms and validation</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/frameworks/">Frameworks</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/ai/">Using with AI</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Forms and actions"><ui-side-nav-menu-item href="/kanok-ui-docs/en/button/">Button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/file-uploader/">File uploader</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Overlays"><ui-side-nav-menu-item href="/kanok-ui-docs/en/modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/toggletip/">Toggletip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/menu/">Menu</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Data"><ui-side-nav-menu-item href="/kanok-ui-docs/en/data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/contained-list/">Contained list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tree-view/">Tree view</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Navigation"><ui-side-nav-menu-item href="/kanok-ui-docs/en/tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/breadcrumb/">Breadcrumb</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/link/">Link</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/ui-shell/">UI shell</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Content"><ui-side-nav-menu-item href="/kanok-ui-docs/en/tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tile/">Tile</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/user-avatar/">User avatar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/list/">List</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Status and loading"><ui-side-nav-menu-item href="/kanok-ui-docs/en/loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/inline-loading/">Inline loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/progress-bar/">Progress bar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/skeleton/">Skeleton</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/badge-indicator/">Badge indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/status-indicator/">Status indicator</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Layout"><ui-side-nav-menu-item href="/kanok-ui-docs/en/grid/">Grid</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/heading/">Heading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/layer/">Layer</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/action-set/">Action set</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/page-header/">Page header</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/big-number/">Big number</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Headless" expanded><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless/">Introduction</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-file-uploader/">File uploader</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-menu/">Menu</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-ui-shell/">UI shell</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tree-view/">Tree view</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-loading/" current>Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu></ui-side-nav-items></ui-side-nav><script>if(matchMedia('(min-width: 66rem)').matches)document.currentScript.previousElementSibling.setAttribute('expanded','')</script>
+<ui-content>
+<div class="doc-page">
+<article class="doc">
+<!-- nav: Loading -->
+<h1 id="headless-loading">Headless Loading</h1>
+<p><code>Loading</code> is the behaviour of the styled <a href="/kanok-ui-docs/en/loading/">Loading</a> without a single class. <code>Loading.Root</code> decides when the spinner shows: while <code>active</code>, after <code>delay</code> ms, and once shown for at least <code>minDuration</code> ms, so quick work never flashes a spinner. <code>Spinner</code> makes your graphic an assertive live region while it shows. <code>Indicator</code> holds focus: as a modal dialog over the page with <code>modal</code>, or as the waiting spot of a busy <code>Area</code>, and focus goes back where it was afterwards.</p>
+<p>You own the spinner graphic, the overlay, hiding the parts while they don't show, and every style. Each part has <code>data-shown</code> while the spinner shows.</p>
+<h2 id="installation">Installation</h2>
+<p>The headless parts come with the package (there is no shadcn item; the React + Tailwind items are built on them):</p>
+<ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">@purpurabog/ui</span></ui-code-snippet>
+<ui-code-snippet type="single" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { Loading } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;</ui-code-snippet>
+<h2 id="use-it">Use it</h2>
+<div class="doc-demo" data-react-example="0"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { Loading } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">Loading.Root</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Loading.Spinner</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-[88px] animate-spin [animation-duration:690ms] motion-reduce:[animation-duration:2s]"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 100 100"</span> <span style="color:var(--ui-tag-color-purple)">role</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"img"</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Loading contracts"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"block size-full fill-transparent"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">circle</span> <span style="color:var(--ui-tag-color-purple)">cx</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"50"</span> <span style="color:var(--ui-tag-color-purple)">cy</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"50"</span> <span style="color:var(--ui-tag-color-purple)">r</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"44"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"stroke-interactive [stroke-dasharray:276.46_276.46] [stroke-dashoffset:52.53] [stroke-width:10]"</span> /&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">Loading.Spinner</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">Loading.Root</span>&gt;
+  );
+}</ui-code-snippet>
+<h2 id="anatomy">Anatomy</h2>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">Loading.Root</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">Loading.Area</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">Loading.Indicator</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Loading.Spinner</span> /&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">Loading.Indicator</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Loading.Root</span>&gt;</ui-code-snippet>
+<p><code>Area</code> and <code>Indicator</code> are optional: a plain spinner needs only <code>Root</code> and <code>Spinner</code>.</p>
+<h2 id="start-stop-and-wait">Start, stop and wait</h2>
+<p><code>active</code> starts and stops it (on by default). <code>delay</code> waits before showing, and <code>minDuration</code> keeps it up once shown. <code>useLoadingContext().shown</code> tells any component inside <code>Root</code> whether it shows now. The parts don't hide themselves: hide the spinner while it has no <code>data-shown</code>. Try the quick check: it ends before the 300 ms delay, so nothing shows.</p>
+<div class="doc-demo" data-react-example="1"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { useState } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { Loading } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> button <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'h-10 bg-interactive px-4 text-sm text-on-primary hover:bg-blue-hover focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-focus'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Shown</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> { shown } <span style="color:var(--ui-tag-color-magenta)">=</span> Loading.<span style="color:var(--ui-tag-color-cyan)">useLoadingContext</span>();
+  <span style="color:var(--ui-tag-color-magenta)">return</span> &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-ink-muted"</span>&gt;Shown: {<span style="color:var(--ui-tag-color-cyan)">String</span>(shown)}&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;;
+}
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [active, setActive] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-green)">false</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> <span style="color:var(--ui-tag-color-cyan)">run</span> <span style="color:var(--ui-tag-color-magenta)">=</span> (ms<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">number</span>) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    <span style="color:var(--ui-tag-color-cyan)">setActive</span>(<span style="color:var(--ui-tag-color-green)">true</span>);
+    <span style="color:var(--ui-tag-color-cyan)">setTimeout</span>(() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setActive</span>(<span style="color:var(--ui-tag-color-green)">false</span>), ms);
+  };
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid justify-items-start gap-3"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex flex-wrap gap-4"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">button</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"button"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{button} <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">run</span>(<span style="color:var(--ui-tag-color-green)">200</span>)}&gt;Quick check (0.2 s)&lt;/<span style="color:var(--ui-tag-color-blue)">button</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">button</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"button"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{button} <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">run</span>(<span style="color:var(--ui-tag-color-green)">2000</span>)}&gt;Full check (2 s)&lt;/<span style="color:var(--ui-tag-color-blue)">button</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Loading.Root</span> <span style="color:var(--ui-tag-color-purple)">active</span><span style="color:var(--ui-tag-color-magenta)">=</span>{active} <span style="color:var(--ui-tag-color-purple)">delay</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">300</span>} <span style="color:var(--ui-tag-color-purple)">minDuration</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">500</span>}&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex h-6 items-center gap-2"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Loading.Spinner</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"hidden size-4 animate-spin [animation-duration:690ms] data-shown:block"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 100 100"</span> <span style="color:var(--ui-tag-color-purple)">role</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"img"</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Checking vendor documents"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"block size-full fill-transparent"</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">circle</span> <span style="color:var(--ui-tag-color-purple)">cx</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"50"</span> <span style="color:var(--ui-tag-color-purple)">cy</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"50"</span> <span style="color:var(--ui-tag-color-purple)">r</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"42"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"stroke-layer-accent [stroke-width:16]"</span> /&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">circle</span> <span style="color:var(--ui-tag-color-purple)">cx</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"50"</span> <span style="color:var(--ui-tag-color-purple)">cy</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"50"</span> <span style="color:var(--ui-tag-color-purple)">r</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"42"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"stroke-interactive [stroke-dasharray:276.46_276.46] [stroke-dashoffset:143.76] [stroke-width:16]"</span> /&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">Loading.Spinner</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Shown</span> /&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">Loading.Root</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<h2 id="over-one-area">Over one area</h2>
+<p>Wrap the content in <code>Area</code> and put the <code>Indicator</code> over it. While it shows, the area is inert and <code>aria-busy</code>, and the indicator is a group named by its <code>aria-label</code>. Focus that was inside the area waits on the indicator, then goes back: press Refresh with the keyboard and focus returns to it.</p>
+<div class="doc-demo" data-react-example="2"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { useState } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { Loading } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [busy, setBusy] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-green)">false</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> <span style="color:var(--ui-tag-color-cyan)">refresh</span> <span style="color:var(--ui-tag-color-magenta)">=</span> () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    <span style="color:var(--ui-tag-color-cyan)">setBusy</span>(<span style="color:var(--ui-tag-color-green)">true</span>);
+    <span style="color:var(--ui-tag-color-cyan)">setTimeout</span>(() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setBusy</span>(<span style="color:var(--ui-tag-color-green)">false</span>), <span style="color:var(--ui-tag-color-green)">2000</span>);
+  };
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">Loading.Root</span> <span style="color:var(--ui-tag-color-purple)">active</span><span style="color:var(--ui-tag-color-magenta)">=</span>{busy}&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"relative max-w-md"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Loading.Area</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid justify-items-start gap-3 border border-hairline bg-layer-1 p-4 text-ink"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">h4</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-sm font-semibold"</span>&gt;Contract CT-2026-118&lt;/<span style="color:var(--ui-tag-color-blue)">h4</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-sm"</span>&gt;Siam Logistics Co., Ltd. · ฿1,250,000&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">button</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"button"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{refresh} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-10 bg-interactive px-4 text-sm text-on-primary hover:bg-blue-hover focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-focus"</span>&gt;Refresh (2 s)&lt;/<span style="color:var(--ui-tag-color-blue)">button</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Loading.Area</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Loading.Indicator</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Refreshing the contract"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"absolute inset-0 z-1 hidden items-center justify-center bg-overlay outline-none data-shown:flex"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Loading.Spinner</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-[88px] animate-spin [animation-duration:690ms]"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 100 100"</span> <span style="color:var(--ui-tag-color-purple)">role</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"img"</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Refreshing the contract"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"block size-full fill-transparent"</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">circle</span> <span style="color:var(--ui-tag-color-purple)">cx</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"50"</span> <span style="color:var(--ui-tag-color-purple)">cy</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"50"</span> <span style="color:var(--ui-tag-color-purple)">r</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"44"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"stroke-interactive [stroke-dasharray:276.46_276.46] [stroke-dashoffset:52.53] [stroke-width:10]"</span> /&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">Loading.Spinner</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Loading.Indicator</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">Loading.Root</span>&gt;
+  );
+}</ui-code-snippet>
+<h2 id="over-the-whole-page">Over the whole page</h2>
+<p>With <code>modal</code>, the <code>Indicator</code> is a modal dialog while it shows. It takes focus, and Tab and focus moving elsewhere come back to it; a modal dialog opened above it is left alone. When it stops, focus goes back where it was. It is no <code>&lt;dialog&gt;</code>, so Esc can't close it.</p>
+<p>The overlay is <code>position: fixed</code>. In this demo it sits in a box with a <code>transform</code>, so it covers only the box.</p>
+<div class="doc-demo" data-react-example="3"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { useState } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { Loading } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [busy, setBusy] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-green)">false</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> <span style="color:var(--ui-tag-color-cyan)">generate</span> <span style="color:var(--ui-tag-color-magenta)">=</span> () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    <span style="color:var(--ui-tag-color-cyan)">setBusy</span>(<span style="color:var(--ui-tag-color-green)">true</span>);
+    <span style="color:var(--ui-tag-color-cyan)">setTimeout</span>(() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setBusy</span>(<span style="color:var(--ui-tag-color-green)">false</span>), <span style="color:var(--ui-tag-color-green)">3000</span>);
+  };
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"relative h-60 overflow-hidden border border-hairline bg-canvas text-ink [transform:translateZ(0)]"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid justify-items-start gap-4 p-4"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-sm"</span>&gt;Quarterly purchasing report, 42 pages&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">button</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"button"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{generate} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-10 bg-interactive px-4 text-sm text-on-primary hover:bg-blue-hover focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-focus"</span>&gt;Generate PDF (3 s)&lt;/<span style="color:var(--ui-tag-color-blue)">button</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Loading.Root</span> <span style="color:var(--ui-tag-color-purple)">active</span><span style="color:var(--ui-tag-color-magenta)">=</span>{busy} <span style="color:var(--ui-tag-color-purple)">modal</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Loading.Indicator</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Generating the PDF"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"fixed inset-0 z-10 hidden items-center justify-center bg-overlay outline-none data-shown:flex"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Loading.Spinner</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-[88px] animate-spin [animation-duration:690ms]"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 100 100"</span> <span style="color:var(--ui-tag-color-purple)">role</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"img"</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Generating the PDF"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"block size-full fill-transparent"</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">circle</span> <span style="color:var(--ui-tag-color-purple)">cx</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"50"</span> <span style="color:var(--ui-tag-color-purple)">cy</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"50"</span> <span style="color:var(--ui-tag-color-purple)">r</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"44"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"stroke-interactive [stroke-dasharray:276.46_276.46] [stroke-dashoffset:52.53] [stroke-width:10]"</span> /&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">Loading.Spinner</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Loading.Indicator</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">Loading.Root</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<h2 id="style-it">Style it</h2>
+<p>Every part has <code>data-shown</code> while the spinner shows. Hide the indicator and the spinner without it, and fade or blur the area with it.</p>
+<div class="doc-demo" data-react-example="4"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { useState } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { Loading } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [busy, setBusy] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-green)">false</span>);
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid justify-items-start gap-3"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">button</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"button"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setBusy</span>(<span style="color:var(--ui-tag-color-magenta)">!</span>busy)} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-10 bg-interactive px-4 text-sm text-on-primary hover:bg-blue-hover focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-focus"</span>&gt;
+        {busy <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-teal)">'Stop'</span> <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-teal)">'Start'</span>}
+      &lt;/<span style="color:var(--ui-tag-color-blue)">button</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Loading.Root</span> <span style="color:var(--ui-tag-color-purple)">active</span><span style="color:var(--ui-tag-color-magenta)">=</span>{busy} <span style="color:var(--ui-tag-color-purple)">delay</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">200</span>}&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"relative w-full max-w-md"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Loading.Area</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"border border-hairline bg-layer-1 p-4 text-sm text-ink transition-opacity data-shown:opacity-40"</span>&gt;
+            Vendor documents: company certificate, VAT registration, bank book.
+          &lt;/<span style="color:var(--ui-tag-color-blue)">Loading.Area</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Loading.Indicator</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Checking documents"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"absolute inset-0 hidden items-center justify-center outline-none data-shown:flex"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">Loading.Spinner</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-8 animate-spin [animation-duration:690ms] motion-reduce:[animation-duration:2s]"</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 100 100"</span> <span style="color:var(--ui-tag-color-purple)">role</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"img"</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Checking documents"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"block size-full fill-transparent"</span>&gt;
+                &lt;<span style="color:var(--ui-tag-color-blue)">circle</span> <span style="color:var(--ui-tag-color-purple)">cx</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"50"</span> <span style="color:var(--ui-tag-color-purple)">cy</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"50"</span> <span style="color:var(--ui-tag-color-purple)">r</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"42"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"stroke-layer-accent [stroke-width:12]"</span> /&gt;
+                &lt;<span style="color:var(--ui-tag-color-blue)">circle</span> <span style="color:var(--ui-tag-color-purple)">cx</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"50"</span> <span style="color:var(--ui-tag-color-purple)">cy</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"50"</span> <span style="color:var(--ui-tag-color-purple)">r</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"42"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"stroke-interactive [stroke-dasharray:276.46_276.46] [stroke-dashoffset:143.76] [stroke-width:12]"</span> /&gt;
+              &lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">Loading.Spinner</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">Loading.Indicator</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">Loading.Root</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<ui-code-snippet type="multi" class="doc-code" data-lang="css"><span style="color:var(--ui-ink-muted);font-style:italic">/* className="area" on Area, "indicator" on Indicator, "spinner" on Spinner */</span>
+<span style="color:var(--ui-tag-color-purple)">.area</span>[<span style="color:var(--ui-tag-color-purple)">data-shown</span>] { <span style="color:var(--ui-tag-color-purple)">opacity</span>: <span style="color:var(--ui-tag-color-green)">0.4</span>; }
+<span style="color:var(--ui-tag-color-purple)">.indicator</span> { <span style="color:var(--ui-tag-color-purple)">position</span>: <span style="color:var(--ui-tag-color-green)">absolute</span>; <span style="color:var(--ui-tag-color-purple)">inset</span>: <span style="color:var(--ui-tag-color-green)">0</span>; <span style="color:var(--ui-tag-color-purple)">display</span>: <span style="color:var(--ui-tag-color-green)">none</span>; <span style="color:var(--ui-tag-color-purple)">align-items</span>: <span style="color:var(--ui-tag-color-green)">center</span>; <span style="color:var(--ui-tag-color-purple)">justify-content</span>: <span style="color:var(--ui-tag-color-green)">center</span>; }
+<span style="color:var(--ui-tag-color-purple)">.indicator</span>[<span style="color:var(--ui-tag-color-purple)">data-shown</span>] { <span style="color:var(--ui-tag-color-purple)">display</span>: <span style="color:var(--ui-tag-color-green)">flex</span>; }
+<span style="color:var(--ui-tag-color-purple)">.spinner</span> { <span style="color:var(--ui-tag-color-purple)">width</span>: <span style="color:var(--ui-tag-color-green)">32px</span>; <span style="color:var(--ui-tag-color-purple)">height</span>: <span style="color:var(--ui-tag-color-green)">32px</span>; <span style="color:var(--ui-tag-color-purple)">animation</span>: spin <span style="color:var(--ui-tag-color-green)">690ms</span> <span style="color:var(--ui-tag-color-green)">linear</span> <span style="color:var(--ui-tag-color-green)">infinite</span>; }
+<span style="color:var(--ui-tag-color-magenta)">@keyframes</span> spin { to { <span style="color:var(--ui-tag-color-purple)">transform</span>: <span style="color:var(--ui-tag-color-cyan)">rotate</span>(<span style="color:var(--ui-tag-color-green)">360deg</span>); } }</ui-code-snippet>
+<h2 id="parts">Parts</h2>
+<h3 id="loading-root">Loading.Root</h3>
+<p>Renders only its children. It holds whether the spinner shows and moves focus while it does.</p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>active</code></td>
+<td><code>boolean</code></td>
+<td><code>true</code></td>
+<td>Starts and stops it; false hides it</td>
+</tr>
+<tr>
+<td><code>delay</code></td>
+<td><code>number</code></td>
+<td><code>0</code></td>
+<td>Milliseconds <code>active</code> must last before it shows</td>
+</tr>
+<tr>
+<td><code>minDuration</code></td>
+<td><code>number</code></td>
+<td><code>0</code></td>
+<td>Once shown, the least milliseconds it stays</td>
+</tr>
+<tr>
+<td><code>modal</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>A page overlay: the <code>Indicator</code> is a modal dialog that holds focus while shown</td>
+</tr>
+</tbody>
+</table>
+<p><code>Loading.useLoadingContext()</code> returns <code>shown</code> and <code>modal</code> (plus the refs of the area and the indicator) to any component inside <code>Root</code>.</p>
+<h3 id="loading-area">Loading.Area</h3>
+<p>A <code>&lt;div&gt;</code> around the content that a contained loading covers. While shown it is <code>inert</code> and has <code>aria-busy=&quot;true&quot;</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-shown</code></td>
+<td>The spinner shows</td>
+</tr>
+</tbody>
+</table>
+<h3 id="loading-indicator">Loading.Indicator</h3>
+<p>A <code>&lt;div&gt;</code> that holds focus while it shows. It takes every div prop except <code>role</code> and <code>tabIndex</code>; name it with <code>aria-label</code>. While shown it has <code>tabIndex={-1}</code>, <code>role=&quot;dialog&quot;</code> with <code>aria-modal=&quot;true&quot;</code> when <code>Root</code> is <code>modal</code>, or else <code>role=&quot;group&quot;</code>, and its <code>aria-label</code>. While hidden it has no role and no name.</p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-shown</code></td>
+<td>The spinner shows</td>
+</tr>
+</tbody>
+</table>
+<h3 id="loading-spinner">Loading.Spinner</h3>
+<p>A <code>&lt;div&gt;</code> around your spinner graphic, with <code>aria-atomic=&quot;true&quot;</code>. While shown it is an assertive live region (<code>aria-live=&quot;assertive&quot;</code>), so the graphic's name is announced; while hidden, <code>aria-live=&quot;off&quot;</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-shown</code></td>
+<td>The spinner shows</td>
+</tr>
+</tbody>
+</table>
+<h2 id="keyboard-and-accessibility">Keyboard and accessibility</h2>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tab</td>
+<td>With <code>modal</code>: stays on the indicator while it shows</td>
+</tr>
+</tbody>
+</table>
+<p>The parts:</p>
+<ul>
+<li>move focus to the <code>Indicator</code> when a modal loading shows, or when focus was inside the <code>Area</code>, and give it back afterwards;</li>
+<li>set <code>role</code>, <code>aria-modal</code>, <code>aria-label</code> and <code>tabIndex</code> on the <code>Indicator</code> while it shows;</li>
+<li>make the <code>Area</code> inert and <code>aria-busy</code>;</li>
+<li>make the <code>Spinner</code> an assertive live region while it shows.</li>
+</ul>
+<p>You add:</p>
+<ul>
+<li>The spinner graphic with an accessible name (<code>role=&quot;img&quot;</code> and <code>aria-label</code> on the <code>&lt;svg&gt;</code>) and the <code>aria-label</code> of the <code>Indicator</code>. Say what is loading.</li>
+<li>Hiding the parts while they have no <code>data-shown</code>, and the overlay colour.</li>
+<li>A slower or still spinner under <code>prefers-reduced-motion</code>.</li>
+</ul>
+
+</article>
+<nav class="doc-toc" aria-labelledby="doc-toc-title"><p id="doc-toc-title" class="doc-toc-title">On this page</p><ul><li class="doc-toc-h2"><a href="#installation">Installation</a></li><li class="doc-toc-h2"><a href="#use-it">Use it</a></li><li class="doc-toc-h2"><a href="#anatomy">Anatomy</a></li><li class="doc-toc-h2"><a href="#start-stop-and-wait">Start, stop and wait</a></li><li class="doc-toc-h2"><a href="#over-one-area">Over one area</a></li><li class="doc-toc-h2"><a href="#over-the-whole-page">Over the whole page</a></li><li class="doc-toc-h2"><a href="#style-it">Style it</a></li><li class="doc-toc-h2"><a href="#parts">Parts</a></li><li class="doc-toc-h3"><a href="#loading-root">Loading.Root</a></li><li class="doc-toc-h3"><a href="#loading-area">Loading.Area</a></li><li class="doc-toc-h3"><a href="#loading-indicator">Loading.Indicator</a></li><li class="doc-toc-h3"><a href="#loading-spinner">Loading.Spinner</a></li><li class="doc-toc-h2"><a href="#keyboard-and-accessibility">Keyboard and accessibility</a></li></ul></nav>
+</div>
+<nav class="doc-pager" aria-label="Next / Previous"><a class="doc-pager-prev" href="/kanok-ui-docs/en/headless-truncated-text/" rel="prev"><span>Previous</span>Truncated text</a><a class="doc-pager-next" href="/kanok-ui-docs/en/headless-tag/" rel="next"><span>Next</span>Tag</a></nav>
+<footer class="doc-footer">@purpurabog/ui 1.4.3 · MIT · <a href="https://cdn.jsdelivr.net/npm/@purpurabog/ui@1.4.3/THIRD-PARTY-NOTICES.md">Third-party notices</a><br>Built on the Carbon Design System. Not affiliated with or endorsed by IBM; IBM and Carbon are trademarks of IBM Corp.</footer>
+</ui-content>
+<ui-modal id="doc-search" heading="Search" data-count="{n} results" data-empty="No results for “{q}”">
+<ui-search label="Search the docs" placeholder="Search the docs" size="lg"></ui-search>
+<p class="doc-search-status" role="status"></p>
+<ul class="doc-search-results"></ul>
+</ui-modal>
+</body>
+</html>

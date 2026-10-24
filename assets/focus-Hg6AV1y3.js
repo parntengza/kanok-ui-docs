@@ -1,0 +1,1 @@
+var e=e=>{let t=e?.getRootNode();return t instanceof ShadowRoot||t instanceof Document?t:document};function t(){let e=document.activeElement;for(;e?.shadowRoot?.activeElement;)e=e.shadowRoot.activeElement;return e}var n=t=>!!t?.contains(e(t).activeElement);export{n,t};

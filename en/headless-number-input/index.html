@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Headless Number input · @purpurabog/ui</title>
+<link rel="alternate" hreflang="en" href="/kanok-ui-docs/en/headless-number-input/"  /><link rel="alternate" hreflang="th" href="/kanok-ui-docs/th/headless-number-input/"  />
+<script>(function(){try{var q=new URLSearchParams(location.search).get("design"),d=q;if(q==="kanok"||q==="carbon")localStorage.setItem("ui-docs-design",q);else d=localStorage.getItem("ui-docs-design");if(d==="kanok")document.documentElement.setAttribute("data-design","kanok")}catch(e){}})();(function(){try{var m=localStorage.getItem("ui-docs-theme");if(m!=="light"&&m!=="dark"&&m!=="system")return;var d=m==="dark"||(m==="system"&&matchMedia("(prefers-color-scheme: dark)").matches),r=document.documentElement,t=d?"g100":"white";if(r.getAttribute("data-design")==="kanok")t=d?"lacquer":"paper";r.setAttribute("data-theme",t)}catch(e){}})();</script>
+<style>ui-header:not(:defined){z-index:8000;box-sizing:border-box;border-block-end:1px solid var(--ui-border-subtle-1);background:var(--ui-canvas);block-size:48px;display:block;position:fixed;inset:0 0 auto}:is(ui-header:not(:defined)>*,ui-side-nav:not(:defined)>*){visibility:hidden}:is(ui-header-panel:not(:defined),ui-modal:not(:defined)){display:none}ui-side-nav:not(:defined){display:none}ui-content:not(:defined){margin-block-start:48px;padding:32px;display:block}@media (width>=1056px){ui-side-nav[expanded]:not(:defined){background:var(--ui-canvas);inline-size:256px;display:block;position:fixed;inset:48px auto 0 0}ui-side-nav[expanded]:not(:defined)~ui-content:not(:defined){margin-inline-start:256px}}ui-tabs:not(:defined){display:block}ui-tabs:not(:defined)>ui-tab{box-sizing:border-box;border-block-end:2px solid var(--ui-hairline);block-size:40px;color:var(--ui-ink-muted);font:var(--ui-font-body-sm);padding:0 16px;line-height:38px;display:inline-block}ui-tabs:not(:defined)>ui-tab:first-of-type{border-block-end-color:var(--ui-interactive);color:var(--ui-ink)}ui-tabs:not(:defined)>ui-tab-panel{padding:16px;display:block}ui-tabs:not(:defined)>ui-tab-panel~ui-tab-panel{display:none}ui-code-snippet:not(:defined){background:var(--ui-layer-1);max-block-size:272px;font:var(--ui-font-code,12px/16px monospace);white-space:pre;padding:16px;display:block;overflow:hidden}[data-react-example]:empty>*{visibility:hidden}.doc-demo:has(:not(:defined))>*{visibility:hidden}[data-react-example]:empty{box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}.doc-demo:has(:not(:defined)){box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}@keyframes doc-skeleton{to{background-position:-200% 0}}@media (prefers-reduced-motion:reduce){[data-react-example]:empty{animation:none}.doc-demo:has(:not(:defined)){animation:none}}</style>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/index-vpMBfcNP.js"></script>
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/theme-switcher-BGAHXRgF.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/listbox-gjElSjvA.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/headless-CpcU3xFD.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/number-format-DzPjAHdO.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/flag-D0Ou26eR.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/language-BMc6Y90P.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/number-input-B4U35K01.js">
+  <link rel="stylesheet" crossorigin href="/kanok-ui-docs/assets/theme-switcher-CL5yB6XE.css">
+  <link rel="stylesheet" crossorigin href="/kanok-ui-docs/assets/headless-JjfvojKd.css">
+</head>
+<body>
+<ui-header label="@purpurabog/ui">
+<ui-skip-to-content></ui-skip-to-content>
+<ui-header-menu-button></ui-header-menu-button>
+<ui-header-name href="/kanok-ui-docs/en/" prefix="@purpurabog">ui</ui-header-name>
+<ui-header-global-bar>
+<ui-header-global-action id="doc-search-open" label="Search" tooltip-placement="bottom"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="m18.5 17.8-4.9-4.9a7 7 0 1 0-.7.7l4.9 4.9zM3 8.5a5.5 5.5 0 1 1 5.5 5.5A5.5 5.5 0 0 1 3 8.5Z" /></svg></ui-header-global-action>
+<ui-header-global-action label="Settings" panel="doc-settings" tooltip-placement="bottom-end"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="M16.9 10.6a7 7 0 0 0 0-1.2l1.8-1.4-1.6-2.8-2.1.8a6.6 6.6 0 0 0-1-.6L13.6 3h-3.2l-.4 2.4a6.6 6.6 0 0 0-1 .6l-2.1-.8L5.3 8l1.8 1.4a7 7 0 0 0 0 1.2L5.3 12l1.6 2.8 2.1-.8a6.6 6.6 0 0 0 1 .6l.4 2.4h3.2l.4-2.4a6.6 6.6 0 0 0 1-.6l2.1.8 1.6-2.8zM12 13a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" /></svg></ui-header-global-action>
+</ui-header-global-bar>
+<ui-header-panel id="doc-settings" label="Settings">
+<div class="doc-settings">
+<span class="doc-settings-label">Theme</span>
+<ui-theme-switcher storage-key="ui-docs-theme" tooltip-placement="bottom"></ui-theme-switcher>
+<span class="doc-settings-label">Style</span>
+<ui-content-switcher id="doc-design" aria-label="Style" size="sm"><ui-content-switcher-item name="carbon">Carbon</ui-content-switcher-item><ui-content-switcher-item name="kanok">Kanok</ui-content-switcher-item></ui-content-switcher>
+<span class="doc-settings-label">Language</span>
+<ui-link href="/kanok-ui-docs/th/headless-number-input/" hreflang="th" lang="th">ไทย</ui-link>
+</div>
+</ui-header-panel>
+</ui-header>
+<ui-side-nav label="Documentation"><ui-side-nav-items><ui-side-nav-menu label="Get started"><ui-side-nav-menu-item href="/kanok-ui-docs/en/">Overview</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/installation/">Installation</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/migration-1-0/">Migrating to 1.0</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Guides"><ui-side-nav-menu-item href="/kanok-ui-docs/en/themes/">Themes and layers</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/kanok/">Kanok design</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/customizing/">Customizing</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/icons/">Icons</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/forms/">Forms and validation</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/frameworks/">Frameworks</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/ai/">Using with AI</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Forms and actions"><ui-side-nav-menu-item href="/kanok-ui-docs/en/button/">Button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/file-uploader/">File uploader</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Overlays"><ui-side-nav-menu-item href="/kanok-ui-docs/en/modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/toggletip/">Toggletip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/menu/">Menu</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Data"><ui-side-nav-menu-item href="/kanok-ui-docs/en/data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/contained-list/">Contained list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tree-view/">Tree view</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Navigation"><ui-side-nav-menu-item href="/kanok-ui-docs/en/tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/breadcrumb/">Breadcrumb</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/link/">Link</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/ui-shell/">UI shell</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Content"><ui-side-nav-menu-item href="/kanok-ui-docs/en/tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tile/">Tile</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/user-avatar/">User avatar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/list/">List</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Status and loading"><ui-side-nav-menu-item href="/kanok-ui-docs/en/loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/inline-loading/">Inline loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/progress-bar/">Progress bar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/skeleton/">Skeleton</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/badge-indicator/">Badge indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/status-indicator/">Status indicator</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Layout"><ui-side-nav-menu-item href="/kanok-ui-docs/en/grid/">Grid</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/heading/">Heading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/layer/">Layer</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/action-set/">Action set</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/page-header/">Page header</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/big-number/">Big number</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Headless" expanded><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless/">Introduction</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-number-input/" current>Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-file-uploader/">File uploader</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-menu/">Menu</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-ui-shell/">UI shell</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tree-view/">Tree view</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu></ui-side-nav-items></ui-side-nav><script>if(matchMedia('(min-width: 66rem)').matches)document.currentScript.previousElementSibling.setAttribute('expanded','')</script>
+<ui-content>
+<div class="doc-page">
+<article class="doc">
+<!-- nav: Number input -->
+<h1 id="headless-number-input">Headless Number input</h1>
+<p><code>NumberInput</code> is the behaviour of the styled <a href="/kanok-ui-docs/en/number-input/">Number input</a> as unstyled React parts: an <code>&lt;input&gt;</code> with − and + buttons. ↑ / ↓ step from the field. A step stays within <code>min</code> and <code>max</code> and is rounded, and each button turns off at its end of the range. With <code>type=&quot;text&quot;</code>, the field shows the number in a locale's format while the value stays a plain number. An uncontrolled field goes back to <code>defaultValue</code> when its form resets.</p>
+<p>You own the markup: the label, the button content and names, the helper and error text, a prefix or suffix, and every style. The parts set <code>data-*</code> attributes for you to style on.</p>
+<h2 id="installation">Installation</h2>
+<p>The headless parts come with the package (there is no shadcn item; the React + Tailwind items are built on them):</p>
+<ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">@purpurabog/ui</span></ui-code-snippet>
+<ui-code-snippet type="single" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { NumberInput } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;</ui-code-snippet>
+<h2 id="use-it">Use it</h2>
+<div class="doc-demo" data-react-example="0"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { useState } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { NumberInput } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [units, setUnits] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">'1'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid max-w-xs gap-2"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">NumberInput.Root</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"units"</span> <span style="color:var(--ui-tag-color-purple)">min</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">1</span>} <span style="color:var(--ui-tag-color-purple)">max</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">20</span>} <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{units} <span style="color:var(--ui-tag-color-purple)">onValueChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{setUnits}&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">label</span> <span style="color:var(--ui-tag-color-purple)">htmlFor</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"units"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-ink-muted"</span>&gt;Number of units&lt;/<span style="color:var(--ui-tag-color-blue)">label</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex border-b border-border-strong-1 bg-field-1"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">NumberInput.Input</span>
+            <span style="color:var(--ui-tag-color-purple)">id</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"units"</span>
+            <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-10 min-w-0 flex-1 bg-transparent px-4 text-sm text-ink [appearance:textfield] focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus [&amp;::-webkit-inner-spin-button]:appearance-none"</span>
+          /&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">NumberInput.Decrement</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Decrease"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-10 text-ink hover:bg-field-hover-1 data-disabled:cursor-not-allowed data-disabled:text-ink-disabled"</span>&gt;−&lt;/<span style="color:var(--ui-tag-color-blue)">NumberInput.Decrement</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">NumberInput.Increment</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Increase"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-10 text-ink hover:bg-field-hover-1 data-disabled:cursor-not-allowed data-disabled:text-ink-disabled"</span>&gt;+&lt;/<span style="color:var(--ui-tag-color-blue)">NumberInput.Increment</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">NumberInput.Root</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-ink-muted"</span>&gt;Value: {JSON.<span style="color:var(--ui-tag-color-cyan)">stringify</span>(units)}&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<ul>
+<li>The value is text, so the field can be empty: <code>&quot;12&quot;</code>, <code>&quot;0.5&quot;</code>, or <code>&quot;&quot;</code>.</li>
+<li><code>onValueChange</code> gets the new value as text, not an event. It runs after typing, a step, or a blur that rounded the value.</li>
+<li><code>name</code>, <code>min</code>, <code>max</code>, <code>step</code>, <code>disabled</code> and <code>readOnly</code> go on <code>Root</code>, not on <code>Input</code>.</li>
+</ul>
+<h2 id="anatomy">Anatomy</h2>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">NumberInput.Root</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">NumberInput.Input</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">NumberInput.Decrement</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">NumberInput.Increment</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">NumberInput.HiddenInput</span> /&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">NumberInput.Root</span>&gt;</ui-code-snippet>
+<h2 id="step-minimum-and-maximum">Step, minimum and maximum</h2>
+<p><code>step</code> (1 by default) is how far − / + and ↑ / ↓ move. A step stays within <code>min</code> and <code>max</code>, and the button at that end of the range turns off.</p>
+<p>From an empty field, the first step goes to <code>stepStartValue</code> if you set one; otherwise to <code>min</code> when only a minimum is set, else to 1 or −1, as in Carbon.</p>
+<div class="doc-demo" data-react-example="1"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { useState } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { NumberInput } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [floor, setFloor] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">''</span>);
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid max-w-xs gap-2"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">NumberInput.Root</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"floor"</span> <span style="color:var(--ui-tag-color-purple)">min</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">1</span>} <span style="color:var(--ui-tag-color-purple)">stepStartValue</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">10</span>} <span style="color:var(--ui-tag-color-purple)">onValueChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{setFloor}&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">label</span> <span style="color:var(--ui-tag-color-purple)">htmlFor</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"floor"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-ink-muted"</span>&gt;Floor&lt;/<span style="color:var(--ui-tag-color-blue)">label</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex border-b border-border-strong-1 bg-field-1"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">NumberInput.Input</span>
+            <span style="color:var(--ui-tag-color-purple)">id</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"floor"</span>
+            <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-10 min-w-0 flex-1 bg-transparent px-4 text-sm text-ink [appearance:textfield] focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus [&amp;::-webkit-inner-spin-button]:appearance-none"</span>
+          /&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">NumberInput.Decrement</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Decrease"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-10 text-ink hover:bg-field-hover-1 data-disabled:cursor-not-allowed data-disabled:text-ink-disabled"</span>&gt;−&lt;/<span style="color:var(--ui-tag-color-blue)">NumberInput.Decrement</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">NumberInput.Increment</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Increase"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-10 text-ink hover:bg-field-hover-1 data-disabled:cursor-not-allowed data-disabled:text-ink-disabled"</span>&gt;+&lt;/<span style="color:var(--ui-tag-color-blue)">NumberInput.Increment</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">NumberInput.Root</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-ink-muted"</span>&gt;Value: {JSON.<span style="color:var(--ui-tag-color-cyan)">stringify</span>(floor)}&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<h2 id="decimals">Decimals</h2>
+<p>A step rounds to the decimals of the value or of <code>step</code>, whichever has more, so 0.1 + 0.2 gives <code>0.3</code>. With the default <code>type=&quot;number&quot;</code>, <code>step</code> is also the precision the browser accepts.</p>
+<div class="doc-demo" data-react-example="2"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { useState } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { NumberInput } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [rate, setRate] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">'2.75'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid max-w-xs gap-2"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">NumberInput.Root</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"rate"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"2.75"</span> <span style="color:var(--ui-tag-color-purple)">step</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">0.01</span>} <span style="color:var(--ui-tag-color-purple)">min</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">0</span>} <span style="color:var(--ui-tag-color-purple)">onValueChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{setRate}&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">label</span> <span style="color:var(--ui-tag-color-purple)">htmlFor</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"rate"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-ink-muted"</span>&gt;Interest rate (% a year)&lt;/<span style="color:var(--ui-tag-color-blue)">label</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">NumberInput.Input</span>
+          <span style="color:var(--ui-tag-color-purple)">id</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"rate"</span>
+          <span style="color:var(--ui-tag-color-purple)">aria-describedby</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"rate-help"</span>
+          <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-10 border-b border-border-strong-1 bg-field-1 px-4 text-sm text-ink hover:bg-field-hover-1 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus"</span>
+        /&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">id</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"rate-help"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-ink-helper"</span>&gt;↑ / ↓ step by 0.01&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">NumberInput.Root</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-ink-muted"</span>&gt;Value: {JSON.<span style="color:var(--ui-tag-color-cyan)">stringify</span>(rate)}&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<h2 id="currency-units-and-number-formats">Currency, units and number formats</h2>
+<p><code>type=&quot;text&quot;</code> with <code>formatOptions</code> formats the number with <code>Intl.NumberFormat</code>: thousands separators, currency, percent, units. The text is free while the user types and is formatted on blur; text that isn't a number stays, marked invalid, for the user to correct. The value stays a plain number: <code>฿1,234.50</code> is <code>1234.5</code>, and a percent style gives the fraction (<code>0.5</code> for 50%).</p>
+<div class="doc-demo" data-react-example="3"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { useState } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { NumberInput } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [sent, setSent] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>&lt;<span style="color:var(--ui-tag-color-cyan)">Record</span>&lt;<span style="color:var(--ui-tag-color-cyan)">string</span>, <span style="color:var(--ui-tag-color-cyan)">FormDataEntryValue</span>&gt;&gt;();
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">form</span>
+      <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid max-w-xs gap-2"</span>
+      <span style="color:var(--ui-tag-color-purple)">onSubmit</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+        e.<span style="color:var(--ui-tag-color-cyan)">preventDefault</span>();
+        <span style="color:var(--ui-tag-color-cyan)">setSent</span>(Object.<span style="color:var(--ui-tag-color-cyan)">fromEntries</span>(<span style="color:var(--ui-tag-color-magenta)">new</span> <span style="color:var(--ui-tag-color-cyan)">FormData</span>(e.currentTarget)));
+      }}
+    &gt;
+      {<span style="color:var(--ui-ink-muted);font-style:italic">/* type="text": HiddenInput submits the plain number; without locale it follows &lt;html lang&gt; */</span>}
+      &lt;<span style="color:var(--ui-tag-color-blue)">NumberInput.Root</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"rent"</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text"</span> <span style="color:var(--ui-tag-color-purple)">locale</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"th-TH"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">18500</span>} <span style="color:var(--ui-tag-color-purple)">formatOptions</span><span style="color:var(--ui-tag-color-magenta)">=</span>{{ <span style="color:var(--ui-tag-color-purple)">style:</span> <span style="color:var(--ui-tag-color-teal)">'currency'</span>, <span style="color:var(--ui-tag-color-purple)">currency:</span> <span style="color:var(--ui-tag-color-teal)">'THB'</span> }}&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">label</span> <span style="color:var(--ui-tag-color-purple)">htmlFor</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"rent"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-ink-muted"</span>&gt;Monthly rent&lt;/<span style="color:var(--ui-tag-color-blue)">label</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">NumberInput.Input</span>
+          <span style="color:var(--ui-tag-color-purple)">id</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"rent"</span>
+          <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-10 border-b border-border-strong-1 bg-field-1 px-4 text-sm text-ink hover:bg-field-hover-1 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus"</span>
+        /&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">NumberInput.HiddenInput</span> /&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">NumberInput.Root</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">button</span>
+        <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"submit"</span>
+        <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-10 justify-self-start bg-interactive px-4 text-sm text-on-primary hover:bg-blue-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"</span>
+      &gt;
+        Submit
+      &lt;/<span style="color:var(--ui-tag-color-blue)">button</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-ink-muted"</span>&gt;Sent: {sent <span style="color:var(--ui-tag-color-magenta)">?</span> JSON.<span style="color:var(--ui-tag-color-cyan)">stringify</span>(sent) <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-teal)">'nothing yet'</span>}&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">form</span>&gt;
+  );
+}</ui-code-snippet>
+<ul>
+<li>Without <code>locale</code>, <code>type=&quot;text&quot;</code> follows the page language (<code>&lt;html lang&gt;</code>, else the browser's).</li>
+<li>An invalid <code>locale</code> or <code>formatOptions</code> falls back to plain English and logs a console warning.</li>
+<li>A prefix or suffix (<code>฿</code>, <code>kg</code>) is your own markup next to the input.</li>
+</ul>
+<h2 id="empty-fields-and-errors">Empty fields and errors</h2>
+<p>There are no rules of their own for an empty field: check the value yourself. The browser's checks on the input (<code>required</code>, and <code>min</code>, <code>max</code> and <code>step</code> with <code>type=&quot;number&quot;</code>) still run on submit, but its error bubble never shows. Instead the field gets <code>data-touched</code>, and the first invalid field of the form gets focus, so you can show your own message.</p>
+<h2 id="steppers-and-the-mouse-wheel">Steppers and the mouse wheel</h2>
+<p>Leave out <code>Decrement</code> and <code>Increment</code> for a field without buttons; ↑ / ↓ still step. <code>disableWheel</code> on <code>Input</code> stops the mouse wheel from changing a focused field.</p>
+<div class="doc-demo" data-react-example="4"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { useState } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { NumberInput } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [year, setYear] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">'2019'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid max-w-xs gap-2"</span>&gt;
+      {<span style="color:var(--ui-ink-muted);font-style:italic">/* leave out Decrement / Increment; disableWheel goes on the Input */</span>}
+      &lt;<span style="color:var(--ui-tag-color-blue)">NumberInput.Root</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"year"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">2019</span>} <span style="color:var(--ui-tag-color-purple)">min</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">1900</span>} <span style="color:var(--ui-tag-color-purple)">max</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">2026</span>} <span style="color:var(--ui-tag-color-purple)">onValueChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{setYear}&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">label</span> <span style="color:var(--ui-tag-color-purple)">htmlFor</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"year"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-ink-muted"</span>&gt;Year built&lt;/<span style="color:var(--ui-tag-color-blue)">label</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">NumberInput.Input</span>
+          <span style="color:var(--ui-tag-color-purple)">id</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"year"</span>
+          <span style="color:var(--ui-tag-color-purple)">disableWheel</span>
+          <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-10 border-b border-border-strong-1 bg-field-1 px-4 text-sm text-ink hover:bg-field-hover-1 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus"</span>
+        /&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">NumberInput.Root</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-ink-muted"</span>&gt;Value: {JSON.<span style="color:var(--ui-tag-color-cyan)">stringify</span>(year)}&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<h2 id="style-it">Style it</h2>
+<div class="doc-demo" data-react-example="5"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { NumberInput } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">form</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid max-w-xs gap-2"</span> <span style="color:var(--ui-tag-color-purple)">onSubmit</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> e.<span style="color:var(--ui-tag-color-cyan)">preventDefault</span>()}&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">NumberInput.Root</span> <span style="color:var(--ui-tag-color-purple)">min</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">0</span>} <span style="color:var(--ui-tag-color-purple)">max</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">10</span>}&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">label</span> <span style="color:var(--ui-tag-color-purple)">htmlFor</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"qty"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-ink-muted"</span>&gt;Quantity&lt;/<span style="color:var(--ui-tag-color-blue)">label</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex border-b border-border-strong-1 bg-field-1"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">NumberInput.Input</span>
+            <span style="color:var(--ui-tag-color-purple)">id</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"qty"</span>
+            <span style="color:var(--ui-tag-color-purple)">required</span>
+            <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-10 min-w-0 flex-1 bg-transparent px-4 text-sm text-ink [appearance:textfield] focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus data-touched:invalid:outline-2 data-touched:invalid:-outline-offset-2 data-touched:invalid:outline-error [&amp;::-webkit-inner-spin-button]:appearance-none"</span>
+          /&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">NumberInput.Decrement</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Decrease"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"w-10 text-ink hover:bg-field-hover-1 data-disabled:cursor-not-allowed data-disabled:text-ink-disabled"</span>&gt;−&lt;/<span style="color:var(--ui-tag-color-blue)">NumberInput.Decrement</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">NumberInput.Increment</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Increase"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"w-10 text-ink hover:bg-field-hover-1 data-disabled:cursor-not-allowed data-disabled:text-ink-disabled"</span>&gt;+&lt;/<span style="color:var(--ui-tag-color-blue)">NumberInput.Increment</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">NumberInput.Root</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">button</span>
+        <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"submit"</span>
+        <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-10 justify-self-start bg-interactive px-4 text-sm text-on-primary hover:bg-blue-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"</span>
+      &gt;
+        Submit
+      &lt;/<span style="color:var(--ui-tag-color-blue)">button</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">form</span>&gt;
+  );
+}</ui-code-snippet>
+<ui-code-snippet type="multi" class="doc-code" data-lang="css"><span style="color:var(--ui-tag-color-blue)">input</span>[<span style="color:var(--ui-tag-color-purple)">data-touched</span>]<span style="color:var(--ui-tag-color-purple)">:invalid</span> { <span style="color:var(--ui-tag-color-purple)">outline</span>: <span style="color:var(--ui-tag-color-green)">2px</span> <span style="color:var(--ui-tag-color-green)">solid</span> #da1e28; }
+<span style="color:var(--ui-tag-color-blue)">button</span>[<span style="color:var(--ui-tag-color-purple)">data-disabled</span>] { <span style="color:var(--ui-tag-color-purple)">color</span>: #a8a8a8; <span style="color:var(--ui-tag-color-purple)">cursor</span>: <span style="color:var(--ui-tag-color-green)">not-allowed</span>; }</ui-code-snippet>
+<h2 id="parts">Parts</h2>
+<h3 id="numberinput-root">NumberInput.Root</h3>
+<p>Renders no element; it holds the value and the limits.</p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>value</code></td>
+<td><code>string | number</code></td>
+<td>—</td>
+<td>The value as plain number text (<code>''</code> is empty). Controlled.</td>
+</tr>
+<tr>
+<td><code>defaultValue</code></td>
+<td><code>string | number</code></td>
+<td>—</td>
+<td>The starting value (uncontrolled).</td>
+</tr>
+<tr>
+<td><code>onValueChange</code></td>
+<td><code>(value: string) =&gt; void</code></td>
+<td>—</td>
+<td>The new value after typing, a step, or a blur that rounded it.</td>
+</tr>
+<tr>
+<td><code>min</code></td>
+<td><code>number</code></td>
+<td>—</td>
+<td>Lowest value a step reaches.</td>
+</tr>
+<tr>
+<td><code>max</code></td>
+<td><code>number</code></td>
+<td>—</td>
+<td>Highest value a step reaches.</td>
+</tr>
+<tr>
+<td><code>step</code></td>
+<td><code>number</code></td>
+<td><code>1</code></td>
+<td>Step of the buttons and ↑ / ↓; with <code>type=&quot;number&quot;</code> also the precision.</td>
+</tr>
+<tr>
+<td><code>stepStartValue</code></td>
+<td><code>number</code></td>
+<td><code>0</code></td>
+<td>Where a step from an empty field starts. <code>0</code> means ±1, or <code>min</code> when only a minimum is set.</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>'number' | 'text'</code></td>
+<td><code>'number'</code></td>
+<td><code>text</code> formats the number for <code>locale</code>.</td>
+</tr>
+<tr>
+<td><code>locale</code></td>
+<td><code>string</code></td>
+<td><code>&lt;html lang&gt;</code>, else the browser's</td>
+<td>BCP 47 locale of <code>type=&quot;text&quot;</code>.</td>
+</tr>
+<tr>
+<td><code>formatOptions</code></td>
+<td><code>Intl.NumberFormatOptions</code></td>
+<td>—</td>
+<td>Format of <code>type=&quot;text&quot;</code>.</td>
+</tr>
+<tr>
+<td><code>disabled</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Turns off the field and the buttons.</td>
+</tr>
+<tr>
+<td><code>readOnly</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Keeps the value; the buttons and ↑ / ↓ do nothing.</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>—</td>
+<td>Submitted name: on <code>Input</code> with <code>type=&quot;number&quot;</code>, on <code>HiddenInput</code> with <code>type=&quot;text&quot;</code>.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="numberinput-input">NumberInput.Input</h3>
+<p>Renders an <code>&lt;input&gt;</code> with <code>inputMode=&quot;decimal&quot;</code>: a native number box with <code>type=&quot;number&quot;</code>, a text box with <code>type=&quot;text&quot;</code>. It takes every <code>&lt;input&gt;</code> prop except <code>type</code>, <code>value</code>, <code>defaultValue</code>, <code>min</code>, <code>max</code>, <code>step</code> and <code>name</code>, which come from <code>Root</code>. Your <code>onBlur</code> runs after the value settles. ↑ / ↓ don't step when your <code>onKeyDown</code> calls <code>preventDefault()</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>disableWheel</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Ignore the mouse wheel while focused.</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-disabled</code></td>
+<td><code>Root</code> is disabled</td>
+</tr>
+<tr>
+<td><code>data-readonly</code></td>
+<td><code>Root</code> is read-only</td>
+</tr>
+<tr>
+<td><code>data-touched</code></td>
+<td>The field was left or stepped, or a submit found it invalid</td>
+</tr>
+</tbody>
+</table>
+<h3 id="numberinput-decrement-and-numberinput-increment">NumberInput.Decrement and NumberInput.Increment</h3>
+<p>Each renders a <code>&lt;button type=&quot;button&quot;&gt;</code> that steps once down or up. They add no props. A button is off at its end of the range, while the field is disabled or read-only, and when you pass <code>disabled</code>. They are out of the Tab order unless you pass <code>tabIndex</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-disabled</code></td>
+<td>The button is off</td>
+</tr>
+</tbody>
+</table>
+<h3 id="numberinput-hiddeninput">NumberInput.HiddenInput</h3>
+<p>Renders an <code>&lt;input type=&quot;hidden&quot;&gt;</code> with <code>Root</code>'s <code>name</code> and the plain value, only with <code>type=&quot;text&quot;</code> and a <code>name</code>; otherwise nothing. It is disabled (not submitted) while <code>Root</code> is disabled.</p>
+<h3 id="numberinput-usenumberinputcontext">NumberInput.useNumberInputContext()</h3>
+<p>Returns the state of the enclosing <code>Root</code>, such as <code>value</code>, <code>number</code> (<code>NaN</code> while empty), <code>isEmpty</code>, <code>badText</code> (<code>type=&quot;text&quot;</code> text that isn't a number), <code>touched</code>, <code>atMin</code>, <code>atMax</code> and <code>stepBy(1 | -1)</code>.</p>
+<h2 id="keyboard-and-accessibility">Keyboard and accessibility</h2>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>↑ / ↓</td>
+<td>One step up or down, within <code>min</code> / <code>max</code></td>
+</tr>
+<tr>
+<td>Enter</td>
+<td>Submits the form the field sits in, as a native input does</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>The − / + buttons are out of the Tab order, as in Carbon: the arrow keys do the same from the field. They are real buttons with <code>disabled</code> at the end of the range.</li>
+<li>You add the <code>&lt;label&gt;</code>, names for the buttons (<code>aria-label</code>), the <code>aria-describedby</code> to the helper or error text, and <code>aria-invalid</code> with your own error message.</li>
+</ul>
+
+</article>
+<nav class="doc-toc" aria-labelledby="doc-toc-title"><p id="doc-toc-title" class="doc-toc-title">On this page</p><ul><li class="doc-toc-h2"><a href="#installation">Installation</a></li><li class="doc-toc-h2"><a href="#use-it">Use it</a></li><li class="doc-toc-h2"><a href="#anatomy">Anatomy</a></li><li class="doc-toc-h2"><a href="#step-minimum-and-maximum">Step, minimum and maximum</a></li><li class="doc-toc-h2"><a href="#decimals">Decimals</a></li><li class="doc-toc-h2"><a href="#currency-units-and-number-formats">Currency, units and number formats</a></li><li class="doc-toc-h2"><a href="#empty-fields-and-errors">Empty fields and errors</a></li><li class="doc-toc-h2"><a href="#steppers-and-the-mouse-wheel">Steppers and the mouse wheel</a></li><li class="doc-toc-h2"><a href="#style-it">Style it</a></li><li class="doc-toc-h2"><a href="#parts">Parts</a></li><li class="doc-toc-h3"><a href="#numberinput-root">NumberInput.Root</a></li><li class="doc-toc-h3"><a href="#numberinput-input">NumberInput.Input</a></li><li class="doc-toc-h3"><a href="#numberinput-decrement-and-numberinput-increment">NumberInput.Decrement and NumberInput.Increment</a></li><li class="doc-toc-h3"><a href="#numberinput-hiddeninput">NumberInput.HiddenInput</a></li><li class="doc-toc-h3"><a href="#numberinput-usenumberinputcontext">NumberInput.useNumberInputContext()</a></li><li class="doc-toc-h2"><a href="#keyboard-and-accessibility">Keyboard and accessibility</a></li></ul></nav>
+</div>
+<nav class="doc-pager" aria-label="Next / Previous"><a class="doc-pager-prev" href="/kanok-ui-docs/en/headless-text-area/" rel="prev"><span>Previous</span>Text area</a><a class="doc-pager-next" href="/kanok-ui-docs/en/headless-search/" rel="next"><span>Next</span>Search</a></nav>
+<footer class="doc-footer">@purpurabog/ui 1.4.3 · MIT · <a href="https://cdn.jsdelivr.net/npm/@purpurabog/ui@1.4.3/THIRD-PARTY-NOTICES.md">Third-party notices</a><br>Built on the Carbon Design System. Not affiliated with or endorsed by IBM; IBM and Carbon are trademarks of IBM Corp.</footer>
+</ui-content>
+<ui-modal id="doc-search" heading="Search" data-count="{n} results" data-empty="No results for “{q}”">
+<ui-search label="Search the docs" placeholder="Search the docs" size="lg"></ui-search>
+<p class="doc-search-status" role="status"></p>
+<ul class="doc-search-results"></ul>
+</ui-modal>
+</body>
+</html>

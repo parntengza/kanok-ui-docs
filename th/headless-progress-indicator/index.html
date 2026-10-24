@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Headless Progress indicator · @purpurabog/ui</title>
+<link rel="alternate" hreflang="en" href="/kanok-ui-docs/en/headless-progress-indicator/"  /><link rel="alternate" hreflang="th" href="/kanok-ui-docs/th/headless-progress-indicator/"  />
+<script>(function(){try{var q=new URLSearchParams(location.search).get("design"),d=q;if(q==="kanok"||q==="carbon")localStorage.setItem("ui-docs-design",q);else d=localStorage.getItem("ui-docs-design");if(d==="kanok")document.documentElement.setAttribute("data-design","kanok")}catch(e){}})();(function(){try{var m=localStorage.getItem("ui-docs-theme");if(m!=="light"&&m!=="dark"&&m!=="system")return;var d=m==="dark"||(m==="system"&&matchMedia("(prefers-color-scheme: dark)").matches),r=document.documentElement,t=d?"g100":"white";if(r.getAttribute("data-design")==="kanok")t=d?"lacquer":"paper";r.setAttribute("data-theme",t)}catch(e){}})();</script>
+<style>ui-header:not(:defined){z-index:8000;box-sizing:border-box;border-block-end:1px solid var(--ui-border-subtle-1);background:var(--ui-canvas);block-size:48px;display:block;position:fixed;inset:0 0 auto}:is(ui-header:not(:defined)>*,ui-side-nav:not(:defined)>*){visibility:hidden}:is(ui-header-panel:not(:defined),ui-modal:not(:defined)){display:none}ui-side-nav:not(:defined){display:none}ui-content:not(:defined){margin-block-start:48px;padding:32px;display:block}@media (width>=1056px){ui-side-nav[expanded]:not(:defined){background:var(--ui-canvas);inline-size:256px;display:block;position:fixed;inset:48px auto 0 0}ui-side-nav[expanded]:not(:defined)~ui-content:not(:defined){margin-inline-start:256px}}ui-tabs:not(:defined){display:block}ui-tabs:not(:defined)>ui-tab{box-sizing:border-box;border-block-end:2px solid var(--ui-hairline);block-size:40px;color:var(--ui-ink-muted);font:var(--ui-font-body-sm);padding:0 16px;line-height:38px;display:inline-block}ui-tabs:not(:defined)>ui-tab:first-of-type{border-block-end-color:var(--ui-interactive);color:var(--ui-ink)}ui-tabs:not(:defined)>ui-tab-panel{padding:16px;display:block}ui-tabs:not(:defined)>ui-tab-panel~ui-tab-panel{display:none}ui-code-snippet:not(:defined){background:var(--ui-layer-1);max-block-size:272px;font:var(--ui-font-code,12px/16px monospace);white-space:pre;padding:16px;display:block;overflow:hidden}[data-react-example]:empty>*{visibility:hidden}.doc-demo:has(:not(:defined))>*{visibility:hidden}[data-react-example]:empty{box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}.doc-demo:has(:not(:defined)){box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}@keyframes doc-skeleton{to{background-position:-200% 0}}@media (prefers-reduced-motion:reduce){[data-react-example]:empty{animation:none}.doc-demo:has(:not(:defined)){animation:none}}</style>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/index-DfTVBLPe.js"></script>
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/theme-switcher-BGAHXRgF.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/listbox-gjElSjvA.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/headless-CpcU3xFD.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/flag-D0Ou26eR.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/progress-indicator-Bs1A6FNf.js">
+  <link rel="stylesheet" crossorigin href="/kanok-ui-docs/assets/theme-switcher-CL5yB6XE.css">
+  <link rel="stylesheet" crossorigin href="/kanok-ui-docs/assets/headless-JjfvojKd.css">
+</head>
+<body>
+<ui-header label="@purpurabog/ui">
+<ui-skip-to-content></ui-skip-to-content>
+<ui-header-menu-button></ui-header-menu-button>
+<ui-header-name href="/kanok-ui-docs/th/" prefix="@purpurabog">ui</ui-header-name>
+<ui-header-global-bar>
+<ui-header-global-action id="doc-search-open" label="ค้นหา" tooltip-placement="bottom"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="m18.5 17.8-4.9-4.9a7 7 0 1 0-.7.7l4.9 4.9zM3 8.5a5.5 5.5 0 1 1 5.5 5.5A5.5 5.5 0 0 1 3 8.5Z" /></svg></ui-header-global-action>
+<ui-header-global-action label="ตั้งค่า" panel="doc-settings" tooltip-placement="bottom-end"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="M16.9 10.6a7 7 0 0 0 0-1.2l1.8-1.4-1.6-2.8-2.1.8a6.6 6.6 0 0 0-1-.6L13.6 3h-3.2l-.4 2.4a6.6 6.6 0 0 0-1 .6l-2.1-.8L5.3 8l1.8 1.4a7 7 0 0 0 0 1.2L5.3 12l1.6 2.8 2.1-.8a6.6 6.6 0 0 0 1 .6l.4 2.4h3.2l.4-2.4a6.6 6.6 0 0 0 1-.6l2.1.8 1.6-2.8zM12 13a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" /></svg></ui-header-global-action>
+</ui-header-global-bar>
+<ui-header-panel id="doc-settings" label="ตั้งค่า">
+<div class="doc-settings">
+<span class="doc-settings-label">ธีม</span>
+<ui-theme-switcher storage-key="ui-docs-theme" tooltip-placement="bottom"></ui-theme-switcher>
+<span class="doc-settings-label">รูปแบบ</span>
+<ui-content-switcher id="doc-design" aria-label="รูปแบบ" size="sm"><ui-content-switcher-item name="carbon">Carbon</ui-content-switcher-item><ui-content-switcher-item name="kanok">Kanok</ui-content-switcher-item></ui-content-switcher>
+<span class="doc-settings-label">ภาษา</span>
+<ui-link href="/kanok-ui-docs/en/headless-progress-indicator/" hreflang="en" lang="en">English</ui-link>
+</div>
+</ui-header-panel>
+</ui-header>
+<ui-side-nav label="เอกสาร"><ui-side-nav-items><ui-side-nav-menu label="เริ่มต้น"><ui-side-nav-menu-item href="/kanok-ui-docs/th/">ภาพรวม</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/installation/">ติดตั้ง</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/migration-1-0/">การย้ายไป 1.0</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="คู่มือ"><ui-side-nav-menu-item href="/kanok-ui-docs/th/themes/">ธีมและ layer</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/kanok/">ดีไซน์ Kanok</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/customizing/">ปรับแต่งหน้าตา</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/icons/">ไอคอน</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/forms/">ฟอร์มและการตรวจค่า</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/frameworks/">ใช้กับ framework</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/ai/">ใช้กับ AI</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="ฟอร์มและปุ่ม"><ui-side-nav-menu-item href="/kanok-ui-docs/th/button/">Button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/file-uploader/">File uploader</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Overlay"><ui-side-nav-menu-item href="/kanok-ui-docs/th/modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/toggletip/">Toggletip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/menu/">Menu</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="ข้อมูล"><ui-side-nav-menu-item href="/kanok-ui-docs/th/data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/contained-list/">Contained list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tree-view/">Tree view</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="การนำทาง"><ui-side-nav-menu-item href="/kanok-ui-docs/th/tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/breadcrumb/">Breadcrumb</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/link/">Link</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/ui-shell/">UI shell</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="เนื้อหา"><ui-side-nav-menu-item href="/kanok-ui-docs/th/tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tile/">Tile</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/user-avatar/">User avatar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/list/">List</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="สถานะและการโหลด"><ui-side-nav-menu-item href="/kanok-ui-docs/th/loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/inline-loading/">Inline loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/progress-bar/">Progress bar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/skeleton/">Skeleton</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/badge-indicator/">Badge indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/status-indicator/">Status indicator</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="เลย์เอาต์"><ui-side-nav-menu-item href="/kanok-ui-docs/th/grid/">Grid</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/heading/">Heading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/layer/">Layer</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/action-set/">Action set</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/page-header/">Page header</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/big-number/">Big number</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Headless" expanded><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless/">แนะนำ</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-file-uploader/">File uploader</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-menu/">Menu</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-progress-indicator/" current>Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-ui-shell/">UI shell</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tree-view/">Tree view</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu></ui-side-nav-items></ui-side-nav><script>if(matchMedia('(min-width: 66rem)').matches)document.currentScript.previousElementSibling.setAttribute('expanded','')</script>
+<ui-content>
+<div class="doc-page">
+<article class="doc">
+<!-- nav: Progress indicator -->
+<h1 id="headless-progress-indicator">Headless Progress indicator</h1>
+<p>part ของ <code>ProgressIndicator</code> ให้พฤติกรรมเดียวกับ <a href="/kanok-ui-docs/th/progress-indicator/">Progress indicator</a> แบบมี style แต่ไม่มี style เลย ได้แก่ รายการขั้นตอนแบบมีลำดับ ซึ่งสถานะ (เสร็จแล้ว ขั้นปัจจุบัน ยังไม่ถึง) ตาม index ปัจจุบัน <code>aria-current=&quot;step&quot;</code> ที่ขั้นปัจจุบัน และเมื่อเป็นแบบ interactive จะมีปุ่มที่กระโดดไปยังขั้นนั้นได้</p>
+<p>ส่วนที่คุณทำเองคือ markup ในแต่ละขั้น (ไอคอน label บรรทัดที่สอง) คำที่ screen reader อ่านสำหรับแต่ละสถานะ และ style ทั้งหมด part ต่าง ๆ บอกสถานะผ่าน attribute <code>data-*</code> ให้คุณใช้ใส่ style</p>
+<h2 id="ติดตั้ง">ติดตั้ง</h2>
+<p>ส่วน headless มากับแพ็กเกจเลย (ไม่มี item ของ shadcn; item ของ React + Tailwind สร้างบนมัน):</p>
+<ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">@purpurabog/ui</span></ui-code-snippet>
+<ui-code-snippet type="single" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { ProgressIndicator } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;</ui-code-snippet>
+<h2 id="วิธีใช้">วิธีใช้</h2>
+<div class="doc-demo" data-react-example="0"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { ProgressIndicator } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> steps <span style="color:var(--ui-tag-color-magenta)">=</span> [<span style="color:var(--ui-tag-color-teal)">'รายละเอียดสัญญา'</span>, <span style="color:var(--ui-tag-color-teal)">'ผู้ลงนาม'</span>, <span style="color:var(--ui-tag-color-teal)">'ตรวจทาน'</span>, <span style="color:var(--ui-tag-color-teal)">'ส่ง'</span>];
+
+<span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">StepIcon</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> { state } <span style="color:var(--ui-tag-color-magenta)">=</span> ProgressIndicator.<span style="color:var(--ui-tag-color-cyan)">useStepContext</span>();
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-4 shrink-0 fill-interactive group-data-incomplete:fill-ink"</span>&gt;
+      {state <span style="color:var(--ui-tag-color-magenta)">===</span> <span style="color:var(--ui-tag-color-teal)">'complete'</span> <span style="color:var(--ui-tag-color-magenta)">?</span> &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1Zm0 13a6 6 0 1 1 0-12 6 6 0 0 1 0 12Zm-1-2.6-2.7-2.7.7-.7L7 10l4-4 .7.7z"</span> /&gt; <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-green)">null</span>}
+      {state <span style="color:var(--ui-tag-color-magenta)">===</span> <span style="color:var(--ui-tag-color-teal)">'current'</span> <span style="color:var(--ui-tag-color-magenta)">?</span> &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1Zm0 13a6 6 0 0 1 0-12z"</span> /&gt; <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-green)">null</span>}
+      {state <span style="color:var(--ui-tag-color-magenta)">===</span> <span style="color:var(--ui-tag-color-teal)">'incomplete'</span> <span style="color:var(--ui-tag-color-magenta)">?</span> &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M8 2a6 6 0 1 1 0 12A6 6 0 0 1 8 2m0-1a7 7 0 1 0 0 14A7 7 0 0 0 8 1Z"</span> /&gt; <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-green)">null</span>}
+    &lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+  );
+}
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> words <span style="color:var(--ui-tag-color-magenta)">=</span> { <span style="color:var(--ui-tag-color-purple)">complete:</span> <span style="color:var(--ui-tag-color-teal)">'เสร็จแล้ว'</span>, <span style="color:var(--ui-tag-color-purple)">current:</span> <span style="color:var(--ui-tag-color-teal)">'ขั้นปัจจุบัน'</span>, <span style="color:var(--ui-tag-color-purple)">incomplete:</span> <span style="color:var(--ui-tag-color-teal)">'ยังไม่ถึง'</span> };
+
+<span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">StateWords</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> { state } <span style="color:var(--ui-tag-color-magenta)">=</span> ProgressIndicator.<span style="color:var(--ui-tag-color-cyan)">useStepContext</span>();
+  <span style="color:var(--ui-tag-color-magenta)">return</span> &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sr-only"</span>&gt;{words[state]}&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;;
+}
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">ProgressIndicator.Root</span> <span style="color:var(--ui-tag-color-purple)">currentIndex</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">1</span>} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex"</span>&gt;
+      {steps.<span style="color:var(--ui-tag-color-cyan)">map</span>((label) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+        &lt;<span style="color:var(--ui-tag-color-blue)">ProgressIndicator.Step</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{label} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"w-32 border-t-2 border-interactive data-incomplete:border-hairline"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">ProgressIndicator.StepButton</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"group flex w-full gap-2 pt-2 pe-4 text-start text-sm text-ink"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">StepIcon</span> /&gt;
+            {label}
+            &lt;<span style="color:var(--ui-tag-color-blue)">StateWords</span> /&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">ProgressIndicator.StepButton</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">ProgressIndicator.Step</span>&gt;
+      ))}
+    &lt;/<span style="color:var(--ui-tag-color-blue)">ProgressIndicator.Root</span>&gt;
+  );
+}</ui-code-snippet>
+<p>ลูกโดยตรงของ <code>Root</code> แต่ละตัวคือหนึ่งขั้น นับตามตำแหน่ง ตัวแรกคือ index 0 <code>useStepContext()</code> ให้ <code>state</code> แก่ component ที่อยู่ในขั้น ไอคอนและคำสำหรับ screen reader จึงตามสถานะได้</p>
+<h2 id="โครงสร้าง">โครงสร้าง</h2>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">ProgressIndicator.Root</span> <span style="color:var(--ui-tag-color-purple)">currentIndex</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">0</span>}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ProgressIndicator.Step</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ProgressIndicator.StepButton</span> /&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ProgressIndicator.Step</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ProgressIndicator.Root</span>&gt;</ui-code-snippet>
+<h2 id="ขั้นที่ไม่ถูกต้อง-ปิดใช้งาน-และเสร็จแล้ว">ขั้นที่ไม่ถูกต้อง ปิดใช้งาน และเสร็จแล้ว</h2>
+<p>flag สามตัวที่ <code>Step</code> เพิ่มจากสถานะที่ได้จาก index:</p>
+<ul>
+<li><code>complete</code> ทำให้ขั้นนั้นเสร็จแล้วไม่ว่า index ปัจจุบันจะเป็นเท่าไร (<code>data-complete</code>)</li>
+<li><code>invalid</code> ตั้ง <code>data-invalid</code> ให้คุณแสดงคำเตือนตาม style ของคุณ</li>
+<li><code>disabled</code> ทำให้ปุ่มของขั้นเป็น disabled (<code>data-disabled</code>) คลิกหรือโฟกัสไม่ได้</li>
+</ul>
+<div class="doc-demo" data-react-example="1"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { ProgressIndicator } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> steps <span style="color:var(--ui-tag-color-magenta)">=</span> [
+  { <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'รายละเอียดสัญญา'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'ผู้ลงนาม'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'ไฟล์แนบ'</span>, <span style="color:var(--ui-tag-color-purple)">complete:</span> <span style="color:var(--ui-tag-color-green)">true</span> },
+  { <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'ตรวจทาน'</span>, <span style="color:var(--ui-tag-color-purple)">invalid:</span> <span style="color:var(--ui-tag-color-green)">true</span> },
+  { <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'ส่ง'</span>, <span style="color:var(--ui-tag-color-purple)">disabled:</span> <span style="color:var(--ui-tag-color-green)">true</span> },
+];
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> words <span style="color:var(--ui-tag-color-magenta)">=</span> { <span style="color:var(--ui-tag-color-purple)">complete:</span> <span style="color:var(--ui-tag-color-teal)">'เสร็จแล้ว'</span>, <span style="color:var(--ui-tag-color-purple)">current:</span> <span style="color:var(--ui-tag-color-teal)">'ขั้นปัจจุบัน'</span>, <span style="color:var(--ui-tag-color-purple)">incomplete:</span> <span style="color:var(--ui-tag-color-teal)">'ยังไม่ถึง'</span> };
+
+<span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">StepWords</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> { state, invalid } <span style="color:var(--ui-tag-color-magenta)">=</span> ProgressIndicator.<span style="color:var(--ui-tag-color-cyan)">useStepContext</span>();
+  <span style="color:var(--ui-tag-color-magenta)">return</span> &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sr-only"</span>&gt;{invalid <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-teal)">'ไม่ถูกต้อง'</span> <span style="color:var(--ui-tag-color-magenta)">:</span> words[state]}&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;;
+}
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">ProgressIndicator.Root</span> <span style="color:var(--ui-tag-color-purple)">currentIndex</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">1</span>} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex flex-wrap"</span>&gt;
+      {steps.<span style="color:var(--ui-tag-color-cyan)">map</span>(({ label, <span style="color:var(--ui-tag-color-magenta)">...</span>flags }) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+        &lt;<span style="color:var(--ui-tag-color-blue)">ProgressIndicator.Step</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{label} {<span style="color:var(--ui-tag-color-magenta)">...</span>flags} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"w-32 border-t-2 border-interactive data-incomplete:border-hairline"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">ProgressIndicator.StepButton</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex w-full items-center gap-2 pt-2 pe-4 text-start text-sm text-ink data-current:font-semibold data-invalid:text-error-text data-disabled:text-ink-disabled"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex size-4 shrink-0 items-center justify-center rounded-full border border-current text-[10px]"</span>&gt;
+              {flags.complete <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-teal)">'✓'</span> <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-green)">null</span>}
+            &lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+            {label}
+            &lt;<span style="color:var(--ui-tag-color-blue)">StepWords</span> /&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">ProgressIndicator.StepButton</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">ProgressIndicator.Step</span>&gt;
+      ))}
+    &lt;/<span style="color:var(--ui-tag-color-blue)">ProgressIndicator.Root</span>&gt;
+  );
+}</ui-code-snippet>
+<h2 id="ให้ผู้ใช้กระโดดไปขั้นอื่น">ให้ผู้ใช้กระโดดไปขั้นอื่น</h2>
+<p><code>interactive</code> ทำให้ปุ่มอยู่ในลำดับ Tab คลิกที่ขั้นที่ไม่ใช่ขั้นปัจจุบันและไม่ได้ปิดใช้งาน จะทำให้ขั้นนั้นเป็นขั้นปัจจุบัน และเรียก <code>onChange</code> พร้อม index (<code>data-clickable</code> บอกว่าขั้นไหนคลิกได้) เก็บ index เองด้วย <code>currentIndex</code> หรือให้ <code>defaultCurrentIndex</code> แล้วให้ <code>Root</code> เก็บเอง</p>
+<div class="doc-demo" data-react-example="2"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { useState } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { ProgressIndicator } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> steps <span style="color:var(--ui-tag-color-magenta)">=</span> [<span style="color:var(--ui-tag-color-teal)">'รายละเอียดสัญญา'</span>, <span style="color:var(--ui-tag-color-teal)">'ผู้ลงนาม'</span>, <span style="color:var(--ui-tag-color-teal)">'ตรวจทาน'</span>, <span style="color:var(--ui-tag-color-teal)">'ส่ง'</span>];
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [step, setStep] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-green)">2</span>);
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid gap-4"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ProgressIndicator.Root</span> <span style="color:var(--ui-tag-color-purple)">interactive</span> <span style="color:var(--ui-tag-color-purple)">currentIndex</span><span style="color:var(--ui-tag-color-magenta)">=</span>{step} <span style="color:var(--ui-tag-color-purple)">onChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{setStep} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex"</span>&gt;
+        {steps.<span style="color:var(--ui-tag-color-cyan)">map</span>((label) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+          &lt;<span style="color:var(--ui-tag-color-blue)">ProgressIndicator.Step</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{label} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"w-32 border-t-2 border-interactive data-incomplete:border-hairline"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">ProgressIndicator.StepButton</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex w-full pt-2 pe-4 text-start text-sm text-ink focus-visible:outline-2 focus-visible:outline-focus data-clickable:cursor-pointer data-clickable:text-link data-clickable:hover:underline data-current:font-semibold"</span>&gt;
+              {label}
+            &lt;/<span style="color:var(--ui-tag-color-blue)">ProgressIndicator.StepButton</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">ProgressIndicator.Step</span>&gt;
+        ))}
+      &lt;/<span style="color:var(--ui-tag-color-blue)">ProgressIndicator.Root</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-ink-muted"</span>&gt;ขั้นปัจจุบัน: {step}&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<h2 id="ปุ่มย้อนกลับและถัดไป">ปุ่มย้อนกลับและถัดไป</h2>
+<p>ถ้าไม่มี <code>interactive</code> ขั้นตอนจะไม่ตอบสนองต่อการคลิกและไม่อยู่ในลำดับ Tab ปุ่มของคุณเองจะพาไปทีละขั้นโดยเปลี่ยน <code>currentIndex</code></p>
+<div class="doc-demo" data-react-example="3"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { useState } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { ProgressIndicator } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> steps <span style="color:var(--ui-tag-color-magenta)">=</span> [<span style="color:var(--ui-tag-color-teal)">'รายละเอียดสัญญา'</span>, <span style="color:var(--ui-tag-color-teal)">'ผู้ลงนาม'</span>, <span style="color:var(--ui-tag-color-teal)">'ตรวจทาน'</span>, <span style="color:var(--ui-tag-color-teal)">'ส่ง'</span>];
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [step, setStep] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-green)">0</span>);
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid gap-4"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ProgressIndicator.Root</span> <span style="color:var(--ui-tag-color-purple)">currentIndex</span><span style="color:var(--ui-tag-color-magenta)">=</span>{step} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex"</span>&gt;
+        {steps.<span style="color:var(--ui-tag-color-cyan)">map</span>((label) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+          &lt;<span style="color:var(--ui-tag-color-blue)">ProgressIndicator.Step</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{label} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"w-32 border-t-2 border-interactive data-incomplete:border-hairline"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">ProgressIndicator.StepButton</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex w-full pt-2 pe-4 text-start text-sm text-ink-muted data-complete:text-ink data-current:font-semibold data-current:text-ink"</span>&gt;
+              {label}
+            &lt;/<span style="color:var(--ui-tag-color-blue)">ProgressIndicator.StepButton</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">ProgressIndicator.Step</span>&gt;
+        ))}
+      &lt;/<span style="color:var(--ui-tag-color-blue)">ProgressIndicator.Root</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-sm text-ink"</span>&gt;ขั้นที่ {step <span style="color:var(--ui-tag-color-magenta)">+</span> <span style="color:var(--ui-tag-color-green)">1</span>} จาก {steps.length}: {steps[step]}&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex gap-px"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">button</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"button"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span><span style="color:var(--ui-tag-color-magenta)">=</span>{step <span style="color:var(--ui-tag-color-magenta)">===</span> <span style="color:var(--ui-tag-color-green)">0</span>} <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setStep</span>(step <span style="color:var(--ui-tag-color-magenta)">-</span> <span style="color:var(--ui-tag-color-green)">1</span>)} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-10 bg-secondary px-4 text-sm text-on-primary hover:bg-secondary-hover focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-focus disabled:bg-button-disabled disabled:text-on-color-disabled"</span>&gt;ย้อนกลับ&lt;/<span style="color:var(--ui-tag-color-blue)">button</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">button</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"button"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span><span style="color:var(--ui-tag-color-magenta)">=</span>{step <span style="color:var(--ui-tag-color-magenta)">===</span> steps.length <span style="color:var(--ui-tag-color-magenta)">-</span> <span style="color:var(--ui-tag-color-green)">1</span>} <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setStep</span>(step <span style="color:var(--ui-tag-color-magenta)">+</span> <span style="color:var(--ui-tag-color-green)">1</span>)} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-10 bg-interactive px-4 text-sm text-on-primary hover:bg-blue-hover focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-focus disabled:bg-button-disabled disabled:text-on-color-disabled"</span>&gt;ถัดไป&lt;/<span style="color:var(--ui-tag-color-blue)">button</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<h2 id="แนวตั้ง">แนวตั้ง</h2>
+<p><code>vertical</code> ตั้ง <code>data-orientation=&quot;vertical&quot;</code> ที่ root ทุกขั้น และทุกปุ่ม (ไม่อย่างนั้นเป็น <code>horizontal</code>) layout เป็นของคุณ ในตัวอย่างนี้เส้นวิ่งลงมาตามขอบด้านหน้า</p>
+<div class="doc-demo" data-react-example="4"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { ProgressIndicator } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> steps <span style="color:var(--ui-tag-color-magenta)">=</span> [
+  { <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'ส่งคำขอแล้ว'</span>, <span style="color:var(--ui-tag-color-purple)">note:</span> <span style="color:var(--ui-tag-color-teal)">'1 ต.ค. 09:12'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'ฝ่ายกฎหมายตรวจ'</span>, <span style="color:var(--ui-tag-color-purple)">note:</span> <span style="color:var(--ui-tag-color-teal)">'กำลังดำเนินการ'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'กรรมการผู้จัดการอนุมัติ'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'ลงนาม'</span> },
+];
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">ProgressIndicator.Root</span> <span style="color:var(--ui-tag-color-purple)">vertical</span> <span style="color:var(--ui-tag-color-purple)">currentIndex</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">1</span>} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex data-[orientation=horizontal]:flex-row data-[orientation=vertical]:flex-col"</span>&gt;
+      {steps.<span style="color:var(--ui-tag-color-cyan)">map</span>((s) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+        &lt;<span style="color:var(--ui-tag-color-blue)">ProgressIndicator.Step</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{s.label} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"min-h-14 border-s-2 border-interactive data-incomplete:border-hairline"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">ProgressIndicator.StepButton</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex w-full flex-col ps-4 pt-1 text-start text-sm text-ink data-current:font-semibold"</span>&gt;
+            {s.label}
+            {s.note <span style="color:var(--ui-tag-color-magenta)">?</span> &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs font-normal text-ink-muted"</span>&gt;{s.note}&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt; <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-green)">null</span>}
+          &lt;/<span style="color:var(--ui-tag-color-blue)">ProgressIndicator.StepButton</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">ProgressIndicator.Step</span>&gt;
+      ))}
+    &lt;/<span style="color:var(--ui-tag-color-blue)">ProgressIndicator.Root</span>&gt;
+  );
+}</ui-code-snippet>
+<h2 id="ใส่-style">ใส่ style</h2>
+<div class="doc-demo" data-react-example="5"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { ProgressIndicator } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> steps <span style="color:var(--ui-tag-color-magenta)">=</span> [<span style="color:var(--ui-tag-color-teal)">'รายละเอียด'</span>, <span style="color:var(--ui-tag-color-teal)">'ผู้ลงนาม'</span>, <span style="color:var(--ui-tag-color-teal)">'ตรวจทาน'</span>, <span style="color:var(--ui-tag-color-teal)">'ส่ง'</span>];
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">ProgressIndicator.Root</span> <span style="color:var(--ui-tag-color-purple)">interactive</span> <span style="color:var(--ui-tag-color-purple)">defaultCurrentIndex</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">1</span>} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex"</span>&gt;
+      {steps.<span style="color:var(--ui-tag-color-cyan)">map</span>((label, i) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+        &lt;<span style="color:var(--ui-tag-color-blue)">ProgressIndicator.Step</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{label} <span style="color:var(--ui-tag-color-purple)">invalid</span><span style="color:var(--ui-tag-color-magenta)">=</span>{i <span style="color:var(--ui-tag-color-magenta)">===</span> <span style="color:var(--ui-tag-color-green)">2</span>} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex-1 border-t-4 border-interactive data-incomplete:border-hairline data-invalid:border-error"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">ProgressIndicator.StepButton</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"w-full pt-2 pe-4 text-start text-sm text-ink-muted focus-visible:outline-2 focus-visible:outline-focus data-complete:text-ink data-current:font-semibold data-current:text-ink data-invalid:text-error-text data-clickable:cursor-pointer data-clickable:hover:text-link-hover"</span>&gt;
+            {i <span style="color:var(--ui-tag-color-magenta)">+</span> <span style="color:var(--ui-tag-color-green)">1</span>}. {label}
+          &lt;/<span style="color:var(--ui-tag-color-blue)">ProgressIndicator.StepButton</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">ProgressIndicator.Step</span>&gt;
+      ))}
+    &lt;/<span style="color:var(--ui-tag-color-blue)">ProgressIndicator.Root</span>&gt;
+  );
+}</ui-code-snippet>
+<ui-code-snippet type="multi" class="doc-code" data-lang="css"><span style="color:var(--ui-ink-muted);font-style:italic">/* className="step" ที่ Step, "step-button" ที่ StepButton */</span>
+<span style="color:var(--ui-tag-color-purple)">.step</span> { <span style="color:var(--ui-tag-color-purple)">border-top</span>: <span style="color:var(--ui-tag-color-green)">4px</span> <span style="color:var(--ui-tag-color-green)">solid</span> #0f62fe; }
+<span style="color:var(--ui-tag-color-purple)">.step</span>[<span style="color:var(--ui-tag-color-purple)">data-incomplete</span>] { <span style="color:var(--ui-tag-color-purple)">border-top-color</span>: #e0e0e0; }
+<span style="color:var(--ui-tag-color-purple)">.step</span>[<span style="color:var(--ui-tag-color-purple)">data-invalid</span>] { <span style="color:var(--ui-tag-color-purple)">border-top-color</span>: #da1e28; }
+<span style="color:var(--ui-tag-color-purple)">.step-button</span>[<span style="color:var(--ui-tag-color-purple)">data-current</span>] { <span style="color:var(--ui-tag-color-purple)">font-weight</span>: <span style="color:var(--ui-tag-color-green)">600</span>; }
+<span style="color:var(--ui-tag-color-purple)">.step-button</span>[<span style="color:var(--ui-tag-color-purple)">data-clickable</span>] { <span style="color:var(--ui-tag-color-purple)">cursor</span>: <span style="color:var(--ui-tag-color-green)">pointer</span>; }
+<span style="color:var(--ui-tag-color-purple)">.step-button</span>[<span style="color:var(--ui-tag-color-purple)">data-disabled</span>] { <span style="color:var(--ui-tag-color-purple)">color</span>: #c6c6c6; }</ui-code-snippet>
+<h2 id="parts">Parts</h2>
+<h3 id="progressindicator-root">ProgressIndicator.Root</h3>
+<p><code>&lt;ol&gt;</code> ลูกโดยตรงแต่ละตัวคือหนึ่งขั้นตามตำแหน่ง component ของคุณเองที่ render <code>Step</code> จึงใช้เป็นลูกได้</p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>currentIndex</code></td>
+<td><code>number</code></td>
+<td></td>
+<td>index ของขั้นปัจจุบัน เริ่มที่ 0 (controlled)</td>
+</tr>
+<tr>
+<td><code>defaultCurrentIndex</code></td>
+<td><code>number</code></td>
+<td><code>0</code></td>
+<td>index เริ่มต้น (uncontrolled)</td>
+</tr>
+<tr>
+<td><code>onChange</code></td>
+<td><code>(index: number) =&gt; void</code></td>
+<td></td>
+<td>หลังผู้ใช้กระโดดไปขั้นอื่น</td>
+</tr>
+<tr>
+<td><code>interactive</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>ปุ่มของขั้นรับ Tab และกระโดดเมื่อคลิก</td>
+</tr>
+<tr>
+<td><code>vertical</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>ตั้ง <code>data-orientation=&quot;vertical&quot;</code></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>เมื่อ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-orientation</code></td>
+<td><code>horizontal</code> หรือ <code>vertical</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>ProgressIndicator.useProgressIndicatorContext()</code> คืน <code>{ currentIndex, vertical, interactive, pick }</code> ส่วน <code>ProgressIndicator.stepState(index, currentIndex, complete?)</code> คืนสถานะที่ขั้นตำแหน่ง <code>index</code> จะได้</p>
+<h3 id="progressindicator-step">ProgressIndicator.Step</h3>
+<p><code>&lt;li&gt;</code>: หนึ่งขั้น</p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>complete</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>เสร็จแล้วไม่ว่า index ปัจจุบันจะเป็นเท่าไร</td>
+</tr>
+<tr>
+<td><code>invalid</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>ตั้ง <code>data-invalid</code></td>
+</tr>
+<tr>
+<td><code>disabled</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>ปุ่มของขั้นเป็น disabled</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>เมื่อ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-complete</code> / <code>data-current</code> / <code>data-incomplete</code></td>
+<td>มีหนึ่งตัว: สถานะของขั้น</td>
+</tr>
+<tr>
+<td><code>data-invalid</code></td>
+<td>ตั้ง <code>invalid</code></td>
+</tr>
+<tr>
+<td><code>data-disabled</code></td>
+<td>ตั้ง <code>disabled</code></td>
+</tr>
+<tr>
+<td><code>data-clickable</code></td>
+<td>คลิกที่ปุ่มจะกระโดดมาที่นี่: interactive ไม่ได้ปิดใช้งาน และไม่ใช่ขั้นปัจจุบัน</td>
+</tr>
+<tr>
+<td><code>data-orientation</code></td>
+<td><code>horizontal</code> หรือ <code>vertical</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>ProgressIndicator.useStepContext()</code> คืน <code>{ index, state, invalid, disabled, vertical, interactive, clickable, pick }</code> ให้ component ที่อยู่ในขั้น</p>
+<h3 id="progressindicator-stepbutton">ProgressIndicator.StepButton</h3>
+<p><code>&lt;button type=&quot;button&quot;&gt;</code> ของขั้นปัจจุบันมี <code>aria-current=&quot;step&quot;</code> ปุ่มอยู่นอกลำดับ Tab (<code>tabindex=&quot;-1&quot;</code>) ถ้า root ไม่ได้เป็น <code>interactive</code> และเป็น disabled (พร้อม <code>aria-disabled</code>) เมื่อขั้นปิดใช้งาน รับ prop ของปุ่มทุกตัว ยกเว้น <code>type</code> และมี data attribute เหมือน <code>Step</code> ของตัวเอง</p>
+<h2 id="คีย์บอร์ดและ-accessibility">คีย์บอร์ดและ accessibility</h2>
+<table>
+<thead>
+<tr>
+<th>ปุ่ม</th>
+<th>ทำอะไร</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tab / Shift+Tab</td>
+<td>เมื่อเป็น <code>interactive</code>: ย้ายไปมาระหว่างปุ่มของขั้น (ข้ามปุ่มที่ปิดใช้งาน) ถ้าไม่ได้เป็น <code>interactive</code> ปุ่มจะไม่รับ Tab</td>
+</tr>
+<tr>
+<td>Enter, Space</td>
+<td>เมื่อเป็น <code>interactive</code>: กระโดดไปขั้นที่โฟกัสอยู่ (ขั้นปัจจุบันไม่มีผล)</td>
+</tr>
+</tbody>
+</table>
+<p>part ตั้ง <code>aria-current=&quot;step&quot;</code> <code>disabled</code> และ <code>aria-disabled</code> และลำดับ Tab รายการเป็น <code>&lt;ol&gt;</code> ที่มี <code>&lt;li&gt;</code></p>
+<p>ส่วนที่คุณเพิ่มเอง:</p>
+<ul>
+<li>ข้อความ label ใน <code>StepButton</code> แต่ละอัน</li>
+<li>สถานะเป็นคำสำหรับ screen reader (&quot;เสร็จแล้ว&quot; &quot;ไม่ถูกต้อง&quot; …) เหมือนข้อความ <code>sr-only</code> ในตัวอย่างแรก ไอคอนอย่างเดียวไม่ได้บอกอะไร</li>
+<li>หัวข้อที่บอกว่างานคืออะไร และบอกขั้นปัจจุบันเป็นข้อความถ้าขั้นตอนมีขนาดเล็ก</li>
+</ul>
+
+</article>
+<nav class="doc-toc" aria-labelledby="doc-toc-title"><p id="doc-toc-title" class="doc-toc-title">ในหน้านี้</p><ul><li class="doc-toc-h2"><a href="#ติดตั้ง">ติดตั้ง</a></li><li class="doc-toc-h2"><a href="#วิธีใช้">วิธีใช้</a></li><li class="doc-toc-h2"><a href="#โครงสร้าง">โครงสร้าง</a></li><li class="doc-toc-h2"><a href="#ขั้นที่ไม่ถูกต้อง-ปิดใช้งาน-และเสร็จแล้ว">ขั้นที่ไม่ถูกต้อง ปิดใช้งาน และเสร็จแล้ว</a></li><li class="doc-toc-h2"><a href="#ให้ผู้ใช้กระโดดไปขั้นอื่น">ให้ผู้ใช้กระโดดไปขั้นอื่น</a></li><li class="doc-toc-h2"><a href="#ปุ่มย้อนกลับและถัดไป">ปุ่มย้อนกลับและถัดไป</a></li><li class="doc-toc-h2"><a href="#แนวตั้ง">แนวตั้ง</a></li><li class="doc-toc-h2"><a href="#ใส่-style">ใส่ style</a></li><li class="doc-toc-h2"><a href="#parts">Parts</a></li><li class="doc-toc-h3"><a href="#progressindicator-root">ProgressIndicator.Root</a></li><li class="doc-toc-h3"><a href="#progressindicator-step">ProgressIndicator.Step</a></li><li class="doc-toc-h3"><a href="#progressindicator-stepbutton">ProgressIndicator.StepButton</a></li><li class="doc-toc-h2"><a href="#คีย์บอร์ดและ-accessibility">คีย์บอร์ดและ accessibility</a></li></ul></nav>
+</div>
+<nav class="doc-pager" aria-label="ถัดไป / ก่อนหน้า"><a class="doc-pager-prev" href="/kanok-ui-docs/th/headless-accordion/" rel="prev"><span>ก่อนหน้า</span>Accordion</a><a class="doc-pager-next" href="/kanok-ui-docs/th/headless-ui-shell/" rel="next"><span>ถัดไป</span>UI shell</a></nav>
+<footer class="doc-footer">@purpurabog/ui 1.4.3 · MIT · <a href="https://cdn.jsdelivr.net/npm/@purpurabog/ui@1.4.3/THIRD-PARTY-NOTICES.md">ประกาศของบุคคลที่สาม</a><br>สร้างตาม Carbon Design System ไม่ได้เกี่ยวข้องหรือได้รับการรับรองจาก IBM — IBM และ Carbon เป็นเครื่องหมายการค้าของ IBM Corp.</footer>
+</ui-content>
+<ui-modal id="doc-search" heading="ค้นหา" data-count="พบ {n} รายการ" data-empty="ไม่พบ “{q}”">
+<ui-search label="ค้นหาในเอกสาร" placeholder="ค้นหาในเอกสาร" size="lg"></ui-search>
+<p class="doc-search-status" role="status"></p>
+<ul class="doc-search-results"></ul>
+</ui-modal>
+</body>
+</html>

@@ -1,0 +1,1055 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Time picker · @purpurabog/ui</title>
+<link rel="alternate" hreflang="en" href="/kanok-ui-docs/en/time-picker/"  /><link rel="alternate" hreflang="th" href="/kanok-ui-docs/th/time-picker/"  />
+<script>(function(){try{var q=new URLSearchParams(location.search).get("design"),d=q;if(q==="kanok"||q==="carbon")localStorage.setItem("ui-docs-design",q);else d=localStorage.getItem("ui-docs-design");if(d==="kanok")document.documentElement.setAttribute("data-design","kanok")}catch(e){}})();(function(){try{var m=localStorage.getItem("ui-docs-theme");if(m!=="light"&&m!=="dark"&&m!=="system")return;var d=m==="dark"||(m==="system"&&matchMedia("(prefers-color-scheme: dark)").matches),r=document.documentElement,t=d?"g100":"white";if(r.getAttribute("data-design")==="kanok")t=d?"lacquer":"paper";r.setAttribute("data-theme",t)}catch(e){}})();</script>
+<style>ui-header:not(:defined){z-index:8000;box-sizing:border-box;border-block-end:1px solid var(--ui-border-subtle-1);background:var(--ui-canvas);block-size:48px;display:block;position:fixed;inset:0 0 auto}:is(ui-header:not(:defined)>*,ui-side-nav:not(:defined)>*){visibility:hidden}:is(ui-header-panel:not(:defined),ui-modal:not(:defined)){display:none}ui-side-nav:not(:defined){display:none}ui-content:not(:defined){margin-block-start:48px;padding:32px;display:block}@media (width>=1056px){ui-side-nav[expanded]:not(:defined){background:var(--ui-canvas);inline-size:256px;display:block;position:fixed;inset:48px auto 0 0}ui-side-nav[expanded]:not(:defined)~ui-content:not(:defined){margin-inline-start:256px}}ui-tabs:not(:defined){display:block}ui-tabs:not(:defined)>ui-tab{box-sizing:border-box;border-block-end:2px solid var(--ui-hairline);block-size:40px;color:var(--ui-ink-muted);font:var(--ui-font-body-sm);padding:0 16px;line-height:38px;display:inline-block}ui-tabs:not(:defined)>ui-tab:first-of-type{border-block-end-color:var(--ui-interactive);color:var(--ui-ink)}ui-tabs:not(:defined)>ui-tab-panel{padding:16px;display:block}ui-tabs:not(:defined)>ui-tab-panel~ui-tab-panel{display:none}ui-code-snippet:not(:defined){background:var(--ui-layer-1);max-block-size:272px;font:var(--ui-font-code,12px/16px monospace);white-space:pre;padding:16px;display:block;overflow:hidden}[data-react-example]:empty>*{visibility:hidden}.doc-demo:has(:not(:defined))>*{visibility:hidden}[data-react-example]:empty{box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}.doc-demo:has(:not(:defined)){box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}@keyframes doc-skeleton{to{background-position:-200% 0}}@media (prefers-reduced-motion:reduce){[data-react-example]:empty{animation:none}.doc-demo:has(:not(:defined)){animation:none}}</style>
+
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/theme-switcher-BGAHXRgF.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/tabs-CvVVO2Pb.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/button-CTeCEJcq.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/date-BacUxW-t.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/time-picker-CCbJvqkX.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/skeleton-BESm0w-6.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/time-picker-skeleton-wHi_wipI.js"></script>
+  <link rel="stylesheet" crossorigin href="/kanok-ui-docs/assets/theme-switcher-CL5yB6XE.css">
+</head>
+<body>
+<ui-header label="@purpurabog/ui">
+<ui-skip-to-content></ui-skip-to-content>
+<ui-header-menu-button></ui-header-menu-button>
+<ui-header-name href="/kanok-ui-docs/en/" prefix="@purpurabog">ui</ui-header-name>
+<ui-header-global-bar>
+<ui-header-global-action id="doc-search-open" label="Search" tooltip-placement="bottom"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="m18.5 17.8-4.9-4.9a7 7 0 1 0-.7.7l4.9 4.9zM3 8.5a5.5 5.5 0 1 1 5.5 5.5A5.5 5.5 0 0 1 3 8.5Z" /></svg></ui-header-global-action>
+<ui-header-global-action label="Settings" panel="doc-settings" tooltip-placement="bottom-end"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="M16.9 10.6a7 7 0 0 0 0-1.2l1.8-1.4-1.6-2.8-2.1.8a6.6 6.6 0 0 0-1-.6L13.6 3h-3.2l-.4 2.4a6.6 6.6 0 0 0-1 .6l-2.1-.8L5.3 8l1.8 1.4a7 7 0 0 0 0 1.2L5.3 12l1.6 2.8 2.1-.8a6.6 6.6 0 0 0 1 .6l.4 2.4h3.2l.4-2.4a6.6 6.6 0 0 0 1-.6l2.1.8 1.6-2.8zM12 13a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" /></svg></ui-header-global-action>
+</ui-header-global-bar>
+<ui-header-panel id="doc-settings" label="Settings">
+<div class="doc-settings">
+<span class="doc-settings-label">Theme</span>
+<ui-theme-switcher storage-key="ui-docs-theme" tooltip-placement="bottom"></ui-theme-switcher>
+<span class="doc-settings-label">Style</span>
+<ui-content-switcher id="doc-design" aria-label="Style" size="sm"><ui-content-switcher-item name="carbon">Carbon</ui-content-switcher-item><ui-content-switcher-item name="kanok">Kanok</ui-content-switcher-item></ui-content-switcher>
+<span class="doc-settings-label">Language</span>
+<ui-link href="/kanok-ui-docs/th/time-picker/" hreflang="th" lang="th">ไทย</ui-link>
+</div>
+</ui-header-panel>
+</ui-header>
+<ui-side-nav label="Documentation"><ui-side-nav-items><ui-side-nav-menu label="Get started"><ui-side-nav-menu-item href="/kanok-ui-docs/en/">Overview</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/installation/">Installation</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/migration-1-0/">Migrating to 1.0</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Guides"><ui-side-nav-menu-item href="/kanok-ui-docs/en/themes/">Themes and layers</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/kanok/">Kanok design</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/customizing/">Customizing</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/icons/">Icons</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/forms/">Forms and validation</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/frameworks/">Frameworks</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/ai/">Using with AI</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Forms and actions" expanded><ui-side-nav-menu-item href="/kanok-ui-docs/en/button/">Button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/time-picker/" current>Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/file-uploader/">File uploader</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Overlays"><ui-side-nav-menu-item href="/kanok-ui-docs/en/modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/toggletip/">Toggletip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/menu/">Menu</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Data"><ui-side-nav-menu-item href="/kanok-ui-docs/en/data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/contained-list/">Contained list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tree-view/">Tree view</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Navigation"><ui-side-nav-menu-item href="/kanok-ui-docs/en/tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/breadcrumb/">Breadcrumb</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/link/">Link</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/ui-shell/">UI shell</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Content"><ui-side-nav-menu-item href="/kanok-ui-docs/en/tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tile/">Tile</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/user-avatar/">User avatar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/list/">List</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Status and loading"><ui-side-nav-menu-item href="/kanok-ui-docs/en/loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/inline-loading/">Inline loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/progress-bar/">Progress bar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/skeleton/">Skeleton</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/badge-indicator/">Badge indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/status-indicator/">Status indicator</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Layout"><ui-side-nav-menu-item href="/kanok-ui-docs/en/grid/">Grid</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/heading/">Heading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/layer/">Layer</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/action-set/">Action set</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/page-header/">Page header</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/big-number/">Big number</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Headless"><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless/">Introduction</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-file-uploader/">File uploader</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-menu/">Menu</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-ui-shell/">UI shell</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tree-view/">Tree view</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu></ui-side-nav-items></ui-side-nav><script>if(matchMedia('(min-width: 66rem)').matches)document.currentScript.previousElementSibling.setAttribute('expanded','')</script>
+<ui-content>
+<div class="doc-page">
+<article class="doc">
+<h1 id="time-picker">Time picker</h1>
+<p>A time picker takes a time as short <code>hh:mm</code> text, with optional selects beside it for AM / PM and the time zone.</p>
+<div class="doc-demo"><ui-time-picker label="Start time" name="time">
+  <ui-time-picker-select label="AM or PM" name="period">
+    <option value="AM">AM</option>
+    <option value="PM">PM</option>
+  </ui-time-picker-select>
+  <ui-time-picker-select label="Time zone" name="zone">
+    <option value="ict">Bangkok (ICT)</option>
+    <option value="utc">UTC</option>
+  </ui-time-picker-select>
+</ui-time-picker>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-1-0">HTML</ui-tab><ui-tab panel="code-1-1">React</ui-tab><ui-tab panel="code-1-2">React + Tailwind</ui-tab><ui-tab-panel name="code-1-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-time-picker</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Start time"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"time"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-time-picker-select</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"AM or PM"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"period"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"AM"</span>&gt;AM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"PM"</span>&gt;PM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-time-picker-select</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-time-picker-select</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Time zone"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"zone"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"ict"</span>&gt;Bangkok (ICT)&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"utc"</span>&gt;UTC&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-time-picker-select</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-time-picker</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-1-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiTimePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Start time"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"time"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTimePickerSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM or PM"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"period"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM"</span>&gt;AM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"PM"</span>&gt;PM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiTimePickerSelect</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTimePickerSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Time zone"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"zone"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ict"</span>&gt;Bangkok (ICT)&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"utc"</span>&gt;UTC&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiTimePickerSelect</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiTimePicker</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-1-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">TimePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Start time"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"time"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TimePickerSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM or PM"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"period"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM"</span>&gt;AM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"PM"</span>&gt;PM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">TimePickerSelect</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TimePickerSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Time zone"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"zone"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ict"</span>&gt;Bangkok (ICT)&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"utc"</span>&gt;UTC&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">TimePickerSelect</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">TimePicker</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="installation">Installation</h2>
+<ui-tabs class="doc-code-tabs" label="Code"><ui-tab panel="code-2-0">npm</ui-tab><ui-tab panel="code-2-1">shadcn · Web component</ui-tab><ui-tab panel="code-2-2">shadcn · React + Tailwind</ui-tab><ui-tab panel="code-2-3">Manual</ui-tab><ui-tab-panel name="code-2-0"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">@purpurabog/ui</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-1"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npx</span> <span style="color:var(--ui-tag-color-teal)">shadcn@4</span> <span style="color:var(--ui-tag-color-teal)">add</span> <span style="color:var(--ui-tag-color-teal)">@kanok-ui/time-picker</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-2"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npx</span> <span style="color:var(--ui-tag-color-teal)">shadcn@4</span> <span style="color:var(--ui-tag-color-teal)">add</span> <span style="color:var(--ui-tag-color-teal)">@kanok-ui/tw-time-picker</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-3"><ui-code-snippet type="multi" class="doc-code" data-lang="bash"><span style="color:var(--ui-ink-muted);font-style:italic"># Web component</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 1. Install the dependencies</span>
+<span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">lit@^3.3.0</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 2. Copy each file's "content" from</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    https://cdn.jsdelivr.net/npm/@purpurabog/ui@1.4.3/registry/time-picker.json</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    to its target:</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/time-picker/time-picker-select.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/time-picker/time-picker-shared.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/time-picker/time-picker-skeleton.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/time-picker/time-picker.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 3. Do the same for the items it needs (registry/&lt;name&gt;.json):</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    core-date, shared-element, shared-field, shared-form-control, shared-localize, shared-skeleton, shared-slots, tokens</span>
+
+<span style="color:var(--ui-ink-muted);font-style:italic"># React + Tailwind</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 1. Install the dependencies</span>
+<span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">@purpurabog/ui@^1.4.3</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 2. Copy each file's "content" from</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    https://cdn.jsdelivr.net/npm/@purpurabog/ui@1.4.3/registry/tw-time-picker.json</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    to its target:</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/react-tw/time-picker.tsx</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 3. Do the same for the items it needs (registry/&lt;name&gt;.json):</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    tw-field, tw-i18n, tw-skeleton, tw-theme, tw-utils</span></ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>npm gives you every component from the package. shadcn copies the source into your app instead: a copy pinned to this version that you can change. The shadcn commands need the <code>@kanok-ui</code> registry in your <code>components.json</code> once, see <a href="/kanok-ui-docs/en/installation/#react-tailwind-with-shadcn">Installation</a>.</p>
+<h2 id="use-it">Use it</h2>
+<ui-tabs class="doc-code-tabs" label="Code"><ui-tab panel="code-3-0">HTML</ui-tab><ui-tab panel="code-3-1">React</ui-tab><ui-tab panel="code-3-2">React + Tailwind</ui-tab><ui-tab-panel name="code-3-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;<span style="color:var(--ui-tag-color-magenta)">import</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/time-picker'</span>;&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-time-picker</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Start time"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"time"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-time-picker</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-3-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { UiTimePicker, UiTimePickerSelect } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/react'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiTimePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Start time"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"time"</span> /&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-3-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { TimePicker, TimePickerSelect } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@/components/ui/react-tw/time-picker'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">TimePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Start time"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"time"</span> /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="12-hour-or-24-hour">12-hour or 24-hour</h2>
+<p>By default the box takes 12-hour time, <code>h:mm</code> or <code>hh:mm</code> (<code>9:30</code>, <code>09:30</code>, <code>12:45</code>), and at most 5 characters. Carbon's own pattern rejects a leading zero; this one accepts it, so typing what the <code>hh:mm</code> placeholder shows works.</p>
+<p>For 24-hour time, set your own <code>pattern</code> and leave out the AM / PM select:</p>
+<div class="doc-demo"><ui-time-picker label="Departure" name="departure" pattern="([01]?[0-9]|2[0-3]):[0-5][0-9]"></ui-time-picker>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-4-0">HTML</ui-tab><ui-tab panel="code-4-1">React</ui-tab><ui-tab panel="code-4-2">React + Tailwind</ui-tab><ui-tab-panel name="code-4-0"><ui-code-snippet type="single" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-time-picker</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Departure"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"departure"</span> <span style="color:var(--ui-tag-color-purple)">pattern</span>=<span style="color:var(--ui-tag-color-teal)">"([01]?[0-9]|2[0-3]):[0-5][0-9]"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-time-picker</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-4-1"><ui-code-snippet type="single" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiTimePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Departure"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"departure"</span> <span style="color:var(--ui-tag-color-purple)">pattern</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"([01]?[0-9]|2[0-3]):[0-5][0-9]"</span> /&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-4-2"><ui-code-snippet type="single" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">TimePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Departure"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"departure"</span> <span style="color:var(--ui-tag-color-purple)">pattern</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"([01]?[0-9]|2[0-3]):[0-5][0-9]"</span> /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p><code>maxlength</code> (<code>maxLength</code> in React) changes the length limit; <code>placeholder</code> the hint.</p>
+<h2 id="start-with-a-value">Start with a value</h2>
+<p>To edit a time that is already saved, set <code>value</code> on the picker and on each select. A select without <code>value</code> starts on its <code>&lt;option selected&gt;</code>, else its first option, as a native select does.</p>
+<div class="doc-demo"><ui-time-picker label="Board meeting" value="2:30">
+  <ui-time-picker-select label="AM or PM" value="PM">
+    <option value="AM">AM</option>
+    <option value="PM">PM</option>
+  </ui-time-picker-select>
+  <ui-time-picker-select label="Time zone">
+    <option value="ict" selected>Bangkok (ICT)</option>
+    <option value="sgt">Singapore (SGT)</option>
+    <option value="utc">UTC</option>
+  </ui-time-picker-select>
+</ui-time-picker>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-5-0">HTML</ui-tab><ui-tab panel="code-5-1">React</ui-tab><ui-tab panel="code-5-2">React + Tailwind</ui-tab><ui-tab-panel name="code-5-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-time-picker</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Board meeting"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"2:30"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-time-picker-select</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"AM or PM"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"PM"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"AM"</span>&gt;AM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"PM"</span>&gt;PM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-time-picker-select</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-time-picker-select</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Time zone"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"ict"</span> <span style="color:var(--ui-tag-color-purple)">selected</span>&gt;Bangkok (ICT)&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"sgt"</span>&gt;Singapore (SGT)&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"utc"</span>&gt;UTC&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-time-picker-select</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-time-picker</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-5-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiTimePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Board meeting"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"2:30"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTimePickerSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM or PM"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"PM"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM"</span>&gt;AM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"PM"</span>&gt;PM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiTimePickerSelect</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTimePickerSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Time zone"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ict"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ict"</span>&gt;Bangkok (ICT)&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sgt"</span>&gt;Singapore (SGT)&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"utc"</span>&gt;UTC&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiTimePickerSelect</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiTimePicker</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-5-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">TimePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Board meeting"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"2:30"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TimePickerSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM or PM"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"PM"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM"</span>&gt;AM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"PM"</span>&gt;PM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">TimePickerSelect</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TimePickerSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Time zone"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ict"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ict"</span>&gt;Bangkok (ICT)&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sgt"</span>&gt;Singapore (SGT)&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"utc"</span>&gt;UTC&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">TimePickerSelect</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">TimePicker</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="sizes">Sizes</h2>
+<p><code>size</code>: <code>sm</code> 32px, <code>md</code> 40px (the default, as in Carbon), <code>lg</code> 48px. The selects take the picker's size. The prop has the same name in React and React + Tailwind.</p>
+<div class="doc-demo"><ui-time-picker size="sm" label="Small (sm)" value="9:30">
+  <ui-time-picker-select label="AM or PM">
+    <option value="AM">AM</option>
+    <option value="PM">PM</option>
+  </ui-time-picker-select>
+</ui-time-picker>
+<ui-time-picker size="lg" label="Large (lg)" value="9:30">
+  <ui-time-picker-select label="AM or PM">
+    <option value="AM">AM</option>
+    <option value="PM">PM</option>
+  </ui-time-picker-select>
+</ui-time-picker>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-6-0">HTML</ui-tab><ui-tab panel="code-6-1">React</ui-tab><ui-tab panel="code-6-2">React + Tailwind</ui-tab><ui-tab-panel name="code-6-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-time-picker</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Small (sm)"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"9:30"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-time-picker-select</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"AM or PM"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"AM"</span>&gt;AM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"PM"</span>&gt;PM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-time-picker-select</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-time-picker</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-time-picker</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"lg"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Large (lg)"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"9:30"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-time-picker-select</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"AM or PM"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"AM"</span>&gt;AM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"PM"</span>&gt;PM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-time-picker-select</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-time-picker</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-6-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiTimePicker</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Small (sm)"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"9:30"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTimePickerSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM or PM"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM"</span>&gt;AM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"PM"</span>&gt;PM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiTimePickerSelect</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiTimePicker</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiTimePicker</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"lg"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Large (lg)"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"9:30"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTimePickerSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM or PM"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM"</span>&gt;AM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"PM"</span>&gt;PM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiTimePickerSelect</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiTimePicker</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-6-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">TimePicker</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Small (sm)"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"9:30"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TimePickerSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM or PM"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM"</span>&gt;AM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"PM"</span>&gt;PM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">TimePickerSelect</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">TimePicker</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">TimePicker</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"lg"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Large (lg)"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"9:30"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TimePickerSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM or PM"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM"</span>&gt;AM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"PM"</span>&gt;PM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">TimePickerSelect</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">TimePicker</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="fluid">Fluid</h2>
+<p><code>fluid</code>, or a fluid form around it (<code>&lt;ui-fluid-form&gt;</code>, <code>FluidForm</code> in React + Tailwind), gives Carbon's fluid time picker: the box and each select as equal 64px columns with their labels inside. The prop has the same name in React and React + Tailwind.</p>
+<div class="doc-demo"><ui-time-picker fluid label="Delivery window starts" value="10:00">
+  <ui-time-picker-select label="AM or PM">
+    <option value="AM">AM</option>
+    <option value="PM">PM</option>
+  </ui-time-picker-select>
+  <ui-time-picker-select label="Time zone">
+    <option value="ict">Bangkok (ICT)</option>
+    <option value="utc">UTC</option>
+  </ui-time-picker-select>
+</ui-time-picker>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-7-0">HTML</ui-tab><ui-tab panel="code-7-1">React</ui-tab><ui-tab panel="code-7-2">React + Tailwind</ui-tab><ui-tab-panel name="code-7-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-time-picker</span> <span style="color:var(--ui-tag-color-purple)">fluid</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Delivery window starts"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"10:00"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-time-picker-select</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"AM or PM"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"AM"</span>&gt;AM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"PM"</span>&gt;PM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-time-picker-select</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-time-picker-select</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Time zone"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"ict"</span>&gt;Bangkok (ICT)&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"utc"</span>&gt;UTC&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-time-picker-select</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-time-picker</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-7-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiTimePicker</span> <span style="color:var(--ui-tag-color-purple)">fluid</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Delivery window starts"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"10:00"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTimePickerSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM or PM"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM"</span>&gt;AM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"PM"</span>&gt;PM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiTimePickerSelect</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTimePickerSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Time zone"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ict"</span>&gt;Bangkok (ICT)&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"utc"</span>&gt;UTC&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiTimePickerSelect</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiTimePicker</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-7-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">TimePicker</span> <span style="color:var(--ui-tag-color-purple)">fluid</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Delivery window starts"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"10:00"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TimePickerSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM or PM"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM"</span>&gt;AM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"PM"</span>&gt;PM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">TimePickerSelect</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TimePickerSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Time zone"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ict"</span>&gt;Bangkok (ICT)&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"utc"</span>&gt;UTC&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">TimePickerSelect</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">TimePicker</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="errors-and-warnings">Errors and warnings</h2>
+<p>The web component checks the text against <code>pattern</code> after the user leaves the box or tries to submit, and shows the error under it. <code>invalid-text</code> replaces the browser's own message (&quot;Please match the requested format&quot;). Set <code>invalid</code> for an error from your own validation, or <code>warn</code> with <code>warn-text</code> for a warning that doesn't block submit:</p>
+<div class="doc-demo"><ui-time-picker label="Pick-up" value="13:30" invalid invalid-text="The shop closes at 12:00."></ui-time-picker>
+<ui-time-picker label="Site visit" value="7:00" warn warn-text="Before office hours. Someone must open the gate.">
+  <ui-time-picker-select label="AM or PM">
+    <option value="AM">AM</option>
+    <option value="PM">PM</option>
+  </ui-time-picker-select>
+</ui-time-picker>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-8-0">HTML</ui-tab><ui-tab panel="code-8-1">React</ui-tab><ui-tab panel="code-8-2">React + Tailwind</ui-tab><ui-tab-panel name="code-8-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-time-picker</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Pick-up"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"13:30"</span> <span style="color:var(--ui-tag-color-purple)">invalid</span> <span style="color:var(--ui-tag-color-purple)">invalid-text</span>=<span style="color:var(--ui-tag-color-teal)">"The shop closes at 12:00."</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-time-picker</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-time-picker</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Site visit"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"7:00"</span> <span style="color:var(--ui-tag-color-purple)">warn</span> <span style="color:var(--ui-tag-color-purple)">warn-text</span>=<span style="color:var(--ui-tag-color-teal)">"Before office hours. Someone must open the gate."</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-time-picker-select</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"AM or PM"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"AM"</span>&gt;AM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"PM"</span>&gt;PM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-time-picker-select</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-time-picker</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-8-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiTimePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Pick-up"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"13:30"</span> <span style="color:var(--ui-tag-color-purple)">invalid</span> <span style="color:var(--ui-tag-color-purple)">invalidText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"The shop closes at 12:00."</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiTimePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Site visit"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"7:00"</span> <span style="color:var(--ui-tag-color-purple)">warn</span> <span style="color:var(--ui-tag-color-purple)">warnText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Before office hours. Someone must open the gate."</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTimePickerSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM or PM"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM"</span>&gt;AM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"PM"</span>&gt;PM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiTimePickerSelect</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiTimePicker</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-8-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">TimePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Pick-up"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"13:30"</span> <span style="color:var(--ui-tag-color-purple)">invalid</span> <span style="color:var(--ui-tag-color-purple)">invalidText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"The shop closes at 12:00."</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">TimePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Site visit"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"7:00"</span> <span style="color:var(--ui-tag-color-purple)">warn</span> <span style="color:var(--ui-tag-color-purple)">warnText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Before office hours. Someone must open the gate."</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TimePickerSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM or PM"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM"</span>&gt;AM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"PM"</span>&gt;PM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">TimePickerSelect</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">TimePicker</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>React + Tailwind follows Carbon React: <code>pattern</code> still takes part in the form's validation, but no message shows by itself. Set <code>invalid</code> and <code>invalidText</code> when your check fails. More in <a href="/kanok-ui-docs/en/forms/">Forms and validation</a>.</p>
+<h2 id="read-only-and-disabled">Read-only and disabled</h2>
+<p><code>readonly</code> keeps every value and submits it: the box can't be edited, and a select still takes focus but doesn't open or change. <code>disabled</code> disables the box and every select inside.</p>
+<div class="doc-demo"><ui-time-picker label="Start time" value="9:30" readonly>
+  <ui-time-picker-select label="AM or PM">
+    <option value="AM">AM</option>
+    <option value="PM">PM</option>
+  </ui-time-picker-select>
+</ui-time-picker>
+<ui-time-picker label="Start time" value="9:30" disabled>
+  <ui-time-picker-select label="AM or PM">
+    <option value="AM">AM</option>
+    <option value="PM">PM</option>
+  </ui-time-picker-select>
+</ui-time-picker>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-9-0">HTML</ui-tab><ui-tab panel="code-9-1">React</ui-tab><ui-tab panel="code-9-2">React + Tailwind</ui-tab><ui-tab-panel name="code-9-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-time-picker</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Start time"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"9:30"</span> <span style="color:var(--ui-tag-color-purple)">readonly</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-time-picker-select</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"AM or PM"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"AM"</span>&gt;AM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"PM"</span>&gt;PM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-time-picker-select</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-time-picker</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-time-picker</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Start time"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"9:30"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-time-picker-select</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"AM or PM"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"AM"</span>&gt;AM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"PM"</span>&gt;PM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-time-picker-select</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-time-picker</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-9-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiTimePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Start time"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"9:30"</span> <span style="color:var(--ui-tag-color-purple)">readonly</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTimePickerSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM or PM"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM"</span>&gt;AM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"PM"</span>&gt;PM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiTimePickerSelect</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiTimePicker</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiTimePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Start time"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"9:30"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTimePickerSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM or PM"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM"</span>&gt;AM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"PM"</span>&gt;PM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiTimePickerSelect</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiTimePicker</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-9-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">TimePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Start time"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"9:30"</span> <span style="color:var(--ui-tag-color-purple)">readOnly</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TimePickerSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM or PM"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM"</span>&gt;AM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"PM"</span>&gt;PM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">TimePickerSelect</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">TimePicker</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">TimePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Start time"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"9:30"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TimePickerSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM or PM"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM"</span>&gt;AM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"PM"</span>&gt;PM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">TimePickerSelect</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">TimePicker</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>The web component and its React wrapper spell it <code>readonly</code>; React + Tailwind uses <code>readOnly</code>.</p>
+<h2 id="what-the-form-gets">What the form gets</h2>
+<p>Each part submits on its own: the time box under its <code>name</code> and each select under its own <code>name</code>. The time is the text as typed (<code>9:30</code> or <code>09:30</code>), and the select values are your <code>&lt;option&gt;</code> values. Nothing is converted: the time zone select is a plain choice, with no time zone arithmetic behind it. <code>required</code> blocks the submit while the box is empty.</p>
+<div class="doc-demo"><form id="time-picker-form" method="dialog" style="display: grid; gap: 16px">
+  <ui-time-picker label="Signing deadline" name="time" required>
+    <ui-time-picker-select label="AM or PM" name="period">
+      <option value="AM">AM</option>
+      <option value="PM">PM</option>
+    </ui-time-picker-select>
+    <ui-time-picker-select label="Time zone" name="zone">
+      <option value="ict">Bangkok (ICT)</option>
+      <option value="utc">UTC</option>
+    </ui-time-picker-select>
+  </ui-time-picker>
+  <div><ui-button type="submit">Save</ui-button></div>
+</form>
+<p>Submitted: <output id="time-picker-form-out">nothing yet</output></p>
+
+<script type="text/x-demo">
+  const form = document.getElementById('time-picker-form');
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const entries = [...new FormData(form)].map(([key, value]) => `${key}=${value}`);
+    document.getElementById('time-picker-form-out').textContent = entries.join(', ');
+  });
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-10-0">HTML</ui-tab><ui-tab panel="code-10-1">React</ui-tab><ui-tab panel="code-10-2">React + Tailwind</ui-tab><ui-tab-panel name="code-10-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">form</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"time-picker-form"</span> <span style="color:var(--ui-tag-color-purple)">method</span>=<span style="color:var(--ui-tag-color-teal)">"dialog"</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"display: grid; gap: 16px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-time-picker</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Signing deadline"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"time"</span> <span style="color:var(--ui-tag-color-purple)">required</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-time-picker-select</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"AM or PM"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"period"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"AM"</span>&gt;AM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"PM"</span>&gt;PM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">ui-time-picker-select</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-time-picker-select</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Time zone"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"zone"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"ict"</span>&gt;Bangkok (ICT)&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"utc"</span>&gt;UTC&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">ui-time-picker-select</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-time-picker</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">div</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"submit"</span>&gt;Save&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">form</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;Submitted: &lt;<span style="color:var(--ui-tag-color-blue)">output</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"time-picker-form-out"</span>&gt;nothing yet&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> form <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'time-picker-form'</span>);
+  form.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'submit'</span>, (event) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    event.<span style="color:var(--ui-tag-color-cyan)">preventDefault</span>();
+    <span style="color:var(--ui-tag-color-magenta)">const</span> entries <span style="color:var(--ui-tag-color-magenta)">=</span> [<span style="color:var(--ui-tag-color-magenta)">...new</span> <span style="color:var(--ui-tag-color-cyan)">FormData</span>(form)].<span style="color:var(--ui-tag-color-cyan)">map</span>(([key, value]) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-teal)">`${</span><span style="color:var(--ui-tag-color-teal)">key</span><span style="color:var(--ui-tag-color-teal)">}=${</span><span style="color:var(--ui-tag-color-teal)">value</span><span style="color:var(--ui-tag-color-teal)">}`</span>);
+    document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'time-picker-form-out'</span>).textContent <span style="color:var(--ui-tag-color-magenta)">=</span> entries.<span style="color:var(--ui-tag-color-cyan)">join</span>(<span style="color:var(--ui-tag-color-teal)">', '</span>);
+  });
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-10-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">form</span> <span style="color:var(--ui-tag-color-purple)">onSubmit</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> { e.<span style="color:var(--ui-tag-color-cyan)">preventDefault</span>(); <span style="color:var(--ui-tag-color-cyan)">save</span>(<span style="color:var(--ui-tag-color-magenta)">new</span> <span style="color:var(--ui-tag-color-cyan)">FormData</span>(e.currentTarget)); }}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTimePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Signing deadline"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"time"</span> <span style="color:var(--ui-tag-color-purple)">required</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiTimePickerSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM or PM"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"period"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM"</span>&gt;AM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"PM"</span>&gt;PM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">UiTimePickerSelect</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiTimePickerSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Time zone"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"zone"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ict"</span>&gt;Bangkok (ICT)&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"utc"</span>&gt;UTC&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">UiTimePickerSelect</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiTimePicker</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiButton</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"submit"</span>&gt;Save&lt;/<span style="color:var(--ui-tag-color-blue)">UiButton</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">form</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-10-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">form</span> <span style="color:var(--ui-tag-color-purple)">onSubmit</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> { e.<span style="color:var(--ui-tag-color-cyan)">preventDefault</span>(); <span style="color:var(--ui-tag-color-cyan)">save</span>(<span style="color:var(--ui-tag-color-magenta)">new</span> <span style="color:var(--ui-tag-color-cyan)">FormData</span>(e.currentTarget)); }}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TimePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Signing deadline"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"time"</span> <span style="color:var(--ui-tag-color-purple)">required</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">TimePickerSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM or PM"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"period"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM"</span>&gt;AM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"PM"</span>&gt;PM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">TimePickerSelect</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">TimePickerSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Time zone"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"zone"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ict"</span>&gt;Bangkok (ICT)&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"utc"</span>&gt;UTC&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">TimePickerSelect</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">TimePicker</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">Button</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"submit"</span>&gt;Save&lt;/<span style="color:var(--ui-tag-color-blue)">Button</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">form</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p><code>save</code> stands for your own code.</p>
+<h2 id="events">Events</h2>
+<p>The web component fires <code>input</code> while typing and <code>change</code> on commit; each select fires <code>change</code>. In React the wrapper props are <code>onInput</code> / <code>onChange</code>; the Tailwind <code>TimePicker</code> passes <code>onChange</code> to its <code>&lt;input&gt;</code>, as React does.</p>
+<div class="doc-demo"><ui-time-picker id="time-picker-events" label="Reminder at"></ui-time-picker>
+<p>input: <output id="time-picker-events-input">–</output>, change: <output id="time-picker-events-change">–</output></p>
+
+<script type="text/x-demo">
+  const reminder = document.getElementById('time-picker-events');
+  reminder.addEventListener('input', () => {
+    document.getElementById('time-picker-events-input').textContent = reminder.value;
+  });
+  reminder.addEventListener('change', () => {
+    document.getElementById('time-picker-events-change').textContent = reminder.value;
+  });
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-11-0">HTML</ui-tab><ui-tab panel="code-11-1">React</ui-tab><ui-tab panel="code-11-2">React + Tailwind</ui-tab><ui-tab-panel name="code-11-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-time-picker</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"time-picker-events"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Reminder at"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-time-picker</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;input: &lt;<span style="color:var(--ui-tag-color-blue)">output</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"time-picker-events-input"</span>&gt;–&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;, change: &lt;<span style="color:var(--ui-tag-color-blue)">output</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"time-picker-events-change"</span>&gt;–&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> reminder <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'time-picker-events'</span>);
+  reminder.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'input'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'time-picker-events-input'</span>).textContent <span style="color:var(--ui-tag-color-magenta)">=</span> reminder.value;
+  });
+  reminder.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'change'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'time-picker-events-change'</span>).textContent <span style="color:var(--ui-tag-color-magenta)">=</span> reminder.value;
+  });
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-11-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> <span style="color:var(--ui-tag-color-magenta)">type</span> { UiTimePicker <span style="color:var(--ui-tag-color-magenta)">as</span> TimePickerElement } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiTimePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Reminder at"</span>
+  <span style="color:var(--ui-tag-color-purple)">onInput</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setTyped</span>((e.target <span style="color:var(--ui-tag-color-magenta)">as</span> <span style="color:var(--ui-tag-color-cyan)">TimePickerElement</span>).value)}
+  <span style="color:var(--ui-tag-color-purple)">onChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setCommitted</span>((e.target <span style="color:var(--ui-tag-color-magenta)">as</span> <span style="color:var(--ui-tag-color-cyan)">TimePickerElement</span>).value)} /&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-11-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-ink-muted);font-style:italic">// React's onChange runs on every keystroke; onBlur is the commit</span>
+&lt;<span style="color:var(--ui-tag-color-blue)">TimePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Reminder at"</span>
+  <span style="color:var(--ui-tag-color-purple)">onChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setTyped</span>(e.target.value)}
+  <span style="color:var(--ui-tag-color-purple)">onBlur</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setCommitted</span>(e.target.value)} /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="check-a-time-against-another">Check a time against another</h2>
+<p>Your own rules, such as a closing time after the opening time, go through <code>invalid</code> and <code>invalid-text</code>: check on <code>change</code> and set them. Here both boxes take 24-hour time.</p>
+<div class="doc-demo"><div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start">
+  <ui-time-picker id="time-picker-opens" label="Branch opens" value="08:30" pattern="([01]?[0-9]|2[0-3]):[0-5][0-9]"></ui-time-picker>
+  <ui-time-picker id="time-picker-closes" label="Branch closes" value="17:30" pattern="([01]?[0-9]|2[0-3]):[0-5][0-9]"></ui-time-picker>
+</div>
+
+<script type="text/x-demo">
+  const opens = document.getElementById('time-picker-opens');
+  const closes = document.getElementById('time-picker-closes');
+  const minutes = (text) => {
+    const [h, m] = text.split(':').map(Number);
+    return h * 60 + m;
+  };
+  const check = () => {
+    const wrong = minutes(closes.value) <= minutes(opens.value);
+    closes.invalid = wrong;
+    closes.invalidText = wrong ? 'Must be after the opening time.' : '';
+  };
+  opens.addEventListener('change', check);
+  closes.addEventListener('change', check);
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-12-0">HTML</ui-tab><ui-tab panel="code-12-1">React</ui-tab><ui-tab panel="code-12-2">React + Tailwind</ui-tab><ui-tab-panel name="code-12-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-time-picker</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"time-picker-opens"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Branch opens"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"08:30"</span> <span style="color:var(--ui-tag-color-purple)">pattern</span>=<span style="color:var(--ui-tag-color-teal)">"([01]?[0-9]|2[0-3]):[0-5][0-9]"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-time-picker</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-time-picker</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"time-picker-closes"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Branch closes"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"17:30"</span> <span style="color:var(--ui-tag-color-purple)">pattern</span>=<span style="color:var(--ui-tag-color-teal)">"([01]?[0-9]|2[0-3]):[0-5][0-9]"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-time-picker</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> opens <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'time-picker-opens'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> closes <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'time-picker-closes'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> <span style="color:var(--ui-tag-color-cyan)">minutes</span> <span style="color:var(--ui-tag-color-magenta)">=</span> (text) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    <span style="color:var(--ui-tag-color-magenta)">const</span> [h, m] <span style="color:var(--ui-tag-color-magenta)">=</span> text.<span style="color:var(--ui-tag-color-cyan)">split</span>(<span style="color:var(--ui-tag-color-teal)">':'</span>).<span style="color:var(--ui-tag-color-cyan)">map</span>(Number);
+    <span style="color:var(--ui-tag-color-magenta)">return</span> h <span style="color:var(--ui-tag-color-magenta)">*</span> <span style="color:var(--ui-tag-color-green)">60</span> <span style="color:var(--ui-tag-color-magenta)">+</span> m;
+  };
+  <span style="color:var(--ui-tag-color-magenta)">const</span> <span style="color:var(--ui-tag-color-cyan)">check</span> <span style="color:var(--ui-tag-color-magenta)">=</span> () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    <span style="color:var(--ui-tag-color-magenta)">const</span> wrong <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">minutes</span>(closes.value) <span style="color:var(--ui-tag-color-magenta)">&lt;=</span> <span style="color:var(--ui-tag-color-cyan)">minutes</span>(opens.value);
+    closes.invalid <span style="color:var(--ui-tag-color-magenta)">=</span> wrong;
+    closes.invalidText <span style="color:var(--ui-tag-color-magenta)">=</span> wrong <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-teal)">'Must be after the opening time.'</span> <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-teal)">''</span>;
+  };
+  opens.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'change'</span>, check);
+  closes.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'change'</span>, check);
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-12-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> H24 <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'([01]?[0-9]|2[0-3]):[0-5][0-9]'</span>;
+<span style="color:var(--ui-tag-color-magenta)">const</span> <span style="color:var(--ui-tag-color-cyan)">minutes</span> <span style="color:var(--ui-tag-color-magenta)">=</span> (text<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [h, m] <span style="color:var(--ui-tag-color-magenta)">=</span> text.<span style="color:var(--ui-tag-color-cyan)">split</span>(<span style="color:var(--ui-tag-color-teal)">':'</span>).<span style="color:var(--ui-tag-color-cyan)">map</span>(Number);
+  <span style="color:var(--ui-tag-color-magenta)">return</span> h <span style="color:var(--ui-tag-color-magenta)">*</span> <span style="color:var(--ui-tag-color-green)">60</span> <span style="color:var(--ui-tag-color-magenta)">+</span> m;
+};
+<span style="color:var(--ui-tag-color-magenta)">const</span> wrong <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">minutes</span>(closes) <span style="color:var(--ui-tag-color-magenta)">&lt;=</span> <span style="color:var(--ui-tag-color-cyan)">minutes</span>(opens);
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiTimePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Branch opens"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{opens} <span style="color:var(--ui-tag-color-purple)">pattern</span><span style="color:var(--ui-tag-color-magenta)">=</span>{H24}
+  <span style="color:var(--ui-tag-color-purple)">onChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpens</span>((e.target <span style="color:var(--ui-tag-color-magenta)">as</span> <span style="color:var(--ui-tag-color-cyan)">TimePickerElement</span>).value)} /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiTimePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Branch closes"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{closes} <span style="color:var(--ui-tag-color-purple)">pattern</span><span style="color:var(--ui-tag-color-magenta)">=</span>{H24}
+  <span style="color:var(--ui-tag-color-purple)">onChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setCloses</span>((e.target <span style="color:var(--ui-tag-color-magenta)">as</span> <span style="color:var(--ui-tag-color-cyan)">TimePickerElement</span>).value)}
+  <span style="color:var(--ui-tag-color-purple)">invalid</span><span style="color:var(--ui-tag-color-magenta)">=</span>{wrong} <span style="color:var(--ui-tag-color-purple)">invalidText</span><span style="color:var(--ui-tag-color-magenta)">=</span>{wrong <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-teal)">'Must be after the opening time.'</span> <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-teal)">''</span>} /&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-12-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-ink-muted);font-style:italic">// H24 and minutes as in the React tab</span>
+<span style="color:var(--ui-tag-color-magenta)">const</span> wrong <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">minutes</span>(closes) <span style="color:var(--ui-tag-color-magenta)">&lt;=</span> <span style="color:var(--ui-tag-color-cyan)">minutes</span>(opens);
+
+&lt;<span style="color:var(--ui-tag-color-blue)">TimePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Branch opens"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{opens} <span style="color:var(--ui-tag-color-purple)">pattern</span><span style="color:var(--ui-tag-color-magenta)">=</span>{H24} <span style="color:var(--ui-tag-color-purple)">onChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpens</span>(e.target.value)} /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">TimePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Branch closes"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{closes} <span style="color:var(--ui-tag-color-purple)">pattern</span><span style="color:var(--ui-tag-color-magenta)">=</span>{H24} <span style="color:var(--ui-tag-color-purple)">onChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setCloses</span>(e.target.value)}
+  <span style="color:var(--ui-tag-color-purple)">invalid</span><span style="color:var(--ui-tag-color-magenta)">=</span>{wrong} <span style="color:var(--ui-tag-color-purple)">invalidText</span><span style="color:var(--ui-tag-color-magenta)">=</span>{wrong <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-teal)">'Must be after the opening time.'</span> <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-teal)">''</span>} /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="skeleton">Skeleton</h2>
+<p>While the page loads its data, show <code>&lt;ui-time-picker-skeleton&gt;</code> in the picker's place. Carbon has only the fluid time picker skeleton, so this is that one: the box, the AM / PM select and the time zone select. <code>is-only-two</code> (<code>isOnlyTwo</code> in React + Tailwind) draws two equal parts instead. It has its own import, <code>@purpurabog/ui/time-picker-skeleton</code>, and is hidden from screen readers.</p>
+<div class="doc-demo"><ui-time-picker-skeleton></ui-time-picker-skeleton>
+<ui-time-picker-skeleton is-only-two></ui-time-picker-skeleton>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-13-0">HTML</ui-tab><ui-tab panel="code-13-1">React</ui-tab><ui-tab panel="code-13-2">React + Tailwind</ui-tab><ui-tab-panel name="code-13-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-time-picker-skeleton</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-time-picker-skeleton</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-time-picker-skeleton</span> <span style="color:var(--ui-tag-color-purple)">is-only-two</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-time-picker-skeleton</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-13-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { UiTimePickerSkeleton } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/react'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiTimePickerSkeleton</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiTimePickerSkeleton</span> <span style="color:var(--ui-tag-color-purple)">isOnlyTwo</span> /&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-13-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { TimePickerSkeleton } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@/components/ui/react-tw/time-picker'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">TimePickerSkeleton</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">TimePickerSkeleton</span> <span style="color:var(--ui-tag-color-purple)">isOnlyTwo</span> /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="keyboard">Keyboard</h2>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Enter (in the time box)</td>
+<td>Submits the form it's in, as a native input does</td>
+</tr>
+<tr>
+<td>↑ / ↓, Space (on a select)</td>
+<td>The browser's own select keys; ignored while read-only</td>
+</tr>
+</tbody>
+</table>
+<h2 id="accessibility">Accessibility</h2>
+<ul>
+<li>The box is a native text input with a <code>&lt;label&gt;</code>; the selects are native <code>&lt;select&gt;</code> elements.</li>
+<li>Name each select with <code>label</code>. Without one, the web component and React + Tailwind fall back to &quot;Open list of options&quot;, as Carbon does.</li>
+<li>An error sets <code>aria-invalid</code> on the box and is linked to it with <code>aria-describedby</code>.</li>
+<li>A read-only select has <code>aria-readonly</code>.</li>
+</ul>
+<p>Unstyled React parts with the same behaviour: <a href="/kanok-ui-docs/en/headless-time-picker/">Headless Time picker</a>.</p>
+<h2 id="api">API</h2>
+<p>Generated from the package. In React, pass a property as a prop of the same name; events are props too (the React column).</p>
+<h3 id="ui-time-picker-react-uitimepicker"><code>&lt;ui-time-picker&gt;</code> · React <code>UiTimePicker</code></h3>
+<h4 id="attributes">Attributes</h4>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>max-length</code></td>
+<td></td>
+<td></td>
+<td></td>
+<td>Deprecated: use <code>maxlength</code></td>
+</tr>
+<tr>
+<td><code>label</code></td>
+<td><code>label</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>hide-label</code></td>
+<td><code>hideLabel</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>value</code></td>
+<td><code>value</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>placeholder</code></td>
+<td><code>placeholder</code></td>
+<td><code>string</code></td>
+<td><code>'hh:mm'</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>pattern</code></td>
+<td><code>pattern</code></td>
+<td></td>
+<td><code>String.raw`(1[012]|0?[1-9]):[0-5][0-9](\s)?`</code></td>
+<td>12-hour time with an optional trailing space. Carbon's default rejects a leading zero, so &quot;09:30&quot; typed as the <code>hh:mm</code> placeholder shows would fail; this one accepts &quot;9:30&quot; and &quot;09:30&quot;.</td>
+</tr>
+<tr>
+<td><code>maxlength</code></td>
+<td><code>maxLength</code></td>
+<td><code>number</code></td>
+<td><code>5</code></td>
+<td>Like <code>&lt;input maxlength&gt;</code> (Carbon <code>maxLength</code>); the <code>max-length</code> attribute of 0.8 and earlier is still read.</td>
+</tr>
+<tr>
+<td><code>size</code></td>
+<td><code>size</code></td>
+<td><code>TimePickerSize</code></td>
+<td><code>'md'</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>disabled</code></td>
+<td><code>disabled</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>readonly</code></td>
+<td><code>readonly</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>fluid</code></td>
+<td><code>fluid</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Carbon <code>FluidTimePicker</code>: equal 64px columns with labels inside, an error / warning inside the box. <code>&lt;ui-fluid-form&gt;</code> sets it for every field inside.</td>
+</tr>
+<tr>
+<td><code>required</code></td>
+<td><code>required</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>invalid</code></td>
+<td><code>invalid</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>invalid-text</code></td>
+<td><code>invalidText</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>warn</code></td>
+<td><code>warn</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>warn-text</code></td>
+<td><code>warnText</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="properties">Properties</h4>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>willValidate</code></td>
+<td></td>
+<td>(read-only) Whether the field takes part in constraint validation (not while disabled), as natively.</td>
+</tr>
+<tr>
+<td><code>labels</code></td>
+<td></td>
+<td>(read-only) The <code>&lt;label&gt;</code>s that point at this field.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="methods">Methods</h4>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>setCustomValidity(message)</code></td>
+<td>Like <code>&lt;input&gt;.setCustomValidity()</code>: a non-empty message makes the field invalid (and is shown as its error once touched) until cleared with ''.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="events-2">Events</h4>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>React</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>change</code></td>
+<td><code>onChange</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="slots">Slots</h4>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(default)</td>
+<td><code>&lt;ui-time-picker-select&gt;</code> elements</td>
+</tr>
+<tr>
+<td><code>label</code></td>
+<td>Rich label</td>
+</tr>
+<tr>
+<td><code>invalid-text</code></td>
+<td>Rich error text</td>
+</tr>
+<tr>
+<td><code>warn-text</code></td>
+<td>Rich warning text</td>
+</tr>
+</tbody>
+</table>
+<h4 id="css-parts">CSS parts</h4>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>label</code></td>
+<td>The label</td>
+</tr>
+<tr>
+<td><code>base</code></td>
+<td>Row with the input and the selects</td>
+</tr>
+<tr>
+<td><code>input</code></td>
+<td>The text input</td>
+</tr>
+<tr>
+<td><code>error-text</code></td>
+<td>Error text</td>
+</tr>
+<tr>
+<td><code>invalid-text</code></td>
+<td>Same line as <code>error-text</code> (named after the <code>invalid-text</code> attribute / slot)</td>
+</tr>
+<tr>
+<td><code>warning-text</code></td>
+<td>Warning text</td>
+</tr>
+<tr>
+<td><code>warn-text</code></td>
+<td>Same line as <code>warning-text</code> (named after the <code>warn-text</code> attribute / slot)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="css-custom-properties">CSS custom properties</h4>
+<table>
+<thead>
+<tr>
+<th>Custom property</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--ui-field-border</code></td>
+<td></td>
+<td>Border on every side of the box (default none: Carbon's underline only; Kanok: a 1px outline)</td>
+</tr>
+<tr>
+<td><code>--ui-field-disabled-border-color</code></td>
+<td></td>
+<td>Border colour when disabled (default: the underline transparent)</td>
+</tr>
+<tr>
+<td><code>--ui-field-readonly-border-color</code></td>
+<td></td>
+<td>Border colour when read-only (default: a hairline underline)</td>
+</tr>
+<tr>
+<td><code>--ui-field-radius</code></td>
+<td></td>
+<td>Corner radius of the box (default 0; Kanok: 6px)</td>
+</tr>
+<tr>
+<td><code>--ui-field-background</code></td>
+<td></td>
+<td>Fill of the box (default <code>--ui-surface-1</code>; Kanok: transparent)</td>
+</tr>
+<tr>
+<td><code>--ui-label-font</code></td>
+<td></td>
+<td>Font of the label (default <code>--ui-font-caption</code>; Kanok: 14px semibold)</td>
+</tr>
+<tr>
+<td><code>--ui-label-color</code></td>
+<td></td>
+<td>Colour of the label (default <code>--ui-ink-muted</code>; Kanok: <code>--ui-ink</code>)</td>
+</tr>
+<tr>
+<td><code>--ui-field-readonly-background</code></td>
+<td></td>
+<td>The box's fill when read-only (default transparent; Kanok: a faint ink tint, so read-only reads as set and never weaker than disabled)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ui-time-picker-select-react-uitimepickerselect"><code>&lt;ui-time-picker-select&gt;</code> · React <code>UiTimePickerSelect</code></h3>
+<h4 id="attributes-2">Attributes</h4>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>label</code></td>
+<td><code>label</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>Accessible name of the select (Carbon default &quot;open list of options&quot;).</td>
+</tr>
+<tr>
+<td><code>value</code></td>
+<td><code>value</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>size</code></td>
+<td><code>size</code></td>
+<td><code>TimePickerSize</code></td>
+<td><code>'md'</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>disabled</code></td>
+<td><code>disabled</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>readonly</code></td>
+<td><code>readonly</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="properties-2">Properties</h4>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pickerDisabled</code></td>
+<td><code>boolean</code></td>
+<td>Set by the surrounding <code>&lt;ui-time-picker&gt;</code> when it is disabled.</td>
+</tr>
+<tr>
+<td><code>willValidate</code></td>
+<td></td>
+<td>(read-only) Whether the field takes part in constraint validation (not while disabled), as natively.</td>
+</tr>
+<tr>
+<td><code>labels</code></td>
+<td></td>
+<td>(read-only) The <code>&lt;label&gt;</code>s that point at this field.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="events-3">Events</h4>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>React</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>change</code></td>
+<td><code>onChange</code></td>
+<td>When the user picks an option</td>
+</tr>
+</tbody>
+</table>
+<h4 id="slots-2">Slots</h4>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(default)</td>
+<td><code>&lt;option&gt;</code> elements</td>
+</tr>
+</tbody>
+</table>
+<h4 id="css-parts-2">CSS parts</h4>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>input</code></td>
+<td>The native select</td>
+</tr>
+</tbody>
+</table>
+<h4 id="css-custom-properties-2">CSS custom properties</h4>
+<table>
+<thead>
+<tr>
+<th>Custom property</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--ui-field-readonly-background</code></td>
+<td></td>
+<td>The box's fill when read-only (default transparent; Kanok: a faint ink tint, so read-only reads as set and never weaker than disabled)</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+<nav class="doc-toc" aria-labelledby="doc-toc-title"><p id="doc-toc-title" class="doc-toc-title">On this page</p><ul><li class="doc-toc-h2"><a href="#installation">Installation</a></li><li class="doc-toc-h2"><a href="#use-it">Use it</a></li><li class="doc-toc-h2"><a href="#12-hour-or-24-hour">12-hour or 24-hour</a></li><li class="doc-toc-h2"><a href="#start-with-a-value">Start with a value</a></li><li class="doc-toc-h2"><a href="#sizes">Sizes</a></li><li class="doc-toc-h2"><a href="#fluid">Fluid</a></li><li class="doc-toc-h2"><a href="#errors-and-warnings">Errors and warnings</a></li><li class="doc-toc-h2"><a href="#read-only-and-disabled">Read-only and disabled</a></li><li class="doc-toc-h2"><a href="#what-the-form-gets">What the form gets</a></li><li class="doc-toc-h2"><a href="#events">Events</a></li><li class="doc-toc-h2"><a href="#check-a-time-against-another">Check a time against another</a></li><li class="doc-toc-h2"><a href="#skeleton">Skeleton</a></li><li class="doc-toc-h2"><a href="#keyboard">Keyboard</a></li><li class="doc-toc-h2"><a href="#accessibility">Accessibility</a></li><li class="doc-toc-h2"><a href="#api">API</a></li><li class="doc-toc-h3"><a href="#ui-time-picker-react-uitimepicker">&lt;ui-time-picker></a></li><li class="doc-toc-h3"><a href="#ui-time-picker-select-react-uitimepickerselect">&lt;ui-time-picker-select></a></li></ul></nav>
+</div>
+<nav class="doc-pager" aria-label="Next / Previous"><a class="doc-pager-prev" href="/kanok-ui-docs/en/date-picker/" rel="prev"><span>Previous</span>Date picker</a><a class="doc-pager-next" href="/kanok-ui-docs/en/slider/" rel="next"><span>Next</span>Slider</a></nav>
+<footer class="doc-footer">@purpurabog/ui 1.4.3 · MIT · <a href="https://cdn.jsdelivr.net/npm/@purpurabog/ui@1.4.3/THIRD-PARTY-NOTICES.md">Third-party notices</a><br>Built on the Carbon Design System. Not affiliated with or endorsed by IBM; IBM and Carbon are trademarks of IBM Corp.</footer>
+</ui-content>
+<ui-modal id="doc-search" heading="Search" data-count="{n} results" data-empty="No results for “{q}”">
+<ui-search label="Search the docs" placeholder="Search the docs" size="lg"></ui-search>
+<p class="doc-search-status" role="status"></p>
+<ul class="doc-search-results"></ul>
+</ui-modal>
+</body>
+</html>

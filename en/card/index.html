@@ -1,0 +1,1371 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Card · @purpurabog/ui</title>
+<link rel="alternate" hreflang="en" href="/kanok-ui-docs/en/card/"  /><link rel="alternate" hreflang="th" href="/kanok-ui-docs/th/card/"  />
+<script>(function(){try{var q=new URLSearchParams(location.search).get("design"),d=q;if(q==="kanok"||q==="carbon")localStorage.setItem("ui-docs-design",q);else d=localStorage.getItem("ui-docs-design");if(d==="kanok")document.documentElement.setAttribute("data-design","kanok")}catch(e){}})();(function(){try{var m=localStorage.getItem("ui-docs-theme");if(m!=="light"&&m!=="dark"&&m!=="system")return;var d=m==="dark"||(m==="system"&&matchMedia("(prefers-color-scheme: dark)").matches),r=document.documentElement,t=d?"g100":"white";if(r.getAttribute("data-design")==="kanok")t=d?"lacquer":"paper";r.setAttribute("data-theme",t)}catch(e){}})();</script>
+<style>ui-header:not(:defined){z-index:8000;box-sizing:border-box;border-block-end:1px solid var(--ui-border-subtle-1);background:var(--ui-canvas);block-size:48px;display:block;position:fixed;inset:0 0 auto}:is(ui-header:not(:defined)>*,ui-side-nav:not(:defined)>*){visibility:hidden}:is(ui-header-panel:not(:defined),ui-modal:not(:defined)){display:none}ui-side-nav:not(:defined){display:none}ui-content:not(:defined){margin-block-start:48px;padding:32px;display:block}@media (width>=1056px){ui-side-nav[expanded]:not(:defined){background:var(--ui-canvas);inline-size:256px;display:block;position:fixed;inset:48px auto 0 0}ui-side-nav[expanded]:not(:defined)~ui-content:not(:defined){margin-inline-start:256px}}ui-tabs:not(:defined){display:block}ui-tabs:not(:defined)>ui-tab{box-sizing:border-box;border-block-end:2px solid var(--ui-hairline);block-size:40px;color:var(--ui-ink-muted);font:var(--ui-font-body-sm);padding:0 16px;line-height:38px;display:inline-block}ui-tabs:not(:defined)>ui-tab:first-of-type{border-block-end-color:var(--ui-interactive);color:var(--ui-ink)}ui-tabs:not(:defined)>ui-tab-panel{padding:16px;display:block}ui-tabs:not(:defined)>ui-tab-panel~ui-tab-panel{display:none}ui-code-snippet:not(:defined){background:var(--ui-layer-1);max-block-size:272px;font:var(--ui-font-code,12px/16px monospace);white-space:pre;padding:16px;display:block;overflow:hidden}[data-react-example]:empty>*{visibility:hidden}.doc-demo:has(:not(:defined))>*{visibility:hidden}[data-react-example]:empty{box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}.doc-demo:has(:not(:defined)){box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}@keyframes doc-skeleton{to{background-position:-200% 0}}@media (prefers-reduced-motion:reduce){[data-react-example]:empty{animation:none}.doc-demo:has(:not(:defined)){animation:none}}</style>
+
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/theme-switcher-BGAHXRgF.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/tabs-CvVVO2Pb.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/button-CTeCEJcq.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/icon-button-CfOs3op2.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/typeahead-CDCzrGcR.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/events-IQD1_DyD.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/overflow-menu-BerTRcGD.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/overflow-Ctnez5Id.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/card-ExYqmkPy.js"></script>
+  <link rel="stylesheet" crossorigin href="/kanok-ui-docs/assets/theme-switcher-CL5yB6XE.css">
+</head>
+<body>
+<ui-header label="@purpurabog/ui">
+<ui-skip-to-content></ui-skip-to-content>
+<ui-header-menu-button></ui-header-menu-button>
+<ui-header-name href="/kanok-ui-docs/en/" prefix="@purpurabog">ui</ui-header-name>
+<ui-header-global-bar>
+<ui-header-global-action id="doc-search-open" label="Search" tooltip-placement="bottom"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="m18.5 17.8-4.9-4.9a7 7 0 1 0-.7.7l4.9 4.9zM3 8.5a5.5 5.5 0 1 1 5.5 5.5A5.5 5.5 0 0 1 3 8.5Z" /></svg></ui-header-global-action>
+<ui-header-global-action label="Settings" panel="doc-settings" tooltip-placement="bottom-end"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="M16.9 10.6a7 7 0 0 0 0-1.2l1.8-1.4-1.6-2.8-2.1.8a6.6 6.6 0 0 0-1-.6L13.6 3h-3.2l-.4 2.4a6.6 6.6 0 0 0-1 .6l-2.1-.8L5.3 8l1.8 1.4a7 7 0 0 0 0 1.2L5.3 12l1.6 2.8 2.1-.8a6.6 6.6 0 0 0 1 .6l.4 2.4h3.2l.4-2.4a6.6 6.6 0 0 0 1-.6l2.1.8 1.6-2.8zM12 13a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" /></svg></ui-header-global-action>
+</ui-header-global-bar>
+<ui-header-panel id="doc-settings" label="Settings">
+<div class="doc-settings">
+<span class="doc-settings-label">Theme</span>
+<ui-theme-switcher storage-key="ui-docs-theme" tooltip-placement="bottom"></ui-theme-switcher>
+<span class="doc-settings-label">Style</span>
+<ui-content-switcher id="doc-design" aria-label="Style" size="sm"><ui-content-switcher-item name="carbon">Carbon</ui-content-switcher-item><ui-content-switcher-item name="kanok">Kanok</ui-content-switcher-item></ui-content-switcher>
+<span class="doc-settings-label">Language</span>
+<ui-link href="/kanok-ui-docs/th/card/" hreflang="th" lang="th">ไทย</ui-link>
+</div>
+</ui-header-panel>
+</ui-header>
+<ui-side-nav label="Documentation"><ui-side-nav-items><ui-side-nav-menu label="Get started"><ui-side-nav-menu-item href="/kanok-ui-docs/en/">Overview</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/installation/">Installation</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/migration-1-0/">Migrating to 1.0</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Guides"><ui-side-nav-menu-item href="/kanok-ui-docs/en/themes/">Themes and layers</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/kanok/">Kanok design</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/customizing/">Customizing</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/icons/">Icons</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/forms/">Forms and validation</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/frameworks/">Frameworks</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/ai/">Using with AI</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Forms and actions"><ui-side-nav-menu-item href="/kanok-ui-docs/en/button/">Button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/file-uploader/">File uploader</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Overlays"><ui-side-nav-menu-item href="/kanok-ui-docs/en/modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/toggletip/">Toggletip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/menu/">Menu</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Data"><ui-side-nav-menu-item href="/kanok-ui-docs/en/data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/contained-list/">Contained list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tree-view/">Tree view</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Navigation"><ui-side-nav-menu-item href="/kanok-ui-docs/en/tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/breadcrumb/">Breadcrumb</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/link/">Link</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/ui-shell/">UI shell</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Content" expanded><ui-side-nav-menu-item href="/kanok-ui-docs/en/tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tile/">Tile</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/card/" current>Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/user-avatar/">User avatar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/list/">List</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Status and loading"><ui-side-nav-menu-item href="/kanok-ui-docs/en/loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/inline-loading/">Inline loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/progress-bar/">Progress bar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/skeleton/">Skeleton</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/badge-indicator/">Badge indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/status-indicator/">Status indicator</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Layout"><ui-side-nav-menu-item href="/kanok-ui-docs/en/grid/">Grid</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/heading/">Heading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/layer/">Layer</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/action-set/">Action set</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/page-header/">Page header</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/big-number/">Big number</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Headless"><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless/">Introduction</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-file-uploader/">File uploader</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-menu/">Menu</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-ui-shell/">UI shell</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tree-view/">Tree view</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu></ui-side-nav-items></ui-side-nav><script>if(matchMedia('(min-width: 66rem)').matches)document.currentScript.previousElementSibling.setAttribute('expanded','')</script>
+<ui-content>
+<div class="doc-page">
+<article class="doc">
+<h1 id="card">Card</h1>
+<p>A card is a box built from parts: media, a header with a title and its actions, a body and a footer. Use it for a set of things the user browses or picks from: projects, reports, documents. It is Carbon's <code>Card</code> (a preview in Carbon): square, no border, no shadow, on the next layer colour.</p>
+<div class="doc-demo"><ui-card style="max-width: 360px">
+  <ui-card-media ratio="16x9">
+    <img alt="" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 90'%3E%3Crect width='160' height='90' fill='%23d0e2ff'/%3E%3Cpath d='M66 20h22l10 10v40H66z' fill='%23ffffff'/%3E%3Cpath d='M72 42h20M72 50h20M72 58h12' stroke='%230f62fe' stroke-width='2'/%3E%3C/svg%3E" />
+  </ui-card-media>
+  <ui-card-header>
+    <ui-card-title label="Contract" description="Updated 3 October 2026">Office lease, Silom branch</ui-card-title>
+  </ui-card-header>
+  <ui-card-body>Three-year lease from 1 January 2027. Waiting for the landlord's signature.</ui-card-body>
+  <ui-card-footer>
+    <ui-card-action><ui-button kind="ghost">Open contract</ui-button></ui-card-action>
+  </ui-card-footer>
+</ui-card>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-1-0">HTML</ui-tab><ui-tab panel="code-1-1">React</ui-tab><ui-tab panel="code-1-2">React + Tailwind</ui-tab><ui-tab-panel name="code-1-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-card</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"max-width: 360px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-media</span> <span style="color:var(--ui-tag-color-purple)">ratio</span>=<span style="color:var(--ui-tag-color-teal)">"16x9"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">img</span> <span style="color:var(--ui-tag-color-purple)">alt</span>=<span style="color:var(--ui-tag-color-teal)">""</span> <span style="color:var(--ui-tag-color-purple)">src</span>=<span style="color:var(--ui-tag-color-teal)">"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 90'%3E%3Crect width='160' height='90' fill='%23d0e2ff'/%3E%3Cpath d='M66 20h22l10 10v40H66z' fill='%23ffffff'/%3E%3Cpath d='M72 42h20M72 50h20M72 58h12' stroke='%230f62fe' stroke-width='2'/%3E%3C/svg%3E"</span> /&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-media</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-title</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Contract"</span> <span style="color:var(--ui-tag-color-purple)">description</span>=<span style="color:var(--ui-tag-color-teal)">"Updated 3 October 2026"</span>&gt;Office lease, Silom branch&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-title</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;Three-year lease from 1 January 2027. Waiting for the landlord's signature.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-footer</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-action</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"ghost"</span>&gt;Open contract&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-action</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-footer</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-1-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiCard</span> <span style="color:var(--ui-tag-color-purple)">style</span><span style="color:var(--ui-tag-color-magenta)">=</span>{{ <span style="color:var(--ui-tag-color-purple)">maxWidth:</span> <span style="color:var(--ui-tag-color-green)">360</span> }}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardMedia</span> <span style="color:var(--ui-tag-color-purple)">ratio</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"16x9"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">img</span> <span style="color:var(--ui-tag-color-purple)">alt</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">""</span> <span style="color:var(--ui-tag-color-purple)">src</span><span style="color:var(--ui-tag-color-magenta)">=</span>{leaseImage} /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardMedia</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contract"</span> <span style="color:var(--ui-tag-color-purple)">description</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Updated 3 October 2026"</span>&gt;Office lease, Silom branch&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardBody</span>&gt;Three-year lease from 1 January 2027. Waiting for the landlord's signature.&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardBody</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardFooter</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiCardAction</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">UiButton</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ghost"</span>&gt;Open contract&lt;/<span style="color:var(--ui-tag-color-blue)">UiButton</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardAction</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiCardFooter</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiCard</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-1-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">Card</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"max-w-[360px]"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardMedia</span> <span style="color:var(--ui-tag-color-purple)">ratio</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"16x9"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">img</span> <span style="color:var(--ui-tag-color-purple)">alt</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">""</span> <span style="color:var(--ui-tag-color-purple)">src</span><span style="color:var(--ui-tag-color-magenta)">=</span>{leaseImage} /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">CardMedia</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">CardTitle</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contract"</span> <span style="color:var(--ui-tag-color-purple)">description</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Updated 3 October 2026"</span>&gt;Office lease, Silom branch&lt;/<span style="color:var(--ui-tag-color-blue)">CardTitle</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardBody</span>&gt;Three-year lease from 1 January 2027. Waiting for the landlord's signature.&lt;/<span style="color:var(--ui-tag-color-blue)">CardBody</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardFooter</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">CardAction</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">Button</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ghost"</span>&gt;Open contract&lt;/<span style="color:var(--ui-tag-color-blue)">Button</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">CardAction</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">CardFooter</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Card</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="installation">Installation</h2>
+<ui-tabs class="doc-code-tabs" label="Code"><ui-tab panel="code-2-0">npm</ui-tab><ui-tab panel="code-2-1">shadcn · Web component</ui-tab><ui-tab panel="code-2-2">shadcn · React + Tailwind</ui-tab><ui-tab panel="code-2-3">Manual</ui-tab><ui-tab-panel name="code-2-0"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">@purpurabog/ui</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-1"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npx</span> <span style="color:var(--ui-tag-color-teal)">shadcn@4</span> <span style="color:var(--ui-tag-color-teal)">add</span> <span style="color:var(--ui-tag-color-teal)">@kanok-ui/card</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-2"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npx</span> <span style="color:var(--ui-tag-color-teal)">shadcn@4</span> <span style="color:var(--ui-tag-color-teal)">add</span> <span style="color:var(--ui-tag-color-teal)">@kanok-ui/tw-card</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-3"><ui-code-snippet type="multi" class="doc-code" data-lang="bash"><span style="color:var(--ui-ink-muted);font-style:italic"># Web component</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 1. Install the dependencies</span>
+<span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">lit@^3.3.0</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 2. Copy each file's "content" from</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    https://cdn.jsdelivr.net/npm/@purpurabog/ui@1.4.3/registry/card.json</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    to its target:</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/card/card-action.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/card/card-actions.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/card/card-body.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/card/card-footer.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/card/card-header-media.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/card/card-header.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/card/card-media.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/card/card-title-media.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/card/card-title.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/card/card.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 3. Do the same for the items it needs (registry/&lt;name&gt;.json):</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    core-overflow, menu, overflow-menu, shared-element, shared-field, shared-localize, shared-navigate, tokens</span>
+
+<span style="color:var(--ui-ink-muted);font-style:italic"># React + Tailwind</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 1. Install the dependencies</span>
+<span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">@purpurabog/ui@^1.4.3</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 2. Copy each file's "content" from</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    https://cdn.jsdelivr.net/npm/@purpurabog/ui@1.4.3/registry/tw-card.json</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    to its target:</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/react-tw/card.tsx</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 3. Do the same for the items it needs (registry/&lt;name&gt;.json):</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    core-overflow, tw-i18n, tw-icon-button, tw-menu, tw-refs, tw-theme, tw-utils</span></ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>npm gives you every component from the package. shadcn copies the source into your app instead: a copy pinned to this version that you can change. The shadcn commands need the <code>@kanok-ui</code> registry in your <code>components.json</code> once, see <a href="/kanok-ui-docs/en/installation/#react-tailwind-with-shadcn">Installation</a>.</p>
+<h2 id="use-it">Use it</h2>
+<p>All the parts load from one module. In React, import a wrapper for each element (<code>UiCard</code>, <code>UiCardHeader</code>, <code>UiCardTitle</code> …) from <code>@purpurabog/ui/react</code>.</p>
+<ui-tabs class="doc-code-tabs" label="Code"><ui-tab panel="code-3-0">HTML</ui-tab><ui-tab panel="code-3-1">React</ui-tab><ui-tab panel="code-3-2">React + Tailwind</ui-tab><ui-tab-panel name="code-3-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;<span style="color:var(--ui-tag-color-magenta)">import</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/card'</span>;&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-card</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-card-title</span>&gt;Office lease&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-title</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;Waiting for the landlord's signature.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-3-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { UiCard, UiCardHeader, UiCardTitle, UiCardBody } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/react'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiCard</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span>&gt;Office lease&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardBody</span>&gt;Waiting for the landlord's signature.&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardBody</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiCard</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-3-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { Card, CardHeader, CardTitle, CardBody } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@/components/ui/react-tw/card'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">Card</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">CardTitle</span>&gt;Office lease&lt;/<span style="color:var(--ui-tag-color-blue)">CardTitle</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardBody</span>&gt;Waiting for the landlord's signature.&lt;/<span style="color:var(--ui-tag-color-blue)">CardBody</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Card</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="card-tile-or-product-card">Card, tile or product card?</h2>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Use it when</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="/kanok-ui-docs/en/tile/">Tile</a></td>
+<td>A plain box of content, or one link. No header or footer of its own.</td>
+</tr>
+<tr>
+<td>Card</td>
+<td>Content with a title, media and actions, built from parts. The choice for new work.</td>
+</tr>
+<tr>
+<td><a href="/kanok-ui-docs/en/product-card/">Product card</a></td>
+<td>A screen must match IBM product UIs that use Carbon for IBM Products' <code>ProductiveCard</code> or <code>ExpressiveCard</code>.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="the-parts">The parts</h2>
+<p>Every part is optional; put them in this order.</p>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Holds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ui-card-media</code></td>
+<td>An image or video across the card, at <code>ratio</code></td>
+</tr>
+<tr>
+<td><code>ui-card-header</code></td>
+<td>The header grid: <code>ui-card-header-media</code>, <code>ui-card-title-media</code>, <code>ui-card-title</code>, <code>ui-card-actions</code></td>
+</tr>
+<tr>
+<td><code>ui-card-header-media</code></td>
+<td>A pictogram across the top of the header, at most 64px tall</td>
+</tr>
+<tr>
+<td><code>ui-card-title-media</code></td>
+<td>A logo before the title, 48–64px</td>
+</tr>
+<tr>
+<td><code>ui-card-title</code></td>
+<td>A label above, the title, a description below</td>
+</tr>
+<tr>
+<td><code>ui-card-actions</code></td>
+<td>Small buttons in the header's top-end corner</td>
+</tr>
+<tr>
+<td><code>ui-card-body</code></td>
+<td>The content, with 16px padding (none with <code>is-flush</code>)</td>
+</tr>
+<tr>
+<td><code>ui-card-footer</code></td>
+<td>Text, or a row of <code>ui-card-action</code>s</td>
+</tr>
+<tr>
+<td><code>ui-card-action</code></td>
+<td>One button in the footer or in <code>ui-card-actions</code></td>
+</tr>
+</tbody>
+</table>
+<div class="doc-demo"><ui-card style="max-width: 360px">
+  <ui-card-header>
+    <ui-card-header-media>
+      <svg width="48" height="48" viewBox="0 0 32 32" fill="none" stroke="currentColor" aria-hidden="true"><path d="M8 3h11l5 5v21H8zM19 3v5h5M12 14h8M12 18h8M12 22h5" /></svg>
+    </ui-card-header-media>
+    <ui-card-title label="Template" description="Used 128 times">Non-disclosure agreement</ui-card-title>
+  </ui-card-header>
+  <ui-card-body>Two-way NDA in Thai and English, approved by the legal department.</ui-card-body>
+  <ui-card-footer>Last reviewed 1 September 2026</ui-card-footer>
+</ui-card>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-4-0">HTML</ui-tab><ui-tab panel="code-4-1">React</ui-tab><ui-tab panel="code-4-2">React + Tailwind</ui-tab><ui-tab-panel name="code-4-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-card</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"max-width: 360px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-header-media</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">width</span>=<span style="color:var(--ui-tag-color-teal)">"48"</span> <span style="color:var(--ui-tag-color-purple)">height</span>=<span style="color:var(--ui-tag-color-teal)">"48"</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span>=<span style="color:var(--ui-tag-color-teal)">"0 0 32 32"</span> <span style="color:var(--ui-tag-color-purple)">fill</span>=<span style="color:var(--ui-tag-color-teal)">"none"</span> <span style="color:var(--ui-tag-color-purple)">stroke</span>=<span style="color:var(--ui-tag-color-teal)">"currentColor"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span>=<span style="color:var(--ui-tag-color-teal)">"true"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span>=<span style="color:var(--ui-tag-color-teal)">"M8 3h11l5 5v21H8zM19 3v5h5M12 14h8M12 18h8M12 22h5"</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-header-media</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-title</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Template"</span> <span style="color:var(--ui-tag-color-purple)">description</span>=<span style="color:var(--ui-tag-color-teal)">"Used 128 times"</span>&gt;Non-disclosure agreement&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-title</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;Two-way NDA in Thai and English, approved by the legal department.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-footer</span>&gt;Last reviewed 1 September 2026&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-footer</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-4-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiCard</span> <span style="color:var(--ui-tag-color-purple)">style</span><span style="color:var(--ui-tag-color-magenta)">=</span>{{ <span style="color:var(--ui-tag-color-purple)">maxWidth:</span> <span style="color:var(--ui-tag-color-green)">360</span> }}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiCardHeaderMedia</span>&gt;{documentPictogram}&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardHeaderMedia</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Template"</span> <span style="color:var(--ui-tag-color-purple)">description</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Used 128 times"</span>&gt;Non-disclosure agreement&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardBody</span>&gt;Two-way NDA in Thai and English, approved by the legal department.&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardBody</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardFooter</span>&gt;Last reviewed 1 September 2026&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardFooter</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiCard</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-4-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">Card</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"max-w-[360px]"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">CardHeaderMedia</span>&gt;{documentPictogram}&lt;/<span style="color:var(--ui-tag-color-blue)">CardHeaderMedia</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">CardTitle</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Template"</span> <span style="color:var(--ui-tag-color-purple)">description</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Used 128 times"</span>&gt;Non-disclosure agreement&lt;/<span style="color:var(--ui-tag-color-blue)">CardTitle</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardBody</span>&gt;Two-way NDA in Thai and English, approved by the legal department.&lt;/<span style="color:var(--ui-tag-color-blue)">CardBody</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardFooter</span>&gt;Last reviewed 1 September 2026&lt;/<span style="color:var(--ui-tag-color-blue)">CardFooter</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Card</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="media">Media</h2>
+<p><code>ui-card-media</code> fills the card's width at <code>ratio</code>: <code>16x9</code>, <code>9x16</code>, <code>2x1</code>, <code>1x2</code>, <code>4x3</code>, <code>3x4</code>, <code>3x2</code>, <code>2x3</code> or <code>1x1</code>. The image covers the box and is cropped to fit. Without <code>ratio</code> it keeps the image's own shape.</p>
+<div class="doc-demo"><div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; align-items: start">
+  <ui-card>
+    <ui-card-media ratio="16x9">
+      <img alt="" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 90'%3E%3Crect width='160' height='90' fill='%23d0e2ff'/%3E%3Cpath d='M66 20h22l10 10v40H66z' fill='%23ffffff'/%3E%3Cpath d='M72 42h20M72 50h20M72 58h12' stroke='%230f62fe' stroke-width='2'/%3E%3C/svg%3E" />
+    </ui-card-media>
+    <ui-card-header><ui-card-title>16x9</ui-card-title></ui-card-header>
+  </ui-card>
+  <ui-card>
+    <ui-card-media ratio="2x1">
+      <img alt="" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 90'%3E%3Crect width='160' height='90' fill='%23d0e2ff'/%3E%3Cpath d='M66 20h22l10 10v40H66z' fill='%23ffffff'/%3E%3Cpath d='M72 42h20M72 50h20M72 58h12' stroke='%230f62fe' stroke-width='2'/%3E%3C/svg%3E" />
+    </ui-card-media>
+    <ui-card-header><ui-card-title>2x1</ui-card-title></ui-card-header>
+  </ui-card>
+  <ui-card>
+    <ui-card-media ratio="1x1">
+      <img alt="" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 90'%3E%3Crect width='160' height='90' fill='%23d0e2ff'/%3E%3Cpath d='M66 20h22l10 10v40H66z' fill='%23ffffff'/%3E%3Cpath d='M72 42h20M72 50h20M72 58h12' stroke='%230f62fe' stroke-width='2'/%3E%3C/svg%3E" />
+    </ui-card-media>
+    <ui-card-header><ui-card-title>1x1</ui-card-title></ui-card-header>
+  </ui-card>
+</div>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-5-0">HTML</ui-tab><ui-tab panel="code-5-1">React</ui-tab><ui-tab panel="code-5-2">React + Tailwind</ui-tab><ui-tab-panel name="code-5-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; align-items: start"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-media</span> <span style="color:var(--ui-tag-color-purple)">ratio</span>=<span style="color:var(--ui-tag-color-teal)">"16x9"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">img</span> <span style="color:var(--ui-tag-color-purple)">alt</span>=<span style="color:var(--ui-tag-color-teal)">""</span> <span style="color:var(--ui-tag-color-purple)">src</span>=<span style="color:var(--ui-tag-color-teal)">"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 90'%3E%3Crect width='160' height='90' fill='%23d0e2ff'/%3E%3Cpath d='M66 20h22l10 10v40H66z' fill='%23ffffff'/%3E%3Cpath d='M72 42h20M72 50h20M72 58h12' stroke='%230f62fe' stroke-width='2'/%3E%3C/svg%3E"</span> /&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-media</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-card-title</span>&gt;16x9&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-title</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-media</span> <span style="color:var(--ui-tag-color-purple)">ratio</span>=<span style="color:var(--ui-tag-color-teal)">"2x1"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">img</span> <span style="color:var(--ui-tag-color-purple)">alt</span>=<span style="color:var(--ui-tag-color-teal)">""</span> <span style="color:var(--ui-tag-color-purple)">src</span>=<span style="color:var(--ui-tag-color-teal)">"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 90'%3E%3Crect width='160' height='90' fill='%23d0e2ff'/%3E%3Cpath d='M66 20h22l10 10v40H66z' fill='%23ffffff'/%3E%3Cpath d='M72 42h20M72 50h20M72 58h12' stroke='%230f62fe' stroke-width='2'/%3E%3C/svg%3E"</span> /&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-media</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-card-title</span>&gt;2x1&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-title</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-media</span> <span style="color:var(--ui-tag-color-purple)">ratio</span>=<span style="color:var(--ui-tag-color-teal)">"1x1"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">img</span> <span style="color:var(--ui-tag-color-purple)">alt</span>=<span style="color:var(--ui-tag-color-teal)">""</span> <span style="color:var(--ui-tag-color-purple)">src</span>=<span style="color:var(--ui-tag-color-teal)">"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 90'%3E%3Crect width='160' height='90' fill='%23d0e2ff'/%3E%3Cpath d='M66 20h22l10 10v40H66z' fill='%23ffffff'/%3E%3Cpath d='M72 42h20M72 50h20M72 58h12' stroke='%230f62fe' stroke-width='2'/%3E%3C/svg%3E"</span> /&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-media</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-card-title</span>&gt;1x1&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-title</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-5-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiCard</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardMedia</span> <span style="color:var(--ui-tag-color-purple)">ratio</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"16x9"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">img</span> <span style="color:var(--ui-tag-color-purple)">alt</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">""</span> <span style="color:var(--ui-tag-color-purple)">src</span><span style="color:var(--ui-tag-color-magenta)">=</span>{leaseImage} /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardMedia</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span>&gt;16x9&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiCard</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiCard</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardMedia</span> <span style="color:var(--ui-tag-color-purple)">ratio</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"2x1"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">img</span> <span style="color:var(--ui-tag-color-purple)">alt</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">""</span> <span style="color:var(--ui-tag-color-purple)">src</span><span style="color:var(--ui-tag-color-magenta)">=</span>{leaseImage} /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardMedia</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span>&gt;2x1&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiCard</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiCard</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardMedia</span> <span style="color:var(--ui-tag-color-purple)">ratio</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"1x1"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">img</span> <span style="color:var(--ui-tag-color-purple)">alt</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">""</span> <span style="color:var(--ui-tag-color-purple)">src</span><span style="color:var(--ui-tag-color-magenta)">=</span>{leaseImage} /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardMedia</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span>&gt;1x1&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiCard</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-5-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">Card</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardMedia</span> <span style="color:var(--ui-tag-color-purple)">ratio</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"16x9"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">img</span> <span style="color:var(--ui-tag-color-purple)">alt</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">""</span> <span style="color:var(--ui-tag-color-purple)">src</span><span style="color:var(--ui-tag-color-magenta)">=</span>{leaseImage} /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">CardMedia</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">CardTitle</span>&gt;16x9&lt;/<span style="color:var(--ui-tag-color-blue)">CardTitle</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Card</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">Card</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardMedia</span> <span style="color:var(--ui-tag-color-purple)">ratio</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"2x1"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">img</span> <span style="color:var(--ui-tag-color-purple)">alt</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">""</span> <span style="color:var(--ui-tag-color-purple)">src</span><span style="color:var(--ui-tag-color-magenta)">=</span>{leaseImage} /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">CardMedia</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">CardTitle</span>&gt;2x1&lt;/<span style="color:var(--ui-tag-color-blue)">CardTitle</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Card</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">Card</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardMedia</span> <span style="color:var(--ui-tag-color-purple)">ratio</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"1x1"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">img</span> <span style="color:var(--ui-tag-color-purple)">alt</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">""</span> <span style="color:var(--ui-tag-color-purple)">src</span><span style="color:var(--ui-tag-color-magenta)">=</span>{leaseImage} /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">CardMedia</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">CardTitle</span>&gt;1x1&lt;/<span style="color:var(--ui-tag-color-blue)">CardTitle</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Card</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>Give the image <code>alt=&quot;&quot;</code> when it only decorates, and a real <code>alt</code> when it carries information the text doesn't.</p>
+<h2 id="logo-beside-the-title">Logo beside the title</h2>
+<p><code>ui-card-title-media</code> puts a logo or an avatar before the title; the title moves over to make room.</p>
+<div class="doc-demo"><ui-card style="max-width: 360px">
+  <ui-card-header>
+    <ui-card-title-media>
+      <svg width="48" height="48" viewBox="0 0 48 48" aria-hidden="true"><rect width="48" height="48" style="fill: var(--ui-primary)" /><text x="24" y="30" fill="#ffffff" font-family="sans-serif" font-size="16" text-anchor="middle">SL</text></svg>
+    </ui-card-title-media>
+    <ui-card-title label="Supplier" description="Bangkok · since 2019">Siam Logistics Co., Ltd.</ui-card-title>
+  </ui-card-header>
+  <ui-card-body>Freight and warehousing. 14 active contracts.</ui-card-body>
+</ui-card>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-6-0">HTML</ui-tab><ui-tab panel="code-6-1">React</ui-tab><ui-tab panel="code-6-2">React + Tailwind</ui-tab><ui-tab-panel name="code-6-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-card</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"max-width: 360px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-title-media</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">width</span>=<span style="color:var(--ui-tag-color-teal)">"48"</span> <span style="color:var(--ui-tag-color-purple)">height</span>=<span style="color:var(--ui-tag-color-teal)">"48"</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span>=<span style="color:var(--ui-tag-color-teal)">"0 0 48 48"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span>=<span style="color:var(--ui-tag-color-teal)">"true"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">rect</span> <span style="color:var(--ui-tag-color-purple)">width</span>=<span style="color:var(--ui-tag-color-teal)">"48"</span> <span style="color:var(--ui-tag-color-purple)">height</span>=<span style="color:var(--ui-tag-color-teal)">"48"</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"fill: var(--ui-primary)"</span> /&gt;&lt;<span style="color:var(--ui-tag-color-blue)">text</span> <span style="color:var(--ui-tag-color-purple)">x</span>=<span style="color:var(--ui-tag-color-teal)">"24"</span> <span style="color:var(--ui-tag-color-purple)">y</span>=<span style="color:var(--ui-tag-color-teal)">"30"</span> <span style="color:var(--ui-tag-color-purple)">fill</span>=<span style="color:var(--ui-tag-color-teal)">"#ffffff"</span> <span style="color:var(--ui-tag-color-purple)">font-family</span>=<span style="color:var(--ui-tag-color-teal)">"sans-serif"</span> <span style="color:var(--ui-tag-color-purple)">font-size</span>=<span style="color:var(--ui-tag-color-teal)">"16"</span> <span style="color:var(--ui-tag-color-purple)">text-anchor</span>=<span style="color:var(--ui-tag-color-teal)">"middle"</span>&gt;SL&lt;/<span style="color:var(--ui-tag-color-blue)">text</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-title-media</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-title</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Supplier"</span> <span style="color:var(--ui-tag-color-purple)">description</span>=<span style="color:var(--ui-tag-color-teal)">"Bangkok · since 2019"</span>&gt;Siam Logistics Co., Ltd.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-title</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;Freight and warehousing. 14 active contracts.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-6-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiCard</span> <span style="color:var(--ui-tag-color-purple)">style</span><span style="color:var(--ui-tag-color-magenta)">=</span>{{ <span style="color:var(--ui-tag-color-purple)">maxWidth:</span> <span style="color:var(--ui-tag-color-green)">360</span> }}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiCardTitleMedia</span>&gt;{supplierLogo}&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardTitleMedia</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Supplier"</span> <span style="color:var(--ui-tag-color-purple)">description</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Bangkok · since 2019"</span>&gt;Siam Logistics Co., Ltd.&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardBody</span>&gt;Freight and warehousing. 14 active contracts.&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardBody</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiCard</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-6-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">Card</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"max-w-[360px]"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">CardTitleMedia</span>&gt;{supplierLogo}&lt;/<span style="color:var(--ui-tag-color-blue)">CardTitleMedia</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">CardTitle</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Supplier"</span> <span style="color:var(--ui-tag-color-purple)">description</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Bangkok · since 2019"</span>&gt;Siam Logistics Co., Ltd.&lt;/<span style="color:var(--ui-tag-color-blue)">CardTitle</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardBody</span>&gt;Freight and warehousing. 14 active contracts.&lt;/<span style="color:var(--ui-tag-color-blue)">CardBody</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Card</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="title-label-and-description">Title, label and description</h2>
+<p><code>ui-card-title</code> holds the title text. <code>label</code> goes above it and <code>description</code> below, both in small muted text. For markup in them, use the <code>label</code> and <code>description</code> slots instead. Icons go before or after the title in the <code>title-start</code> and <code>title-end</code> slots (<code>titleStart</code> and <code>titleEnd</code> in React + Tailwind).</p>
+<div class="doc-demo"><ui-card style="max-width: 360px">
+  <ui-card-header>
+    <ui-card-title>
+      Supply agreement C-2026-014
+      <svg slot="title-end" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-label="Signed" role="img"><path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1ZM7 11 4.3 8.3l.9-.8L7 9.3l4-3.9.9.8L7 11Z" /></svg>
+      <span slot="label">Chiang Mai plant</span>
+      <span slot="description">Signed by <b>both parties</b> on 2 October 2026</span>
+    </ui-card-title>
+  </ui-card-header>
+  <ui-card-body>Delivery of packaging materials, monthly, until December 2027.</ui-card-body>
+</ui-card>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-7-0">HTML</ui-tab><ui-tab panel="code-7-1">React</ui-tab><ui-tab panel="code-7-2">React + Tailwind</ui-tab><ui-tab-panel name="code-7-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-card</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"max-width: 360px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-title</span>&gt;
+      Supply agreement C-2026-014
+      &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"title-end"</span> <span style="color:var(--ui-tag-color-purple)">width</span>=<span style="color:var(--ui-tag-color-teal)">"16"</span> <span style="color:var(--ui-tag-color-purple)">height</span>=<span style="color:var(--ui-tag-color-teal)">"16"</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span>=<span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">fill</span>=<span style="color:var(--ui-tag-color-teal)">"currentColor"</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span>=<span style="color:var(--ui-tag-color-teal)">"Signed"</span> <span style="color:var(--ui-tag-color-purple)">role</span>=<span style="color:var(--ui-tag-color-teal)">"img"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span>=<span style="color:var(--ui-tag-color-teal)">"M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1ZM7 11 4.3 8.3l.9-.8L7 9.3l4-3.9.9.8L7 11Z"</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"label"</span>&gt;Chiang Mai plant&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"description"</span>&gt;Signed by &lt;<span style="color:var(--ui-tag-color-blue)">b</span>&gt;both parties&lt;/<span style="color:var(--ui-tag-color-blue)">b</span>&gt; on 2 October 2026&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-title</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;Delivery of packaging materials, monthly, until December 2027.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-7-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiCard</span> <span style="color:var(--ui-tag-color-purple)">style</span><span style="color:var(--ui-tag-color-magenta)">=</span>{{ <span style="color:var(--ui-tag-color-purple)">maxWidth:</span> <span style="color:var(--ui-tag-color-green)">360</span> }}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span>&gt;
+      Supply agreement C-2026-014
+      &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">slot</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"title-end"</span> <span style="color:var(--ui-tag-color-purple)">width</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"16"</span> <span style="color:var(--ui-tag-color-purple)">height</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"16"</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">fill</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"currentColor"</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Signed"</span> <span style="color:var(--ui-tag-color-purple)">role</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"img"</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">slot</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"label"</span>&gt;Chiang Mai plant&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">slot</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"description"</span>&gt;Signed by &lt;<span style="color:var(--ui-tag-color-blue)">b</span>&gt;both parties&lt;/<span style="color:var(--ui-tag-color-blue)">b</span>&gt; on 2 October 2026&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardBody</span>&gt;Delivery of packaging materials, monthly, until December 2027.&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardBody</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiCard</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-7-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">Card</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"max-w-[360px]"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">CardTitle</span>
+      <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Chiang Mai plant"</span>
+      <span style="color:var(--ui-tag-color-purple)">description</span><span style="color:var(--ui-tag-color-magenta)">=</span>{&lt;&gt;Signed by &lt;<span style="color:var(--ui-tag-color-blue)">b</span>&gt;both parties&lt;/<span style="color:var(--ui-tag-color-blue)">b</span>&gt; on 2 October 2026&lt;/&gt;}
+      <span style="color:var(--ui-tag-color-purple)">titleEnd</span><span style="color:var(--ui-tag-color-magenta)">=</span>{&lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">width</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"16"</span> <span style="color:var(--ui-tag-color-purple)">height</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"16"</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">fill</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"currentColor"</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Signed"</span> <span style="color:var(--ui-tag-color-purple)">role</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"img"</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;}
+    &gt;
+      Supply agreement C-2026-014
+    &lt;/<span style="color:var(--ui-tag-color-blue)">CardTitle</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardBody</span>&gt;Delivery of packaging materials, monthly, until December 2027.&lt;/<span style="color:var(--ui-tag-color-blue)">CardBody</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Card</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="cut-long-text">Cut long text</h2>
+<p>Long titles wrap. <code>title-truncate</code> cuts the title instead: on its own to one line with an ellipsis, with a number to that many lines. <code>label-truncate</code> and <code>description-truncate</code> work the same. <code>max-width</code> limits how wide a cut title gets.</p>
+<div class="doc-demo"><div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; align-items: start">
+  <ui-card>
+    <ui-card-header>
+      <ui-card-title title-truncate description="Title and description on one line each" description-truncate>Memorandum of understanding on joint procurement between three provincial offices</ui-card-title>
+    </ui-card-header>
+  </ui-card>
+  <ui-card>
+    <ui-card-header>
+      <ui-card-title title-truncate="2" description="The description is cut to one line when it is longer than the card is wide" description-truncate="1">Memorandum of understanding on joint procurement between three provincial offices</ui-card-title>
+    </ui-card-header>
+  </ui-card>
+</div>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-8-0">HTML</ui-tab><ui-tab panel="code-8-1">React</ui-tab><ui-tab panel="code-8-2">React + Tailwind</ui-tab><ui-tab-panel name="code-8-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; align-items: start"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-title</span> <span style="color:var(--ui-tag-color-purple)">title-truncate</span> <span style="color:var(--ui-tag-color-purple)">description</span>=<span style="color:var(--ui-tag-color-teal)">"Title and description on one line each"</span> <span style="color:var(--ui-tag-color-purple)">description-truncate</span>&gt;Memorandum of understanding on joint procurement between three provincial offices&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-title</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-title</span> <span style="color:var(--ui-tag-color-purple)">title-truncate</span>=<span style="color:var(--ui-tag-color-teal)">"2"</span> <span style="color:var(--ui-tag-color-purple)">description</span>=<span style="color:var(--ui-tag-color-teal)">"The description is cut to one line when it is longer than the card is wide"</span> <span style="color:var(--ui-tag-color-purple)">description-truncate</span>=<span style="color:var(--ui-tag-color-teal)">"1"</span>&gt;Memorandum of understanding on joint procurement between three provincial offices&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-title</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-8-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiCard</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span> <span style="color:var(--ui-tag-color-purple)">titleTruncate</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">""</span> <span style="color:var(--ui-tag-color-purple)">description</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Title and description on one line each"</span> <span style="color:var(--ui-tag-color-purple)">descriptionTruncate</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">""</span>&gt;Memorandum of understanding on joint procurement between three provincial offices&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiCard</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiCard</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span> <span style="color:var(--ui-tag-color-purple)">titleTruncate</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"2"</span> <span style="color:var(--ui-tag-color-purple)">description</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"The description is cut to one line when it is longer than the card is wide"</span> <span style="color:var(--ui-tag-color-purple)">descriptionTruncate</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"1"</span>&gt;Memorandum of understanding on joint procurement between three provincial offices&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiCard</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-8-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">Card</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">CardTitle</span> <span style="color:var(--ui-tag-color-purple)">titleTruncate</span> <span style="color:var(--ui-tag-color-purple)">description</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Title and description on one line each"</span> <span style="color:var(--ui-tag-color-purple)">descriptionTruncate</span>&gt;Memorandum of understanding on joint procurement between three provincial offices&lt;/<span style="color:var(--ui-tag-color-blue)">CardTitle</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Card</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">Card</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">CardTitle</span> <span style="color:var(--ui-tag-color-purple)">titleTruncate</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">2</span>} <span style="color:var(--ui-tag-color-purple)">description</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"The description is cut to one line when it is longer than the card is wide"</span> <span style="color:var(--ui-tag-color-purple)">descriptionTruncate</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">1</span>}&gt;Memorandum of understanding on joint procurement between three provincial offices&lt;/<span style="color:var(--ui-tag-color-blue)">CardTitle</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Card</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>On the element these are attributes whose presence means one line (in React pass <code>&quot;&quot;</code>, or the number of lines as a string). React + Tailwind takes <code>true</code> or a number.</p>
+<h2 id="header-actions">Header actions</h2>
+<p><code>ui-card-actions</code> puts small buttons in the header's top-end corner, in at most half its width. Put each <code>ui-icon-button kind=&quot;ghost&quot; size=&quot;sm&quot;</code> in a <code>ui-card-action</code>. Buttons that don't fit move into an overflow menu; choosing an item clicks that button. The narrow card shows it.</p>
+<div class="doc-demo"><div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: start">
+  <ui-card id="card-actions" style="width: 360px">
+    <ui-card-header>
+      <ui-card-title label="Project" description="Due in 3 days">Branch renovation</ui-card-title>
+      <ui-card-actions>
+        <ui-card-action><ui-icon-button kind="ghost" size="sm" label="Edit"><svg viewBox="0 0 16 16"><path d="M1 13h14v1H1zM12.7 4.5 10.5 2.3a1 1 0 0 0-1.4 0L3 8.4V11h2.6l6.1-6.1a1 1 0 0 0 0-1.4zM5.2 10H4V8.8l4-4 1.2 1.2zm4.7-4.7L8.7 4.1l1.1-1.1L11 4.2z" /></svg></ui-icon-button></ui-card-action>
+        <ui-card-action><ui-icon-button kind="ghost" size="sm" label="Delete"><svg viewBox="0 0 16 16"><path d="M6 6h1v6H6zm3 0h1v6H9zM2 3v1h1v10a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4h1V3zm2 11V4h8v10zM6 1h4v1H6z" /></svg></ui-icon-button></ui-card-action>
+      </ui-card-actions>
+    </ui-card-header>
+    <ui-card-body>Silom branch, second floor. Contractor starts on 1 November.</ui-card-body>
+  </ui-card>
+  <ui-card id="card-actions-narrow" style="width: 200px">
+    <ui-card-header>
+      <ui-card-title>Narrow</ui-card-title>
+      <ui-card-actions>
+        <ui-card-action><ui-icon-button kind="ghost" size="sm" label="Edit"><svg viewBox="0 0 16 16"><path d="M1 13h14v1H1zM12.7 4.5 10.5 2.3a1 1 0 0 0-1.4 0L3 8.4V11h2.6l6.1-6.1a1 1 0 0 0 0-1.4zM5.2 10H4V8.8l4-4 1.2 1.2zm4.7-4.7L8.7 4.1l1.1-1.1L11 4.2z" /></svg></ui-icon-button></ui-card-action>
+        <ui-card-action label="Duplicate"><ui-icon-button kind="ghost" size="sm" label="Duplicate"><svg viewBox="0 0 16 16"><path d="M14 5v9H5V5h9m0-1H5a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1ZM2 9H1V2a1 1 0 0 1 1-1h7v1H2Z" /></svg></ui-icon-button></ui-card-action>
+        <ui-card-action><ui-icon-button kind="ghost" size="sm" label="Delete"><svg viewBox="0 0 16 16"><path d="M6 6h1v6H6zm3 0h1v6H9zM2 3v1h1v10a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4h1V3zm2 11V4h8v10zM6 1h4v1H6z" /></svg></ui-icon-button></ui-card-action>
+      </ui-card-actions>
+    </ui-card-header>
+    <ui-card-body>Two buttons go to the menu.</ui-card-body>
+  </ui-card>
+</div>
+<p>Pressed: <output id="card-actions-out">nothing yet</output></p>
+
+<script type="text/x-demo">
+  const out = document.getElementById('card-actions-out');
+  for (const button of document.querySelectorAll('#card-actions ui-icon-button, #card-actions-narrow ui-icon-button')) {
+    button.addEventListener('click', () => (out.value = button.getAttribute('label')));
+  }
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-9-0">HTML</ui-tab><ui-tab panel="code-9-1">React</ui-tab><ui-tab panel="code-9-2">React + Tailwind</ui-tab><ui-tab-panel name="code-9-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"display: flex; flex-wrap: wrap; gap: 16px; align-items: start"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"card-actions"</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"width: 360px"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-title</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Project"</span> <span style="color:var(--ui-tag-color-purple)">description</span>=<span style="color:var(--ui-tag-color-teal)">"Due in 3 days"</span>&gt;Branch renovation&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-title</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-actions</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-action</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-button</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"ghost"</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Edit"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span>=<span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span>=<span style="color:var(--ui-tag-color-teal)">"M1 13h14v1H1zM12.7 4.5 10.5 2.3a1 1 0 0 0-1.4 0L3 8.4V11h2.6l6.1-6.1a1 1 0 0 0 0-1.4zM5.2 10H4V8.8l4-4 1.2 1.2zm4.7-4.7L8.7 4.1l1.1-1.1L11 4.2z"</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-button</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-action</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-action</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-button</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"ghost"</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Delete"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span>=<span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span>=<span style="color:var(--ui-tag-color-teal)">"M6 6h1v6H6zm3 0h1v6H9zM2 3v1h1v10a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4h1V3zm2 11V4h8v10zM6 1h4v1H6z"</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-button</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-action</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-actions</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;Silom branch, second floor. Contractor starts on 1 November.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"card-actions-narrow"</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"width: 200px"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-title</span>&gt;Narrow&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-title</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-actions</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-action</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-button</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"ghost"</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Edit"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span>=<span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span>=<span style="color:var(--ui-tag-color-teal)">"M1 13h14v1H1zM12.7 4.5 10.5 2.3a1 1 0 0 0-1.4 0L3 8.4V11h2.6l6.1-6.1a1 1 0 0 0 0-1.4zM5.2 10H4V8.8l4-4 1.2 1.2zm4.7-4.7L8.7 4.1l1.1-1.1L11 4.2z"</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-button</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-action</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-action</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Duplicate"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-button</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"ghost"</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Duplicate"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span>=<span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span>=<span style="color:var(--ui-tag-color-teal)">"M14 5v9H5V5h9m0-1H5a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1ZM2 9H1V2a1 1 0 0 1 1-1h7v1H2Z"</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-button</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-action</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-action</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-button</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"ghost"</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Delete"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span>=<span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span>=<span style="color:var(--ui-tag-color-teal)">"M6 6h1v6H6zm3 0h1v6H9zM2 3v1h1v10a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4h1V3zm2 11V4h8v10zM6 1h4v1H6z"</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-button</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-action</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-actions</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;Two buttons go to the menu.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;Pressed: &lt;<span style="color:var(--ui-tag-color-blue)">output</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"card-actions-out"</span>&gt;nothing yet&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> out <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'card-actions-out'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">for</span> (<span style="color:var(--ui-tag-color-magenta)">const</span> button <span style="color:var(--ui-tag-color-magenta)">of</span> document.<span style="color:var(--ui-tag-color-cyan)">querySelectorAll</span>(<span style="color:var(--ui-tag-color-teal)">'#card-actions ui-icon-button, #card-actions-narrow ui-icon-button'</span>)) {
+    button.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (out.value <span style="color:var(--ui-tag-color-magenta)">=</span> button.<span style="color:var(--ui-tag-color-cyan)">getAttribute</span>(<span style="color:var(--ui-tag-color-teal)">'label'</span>)));
+  }
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-9-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiCard</span> <span style="color:var(--ui-tag-color-purple)">style</span><span style="color:var(--ui-tag-color-magenta)">=</span>{{ <span style="color:var(--ui-tag-color-purple)">width:</span> <span style="color:var(--ui-tag-color-green)">360</span> }}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Project"</span> <span style="color:var(--ui-tag-color-purple)">description</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Due in 3 days"</span>&gt;Branch renovation&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiCardActions</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">UiCardAction</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">UiIconButton</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ghost"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Edit"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{edit}&gt;{editIcon}&lt;/<span style="color:var(--ui-tag-color-blue)">UiIconButton</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardAction</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">UiCardAction</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">UiIconButton</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ghost"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Delete"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{remove}&gt;{trashIcon}&lt;/<span style="color:var(--ui-tag-color-blue)">UiIconButton</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardAction</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">UiCardActions</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardBody</span>&gt;Silom branch, second floor. Contractor starts on 1 November.&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardBody</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiCard</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-9-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">Card</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"w-[360px]"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">CardTitle</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Project"</span> <span style="color:var(--ui-tag-color-purple)">description</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Due in 3 days"</span>&gt;Branch renovation&lt;/<span style="color:var(--ui-tag-color-blue)">CardTitle</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">CardActions</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">CardAction</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">IconButton</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ghost"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Edit"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{edit}&gt;{editIcon}&lt;/<span style="color:var(--ui-tag-color-blue)">IconButton</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">CardAction</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">CardAction</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">IconButton</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ghost"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Delete"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{remove}&gt;{trashIcon}&lt;/<span style="color:var(--ui-tag-color-blue)">IconButton</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">CardAction</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">CardActions</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardBody</span>&gt;Silom branch, second floor. Contractor starts on 1 November.&lt;/<span style="color:var(--ui-tag-color-blue)">CardBody</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Card</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>An item in the overflow menu is named by the action's <code>label</code>, else by its button's <code>label</code> or text. <code>overflow-menu-label</code> names the menu button (&quot;More actions&quot; by default, translated).</p>
+<h2 id="footer-actions">Footer actions</h2>
+<p>A <code>ui-card-footer</code> with <code>ui-card-action</code>s becomes a row of buttons across the card under a thin line: a <code>ui-button</code> stretches to share the row, a <code>ui-icon-button</code> keeps its size at the end. A footer with plain content just pads it.</p>
+<div class="doc-demo"><ui-card id="card-footer" style="max-width: 360px">
+  <ui-card-header>
+    <ui-card-title label="Report" description="September 2026">Monthly contract summary</ui-card-title>
+  </ui-card-header>
+  <ui-card-body>48 contracts signed, 5 expiring in the next 30 days.</ui-card-body>
+  <ui-card-footer>
+    <ui-card-action><ui-button kind="ghost">View report</ui-button></ui-card-action>
+    <ui-card-action><ui-icon-button kind="ghost" size="md" label="Download"><svg viewBox="0 0 16 16"><path d="M13 12v2H3v-2H2v2a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-2zM13 7l-.7-.7-3.8 3.8V1h-1v9.1L3.7 6.3 3 7l5 5z" /></svg></ui-icon-button></ui-card-action>
+  </ui-card-footer>
+</ui-card>
+<p>Pressed: <output id="card-footer-out">nothing yet</output></p>
+
+<script type="text/x-demo">
+  const out = document.getElementById('card-footer-out');
+  for (const button of document.querySelectorAll('#card-footer ui-card-action > *')) {
+    button.addEventListener('click', () => (out.value = button.getAttribute('label') ?? button.textContent.trim()));
+  }
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-10-0">HTML</ui-tab><ui-tab panel="code-10-1">React</ui-tab><ui-tab panel="code-10-2">React + Tailwind</ui-tab><ui-tab-panel name="code-10-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-card</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"card-footer"</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"max-width: 360px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-title</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Report"</span> <span style="color:var(--ui-tag-color-purple)">description</span>=<span style="color:var(--ui-tag-color-teal)">"September 2026"</span>&gt;Monthly contract summary&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-title</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;48 contracts signed, 5 expiring in the next 30 days.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-footer</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-action</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"ghost"</span>&gt;View report&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-action</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-action</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-button</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"ghost"</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"md"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Download"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span>=<span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span>=<span style="color:var(--ui-tag-color-teal)">"M13 12v2H3v-2H2v2a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-2zM13 7l-.7-.7-3.8 3.8V1h-1v9.1L3.7 6.3 3 7l5 5z"</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-button</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-action</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-footer</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;Pressed: &lt;<span style="color:var(--ui-tag-color-blue)">output</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"card-footer-out"</span>&gt;nothing yet&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> out <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'card-footer-out'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">for</span> (<span style="color:var(--ui-tag-color-magenta)">const</span> button <span style="color:var(--ui-tag-color-magenta)">of</span> document.<span style="color:var(--ui-tag-color-cyan)">querySelectorAll</span>(<span style="color:var(--ui-tag-color-teal)">'#card-footer ui-card-action &gt; *'</span>)) {
+    button.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (out.value <span style="color:var(--ui-tag-color-magenta)">=</span> button.<span style="color:var(--ui-tag-color-cyan)">getAttribute</span>(<span style="color:var(--ui-tag-color-teal)">'label'</span>) <span style="color:var(--ui-tag-color-magenta)">??</span> button.textContent.<span style="color:var(--ui-tag-color-cyan)">trim</span>()));
+  }
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-10-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiCard</span> <span style="color:var(--ui-tag-color-purple)">style</span><span style="color:var(--ui-tag-color-magenta)">=</span>{{ <span style="color:var(--ui-tag-color-purple)">maxWidth:</span> <span style="color:var(--ui-tag-color-green)">360</span> }}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Report"</span> <span style="color:var(--ui-tag-color-purple)">description</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"September 2026"</span>&gt;Monthly contract summary&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardBody</span>&gt;48 contracts signed, 5 expiring in the next 30 days.&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardBody</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardFooter</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiCardAction</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">UiButton</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ghost"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{view}&gt;View report&lt;/<span style="color:var(--ui-tag-color-blue)">UiButton</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardAction</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiCardAction</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">UiIconButton</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ghost"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"md"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Download"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{download}&gt;{downloadIcon}&lt;/<span style="color:var(--ui-tag-color-blue)">UiIconButton</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardAction</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiCardFooter</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiCard</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-10-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">Card</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"max-w-[360px]"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">CardTitle</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Report"</span> <span style="color:var(--ui-tag-color-purple)">description</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"September 2026"</span>&gt;Monthly contract summary&lt;/<span style="color:var(--ui-tag-color-blue)">CardTitle</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardBody</span>&gt;48 contracts signed, 5 expiring in the next 30 days.&lt;/<span style="color:var(--ui-tag-color-blue)">CardBody</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardFooter</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">CardAction</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">Button</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ghost"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{view}&gt;View report&lt;/<span style="color:var(--ui-tag-color-blue)">Button</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">CardAction</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">CardAction</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">IconButton</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ghost"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"md"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Download"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{download}&gt;{downloadIcon}&lt;/<span style="color:var(--ui-tag-color-blue)">IconButton</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">CardAction</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">CardFooter</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Card</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="linked-card">Linked card</h2>
+<p>With <code>href</code> the whole card is one link and a single tab stop. Name it with <code>label</code>: the card's whole text would be a long link name. A linked card gets a border and the hover colour, and hides its footer: one link can't hold other controls, so leave out header actions too. They still show if you add them (as in Carbon, whose guidelines say a clickable card holds no interactive elements), inside the link. A plain click fires a cancelable <code>ui-navigate</code> first, for your <a href="/kanok-ui-docs/en/frameworks/#route-links-with-your-spa-router">SPA router</a>.</p>
+<div class="doc-demo"><ui-card href="#accessibility" label="Open the procurement policy" style="max-width: 360px">
+  <ui-card-header>
+    <ui-card-title label="Policy" description="Version 4, 2026">Procurement policy</ui-card-title>
+  </ui-card-header>
+  <ui-card-body>Who can approve purchases, and up to what amount.</ui-card-body>
+</ui-card>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-11-0">HTML</ui-tab><ui-tab panel="code-11-1">React</ui-tab><ui-tab panel="code-11-2">React + Tailwind</ui-tab><ui-tab-panel name="code-11-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-card</span> <span style="color:var(--ui-tag-color-purple)">href</span>=<span style="color:var(--ui-tag-color-teal)">"#accessibility"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Open the procurement policy"</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"max-width: 360px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-title</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Policy"</span> <span style="color:var(--ui-tag-color-purple)">description</span>=<span style="color:var(--ui-tag-color-teal)">"Version 4, 2026"</span>&gt;Procurement policy&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-title</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;Who can approve purchases, and up to what amount.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-11-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiCard</span> <span style="color:var(--ui-tag-color-purple)">href</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"/policies/procurement"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Open the procurement policy"</span> <span style="color:var(--ui-tag-color-purple)">style</span><span style="color:var(--ui-tag-color-magenta)">=</span>{{ <span style="color:var(--ui-tag-color-purple)">maxWidth:</span> <span style="color:var(--ui-tag-color-green)">360</span> }}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Policy"</span> <span style="color:var(--ui-tag-color-purple)">description</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Version 4, 2026"</span>&gt;Procurement policy&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardBody</span>&gt;Who can approve purchases, and up to what amount.&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardBody</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiCard</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-11-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">Card</span> <span style="color:var(--ui-tag-color-purple)">href</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"/policies/procurement"</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Open the procurement policy"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"max-w-[360px]"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">CardTitle</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Policy"</span> <span style="color:var(--ui-tag-color-purple)">description</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Version 4, 2026"</span>&gt;Procurement policy&lt;/<span style="color:var(--ui-tag-color-blue)">CardTitle</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardBody</span>&gt;Who can approve purchases, and up to what amount.&lt;/<span style="color:var(--ui-tag-color-blue)">CardBody</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Card</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p><code>target=&quot;_blank&quot;</code> opens a new tab; the card adds &quot;(opens in a new tab)&quot; for screen readers and <code>rel=&quot;noopener noreferrer&quot;</code>.</p>
+<h2 id="clickable-card">Clickable card</h2>
+<p><code>clickable</code> makes the whole card one button: a click, or Enter or Space while the card has focus, fires <code>click</code>. An arrow in the bottom-end corner shows it can be pressed; replace it with the <code>footer-icon</code> slot (<code>footerIcon</code> in React + Tailwind). Name the card with <code>label</code>, and put no other controls in it.</p>
+<div class="doc-demo"><div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px">
+  <ui-card id="card-pick-sale" clickable label="Start a sale contract">
+    <ui-card-header><ui-card-title label="Template">Sale contract</ui-card-title></ui-card-header>
+    <ui-card-body>Goods, price and delivery.</ui-card-body>
+  </ui-card>
+  <ui-card id="card-pick-lease" clickable label="Start a lease contract">
+    <ui-card-header><ui-card-title label="Template">Lease contract</ui-card-title></ui-card-header>
+    <ui-card-body>Property, rent and term.</ui-card-body>
+  </ui-card>
+</div>
+<p>Chosen: <output id="card-pick-out">nothing yet</output></p>
+
+<script type="text/x-demo">
+  const out = document.getElementById('card-pick-out');
+  for (const id of ['card-pick-sale', 'card-pick-lease']) {
+    const card = document.getElementById(id);
+    card.addEventListener('click', () => (out.value = card.label));
+  }
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-12-0">HTML</ui-tab><ui-tab panel="code-12-1">React</ui-tab><ui-tab panel="code-12-2">React + Tailwind</ui-tab><ui-tab-panel name="code-12-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"card-pick-sale"</span> <span style="color:var(--ui-tag-color-purple)">clickable</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Start a sale contract"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-card-title</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Template"</span>&gt;Sale contract&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-title</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;Goods, price and delivery.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"card-pick-lease"</span> <span style="color:var(--ui-tag-color-purple)">clickable</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Start a lease contract"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-card-title</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Template"</span>&gt;Lease contract&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-title</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;Property, rent and term.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;Chosen: &lt;<span style="color:var(--ui-tag-color-blue)">output</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"card-pick-out"</span>&gt;nothing yet&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> out <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'card-pick-out'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">for</span> (<span style="color:var(--ui-tag-color-magenta)">const</span> id <span style="color:var(--ui-tag-color-magenta)">of</span> [<span style="color:var(--ui-tag-color-teal)">'card-pick-sale'</span>, <span style="color:var(--ui-tag-color-teal)">'card-pick-lease'</span>]) {
+    <span style="color:var(--ui-tag-color-magenta)">const</span> card <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(id);
+    card.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (out.value <span style="color:var(--ui-tag-color-magenta)">=</span> card.label));
+  }
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-12-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> [chosen, setChosen] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">''</span>);
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiCard</span> <span style="color:var(--ui-tag-color-purple)">clickable</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Start a sale contract"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setChosen</span>(<span style="color:var(--ui-tag-color-teal)">'sale'</span>)}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Template"</span>&gt;Sale contract&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardBody</span>&gt;Goods, price and delivery.&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardBody</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiCard</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiCard</span> <span style="color:var(--ui-tag-color-purple)">clickable</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Start a lease contract"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setChosen</span>(<span style="color:var(--ui-tag-color-teal)">'lease'</span>)}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Template"</span>&gt;Lease contract&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardBody</span>&gt;Property, rent and term.&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardBody</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiCard</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;Chosen: &lt;<span style="color:var(--ui-tag-color-blue)">output</span>&gt;{chosen}&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-12-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> [chosen, setChosen] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">''</span>);
+
+&lt;<span style="color:var(--ui-tag-color-blue)">Card</span> <span style="color:var(--ui-tag-color-purple)">clickable</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Start a sale contract"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setChosen</span>(<span style="color:var(--ui-tag-color-teal)">'sale'</span>)}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">CardTitle</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Template"</span>&gt;Sale contract&lt;/<span style="color:var(--ui-tag-color-blue)">CardTitle</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardBody</span>&gt;Goods, price and delivery.&lt;/<span style="color:var(--ui-tag-color-blue)">CardBody</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Card</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">Card</span> <span style="color:var(--ui-tag-color-purple)">clickable</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Start a lease contract"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setChosen</span>(<span style="color:var(--ui-tag-color-teal)">'lease'</span>)}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">CardTitle</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Template"</span>&gt;Lease contract&lt;/<span style="color:var(--ui-tag-color-blue)">CardTitle</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardBody</span>&gt;Property, rent and term.&lt;/<span style="color:var(--ui-tag-color-blue)">CardBody</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Card</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;Chosen: &lt;<span style="color:var(--ui-tag-color-blue)">output</span>&gt;{chosen}&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="disabled">Disabled</h2>
+<p><code>disabled</code> greys the text and the arrow. A disabled clickable card fires no <code>click</code> and leaves the tab order; a disabled linked card is no longer a link. Say in the card why it can't be used.</p>
+<div class="doc-demo"><ui-card clickable disabled label="Start a loan contract (unavailable)" style="max-width: 320px">
+  <ui-card-header><ui-card-title label="Template">Loan contract</ui-card-title></ui-card-header>
+  <ui-card-body>Being revised by the legal department until 15 October.</ui-card-body>
+</ui-card>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-13-0">HTML</ui-tab><ui-tab panel="code-13-1">React</ui-tab><ui-tab panel="code-13-2">React + Tailwind</ui-tab><ui-tab-panel name="code-13-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-card</span> <span style="color:var(--ui-tag-color-purple)">clickable</span> <span style="color:var(--ui-tag-color-purple)">disabled</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Start a loan contract (unavailable)"</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"max-width: 320px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-card-title</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Template"</span>&gt;Loan contract&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-title</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;Being revised by the legal department until 15 October.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-13-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiCard</span> <span style="color:var(--ui-tag-color-purple)">clickable</span> <span style="color:var(--ui-tag-color-purple)">disabled</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Start a loan contract (unavailable)"</span> <span style="color:var(--ui-tag-color-purple)">style</span><span style="color:var(--ui-tag-color-magenta)">=</span>{{ <span style="color:var(--ui-tag-color-purple)">maxWidth:</span> <span style="color:var(--ui-tag-color-green)">320</span> }}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Template"</span>&gt;Loan contract&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardBody</span>&gt;Being revised by the legal department until 15 October.&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardBody</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiCard</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-13-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">Card</span> <span style="color:var(--ui-tag-color-purple)">clickable</span> <span style="color:var(--ui-tag-color-purple)">disabled</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Start a loan contract (unavailable)"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"max-w-[320px]"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">CardTitle</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Template"</span>&gt;Loan contract&lt;/<span style="color:var(--ui-tag-color-blue)">CardTitle</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardBody</span>&gt;Being revised by the legal department until 15 October.&lt;/<span style="color:var(--ui-tag-color-blue)">CardBody</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Card</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="horizontal">Horizontal</h2>
+<p><code>horizontal</code> puts the media beside the content: at the start by default, at the end with <code>media-position=&quot;end&quot;</code>. The media takes a third of the card; <code>media-width</code> on <code>ui-card-media</code> changes that.</p>
+<div class="doc-demo"><ui-card horizontal style="max-width: 560px">
+  <ui-card-media>
+    <img alt="" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 90'%3E%3Crect width='160' height='90' fill='%23d0e2ff'/%3E%3Cpath d='M66 20h22l10 10v40H66z' fill='%23ffffff'/%3E%3Cpath d='M72 42h20M72 50h20M72 58h12' stroke='%230f62fe' stroke-width='2'/%3E%3C/svg%3E" />
+  </ui-card-media>
+  <ui-card-header><ui-card-title label="Guide" description="5 minutes to read">Signing a contract online</ui-card-title></ui-card-header>
+  <ui-card-body>Check the parties, sign with your one-time code, and download the signed copy.</ui-card-body>
+</ui-card>
+<ui-card horizontal media-position="end" style="max-width: 560px">
+  <ui-card-media media-width="40%">
+    <img alt="" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 90'%3E%3Crect width='160' height='90' fill='%23d0e2ff'/%3E%3Cpath d='M66 20h22l10 10v40H66z' fill='%23ffffff'/%3E%3Cpath d='M72 42h20M72 50h20M72 58h12' stroke='%230f62fe' stroke-width='2'/%3E%3C/svg%3E" />
+  </ui-card-media>
+  <ui-card-header><ui-card-title label="Guide" description="3 minutes to read">Asking for an approval</ui-card-title></ui-card-header>
+  <ui-card-body>Pick the approvers, add a note, and follow the request from your inbox.</ui-card-body>
+</ui-card>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-14-0">HTML</ui-tab><ui-tab panel="code-14-1">React</ui-tab><ui-tab panel="code-14-2">React + Tailwind</ui-tab><ui-tab-panel name="code-14-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-card</span> <span style="color:var(--ui-tag-color-purple)">horizontal</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"max-width: 560px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-media</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">img</span> <span style="color:var(--ui-tag-color-purple)">alt</span>=<span style="color:var(--ui-tag-color-teal)">""</span> <span style="color:var(--ui-tag-color-purple)">src</span>=<span style="color:var(--ui-tag-color-teal)">"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 90'%3E%3Crect width='160' height='90' fill='%23d0e2ff'/%3E%3Cpath d='M66 20h22l10 10v40H66z' fill='%23ffffff'/%3E%3Cpath d='M72 42h20M72 50h20M72 58h12' stroke='%230f62fe' stroke-width='2'/%3E%3C/svg%3E"</span> /&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-media</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-card-title</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Guide"</span> <span style="color:var(--ui-tag-color-purple)">description</span>=<span style="color:var(--ui-tag-color-teal)">"5 minutes to read"</span>&gt;Signing a contract online&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-title</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;Check the parties, sign with your one-time code, and download the signed copy.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-card</span> <span style="color:var(--ui-tag-color-purple)">horizontal</span> <span style="color:var(--ui-tag-color-purple)">media-position</span>=<span style="color:var(--ui-tag-color-teal)">"end"</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"max-width: 560px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-media</span> <span style="color:var(--ui-tag-color-purple)">media-width</span>=<span style="color:var(--ui-tag-color-teal)">"40%"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">img</span> <span style="color:var(--ui-tag-color-purple)">alt</span>=<span style="color:var(--ui-tag-color-teal)">""</span> <span style="color:var(--ui-tag-color-purple)">src</span>=<span style="color:var(--ui-tag-color-teal)">"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 90'%3E%3Crect width='160' height='90' fill='%23d0e2ff'/%3E%3Cpath d='M66 20h22l10 10v40H66z' fill='%23ffffff'/%3E%3Cpath d='M72 42h20M72 50h20M72 58h12' stroke='%230f62fe' stroke-width='2'/%3E%3C/svg%3E"</span> /&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-media</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-card-title</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Guide"</span> <span style="color:var(--ui-tag-color-purple)">description</span>=<span style="color:var(--ui-tag-color-teal)">"3 minutes to read"</span>&gt;Asking for an approval&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-title</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;Pick the approvers, add a note, and follow the request from your inbox.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-14-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiCard</span> <span style="color:var(--ui-tag-color-purple)">horizontal</span> <span style="color:var(--ui-tag-color-purple)">style</span><span style="color:var(--ui-tag-color-magenta)">=</span>{{ <span style="color:var(--ui-tag-color-purple)">maxWidth:</span> <span style="color:var(--ui-tag-color-green)">560</span> }}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardMedia</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">img</span> <span style="color:var(--ui-tag-color-purple)">alt</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">""</span> <span style="color:var(--ui-tag-color-purple)">src</span><span style="color:var(--ui-tag-color-magenta)">=</span>{guideImage} /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardMedia</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Guide"</span> <span style="color:var(--ui-tag-color-purple)">description</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"5 minutes to read"</span>&gt;Signing a contract online&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardBody</span>&gt;Check the parties, sign with your one-time code, and download the signed copy.&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardBody</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiCard</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiCard</span> <span style="color:var(--ui-tag-color-purple)">horizontal</span> <span style="color:var(--ui-tag-color-purple)">mediaPosition</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"end"</span> <span style="color:var(--ui-tag-color-purple)">style</span><span style="color:var(--ui-tag-color-magenta)">=</span>{{ <span style="color:var(--ui-tag-color-purple)">maxWidth:</span> <span style="color:var(--ui-tag-color-green)">560</span> }}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardMedia</span> <span style="color:var(--ui-tag-color-purple)">mediaWidth</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"40%"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">img</span> <span style="color:var(--ui-tag-color-purple)">alt</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">""</span> <span style="color:var(--ui-tag-color-purple)">src</span><span style="color:var(--ui-tag-color-magenta)">=</span>{guideImage} /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardMedia</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Guide"</span> <span style="color:var(--ui-tag-color-purple)">description</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"3 minutes to read"</span>&gt;Asking for an approval&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardBody</span>&gt;Pick the approvers, add a note, and follow the request from your inbox.&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardBody</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiCard</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-14-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">Card</span> <span style="color:var(--ui-tag-color-purple)">horizontal</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"max-w-[560px]"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardMedia</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">img</span> <span style="color:var(--ui-tag-color-purple)">alt</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">""</span> <span style="color:var(--ui-tag-color-purple)">src</span><span style="color:var(--ui-tag-color-magenta)">=</span>{guideImage} /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">CardMedia</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">CardTitle</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Guide"</span> <span style="color:var(--ui-tag-color-purple)">description</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"5 minutes to read"</span>&gt;Signing a contract online&lt;/<span style="color:var(--ui-tag-color-blue)">CardTitle</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardBody</span>&gt;Check the parties, sign with your one-time code, and download the signed copy.&lt;/<span style="color:var(--ui-tag-color-blue)">CardBody</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Card</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">Card</span> <span style="color:var(--ui-tag-color-purple)">horizontal</span> <span style="color:var(--ui-tag-color-purple)">mediaPosition</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"end"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"max-w-[560px]"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardMedia</span> <span style="color:var(--ui-tag-color-purple)">mediaWidth</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"40%"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">img</span> <span style="color:var(--ui-tag-color-purple)">alt</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">""</span> <span style="color:var(--ui-tag-color-purple)">src</span><span style="color:var(--ui-tag-color-magenta)">=</span>{guideImage} /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">CardMedia</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">CardTitle</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Guide"</span> <span style="color:var(--ui-tag-color-purple)">description</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"3 minutes to read"</span>&gt;Asking for an approval&lt;/<span style="color:var(--ui-tag-color-blue)">CardTitle</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardBody</span>&gt;Pick the approvers, add a note, and follow the request from your inbox.&lt;/<span style="color:var(--ui-tag-color-blue)">CardBody</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Card</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="expressive">Expressive</h2>
+<p><code>density=&quot;expressive&quot;</code> sets the title in the larger heading-03 type, for marketing-like pages with few cards. The default <code>productive</code> suits dense product screens.</p>
+<div class="doc-demo"><ui-card density="expressive" style="max-width: 360px">
+  <ui-card-header><ui-card-title label="New">E-signature for every branch</ui-card-title></ui-card-header>
+  <ui-card-body>From November, every branch can sign contracts online.</ui-card-body>
+</ui-card>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-15-0">HTML</ui-tab><ui-tab panel="code-15-1">React</ui-tab><ui-tab panel="code-15-2">React + Tailwind</ui-tab><ui-tab-panel name="code-15-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-card</span> <span style="color:var(--ui-tag-color-purple)">density</span>=<span style="color:var(--ui-tag-color-teal)">"expressive"</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"max-width: 360px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-card-title</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"New"</span>&gt;E-signature for every branch&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-title</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;From November, every branch can sign contracts online.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-15-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiCard</span> <span style="color:var(--ui-tag-color-purple)">density</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"expressive"</span> <span style="color:var(--ui-tag-color-purple)">style</span><span style="color:var(--ui-tag-color-magenta)">=</span>{{ <span style="color:var(--ui-tag-color-purple)">maxWidth:</span> <span style="color:var(--ui-tag-color-green)">360</span> }}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"New"</span>&gt;E-signature for every branch&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCardBody</span>&gt;From November, every branch can sign contracts online.&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardBody</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiCard</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-15-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">Card</span> <span style="color:var(--ui-tag-color-purple)">density</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"expressive"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"max-w-[360px]"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">CardTitle</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"New"</span>&gt;E-signature for every branch&lt;/<span style="color:var(--ui-tag-color-blue)">CardTitle</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">CardBody</span>&gt;From November, every branch can sign contracts online.&lt;/<span style="color:var(--ui-tag-color-blue)">CardBody</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Card</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="on-a-layer">On a layer</h2>
+<p>A card draws itself in the layer colour it sits on. Inside a <code>ui-layer</code> it takes the next one, so cards on a grey panel still stand out.</p>
+<div class="doc-demo"><ui-layer level="1" with-background style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; padding: 16px">
+  <ui-card>
+    <ui-card-header><ui-card-title label="Sales">12 open deals</ui-card-title></ui-card-header>
+    <ui-card-body>Worth 3.4 million baht.</ui-card-body>
+  </ui-card>
+  <ui-card>
+    <ui-card-header><ui-card-title label="Legal">5 reviews</ui-card-title></ui-card-header>
+    <ui-card-body>2 due this week.</ui-card-body>
+  </ui-card>
+</ui-layer>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-16-0">HTML</ui-tab><ui-tab panel="code-16-1">React</ui-tab><ui-tab panel="code-16-2">React + Tailwind</ui-tab><ui-tab-panel name="code-16-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-layer</span> <span style="color:var(--ui-tag-color-purple)">level</span>=<span style="color:var(--ui-tag-color-teal)">"1"</span> <span style="color:var(--ui-tag-color-purple)">with-background</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; padding: 16px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-card-title</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Sales"</span>&gt;12 open deals&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-title</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;Worth 3.4 million baht.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-card</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-card-title</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Legal"</span>&gt;5 reviews&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-title</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-header</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;2 due this week.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-card-body</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-card</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-layer</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-16-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiLayer</span> <span style="color:var(--ui-tag-color-purple)">level</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">1</span>} <span style="color:var(--ui-tag-color-purple)">withBackground</span> <span style="color:var(--ui-tag-color-purple)">style</span><span style="color:var(--ui-tag-color-magenta)">=</span>{{ <span style="color:var(--ui-tag-color-purple)">display:</span> <span style="color:var(--ui-tag-color-teal)">'grid'</span>, <span style="color:var(--ui-tag-color-purple)">gridTemplateColumns:</span> <span style="color:var(--ui-tag-color-teal)">'repeat(auto-fill, minmax(220px, 1fr))'</span>, <span style="color:var(--ui-tag-color-purple)">gap:</span> <span style="color:var(--ui-tag-color-green)">16</span>, <span style="color:var(--ui-tag-color-purple)">padding:</span> <span style="color:var(--ui-tag-color-green)">16</span> }}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCard</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Sales"</span>&gt;12 open deals&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiCardBody</span>&gt;Worth 3.4 million baht.&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardBody</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiCard</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCard</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Legal"</span>&gt;5 reviews&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardTitle</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardHeader</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiCardBody</span>&gt;2 due this week.&lt;/<span style="color:var(--ui-tag-color-blue)">UiCardBody</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiCard</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiLayer</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-16-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">Layer</span> <span style="color:var(--ui-tag-color-purple)">level</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">1</span>} <span style="color:var(--ui-tag-color-purple)">withBackground</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid grid-cols-[repeat(auto-fill,minmax(220px,1fr))] gap-4 p-4"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">Card</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">CardTitle</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Sales"</span>&gt;12 open deals&lt;/<span style="color:var(--ui-tag-color-blue)">CardTitle</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">CardBody</span>&gt;Worth 3.4 million baht.&lt;/<span style="color:var(--ui-tag-color-blue)">CardBody</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">Card</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">Card</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">CardTitle</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Legal"</span>&gt;5 reviews&lt;/<span style="color:var(--ui-tag-color-blue)">CardTitle</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">CardHeader</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">CardBody</span>&gt;2 due this week.&lt;/<span style="color:var(--ui-tag-color-blue)">CardBody</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">Card</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Layer</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="keyboard">Keyboard</h2>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tab</td>
+<td>Moves to a linked or clickable card, or to the buttons in a plain card's header and footer</td>
+</tr>
+<tr>
+<td>Enter</td>
+<td>Follows a linked card; presses a clickable card</td>
+</tr>
+<tr>
+<td>Space</td>
+<td>Presses a clickable card</td>
+</tr>
+</tbody>
+</table>
+<h2 id="accessibility">Accessibility</h2>
+<ul>
+<li>The title is not a heading element. When the cards form a list with headings on the page, wrap the title text in a heading of the right level, or name the list.</li>
+<li>A linked or clickable card is one control. Name it with <code>label</code>, since its whole text would make a long name, and don't put other controls inside.</li>
+<li>A clickable card is a <code>role=&quot;button&quot;</code>; a disabled one has <code>aria-disabled</code> and leaves the tab order.</li>
+<li>The arrow of a clickable card and the media are decorative. Give an image a real <code>alt</code> only when it carries information.</li>
+<li>The header actions are separate buttons, each with its own <code>label</code>; those in the overflow menu keep their names.</li>
+</ul>
+<p>Unstyled React parts with the same behaviour: <a href="/kanok-ui-docs/en/headless-card/">Headless Card</a>.</p>
+<h2 id="api">API</h2>
+<p>Generated from the package. In React, pass a property as a prop of the same name; events are props too (the React column).</p>
+<h3 id="ui-card-react-uicard"><code>&lt;ui-card&gt;</code> · React <code>UiCard</code></h3>
+<h4 id="attributes">Attributes</h4>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>href</code></td>
+<td><code>href</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>Makes the whole card one link.</td>
+</tr>
+<tr>
+<td><code>target</code></td>
+<td><code>target</code></td>
+<td><code>'_self' | '_blank'</code></td>
+<td><code>'_self'</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>clickable</code></td>
+<td><code>clickable</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Makes the whole card one button (listen for <code>click</code>).</td>
+</tr>
+<tr>
+<td><code>disabled</code></td>
+<td><code>disabled</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>label</code></td>
+<td><code>label</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>The accessible name of a linked or clickable card (Carbon asks for one).</td>
+</tr>
+<tr>
+<td><code>density</code></td>
+<td><code>density</code></td>
+<td><code>CardDensity</code></td>
+<td><code>'productive'</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>horizontal</code></td>
+<td><code>horizontal</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>media-position</code></td>
+<td><code>mediaPosition</code></td>
+<td><code>'start' | 'end'</code></td>
+<td><code>'start'</code></td>
+<td>Where a horizontal card's media goes.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="events">Events</h4>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>React</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ui-navigate</code></td>
+<td>none (use a ref)</td>
+<td>detail: { href } (cancelable) on a plain click of a linked card; cancel it to route client-side (README: SPA router)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="slots">Slots</h4>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(default)</td>
+<td>The parts</td>
+</tr>
+<tr>
+<td><code>media</code></td>
+<td>(filled for you) the media of a horizontal card</td>
+</tr>
+<tr>
+<td><code>footer-icon</code></td>
+<td>Replaces the clickable card's arrow</td>
+</tr>
+</tbody>
+</table>
+<h4 id="css-parts">CSS parts</h4>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>base</code></td>
+<td>The card (<code>&lt;div&gt;</code>, or <code>&lt;a&gt;</code> with <code>href</code>)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="css-custom-properties">CSS custom properties</h4>
+<table>
+<thead>
+<tr>
+<th>Custom property</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--ui-card-radius</code></td>
+<td></td>
+<td>Corner radius (default 0; Kanok: 12px)</td>
+</tr>
+<tr>
+<td><code>--ui-card-border</code></td>
+<td></td>
+<td>Border of every card, not only clickable ones (default none; Kanok: a hairline)</td>
+</tr>
+<tr>
+<td><code>--ui-card-background</code></td>
+<td></td>
+<td>Its fill (default <code>--ui-surface-1</code>; Kanok paper: a cool grey that sets it apart from the page, no border)</td>
+</tr>
+<tr>
+<td><code>--ui-card-clickable-border</code></td>
+<td></td>
+<td>Border of a clickable card (default 1px <code>--ui-border-tile-1</code>; Kanok: none)</td>
+</tr>
+<tr>
+<td><code>--ui-card-overflow</code></td>
+<td></td>
+<td><code>overflow</code> of the card (default visible; Kanok: clip, so media follow the rounded corners)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ui-card-media-react-uicardmedia"><code>&lt;ui-card-media&gt;</code> · React <code>UiCardMedia</code></h3>
+<h4 id="attributes-2">Attributes</h4>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ratio</code></td>
+<td><code>ratio</code></td>
+<td><code>CardMediaRatio | ''</code></td>
+<td><code>''</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>media-width</code></td>
+<td><code>mediaWidth</code></td>
+<td><code>string</code></td>
+<td><code>'33.33%'</code></td>
+<td>A horizontal card's media width (Carbon's default 33.33%).</td>
+</tr>
+</tbody>
+</table>
+<h4 id="slots-2">Slots</h4>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(default)</td>
+<td>An <code>&lt;img&gt;</code>, <code>&lt;video&gt;</code>, …</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ui-card-header-react-uicardheader"><code>&lt;ui-card-header&gt;</code> · React <code>UiCardHeader</code></h3>
+<h4 id="slots-3">Slots</h4>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(default)</td>
+<td><code>&lt;ui-card-header-media&gt;</code>, <code>&lt;ui-card-title-media&gt;</code>, <code>&lt;ui-card-title&gt;</code>, <code>&lt;ui-card-actions&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="ui-card-header-media-react-uicardheadermedia"><code>&lt;ui-card-header-media&gt;</code> · React <code>UiCardHeaderMedia</code></h3>
+<h4 id="slots-4">Slots</h4>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(default)</td>
+<td>The media</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ui-card-title-media-react-uicardtitlemedia"><code>&lt;ui-card-title-media&gt;</code> · React <code>UiCardTitleMedia</code></h3>
+<h4 id="slots-5">Slots</h4>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(default)</td>
+<td>The media</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ui-card-title-react-uicardtitle"><code>&lt;ui-card-title&gt;</code> · React <code>UiCardTitle</code></h3>
+<h4 id="attributes-3">Attributes</h4>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>label</code></td>
+<td><code>label</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td><code>description</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>title-truncate</code></td>
+<td><code>titleTruncate</code></td>
+<td><code>string | null</code></td>
+<td><code>null</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>label-truncate</code></td>
+<td><code>labelTruncate</code></td>
+<td><code>string | null</code></td>
+<td><code>null</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>description-truncate</code></td>
+<td><code>descriptionTruncate</code></td>
+<td><code>string | null</code></td>
+<td><code>null</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>max-width</code></td>
+<td><code>maxWidth</code></td>
+<td><code>string</code></td>
+<td><code>'100%'</code></td>
+<td>A truncated title's widest.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="slots-6">Slots</h4>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(default)</td>
+<td>The title text</td>
+</tr>
+<tr>
+<td><code>label</code></td>
+<td>Replaces <code>label</code></td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>Replaces <code>description</code></td>
+</tr>
+<tr>
+<td><code>title-start</code></td>
+<td>An icon before the title</td>
+</tr>
+<tr>
+<td><code>title-end</code></td>
+<td>An icon after the title</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ui-card-body-react-uicardbody"><code>&lt;ui-card-body&gt;</code> · React <code>UiCardBody</code></h3>
+<h4 id="attributes-4">Attributes</h4>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>is-flush</code></td>
+<td><code>isFlush</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="slots-7">Slots</h4>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(default)</td>
+<td>The content</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ui-card-footer-react-uicardfooter"><code>&lt;ui-card-footer&gt;</code> · React <code>UiCardFooter</code></h3>
+<h4 id="slots-8">Slots</h4>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(default)</td>
+<td>Content or <code>&lt;ui-card-action&gt;</code>s</td>
+</tr>
+</tbody>
+</table>
+<h4 id="css-custom-properties-2">CSS custom properties</h4>
+<table>
+<thead>
+<tr>
+<th>Custom property</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--ui-card-actions-padding</code></td>
+<td></td>
+<td>/ --ui-card-actions-gap - Around and between the footer's buttons (default 0 and 1px: full-bleed; Kanok: 8px and 8px)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ui-card-action-react-uicardaction"><code>&lt;ui-card-action&gt;</code> · React <code>UiCardAction</code></h3>
+<h4 id="attributes-5">Attributes</h4>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>label</code></td>
+<td><code>label</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>Its name in the header's overflow menu (else the button's label or text).</td>
+</tr>
+</tbody>
+</table>
+<h4 id="slots-9">Slots</h4>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(default)</td>
+<td>A <code>&lt;ui-button&gt;</code> or <code>&lt;ui-icon-button&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="ui-card-actions-react-uicardactions"><code>&lt;ui-card-actions&gt;</code> · React <code>UiCardActions</code></h3>
+<h4 id="attributes-6">Attributes</h4>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>overflow-menu-label</code></td>
+<td><code>overflowMenuLabel</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>The overflow menu's name (default: the translation's &quot;More actions&quot;).</td>
+</tr>
+</tbody>
+</table>
+<h4 id="slots-10">Slots</h4>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(default)</td>
+<td><code>&lt;ui-card-action&gt;</code>s, each with a small <code>&lt;ui-icon-button&gt;</code> (or <code>&lt;ui-button size=&quot;sm&quot;&gt;</code>)</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+<nav class="doc-toc" aria-labelledby="doc-toc-title"><p id="doc-toc-title" class="doc-toc-title">On this page</p><ul><li class="doc-toc-h2"><a href="#installation">Installation</a></li><li class="doc-toc-h2"><a href="#use-it">Use it</a></li><li class="doc-toc-h2"><a href="#card-tile-or-product-card">Card, tile or product card?</a></li><li class="doc-toc-h2"><a href="#the-parts">The parts</a></li><li class="doc-toc-h2"><a href="#media">Media</a></li><li class="doc-toc-h2"><a href="#logo-beside-the-title">Logo beside the title</a></li><li class="doc-toc-h2"><a href="#title-label-and-description">Title, label and description</a></li><li class="doc-toc-h2"><a href="#cut-long-text">Cut long text</a></li><li class="doc-toc-h2"><a href="#header-actions">Header actions</a></li><li class="doc-toc-h2"><a href="#footer-actions">Footer actions</a></li><li class="doc-toc-h2"><a href="#linked-card">Linked card</a></li><li class="doc-toc-h2"><a href="#clickable-card">Clickable card</a></li><li class="doc-toc-h2"><a href="#disabled">Disabled</a></li><li class="doc-toc-h2"><a href="#horizontal">Horizontal</a></li><li class="doc-toc-h2"><a href="#expressive">Expressive</a></li><li class="doc-toc-h2"><a href="#on-a-layer">On a layer</a></li><li class="doc-toc-h2"><a href="#keyboard">Keyboard</a></li><li class="doc-toc-h2"><a href="#accessibility">Accessibility</a></li><li class="doc-toc-h2"><a href="#api">API</a></li><li class="doc-toc-h3"><a href="#ui-card-react-uicard">&lt;ui-card></a></li><li class="doc-toc-h3"><a href="#ui-card-media-react-uicardmedia">&lt;ui-card-media></a></li><li class="doc-toc-h3"><a href="#ui-card-header-react-uicardheader">&lt;ui-card-header></a></li><li class="doc-toc-h3"><a href="#ui-card-header-media-react-uicardheadermedia">&lt;ui-card-header-media></a></li><li class="doc-toc-h3"><a href="#ui-card-title-media-react-uicardtitlemedia">&lt;ui-card-title-media></a></li><li class="doc-toc-h3"><a href="#ui-card-title-react-uicardtitle">&lt;ui-card-title></a></li><li class="doc-toc-h3"><a href="#ui-card-body-react-uicardbody">&lt;ui-card-body></a></li><li class="doc-toc-h3"><a href="#ui-card-footer-react-uicardfooter">&lt;ui-card-footer></a></li><li class="doc-toc-h3"><a href="#ui-card-action-react-uicardaction">&lt;ui-card-action></a></li><li class="doc-toc-h3"><a href="#ui-card-actions-react-uicardactions">&lt;ui-card-actions></a></li></ul></nav>
+</div>
+<nav class="doc-pager" aria-label="Next / Previous"><a class="doc-pager-prev" href="/kanok-ui-docs/en/tile/" rel="prev"><span>Previous</span>Tile</a><a class="doc-pager-next" href="/kanok-ui-docs/en/product-card/" rel="next"><span>Next</span>Product card</a></nav>
+<footer class="doc-footer">@purpurabog/ui 1.4.3 · MIT · <a href="https://cdn.jsdelivr.net/npm/@purpurabog/ui@1.4.3/THIRD-PARTY-NOTICES.md">Third-party notices</a><br>Built on the Carbon Design System. Not affiliated with or endorsed by IBM; IBM and Carbon are trademarks of IBM Corp.</footer>
+</ui-content>
+<ui-modal id="doc-search" heading="Search" data-count="{n} results" data-empty="No results for “{q}”">
+<ui-search label="Search the docs" placeholder="Search the docs" size="lg"></ui-search>
+<p class="doc-search-status" role="status"></p>
+<ul class="doc-search-results"></ul>
+</ui-modal>
+</body>
+</html>

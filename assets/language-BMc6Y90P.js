@@ -1,0 +1,1 @@
+import{d as e}from"./headless-CpcU3xFD.js";var t=e();function n(e){let t=typeof MutationObserver>`u`?null:new MutationObserver(e);return t?.observe(document.documentElement,{attributes:!0,attributeFilter:[`lang`]}),()=>t?.disconnect()}function r(e){return(0,t.useSyncExternalStore)(n,()=>e||document.documentElement.lang||navigator.language||`en`,()=>e||`en`)}export{r as t};

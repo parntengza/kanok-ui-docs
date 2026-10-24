@@ -1,0 +1,612 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Status indicator · @purpurabog/ui</title>
+<link rel="alternate" hreflang="en" href="/kanok-ui-docs/en/status-indicator/"  /><link rel="alternate" hreflang="th" href="/kanok-ui-docs/th/status-indicator/"  />
+<script>(function(){try{var q=new URLSearchParams(location.search).get("design"),d=q;if(q==="kanok"||q==="carbon")localStorage.setItem("ui-docs-design",q);else d=localStorage.getItem("ui-docs-design");if(d==="kanok")document.documentElement.setAttribute("data-design","kanok")}catch(e){}})();(function(){try{var m=localStorage.getItem("ui-docs-theme");if(m!=="light"&&m!=="dark"&&m!=="system")return;var d=m==="dark"||(m==="system"&&matchMedia("(prefers-color-scheme: dark)").matches),r=document.documentElement,t=d?"g100":"white";if(r.getAttribute("data-design")==="kanok")t=d?"lacquer":"paper";r.setAttribute("data-theme",t)}catch(e){}})();</script>
+<style>ui-header:not(:defined){z-index:8000;box-sizing:border-box;border-block-end:1px solid var(--ui-border-subtle-1);background:var(--ui-canvas);block-size:48px;display:block;position:fixed;inset:0 0 auto}:is(ui-header:not(:defined)>*,ui-side-nav:not(:defined)>*){visibility:hidden}:is(ui-header-panel:not(:defined),ui-modal:not(:defined)){display:none}ui-side-nav:not(:defined){display:none}ui-content:not(:defined){margin-block-start:48px;padding:32px;display:block}@media (width>=1056px){ui-side-nav[expanded]:not(:defined){background:var(--ui-canvas);inline-size:256px;display:block;position:fixed;inset:48px auto 0 0}ui-side-nav[expanded]:not(:defined)~ui-content:not(:defined){margin-inline-start:256px}}ui-tabs:not(:defined){display:block}ui-tabs:not(:defined)>ui-tab{box-sizing:border-box;border-block-end:2px solid var(--ui-hairline);block-size:40px;color:var(--ui-ink-muted);font:var(--ui-font-body-sm);padding:0 16px;line-height:38px;display:inline-block}ui-tabs:not(:defined)>ui-tab:first-of-type{border-block-end-color:var(--ui-interactive);color:var(--ui-ink)}ui-tabs:not(:defined)>ui-tab-panel{padding:16px;display:block}ui-tabs:not(:defined)>ui-tab-panel~ui-tab-panel{display:none}ui-code-snippet:not(:defined){background:var(--ui-layer-1);max-block-size:272px;font:var(--ui-font-code,12px/16px monospace);white-space:pre;padding:16px;display:block;overflow:hidden}[data-react-example]:empty>*{visibility:hidden}.doc-demo:has(:not(:defined))>*{visibility:hidden}[data-react-example]:empty{box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}.doc-demo:has(:not(:defined)){box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}@keyframes doc-skeleton{to{background-position:-200% 0}}@media (prefers-reduced-motion:reduce){[data-react-example]:empty{animation:none}.doc-demo:has(:not(:defined)){animation:none}}</style>
+
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/theme-switcher-BGAHXRgF.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/tabs-CvVVO2Pb.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/button-CTeCEJcq.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/structured-list-DsTWMgU1.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/definition-tooltip-18dYgQUo.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/status-indicator-DhbzV_N0.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/shape-indicator-2AYS7OUM.js"></script>
+  <link rel="stylesheet" crossorigin href="/kanok-ui-docs/assets/theme-switcher-CL5yB6XE.css">
+</head>
+<body>
+<ui-header label="@purpurabog/ui">
+<ui-skip-to-content></ui-skip-to-content>
+<ui-header-menu-button></ui-header-menu-button>
+<ui-header-name href="/kanok-ui-docs/th/" prefix="@purpurabog">ui</ui-header-name>
+<ui-header-global-bar>
+<ui-header-global-action id="doc-search-open" label="ค้นหา" tooltip-placement="bottom"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="m18.5 17.8-4.9-4.9a7 7 0 1 0-.7.7l4.9 4.9zM3 8.5a5.5 5.5 0 1 1 5.5 5.5A5.5 5.5 0 0 1 3 8.5Z" /></svg></ui-header-global-action>
+<ui-header-global-action label="ตั้งค่า" panel="doc-settings" tooltip-placement="bottom-end"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="M16.9 10.6a7 7 0 0 0 0-1.2l1.8-1.4-1.6-2.8-2.1.8a6.6 6.6 0 0 0-1-.6L13.6 3h-3.2l-.4 2.4a6.6 6.6 0 0 0-1 .6l-2.1-.8L5.3 8l1.8 1.4a7 7 0 0 0 0 1.2L5.3 12l1.6 2.8 2.1-.8a6.6 6.6 0 0 0 1 .6l.4 2.4h3.2l.4-2.4a6.6 6.6 0 0 0 1-.6l2.1.8 1.6-2.8zM12 13a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" /></svg></ui-header-global-action>
+</ui-header-global-bar>
+<ui-header-panel id="doc-settings" label="ตั้งค่า">
+<div class="doc-settings">
+<span class="doc-settings-label">ธีม</span>
+<ui-theme-switcher storage-key="ui-docs-theme" tooltip-placement="bottom"></ui-theme-switcher>
+<span class="doc-settings-label">รูปแบบ</span>
+<ui-content-switcher id="doc-design" aria-label="รูปแบบ" size="sm"><ui-content-switcher-item name="carbon">Carbon</ui-content-switcher-item><ui-content-switcher-item name="kanok">Kanok</ui-content-switcher-item></ui-content-switcher>
+<span class="doc-settings-label">ภาษา</span>
+<ui-link href="/kanok-ui-docs/en/status-indicator/" hreflang="en" lang="en">English</ui-link>
+</div>
+</ui-header-panel>
+</ui-header>
+<ui-side-nav label="เอกสาร"><ui-side-nav-items><ui-side-nav-menu label="เริ่มต้น"><ui-side-nav-menu-item href="/kanok-ui-docs/th/">ภาพรวม</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/installation/">ติดตั้ง</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/migration-1-0/">การย้ายไป 1.0</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="คู่มือ"><ui-side-nav-menu-item href="/kanok-ui-docs/th/themes/">ธีมและ layer</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/kanok/">ดีไซน์ Kanok</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/customizing/">ปรับแต่งหน้าตา</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/icons/">ไอคอน</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/forms/">ฟอร์มและการตรวจค่า</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/frameworks/">ใช้กับ framework</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/ai/">ใช้กับ AI</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="ฟอร์มและปุ่ม"><ui-side-nav-menu-item href="/kanok-ui-docs/th/button/">Button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/file-uploader/">File uploader</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Overlay"><ui-side-nav-menu-item href="/kanok-ui-docs/th/modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/toggletip/">Toggletip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/menu/">Menu</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="ข้อมูล"><ui-side-nav-menu-item href="/kanok-ui-docs/th/data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/contained-list/">Contained list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tree-view/">Tree view</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="การนำทาง"><ui-side-nav-menu-item href="/kanok-ui-docs/th/tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/breadcrumb/">Breadcrumb</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/link/">Link</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/ui-shell/">UI shell</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="เนื้อหา"><ui-side-nav-menu-item href="/kanok-ui-docs/th/tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tile/">Tile</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/user-avatar/">User avatar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/list/">List</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="สถานะและการโหลด" expanded><ui-side-nav-menu-item href="/kanok-ui-docs/th/loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/inline-loading/">Inline loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/progress-bar/">Progress bar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/skeleton/">Skeleton</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/badge-indicator/">Badge indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/status-indicator/" current>Status indicator</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="เลย์เอาต์"><ui-side-nav-menu-item href="/kanok-ui-docs/th/grid/">Grid</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/heading/">Heading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/layer/">Layer</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/action-set/">Action set</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/page-header/">Page header</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/big-number/">Big number</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Headless"><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless/">แนะนำ</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-file-uploader/">File uploader</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-menu/">Menu</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-ui-shell/">UI shell</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tree-view/">Tree view</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu></ui-side-nav-items></ui-side-nav><script>if(matchMedia('(min-width: 66rem)').matches)document.currentScript.previousElementSibling.setAttribute('expanded','')</script>
+<ui-content>
+<div class="doc-page">
+<article class="doc">
+<h1 id="status-indicator">Status indicator</h1>
+<p>Status indicator แสดงสถานะของสิ่งหนึ่งด้วยไอคอนสีเล็ก ๆ กับ label เช่น งานที่สำเร็จแล้ว หรือระดับความรุนแรงของเหตุขัดข้อง <code>&lt;ui-icon-indicator&gt;</code> ใช้ไอคอนสถานะของ Carbon ส่วน <code>&lt;ui-shape-indicator&gt;</code> ใช้รูปทรงง่าย ๆ สำหรับระดับความรุนแรงและสถานะ ทั้งสองตาม status indicator ของ Carbon ซึ่ง Carbon ยังติดป้าย preview อยู่</p>
+<div class="doc-demo"><div style="display: grid; gap: 8px; justify-items: start">
+  <ui-icon-indicator kind="succeeded" label="ได้รับชำระเงินแล้ว"></ui-icon-indicator>
+  <ui-icon-indicator kind="in-progress" label="รอผู้อนุมัติคนที่สอง"></ui-icon-indicator>
+  <ui-icon-indicator kind="failed" label="ธนาคารปฏิเสธการโอน"></ui-icon-indicator>
+</div>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-1-0">HTML</ui-tab><ui-tab panel="code-1-1">React</ui-tab><ui-tab panel="code-1-2">React + Tailwind</ui-tab><ui-tab-panel name="code-1-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"display: grid; gap: 8px; justify-items: start"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"succeeded"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ได้รับชำระเงินแล้ว"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"in-progress"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"รอผู้อนุมัติคนที่สอง"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"failed"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ธนาคารปฏิเสธการโอน"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-1-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiIconIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"succeeded"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ได้รับชำระเงินแล้ว"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiIconIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"in-progress"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"รอผู้อนุมัติคนที่สอง"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiIconIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"failed"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ธนาคารปฏิเสธการโอน"</span> /&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-1-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">IconIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"succeeded"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ได้รับชำระเงินแล้ว"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">IconIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"in-progress"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"รอผู้อนุมัติคนที่สอง"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">IconIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"failed"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ธนาคารปฏิเสธการโอน"</span> /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="ติดตั้ง">ติดตั้ง</h2>
+<ui-tabs class="doc-code-tabs" label="โค้ด"><ui-tab panel="code-2-0">npm</ui-tab><ui-tab panel="code-2-1">shadcn · Web component</ui-tab><ui-tab panel="code-2-2">shadcn · React + Tailwind</ui-tab><ui-tab panel="code-2-3">คัดลอกเอง</ui-tab><ui-tab-panel name="code-2-0"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">@purpurabog/ui</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-1"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npx</span> <span style="color:var(--ui-tag-color-teal)">shadcn@4</span> <span style="color:var(--ui-tag-color-teal)">add</span> <span style="color:var(--ui-tag-color-teal)">@kanok-ui/status-indicator</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-2"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npx</span> <span style="color:var(--ui-tag-color-teal)">shadcn@4</span> <span style="color:var(--ui-tag-color-teal)">add</span> <span style="color:var(--ui-tag-color-teal)">@kanok-ui/tw-status-indicator</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-3"><ui-code-snippet type="multi" class="doc-code" data-lang="bash"><span style="color:var(--ui-ink-muted);font-style:italic"># Web component</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 1. ติดตั้ง dependency</span>
+<span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">lit@^3.3.0</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 2. คัดลอก "content" ของแต่ละไฟล์จาก</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    https://cdn.jsdelivr.net/npm/@purpurabog/ui@1.4.3/registry/status-indicator.json</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    ไปไว้ที่ target ของมัน:</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/status-indicator/icon-indicator.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/status-indicator/shape-indicator.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/status-indicator/status-indicator-shared.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/status-indicator/status-indicator.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 3. ทำแบบเดียวกันกับ item ที่มันใช้ (registry/&lt;name&gt;.json):</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    core-position, core-status-indicator, definition-tooltip, shared-align, shared-element, shared-field, tokens</span>
+
+<span style="color:var(--ui-ink-muted);font-style:italic"># React + Tailwind</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 1. ติดตั้ง dependency</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># (ไม่มี)</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 2. คัดลอก "content" ของแต่ละไฟล์จาก</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    https://cdn.jsdelivr.net/npm/@purpurabog/ui@1.4.3/registry/tw-status-indicator.json</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    ไปไว้ที่ target ของมัน:</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/react-tw/status-indicator.tsx</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 3. ทำแบบเดียวกันกับ item ที่มันใช้ (registry/&lt;name&gt;.json):</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    core-position, core-status-indicator, tw-definition-tooltip, tw-theme, tw-utils</span></ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>npm ให้ทุก component จากแพ็กเกจ ส่วน shadcn คัดลอกซอร์สเข้าแอปของคุณแทน เป็นสำเนาที่ล็อกเวอร์ชันนี้และแก้เองได้ คำสั่ง shadcn ต้องตั้ง registry <code>@kanok-ui</code> ใน <code>components.json</code> ครั้งเดียวก่อน ดู <a href="/kanok-ui-docs/th/installation/#react-tailwind-%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2-shadcn">ติดตั้ง</a></p>
+<h2 id="วิธีใช้">วิธีใช้</h2>
+<ui-tabs class="doc-code-tabs" label="โค้ด"><ui-tab panel="code-3-0">HTML</ui-tab><ui-tab panel="code-3-1">React</ui-tab><ui-tab panel="code-3-2">React + Tailwind</ui-tab><ui-tab-panel name="code-3-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;<span style="color:var(--ui-tag-color-magenta)">import</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/status-indicator'</span>;&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"succeeded"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"อนุมัติแล้ว"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"high"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"สูง"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-3-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { UiIconIndicator, UiShapeIndicator } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/react'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiIconIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"succeeded"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"อนุมัติแล้ว"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiShapeIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"high"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"สูง"</span> /&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-3-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { IconIndicator, ShapeIndicator } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@/components/ui/react-tw/status-indicator'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">IconIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"succeeded"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"อนุมัติแล้ว"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ShapeIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"high"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"สูง"</span> /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="ไอคอนหรือรูปทรง">ไอคอนหรือรูปทรง?</h2>
+<ul>
+<li>Icon indicator: สถานะของกระบวนการหรือรายการ เช่น การชำระเงิน การนำเข้าข้อมูล หรือเซิร์ฟเวอร์</li>
+<li>Shape indicator: ระดับ เช่น ความรุนแรงของเหตุขัดข้องหรือความเสี่ยง และสถานะบางแบบ (stable, draft, incomplete)</li>
+<li>ถ้าเป็นป้ายที่ผู้ใช้คลิกหรือลบได้ ให้ใช้ <a href="/kanok-ui-docs/th/tag/">Tag</a> แทน</li>
+</ul>
+<p>แต่ละ kind มีไอคอนและสีของตัวเอง สถานะจึงไม่ได้ขึ้นกับสีอย่างเดียว เขียน label เสมอ</p>
+<h2 id="kind-ของ-icon-indicator">Kind ของ icon indicator</h2>
+<p><code>kind</code> เลือกไอคอนและสี มีทั้งหมด 12 kind ถ้า <code>kind</code> ไม่ใช่หนึ่งในนี้จะไม่แสดงอะไร</p>
+<div class="doc-demo"><div style="display: grid; gap: 8px; justify-items: start">
+  <ui-icon-indicator kind="failed" label="ล้มเหลว (failed)"></ui-icon-indicator>
+  <ui-icon-indicator kind="caution-major" label="ระวังมาก (caution-major)"></ui-icon-indicator>
+  <ui-icon-indicator kind="caution-minor" label="ระวังเล็กน้อย (caution-minor)"></ui-icon-indicator>
+  <ui-icon-indicator kind="undefined" label="ไม่ได้กำหนด (undefined)"></ui-icon-indicator>
+  <ui-icon-indicator kind="succeeded" label="สำเร็จ (succeeded)"></ui-icon-indicator>
+  <ui-icon-indicator kind="normal" label="ปกติ (normal)"></ui-icon-indicator>
+  <ui-icon-indicator kind="in-progress" label="กำลังดำเนินการ (in-progress)"></ui-icon-indicator>
+  <ui-icon-indicator kind="incomplete" label="ยังไม่ครบ (incomplete)"></ui-icon-indicator>
+  <ui-icon-indicator kind="not-started" label="ยังไม่เริ่ม (not-started)"></ui-icon-indicator>
+  <ui-icon-indicator kind="pending" label="รอดำเนินการ (pending)"></ui-icon-indicator>
+  <ui-icon-indicator kind="unknown" label="ไม่ทราบ (unknown)"></ui-icon-indicator>
+  <ui-icon-indicator kind="informative" label="ข้อมูล (informative)"></ui-icon-indicator>
+</div>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-4-0">HTML</ui-tab><ui-tab panel="code-4-1">React</ui-tab><ui-tab panel="code-4-2">React + Tailwind</ui-tab><ui-tab-panel name="code-4-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"display: grid; gap: 8px; justify-items: start"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"failed"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ล้มเหลว (failed)"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"caution-major"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ระวังมาก (caution-major)"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"caution-minor"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ระวังเล็กน้อย (caution-minor)"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"undefined"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ไม่ได้กำหนด (undefined)"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"succeeded"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"สำเร็จ (succeeded)"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"normal"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ปกติ (normal)"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"in-progress"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"กำลังดำเนินการ (in-progress)"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"incomplete"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ยังไม่ครบ (incomplete)"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"not-started"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ยังไม่เริ่ม (not-started)"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"pending"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"รอดำเนินการ (pending)"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"unknown"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ไม่ทราบ (unknown)"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"informative"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ข้อมูล (informative)"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-4-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiIconIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"failed"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ล้มเหลว (failed)"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiIconIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"caution-major"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ระวังมาก (caution-major)"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiIconIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"caution-minor"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ระวังเล็กน้อย (caution-minor)"</span> /&gt;
+{<span style="color:var(--ui-ink-muted);font-style:italic">/* … undefined, succeeded, normal, in-progress, incomplete, not-started, pending, unknown, informative */</span>}</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-4-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">IconIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"failed"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ล้มเหลว (failed)"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">IconIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"caution-major"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ระวังมาก (caution-major)"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">IconIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"caution-minor"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ระวังเล็กน้อย (caution-minor)"</span> /&gt;
+{<span style="color:var(--ui-ink-muted);font-style:italic">/* … undefined, succeeded, normal, in-progress, incomplete, not-started, pending, unknown, informative */</span>}</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="ขนาดไอคอน">ขนาดไอคอน</h2>
+<p><code>size</code> เป็น 16 (ค่าเริ่มต้น ข้อความ 14px) หรือ 20 (ข้อความ 16px) สำหรับหัวข้อที่ใหญ่ขึ้นหรือ tile บน dashboard</p>
+<div class="doc-demo"><div style="display: grid; gap: 12px; justify-items: start">
+  <ui-icon-indicator kind="succeeded" label="สำรองข้อมูลเสร็จแล้ว" size="16"></ui-icon-indicator>
+  <ui-icon-indicator kind="succeeded" label="สำรองข้อมูลเสร็จแล้ว" size="20"></ui-icon-indicator>
+</div>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-5-0">HTML</ui-tab><ui-tab panel="code-5-1">React</ui-tab><ui-tab panel="code-5-2">React + Tailwind</ui-tab><ui-tab-panel name="code-5-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"display: grid; gap: 12px; justify-items: start"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"succeeded"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"สำรองข้อมูลเสร็จแล้ว"</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"16"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"succeeded"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"สำรองข้อมูลเสร็จแล้ว"</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"20"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-5-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiIconIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"succeeded"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"สำรองข้อมูลเสร็จแล้ว"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">16</span>} /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiIconIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"succeeded"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"สำรองข้อมูลเสร็จแล้ว"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">20</span>} /&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-5-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">IconIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"succeeded"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"สำรองข้อมูลเสร็จแล้ว"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">16</span>} /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">IconIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"succeeded"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"สำรองข้อมูลเสร็จแล้ว"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">20</span>} /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="kind-ของ-shape-indicator">Kind ของ shape indicator</h2>
+<p><code>&lt;ui-shape-indicator&gt;</code> มี 11 kind: ระดับความรุนแรง (failed, critical, high, medium, low, cautious) และสถานะ (undefined, stable, informative, incomplete, draft) รูปทรงขนาด 16px เสมอ</p>
+<div class="doc-demo"><div style="display: grid; gap: 8px; justify-items: start">
+  <ui-shape-indicator kind="failed" label="ล้มเหลว (failed)"></ui-shape-indicator>
+  <ui-shape-indicator kind="critical" label="วิกฤต (critical)"></ui-shape-indicator>
+  <ui-shape-indicator kind="high" label="สูง (high)"></ui-shape-indicator>
+  <ui-shape-indicator kind="medium" label="ปานกลาง (medium)"></ui-shape-indicator>
+  <ui-shape-indicator kind="low" label="ต่ำ (low)"></ui-shape-indicator>
+  <ui-shape-indicator kind="cautious" label="เฝ้าระวัง (cautious)"></ui-shape-indicator>
+  <ui-shape-indicator kind="undefined" label="ไม่ได้กำหนด (undefined)"></ui-shape-indicator>
+  <ui-shape-indicator kind="stable" label="คงที่ (stable)"></ui-shape-indicator>
+  <ui-shape-indicator kind="informative" label="ข้อมูล (informative)"></ui-shape-indicator>
+  <ui-shape-indicator kind="incomplete" label="ยังไม่ครบ (incomplete)"></ui-shape-indicator>
+  <ui-shape-indicator kind="draft" label="ฉบับร่าง (draft)"></ui-shape-indicator>
+</div>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-6-0">HTML</ui-tab><ui-tab panel="code-6-1">React</ui-tab><ui-tab panel="code-6-2">React + Tailwind</ui-tab><ui-tab-panel name="code-6-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"display: grid; gap: 8px; justify-items: start"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"failed"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ล้มเหลว (failed)"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"critical"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"วิกฤต (critical)"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"high"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"สูง (high)"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"medium"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ปานกลาง (medium)"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"low"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ต่ำ (low)"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"cautious"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"เฝ้าระวัง (cautious)"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"undefined"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ไม่ได้กำหนด (undefined)"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"stable"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"คงที่ (stable)"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"informative"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ข้อมูล (informative)"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"incomplete"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ยังไม่ครบ (incomplete)"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"draft"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ฉบับร่าง (draft)"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-6-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiShapeIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"failed"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ล้มเหลว (failed)"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiShapeIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"critical"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"วิกฤต (critical)"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiShapeIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"high"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"สูง (high)"</span> /&gt;
+{<span style="color:var(--ui-ink-muted);font-style:italic">/* … medium, low, cautious, undefined, stable, informative, incomplete, draft */</span>}</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-6-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">ShapeIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"failed"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ล้มเหลว (failed)"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ShapeIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"critical"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"วิกฤต (critical)"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ShapeIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"high"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"สูง (high)"</span> /&gt;
+{<span style="color:var(--ui-ink-muted);font-style:italic">/* … medium, low, cautious, undefined, stable, informative, incomplete, draft */</span>}</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="ขนาดข้อความ">ขนาดข้อความ</h2>
+<p>ข้อความของ shape indicator ขนาด 12px โดยค่าเริ่มต้น <code>text-size=&quot;14&quot;</code> (<code>textSize={14}</code> ใน React) ทำให้เป็น 14px ให้เข้ากับข้อความเนื้อหารอบ ๆ</p>
+<div class="doc-demo"><div style="display: grid; gap: 12px; justify-items: start">
+  <ui-shape-indicator kind="medium" label="ความเสี่ยงปานกลาง"></ui-shape-indicator>
+  <ui-shape-indicator kind="medium" label="ความเสี่ยงปานกลาง" text-size="14"></ui-shape-indicator>
+</div>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-7-0">HTML</ui-tab><ui-tab panel="code-7-1">React</ui-tab><ui-tab panel="code-7-2">React + Tailwind</ui-tab><ui-tab-panel name="code-7-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"display: grid; gap: 12px; justify-items: start"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"medium"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ความเสี่ยงปานกลาง"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"medium"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ความเสี่ยงปานกลาง"</span> <span style="color:var(--ui-tag-color-purple)">text-size</span>=<span style="color:var(--ui-tag-color-teal)">"14"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-7-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiShapeIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"medium"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ความเสี่ยงปานกลาง"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiShapeIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"medium"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ความเสี่ยงปานกลาง"</span> <span style="color:var(--ui-tag-color-purple)">textSize</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">14</span>} /&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-7-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">ShapeIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"medium"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ความเสี่ยงปานกลาง"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ShapeIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"medium"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ความเสี่ยงปานกลาง"</span> <span style="color:var(--ui-tag-color-purple)">textSize</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">14</span>} /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="แบบย่อ">แบบย่อ</h2>
+<p><code>compact</code> แสดงแค่ไอคอนหรือรูปทรง label ย้ายไปอยู่ใน tooltip ที่เปิดเมื่อชี้เมาส์และเมื่อโฟกัสด้วยคีย์บอร์ด screen reader ได้ยิน label หรือ <code>icon-description</code> / <code>shape-description</code> (<code>iconDescription</code> / <code>shapeDescription</code> ใน React) ถ้าตั้งไว้ สำหรับข้อความที่ยาวกว่าใน tooltip</p>
+<div class="doc-demo"><div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: center">
+  <ui-icon-indicator kind="succeeded" label="ลงนามแล้ว" compact></ui-icon-indicator>
+  <ui-icon-indicator kind="pending" label="รอดำเนินการ" compact icon-description="รอผู้ขายลงนาม"></ui-icon-indicator>
+  <ui-shape-indicator kind="critical" label="วิกฤต" compact shape-description="ความรุนแรงระดับวิกฤต"></ui-shape-indicator>
+</div>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-8-0">HTML</ui-tab><ui-tab panel="code-8-1">React</ui-tab><ui-tab panel="code-8-2">React + Tailwind</ui-tab><ui-tab-panel name="code-8-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"display: flex; flex-wrap: wrap; gap: 24px; align-items: center"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"succeeded"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ลงนามแล้ว"</span> <span style="color:var(--ui-tag-color-purple)">compact</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"pending"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"รอดำเนินการ"</span> <span style="color:var(--ui-tag-color-purple)">compact</span> <span style="color:var(--ui-tag-color-purple)">icon-description</span>=<span style="color:var(--ui-tag-color-teal)">"รอผู้ขายลงนาม"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"critical"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"วิกฤต"</span> <span style="color:var(--ui-tag-color-purple)">compact</span> <span style="color:var(--ui-tag-color-purple)">shape-description</span>=<span style="color:var(--ui-tag-color-teal)">"ความรุนแรงระดับวิกฤต"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-8-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiIconIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"succeeded"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ลงนามแล้ว"</span> <span style="color:var(--ui-tag-color-purple)">compact</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiIconIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"pending"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"รอดำเนินการ"</span> <span style="color:var(--ui-tag-color-purple)">compact</span> <span style="color:var(--ui-tag-color-purple)">iconDescription</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"รอผู้ขายลงนาม"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiShapeIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"critical"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"วิกฤต"</span> <span style="color:var(--ui-tag-color-purple)">compact</span> <span style="color:var(--ui-tag-color-purple)">shapeDescription</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ความรุนแรงระดับวิกฤต"</span> /&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-8-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">IconIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"succeeded"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ลงนามแล้ว"</span> <span style="color:var(--ui-tag-color-purple)">compact</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">IconIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"pending"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"รอดำเนินการ"</span> <span style="color:var(--ui-tag-color-purple)">compact</span> <span style="color:var(--ui-tag-color-purple)">iconDescription</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"รอผู้ขายลงนาม"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ShapeIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"critical"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"วิกฤต"</span> <span style="color:var(--ui-tag-color-purple)">compact</span> <span style="color:var(--ui-tag-color-purple)">shapeDescription</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ความรุนแรงระดับวิกฤต"</span> /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="ตำแหน่ง-tooltip">ตำแหน่ง tooltip</h2>
+<p><code>placement</code> กำหนดว่า tooltip ของแบบย่อเปิดที่ไหน: <code>top</code>, <code>bottom</code>, <code>left</code> หรือ <code>right</code> (ค่าเริ่มต้น) แต่ละค่าเติม <code>-start</code> หรือ <code>-end</code> ได้ <code>align</code> คือชื่อแบบ Carbon และรับค่าเดียวกัน</p>
+<div class="doc-demo"><div style="display: flex; flex-wrap: wrap; gap: 48px; align-items: center; padding: 32px 64px">
+  <ui-icon-indicator kind="caution-major" label="เกินงบประมาณ" compact placement="top"></ui-icon-indicator>
+  <ui-icon-indicator kind="caution-minor" label="ใกล้เต็มงบประมาณ" compact placement="bottom"></ui-icon-indicator>
+  <ui-icon-indicator kind="normal" label="อยู่ในงบประมาณ" compact placement="left"></ui-icon-indicator>
+</div>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-9-0">HTML</ui-tab><ui-tab panel="code-9-1">React</ui-tab><ui-tab panel="code-9-2">React + Tailwind</ui-tab><ui-tab-panel name="code-9-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"display: flex; flex-wrap: wrap; gap: 48px; align-items: center; padding: 32px 64px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"caution-major"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"เกินงบประมาณ"</span> <span style="color:var(--ui-tag-color-purple)">compact</span> <span style="color:var(--ui-tag-color-purple)">placement</span>=<span style="color:var(--ui-tag-color-teal)">"top"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"caution-minor"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ใกล้เต็มงบประมาณ"</span> <span style="color:var(--ui-tag-color-purple)">compact</span> <span style="color:var(--ui-tag-color-purple)">placement</span>=<span style="color:var(--ui-tag-color-teal)">"bottom"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"normal"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"อยู่ในงบประมาณ"</span> <span style="color:var(--ui-tag-color-purple)">compact</span> <span style="color:var(--ui-tag-color-purple)">placement</span>=<span style="color:var(--ui-tag-color-teal)">"left"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-9-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiIconIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"caution-major"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เกินงบประมาณ"</span> <span style="color:var(--ui-tag-color-purple)">compact</span> <span style="color:var(--ui-tag-color-purple)">placement</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"top"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiIconIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"caution-minor"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ใกล้เต็มงบประมาณ"</span> <span style="color:var(--ui-tag-color-purple)">compact</span> <span style="color:var(--ui-tag-color-purple)">placement</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"bottom"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiIconIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"normal"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"อยู่ในงบประมาณ"</span> <span style="color:var(--ui-tag-color-purple)">compact</span> <span style="color:var(--ui-tag-color-purple)">placement</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"left"</span> /&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-9-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">IconIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"caution-major"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เกินงบประมาณ"</span> <span style="color:var(--ui-tag-color-purple)">compact</span> <span style="color:var(--ui-tag-color-purple)">placement</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"top"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">IconIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"caution-minor"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ใกล้เต็มงบประมาณ"</span> <span style="color:var(--ui-tag-color-purple)">compact</span> <span style="color:var(--ui-tag-color-purple)">placement</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"bottom"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">IconIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"normal"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"อยู่ในงบประมาณ"</span> <span style="color:var(--ui-tag-color-purple)">compact</span> <span style="color:var(--ui-tag-color-purple)">placement</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"left"</span> /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="ในรายการ">ในรายการ</h2>
+<p>status indicator ใส่ในคอลัมน์ของรายการหรือตารางได้ แต่ละแถวมีสถานะของตัวเอง</p>
+<div class="doc-demo"><ui-structured-list label="สัญญา">
+  <ui-structured-list-row head>
+    <ui-structured-list-cell>สัญญา</ui-structured-list-cell>
+    <ui-structured-list-cell>ผู้ขาย</ui-structured-list-cell>
+    <ui-structured-list-cell>สถานะ</ui-structured-list-cell>
+  </ui-structured-list-row>
+  <ui-structured-list-row>
+    <ui-structured-list-cell nowrap>CT-2026-118</ui-structured-list-cell>
+    <ui-structured-list-cell>บริษัท สยามโลจิสติกส์ จำกัด</ui-structured-list-cell>
+    <ui-structured-list-cell><ui-icon-indicator kind="succeeded" label="ลงนามแล้ว"></ui-icon-indicator></ui-structured-list-cell>
+  </ui-structured-list-row>
+  <ui-structured-list-row>
+    <ui-structured-list-cell nowrap>CT-2026-121</ui-structured-list-cell>
+    <ui-structured-list-cell>โรงพิมพ์เจ้าพระยา</ui-structured-list-cell>
+    <ui-structured-list-cell><ui-icon-indicator kind="pending" label="รอลงนาม"></ui-icon-indicator></ui-structured-list-cell>
+  </ui-structured-list-row>
+  <ui-structured-list-row>
+    <ui-structured-list-cell nowrap>CT-2026-097</ui-structured-list-cell>
+    <ui-structured-list-cell>นอร์เทิร์นออฟฟิศซัพพลาย</ui-structured-list-cell>
+    <ui-structured-list-cell><ui-icon-indicator kind="caution-major" label="หมดอายุใน 7 วัน"></ui-icon-indicator></ui-structured-list-cell>
+  </ui-structured-list-row>
+</ui-structured-list>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-10-0">HTML</ui-tab><ui-tab panel="code-10-1">React</ui-tab><ui-tab panel="code-10-2">React + Tailwind</ui-tab><ui-tab-panel name="code-10-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"สัญญา"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span> <span style="color:var(--ui-tag-color-purple)">head</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;สัญญา&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;ผู้ขาย&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;สถานะ&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span> <span style="color:var(--ui-tag-color-purple)">nowrap</span>&gt;CT-2026-118&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;บริษัท สยามโลจิสติกส์ จำกัด&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"succeeded"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ลงนามแล้ว"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span> <span style="color:var(--ui-tag-color-purple)">nowrap</span>&gt;CT-2026-121&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;โรงพิมพ์เจ้าพระยา&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"pending"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"รอลงนาม"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span> <span style="color:var(--ui-tag-color-purple)">nowrap</span>&gt;CT-2026-097&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;นอร์เทิร์นออฟฟิศซัพพลาย&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"caution-major"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"หมดอายุใน 7 วัน"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-10-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredList</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"สัญญา"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListRow</span> <span style="color:var(--ui-tag-color-purple)">head</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;สัญญา&lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;ผู้ขาย&lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;สถานะ&lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListRow</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListRow</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span> <span style="color:var(--ui-tag-color-purple)">nowrap</span>&gt;CT-2026-118&lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;บริษัท สยามโลจิสติกส์ จำกัด&lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">UiIconIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"succeeded"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ลงนามแล้ว"</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListRow</span>&gt;
+  {<span style="color:var(--ui-ink-muted);font-style:italic">/* … */</span>}
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredList</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-10-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">StructuredList</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"สัญญา"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListRow</span> <span style="color:var(--ui-tag-color-purple)">head</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;สัญญา&lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;ผู้ขาย&lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;สถานะ&lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListRow</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListRow</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span> <span style="color:var(--ui-tag-color-purple)">nowrap</span>&gt;CT-2026-118&lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;บริษัท สยามโลจิสติกส์ จำกัด&lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">IconIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"succeeded"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ลงนามแล้ว"</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListRow</span>&gt;
+  {<span style="color:var(--ui-ink-muted);font-style:italic">/* … */</span>}
+&lt;/<span style="color:var(--ui-tag-color-blue)">StructuredList</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="ระดับความรุนแรง">ระดับความรุนแรง</h2>
+<p>ใช้ shape indicator สำหรับระดับ เช่น ความรุนแรงของเหตุขัดข้อง ใส่คำคู่กับรูปทรง ให้ลำดับชัดเจนโดยไม่ต้องดูสี</p>
+<div class="doc-demo"><div style="display: grid; gap: 8px; justify-items: start">
+  <ui-shape-indicator kind="critical" label="INC-2041 · วิกฤต: ส่งออกใบแจ้งหนี้ไม่ได้ทุกคน" text-size="14"></ui-shape-indicator>
+  <ui-shape-indicator kind="high" label="INC-2038 · สูง: อีเมลขออนุมัติมาช้า" text-size="14"></ui-shape-indicator>
+  <ui-shape-indicator kind="medium" label="INC-2035 · ปานกลาง: รูปแบบวันที่ใน PDF ผิด" text-size="14"></ui-shape-indicator>
+  <ui-shape-indicator kind="low" label="INC-2030 · ต่ำ: พิมพ์ผิดในฟอร์มผู้ขาย" text-size="14"></ui-shape-indicator>
+</div>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-11-0">HTML</ui-tab><ui-tab panel="code-11-1">React</ui-tab><ui-tab panel="code-11-2">React + Tailwind</ui-tab><ui-tab-panel name="code-11-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"display: grid; gap: 8px; justify-items: start"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"critical"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"INC-2041 · วิกฤต: ส่งออกใบแจ้งหนี้ไม่ได้ทุกคน"</span> <span style="color:var(--ui-tag-color-purple)">text-size</span>=<span style="color:var(--ui-tag-color-teal)">"14"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"high"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"INC-2038 · สูง: อีเมลขออนุมัติมาช้า"</span> <span style="color:var(--ui-tag-color-purple)">text-size</span>=<span style="color:var(--ui-tag-color-teal)">"14"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"medium"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"INC-2035 · ปานกลาง: รูปแบบวันที่ใน PDF ผิด"</span> <span style="color:var(--ui-tag-color-purple)">text-size</span>=<span style="color:var(--ui-tag-color-teal)">"14"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"low"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"INC-2030 · ต่ำ: พิมพ์ผิดในฟอร์มผู้ขาย"</span> <span style="color:var(--ui-tag-color-purple)">text-size</span>=<span style="color:var(--ui-tag-color-teal)">"14"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-shape-indicator</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-11-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiShapeIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"critical"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"INC-2041 · วิกฤต: ส่งออกใบแจ้งหนี้ไม่ได้ทุกคน"</span> <span style="color:var(--ui-tag-color-purple)">textSize</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">14</span>} /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiShapeIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"high"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"INC-2038 · สูง: อีเมลขออนุมัติมาช้า"</span> <span style="color:var(--ui-tag-color-purple)">textSize</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">14</span>} /&gt;
+{<span style="color:var(--ui-ink-muted);font-style:italic">/* … */</span>}</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-11-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">ShapeIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"critical"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"INC-2041 · วิกฤต: ส่งออกใบแจ้งหนี้ไม่ได้ทุกคน"</span> <span style="color:var(--ui-tag-color-purple)">textSize</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">14</span>} /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ShapeIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"high"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"INC-2038 · สูง: อีเมลขออนุมัติมาช้า"</span> <span style="color:var(--ui-tag-color-purple)">textSize</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">14</span>} /&gt;
+{<span style="color:var(--ui-ink-muted);font-style:italic">/* … */</span>}</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="เปลี่ยนสถานะ">เปลี่ยนสถานะ</h2>
+<p>ตั้ง <code>kind</code> และ <code>label</code> ตามสถานะที่เปลี่ยน indicator ไม่ใช่ live region: ถ้าการเปลี่ยนสำคัญกับผู้ใช้ ให้ประกาศด้วย เช่น ในบรรทัด <code>role=&quot;status&quot;</code></p>
+<div class="doc-demo"><ui-icon-indicator id="status-indicator-job" kind="not-started" label="ยังไม่เริ่มนำเข้า"></ui-icon-indicator>
+<ui-button id="status-indicator-run" kind="tertiary">นำเข้าผู้ขาย</ui-button>
+<p id="status-indicator-msg" role="status" style="margin: 0"></p>
+
+<script type="text/x-demo">
+  const job = document.getElementById('status-indicator-job');
+  const msg = document.getElementById('status-indicator-msg');
+  const set = (kind, label) => {
+    job.kind = kind;
+    job.label = label;
+    msg.textContent = label;
+  };
+  document.getElementById('status-indicator-run').addEventListener('click', () => {
+    set('in-progress', 'กำลังนำเข้าผู้ขาย…');
+    setTimeout(() => set('succeeded', 'นำเข้าเสร็จแล้ว: ผู้ขาย 120 ราย'), 2000);
+  });
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-12-0">HTML</ui-tab><ui-tab panel="code-12-1">React</ui-tab><ui-tab panel="code-12-2">React + Tailwind</ui-tab><ui-tab-panel name="code-12-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"status-indicator-job"</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"not-started"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ยังไม่เริ่มนำเข้า"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-indicator</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"status-indicator-run"</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"tertiary"</span>&gt;นำเข้าผู้ขาย&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"status-indicator-msg"</span> <span style="color:var(--ui-tag-color-purple)">role</span>=<span style="color:var(--ui-tag-color-teal)">"status"</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"margin: 0"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> job <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'status-indicator-job'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> msg <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'status-indicator-msg'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> <span style="color:var(--ui-tag-color-cyan)">set</span> <span style="color:var(--ui-tag-color-magenta)">=</span> (kind, label) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    job.kind <span style="color:var(--ui-tag-color-magenta)">=</span> kind;
+    job.label <span style="color:var(--ui-tag-color-magenta)">=</span> label;
+    msg.textContent <span style="color:var(--ui-tag-color-magenta)">=</span> label;
+  };
+  document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'status-indicator-run'</span>).<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    <span style="color:var(--ui-tag-color-cyan)">set</span>(<span style="color:var(--ui-tag-color-teal)">'in-progress'</span>, <span style="color:var(--ui-tag-color-teal)">'กำลังนำเข้าผู้ขาย…'</span>);
+    <span style="color:var(--ui-tag-color-cyan)">setTimeout</span>(() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">set</span>(<span style="color:var(--ui-tag-color-teal)">'succeeded'</span>, <span style="color:var(--ui-tag-color-teal)">'นำเข้าเสร็จแล้ว: ผู้ขาย 120 ราย'</span>), <span style="color:var(--ui-tag-color-green)">2000</span>);
+  });
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-12-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiIconIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span>{job.kind} <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span>{job.label} /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">role</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"status"</span>&gt;{job.label}&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-12-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">IconIndicator</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span>{job.kind} <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span>{job.label} /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">role</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"status"</span>&gt;{job.label}&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="คีย์บอร์ด">คีย์บอร์ด</h2>
+<p>เฉพาะแบบย่อเท่านั้นที่รับโฟกัส</p>
+<table>
+<thead>
+<tr>
+<th>ปุ่ม</th>
+<th>ทำอะไร</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tab</td>
+<td>ไปที่ไอคอนแบบย่อและเปิด tooltip ออกไปแล้วปิด</td>
+</tr>
+<tr>
+<td>Enter, Space</td>
+<td>เปิดหรือปิด tooltip</td>
+</tr>
+<tr>
+<td>Esc</td>
+<td>ปิด tooltip</td>
+</tr>
+</tbody>
+</table>
+<h2 id="accessibility">Accessibility</h2>
+<ul>
+<li>ไอคอนหรือรูปทรงถูกซ่อนจาก screen reader label เป็นตัวบอกสถานะ เขียนเป็นสถานะ (&quot;ลงนามแล้ว&quot;) ไม่ใช่สี</li>
+<li>แบบย่อ: ไอคอนเป็นปุ่มที่เปิด definition tooltip ที่มี label และ screen reader อ่าน label หรือคำอธิบาย</li>
+<li>การเปลี่ยนสถานะไม่ถูกประกาศเอง ให้เพิ่มข้อความสถานะเมื่อสำคัญ</li>
+</ul>
+<h2 id="api">API</h2>
+<p>สร้างจากแพ็กเกจโดยตรง ใน React ส่ง property เป็น prop ชื่อเดียวกัน ส่วน event ก็เป็น prop เช่นกัน (ดูคอลัมน์ React)</p>
+<h3 id="ui-icon-indicator-react-uiiconindicator"><code>&lt;ui-icon-indicator&gt;</code> · React <code>UiIconIndicator</code></h3>
+<h4 id="attribute">Attribute</h4>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Property</th>
+<th>ชนิด</th>
+<th>ค่าเริ่มต้น</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>align</code></td>
+<td></td>
+<td></td>
+<td></td>
+<td>Carbon's name for <code>placement</code> (same values)</td>
+</tr>
+<tr>
+<td><code>kind</code></td>
+<td><code>kind</code></td>
+<td><code>IconIndicatorKind | undefined</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>label</code></td>
+<td><code>label</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>size</code></td>
+<td><code>size</code></td>
+<td><code>16 | 20</code></td>
+<td><code>16</code></td>
+<td>16 (body-compact-01) or 20 (body-compact-02).</td>
+</tr>
+<tr>
+<td><code>compact</code></td>
+<td><code>compact</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Only the icon; the label in a tooltip.</td>
+</tr>
+<tr>
+<td><code>icon-description</code></td>
+<td><code>iconDescription</code></td>
+<td><code>string | undefined</code></td>
+<td></td>
+<td>Read by screen readers in compact mode instead of the label.</td>
+</tr>
+<tr>
+<td><code>placement</code></td>
+<td><code>placement</code></td>
+<td><code>Placement</code></td>
+<td><code>'right'</code></td>
+<td>Where the compact tooltip opens.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="css-part">CSS part</h4>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>icon</code></td>
+<td>The icon</td>
+</tr>
+<tr>
+<td><code>label</code></td>
+<td>The label (not compact)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ui-shape-indicator-react-uishapeindicator"><code>&lt;ui-shape-indicator&gt;</code> · React <code>UiShapeIndicator</code></h3>
+<h4 id="attribute-2">Attribute</h4>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Property</th>
+<th>ชนิด</th>
+<th>ค่าเริ่มต้น</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>align</code></td>
+<td></td>
+<td></td>
+<td></td>
+<td>Carbon's name for <code>placement</code> (same values)</td>
+</tr>
+<tr>
+<td><code>kind</code></td>
+<td><code>kind</code></td>
+<td><code>ShapeIndicatorKind | undefined</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>label</code></td>
+<td><code>label</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>text-size</code></td>
+<td><code>textSize</code></td>
+<td><code>12 | 14</code></td>
+<td><code>12</code></td>
+<td>12 (helper-text-01) or 14 (body-compact-01).</td>
+</tr>
+<tr>
+<td><code>compact</code></td>
+<td><code>compact</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Only the shape; the label in a tooltip.</td>
+</tr>
+<tr>
+<td><code>shape-description</code></td>
+<td><code>shapeDescription</code></td>
+<td><code>string | undefined</code></td>
+<td></td>
+<td>Read by screen readers in compact mode instead of the label.</td>
+</tr>
+<tr>
+<td><code>placement</code></td>
+<td><code>placement</code></td>
+<td><code>Placement</code></td>
+<td><code>'right'</code></td>
+<td>Where the compact tooltip opens.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="css-part-2">CSS part</h4>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>icon</code></td>
+<td>The shape</td>
+</tr>
+<tr>
+<td><code>label</code></td>
+<td>The label (not compact)</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+<nav class="doc-toc" aria-labelledby="doc-toc-title"><p id="doc-toc-title" class="doc-toc-title">ในหน้านี้</p><ul><li class="doc-toc-h2"><a href="#ติดตั้ง">ติดตั้ง</a></li><li class="doc-toc-h2"><a href="#วิธีใช้">วิธีใช้</a></li><li class="doc-toc-h2"><a href="#ไอคอนหรือรูปทรง">ไอคอนหรือรูปทรง?</a></li><li class="doc-toc-h2"><a href="#kind-ของ-icon-indicator">Kind ของ icon indicator</a></li><li class="doc-toc-h2"><a href="#ขนาดไอคอน">ขนาดไอคอน</a></li><li class="doc-toc-h2"><a href="#kind-ของ-shape-indicator">Kind ของ shape indicator</a></li><li class="doc-toc-h2"><a href="#ขนาดข้อความ">ขนาดข้อความ</a></li><li class="doc-toc-h2"><a href="#แบบย่อ">แบบย่อ</a></li><li class="doc-toc-h2"><a href="#ตำแหน่ง-tooltip">ตำแหน่ง tooltip</a></li><li class="doc-toc-h2"><a href="#ในรายการ">ในรายการ</a></li><li class="doc-toc-h2"><a href="#ระดับความรุนแรง">ระดับความรุนแรง</a></li><li class="doc-toc-h2"><a href="#เปลี่ยนสถานะ">เปลี่ยนสถานะ</a></li><li class="doc-toc-h2"><a href="#คีย์บอร์ด">คีย์บอร์ด</a></li><li class="doc-toc-h2"><a href="#accessibility">Accessibility</a></li><li class="doc-toc-h2"><a href="#api">API</a></li><li class="doc-toc-h3"><a href="#ui-icon-indicator-react-uiiconindicator">&lt;ui-icon-indicator></a></li><li class="doc-toc-h3"><a href="#ui-shape-indicator-react-uishapeindicator">&lt;ui-shape-indicator></a></li></ul></nav>
+</div>
+<nav class="doc-pager" aria-label="ถัดไป / ก่อนหน้า"><a class="doc-pager-prev" href="/kanok-ui-docs/th/badge-indicator/" rel="prev"><span>ก่อนหน้า</span>Badge indicator</a><a class="doc-pager-next" href="/kanok-ui-docs/th/grid/" rel="next"><span>ถัดไป</span>Grid</a></nav>
+<footer class="doc-footer">@purpurabog/ui 1.4.3 · MIT · <a href="https://cdn.jsdelivr.net/npm/@purpurabog/ui@1.4.3/THIRD-PARTY-NOTICES.md">ประกาศของบุคคลที่สาม</a><br>สร้างตาม Carbon Design System ไม่ได้เกี่ยวข้องหรือได้รับการรับรองจาก IBM — IBM และ Carbon เป็นเครื่องหมายการค้าของ IBM Corp.</footer>
+</ui-content>
+<ui-modal id="doc-search" heading="ค้นหา" data-count="พบ {n} รายการ" data-empty="ไม่พบ “{q}”">
+<ui-search label="ค้นหาในเอกสาร" placeholder="ค้นหาในเอกสาร" size="lg"></ui-search>
+<p class="doc-search-status" role="status"></p>
+<ul class="doc-search-results"></ul>
+</ui-modal>
+</body>
+</html>

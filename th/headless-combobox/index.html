@@ -1,0 +1,791 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Headless Combobox · @purpurabog/ui</title>
+<link rel="alternate" hreflang="en" href="/kanok-ui-docs/en/headless-combobox/"  /><link rel="alternate" hreflang="th" href="/kanok-ui-docs/th/headless-combobox/"  />
+<script>(function(){try{var q=new URLSearchParams(location.search).get("design"),d=q;if(q==="kanok"||q==="carbon")localStorage.setItem("ui-docs-design",q);else d=localStorage.getItem("ui-docs-design");if(d==="kanok")document.documentElement.setAttribute("data-design","kanok")}catch(e){}})();(function(){try{var m=localStorage.getItem("ui-docs-theme");if(m!=="light"&&m!=="dark"&&m!=="system")return;var d=m==="dark"||(m==="system"&&matchMedia("(prefers-color-scheme: dark)").matches),r=document.documentElement,t=d?"g100":"white";if(r.getAttribute("data-design")==="kanok")t=d?"lacquer":"paper";r.setAttribute("data-theme",t)}catch(e){}})();</script>
+<style>ui-header:not(:defined){z-index:8000;box-sizing:border-box;border-block-end:1px solid var(--ui-border-subtle-1);background:var(--ui-canvas);block-size:48px;display:block;position:fixed;inset:0 0 auto}:is(ui-header:not(:defined)>*,ui-side-nav:not(:defined)>*){visibility:hidden}:is(ui-header-panel:not(:defined),ui-modal:not(:defined)){display:none}ui-side-nav:not(:defined){display:none}ui-content:not(:defined){margin-block-start:48px;padding:32px;display:block}@media (width>=1056px){ui-side-nav[expanded]:not(:defined){background:var(--ui-canvas);inline-size:256px;display:block;position:fixed;inset:48px auto 0 0}ui-side-nav[expanded]:not(:defined)~ui-content:not(:defined){margin-inline-start:256px}}ui-tabs:not(:defined){display:block}ui-tabs:not(:defined)>ui-tab{box-sizing:border-box;border-block-end:2px solid var(--ui-hairline);block-size:40px;color:var(--ui-ink-muted);font:var(--ui-font-body-sm);padding:0 16px;line-height:38px;display:inline-block}ui-tabs:not(:defined)>ui-tab:first-of-type{border-block-end-color:var(--ui-interactive);color:var(--ui-ink)}ui-tabs:not(:defined)>ui-tab-panel{padding:16px;display:block}ui-tabs:not(:defined)>ui-tab-panel~ui-tab-panel{display:none}ui-code-snippet:not(:defined){background:var(--ui-layer-1);max-block-size:272px;font:var(--ui-font-code,12px/16px monospace);white-space:pre;padding:16px;display:block;overflow:hidden}[data-react-example]:empty>*{visibility:hidden}.doc-demo:has(:not(:defined))>*{visibility:hidden}[data-react-example]:empty{box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}.doc-demo:has(:not(:defined)){box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}@keyframes doc-skeleton{to{background-position:-200% 0}}@media (prefers-reduced-motion:reduce){[data-react-example]:empty{animation:none}.doc-demo:has(:not(:defined)){animation:none}}</style>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/index-DyGopr7l.js"></script>
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/theme-switcher-BGAHXRgF.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/listbox-gjElSjvA.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/headless-CpcU3xFD.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/flag-D0Ou26eR.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/popup-position-SaIiGkPq.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/required-proxy-DW3H9Hcq.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/combobox-BqEnXbKY.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/combobox-CLPFCvY5.js">
+  <link rel="stylesheet" crossorigin href="/kanok-ui-docs/assets/theme-switcher-CL5yB6XE.css">
+  <link rel="stylesheet" crossorigin href="/kanok-ui-docs/assets/headless-JjfvojKd.css">
+</head>
+<body>
+<ui-header label="@purpurabog/ui">
+<ui-skip-to-content></ui-skip-to-content>
+<ui-header-menu-button></ui-header-menu-button>
+<ui-header-name href="/kanok-ui-docs/th/" prefix="@purpurabog">ui</ui-header-name>
+<ui-header-global-bar>
+<ui-header-global-action id="doc-search-open" label="ค้นหา" tooltip-placement="bottom"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="m18.5 17.8-4.9-4.9a7 7 0 1 0-.7.7l4.9 4.9zM3 8.5a5.5 5.5 0 1 1 5.5 5.5A5.5 5.5 0 0 1 3 8.5Z" /></svg></ui-header-global-action>
+<ui-header-global-action label="ตั้งค่า" panel="doc-settings" tooltip-placement="bottom-end"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="M16.9 10.6a7 7 0 0 0 0-1.2l1.8-1.4-1.6-2.8-2.1.8a6.6 6.6 0 0 0-1-.6L13.6 3h-3.2l-.4 2.4a6.6 6.6 0 0 0-1 .6l-2.1-.8L5.3 8l1.8 1.4a7 7 0 0 0 0 1.2L5.3 12l1.6 2.8 2.1-.8a6.6 6.6 0 0 0 1 .6l.4 2.4h3.2l.4-2.4a6.6 6.6 0 0 0 1-.6l2.1.8 1.6-2.8zM12 13a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" /></svg></ui-header-global-action>
+</ui-header-global-bar>
+<ui-header-panel id="doc-settings" label="ตั้งค่า">
+<div class="doc-settings">
+<span class="doc-settings-label">ธีม</span>
+<ui-theme-switcher storage-key="ui-docs-theme" tooltip-placement="bottom"></ui-theme-switcher>
+<span class="doc-settings-label">รูปแบบ</span>
+<ui-content-switcher id="doc-design" aria-label="รูปแบบ" size="sm"><ui-content-switcher-item name="carbon">Carbon</ui-content-switcher-item><ui-content-switcher-item name="kanok">Kanok</ui-content-switcher-item></ui-content-switcher>
+<span class="doc-settings-label">ภาษา</span>
+<ui-link href="/kanok-ui-docs/en/headless-combobox/" hreflang="en" lang="en">English</ui-link>
+</div>
+</ui-header-panel>
+</ui-header>
+<ui-side-nav label="เอกสาร"><ui-side-nav-items><ui-side-nav-menu label="เริ่มต้น"><ui-side-nav-menu-item href="/kanok-ui-docs/th/">ภาพรวม</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/installation/">ติดตั้ง</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/migration-1-0/">การย้ายไป 1.0</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="คู่มือ"><ui-side-nav-menu-item href="/kanok-ui-docs/th/themes/">ธีมและ layer</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/kanok/">ดีไซน์ Kanok</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/customizing/">ปรับแต่งหน้าตา</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/icons/">ไอคอน</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/forms/">ฟอร์มและการตรวจค่า</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/frameworks/">ใช้กับ framework</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/ai/">ใช้กับ AI</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="ฟอร์มและปุ่ม"><ui-side-nav-menu-item href="/kanok-ui-docs/th/button/">Button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/file-uploader/">File uploader</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Overlay"><ui-side-nav-menu-item href="/kanok-ui-docs/th/modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/toggletip/">Toggletip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/menu/">Menu</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="ข้อมูล"><ui-side-nav-menu-item href="/kanok-ui-docs/th/data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/contained-list/">Contained list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tree-view/">Tree view</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="การนำทาง"><ui-side-nav-menu-item href="/kanok-ui-docs/th/tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/breadcrumb/">Breadcrumb</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/link/">Link</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/ui-shell/">UI shell</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="เนื้อหา"><ui-side-nav-menu-item href="/kanok-ui-docs/th/tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tile/">Tile</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/user-avatar/">User avatar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/list/">List</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="สถานะและการโหลด"><ui-side-nav-menu-item href="/kanok-ui-docs/th/loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/inline-loading/">Inline loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/progress-bar/">Progress bar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/skeleton/">Skeleton</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/badge-indicator/">Badge indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/status-indicator/">Status indicator</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="เลย์เอาต์"><ui-side-nav-menu-item href="/kanok-ui-docs/th/grid/">Grid</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/heading/">Heading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/layer/">Layer</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/action-set/">Action set</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/page-header/">Page header</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/big-number/">Big number</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Headless" expanded><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless/">แนะนำ</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-combobox/" current>Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-file-uploader/">File uploader</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-menu/">Menu</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-ui-shell/">UI shell</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tree-view/">Tree view</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu></ui-side-nav-items></ui-side-nav><script>if(matchMedia('(min-width: 66rem)').matches)document.currentScript.previousElementSibling.setAttribute('expanded','')</script>
+<ui-content>
+<div class="doc-page">
+<article class="doc">
+<!-- nav: Combobox -->
+<h1 id="headless-combobox">Headless Combobox</h1>
+<p>part ของ <code>Combobox</code> ให้พฤติกรรมเดียวกับ <a href="/kanok-ui-docs/th/combobox/">Combobox</a> แบบมี style แต่ไม่มี style เลย ได้แก่ ช่องพิมพ์ที่มี <code>role=&quot;combobox&quot;</code> listbox ใน top layer ที่การพิมพ์จะกรองหรือแค่ไฮไลต์ คีย์บอร์ด กติกาว่าออกจากช่องแล้วเก็บค่าอะไร ปุ่มล้างค่าและปุ่มลูกศรที่ไม่อยู่ในลำดับ Tab และ hidden input ที่ส่งค่าไปกับฟอร์ม</p>
+<p>ส่วนที่คุณทำเองคือ markup, <code>&lt;label&gt;</code> ข้อความช่วยเหลือหรือ error ข้อความ &quot;กำลังค้นหา…&quot; และ &quot;ไม่พบรายการที่ตรงกัน&quot; และ style ทั้งหมด part ต่าง ๆ บอกสถานะผ่าน attribute <code>data-*</code> ให้คุณใช้ใส่ style</p>
+<h2 id="ติดตั้ง">ติดตั้ง</h2>
+<p>ส่วน headless มากับแพ็กเกจเลย (ไม่มี item ของ shadcn; item ของ React + Tailwind สร้างบนมัน):</p>
+<ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">@purpurabog/ui</span></ui-code-snippet>
+<ui-code-snippet type="single" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { Combobox } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;</ui-code-snippet>
+<h2 id="วิธีใช้">วิธีใช้</h2>
+<div class="doc-demo" data-react-example="0"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { Combobox } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> provinces <span style="color:var(--ui-tag-color-magenta)">=</span> [
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'bkk'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'กรุงเทพมหานคร'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'cnx'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'เชียงใหม่'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'cei'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'เชียงราย'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'kkc'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'ขอนแก่น'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'hkt'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'ภูเก็ต'</span> },
+];
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid max-w-xs gap-2"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.Root</span> <span style="color:var(--ui-tag-color-purple)">items</span><span style="color:var(--ui-tag-color-magenta)">=</span>{provinces} <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"province"</span> <span style="color:var(--ui-tag-color-purple)">filter</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"contains"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">label</span> <span style="color:var(--ui-tag-color-purple)">htmlFor</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"province"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-ink-muted"</span>&gt;จังหวัด&lt;/<span style="color:var(--ui-tag-color-blue)">label</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.Anchor</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex h-10 items-center border-b border-border-strong-1 bg-field-1 hover:bg-field-hover-1 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-focus"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.Input</span> <span style="color:var(--ui-tag-color-purple)">id</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"province"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"พิมพ์ชื่อจังหวัด"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-full min-w-0 flex-1 bg-transparent ps-4 text-sm text-ink outline-none placeholder:text-ink-placeholder"</span> /&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.Toggle</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เปิด"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"group grid h-full w-10 shrink-0 place-items-center text-ink"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-4 fill-current transition-transform group-data-open:rotate-180"</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M8 11 3 6l.7-.7L8 9.6l4.3-4.3.7.7z"</span> /&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">Combobox.Toggle</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Combobox.Anchor</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.Popup</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"จังหวัด"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"max-h-72 overflow-y-auto bg-layer-1 text-sm text-ink shadow-lg"</span>&gt;
+          {(items) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> items.<span style="color:var(--ui-tag-color-cyan)">map</span>((p) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (<span style="color:var(--ui-tag-color-teal)">'options'</span> <span style="color:var(--ui-tag-color-magenta)">in</span> p <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-green)">null</span> <span style="color:var(--ui-tag-color-magenta)">:</span> (
+            &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.Option</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{p.value} <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{p.value} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"cursor-pointer px-4 py-3 text-ink-muted hover:bg-layer-hover-1 data-highlighted:bg-layer-hover-1 data-selected:bg-layer-selected-1 data-selected:text-ink"</span>&gt;
+              {p.label}
+            &lt;/<span style="color:var(--ui-tag-color-blue)">Combobox.Option</span>&gt;
+          )))}
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Combobox.Popup</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">Combobox.Root</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<p><code>items</code> ของ <code>Root</code> คือทุกรายการ <code>Popup</code> เรียกฟังก์ชัน children ด้วยรายการที่ข้อความที่พิมพ์ยังเก็บไว้ (กลุ่มยังอยู่) คุณจึง render เฉพาะรายการเหล่านั้น</p>
+<h2 id="โครงสร้าง">โครงสร้าง</h2>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">Combobox.Root</span> <span style="color:var(--ui-tag-color-purple)">items</span><span style="color:var(--ui-tag-color-magenta)">=</span>{items}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">label</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.Anchor</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.Input</span> /&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.Clear</span> /&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.Toggle</span> /&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">Combobox.Anchor</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.Popup</span>&gt;
+    {(items) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+      &lt;&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.Option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"…"</span> /&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.Group</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.GroupLabel</span> /&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.GroupOptions</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.Option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"…"</span> /&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">Combobox.GroupOptions</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Combobox.Group</span>&gt;
+      &lt;/&gt;
+    )}
+  &lt;/<span style="color:var(--ui-tag-color-blue)">Combobox.Popup</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Combobox.Root</span>&gt;</ui-code-snippet>
+<h2 id="การพิมพ์กรองรายการอย่างไร">การพิมพ์กรองรายการอย่างไร</h2>
+<p>การพิมพ์จะเปิดรายการและไฮไลต์รายการแรกที่ใช้งานได้และชื่อมีข้อความนั้นอยู่ <code>filter</code> กำหนดว่ารายการอื่นจะยังอยู่หรือไม่</p>
+<table>
+<thead>
+<tr>
+<th><code>filter</code></th>
+<th>รายการระหว่างพิมพ์</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>none</code> (ค่าเริ่มต้น)</td>
+<td>ทุกรายการยังอยู่ มีแค่ไฮไลต์ที่ย้าย</td>
+</tr>
+<tr>
+<td><code>contains</code></td>
+<td>เหลือเฉพาะรายการที่ชื่อมีข้อความนั้นอยู่</td>
+</tr>
+<tr>
+<td><code>starts-with</code></td>
+<td>เหลือเฉพาะรายการที่ชื่อขึ้นต้นด้วยข้อความนั้น</td>
+</tr>
+</tbody>
+</table>
+<p>ระหว่างที่ข้อความยังตรงกับชื่อของรายการที่เลือกไว้ รายการจะแสดงครบทุกรายการ</p>
+<div class="doc-demo" data-react-example="1"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { useState } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { Combobox } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">type</span> <span style="color:var(--ui-tag-color-cyan)">Filter</span> <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'none'</span> <span style="color:var(--ui-tag-color-magenta)">|</span> <span style="color:var(--ui-tag-color-teal)">'contains'</span> <span style="color:var(--ui-tag-color-magenta)">|</span> <span style="color:var(--ui-tag-color-teal)">'starts-with'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> provinces <span style="color:var(--ui-tag-color-magenta)">=</span> [
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'cnx'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'เชียงใหม่'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'cei'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'เชียงราย'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'msn'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'แม่ฮ่องสอน'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'lpn'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'ลำพูน'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'nan'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'น่าน'</span> },
+];
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [filter, setFilter] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>&lt;<span style="color:var(--ui-tag-color-cyan)">Filter</span>&gt;(<span style="color:var(--ui-tag-color-teal)">'starts-with'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid max-w-xs gap-4"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">label</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid gap-2 text-xs text-ink-muted"</span>&gt;
+        filter
+        &lt;<span style="color:var(--ui-tag-color-blue)">select</span>
+          <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{filter}
+          <span style="color:var(--ui-tag-color-purple)">onChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setFilter</span>(e.target.value <span style="color:var(--ui-tag-color-magenta)">as</span> <span style="color:var(--ui-tag-color-cyan)">Filter</span>)}
+          <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-8 border-b border-border-strong-1 bg-field-1 px-2 text-sm text-ink focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus"</span>
+        &gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"none"</span>&gt;none&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"contains"</span>&gt;contains&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"starts-with"</span>&gt;starts-with&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">select</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">label</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid gap-2"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.Root</span> <span style="color:var(--ui-tag-color-purple)">items</span><span style="color:var(--ui-tag-color-magenta)">=</span>{provinces} <span style="color:var(--ui-tag-color-purple)">filter</span><span style="color:var(--ui-tag-color-magenta)">=</span>{filter}&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">label</span> <span style="color:var(--ui-tag-color-purple)">htmlFor</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"province-filter"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-ink-muted"</span>&gt;จังหวัด&lt;/<span style="color:var(--ui-tag-color-blue)">label</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.Anchor</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex h-10 items-center border-b border-border-strong-1 bg-field-1 hover:bg-field-hover-1 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-focus"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.Input</span> <span style="color:var(--ui-tag-color-purple)">id</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"province-filter"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ลองพิมพ์ “ราย” หรือ “น”"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-full min-w-0 flex-1 bg-transparent ps-4 text-sm text-ink outline-none placeholder:text-ink-placeholder"</span> /&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.Toggle</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เปิด"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"group grid h-full w-10 shrink-0 place-items-center text-ink"</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-4 fill-current transition-transform group-data-open:rotate-180"</span>&gt;
+                &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M8 11 3 6l.7-.7L8 9.6l4.3-4.3.7.7z"</span> /&gt;
+              &lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">Combobox.Toggle</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">Combobox.Anchor</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.Popup</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"จังหวัด"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"max-h-72 overflow-y-auto bg-layer-1 text-sm text-ink shadow-lg"</span>&gt;
+            {(items) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> items.<span style="color:var(--ui-tag-color-cyan)">map</span>((p) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (<span style="color:var(--ui-tag-color-teal)">'options'</span> <span style="color:var(--ui-tag-color-magenta)">in</span> p <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-green)">null</span> <span style="color:var(--ui-tag-color-magenta)">:</span> (
+              &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.Option</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{p.value} <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{p.value} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"cursor-pointer px-4 py-3 text-ink-muted hover:bg-layer-hover-1 data-highlighted:bg-layer-hover-1 data-selected:bg-layer-selected-1 data-selected:text-ink"</span>&gt;
+                {p.label}
+              &lt;/<span style="color:var(--ui-tag-color-blue)">Combobox.Option</span>&gt;
+            )))}
+          &lt;/<span style="color:var(--ui-tag-color-blue)">Combobox.Popup</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Combobox.Root</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<h2 id="พิมพ์เองหรือเลือกจากรายการ">พิมพ์เองหรือเลือกจากรายการ</h2>
+<p>เมื่อผู้ใช้ออกจากช่อง ข้อความที่ตรงกับชื่อรายการที่ใช้งานได้ทุกตัวอักษรจะเลือกรายการนั้น ข้อความอื่นจะเด้งกลับเป็นรายการที่เลือกไว้ก่อนหน้า ถ้าตั้ง <code>allowCustomValue</code> ข้อความที่พิมพ์จะกลายเป็นค่าแทน</p>
+<div class="doc-demo" data-react-example="2"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { useState } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { Combobox } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> titles <span style="color:var(--ui-tag-color-magenta)">=</span> [
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'ทนายความ'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'ทนายความ'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'ผู้ช่วยทนาย'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'ผู้ช่วยทนาย'</span> },
+];
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [title, setTitle] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">''</span>);
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid max-w-xs gap-2"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.Root</span> <span style="color:var(--ui-tag-color-purple)">items</span><span style="color:var(--ui-tag-color-magenta)">=</span>{titles} <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"title"</span> <span style="color:var(--ui-tag-color-purple)">allowCustomValue</span> <span style="color:var(--ui-tag-color-purple)">onValueChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{setTitle}&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">label</span> <span style="color:var(--ui-tag-color-purple)">htmlFor</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"job-title"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-ink-muted"</span>&gt;ตำแหน่งงาน&lt;/<span style="color:var(--ui-tag-color-blue)">label</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.Anchor</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex h-10 items-center border-b border-border-strong-1 bg-field-1 hover:bg-field-hover-1 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-focus"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.Input</span> <span style="color:var(--ui-tag-color-purple)">id</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"job-title"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เลือกหรือพิมพ์เอง"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-full min-w-0 flex-1 bg-transparent ps-4 text-sm text-ink outline-none placeholder:text-ink-placeholder"</span> /&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.Toggle</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เปิด"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"group grid h-full w-10 shrink-0 place-items-center text-ink"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-4 fill-current transition-transform group-data-open:rotate-180"</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M8 11 3 6l.7-.7L8 9.6l4.3-4.3.7.7z"</span> /&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">Combobox.Toggle</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Combobox.Anchor</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.Popup</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ตำแหน่งงาน"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"bg-layer-1 text-sm text-ink shadow-lg"</span>&gt;
+          {(items) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> items.<span style="color:var(--ui-tag-color-cyan)">map</span>((t) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (<span style="color:var(--ui-tag-color-teal)">'options'</span> <span style="color:var(--ui-tag-color-magenta)">in</span> t <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-green)">null</span> <span style="color:var(--ui-tag-color-magenta)">:</span> (
+            &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.Option</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{t.value} <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{t.value} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"cursor-pointer px-4 py-3 text-ink-muted hover:bg-layer-hover-1 data-highlighted:bg-layer-hover-1 data-selected:bg-layer-selected-1 data-selected:text-ink"</span>&gt;
+              {t.label}
+            &lt;/<span style="color:var(--ui-tag-color-blue)">Combobox.Option</span>&gt;
+          )))}
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Combobox.Popup</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">Combobox.Root</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-ink-muted"</span>&gt;ค่า: {title <span style="color:var(--ui-tag-color-magenta)">||</span> <span style="color:var(--ui-tag-color-teal)">'(ไม่มี)'</span>}&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<h2 id="ค่า">ค่า</h2>
+<p>เก็บค่าเองด้วย <code>value</code> คู่กับ <code>onValueChange</code> หรือให้ค่าเริ่มต้นด้วย <code>defaultValue</code> <code>onValueChange</code> ยิงเมื่อค่าเปลี่ยน ไม่ว่าจากการเลือก ข้อความที่ยืนยันแล้ว หรือการล้างค่า เมื่อ <code>value</code> เปลี่ยนจากข้างนอก ช่องพิมพ์จะแสดงชื่อของรายการใหม่</p>
+<div class="doc-demo" data-react-example="3"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { useState } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { Combobox } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> provinces <span style="color:var(--ui-tag-color-magenta)">=</span> [
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'bkk'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'กรุงเทพมหานคร'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'cnx'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'เชียงใหม่'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'hkt'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'ภูเก็ต'</span> },
+];
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [province, setProvince] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">'bkk'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid max-w-xs gap-2"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.Root</span> <span style="color:var(--ui-tag-color-purple)">items</span><span style="color:var(--ui-tag-color-magenta)">=</span>{provinces} <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"province"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{province} <span style="color:var(--ui-tag-color-purple)">onValueChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{setProvince}&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">label</span> <span style="color:var(--ui-tag-color-purple)">htmlFor</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"province-value"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-ink-muted"</span>&gt;จังหวัด&lt;/<span style="color:var(--ui-tag-color-blue)">label</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.Anchor</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex h-10 items-center border-b border-border-strong-1 bg-field-1 hover:bg-field-hover-1 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-focus"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.Input</span> <span style="color:var(--ui-tag-color-purple)">id</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"province-value"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-full min-w-0 flex-1 bg-transparent ps-4 text-sm text-ink outline-none placeholder:text-ink-placeholder"</span> /&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.Toggle</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เปิด"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"group grid h-full w-10 shrink-0 place-items-center text-ink"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-4 fill-current transition-transform group-data-open:rotate-180"</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M8 11 3 6l.7-.7L8 9.6l4.3-4.3.7.7z"</span> /&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">Combobox.Toggle</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Combobox.Anchor</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.Popup</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"จังหวัด"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"bg-layer-1 text-sm text-ink shadow-lg"</span>&gt;
+          {(items) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> items.<span style="color:var(--ui-tag-color-cyan)">map</span>((p) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (<span style="color:var(--ui-tag-color-teal)">'options'</span> <span style="color:var(--ui-tag-color-magenta)">in</span> p <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-green)">null</span> <span style="color:var(--ui-tag-color-magenta)">:</span> (
+            &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.Option</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{p.value} <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{p.value} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"cursor-pointer px-4 py-3 text-ink-muted hover:bg-layer-hover-1 data-highlighted:bg-layer-hover-1 data-selected:bg-layer-selected-1 data-selected:text-ink"</span>&gt;
+              {p.label}
+            &lt;/<span style="color:var(--ui-tag-color-blue)">Combobox.Option</span>&gt;
+          )))}
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Combobox.Popup</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">Combobox.Root</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-ink-muted"</span>&gt;ค่า: {province <span style="color:var(--ui-tag-color-magenta)">||</span> <span style="color:var(--ui-tag-color-teal)">'(ไม่มี)'</span>}&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+      {<span style="color:var(--ui-ink-muted);font-style:italic">/* เปลี่ยนจากภายนอก: ช่องข้อความแสดงชื่อของตัวเลือกใหม่ */</span>}
+      &lt;<span style="color:var(--ui-tag-color-blue)">button</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"button"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setProvince</span>(<span style="color:var(--ui-tag-color-teal)">'hkt'</span>)} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-8 justify-self-start px-4 text-sm text-link hover:bg-ghost-hover focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus"</span>&gt;
+        เปลี่ยนเป็นภูเก็ต
+      &lt;/<span style="color:var(--ui-tag-color-blue)">button</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<h2 id="ค้นหาบน-server">ค้นหาบน server</h2>
+<p><code>onInputValueChange</code> ได้ข้อความทุกครั้งที่ผู้ใช้พิมพ์ ให้ดึงผลที่ตรงกัน แทนที่ <code>items</code> และตั้ง <code>loading</code> ระหว่างรอ request ซึ่งทำให้ popup มี <code>aria-busy</code> ใช้ <code>filter=&quot;none&quot;</code> (ค่าเริ่มต้น) เพราะ server กรองมาให้แล้ว</p>
+<p>part ต่าง ๆ ไม่วาดข้อความ &quot;กำลังค้นหา…&quot; หรือ &quot;ไม่พบรายการที่ตรงกัน&quot; <code>Combobox.useComboboxContext()</code> ให้ <code>open</code>, <code>loading</code> และ <code>listed</code> (รายการที่ข้อความยังเก็บไว้) เพื่อ render ข้อความเหล่านั้นเอง</p>
+<div class="doc-demo" data-react-example="4"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { useRef, useState } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { Combobox, <span style="color:var(--ui-tag-color-magenta)">type</span> ListOption } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> all <span style="color:var(--ui-tag-color-magenta)">=</span> [<span style="color:var(--ui-tag-color-teal)">'กรุงเทพมหานคร'</span>, <span style="color:var(--ui-tag-color-teal)">'เชียงใหม่'</span>, <span style="color:var(--ui-tag-color-teal)">'เชียงราย'</span>, <span style="color:var(--ui-tag-color-teal)">'ขอนแก่น'</span>, <span style="color:var(--ui-tag-color-teal)">'นครราชสีมา'</span>, <span style="color:var(--ui-tag-color-teal)">'ภูเก็ต'</span>, <span style="color:var(--ui-tag-color-teal)">'สงขลา'</span>, <span style="color:var(--ui-tag-color-teal)">'อุดรธานี'</span>];
+
+<span style="color:var(--ui-ink-muted);font-style:italic">// แทน server: เมืองที่มีข้อความนั้น ตอบกลับหลัง 600 ms</span>
+<span style="color:var(--ui-tag-color-magenta)">const</span> <span style="color:var(--ui-tag-color-cyan)">search</span> <span style="color:var(--ui-tag-color-magenta)">=</span> (text<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span>
+  <span style="color:var(--ui-tag-color-magenta)">new</span> Promise&lt;<span style="color:var(--ui-tag-color-cyan)">ListOption</span>[]&gt;((resolve) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    <span style="color:var(--ui-tag-color-magenta)">const</span> found <span style="color:var(--ui-tag-color-magenta)">=</span> all.<span style="color:var(--ui-tag-color-cyan)">filter</span>((city) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> city.<span style="color:var(--ui-tag-color-cyan)">toLowerCase</span>().<span style="color:var(--ui-tag-color-cyan)">includes</span>(text.<span style="color:var(--ui-tag-color-cyan)">trim</span>().<span style="color:var(--ui-tag-color-cyan)">toLowerCase</span>()));
+    <span style="color:var(--ui-tag-color-cyan)">setTimeout</span>(() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">resolve</span>(found.<span style="color:var(--ui-tag-color-cyan)">map</span>((city) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> ({ <span style="color:var(--ui-tag-color-purple)">value:</span> city, <span style="color:var(--ui-tag-color-purple)">label:</span> city }))), <span style="color:var(--ui-tag-color-green)">600</span>);
+  });
+
+<span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">statusText</span>(loading<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">boolean</span>, count<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">number</span>) {
+  <span style="color:var(--ui-tag-color-magenta)">if</span> (loading) <span style="color:var(--ui-tag-color-magenta)">return</span> <span style="color:var(--ui-tag-color-teal)">'กำลังค้นหา…'</span>;
+  <span style="color:var(--ui-tag-color-magenta)">return</span> count <span style="color:var(--ui-tag-color-magenta)">===</span> <span style="color:var(--ui-tag-color-green)">0</span> <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-teal)">'ไม่พบรายการที่ตรงกัน'</span> <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-teal)">''</span>;
+}
+
+<span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">ListStatus</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> { open, loading, listed } <span style="color:var(--ui-tag-color-magenta)">=</span> Combobox.<span style="color:var(--ui-tag-color-cyan)">useComboboxContext</span>();
+  <span style="color:var(--ui-tag-color-magenta)">return</span> &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">role</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"status"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"min-h-4 text-xs text-ink-muted"</span>&gt;{open <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-cyan)">statusText</span>(loading, listed.length) <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-teal)">''</span>}&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;;
+}
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [cities, setCities] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>&lt;<span style="color:var(--ui-tag-color-cyan)">ListOption</span>[]&gt;([]);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [loading, setLoading] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-green)">false</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> latest <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useRef</span>(<span style="color:var(--ui-tag-color-teal)">''</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> <span style="color:var(--ui-tag-color-cyan)">onText</span> <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-magenta)">async</span> (text<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    latest.current <span style="color:var(--ui-tag-color-magenta)">=</span> text;
+    <span style="color:var(--ui-tag-color-cyan)">setLoading</span>(<span style="color:var(--ui-tag-color-green)">true</span>);
+    <span style="color:var(--ui-tag-color-magenta)">const</span> found <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-magenta)">await</span> <span style="color:var(--ui-tag-color-cyan)">search</span>(text);
+    <span style="color:var(--ui-tag-color-magenta)">if</span> (latest.current <span style="color:var(--ui-tag-color-magenta)">!==</span> text) <span style="color:var(--ui-tag-color-magenta)">return</span>; <span style="color:var(--ui-ink-muted);font-style:italic">// มีการค้นหาที่ใหม่กว่ากำลังมา</span>
+    <span style="color:var(--ui-tag-color-cyan)">setCities</span>(found);
+    <span style="color:var(--ui-tag-color-cyan)">setLoading</span>(<span style="color:var(--ui-tag-color-green)">false</span>);
+  };
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid max-w-xs gap-2"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.Root</span> <span style="color:var(--ui-tag-color-purple)">items</span><span style="color:var(--ui-tag-color-magenta)">=</span>{cities} <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"city"</span> <span style="color:var(--ui-tag-color-purple)">loading</span><span style="color:var(--ui-tag-color-magenta)">=</span>{loading} <span style="color:var(--ui-tag-color-purple)">onInputValueChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{onText}&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">label</span> <span style="color:var(--ui-tag-color-purple)">htmlFor</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"city"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-ink-muted"</span>&gt;เมือง&lt;/<span style="color:var(--ui-tag-color-blue)">label</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.Anchor</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex h-10 items-center border-b border-border-strong-1 bg-field-1 hover:bg-field-hover-1 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-focus"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.Input</span> <span style="color:var(--ui-tag-color-purple)">id</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"city"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"พิมพ์เพื่อค้นหา"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-full min-w-0 flex-1 bg-transparent px-4 text-sm text-ink outline-none placeholder:text-ink-placeholder"</span> /&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Combobox.Anchor</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.Popup</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เมือง"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"max-h-72 overflow-y-auto bg-layer-1 text-sm text-ink shadow-lg"</span>&gt;
+          {(items) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> items.<span style="color:var(--ui-tag-color-cyan)">map</span>((c) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (<span style="color:var(--ui-tag-color-teal)">'options'</span> <span style="color:var(--ui-tag-color-magenta)">in</span> c <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-green)">null</span> <span style="color:var(--ui-tag-color-magenta)">:</span> (
+            &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.Option</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{c.value} <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{c.value} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"cursor-pointer px-4 py-3 text-ink-muted hover:bg-layer-hover-1 data-highlighted:bg-layer-hover-1 data-selected:bg-layer-selected-1 data-selected:text-ink"</span>&gt;
+              {c.label}
+            &lt;/<span style="color:var(--ui-tag-color-blue)">Combobox.Option</span>&gt;
+          )))}
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Combobox.Popup</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">ListStatus</span> /&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">Combobox.Root</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<p>ในตัวอย่างนี้ <code>search()</code> ทำหน้าที่แทน server และตอบกลับหลังรอสักครู่ ในแอปจริงจะดึงผลที่ตรงกัน เหมือนในหน้า <a href="/kanok-ui-docs/th/combobox/#%E0%B8%84%E0%B9%89%E0%B8%99%E0%B8%AB%E0%B8%B2%E0%B8%9A%E0%B8%99-server">Combobox</a></p>
+<h2 id="กลุ่มและคำอธิบาย">กลุ่มและคำอธิบาย</h2>
+<p>กลุ่มคือ <code>{ label, options }</code> ใน <code>items</code> และรายการรับ <code>description</code> และ <code>disabled</code> ได้ การพิมพ์ค้นเฉพาะชื่อรายการ ใช้ <code>isGroup</code> แยกกลุ่มออกจากรายการในฟังก์ชันของ <code>Popup</code></p>
+<div class="doc-demo" data-react-example="5"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { Combobox, isGroup, <span style="color:var(--ui-tag-color-magenta)">type</span> ListItem } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> branches<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">ListItem</span>[] <span style="color:var(--ui-tag-color-magenta)">=</span> [
+  { <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'กรุงเทพฯ'</span>, <span style="color:var(--ui-tag-color-purple)">options:</span> [
+    { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'silom'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'สีลม'</span>, <span style="color:var(--ui-tag-color-purple)">description:</span> <span style="color:var(--ui-tag-color-teal)">'จันทร์–ศุกร์ 9:00–17:00'</span> },
+    { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'asok'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'อโศก'</span>, <span style="color:var(--ui-tag-color-purple)">description:</span> <span style="color:var(--ui-tag-color-teal)">'ทุกวัน 10:00–20:00'</span> },
+  ] },
+  { <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'ภาคเหนือ'</span>, <span style="color:var(--ui-tag-color-purple)">options:</span> [
+    { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'chiangmai'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'เชียงใหม่'</span> },
+    { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'lampang'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'ลำปาง (ปิดแล้ว)'</span>, <span style="color:var(--ui-tag-color-purple)">disabled:</span> <span style="color:var(--ui-tag-color-green)">true</span> },
+  ] },
+];
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid max-w-xs gap-2"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.Root</span> <span style="color:var(--ui-tag-color-purple)">items</span><span style="color:var(--ui-tag-color-magenta)">=</span>{branches} <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"branch"</span> <span style="color:var(--ui-tag-color-purple)">filter</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"contains"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">label</span> <span style="color:var(--ui-tag-color-purple)">htmlFor</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"branch"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-ink-muted"</span>&gt;สาขา&lt;/<span style="color:var(--ui-tag-color-blue)">label</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.Anchor</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex h-10 items-center border-b border-border-strong-1 bg-field-1 hover:bg-field-hover-1 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-focus"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.Input</span> <span style="color:var(--ui-tag-color-purple)">id</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"branch"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"พิมพ์ชื่อสาขา"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-full min-w-0 flex-1 bg-transparent ps-4 text-sm text-ink outline-none placeholder:text-ink-placeholder"</span> /&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.Toggle</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เปิด"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"group grid h-full w-10 shrink-0 place-items-center text-ink"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-4 fill-current transition-transform group-data-open:rotate-180"</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M8 11 3 6l.7-.7L8 9.6l4.3-4.3.7.7z"</span> /&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">Combobox.Toggle</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Combobox.Anchor</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.Popup</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"สาขา"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"max-h-72 overflow-y-auto bg-layer-1 text-sm text-ink shadow-lg"</span>&gt;
+          {(items) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> items.<span style="color:var(--ui-tag-color-cyan)">filter</span>(isGroup).<span style="color:var(--ui-tag-color-cyan)">map</span>((group) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+            &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.Group</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{group.label}&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.GroupLabel</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"px-4 pt-3 pb-1 text-xs font-semibold text-ink-muted"</span>&gt;{group.label}&lt;/<span style="color:var(--ui-tag-color-blue)">Combobox.GroupLabel</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.GroupOptions</span>&gt;
+                {group.options.<span style="color:var(--ui-tag-color-cyan)">map</span>((o) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+                  &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.Option</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{o.value} <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{o.value} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex cursor-pointer flex-col px-4 py-2 text-ink-muted hover:bg-layer-hover-1 data-highlighted:bg-layer-hover-1 data-selected:bg-layer-selected-1 data-selected:text-ink data-disabled:cursor-not-allowed data-disabled:bg-transparent data-disabled:text-ink-disabled"</span>&gt;
+                    {o.label}
+                    &lt;<span style="color:var(--ui-tag-color-blue)">small</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-ink-helper"</span>&gt;{o.description}&lt;/<span style="color:var(--ui-tag-color-blue)">small</span>&gt;
+                  &lt;/<span style="color:var(--ui-tag-color-blue)">Combobox.Option</span>&gt;
+                ))}
+              &lt;/<span style="color:var(--ui-tag-color-blue)">Combobox.GroupOptions</span>&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">Combobox.Group</span>&gt;
+          ))}
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Combobox.Popup</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">Combobox.Root</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<h2 id="ปุ่มล้างค่า">ปุ่มล้างค่า</h2>
+<p><code>Combobox.Clear</code> ล้างข้อความและค่า แล้วให้โฟกัสอยู่ในช่องพิมพ์ ถ้าไม่ต้องการก็ไม่ต้องใส่ ปุ่มนี้ถูกปิดใช้งานเมื่อ <code>Root</code> ปิดใช้งานหรืออ่านอย่างเดียว ส่วน Combobox แบบมี style ทำมากกว่านั้น คือแสดงปุ่มนี้เฉพาะตอนที่ช่องเปลี่ยนค่าได้และมีข้อความอยู่</p>
+<div class="doc-demo" data-react-example="6"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { Combobox } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> provinces <span style="color:var(--ui-tag-color-magenta)">=</span> [
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'bkk'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'กรุงเทพมหานคร'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'cnx'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'เชียงใหม่'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'hkt'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'ภูเก็ต'</span> },
+];
+
+<span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">ClearButton</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> { interactive, text } <span style="color:var(--ui-tag-color-magenta)">=</span> Combobox.<span style="color:var(--ui-tag-color-cyan)">useComboboxContext</span>();
+  <span style="color:var(--ui-tag-color-magenta)">return</span> interactive <span style="color:var(--ui-tag-color-magenta)">&amp;&amp;</span> text <span style="color:var(--ui-tag-color-magenta)">!==</span> <span style="color:var(--ui-tag-color-teal)">''</span> <span style="color:var(--ui-tag-color-magenta)">?</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.Clear</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ล้างค่า"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid h-full w-8 shrink-0 place-items-center text-ink hover:bg-field-hover-1"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-4 fill-current"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M12 4.7 11.3 4 8 7.3 4.7 4 4 4.7 7.3 8 4 11.3l.7.7L8 8.7l3.3 3.3.7-.7L8.7 8z"</span> /&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">Combobox.Clear</span>&gt;
+  ) <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-green)">null</span>;
+}
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid max-w-xs gap-2"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.Root</span> <span style="color:var(--ui-tag-color-purple)">items</span><span style="color:var(--ui-tag-color-magenta)">=</span>{provinces} <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"province"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"bkk"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">label</span> <span style="color:var(--ui-tag-color-purple)">htmlFor</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"province-clear"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-ink-muted"</span>&gt;จังหวัด&lt;/<span style="color:var(--ui-tag-color-blue)">label</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.Anchor</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex h-10 items-center border-b border-border-strong-1 bg-field-1 hover:bg-field-hover-1 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-focus"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.Input</span> <span style="color:var(--ui-tag-color-purple)">id</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"province-clear"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"พิมพ์ชื่อจังหวัด"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-full min-w-0 flex-1 bg-transparent ps-4 text-sm text-ink outline-none placeholder:text-ink-placeholder"</span> /&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">ClearButton</span> /&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.Toggle</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เปิด"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"group grid h-full w-10 shrink-0 place-items-center text-ink"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-4 fill-current transition-transform group-data-open:rotate-180"</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M8 11 3 6l.7-.7L8 9.6l4.3-4.3.7.7z"</span> /&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">Combobox.Toggle</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Combobox.Anchor</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.Popup</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"จังหวัด"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"bg-layer-1 text-sm text-ink shadow-lg"</span>&gt;
+          {(items) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> items.<span style="color:var(--ui-tag-color-cyan)">map</span>((p) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (<span style="color:var(--ui-tag-color-teal)">'options'</span> <span style="color:var(--ui-tag-color-magenta)">in</span> p <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-green)">null</span> <span style="color:var(--ui-tag-color-magenta)">:</span> (
+            &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.Option</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{p.value} <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{p.value} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"cursor-pointer px-4 py-3 text-ink-muted hover:bg-layer-hover-1 data-highlighted:bg-layer-hover-1 data-selected:bg-layer-selected-1 data-selected:text-ink"</span>&gt;
+              {p.label}
+            &lt;/<span style="color:var(--ui-tag-color-blue)">Combobox.Option</span>&gt;
+          )))}
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Combobox.Popup</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">Combobox.Root</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<p>Esc ตอนรายการปิดก็ล้างค่าได้เหมือนกัน</p>
+<h2 id="เปิดขึ้นด้านบน-อ่านอย่างเดียว-และปิดใช้งาน">เปิดขึ้นด้านบน อ่านอย่างเดียว และปิดใช้งาน</h2>
+<ul>
+<li><code>side=&quot;top&quot;</code> ที่ <code>Popup</code> ให้เปิดขึ้นด้านบนก่อน และจะพลิกเองเมื่อที่ไม่พอ รายการจัดแนวตาม <code>Anchor</code> และกว้างเท่ากับมัน (ถ้าไม่มี <code>Anchor</code> ก็ใช้ <code>Input</code>)</li>
+<li><code>readOnly</code> ทำให้ช่องพิมพ์อ่านอย่างเดียว ปุ่มคีย์บอร์ดและการคลิกไม่เปิดรายการ และ <code>Toggle</code> กับ <code>Clear</code> ถูกปิดใช้งาน</li>
+<li><code>disabled</code> ปิดใช้งานช่องพิมพ์ <code>Toggle</code> และ <code>Clear</code></li>
+<li>ช่องที่ปิดใช้งานไม่ render hidden input จึงไม่ถูกส่งไปกับฟอร์ม (เหมือน control ปกติที่ปิดใช้งาน) การ reset ฟอร์มคืนค่าแบบ uncontrolled และข้อความของมันกลับ</li>
+</ul>
+<div class="doc-demo" data-react-example="7"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { Combobox } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> provinces <span style="color:var(--ui-tag-color-magenta)">=</span> [
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'bkk'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'กรุงเทพมหานคร'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'cnx'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'เชียงใหม่'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'hkt'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'ภูเก็ต'</span> },
+];
+
+<span style="color:var(--ui-tag-color-magenta)">interface</span> <span style="color:var(--ui-tag-color-cyan)">FieldProps</span> {
+  id<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>;
+  label<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>;
+  side<span style="color:var(--ui-tag-color-magenta)">?:</span> <span style="color:var(--ui-tag-color-teal)">'bottom'</span> <span style="color:var(--ui-tag-color-magenta)">|</span> <span style="color:var(--ui-tag-color-teal)">'top'</span>;
+  defaultValue<span style="color:var(--ui-tag-color-magenta)">?:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>;
+  readOnly<span style="color:var(--ui-tag-color-magenta)">?:</span> <span style="color:var(--ui-tag-color-cyan)">boolean</span>;
+  disabled<span style="color:var(--ui-tag-color-magenta)">?:</span> <span style="color:var(--ui-tag-color-cyan)">boolean</span>;
+}
+
+<span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">ProvinceField</span>({ id, label, side, <span style="color:var(--ui-tag-color-magenta)">...</span>props }<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">FieldProps</span>) {
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.Root</span> <span style="color:var(--ui-tag-color-purple)">items</span><span style="color:var(--ui-tag-color-magenta)">=</span>{provinces} {<span style="color:var(--ui-tag-color-magenta)">...</span>props}&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">label</span> <span style="color:var(--ui-tag-color-purple)">htmlFor</span><span style="color:var(--ui-tag-color-magenta)">=</span>{id} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-ink-muted"</span>&gt;{label}&lt;/<span style="color:var(--ui-tag-color-blue)">label</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.Anchor</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex h-10 items-center border-b border-border-strong-1 bg-field-1 hover:bg-field-hover-1 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-focus has-data-readonly:border-hairline has-data-readonly:bg-transparent has-data-disabled:border-transparent has-data-disabled:hover:bg-field-1"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.Input</span> <span style="color:var(--ui-tag-color-purple)">id</span><span style="color:var(--ui-tag-color-magenta)">=</span>{id} <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"พิมพ์ชื่อจังหวัด"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-full min-w-0 flex-1 bg-transparent ps-4 text-sm text-ink outline-none placeholder:text-ink-placeholder data-disabled:cursor-not-allowed data-disabled:text-ink-disabled"</span> /&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.Toggle</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เปิด"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"group grid h-full w-10 shrink-0 place-items-center text-ink disabled:text-ink-disabled"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-4 fill-current transition-transform group-data-open:rotate-180"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M8 11 3 6l.7-.7L8 9.6l4.3-4.3.7.7z"</span> /&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Combobox.Toggle</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">Combobox.Anchor</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.Popup</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span>{label} <span style="color:var(--ui-tag-color-purple)">side</span><span style="color:var(--ui-tag-color-magenta)">=</span>{side} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"bg-layer-1 text-sm text-ink shadow-lg"</span>&gt;
+        {(items) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> items.<span style="color:var(--ui-tag-color-cyan)">map</span>((p) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (<span style="color:var(--ui-tag-color-teal)">'options'</span> <span style="color:var(--ui-tag-color-magenta)">in</span> p <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-green)">null</span> <span style="color:var(--ui-tag-color-magenta)">:</span> (
+          &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.Option</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{p.value} <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{p.value} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"cursor-pointer px-4 py-3 text-ink-muted hover:bg-layer-hover-1 data-highlighted:bg-layer-hover-1 data-selected:bg-layer-selected-1 data-selected:text-ink"</span>&gt;
+            {p.label}
+          &lt;/<span style="color:var(--ui-tag-color-blue)">Combobox.Option</span>&gt;
+        )))}
+      &lt;/<span style="color:var(--ui-tag-color-blue)">Combobox.Popup</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">Combobox.Root</span>&gt;
+  );
+}
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid max-w-xs gap-2"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ProvinceField</span> <span style="color:var(--ui-tag-color-purple)">id</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"province-top"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"จังหวัด (เปิดด้านบน)"</span> <span style="color:var(--ui-tag-color-purple)">side</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"top"</span> /&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ProvinceField</span> <span style="color:var(--ui-tag-color-purple)">id</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"province-readonly"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"จังหวัด (อ่านอย่างเดียว)"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"bkk"</span> <span style="color:var(--ui-tag-color-purple)">readOnly</span> /&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ProvinceField</span> <span style="color:var(--ui-tag-color-purple)">id</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"province-disabled"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"จังหวัด (ปิดใช้งาน)"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span> /&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<p><code>required</code> และ <code>invalid</code> ตั้งแค่ <code>aria-required</code> และ <code>aria-invalid</code> (กับ <code>data-invalid</code>) ให้ตรวจค่าและแสดง error เอง (<a href="/kanok-ui-docs/th/forms/">ฟอร์มและการตรวจค่า</a>) ไม่มีขนาดให้เลือก ความสูงเป็น CSS ของคุณ</p>
+<h2 id="ใส่-style">ใส่ style</h2>
+<div class="doc-demo" data-react-example="8"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { useState } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { Combobox } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> provinces <span style="color:var(--ui-tag-color-magenta)">=</span> [
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'bkk'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'กรุงเทพมหานคร'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'cnx'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'เชียงใหม่'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'hkt'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'ภูเก็ต (ไม่มีสาขา)'</span>, <span style="color:var(--ui-tag-color-purple)">disabled:</span> <span style="color:var(--ui-tag-color-green)">true</span> },
+];
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [province, setProvince] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">''</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> invalid <span style="color:var(--ui-tag-color-magenta)">=</span> province <span style="color:var(--ui-tag-color-magenta)">===</span> <span style="color:var(--ui-tag-color-teal)">''</span>;
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid max-w-xs gap-2"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.Root</span> <span style="color:var(--ui-tag-color-purple)">items</span><span style="color:var(--ui-tag-color-magenta)">=</span>{provinces} <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"province"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{province} <span style="color:var(--ui-tag-color-purple)">onValueChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{setProvince} <span style="color:var(--ui-tag-color-purple)">invalid</span><span style="color:var(--ui-tag-color-magenta)">=</span>{invalid} <span style="color:var(--ui-tag-color-purple)">required</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">label</span> <span style="color:var(--ui-tag-color-purple)">htmlFor</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"province-style"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-ink-muted"</span>&gt;จังหวัด&lt;/<span style="color:var(--ui-tag-color-blue)">label</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.Anchor</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex h-10 items-center border-b border-border-strong-1 bg-field-1 hover:bg-field-hover-1 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-focus has-data-invalid:outline-2 has-data-invalid:-outline-offset-2 has-data-invalid:outline-error"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.Input</span>
+            <span style="color:var(--ui-tag-color-purple)">id</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"province-style"</span>
+            <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"พิมพ์ชื่อจังหวัด"</span>
+            <span style="color:var(--ui-tag-color-purple)">aria-describedby</span><span style="color:var(--ui-tag-color-magenta)">=</span>{invalid <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-teal)">'province-style-error'</span> <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-green)">undefined</span>}
+            <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-full min-w-0 flex-1 bg-transparent ps-4 text-sm text-ink outline-none placeholder:text-ink-placeholder"</span>
+          /&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.Toggle</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เปิด"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid h-full w-10 shrink-0 place-items-center text-ink data-open:rotate-180"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-4 fill-current"</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M8 11 3 6l.7-.7L8 9.6l4.3-4.3.7.7z"</span> /&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">Combobox.Toggle</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Combobox.Anchor</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.Popup</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"จังหวัด"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"bg-layer-1 text-sm text-ink shadow-lg"</span>&gt;
+          {(items) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> items.<span style="color:var(--ui-tag-color-cyan)">map</span>((p) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (<span style="color:var(--ui-tag-color-teal)">'options'</span> <span style="color:var(--ui-tag-color-magenta)">in</span> p <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-green)">null</span> <span style="color:var(--ui-tag-color-magenta)">:</span> (
+            &lt;<span style="color:var(--ui-tag-color-blue)">Combobox.Option</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{p.value} <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{p.value} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"cursor-pointer px-4 py-3 text-ink-muted hover:bg-layer-hover-1 data-highlighted:bg-layer-hover-1 data-selected:bg-layer-selected-1 data-selected:font-semibold data-selected:text-ink data-disabled:cursor-not-allowed data-disabled:bg-transparent data-disabled:text-ink-disabled"</span>&gt;
+              {p.label}
+            &lt;/<span style="color:var(--ui-tag-color-blue)">Combobox.Option</span>&gt;
+          )))}
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Combobox.Popup</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">Combobox.Root</span>&gt;
+      {invalid <span style="color:var(--ui-tag-color-magenta)">?</span> &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">id</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"province-style-error"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-error-text"</span>&gt;เลือกจังหวัดจากรายการ&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt; <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-green)">null</span>}
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<ui-code-snippet type="multi" class="doc-code" data-lang="css"><span style="color:var(--ui-ink-muted);font-style:italic">/* className="input" ที่ Input, "toggle" ที่ Toggle, "option" ที่แต่ละ Option */</span>
+<span style="color:var(--ui-tag-color-purple)">.input</span>[<span style="color:var(--ui-tag-color-purple)">data-open</span>] { <span style="color:var(--ui-tag-color-purple)">outline</span>: <span style="color:var(--ui-tag-color-green)">2px</span> <span style="color:var(--ui-tag-color-green)">solid</span>; }
+<span style="color:var(--ui-tag-color-purple)">.input</span>[<span style="color:var(--ui-tag-color-purple)">data-invalid</span>] { <span style="color:var(--ui-tag-color-purple)">outline</span>: <span style="color:var(--ui-tag-color-green)">2px</span> <span style="color:var(--ui-tag-color-green)">solid</span> #da1e28; }
+<span style="color:var(--ui-tag-color-purple)">.toggle</span>[<span style="color:var(--ui-tag-color-purple)">data-open</span>] { <span style="color:var(--ui-tag-color-purple)">transform</span>: <span style="color:var(--ui-tag-color-cyan)">rotate</span>(<span style="color:var(--ui-tag-color-green)">180deg</span>); }
+<span style="color:var(--ui-tag-color-purple)">.option</span>[<span style="color:var(--ui-tag-color-purple)">data-highlighted</span>] { <span style="color:var(--ui-tag-color-purple)">background</span>: #e8e8e8; }
+<span style="color:var(--ui-tag-color-purple)">.option</span>[<span style="color:var(--ui-tag-color-purple)">data-selected</span>] { <span style="color:var(--ui-tag-color-purple)">font-weight</span>: <span style="color:var(--ui-tag-color-green)">600</span>; }</ui-code-snippet>
+<h2 id="parts">Parts</h2>
+<h3 id="combobox-root">Combobox.Root</h3>
+<p>ไม่ render element ของตัวเอง render แค่ children และ hidden input เมื่อมี <code>name</code> และไม่ได้ <code>disabled</code></p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>ค่าเริ่มต้น</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>items</code></td>
+<td><code>ListItem[]</code></td>
+<td></td>
+<td>รายการและกลุ่ม <code>{ label, options }</code></td>
+</tr>
+<tr>
+<td><code>value</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>ค่าที่เลือก (controlled)</td>
+</tr>
+<tr>
+<td><code>defaultValue</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>ค่าเริ่มต้น (uncontrolled)</td>
+</tr>
+<tr>
+<td><code>onValueChange</code></td>
+<td><code>(value: string) =&gt; void</code></td>
+<td></td>
+<td>หลังค่าเปลี่ยน: การเลือก ข้อความที่ยืนยันแล้ว การล้างค่า</td>
+</tr>
+<tr>
+<td><code>onInputValueChange</code></td>
+<td><code>(text: string) =&gt; void</code></td>
+<td></td>
+<td>ทุกครั้งที่ผู้ใช้พิมพ์</td>
+</tr>
+<tr>
+<td><code>filter</code></td>
+<td><code>'none' | 'contains' | 'starts-with'</code></td>
+<td><code>'none'</code></td>
+<td>ข้อความที่พิมพ์กรองรายการอย่างไร</td>
+</tr>
+<tr>
+<td><code>allowCustomValue</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>เก็บข้อความที่ไม่ตรงกับรายการไหนเป็นค่า</td>
+</tr>
+<tr>
+<td><code>loading</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>popup เป็น <code>aria-busy</code></td>
+</tr>
+<tr>
+<td><code>onOpenChange</code></td>
+<td><code>(open: boolean) =&gt; void</code></td>
+<td></td>
+<td>หลังรายการเปิดหรือปิด</td>
+</tr>
+<tr>
+<td><code>disabled</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>ปิดใช้งานช่องพิมพ์ <code>Toggle</code> และ <code>Clear</code></td>
+</tr>
+<tr>
+<td><code>readOnly</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>ข้อความและค่าเปลี่ยนไม่ได้</td>
+</tr>
+<tr>
+<td><code>required</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td><code>aria-required</code> ที่ช่องพิมพ์</td>
+</tr>
+<tr>
+<td><code>invalid</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td><code>aria-invalid</code> และ <code>data-invalid</code> ที่ช่องพิมพ์</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>ส่งค่าไปกับฟอร์ม (hidden input) ยกเว้นตอนปิดใช้งาน</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>สร้างให้</td>
+<td>id ของช่องพิมพ์ และฐานของ id อื่น: <code>&lt;id&gt;-list</code>, <code>&lt;id&gt;-opt-&lt;n&gt;</code> ส่วน <code>aria-labelledby</code> ของ popup ชี้ไปที่ <code>&lt;id&gt;-label</code> ซึ่งเป็น id ที่ <code>&lt;label&gt;</code> ของคุณต้องมีเอง (ดู <code>Combobox.Popup</code>)</td>
+</tr>
+</tbody>
+</table>
+<p><code>Combobox.useComboboxContext()</code> คืนสถานะของ <code>Root</code> (<code>text</code>, <code>value</code>, <code>open</code>, <code>listed</code>, <code>loading</code>, <code>interactive</code> …) ให้ component ที่อยู่ข้างใน</p>
+<h3 id="combobox-input">Combobox.Input</h3>
+<p><code>&lt;input type=&quot;text&quot; role=&quot;combobox&quot; autocomplete=&quot;off&quot;&gt;</code> มี id เป็น <code>id</code> ของ <code>Root</code> ถ้าคุณไม่ได้ใส่เอง รับ prop ของ input ได้ทุกตัว ยกเว้น <code>type</code>, <code>role</code>, <code>value</code>, <code>defaultValue</code>, <code>disabled</code> และ <code>readOnly</code> ซึ่งมาจาก <code>Root</code></p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>เมื่อ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-open</code></td>
+<td>รายการเปิดอยู่</td>
+</tr>
+<tr>
+<td><code>data-disabled</code></td>
+<td>ปิดใช้งาน</td>
+</tr>
+<tr>
+<td><code>data-readonly</code></td>
+<td>อ่านอย่างเดียว</td>
+</tr>
+<tr>
+<td><code>data-invalid</code></td>
+<td>ตั้ง <code>invalid</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="combobox-anchor">Combobox.Anchor</h3>
+<p><code>&lt;div&gt;</code> ที่ครอบช่องพิมพ์และปุ่มต่าง ๆ popup จัดแนวตามมันและกว้างเท่ากับมัน ไม่มี prop และ data attribute เพิ่ม</p>
+<h3 id="combobox-clear">Combobox.Clear</h3>
+<p><code>&lt;button type=&quot;button&quot;&gt;</code> ที่มี <code>tabIndex={-1}</code> (ใส่เองเพื่อเปลี่ยนได้) คลิกแล้วล้างข้อความและค่า ปิดรายการ และให้โฟกัสอยู่ในช่องพิมพ์ ถูกปิดใช้งานเมื่อ <code>Root</code> ปิดใช้งานหรืออ่านอย่างเดียว ใส่ <code>aria-label</code> ให้ด้วย</p>
+<h3 id="combobox-toggle">Combobox.Toggle</h3>
+<p><code>&lt;button type=&quot;button&quot;&gt;</code> ที่มี <code>tabIndex={-1}</code>, <code>aria-expanded</code> และ <code>aria-controls</code> คลิกแล้วเปิดหรือปิดรายการ โฟกัสยังอยู่ในช่องพิมพ์ ปุ่มถูกปิดใช้งานเมื่อ <code>Root</code> ปิดใช้งานหรืออ่านอย่างเดียว ใส่ <code>aria-label</code> ให้ด้วย</p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>เมื่อ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-open</code></td>
+<td>รายการเปิดอยู่</td>
+</tr>
+</tbody>
+</table>
+<h3 id="combobox-popup">Combobox.Popup</h3>
+<p><code>&lt;ul role=&quot;listbox&quot; popover=&quot;manual&quot;&gt;</code> ใน top layer แถวจะ render เฉพาะตอนรายการเปิด <code>aria-labelledby</code> เป็น <code>&lt;id&gt;-label</code> ถ้าคุณไม่ได้ใส่เอง แต่ไม่มี part สำหรับ label จึงต้องใส่ <code>aria-label</code> หรือให้ <code>&lt;label&gt;</code> ของคุณมี id นั้น</p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>ค่าเริ่มต้น</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>children</code></td>
+<td><code>ReactNode | ((items: ListItem[]) =&gt; ReactNode)</code></td>
+<td></td>
+<td>แถว หรือฟังก์ชันที่รับรายการที่ข้อความยังเก็บไว้</td>
+</tr>
+<tr>
+<td><code>side</code></td>
+<td><code>'bottom' | 'top'</code></td>
+<td><code>'bottom'</code></td>
+<td>ด้านที่รายการเปิด จะพลิกเองเมื่อที่ไม่พอ</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>เมื่อ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-open</code></td>
+<td>รายการเปิดอยู่</td>
+</tr>
+<tr>
+<td><code>data-side</code></td>
+<td><code>bottom</code> หรือ <code>top</code> คือด้านที่รายการไปอยู่</td>
+</tr>
+</tbody>
+</table>
+<h3 id="combobox-option-group-grouplabel-groupoptions">Combobox.Option, Group, GroupLabel, GroupOptions</h3>
+<p>part ชุดเดียวกับใน <a href="/kanok-ui-docs/th/headless-dropdown/#parts">Headless Dropdown</a> คือ <code>Option</code> เป็น <code>&lt;li role=&quot;option&quot;&gt;</code> ที่ต้องใส่ <code>value</code> และมี <code>data-highlighted</code>, <code>data-selected</code> และ <code>data-disabled</code> คลิกรายการที่ใช้งานได้จะเลือกรายการนั้น ใส่ชื่อลงในช่องพิมพ์ แล้วปิดรายการ</p>
+<h2 id="คีย์บอร์ดและ-accessibility">คีย์บอร์ดและ accessibility</h2>
+<table>
+<thead>
+<tr>
+<th>ปุ่ม</th>
+<th>ทำอะไร</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>พิมพ์</td>
+<td>เปิดรายการและไฮไลต์รายการแรกที่มีข้อความนั้น</td>
+</tr>
+<tr>
+<td>↓ / ↑</td>
+<td>เปิดรายการที่รายการที่เลือกไว้ (ถ้าไม่มีก็รายการแรก / สุดท้าย) จากนั้นเลื่อนไฮไลต์ (ไม่วนกลับ)</td>
+</tr>
+<tr>
+<td>Alt+↓</td>
+<td>เปิดรายการโดยไม่มีไฮไลต์</td>
+</tr>
+<tr>
+<td>Alt+↑</td>
+<td>เลือกรายการที่ไฮไลต์แล้วปิด</td>
+</tr>
+<tr>
+<td>Enter</td>
+<td>เลือกรายการที่ไฮไลต์ ถ้าไม่มีไฮไลต์จะเลือกรายการแรกที่มีข้อความนั้น (หรือเก็บข้อความไว้เมื่อใช้ <code>allowCustomValue</code>)</td>
+</tr>
+<tr>
+<td>Esc</td>
+<td>ปิดรายการ ถ้ารายการปิดอยู่จะล้างข้อความและค่า</td>
+</tr>
+<tr>
+<td>Tab</td>
+<td>ไปช่องถัดไปโดยไม่เลือกรายการที่ไฮไลต์ ข้อความจะถูกยืนยันหรือเด้งกลับ</td>
+</tr>
+</tbody>
+</table>
+<p>part ต่าง ๆ ตั้ง <code>role=&quot;combobox&quot;</code>, <code>aria-autocomplete=&quot;list&quot;</code>, <code>aria-expanded</code>, <code>aria-controls</code>, <code>aria-activedescendant</code>, <code>aria-required</code> และ <code>aria-invalid</code> ที่ช่องพิมพ์ และตั้ง role ของ listbox และ option ที่รายการ โฟกัสอยู่ในช่องพิมพ์ตลอด</p>
+<p>ส่วนที่คุณเพิ่มเอง</p>
+<ul>
+<li><code>&lt;label htmlFor&gt;</code> ของช่องพิมพ์ และชื่อของ popup (<code>aria-label</code> หรือ <code>&lt;label&gt;</code> ที่มี id <code>&lt;id&gt;-label</code>)</li>
+<li><code>aria-label</code> ที่ <code>Clear</code> และ <code>Toggle</code></li>
+<li>ข้อความช่วยเหลือและ error ผูกด้วย <code>aria-describedby</code> ที่ช่องพิมพ์</li>
+<li>ข้อความ <code>role=&quot;status&quot;</code> สำหรับ &quot;กำลังค้นหา…&quot; และ &quot;ไม่พบรายการที่ตรงกัน&quot; ตามตัวอย่างด้านบน</li>
+</ul>
+
+</article>
+<nav class="doc-toc" aria-labelledby="doc-toc-title"><p id="doc-toc-title" class="doc-toc-title">ในหน้านี้</p><ul><li class="doc-toc-h2"><a href="#ติดตั้ง">ติดตั้ง</a></li><li class="doc-toc-h2"><a href="#วิธีใช้">วิธีใช้</a></li><li class="doc-toc-h2"><a href="#โครงสร้าง">โครงสร้าง</a></li><li class="doc-toc-h2"><a href="#การพิมพ์กรองรายการอย่างไร">การพิมพ์กรองรายการอย่างไร</a></li><li class="doc-toc-h2"><a href="#พิมพ์เองหรือเลือกจากรายการ">พิมพ์เองหรือเลือกจากรายการ</a></li><li class="doc-toc-h2"><a href="#ค่า">ค่า</a></li><li class="doc-toc-h2"><a href="#ค้นหาบน-server">ค้นหาบน server</a></li><li class="doc-toc-h2"><a href="#กลุ่มและคำอธิบาย">กลุ่มและคำอธิบาย</a></li><li class="doc-toc-h2"><a href="#ปุ่มล้างค่า">ปุ่มล้างค่า</a></li><li class="doc-toc-h2"><a href="#เปิดขึ้นด้านบน-อ่านอย่างเดียว-และปิดใช้งาน">เปิดขึ้นด้านบน อ่านอย่างเดียว และปิดใช้งาน</a></li><li class="doc-toc-h2"><a href="#ใส่-style">ใส่ style</a></li><li class="doc-toc-h2"><a href="#parts">Parts</a></li><li class="doc-toc-h3"><a href="#combobox-root">Combobox.Root</a></li><li class="doc-toc-h3"><a href="#combobox-input">Combobox.Input</a></li><li class="doc-toc-h3"><a href="#combobox-anchor">Combobox.Anchor</a></li><li class="doc-toc-h3"><a href="#combobox-clear">Combobox.Clear</a></li><li class="doc-toc-h3"><a href="#combobox-toggle">Combobox.Toggle</a></li><li class="doc-toc-h3"><a href="#combobox-popup">Combobox.Popup</a></li><li class="doc-toc-h3"><a href="#combobox-option-group-grouplabel-groupoptions">Combobox.Option, Group, GroupLabel, GroupOptions</a></li><li class="doc-toc-h2"><a href="#คีย์บอร์ดและ-accessibility">คีย์บอร์ดและ accessibility</a></li></ul></nav>
+</div>
+<nav class="doc-pager" aria-label="ถัดไป / ก่อนหน้า"><a class="doc-pager-prev" href="/kanok-ui-docs/th/headless-dropdown/" rel="prev"><span>ก่อนหน้า</span>Dropdown</a><a class="doc-pager-next" href="/kanok-ui-docs/th/headless-multi-select/" rel="next"><span>ถัดไป</span>Multi-select</a></nav>
+<footer class="doc-footer">@purpurabog/ui 1.4.3 · MIT · <a href="https://cdn.jsdelivr.net/npm/@purpurabog/ui@1.4.3/THIRD-PARTY-NOTICES.md">ประกาศของบุคคลที่สาม</a><br>สร้างตาม Carbon Design System ไม่ได้เกี่ยวข้องหรือได้รับการรับรองจาก IBM — IBM และ Carbon เป็นเครื่องหมายการค้าของ IBM Corp.</footer>
+</ui-content>
+<ui-modal id="doc-search" heading="ค้นหา" data-count="พบ {n} รายการ" data-empty="ไม่พบ “{q}”">
+<ui-search label="ค้นหาในเอกสาร" placeholder="ค้นหาในเอกสาร" size="lg"></ui-search>
+<p class="doc-search-status" role="status"></p>
+<ul class="doc-search-results"></ul>
+</ui-modal>
+</body>
+</html>

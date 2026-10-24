@@ -1,0 +1,1 @@
+var e=e=>e.reduce((e,t)=>e+t,0);function t({container:t,sizes:n,fixedSizes:r=[],offset:i,gap:a=0,maxVisible:o,keepFirst:s=!0}){let c=o??n.length,l=n.length+r.length>0?a:0;if(e(n)+e(r)-l<=t)return Math.min(c,n.length);let u=t-i-e(r)+a,d=0,f=0;for(;f<n.length&&f<c&&d+n[f]<=u;)d+=n[f],f++;return s&&f===0&&n.length>0&&t>0?1:f}export{t};

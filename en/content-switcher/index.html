@@ -1,0 +1,677 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Content switcher · @purpurabog/ui</title>
+<link rel="alternate" hreflang="en" href="/kanok-ui-docs/en/content-switcher/"  /><link rel="alternate" hreflang="th" href="/kanok-ui-docs/th/content-switcher/"  />
+<script>(function(){try{var q=new URLSearchParams(location.search).get("design"),d=q;if(q==="kanok"||q==="carbon")localStorage.setItem("ui-docs-design",q);else d=localStorage.getItem("ui-docs-design");if(d==="kanok")document.documentElement.setAttribute("data-design","kanok")}catch(e){}})();(function(){try{var m=localStorage.getItem("ui-docs-theme");if(m!=="light"&&m!=="dark"&&m!=="system")return;var d=m==="dark"||(m==="system"&&matchMedia("(prefers-color-scheme: dark)").matches),r=document.documentElement,t=d?"g100":"white";if(r.getAttribute("data-design")==="kanok")t=d?"lacquer":"paper";r.setAttribute("data-theme",t)}catch(e){}})();</script>
+<style>ui-header:not(:defined){z-index:8000;box-sizing:border-box;border-block-end:1px solid var(--ui-border-subtle-1);background:var(--ui-canvas);block-size:48px;display:block;position:fixed;inset:0 0 auto}:is(ui-header:not(:defined)>*,ui-side-nav:not(:defined)>*){visibility:hidden}:is(ui-header-panel:not(:defined),ui-modal:not(:defined)){display:none}ui-side-nav:not(:defined){display:none}ui-content:not(:defined){margin-block-start:48px;padding:32px;display:block}@media (width>=1056px){ui-side-nav[expanded]:not(:defined){background:var(--ui-canvas);inline-size:256px;display:block;position:fixed;inset:48px auto 0 0}ui-side-nav[expanded]:not(:defined)~ui-content:not(:defined){margin-inline-start:256px}}ui-tabs:not(:defined){display:block}ui-tabs:not(:defined)>ui-tab{box-sizing:border-box;border-block-end:2px solid var(--ui-hairline);block-size:40px;color:var(--ui-ink-muted);font:var(--ui-font-body-sm);padding:0 16px;line-height:38px;display:inline-block}ui-tabs:not(:defined)>ui-tab:first-of-type{border-block-end-color:var(--ui-interactive);color:var(--ui-ink)}ui-tabs:not(:defined)>ui-tab-panel{padding:16px;display:block}ui-tabs:not(:defined)>ui-tab-panel~ui-tab-panel{display:none}ui-code-snippet:not(:defined){background:var(--ui-layer-1);max-block-size:272px;font:var(--ui-font-code,12px/16px monospace);white-space:pre;padding:16px;display:block;overflow:hidden}[data-react-example]:empty>*{visibility:hidden}.doc-demo:has(:not(:defined))>*{visibility:hidden}[data-react-example]:empty{box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}.doc-demo:has(:not(:defined)){box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}@keyframes doc-skeleton{to{background-position:-200% 0}}@media (prefers-reduced-motion:reduce){[data-react-example]:empty{animation:none}.doc-demo:has(:not(:defined)){animation:none}}</style>
+
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/theme-switcher-BGAHXRgF.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/tabs-CvVVO2Pb.js"></script>
+  <link rel="stylesheet" crossorigin href="/kanok-ui-docs/assets/theme-switcher-CL5yB6XE.css">
+</head>
+<body>
+<ui-header label="@purpurabog/ui">
+<ui-skip-to-content></ui-skip-to-content>
+<ui-header-menu-button></ui-header-menu-button>
+<ui-header-name href="/kanok-ui-docs/en/" prefix="@purpurabog">ui</ui-header-name>
+<ui-header-global-bar>
+<ui-header-global-action id="doc-search-open" label="Search" tooltip-placement="bottom"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="m18.5 17.8-4.9-4.9a7 7 0 1 0-.7.7l4.9 4.9zM3 8.5a5.5 5.5 0 1 1 5.5 5.5A5.5 5.5 0 0 1 3 8.5Z" /></svg></ui-header-global-action>
+<ui-header-global-action label="Settings" panel="doc-settings" tooltip-placement="bottom-end"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="M16.9 10.6a7 7 0 0 0 0-1.2l1.8-1.4-1.6-2.8-2.1.8a6.6 6.6 0 0 0-1-.6L13.6 3h-3.2l-.4 2.4a6.6 6.6 0 0 0-1 .6l-2.1-.8L5.3 8l1.8 1.4a7 7 0 0 0 0 1.2L5.3 12l1.6 2.8 2.1-.8a6.6 6.6 0 0 0 1 .6l.4 2.4h3.2l.4-2.4a6.6 6.6 0 0 0 1-.6l2.1.8 1.6-2.8zM12 13a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" /></svg></ui-header-global-action>
+</ui-header-global-bar>
+<ui-header-panel id="doc-settings" label="Settings">
+<div class="doc-settings">
+<span class="doc-settings-label">Theme</span>
+<ui-theme-switcher storage-key="ui-docs-theme" tooltip-placement="bottom"></ui-theme-switcher>
+<span class="doc-settings-label">Style</span>
+<ui-content-switcher id="doc-design" aria-label="Style" size="sm"><ui-content-switcher-item name="carbon">Carbon</ui-content-switcher-item><ui-content-switcher-item name="kanok">Kanok</ui-content-switcher-item></ui-content-switcher>
+<span class="doc-settings-label">Language</span>
+<ui-link href="/kanok-ui-docs/th/content-switcher/" hreflang="th" lang="th">ไทย</ui-link>
+</div>
+</ui-header-panel>
+</ui-header>
+<ui-side-nav label="Documentation"><ui-side-nav-items><ui-side-nav-menu label="Get started"><ui-side-nav-menu-item href="/kanok-ui-docs/en/">Overview</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/installation/">Installation</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/migration-1-0/">Migrating to 1.0</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Guides"><ui-side-nav-menu-item href="/kanok-ui-docs/en/themes/">Themes and layers</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/kanok/">Kanok design</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/customizing/">Customizing</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/icons/">Icons</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/forms/">Forms and validation</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/frameworks/">Frameworks</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/ai/">Using with AI</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Forms and actions"><ui-side-nav-menu-item href="/kanok-ui-docs/en/button/">Button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/file-uploader/">File uploader</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Overlays"><ui-side-nav-menu-item href="/kanok-ui-docs/en/modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/toggletip/">Toggletip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/menu/">Menu</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Data"><ui-side-nav-menu-item href="/kanok-ui-docs/en/data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/contained-list/">Contained list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tree-view/">Tree view</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Navigation" expanded><ui-side-nav-menu-item href="/kanok-ui-docs/en/tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/breadcrumb/">Breadcrumb</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/link/">Link</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/content-switcher/" current>Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/ui-shell/">UI shell</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Content"><ui-side-nav-menu-item href="/kanok-ui-docs/en/tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tile/">Tile</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/user-avatar/">User avatar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/list/">List</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Status and loading"><ui-side-nav-menu-item href="/kanok-ui-docs/en/loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/inline-loading/">Inline loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/progress-bar/">Progress bar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/skeleton/">Skeleton</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/badge-indicator/">Badge indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/status-indicator/">Status indicator</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Layout"><ui-side-nav-menu-item href="/kanok-ui-docs/en/grid/">Grid</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/heading/">Heading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/layer/">Layer</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/action-set/">Action set</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/page-header/">Page header</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/big-number/">Big number</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Headless"><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless/">Introduction</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-file-uploader/">File uploader</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-menu/">Menu</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-ui-shell/">UI shell</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tree-view/">Tree view</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu></ui-side-nav-items></ui-side-nav><script>if(matchMedia('(min-width: 66rem)').matches)document.currentScript.previousElementSibling.setAttribute('expanded','')</script>
+<ui-content>
+<div class="doc-page">
+<article class="doc">
+<h1 id="content-switcher">Content switcher</h1>
+<p>A content switcher shows the same content in another way: a filter (all requests or only mine) or a view (table or grid). Exactly one item is selected, and the switch happens at once.</p>
+<div class="doc-demo"><ui-content-switcher aria-label="Requests" style="max-width: 560px">
+  <ui-content-switcher-item name="all">All requests</ui-content-switcher-item>
+  <ui-content-switcher-item name="mine">Assigned to me</ui-content-switcher-item>
+  <ui-content-switcher-item name="archived">Archived</ui-content-switcher-item>
+</ui-content-switcher>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-1-0">HTML</ui-tab><ui-tab panel="code-1-1">React</ui-tab><ui-tab panel="code-1-2">React + Tailwind</ui-tab><ui-tab-panel name="code-1-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-content-switcher</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span>=<span style="color:var(--ui-tag-color-teal)">"Requests"</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"max-width: 560px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"all"</span>&gt;All requests&lt;/<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"mine"</span>&gt;Assigned to me&lt;/<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"archived"</span>&gt;Archived&lt;/<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-content-switcher</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-1-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiContentSwitcher</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Requests"</span> <span style="color:var(--ui-tag-color-purple)">style</span><span style="color:var(--ui-tag-color-magenta)">=</span>{{ <span style="color:var(--ui-tag-color-purple)">maxWidth:</span> <span style="color:var(--ui-tag-color-green)">560</span> }}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiContentSwitcherItem</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"all"</span>&gt;All requests&lt;/<span style="color:var(--ui-tag-color-blue)">UiContentSwitcherItem</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiContentSwitcherItem</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"mine"</span>&gt;Assigned to me&lt;/<span style="color:var(--ui-tag-color-blue)">UiContentSwitcherItem</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiContentSwitcherItem</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"archived"</span>&gt;Archived&lt;/<span style="color:var(--ui-tag-color-blue)">UiContentSwitcherItem</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiContentSwitcher</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-1-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">ContentSwitcher</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Requests"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"max-w-[560px]"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ContentSwitcherItem</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"all"</span>&gt;All requests&lt;/<span style="color:var(--ui-tag-color-blue)">ContentSwitcherItem</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ContentSwitcherItem</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"mine"</span>&gt;Assigned to me&lt;/<span style="color:var(--ui-tag-color-blue)">ContentSwitcherItem</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ContentSwitcherItem</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"archived"</span>&gt;Archived&lt;/<span style="color:var(--ui-tag-color-blue)">ContentSwitcherItem</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ContentSwitcher</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="installation">Installation</h2>
+<ui-tabs class="doc-code-tabs" label="Code"><ui-tab panel="code-2-0">npm</ui-tab><ui-tab panel="code-2-1">shadcn · Web component</ui-tab><ui-tab panel="code-2-2">shadcn · React + Tailwind</ui-tab><ui-tab panel="code-2-3">Manual</ui-tab><ui-tab-panel name="code-2-0"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">@purpurabog/ui</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-1"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npx</span> <span style="color:var(--ui-tag-color-teal)">shadcn@4</span> <span style="color:var(--ui-tag-color-teal)">add</span> <span style="color:var(--ui-tag-color-teal)">@kanok-ui/content-switcher</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-2"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npx</span> <span style="color:var(--ui-tag-color-teal)">shadcn@4</span> <span style="color:var(--ui-tag-color-teal)">add</span> <span style="color:var(--ui-tag-color-teal)">@kanok-ui/tw-content-switcher</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-3"><ui-code-snippet type="multi" class="doc-code" data-lang="bash"><span style="color:var(--ui-ink-muted);font-style:italic"># Web component</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 1. Install the dependencies</span>
+<span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">lit@^3.3.0</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 2. Copy each file's "content" from</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    https://cdn.jsdelivr.net/npm/@purpurabog/ui@1.4.3/registry/content-switcher.json</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    to its target:</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/content-switcher/content-switcher-item.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/content-switcher/content-switcher.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 3. Do the same for the items it needs (registry/&lt;name&gt;.json):</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    core-roving, shared-element, shared-field, tooltip, tokens</span>
+
+<span style="color:var(--ui-ink-muted);font-style:italic"># React + Tailwind</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 1. Install the dependencies</span>
+<span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">@purpurabog/ui@^1.4.3</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 2. Copy each file's "content" from</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    https://cdn.jsdelivr.net/npm/@purpurabog/ui@1.4.3/registry/tw-content-switcher.json</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    to its target:</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/react-tw/content-switcher.tsx</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 3. Do the same for the items it needs (registry/&lt;name&gt;.json):</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    core-position, tw-theme, tw-tooltip, tw-utils</span></ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>npm gives you every component from the package. shadcn copies the source into your app instead: a copy pinned to this version that you can change. The shadcn commands need the <code>@kanok-ui</code> registry in your <code>components.json</code> once, see <a href="/kanok-ui-docs/en/installation/#react-tailwind-with-shadcn">Installation</a>.</p>
+<h2 id="use-it">Use it</h2>
+<p>Name the group with <code>aria-label</code>. The switcher fills the width it is given and shares it evenly between the items.</p>
+<ui-tabs class="doc-code-tabs" label="Code"><ui-tab panel="code-3-0">HTML</ui-tab><ui-tab panel="code-3-1">React</ui-tab><ui-tab panel="code-3-2">React + Tailwind</ui-tab><ui-tab-panel name="code-3-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;<span style="color:var(--ui-tag-color-magenta)">import</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/content-switcher'</span>;&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-content-switcher</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span>=<span style="color:var(--ui-tag-color-teal)">"Requests"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"all"</span>&gt;All requests&lt;/<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"mine"</span>&gt;Assigned to me&lt;/<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-content-switcher</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-3-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { UiContentSwitcher, UiContentSwitcherItem } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/react'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiContentSwitcher</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Requests"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiContentSwitcherItem</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"all"</span>&gt;All requests&lt;/<span style="color:var(--ui-tag-color-blue)">UiContentSwitcherItem</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiContentSwitcherItem</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"mine"</span>&gt;Assigned to me&lt;/<span style="color:var(--ui-tag-color-blue)">UiContentSwitcherItem</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiContentSwitcher</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-3-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { ContentSwitcher, ContentSwitcherItem } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@/components/ui/react-tw/content-switcher'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">ContentSwitcher</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Requests"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ContentSwitcherItem</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"all"</span>&gt;All requests&lt;/<span style="color:var(--ui-tag-color-blue)">ContentSwitcherItem</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ContentSwitcherItem</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"mine"</span>&gt;Assigned to me&lt;/<span style="color:var(--ui-tag-color-blue)">ContentSwitcherItem</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ContentSwitcher</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>When the items are different sections of one thing (a contract's terms, parties and history), use <a href="/kanok-ui-docs/en/tabs/">Tabs</a> instead.</p>
+<h2 id="switch-the-content">Switch the content</h2>
+<p>The switcher only reports the choice: <code>ui-change</code> fires with <code>detail.index</code> and <code>detail.name</code> of the item the user selected. Showing the matching content is yours. Put that content right after the switcher.</p>
+<div class="doc-demo"><ui-content-switcher id="content-switcher-filter" aria-label="Requests" style="max-width: 560px">
+  <ui-content-switcher-item name="all">All requests</ui-content-switcher-item>
+  <ui-content-switcher-item name="mine">Assigned to me</ui-content-switcher-item>
+  <ui-content-switcher-item name="overdue">Overdue</ui-content-switcher-item>
+</ui-content-switcher>
+<ul id="content-switcher-list" style="margin: 0; padding-inline-start: 24px"></ul>
+
+<script type="text/x-demo">
+  const requests = [
+    { title: 'Renew the server lease', mine: true, overdue: false },
+    { title: 'Approve the catering contract', mine: false, overdue: true },
+    { title: 'Sign the NDA with Siam Office Supplies', mine: true, overdue: true },
+    { title: 'Review the car rental terms', mine: false, overdue: false },
+  ];
+  const switcher = document.getElementById('content-switcher-filter');
+  const list = document.getElementById('content-switcher-list');
+  const show = (name) =>
+    list.replaceChildren(...requests.filter((r) => name === 'all' || r[name]).map((r) => Object.assign(document.createElement('li'), { textContent: r.title })));
+  show('all');
+  switcher.addEventListener('ui-change', (event) => show(event.detail.name));
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-4-0">HTML</ui-tab><ui-tab panel="code-4-1">React</ui-tab><ui-tab panel="code-4-2">React + Tailwind</ui-tab><ui-tab-panel name="code-4-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-content-switcher</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"content-switcher-filter"</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span>=<span style="color:var(--ui-tag-color-teal)">"Requests"</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"max-width: 560px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"all"</span>&gt;All requests&lt;/<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"mine"</span>&gt;Assigned to me&lt;/<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"overdue"</span>&gt;Overdue&lt;/<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-content-switcher</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ul</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"content-switcher-list"</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"margin: 0; padding-inline-start: 24px"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ul</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> requests <span style="color:var(--ui-tag-color-magenta)">=</span> [
+    { <span style="color:var(--ui-tag-color-purple)">title:</span> <span style="color:var(--ui-tag-color-teal)">'Renew the server lease'</span>, <span style="color:var(--ui-tag-color-purple)">mine:</span> <span style="color:var(--ui-tag-color-green)">true</span>, <span style="color:var(--ui-tag-color-purple)">overdue:</span> <span style="color:var(--ui-tag-color-green)">false</span> },
+    { <span style="color:var(--ui-tag-color-purple)">title:</span> <span style="color:var(--ui-tag-color-teal)">'Approve the catering contract'</span>, <span style="color:var(--ui-tag-color-purple)">mine:</span> <span style="color:var(--ui-tag-color-green)">false</span>, <span style="color:var(--ui-tag-color-purple)">overdue:</span> <span style="color:var(--ui-tag-color-green)">true</span> },
+    { <span style="color:var(--ui-tag-color-purple)">title:</span> <span style="color:var(--ui-tag-color-teal)">'Sign the NDA with Siam Office Supplies'</span>, <span style="color:var(--ui-tag-color-purple)">mine:</span> <span style="color:var(--ui-tag-color-green)">true</span>, <span style="color:var(--ui-tag-color-purple)">overdue:</span> <span style="color:var(--ui-tag-color-green)">true</span> },
+    { <span style="color:var(--ui-tag-color-purple)">title:</span> <span style="color:var(--ui-tag-color-teal)">'Review the car rental terms'</span>, <span style="color:var(--ui-tag-color-purple)">mine:</span> <span style="color:var(--ui-tag-color-green)">false</span>, <span style="color:var(--ui-tag-color-purple)">overdue:</span> <span style="color:var(--ui-tag-color-green)">false</span> },
+  ];
+  <span style="color:var(--ui-tag-color-magenta)">const</span> switcher <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'content-switcher-filter'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> list <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'content-switcher-list'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> <span style="color:var(--ui-tag-color-cyan)">show</span> <span style="color:var(--ui-tag-color-magenta)">=</span> (name) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span>
+    list.<span style="color:var(--ui-tag-color-cyan)">replaceChildren</span>(<span style="color:var(--ui-tag-color-magenta)">...</span>requests.<span style="color:var(--ui-tag-color-cyan)">filter</span>((r) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> name <span style="color:var(--ui-tag-color-magenta)">===</span> <span style="color:var(--ui-tag-color-teal)">'all'</span> <span style="color:var(--ui-tag-color-magenta)">||</span> r[name]).<span style="color:var(--ui-tag-color-cyan)">map</span>((r) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> Object.<span style="color:var(--ui-tag-color-cyan)">assign</span>(document.<span style="color:var(--ui-tag-color-cyan)">createElement</span>(<span style="color:var(--ui-tag-color-teal)">'li'</span>), { <span style="color:var(--ui-tag-color-purple)">textContent:</span> r.title })));
+  <span style="color:var(--ui-tag-color-cyan)">show</span>(<span style="color:var(--ui-tag-color-teal)">'all'</span>);
+  switcher.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'ui-change'</span>, (event) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">show</span>(event.detail.name));
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-4-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-ink-muted);font-style:italic">// requests as in the HTML tab</span>
+<span style="color:var(--ui-tag-color-magenta)">const</span> [filter, setFilter] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">'all'</span>);
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiContentSwitcher</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Requests"</span> <span style="color:var(--ui-tag-color-purple)">onUiChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setFilter</span>(e.detail.name)}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiContentSwitcherItem</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"all"</span>&gt;All requests&lt;/<span style="color:var(--ui-tag-color-blue)">UiContentSwitcherItem</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiContentSwitcherItem</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"mine"</span>&gt;Assigned to me&lt;/<span style="color:var(--ui-tag-color-blue)">UiContentSwitcherItem</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiContentSwitcherItem</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"overdue"</span>&gt;Overdue&lt;/<span style="color:var(--ui-tag-color-blue)">UiContentSwitcherItem</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiContentSwitcher</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ul</span>&gt;
+  {requests.<span style="color:var(--ui-tag-color-cyan)">filter</span>((r) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> filter <span style="color:var(--ui-tag-color-magenta)">===</span> <span style="color:var(--ui-tag-color-teal)">'all'</span> <span style="color:var(--ui-tag-color-magenta)">||</span> r[filter <span style="color:var(--ui-tag-color-magenta)">as</span> <span style="color:var(--ui-tag-color-teal)">'mine'</span> <span style="color:var(--ui-tag-color-magenta)">|</span> <span style="color:var(--ui-tag-color-teal)">'overdue'</span>]).<span style="color:var(--ui-tag-color-cyan)">map</span>((r) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> &lt;<span style="color:var(--ui-tag-color-blue)">li</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{r.title}&gt;{r.title}&lt;/<span style="color:var(--ui-tag-color-blue)">li</span>&gt;)}
+&lt;/<span style="color:var(--ui-tag-color-blue)">ul</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-4-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-ink-muted);font-style:italic">// requests as in the HTML tab</span>
+<span style="color:var(--ui-tag-color-magenta)">const</span> [filter, setFilter] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">'all'</span>);
+
+&lt;<span style="color:var(--ui-tag-color-blue)">ContentSwitcher</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Requests"</span> <span style="color:var(--ui-tag-color-purple)">onChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{({ name }) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setFilter</span>(name)}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ContentSwitcherItem</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"all"</span>&gt;All requests&lt;/<span style="color:var(--ui-tag-color-blue)">ContentSwitcherItem</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ContentSwitcherItem</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"mine"</span>&gt;Assigned to me&lt;/<span style="color:var(--ui-tag-color-blue)">ContentSwitcherItem</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ContentSwitcherItem</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"overdue"</span>&gt;Overdue&lt;/<span style="color:var(--ui-tag-color-blue)">ContentSwitcherItem</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ContentSwitcher</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ul</span>&gt;
+  {requests.<span style="color:var(--ui-tag-color-cyan)">filter</span>((r) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> filter <span style="color:var(--ui-tag-color-magenta)">===</span> <span style="color:var(--ui-tag-color-teal)">'all'</span> <span style="color:var(--ui-tag-color-magenta)">||</span> r[filter <span style="color:var(--ui-tag-color-magenta)">as</span> <span style="color:var(--ui-tag-color-teal)">'mine'</span> <span style="color:var(--ui-tag-color-magenta)">|</span> <span style="color:var(--ui-tag-color-teal)">'overdue'</span>]).<span style="color:var(--ui-tag-color-cyan)">map</span>((r) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> &lt;<span style="color:var(--ui-tag-color-blue)">li</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{r.title}&gt;{r.title}&lt;/<span style="color:var(--ui-tag-color-blue)">li</span>&gt;)}
+&lt;/<span style="color:var(--ui-tag-color-blue)">ul</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="starting-item">Starting item</h2>
+<p><code>selected-index</code> (<code>selectedIndex</code>) is the selected item's position, from 0; the first item by default. The switcher updates it as the user chooses.</p>
+<div class="doc-demo"><ui-content-switcher id="content-switcher-start" aria-label="Period" selected-index="1" style="max-width: 560px">
+  <ui-content-switcher-item name="week">This week</ui-content-switcher-item>
+  <ui-content-switcher-item name="month">This month</ui-content-switcher-item>
+  <ui-content-switcher-item name="year">This year</ui-content-switcher-item>
+</ui-content-switcher>
+<p>Selected: <output id="content-switcher-start-out"></output></p>
+
+<script type="text/x-demo">
+  const switcher = document.getElementById('content-switcher-start');
+  const out = document.getElementById('content-switcher-start-out');
+  out.value = `index ${switcher.selectedIndex}`;
+  switcher.addEventListener('ui-change', (event) => (out.value = `index ${event.detail.index}, name ${event.detail.name}`));
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-5-0">HTML</ui-tab><ui-tab panel="code-5-1">React</ui-tab><ui-tab panel="code-5-2">React + Tailwind</ui-tab><ui-tab-panel name="code-5-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-content-switcher</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"content-switcher-start"</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span>=<span style="color:var(--ui-tag-color-teal)">"Period"</span> <span style="color:var(--ui-tag-color-purple)">selected-index</span>=<span style="color:var(--ui-tag-color-teal)">"1"</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"max-width: 560px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"week"</span>&gt;This week&lt;/<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"month"</span>&gt;This month&lt;/<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"year"</span>&gt;This year&lt;/<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-content-switcher</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;Selected: &lt;<span style="color:var(--ui-tag-color-blue)">output</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"content-switcher-start-out"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> switcher <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'content-switcher-start'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> out <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'content-switcher-start-out'</span>);
+  out.value <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">`index ${</span><span style="color:var(--ui-tag-color-teal)">switcher.selectedIndex</span><span style="color:var(--ui-tag-color-teal)">}`</span>;
+  switcher.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'ui-change'</span>, (event) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (out.value <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">`index ${</span><span style="color:var(--ui-tag-color-teal)">event.detail.index</span><span style="color:var(--ui-tag-color-teal)">}, name ${</span><span style="color:var(--ui-tag-color-teal)">event.detail.name</span><span style="color:var(--ui-tag-color-teal)">}`</span>));
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-5-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> [index, setIndex] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-green)">1</span>);
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiContentSwitcher</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Period"</span> <span style="color:var(--ui-tag-color-purple)">selectedIndex</span><span style="color:var(--ui-tag-color-magenta)">=</span>{index} <span style="color:var(--ui-tag-color-purple)">onUiChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setIndex</span>(e.detail.index)}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiContentSwitcherItem</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"week"</span>&gt;This week&lt;/<span style="color:var(--ui-tag-color-blue)">UiContentSwitcherItem</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiContentSwitcherItem</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"month"</span>&gt;This month&lt;/<span style="color:var(--ui-tag-color-blue)">UiContentSwitcherItem</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiContentSwitcherItem</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"year"</span>&gt;This year&lt;/<span style="color:var(--ui-tag-color-blue)">UiContentSwitcherItem</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiContentSwitcher</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;Selected: &lt;<span style="color:var(--ui-tag-color-blue)">output</span>&gt;index {index}&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-5-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> [index, setIndex] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-green)">1</span>);
+
+&lt;<span style="color:var(--ui-tag-color-blue)">ContentSwitcher</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Period"</span> <span style="color:var(--ui-tag-color-purple)">selectedIndex</span><span style="color:var(--ui-tag-color-magenta)">=</span>{index} <span style="color:var(--ui-tag-color-purple)">onChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(change) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setIndex</span>(change.index)}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ContentSwitcherItem</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"week"</span>&gt;This week&lt;/<span style="color:var(--ui-tag-color-blue)">ContentSwitcherItem</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ContentSwitcherItem</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"month"</span>&gt;This month&lt;/<span style="color:var(--ui-tag-color-blue)">ContentSwitcherItem</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ContentSwitcherItem</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"year"</span>&gt;This year&lt;/<span style="color:var(--ui-tag-color-blue)">ContentSwitcherItem</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ContentSwitcher</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;Selected: &lt;<span style="color:var(--ui-tag-color-blue)">output</span>&gt;index {index}&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>React + Tailwind also takes <code>defaultSelectedIndex</code> for an uncontrolled start.</p>
+<h2 id="with-icons">With icons</h2>
+<p>A 16px icon in the item's <code>icon</code> slot (the <code>icon</code> prop in React + Tailwind) goes before the text, and takes the item's colours: grey at rest, white when selected.</p>
+<div class="doc-demo"><ui-content-switcher aria-label="Layout" style="max-width: 560px">
+  <ui-content-switcher-item name="table"><svg slot="icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M13 2H3a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1ZM3 7h4v2H3Zm5 0h5v2H8Zm5-4v3H3V3ZM3 10h4v3H3Zm5 3v-3h5v3Z" /></svg>Table</ui-content-switcher-item>
+  <ui-content-switcher-item name="grid"><svg slot="icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M7 2H3a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1Zm0 5H3V3h4Zm6-5H9a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1Zm0 5H9V3h4ZM7 9H3a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1Zm0 5H3v-4h4Zm6-5H9a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1Zm0 5H9v-4h4Z" /></svg>Grid</ui-content-switcher-item>
+  <ui-content-switcher-item name="list"><svg slot="icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12v1H2zm0 3.5h12v1H2zM2 11h12v1H2z" /></svg>List</ui-content-switcher-item>
+</ui-content-switcher>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-6-0">HTML</ui-tab><ui-tab panel="code-6-1">React</ui-tab><ui-tab panel="code-6-2">React + Tailwind</ui-tab><ui-tab-panel name="code-6-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-content-switcher</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span>=<span style="color:var(--ui-tag-color-teal)">"Layout"</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"max-width: 560px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"table"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"icon"</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span>=<span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span>=<span style="color:var(--ui-tag-color-teal)">"true"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span>=<span style="color:var(--ui-tag-color-teal)">"M13 2H3a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1ZM3 7h4v2H3Zm5 0h5v2H8Zm5-4v3H3V3ZM3 10h4v3H3Zm5 3v-3h5v3Z"</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;Table&lt;/<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"grid"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"icon"</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span>=<span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span>=<span style="color:var(--ui-tag-color-teal)">"true"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span>=<span style="color:var(--ui-tag-color-teal)">"M7 2H3a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1Zm0 5H3V3h4Zm6-5H9a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1Zm0 5H9V3h4ZM7 9H3a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1Zm0 5H3v-4h4Zm6-5H9a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1Zm0 5H9v-4h4Z"</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;Grid&lt;/<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"list"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"icon"</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span>=<span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span>=<span style="color:var(--ui-tag-color-teal)">"true"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span>=<span style="color:var(--ui-tag-color-teal)">"M2 4h12v1H2zm0 3.5h12v1H2zM2 11h12v1H2z"</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;List&lt;/<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-content-switcher</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-6-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-ink-muted);font-style:italic">// tableIcon = &lt;svg slot="icon" viewBox="0 0 16 16" aria-hidden="true"&gt;&lt;path d="…" /&gt;&lt;/svg&gt;, the same for the others</span>
+&lt;<span style="color:var(--ui-tag-color-blue)">UiContentSwitcher</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Layout"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiContentSwitcherItem</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"table"</span>&gt;{tableIcon}Table&lt;/<span style="color:var(--ui-tag-color-blue)">UiContentSwitcherItem</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiContentSwitcherItem</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid"</span>&gt;{gridIcon}Grid&lt;/<span style="color:var(--ui-tag-color-blue)">UiContentSwitcherItem</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiContentSwitcherItem</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"list"</span>&gt;{listIcon}List&lt;/<span style="color:var(--ui-tag-color-blue)">UiContentSwitcherItem</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiContentSwitcher</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-6-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-ink-muted);font-style:italic">// tableIcon = &lt;svg viewBox="0 0 16 16" aria-hidden="true"&gt;&lt;path d="…" /&gt;&lt;/svg&gt;, the same for the others</span>
+&lt;<span style="color:var(--ui-tag-color-blue)">ContentSwitcher</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Layout"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ContentSwitcherItem</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"table"</span> <span style="color:var(--ui-tag-color-purple)">icon</span><span style="color:var(--ui-tag-color-magenta)">=</span>{tableIcon}&gt;Table&lt;/<span style="color:var(--ui-tag-color-blue)">ContentSwitcherItem</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ContentSwitcherItem</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid"</span> <span style="color:var(--ui-tag-color-purple)">icon</span><span style="color:var(--ui-tag-color-magenta)">=</span>{gridIcon}&gt;Grid&lt;/<span style="color:var(--ui-tag-color-blue)">ContentSwitcherItem</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ContentSwitcherItem</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"list"</span> <span style="color:var(--ui-tag-color-purple)">icon</span><span style="color:var(--ui-tag-color-magenta)">=</span>{listIcon}&gt;List&lt;/<span style="color:var(--ui-tag-color-blue)">ContentSwitcherItem</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ContentSwitcher</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="icon-only">Icon only</h2>
+<p>With <code>icon-only</code> (<code>iconOnly</code>) on every item, each item is a square button and the switcher shrinks to fit them. <code>label</code> is then required: it names the item and shows as its tooltip on hover and keyboard focus. <code>tooltip-placement</code> (<code>tooltipPlacement</code>) moves the tooltip; it shows above by default.</p>
+<div class="doc-demo"><ui-content-switcher aria-label="Layout">
+  <ui-content-switcher-item icon-only label="Table" name="table"><svg slot="icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M13 2H3a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1ZM3 7h4v2H3Zm5 0h5v2H8Zm5-4v3H3V3ZM3 10h4v3H3Zm5 3v-3h5v3Z" /></svg></ui-content-switcher-item>
+  <ui-content-switcher-item icon-only label="Grid" name="grid"><svg slot="icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M7 2H3a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1Zm0 5H3V3h4Zm6-5H9a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1Zm0 5H9V3h4ZM7 9H3a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1Zm0 5H3v-4h4Zm6-5H9a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1Zm0 5H9v-4h4Z" /></svg></ui-content-switcher-item>
+  <ui-content-switcher-item icon-only label="List" name="list" tooltip-placement="bottom"><svg slot="icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12v1H2zm0 3.5h12v1H2zM2 11h12v1H2z" /></svg></ui-content-switcher-item>
+</ui-content-switcher>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-7-0">HTML</ui-tab><ui-tab panel="code-7-1">React</ui-tab><ui-tab panel="code-7-2">React + Tailwind</ui-tab><ui-tab-panel name="code-7-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-content-switcher</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span>=<span style="color:var(--ui-tag-color-teal)">"Layout"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span> <span style="color:var(--ui-tag-color-purple)">icon-only</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Table"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"table"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"icon"</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span>=<span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span>=<span style="color:var(--ui-tag-color-teal)">"true"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span>=<span style="color:var(--ui-tag-color-teal)">"M13 2H3a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1ZM3 7h4v2H3Zm5 0h5v2H8Zm5-4v3H3V3ZM3 10h4v3H3Zm5 3v-3h5v3Z"</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span> <span style="color:var(--ui-tag-color-purple)">icon-only</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Grid"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"grid"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"icon"</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span>=<span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span>=<span style="color:var(--ui-tag-color-teal)">"true"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span>=<span style="color:var(--ui-tag-color-teal)">"M7 2H3a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1Zm0 5H3V3h4Zm6-5H9a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1Zm0 5H9V3h4ZM7 9H3a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1Zm0 5H3v-4h4Zm6-5H9a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1Zm0 5H9v-4h4Z"</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span> <span style="color:var(--ui-tag-color-purple)">icon-only</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"List"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"list"</span> <span style="color:var(--ui-tag-color-purple)">tooltip-placement</span>=<span style="color:var(--ui-tag-color-teal)">"bottom"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"icon"</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span>=<span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span>=<span style="color:var(--ui-tag-color-teal)">"true"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span>=<span style="color:var(--ui-tag-color-teal)">"M2 4h12v1H2zm0 3.5h12v1H2zM2 11h12v1H2z"</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-content-switcher</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-7-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiContentSwitcher</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Layout"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiContentSwitcherItem</span> <span style="color:var(--ui-tag-color-purple)">iconOnly</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Table"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"table"</span>&gt;{tableIcon}&lt;/<span style="color:var(--ui-tag-color-blue)">UiContentSwitcherItem</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiContentSwitcherItem</span> <span style="color:var(--ui-tag-color-purple)">iconOnly</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Grid"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid"</span>&gt;{gridIcon}&lt;/<span style="color:var(--ui-tag-color-blue)">UiContentSwitcherItem</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiContentSwitcherItem</span> <span style="color:var(--ui-tag-color-purple)">iconOnly</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"List"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"list"</span> <span style="color:var(--ui-tag-color-purple)">tooltipPlacement</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"bottom"</span>&gt;{listIcon}&lt;/<span style="color:var(--ui-tag-color-blue)">UiContentSwitcherItem</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiContentSwitcher</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-7-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">ContentSwitcher</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Layout"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ContentSwitcherItem</span> <span style="color:var(--ui-tag-color-purple)">iconOnly</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Table"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"table"</span> <span style="color:var(--ui-tag-color-purple)">icon</span><span style="color:var(--ui-tag-color-magenta)">=</span>{tableIcon} /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ContentSwitcherItem</span> <span style="color:var(--ui-tag-color-purple)">iconOnly</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Grid"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid"</span> <span style="color:var(--ui-tag-color-purple)">icon</span><span style="color:var(--ui-tag-color-magenta)">=</span>{gridIcon} /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ContentSwitcherItem</span> <span style="color:var(--ui-tag-color-purple)">iconOnly</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"List"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"list"</span> <span style="color:var(--ui-tag-color-purple)">icon</span><span style="color:var(--ui-tag-color-magenta)">=</span>{listIcon} <span style="color:var(--ui-tag-color-purple)">tooltipPlacement</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"bottom"</span> /&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ContentSwitcher</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="sizes">Sizes</h2>
+<p><code>size</code>: <code>sm</code> 32px, <code>md</code> 40px (the default), <code>lg</code> 48px. Icons grow to 20px in <code>lg</code>. Match the height of the fields and buttons beside it.</p>
+<div class="doc-demo"><ui-content-switcher aria-label="Small" size="sm" style="max-width: 560px">
+  <ui-content-switcher-item>All</ui-content-switcher-item>
+  <ui-content-switcher-item>Mine</ui-content-switcher-item>
+  <ui-content-switcher-item>Archived</ui-content-switcher-item>
+</ui-content-switcher>
+<ui-content-switcher aria-label="Medium" style="max-width: 560px">
+  <ui-content-switcher-item>All</ui-content-switcher-item>
+  <ui-content-switcher-item>Mine</ui-content-switcher-item>
+  <ui-content-switcher-item>Archived</ui-content-switcher-item>
+</ui-content-switcher>
+<ui-content-switcher aria-label="Large" size="lg" style="max-width: 560px">
+  <ui-content-switcher-item>All</ui-content-switcher-item>
+  <ui-content-switcher-item>Mine</ui-content-switcher-item>
+  <ui-content-switcher-item>Archived</ui-content-switcher-item>
+</ui-content-switcher>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-8-0">HTML</ui-tab><ui-tab panel="code-8-1">React</ui-tab><ui-tab panel="code-8-2">React + Tailwind</ui-tab><ui-tab-panel name="code-8-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-content-switcher</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span>=<span style="color:var(--ui-tag-color-teal)">"Small"</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"max-width: 560px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span>&gt;All&lt;/<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span>&gt;Mine&lt;/<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span>&gt;Archived&lt;/<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-content-switcher</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-content-switcher</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span>=<span style="color:var(--ui-tag-color-teal)">"Medium"</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"max-width: 560px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span>&gt;All&lt;/<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span>&gt;Mine&lt;/<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span>&gt;Archived&lt;/<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-content-switcher</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-content-switcher</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span>=<span style="color:var(--ui-tag-color-teal)">"Large"</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"lg"</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"max-width: 560px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span>&gt;All&lt;/<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span>&gt;Mine&lt;/<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span>&gt;Archived&lt;/<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-content-switcher</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-8-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiContentSwitcher</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Small"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">UiContentSwitcher</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiContentSwitcher</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Medium"</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">UiContentSwitcher</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiContentSwitcher</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Large"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"lg"</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">UiContentSwitcher</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-8-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">ContentSwitcher</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Small"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">ContentSwitcher</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ContentSwitcher</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Medium"</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">ContentSwitcher</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ContentSwitcher</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Large"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"lg"</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">ContentSwitcher</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="low-contrast">Low contrast</h2>
+<p><code>low-contrast</code> (<code>lowContrast</code>) is the quieter variant: a grey track, and the selected item a light pill with bold text instead of a dark fill. Use it where a dark selected item would draw too much attention.</p>
+<div class="doc-demo"><ui-content-switcher aria-label="Requests" low-contrast style="max-width: 560px">
+  <ui-content-switcher-item name="all">All requests</ui-content-switcher-item>
+  <ui-content-switcher-item name="mine">Assigned to me</ui-content-switcher-item>
+  <ui-content-switcher-item name="archived">Archived</ui-content-switcher-item>
+</ui-content-switcher>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-9-0">HTML</ui-tab><ui-tab panel="code-9-1">React</ui-tab><ui-tab panel="code-9-2">React + Tailwind</ui-tab><ui-tab-panel name="code-9-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-content-switcher</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span>=<span style="color:var(--ui-tag-color-teal)">"Requests"</span> <span style="color:var(--ui-tag-color-purple)">low-contrast</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"max-width: 560px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"all"</span>&gt;All requests&lt;/<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"mine"</span>&gt;Assigned to me&lt;/<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"archived"</span>&gt;Archived&lt;/<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-content-switcher</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-9-1"><ui-code-snippet type="single" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiContentSwitcher</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Requests"</span> <span style="color:var(--ui-tag-color-purple)">lowContrast</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">UiContentSwitcher</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-9-2"><ui-code-snippet type="single" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">ContentSwitcher</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Requests"</span> <span style="color:var(--ui-tag-color-purple)">lowContrast</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">ContentSwitcher</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="disabled-item">Disabled item</h2>
+<p><code>disabled</code> on an item greys it out; the arrow keys skip it and a click does nothing. While any item is disabled, the track's outline turns grey too, as in Carbon.</p>
+<div class="doc-demo"><ui-content-switcher aria-label="Requests" selected-index="1" style="max-width: 560px">
+  <ui-content-switcher-item name="all">All requests</ui-content-switcher-item>
+  <ui-content-switcher-item name="mine">Assigned to me</ui-content-switcher-item>
+  <ui-content-switcher-item name="archived" disabled>Archived</ui-content-switcher-item>
+</ui-content-switcher>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-10-0">HTML</ui-tab><ui-tab panel="code-10-1">React</ui-tab><ui-tab panel="code-10-2">React + Tailwind</ui-tab><ui-tab-panel name="code-10-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-content-switcher</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span>=<span style="color:var(--ui-tag-color-teal)">"Requests"</span> <span style="color:var(--ui-tag-color-purple)">selected-index</span>=<span style="color:var(--ui-tag-color-teal)">"1"</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"max-width: 560px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"all"</span>&gt;All requests&lt;/<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"mine"</span>&gt;Assigned to me&lt;/<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"archived"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span>&gt;Archived&lt;/<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-content-switcher</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-10-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiContentSwitcher</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Requests"</span> <span style="color:var(--ui-tag-color-purple)">selectedIndex</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">1</span>}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiContentSwitcherItem</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"all"</span>&gt;All requests&lt;/<span style="color:var(--ui-tag-color-blue)">UiContentSwitcherItem</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiContentSwitcherItem</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"mine"</span>&gt;Assigned to me&lt;/<span style="color:var(--ui-tag-color-blue)">UiContentSwitcherItem</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiContentSwitcherItem</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"archived"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span>&gt;Archived&lt;/<span style="color:var(--ui-tag-color-blue)">UiContentSwitcherItem</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiContentSwitcher</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-10-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">ContentSwitcher</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Requests"</span> <span style="color:var(--ui-tag-color-purple)">defaultSelectedIndex</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">1</span>}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ContentSwitcherItem</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"all"</span>&gt;All requests&lt;/<span style="color:var(--ui-tag-color-blue)">ContentSwitcherItem</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ContentSwitcherItem</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"mine"</span>&gt;Assigned to me&lt;/<span style="color:var(--ui-tag-color-blue)">ContentSwitcherItem</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ContentSwitcherItem</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"archived"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span>&gt;Archived&lt;/<span style="color:var(--ui-tag-color-blue)">ContentSwitcherItem</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ContentSwitcher</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="manual-selection">Manual selection</h2>
+<p>By default the arrow keys select as they move (<code>selection-mode=&quot;automatic&quot;</code>). With <code>selection-mode=&quot;manual&quot;</code> (<code>selectionMode</code>), they only move focus, and Enter or Space selects. Use it when switching loads data.</p>
+<div class="doc-demo"><ui-content-switcher aria-label="Report" selection-mode="manual" style="max-width: 560px">
+  <ui-content-switcher-item name="summary">Summary</ui-content-switcher-item>
+  <ui-content-switcher-item name="details">Details</ui-content-switcher-item>
+  <ui-content-switcher-item name="audit">Audit trail</ui-content-switcher-item>
+</ui-content-switcher>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-11-0">HTML</ui-tab><ui-tab panel="code-11-1">React</ui-tab><ui-tab panel="code-11-2">React + Tailwind</ui-tab><ui-tab-panel name="code-11-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-content-switcher</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span>=<span style="color:var(--ui-tag-color-teal)">"Report"</span> <span style="color:var(--ui-tag-color-purple)">selection-mode</span>=<span style="color:var(--ui-tag-color-teal)">"manual"</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"max-width: 560px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"summary"</span>&gt;Summary&lt;/<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"details"</span>&gt;Details&lt;/<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"audit"</span>&gt;Audit trail&lt;/<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-content-switcher</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-11-1"><ui-code-snippet type="single" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiContentSwitcher</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Report"</span> <span style="color:var(--ui-tag-color-purple)">selectionMode</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"manual"</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">UiContentSwitcher</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-11-2"><ui-code-snippet type="single" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">ContentSwitcher</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Report"</span> <span style="color:var(--ui-tag-color-purple)">selectionMode</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"manual"</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">ContentSwitcher</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="long-labels">Long labels</h2>
+<p>Items share the width evenly. A label longer than its share ends in an ellipsis, so keep labels short: one or two words.</p>
+<div class="doc-demo"><ui-content-switcher aria-label="Contracts" style="max-width: 360px">
+  <ui-content-switcher-item name="draft">Drafts</ui-content-switcher-item>
+  <ui-content-switcher-item name="waiting">Waiting for the counterparty's signature</ui-content-switcher-item>
+  <ui-content-switcher-item name="signed">Signed</ui-content-switcher-item>
+</ui-content-switcher>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-12-0">HTML</ui-tab><ui-tab panel="code-12-1">React</ui-tab><ui-tab panel="code-12-2">React + Tailwind</ui-tab><ui-tab-panel name="code-12-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-content-switcher</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span>=<span style="color:var(--ui-tag-color-teal)">"Contracts"</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"max-width: 360px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"draft"</span>&gt;Drafts&lt;/<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"waiting"</span>&gt;Waiting for the counterparty's signature&lt;/<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"signed"</span>&gt;Signed&lt;/<span style="color:var(--ui-tag-color-blue)">ui-content-switcher-item</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-content-switcher</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-12-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiContentSwitcher</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contracts"</span> <span style="color:var(--ui-tag-color-purple)">style</span><span style="color:var(--ui-tag-color-magenta)">=</span>{{ <span style="color:var(--ui-tag-color-purple)">maxWidth:</span> <span style="color:var(--ui-tag-color-green)">360</span> }}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiContentSwitcherItem</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"draft"</span>&gt;Drafts&lt;/<span style="color:var(--ui-tag-color-blue)">UiContentSwitcherItem</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiContentSwitcherItem</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"waiting"</span>&gt;Waiting for the counterparty's signature&lt;/<span style="color:var(--ui-tag-color-blue)">UiContentSwitcherItem</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiContentSwitcherItem</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"signed"</span>&gt;Signed&lt;/<span style="color:var(--ui-tag-color-blue)">UiContentSwitcherItem</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiContentSwitcher</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-12-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">ContentSwitcher</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contracts"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"max-w-[360px]"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ContentSwitcherItem</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"draft"</span>&gt;Drafts&lt;/<span style="color:var(--ui-tag-color-blue)">ContentSwitcherItem</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ContentSwitcherItem</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"waiting"</span>&gt;Waiting for the counterparty's signature&lt;/<span style="color:var(--ui-tag-color-blue)">ContentSwitcherItem</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ContentSwitcherItem</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"signed"</span>&gt;Signed&lt;/<span style="color:var(--ui-tag-color-blue)">ContentSwitcherItem</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ContentSwitcher</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="accessibility">Accessibility</h2>
+<ul>
+<li>The switcher is a <code>tablist</code> and each item a <code>tab</code> with <code>aria-selected</code>; name the group with <code>aria-label</code>.</li>
+<li>One Tab stop: the selected item (or the first enabled one). ← and → move and wrap, skipping disabled items (mirrored right-to-left); Home and End jump to the ends. Enter and Space select in manual mode.</li>
+<li>The items control no panel (<code>aria-controls</code>): put the content they change right after the switcher, so it is the next thing a keyboard or screen reader user reaches.</li>
+<li>Icon-only items need <code>label</code>: it is their name and their tooltip.</li>
+</ul>
+<p>Unstyled React parts with the same behaviour: <a href="/kanok-ui-docs/en/headless-content-switcher/">Headless Content switcher</a>.</p>
+<h2 id="api">API</h2>
+<p>Generated from the package. In React, pass a property as a prop of the same name; events are props too (the React column).</p>
+<h3 id="ui-content-switcher-react-uicontentswitcher"><code>&lt;ui-content-switcher&gt;</code> · React <code>UiContentSwitcher</code></h3>
+<h4 id="attributes">Attributes</h4>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>selected-index</code></td>
+<td><code>selectedIndex</code></td>
+<td><code>number</code></td>
+<td><code>0</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>size</code></td>
+<td><code>size</code></td>
+<td><code>ContentSwitcherSize</code></td>
+<td><code>'md'</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>selection-mode</code></td>
+<td><code>selectionMode</code></td>
+<td><code>ContentSwitcherSelectionMode</code></td>
+<td><code>'automatic'</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>low-contrast</code></td>
+<td><code>lowContrast</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>icon-only</code></td>
+<td><code>iconOnly</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Reflected by the switcher itself when every item is <code>icon-only</code>.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="methods">Methods</h4>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>focus(options)</code></td>
+<td>Focus the selected item (the tab stop).</td>
+</tr>
+</tbody>
+</table>
+<h4 id="events">Events</h4>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>React</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ui-change</code></td>
+<td><code>onUiChange</code></td>
+<td>detail: { index, name } after the user selects a different item</td>
+</tr>
+</tbody>
+</table>
+<h4 id="slots">Slots</h4>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(default)</td>
+<td><code>&lt;ui-content-switcher-item&gt;</code> elements</td>
+</tr>
+</tbody>
+</table>
+<h4 id="css-custom-properties">CSS custom properties</h4>
+<table>
+<thead>
+<tr>
+<th>Custom property</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--ui-content-switcher-border</code></td>
+<td></td>
+<td>/ --ui-content-switcher-selected-fill / --ui-content-switcher-selected-ink - Border, selected fill and selected text of the default kind (default: Carbon's inverse; Kanok: hairline and brand indigo)</td>
+</tr>
+<tr>
+<td><code>--ui-content-switcher-track</code></td>
+<td></td>
+<td>/ --ui-content-switcher-padding / --ui-content-switcher-radius / --ui-content-switcher-outline - The track around the items (default transparent, 0, 4px, border-inverse: Carbon's outlined group; Kanok: the contained tabs' segmented track)</td>
+</tr>
+<tr>
+<td><code>--ui-content-switcher-item-radius</code></td>
+<td></td>
+<td>/ --ui-content-switcher-item-size / --ui-content-switcher-item-grow / --ui-content-switcher-divider / --ui-content-switcher-selected-shadow - Its items (on <code>&lt;ui-content-switcher-item&gt;</code>)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ui-content-switcher-item-react-uicontentswitcheritem"><code>&lt;ui-content-switcher-item&gt;</code> · React <code>UiContentSwitcherItem</code></h3>
+<h4 id="attributes-2">Attributes</h4>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>Identifies the item in <code>ui-change</code> (Carbon <code>name</code>).</td>
+</tr>
+<tr>
+<td><code>label</code></td>
+<td><code>label</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>Accessible name — required with <code>icon-only</code>.</td>
+</tr>
+<tr>
+<td><code>selected</code></td>
+<td><code>selected</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Set by the switcher from its <code>selected-index</code> (it overwrites any value you set): read it or style on <code>[selected]</code>; select an item with the switcher's <code>selected-index</code>.</td>
+</tr>
+<tr>
+<td><code>disabled</code></td>
+<td><code>disabled</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>icon-only</code></td>
+<td><code>iconOnly</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>tooltip-placement</code></td>
+<td><code>tooltipPlacement</code></td>
+<td><code>TooltipPlacement</code></td>
+<td><code>'top'</code></td>
+<td>Where the <code>icon-only</code> tooltip shows (Carbon <code>align</code>, default top).</td>
+</tr>
+</tbody>
+</table>
+<h4 id="properties">Properties</h4>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>focusable</code></td>
+<td><code>boolean</code></td>
+<td>Set by the switcher: which item is the single tab stop (the selected one, or the first enabled one).</td>
+</tr>
+</tbody>
+</table>
+<h4 id="slots-2">Slots</h4>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(default)</td>
+<td>Label text</td>
+</tr>
+<tr>
+<td><code>icon</code></td>
+<td>A 16px icon (20px in <code>size=&quot;lg&quot;</code>) before the text, or alone with <code>icon-only</code> + <code>label</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="css-parts">CSS parts</h4>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>label</code></td>
+<td>The label wrapper</td>
+</tr>
+<tr>
+<td><code>tooltip</code></td>
+<td>The <code>&lt;ui-tooltip&gt;</code> of an <code>icon-only</code> item</td>
+</tr>
+</tbody>
+</table>
+<h4 id="css-custom-properties-2">CSS custom properties</h4>
+<table>
+<thead>
+<tr>
+<th>Custom property</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--ui-content-switcher-item-radius</code></td>
+<td></td>
+<td>/ --ui-content-switcher-item-size / --ui-content-switcher-item-grow - Corner radius, <code>inline-size</code> and <code>flex-grow</code> (default 4px, 100%, 0)</td>
+</tr>
+<tr>
+<td><code>--ui-content-switcher-divider</code></td>
+<td></td>
+<td>/ --ui-content-switcher-selected-shadow - The rule between items and the selected one's shadow (default hairline, none)</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+<nav class="doc-toc" aria-labelledby="doc-toc-title"><p id="doc-toc-title" class="doc-toc-title">On this page</p><ul><li class="doc-toc-h2"><a href="#installation">Installation</a></li><li class="doc-toc-h2"><a href="#use-it">Use it</a></li><li class="doc-toc-h2"><a href="#switch-the-content">Switch the content</a></li><li class="doc-toc-h2"><a href="#starting-item">Starting item</a></li><li class="doc-toc-h2"><a href="#with-icons">With icons</a></li><li class="doc-toc-h2"><a href="#icon-only">Icon only</a></li><li class="doc-toc-h2"><a href="#sizes">Sizes</a></li><li class="doc-toc-h2"><a href="#low-contrast">Low contrast</a></li><li class="doc-toc-h2"><a href="#disabled-item">Disabled item</a></li><li class="doc-toc-h2"><a href="#manual-selection">Manual selection</a></li><li class="doc-toc-h2"><a href="#long-labels">Long labels</a></li><li class="doc-toc-h2"><a href="#accessibility">Accessibility</a></li><li class="doc-toc-h2"><a href="#api">API</a></li><li class="doc-toc-h3"><a href="#ui-content-switcher-react-uicontentswitcher">&lt;ui-content-switcher></a></li><li class="doc-toc-h3"><a href="#ui-content-switcher-item-react-uicontentswitcheritem">&lt;ui-content-switcher-item></a></li></ul></nav>
+</div>
+<nav class="doc-pager" aria-label="Next / Previous"><a class="doc-pager-prev" href="/kanok-ui-docs/en/pagination-nav/" rel="prev"><span>Previous</span>Pagination nav</a><a class="doc-pager-next" href="/kanok-ui-docs/en/accordion/" rel="next"><span>Next</span>Accordion</a></nav>
+<footer class="doc-footer">@purpurabog/ui 1.4.3 · MIT · <a href="https://cdn.jsdelivr.net/npm/@purpurabog/ui@1.4.3/THIRD-PARTY-NOTICES.md">Third-party notices</a><br>Built on the Carbon Design System. Not affiliated with or endorsed by IBM; IBM and Carbon are trademarks of IBM Corp.</footer>
+</ui-content>
+<ui-modal id="doc-search" heading="Search" data-count="{n} results" data-empty="No results for “{q}”">
+<ui-search label="Search the docs" placeholder="Search the docs" size="lg"></ui-search>
+<p class="doc-search-status" role="status"></p>
+<ul class="doc-search-results"></ul>
+</ui-modal>
+</body>
+</html>

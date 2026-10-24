@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Customize the look · @purpurabog/ui</title>
+<link rel="alternate" hreflang="en" href="/kanok-ui-docs/en/customizing/"  /><link rel="alternate" hreflang="th" href="/kanok-ui-docs/th/customizing/"  />
+<script>(function(){try{var q=new URLSearchParams(location.search).get("design"),d=q;if(q==="kanok"||q==="carbon")localStorage.setItem("ui-docs-design",q);else d=localStorage.getItem("ui-docs-design");if(d==="kanok")document.documentElement.setAttribute("data-design","kanok")}catch(e){}})();(function(){try{var m=localStorage.getItem("ui-docs-theme");if(m!=="light"&&m!=="dark"&&m!=="system")return;var d=m==="dark"||(m==="system"&&matchMedia("(prefers-color-scheme: dark)").matches),r=document.documentElement,t=d?"g100":"white";if(r.getAttribute("data-design")==="kanok")t=d?"lacquer":"paper";r.setAttribute("data-theme",t)}catch(e){}})();</script>
+<style>ui-header:not(:defined){z-index:8000;box-sizing:border-box;border-block-end:1px solid var(--ui-border-subtle-1);background:var(--ui-canvas);block-size:48px;display:block;position:fixed;inset:0 0 auto}:is(ui-header:not(:defined)>*,ui-side-nav:not(:defined)>*){visibility:hidden}:is(ui-header-panel:not(:defined),ui-modal:not(:defined)){display:none}ui-side-nav:not(:defined){display:none}ui-content:not(:defined){margin-block-start:48px;padding:32px;display:block}@media (width>=1056px){ui-side-nav[expanded]:not(:defined){background:var(--ui-canvas);inline-size:256px;display:block;position:fixed;inset:48px auto 0 0}ui-side-nav[expanded]:not(:defined)~ui-content:not(:defined){margin-inline-start:256px}}ui-tabs:not(:defined){display:block}ui-tabs:not(:defined)>ui-tab{box-sizing:border-box;border-block-end:2px solid var(--ui-hairline);block-size:40px;color:var(--ui-ink-muted);font:var(--ui-font-body-sm);padding:0 16px;line-height:38px;display:inline-block}ui-tabs:not(:defined)>ui-tab:first-of-type{border-block-end-color:var(--ui-interactive);color:var(--ui-ink)}ui-tabs:not(:defined)>ui-tab-panel{padding:16px;display:block}ui-tabs:not(:defined)>ui-tab-panel~ui-tab-panel{display:none}ui-code-snippet:not(:defined){background:var(--ui-layer-1);max-block-size:272px;font:var(--ui-font-code,12px/16px monospace);white-space:pre;padding:16px;display:block;overflow:hidden}[data-react-example]:empty>*{visibility:hidden}.doc-demo:has(:not(:defined))>*{visibility:hidden}[data-react-example]:empty{box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}.doc-demo:has(:not(:defined)){box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}@keyframes doc-skeleton{to{background-position:-200% 0}}@media (prefers-reduced-motion:reduce){[data-react-example]:empty{animation:none}.doc-demo:has(:not(:defined)){animation:none}}</style>
+
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/theme-switcher-BGAHXRgF.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/date-BacUxW-t.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/sheet-DbjrsMqL.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/date-picker-DTFVj1yW.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/tabs-CvVVO2Pb.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/affixes-D94Y17_6.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/mask-BgmAmoJG.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/text-input-D_nMa3l3.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/listbox-DS1dd7sD.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/typeahead-CDCzrGcR.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/listbox-gjElSjvA.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/dropdown-CQ1UJRpG.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/dropdown-By0nR-a0.js"></script>
+  <link rel="stylesheet" crossorigin href="/kanok-ui-docs/assets/theme-switcher-CL5yB6XE.css">
+</head>
+<body>
+<ui-header label="@purpurabog/ui">
+<ui-skip-to-content></ui-skip-to-content>
+<ui-header-menu-button></ui-header-menu-button>
+<ui-header-name href="/kanok-ui-docs/en/" prefix="@purpurabog">ui</ui-header-name>
+<ui-header-global-bar>
+<ui-header-global-action id="doc-search-open" label="Search" tooltip-placement="bottom"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="m18.5 17.8-4.9-4.9a7 7 0 1 0-.7.7l4.9 4.9zM3 8.5a5.5 5.5 0 1 1 5.5 5.5A5.5 5.5 0 0 1 3 8.5Z" /></svg></ui-header-global-action>
+<ui-header-global-action label="Settings" panel="doc-settings" tooltip-placement="bottom-end"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="M16.9 10.6a7 7 0 0 0 0-1.2l1.8-1.4-1.6-2.8-2.1.8a6.6 6.6 0 0 0-1-.6L13.6 3h-3.2l-.4 2.4a6.6 6.6 0 0 0-1 .6l-2.1-.8L5.3 8l1.8 1.4a7 7 0 0 0 0 1.2L5.3 12l1.6 2.8 2.1-.8a6.6 6.6 0 0 0 1 .6l.4 2.4h3.2l.4-2.4a6.6 6.6 0 0 0 1-.6l2.1.8 1.6-2.8zM12 13a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" /></svg></ui-header-global-action>
+</ui-header-global-bar>
+<ui-header-panel id="doc-settings" label="Settings">
+<div class="doc-settings">
+<span class="doc-settings-label">Theme</span>
+<ui-theme-switcher storage-key="ui-docs-theme" tooltip-placement="bottom"></ui-theme-switcher>
+<span class="doc-settings-label">Style</span>
+<ui-content-switcher id="doc-design" aria-label="Style" size="sm"><ui-content-switcher-item name="carbon">Carbon</ui-content-switcher-item><ui-content-switcher-item name="kanok">Kanok</ui-content-switcher-item></ui-content-switcher>
+<span class="doc-settings-label">Language</span>
+<ui-link href="/kanok-ui-docs/th/customizing/" hreflang="th" lang="th">ไทย</ui-link>
+</div>
+</ui-header-panel>
+</ui-header>
+<ui-side-nav label="Documentation"><ui-side-nav-items><ui-side-nav-menu label="Get started"><ui-side-nav-menu-item href="/kanok-ui-docs/en/">Overview</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/installation/">Installation</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/migration-1-0/">Migrating to 1.0</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Guides" expanded><ui-side-nav-menu-item href="/kanok-ui-docs/en/themes/">Themes and layers</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/kanok/">Kanok design</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/customizing/" current>Customizing</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/icons/">Icons</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/forms/">Forms and validation</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/frameworks/">Frameworks</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/ai/">Using with AI</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Forms and actions"><ui-side-nav-menu-item href="/kanok-ui-docs/en/button/">Button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/file-uploader/">File uploader</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Overlays"><ui-side-nav-menu-item href="/kanok-ui-docs/en/modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/toggletip/">Toggletip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/menu/">Menu</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Data"><ui-side-nav-menu-item href="/kanok-ui-docs/en/data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/contained-list/">Contained list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tree-view/">Tree view</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Navigation"><ui-side-nav-menu-item href="/kanok-ui-docs/en/tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/breadcrumb/">Breadcrumb</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/link/">Link</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/ui-shell/">UI shell</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Content"><ui-side-nav-menu-item href="/kanok-ui-docs/en/tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tile/">Tile</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/user-avatar/">User avatar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/list/">List</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Status and loading"><ui-side-nav-menu-item href="/kanok-ui-docs/en/loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/inline-loading/">Inline loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/progress-bar/">Progress bar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/skeleton/">Skeleton</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/badge-indicator/">Badge indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/status-indicator/">Status indicator</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Layout"><ui-side-nav-menu-item href="/kanok-ui-docs/en/grid/">Grid</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/heading/">Heading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/layer/">Layer</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/action-set/">Action set</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/page-header/">Page header</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/big-number/">Big number</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Headless"><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless/">Introduction</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-file-uploader/">File uploader</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-menu/">Menu</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-ui-shell/">UI shell</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tree-view/">Tree view</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu></ui-side-nav-items></ui-side-nav><script>if(matchMedia('(min-width: 66rem)').matches)document.currentScript.previousElementSibling.setAttribute('expanded','')</script>
+<ui-content>
+<div class="doc-page">
+<article class="doc">
+<!-- nav: Customizing -->
+<h1 id="customize-the-look">Customize the look</h1>
+<p>Start from the shallowest layer and go deeper only when it isn't enough:</p>
+<ol>
+<li><strong>Design tokens</strong> (<code>--ui-*</code>) for sizes and colors</li>
+<li><strong>Theme zones</strong> (<code>data-theme</code>, see <a href="/kanok-ui-docs/en/themes/">Themes and layers</a>)</li>
+<li><strong><code>::part()</code></strong> for one piece of an element</li>
+<li><strong>Slots</strong> for markup in labels and help text</li>
+<li><strong>A derived class</strong> as the last resort</li>
+</ol>
+<p>The shallower layers survive upgrades better, because they don't depend on how an element is built inside. Attributes, properties, events, slots, parts and <code>--ui-*</code> tokens listed in <a href="https://cdn.jsdelivr.net/npm/@purpurabog/ui@latest/docs/api.md">api.md</a> are not removed or renamed before the next major version. Selectors inside the shadow DOM are not part of that promise.</p>
+<h2 id="change-sizes-and-colors-with-tokens">Change sizes and colors with tokens</h2>
+<p>Every component reads CSS custom properties named <code>--ui-*</code> from <code>tokens.css</code> (loaded once per page). Set them on <code>:root</code> to change the whole app, or on any element to change only what's inside it. You don't touch the shadow DOM:</p>
+<div class="doc-demo"><style>.compact{--ui-field-height-md:32px;--ui-menu-max-rows:3}</style>
+<div class="compact">
+  <ui-text-input label="32px field"></ui-text-input>
+  <ui-dropdown label="Menu shows 3 rows" placeholder="Choose">
+    <option value="1">One</option>
+    <option value="2">Two</option>
+    <option value="3">Three</option>
+    <option value="4">Four</option>
+  </ui-dropdown>
+</div>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-1-0">HTML</ui-tab><ui-tab panel="code-1-1">React</ui-tab><ui-tab panel="code-1-2">React + Tailwind</ui-tab><ui-tab-panel name="code-1-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">style</span>&gt;
+  <span style="color:var(--ui-tag-color-purple)">.compact</span> {
+    --ui-field-height-md: <span style="color:var(--ui-tag-color-green)">32px</span>;
+    --ui-menu-max-rows: <span style="color:var(--ui-tag-color-green)">3</span>;
+  }
+&lt;/<span style="color:var(--ui-tag-color-blue)">style</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">class</span>=<span style="color:var(--ui-tag-color-teal)">"compact"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-text-input</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"32px field"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-text-input</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-dropdown</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Menu shows 3 rows"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span>=<span style="color:var(--ui-tag-color-teal)">"Choose"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"1"</span>&gt;One&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"2"</span>&gt;Two&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"3"</span>&gt;Three&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"4"</span>&gt;Four&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-dropdown</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-1-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-ink-muted);font-style:italic">// .compact is the same CSS rule as in the HTML tab</span>
+&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"compact"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"32px field"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiDropdown</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Menu shows 3 rows"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Choose"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"1"</span>&gt;One&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"2"</span>&gt;Two&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"3"</span>&gt;Three&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"4"</span>&gt;Four&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiDropdown</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-1-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> numbers <span style="color:var(--ui-tag-color-magenta)">=</span> [
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'1'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'One'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'2'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Two'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'3'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Three'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'4'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Four'</span> },
+];
+
+&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"[--ui-field-height-md:32px] [--ui-menu-max-rows:3]"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"32px field"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">Dropdown</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Menu shows 3 rows"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Choose"</span> <span style="color:var(--ui-tag-color-purple)">items</span><span style="color:var(--ui-tag-color-magenta)">=</span>{numbers} /&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>The React + Tailwind classes read the same tokens (see below), so a token set on a wrapper changes them too. Headless parts have no look, so tokens don't apply to them.</p>
+<p>The public tokens that components read:</p>
+<table>
+<thead>
+<tr>
+<th>Token</th>
+<th>Changes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--ui-field-height-sm</code>, <code>-md</code>, <code>-lg</code></td>
+<td>Field height per <code>size</code> (32 / 40 / 48px): text input, select, dropdown, combobox, multi-select, date picker, button</td>
+</tr>
+<tr>
+<td><code>--ui-menu-max-rows</code></td>
+<td>Rows a dropdown, combobox or multi-select menu shows before it scrolls (5.5)</td>
+</tr>
+<tr>
+<td><code>--ui-calendar-width</code></td>
+<td>Width of the date picker's calendar (288px)</td>
+</tr>
+<tr>
+<td><code>--ui-sheet-radius</code></td>
+<td>Top corners of the date picker's bottom sheet on phones (the menu radius)</td>
+</tr>
+<tr>
+<td><code>--ui-available-height</code>, <code>--ui-available-width</code></td>
+<td>Written on an open list or menu while it is open: the room left beside its field. Its max-height takes it, so a long list scrolls inside the screen. Read it in your own popup's CSS; don't set it</td>
+</tr>
+<tr>
+<td><code>--ui-highlight</code></td>
+<td>Color of the selected days in a range picker</td>
+</tr>
+<tr>
+<td><code>--ui-surface-1</code>, <code>--ui-surface-2</code>, <code>--ui-hairline</code>, <code>--ui-ink-subtle</code>, <code>--ui-ghost-hover</code>, <code>--ui-ghost-active</code></td>
+<td>Layer tokens: they point at the current layer's set, and <code>&lt;ui-layer&gt;</code> moves them</td>
+</tr>
+<tr>
+<td><code>--ui-primary</code>, <code>--ui-ink</code>, <code>--ui-canvas</code>, <code>--ui-focus</code>, …</td>
+<td>Theme colors, each made from the Carbon token named at the end of its line in <code>tokens.css</code></td>
+</tr>
+</tbody>
+</table>
+<p>Each element's own list is under &quot;Design tokens&quot; in <a href="https://cdn.jsdelivr.net/npm/@purpurabog/ui@latest/docs/api.md">api.md</a> and in the CSS custom properties table of its Storybook page.</p>
+<h2 id="change-one-piece-of-an-element-with-part">Change one piece of an element with <code>::part()</code></h2>
+<p><code>::part(name)</code> styles a piece an element exposes. Part names are the same words across components: <code>base</code>, <code>label</code>, <code>input</code>, <code>menu</code>, <code>option</code>, <code>helper-text</code>, <code>error-text</code>, … The date picker passes on the parts of the fields inside it; in range mode they get <code>start-</code> and <code>end-</code> in front:</p>
+<div class="doc-demo"><style>ui-dropdown.bold::part(input){font-weight:600}ui-date-picker.split::part(end-input){text-align:end}</style>
+<ui-dropdown class="bold" label="Bold" placeholder="Choose">
+  <option value="1">One</option>
+</ui-dropdown>
+<ui-date-picker class="split" range label="Start" end-label="End"></ui-date-picker>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-2-0">HTML</ui-tab><ui-tab panel="code-2-1">React</ui-tab><ui-tab-panel name="code-2-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">style</span>&gt;
+  <span style="color:var(--ui-tag-color-blue)">ui-dropdown</span><span style="color:var(--ui-tag-color-purple)">.bold</span>::part(<span style="color:var(--ui-tag-color-blue)">input</span>) {
+    <span style="color:var(--ui-tag-color-purple)">font-weight</span>: <span style="color:var(--ui-tag-color-green)">600</span>;
+  }
+  <span style="color:var(--ui-tag-color-blue)">ui-date-picker</span><span style="color:var(--ui-tag-color-purple)">.split</span>::part(<span style="color:var(--ui-tag-color-blue)">end-input</span>) {
+    <span style="color:var(--ui-tag-color-purple)">text-align</span>: <span style="color:var(--ui-tag-color-green)">end</span>;
+  }
+&lt;/<span style="color:var(--ui-tag-color-blue)">style</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-dropdown</span> <span style="color:var(--ui-tag-color-purple)">class</span>=<span style="color:var(--ui-tag-color-teal)">"bold"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Bold"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span>=<span style="color:var(--ui-tag-color-teal)">"Choose"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"1"</span>&gt;One&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-dropdown</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-date-picker</span> <span style="color:var(--ui-tag-color-purple)">class</span>=<span style="color:var(--ui-tag-color-teal)">"split"</span> <span style="color:var(--ui-tag-color-purple)">range</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Start"</span> <span style="color:var(--ui-tag-color-purple)">end-label</span>=<span style="color:var(--ui-tag-color-teal)">"End"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-date-picker</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-ink-muted);font-style:italic">// the same CSS as in the HTML tab: the wrappers render &lt;ui-dropdown&gt; and &lt;ui-date-picker&gt;</span>
+&lt;<span style="color:var(--ui-tag-color-blue)">UiDropdown</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"bold"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Bold"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Choose"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"1"</span>&gt;One&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiDropdown</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiDatePicker</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"split"</span> <span style="color:var(--ui-tag-color-purple)">range</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Start"</span> <span style="color:var(--ui-tag-color-purple)">endLabel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"End"</span> /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>Every element's parts are listed in <a href="https://cdn.jsdelivr.net/npm/@purpurabog/ui@latest/docs/api.md">api.md</a>. <code>::part()</code> is for the web components and the React wrappers, which render them. React + Tailwind and headless have no shadow DOM: give the pieces classes instead (the last two sections).</p>
+<p>A few elements have no pieces inside: <code>ui-toaster</code>, <code>ui-fluid-form</code>, <code>ui-button-set</code>, <code>ui-badge-indicator</code> and <code>ui-stack</code> are the box you see. Style them with plain CSS on the element, e.g. <code>ui-stack { row-gap: 24px; }</code> or <code>ui-badge-indicator { background: var(--ui-info); }</code>: page CSS wins over their own. <code>ui-button-set</code> also has the part <code>button-set</code> (as in Carbon), but its layout is on the element.</p>
+<h2 id="style-by-state">Style by state</h2>
+<p>You can read every state that changes the look from the element itself, and combine it with <code>::part()</code>:</p>
+<ul>
+<li><strong>Properties you or the user change</strong> are reflected as attributes: <code>open</code>, <code>checked</code>, <code>selected</code>, <code>expanded</code>, <code>invalid</code>, <code>warn</code>, <code>size</code>, <code>kind</code>, …</li>
+<li><strong>States the element works out itself</strong> are set as <code>data-*</code> attributes on the element:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Means</th>
+<th>On</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-open</code></td>
+<td>The list or calendar is open</td>
+<td><code>ui-dropdown</code>, <code>ui-combobox</code>, <code>ui-multi-select</code>, <code>ui-date-picker</code></td>
+</tr>
+<tr>
+<td><code>data-show-error</code>, <code>data-show-warn</code></td>
+<td>The error or warning is actually showing (an error replaces a warning)</td>
+<td>every form field</td>
+</tr>
+<tr>
+<td><code>data-has-value</code></td>
+<td>There is text or a selection</td>
+<td><code>ui-combobox</code>, <code>ui-multi-select</code>, <code>ui-search</code></td>
+</tr>
+<tr>
+<td><code>data-placeholder</code></td>
+<td>The placeholder is showing</td>
+<td><code>ui-dropdown</code>, <code>ui-select</code></td>
+</tr>
+<tr>
+<td><code>data-password-visible</code></td>
+<td>The password is shown</td>
+<td><code>ui-text-input type=&quot;password&quot;</code></td>
+</tr>
+<tr>
+<td><code>data-editing</code></td>
+<td>In edit mode</td>
+<td><code>ui-edit-in-place</code></td>
+</tr>
+<tr>
+<td><code>data-drag-over</code></td>
+<td>A file is dragged over the drop zone</td>
+<td><code>ui-file-uploader</code></td>
+</tr>
+<tr>
+<td><code>data-shown</code></td>
+<td>The spinner or overlay really shows (after <code>delay</code>)</td>
+<td><code>ui-loading</code></td>
+</tr>
+<tr>
+<td><code>data-overflowing</code></td>
+<td>The text is cut off</td>
+<td><code>ui-truncated-text</code></td>
+</tr>
+</tbody>
+</table>
+<p>Each of these is also a custom state, as on native and Web Awesome elements: <code>ui-dropdown:state(open)</code> matches exactly when <code>ui-dropdown[data-open]</code> does (<code>:state(show-error)</code>, <code>:state(has-value)</code>, …). Use whichever you prefer; the attribute works in older browsers too. Each element's states are listed in its API reference.</p>
+<p>Click into the email field and leave it empty, then open the dropdown:</p>
+<div class="doc-demo"><style>ui-text-input[data-show-error]::part(label){color:var(--ui-error-text)}ui-dropdown[data-open]::part(label){font-weight:600}</style>
+<ui-text-input label="Email" required></ui-text-input>
+<ui-dropdown label="Fruit" placeholder="Choose">
+  <option value="1">Apple</option>
+</ui-dropdown>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-3-0">HTML</ui-tab><ui-tab panel="code-3-1">React</ui-tab><ui-tab-panel name="code-3-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">style</span>&gt;
+  <span style="color:var(--ui-tag-color-blue)">ui-text-input</span>[<span style="color:var(--ui-tag-color-purple)">data-show-error</span>]::part(<span style="color:var(--ui-tag-color-blue)">label</span>) {
+    <span style="color:var(--ui-tag-color-purple)">color</span>: <span style="color:var(--ui-tag-color-cyan)">var</span>(--ui-error-text);
+  }
+  <span style="color:var(--ui-tag-color-blue)">ui-dropdown</span>[<span style="color:var(--ui-tag-color-purple)">data-open</span>]::part(<span style="color:var(--ui-tag-color-blue)">label</span>) {
+    <span style="color:var(--ui-tag-color-purple)">font-weight</span>: <span style="color:var(--ui-tag-color-green)">600</span>;
+  }
+&lt;/<span style="color:var(--ui-tag-color-blue)">style</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-text-input</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Email"</span> <span style="color:var(--ui-tag-color-purple)">required</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-text-input</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-dropdown</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Fruit"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span>=<span style="color:var(--ui-tag-color-teal)">"Choose"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"1"</span>&gt;Apple&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-dropdown</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-3-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-ink-muted);font-style:italic">// the same CSS as in the HTML tab: the states are set on the elements the wrappers render</span>
+&lt;<span style="color:var(--ui-tag-color-blue)">UiTextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Email"</span> <span style="color:var(--ui-tag-color-purple)">required</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiDropdown</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Fruit"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Choose"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"1"</span>&gt;Apple&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiDropdown</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>Use <code>[data-show-error]</code> rather than <code>[invalid]</code> to style the error the user actually sees. <code>invalid</code> is the value you set: it stays on a disabled field, which shows no error, and it doesn't include errors from the user's own input.</p>
+<p>The <code>data-*</code> states are set after the first render in the browser, so HTML rendered on a server doesn't have them yet. The headless parts show their state with <code>data-*</code> attributes of their own: see <a href="/kanok-ui-docs/en/headless/#style-on-data-attributes">Headless</a>.</p>
+<h2 id="put-markup-in-labels-and-help-text-with-slots">Put markup in labels and help text with slots</h2>
+<p>When text needs a link, bold text or an icon, use a slot instead of the attribute of the same name. The attribute still works as plain-text fallback.</p>
+<div class="doc-demo"><ui-text-input>
+  <span slot="label">Email <em>(required)</em></span>
+  <span slot="helper-text">Use your work email. See the <a href="#policy">policy</a>.</span>
+</ui-text-input>
+<ui-dropdown label="Country" placeholder="Choose">
+  <option value="th" data-description="UTC+7">Thailand</option>
+  <option value="jp" data-description="UTC+9">Japan</option>
+</ui-dropdown>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-4-0">HTML</ui-tab><ui-tab panel="code-4-1">React</ui-tab><ui-tab panel="code-4-2">React + Tailwind</ui-tab><ui-tab-panel name="code-4-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-text-input</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"label"</span>&gt;Email &lt;<span style="color:var(--ui-tag-color-blue)">em</span>&gt;(required)&lt;/<span style="color:var(--ui-tag-color-blue)">em</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"helper-text"</span>&gt;Use your work email. See the &lt;<span style="color:var(--ui-tag-color-blue)">a</span> <span style="color:var(--ui-tag-color-purple)">href</span>=<span style="color:var(--ui-tag-color-teal)">"#policy"</span>&gt;policy&lt;/<span style="color:var(--ui-tag-color-blue)">a</span>&gt;.&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-text-input</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-dropdown</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Country"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span>=<span style="color:var(--ui-tag-color-teal)">"Choose"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"th"</span> <span style="color:var(--ui-tag-color-purple)">data-description</span>=<span style="color:var(--ui-tag-color-teal)">"UTC+7"</span>&gt;Thailand&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"jp"</span> <span style="color:var(--ui-tag-color-purple)">data-description</span>=<span style="color:var(--ui-tag-color-teal)">"UTC+9"</span>&gt;Japan&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-dropdown</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-4-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiTextInput</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">slot</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"label"</span>&gt;Email &lt;<span style="color:var(--ui-tag-color-blue)">em</span>&gt;(required)&lt;/<span style="color:var(--ui-tag-color-blue)">em</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">slot</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"helper-text"</span>&gt;Use your work email. See the &lt;<span style="color:var(--ui-tag-color-blue)">a</span> <span style="color:var(--ui-tag-color-purple)">href</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"#policy"</span>&gt;policy&lt;/<span style="color:var(--ui-tag-color-blue)">a</span>&gt;.&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiTextInput</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiDropdown</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Country"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Choose"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"th"</span> <span style="color:var(--ui-tag-color-purple)">data-description</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"UTC+7"</span>&gt;Thailand&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"jp"</span> <span style="color:var(--ui-tag-color-purple)">data-description</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"UTC+9"</span>&gt;Japan&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiDropdown</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-4-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> countries <span style="color:var(--ui-tag-color-magenta)">=</span> [
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'th'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Thailand'</span>, <span style="color:var(--ui-tag-color-purple)">description:</span> <span style="color:var(--ui-tag-color-teal)">'UTC+7'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'jp'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Japan'</span>, <span style="color:var(--ui-tag-color-purple)">description:</span> <span style="color:var(--ui-tag-color-teal)">'UTC+9'</span> },
+];
+
+&lt;<span style="color:var(--ui-tag-color-blue)">TextInput</span>
+  <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span>{&lt;&gt;Email &lt;<span style="color:var(--ui-tag-color-blue)">em</span>&gt;(required)&lt;/<span style="color:var(--ui-tag-color-blue)">em</span>&gt;&lt;/&gt;}
+  <span style="color:var(--ui-tag-color-purple)">helperText</span><span style="color:var(--ui-tag-color-magenta)">=</span>{&lt;&gt;Use your work email. See the &lt;<span style="color:var(--ui-tag-color-blue)">a</span> <span style="color:var(--ui-tag-color-purple)">href</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"#policy"</span>&gt;policy&lt;/<span style="color:var(--ui-tag-color-blue)">a</span>&gt;.&lt;/&gt;}
+/&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">Dropdown</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Country"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Choose"</span> <span style="color:var(--ui-tag-color-purple)">items</span><span style="color:var(--ui-tag-color-magenta)">=</span>{countries} /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>Every field takes the <code>label</code>, <code>helper-text</code>, <code>warn-text</code> and <code>invalid-text</code> slots. <code>data-description</code> on an <code>&lt;option&gt;</code> adds a second line in a dropdown, combobox or multi-select. Other elements have their own, such as <code>header-actions</code> on <code>ui-modal</code> and <code>end</code> on <code>ui-tabs</code>; <a href="https://cdn.jsdelivr.net/npm/@purpurabog/ui@latest/docs/api.md">api.md</a> lists them all. React + Tailwind has no slots: <code>label</code>, <code>helperText</code>, <code>warnText</code> and <code>invalidText</code> take markup, and an item's <code>description</code> is its second line.</p>
+<h2 id="change-the-shape-with-a-derived-class">Change the shape with a derived class</h2>
+<p>The last resort, for what tokens, parts and slots can't do, and only for the web components. Extend the element's class and add your styles after its own. You keep all its behavior (forms, keyboard, accessibility):</p>
+<ui-code-snippet type="multi" class="doc-code" data-lang="ts"><span style="color:var(--ui-tag-color-magenta)">import</span> { css } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'lit'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { UiButton } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/button'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">class</span> <span style="color:var(--ui-tag-color-cyan)">BrandButton</span> <span style="color:var(--ui-tag-color-magenta)">extends</span> <span style="color:var(--ui-tag-color-cyan)">UiButton</span> {
+    <span style="color:var(--ui-tag-color-magenta)">static</span> <span style="color:var(--ui-tag-color-magenta)">override</span> <span style="color:var(--ui-tag-color-magenta)">readonly</span> styles <span style="color:var(--ui-tag-color-magenta)">=</span> [
+        <span style="color:var(--ui-tag-color-magenta)">...</span>UiButton.styles,
+        <span style="color:var(--ui-tag-color-cyan)">css</span><span style="color:var(--ui-tag-color-teal)">`</span>
+<span style="color:var(--ui-tag-color-teal)">            [part='base'] {</span>
+<span style="color:var(--ui-tag-color-teal)">                border-radius: var(--ui-radius-pill);</span>
+<span style="color:var(--ui-tag-color-teal)">            }</span>
+<span style="color:var(--ui-tag-color-teal)">        `</span>,
+    ];
+}
+
+customElements.<span style="color:var(--ui-tag-color-cyan)">define</span>(<span style="color:var(--ui-tag-color-teal)">'brand-button'</span>, BrandButton);
+
+<span style="color:var(--ui-tag-color-magenta)">declare</span> global {
+    <span style="color:var(--ui-tag-color-magenta)">interface</span> <span style="color:var(--ui-tag-color-cyan)">HTMLElementTagNameMap</span> {
+        <span style="color:var(--ui-tag-color-teal)">'brand-button'</span><span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">BrandButton</span>;
+    }
+}</ui-code-snippet>
+<p>Internal selectors are not public API. Select by <code>[part=…]</code>, as above: it survives upgrades better than internal class names.</p>
+<h2 id="react-tailwind-edit-the-copied-classes">React + Tailwind: edit the copied classes</h2>
+<p>With shadcn the component's source is copied into your app, so you change its look where it is written. Each file keeps its classes in plain Tailwind (<code>cva</code> variants for kinds and sizes). For example, in <code>components/ui/react-tw/button.tsx</code>:</p>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-ink-muted);font-style:italic">// before</span>
+<span style="color:var(--ui-tag-color-teal)">'rounded-none border border-solid border-transparent'</span>,
+<span style="color:var(--ui-ink-muted);font-style:italic">// after: pill-shaped buttons everywhere</span>
+<span style="color:var(--ui-tag-color-teal)">'rounded-pill border border-solid border-transparent'</span>,</ui-code-snippet>
+<p>For one place only, pass <code>className</code>. Classes are merged with <code>tailwind-merge</code>, so the ones you pass win:</p>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { Button } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@/components/ui/react-tw/button'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">Button</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"w-full"</span>&gt;Save&lt;/<span style="color:var(--ui-tag-color-blue)">Button</span>&gt;</ui-code-snippet>
+<p>The classes (<code>bg-primary</code>, <code>text-ink</code>, <code>h-field-md</code>, <code>rounded-pill</code>, …) come from <code>theme.css</code>, which maps the <code>--ui-*</code> tokens into Tailwind's theme. Tokens and <code>data-theme</code> zones therefore work here exactly as for the web components. The behavior (keyboard, focus, ARIA) comes from <code>@purpurabog/ui/headless</code> and keeps updating with the package.</p>
+<h2 id="headless">Headless</h2>
+<p>The headless parts render no classes and read no tokens: you style them on their <code>data-*</code> state attributes. See <a href="/kanok-ui-docs/en/headless/#style-on-data-attributes">Headless</a>.</p>
+
+</article>
+<nav class="doc-toc" aria-labelledby="doc-toc-title"><p id="doc-toc-title" class="doc-toc-title">On this page</p><ul><li class="doc-toc-h2"><a href="#change-sizes-and-colors-with-tokens">Change sizes and colors with tokens</a></li><li class="doc-toc-h2"><a href="#change-one-piece-of-an-element-with-part">Change one piece of an element with ::part()</a></li><li class="doc-toc-h2"><a href="#style-by-state">Style by state</a></li><li class="doc-toc-h2"><a href="#put-markup-in-labels-and-help-text-with-slots">Put markup in labels and help text with slots</a></li><li class="doc-toc-h2"><a href="#change-the-shape-with-a-derived-class">Change the shape with a derived class</a></li><li class="doc-toc-h2"><a href="#react-tailwind-edit-the-copied-classes">React + Tailwind: edit the copied classes</a></li><li class="doc-toc-h2"><a href="#headless">Headless</a></li></ul></nav>
+</div>
+<nav class="doc-pager" aria-label="Next / Previous"><a class="doc-pager-prev" href="/kanok-ui-docs/en/kanok/" rel="prev"><span>Previous</span>Kanok design</a><a class="doc-pager-next" href="/kanok-ui-docs/en/icons/" rel="next"><span>Next</span>Icons</a></nav>
+<footer class="doc-footer">@purpurabog/ui 1.4.3 · MIT · <a href="https://cdn.jsdelivr.net/npm/@purpurabog/ui@1.4.3/THIRD-PARTY-NOTICES.md">Third-party notices</a><br>Built on the Carbon Design System. Not affiliated with or endorsed by IBM; IBM and Carbon are trademarks of IBM Corp.</footer>
+</ui-content>
+<ui-modal id="doc-search" heading="Search" data-count="{n} results" data-empty="No results for “{q}”">
+<ui-search label="Search the docs" placeholder="Search the docs" size="lg"></ui-search>
+<p class="doc-search-status" role="status"></p>
+<ul class="doc-search-results"></ul>
+</ui-modal>
+</body>
+</html>

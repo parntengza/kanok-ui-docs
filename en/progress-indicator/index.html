@@ -1,0 +1,768 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Progress indicator · @purpurabog/ui</title>
+<link rel="alternate" hreflang="en" href="/kanok-ui-docs/en/progress-indicator/"  /><link rel="alternate" hreflang="th" href="/kanok-ui-docs/th/progress-indicator/"  />
+<script>(function(){try{var q=new URLSearchParams(location.search).get("design"),d=q;if(q==="kanok"||q==="carbon")localStorage.setItem("ui-docs-design",q);else d=localStorage.getItem("ui-docs-design");if(d==="kanok")document.documentElement.setAttribute("data-design","kanok")}catch(e){}})();(function(){try{var m=localStorage.getItem("ui-docs-theme");if(m!=="light"&&m!=="dark"&&m!=="system")return;var d=m==="dark"||(m==="system"&&matchMedia("(prefers-color-scheme: dark)").matches),r=document.documentElement,t=d?"g100":"white";if(r.getAttribute("data-design")==="kanok")t=d?"lacquer":"paper";r.setAttribute("data-theme",t)}catch(e){}})();</script>
+<style>ui-header:not(:defined){z-index:8000;box-sizing:border-box;border-block-end:1px solid var(--ui-border-subtle-1);background:var(--ui-canvas);block-size:48px;display:block;position:fixed;inset:0 0 auto}:is(ui-header:not(:defined)>*,ui-side-nav:not(:defined)>*){visibility:hidden}:is(ui-header-panel:not(:defined),ui-modal:not(:defined)){display:none}ui-side-nav:not(:defined){display:none}ui-content:not(:defined){margin-block-start:48px;padding:32px;display:block}@media (width>=1056px){ui-side-nav[expanded]:not(:defined){background:var(--ui-canvas);inline-size:256px;display:block;position:fixed;inset:48px auto 0 0}ui-side-nav[expanded]:not(:defined)~ui-content:not(:defined){margin-inline-start:256px}}ui-tabs:not(:defined){display:block}ui-tabs:not(:defined)>ui-tab{box-sizing:border-box;border-block-end:2px solid var(--ui-hairline);block-size:40px;color:var(--ui-ink-muted);font:var(--ui-font-body-sm);padding:0 16px;line-height:38px;display:inline-block}ui-tabs:not(:defined)>ui-tab:first-of-type{border-block-end-color:var(--ui-interactive);color:var(--ui-ink)}ui-tabs:not(:defined)>ui-tab-panel{padding:16px;display:block}ui-tabs:not(:defined)>ui-tab-panel~ui-tab-panel{display:none}ui-code-snippet:not(:defined){background:var(--ui-layer-1);max-block-size:272px;font:var(--ui-font-code,12px/16px monospace);white-space:pre;padding:16px;display:block;overflow:hidden}[data-react-example]:empty>*{visibility:hidden}.doc-demo:has(:not(:defined))>*{visibility:hidden}[data-react-example]:empty{box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}.doc-demo:has(:not(:defined)){box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}@keyframes doc-skeleton{to{background-position:-200% 0}}@media (prefers-reduced-motion:reduce){[data-react-example]:empty{animation:none}.doc-demo:has(:not(:defined)){animation:none}}</style>
+
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/theme-switcher-BGAHXRgF.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/tabs-CvVVO2Pb.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/button-CTeCEJcq.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/skeleton-BESm0w-6.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/progress-indicator-skeleton-CUWMYdTt.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/progress-indicator-BZxJ8c6A.js"></script>
+  <link rel="stylesheet" crossorigin href="/kanok-ui-docs/assets/theme-switcher-CL5yB6XE.css">
+</head>
+<body>
+<ui-header label="@purpurabog/ui">
+<ui-skip-to-content></ui-skip-to-content>
+<ui-header-menu-button></ui-header-menu-button>
+<ui-header-name href="/kanok-ui-docs/en/" prefix="@purpurabog">ui</ui-header-name>
+<ui-header-global-bar>
+<ui-header-global-action id="doc-search-open" label="Search" tooltip-placement="bottom"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="m18.5 17.8-4.9-4.9a7 7 0 1 0-.7.7l4.9 4.9zM3 8.5a5.5 5.5 0 1 1 5.5 5.5A5.5 5.5 0 0 1 3 8.5Z" /></svg></ui-header-global-action>
+<ui-header-global-action label="Settings" panel="doc-settings" tooltip-placement="bottom-end"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="M16.9 10.6a7 7 0 0 0 0-1.2l1.8-1.4-1.6-2.8-2.1.8a6.6 6.6 0 0 0-1-.6L13.6 3h-3.2l-.4 2.4a6.6 6.6 0 0 0-1 .6l-2.1-.8L5.3 8l1.8 1.4a7 7 0 0 0 0 1.2L5.3 12l1.6 2.8 2.1-.8a6.6 6.6 0 0 0 1 .6l.4 2.4h3.2l.4-2.4a6.6 6.6 0 0 0 1-.6l2.1.8 1.6-2.8zM12 13a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" /></svg></ui-header-global-action>
+</ui-header-global-bar>
+<ui-header-panel id="doc-settings" label="Settings">
+<div class="doc-settings">
+<span class="doc-settings-label">Theme</span>
+<ui-theme-switcher storage-key="ui-docs-theme" tooltip-placement="bottom"></ui-theme-switcher>
+<span class="doc-settings-label">Style</span>
+<ui-content-switcher id="doc-design" aria-label="Style" size="sm"><ui-content-switcher-item name="carbon">Carbon</ui-content-switcher-item><ui-content-switcher-item name="kanok">Kanok</ui-content-switcher-item></ui-content-switcher>
+<span class="doc-settings-label">Language</span>
+<ui-link href="/kanok-ui-docs/th/progress-indicator/" hreflang="th" lang="th">ไทย</ui-link>
+</div>
+</ui-header-panel>
+</ui-header>
+<ui-side-nav label="Documentation"><ui-side-nav-items><ui-side-nav-menu label="Get started"><ui-side-nav-menu-item href="/kanok-ui-docs/en/">Overview</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/installation/">Installation</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/migration-1-0/">Migrating to 1.0</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Guides"><ui-side-nav-menu-item href="/kanok-ui-docs/en/themes/">Themes and layers</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/kanok/">Kanok design</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/customizing/">Customizing</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/icons/">Icons</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/forms/">Forms and validation</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/frameworks/">Frameworks</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/ai/">Using with AI</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Forms and actions"><ui-side-nav-menu-item href="/kanok-ui-docs/en/button/">Button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/file-uploader/">File uploader</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Overlays"><ui-side-nav-menu-item href="/kanok-ui-docs/en/modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/toggletip/">Toggletip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/menu/">Menu</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Data"><ui-side-nav-menu-item href="/kanok-ui-docs/en/data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/contained-list/">Contained list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tree-view/">Tree view</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Navigation" expanded><ui-side-nav-menu-item href="/kanok-ui-docs/en/tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/breadcrumb/">Breadcrumb</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/link/">Link</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/progress-indicator/" current>Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/ui-shell/">UI shell</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Content"><ui-side-nav-menu-item href="/kanok-ui-docs/en/tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tile/">Tile</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/user-avatar/">User avatar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/list/">List</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Status and loading"><ui-side-nav-menu-item href="/kanok-ui-docs/en/loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/inline-loading/">Inline loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/progress-bar/">Progress bar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/skeleton/">Skeleton</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/badge-indicator/">Badge indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/status-indicator/">Status indicator</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Layout"><ui-side-nav-menu-item href="/kanok-ui-docs/en/grid/">Grid</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/heading/">Heading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/layer/">Layer</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/action-set/">Action set</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/page-header/">Page header</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/big-number/">Big number</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Headless"><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless/">Introduction</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-file-uploader/">File uploader</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-menu/">Menu</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-ui-shell/">UI shell</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tree-view/">Tree view</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu></ui-side-nav-items></ui-side-nav><script>if(matchMedia('(min-width: 66rem)').matches)document.currentScript.previousElementSibling.setAttribute('expanded','')</script>
+<ui-content>
+<div class="doc-page">
+<article class="doc">
+<h1 id="progress-indicator">Progress indicator</h1>
+<p>A progress indicator shows where the user is in a task of several steps: which steps are done, which one is current and what comes next. Use it above a multi-step form or a wizard.</p>
+<div class="doc-demo"><ui-progress-indicator current-index="1">
+  <ui-progress-step label="Contract details"></ui-progress-step>
+  <ui-progress-step label="Signers"></ui-progress-step>
+  <ui-progress-step label="Review"></ui-progress-step>
+  <ui-progress-step label="Send"></ui-progress-step>
+</ui-progress-indicator>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-1-0">HTML</ui-tab><ui-tab panel="code-1-1">React</ui-tab><ui-tab panel="code-1-2">React + Tailwind</ui-tab><ui-tab-panel name="code-1-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-indicator</span> <span style="color:var(--ui-tag-color-purple)">current-index</span>=<span style="color:var(--ui-tag-color-teal)">"1"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Contract details"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Signers"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Review"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Send"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-indicator</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-1-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiProgressIndicator</span> <span style="color:var(--ui-tag-color-purple)">currentIndex</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">1</span>}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contract details"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Signers"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Review"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Send"</span> /&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiProgressIndicator</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-1-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">ProgressIndicator</span> <span style="color:var(--ui-tag-color-purple)">currentIndex</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">1</span>}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contract details"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Signers"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Review"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Send"</span> /&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ProgressIndicator</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="installation">Installation</h2>
+<ui-tabs class="doc-code-tabs" label="Code"><ui-tab panel="code-2-0">npm</ui-tab><ui-tab panel="code-2-1">shadcn · Web component</ui-tab><ui-tab panel="code-2-2">shadcn · React + Tailwind</ui-tab><ui-tab panel="code-2-3">Manual</ui-tab><ui-tab-panel name="code-2-0"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">@purpurabog/ui</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-1"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npx</span> <span style="color:var(--ui-tag-color-teal)">shadcn@4</span> <span style="color:var(--ui-tag-color-teal)">add</span> <span style="color:var(--ui-tag-color-teal)">@kanok-ui/progress-indicator</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-2"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npx</span> <span style="color:var(--ui-tag-color-teal)">shadcn@4</span> <span style="color:var(--ui-tag-color-teal)">add</span> <span style="color:var(--ui-tag-color-teal)">@kanok-ui/tw-progress-indicator</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-3"><ui-code-snippet type="multi" class="doc-code" data-lang="bash"><span style="color:var(--ui-ink-muted);font-style:italic"># Web component</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 1. Install the dependencies</span>
+<span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">lit@^3.3.0</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 2. Copy each file's "content" from</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    https://cdn.jsdelivr.net/npm/@purpurabog/ui@1.4.3/registry/progress-indicator.json</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    to its target:</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/progress-indicator/progress-indicator-skeleton.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/progress-indicator/progress-indicator.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/progress-indicator/progress-step.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 3. Do the same for the items it needs (registry/&lt;name&gt;.json):</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    shared-element, shared-localize, shared-skeleton, tokens</span>
+
+<span style="color:var(--ui-ink-muted);font-style:italic"># React + Tailwind</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 1. Install the dependencies</span>
+<span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">@purpurabog/ui@^1.4.3</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 2. Copy each file's "content" from</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    https://cdn.jsdelivr.net/npm/@purpurabog/ui@1.4.3/registry/tw-progress-indicator.json</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    to its target:</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/react-tw/progress-indicator.tsx</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 3. Do the same for the items it needs (registry/&lt;name&gt;.json):</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    tw-i18n, tw-theme, tw-utils</span></ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>npm gives you every component from the package. shadcn copies the source into your app instead: a copy pinned to this version that you can change. The shadcn commands need the <code>@kanok-ui</code> registry in your <code>components.json</code> once, see <a href="/kanok-ui-docs/en/installation/#react-tailwind-with-shadcn">Installation</a>.</p>
+<h2 id="use-it">Use it</h2>
+<ui-tabs class="doc-code-tabs" label="Code"><ui-tab panel="code-3-0">HTML</ui-tab><ui-tab panel="code-3-1">React</ui-tab><ui-tab panel="code-3-2">React + Tailwind</ui-tab><ui-tab-panel name="code-3-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;<span style="color:var(--ui-tag-color-magenta)">import</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/progress-indicator'</span>;&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-indicator</span> <span style="color:var(--ui-tag-color-purple)">current-index</span>=<span style="color:var(--ui-tag-color-teal)">"0"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Contract details"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Signers"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-indicator</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-3-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { UiProgressIndicator, UiProgressStep } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/react'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiProgressIndicator</span> <span style="color:var(--ui-tag-color-purple)">currentIndex</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">0</span>}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contract details"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Signers"</span> /&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiProgressIndicator</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-3-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { ProgressIndicator, ProgressStep } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@/components/ui/react-tw/progress-indicator'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">ProgressIndicator</span> <span style="color:var(--ui-tag-color-purple)">currentIndex</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">0</span>}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contract details"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Signers"</span> /&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ProgressIndicator</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="step-states">Step states</h2>
+<p><code>current-index</code> (0-based) decides each step's state: the steps before it are complete (a check mark), the step at it is current (a half-filled circle), the steps after it are incomplete (an empty circle). Two flags on a step add to that:</p>
+<ul>
+<li><code>invalid</code> shows a warning icon in red: the step has an error to fix.</li>
+<li><code>disabled</code> greys the step out. It can't be clicked, even in an interactive indicator.</li>
+</ul>
+<div class="doc-demo"><ui-progress-indicator current-index="1">
+  <ui-progress-step label="Contract details"></ui-progress-step>
+  <ui-progress-step label="Signers"></ui-progress-step>
+  <ui-progress-step label="Review" invalid></ui-progress-step>
+  <ui-progress-step label="Send" disabled></ui-progress-step>
+</ui-progress-indicator>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-4-0">HTML</ui-tab><ui-tab panel="code-4-1">React</ui-tab><ui-tab panel="code-4-2">React + Tailwind</ui-tab><ui-tab-panel name="code-4-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-indicator</span> <span style="color:var(--ui-tag-color-purple)">current-index</span>=<span style="color:var(--ui-tag-color-teal)">"1"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Contract details"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Signers"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Review"</span> <span style="color:var(--ui-tag-color-purple)">invalid</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Send"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-indicator</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-4-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiProgressIndicator</span> <span style="color:var(--ui-tag-color-purple)">currentIndex</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">1</span>}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contract details"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Signers"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Review"</span> <span style="color:var(--ui-tag-color-purple)">invalid</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Send"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span> /&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiProgressIndicator</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-4-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">ProgressIndicator</span> <span style="color:var(--ui-tag-color-purple)">currentIndex</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">1</span>}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contract details"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Signers"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Review"</span> <span style="color:var(--ui-tag-color-purple)">invalid</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Send"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span> /&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ProgressIndicator</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="secondary-label">Secondary label</h2>
+<p><code>secondary-label</code> adds a smaller line under the label: &quot;Optional&quot;, a date, a count.</p>
+<div class="doc-demo"><ui-progress-indicator current-index="2">
+  <ui-progress-step label="Request" secondary-label="1 Oct"></ui-progress-step>
+  <ui-progress-step label="Legal review" secondary-label="3 Oct"></ui-progress-step>
+  <ui-progress-step label="Attachments" secondary-label="Optional"></ui-progress-step>
+  <ui-progress-step label="Approval"></ui-progress-step>
+</ui-progress-indicator>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-5-0">HTML</ui-tab><ui-tab panel="code-5-1">React</ui-tab><ui-tab panel="code-5-2">React + Tailwind</ui-tab><ui-tab-panel name="code-5-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-indicator</span> <span style="color:var(--ui-tag-color-purple)">current-index</span>=<span style="color:var(--ui-tag-color-teal)">"2"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Request"</span> <span style="color:var(--ui-tag-color-purple)">secondary-label</span>=<span style="color:var(--ui-tag-color-teal)">"1 Oct"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Legal review"</span> <span style="color:var(--ui-tag-color-purple)">secondary-label</span>=<span style="color:var(--ui-tag-color-teal)">"3 Oct"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Attachments"</span> <span style="color:var(--ui-tag-color-purple)">secondary-label</span>=<span style="color:var(--ui-tag-color-teal)">"Optional"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Approval"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-indicator</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-5-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiProgressIndicator</span> <span style="color:var(--ui-tag-color-purple)">currentIndex</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">2</span>}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Request"</span> <span style="color:var(--ui-tag-color-purple)">secondaryLabel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"1 Oct"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Legal review"</span> <span style="color:var(--ui-tag-color-purple)">secondaryLabel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"3 Oct"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Attachments"</span> <span style="color:var(--ui-tag-color-purple)">secondaryLabel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Optional"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Approval"</span> /&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiProgressIndicator</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-5-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">ProgressIndicator</span> <span style="color:var(--ui-tag-color-purple)">currentIndex</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">2</span>}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Request"</span> <span style="color:var(--ui-tag-color-purple)">secondaryLabel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"1 Oct"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Legal review"</span> <span style="color:var(--ui-tag-color-purple)">secondaryLabel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"3 Oct"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Attachments"</span> <span style="color:var(--ui-tag-color-purple)">secondaryLabel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Optional"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Approval"</span> /&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ProgressIndicator</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="complete-out-of-order">Complete out of order</h2>
+<p><code>complete</code> on a step marks it done whatever <code>current-index</code> says. Use it when the user may fill the steps in any order: here the attachments are already in, while the user is still on the signers.</p>
+<div class="doc-demo"><ui-progress-indicator current-index="1">
+  <ui-progress-step label="Contract details"></ui-progress-step>
+  <ui-progress-step label="Signers"></ui-progress-step>
+  <ui-progress-step label="Attachments" complete></ui-progress-step>
+  <ui-progress-step label="Send"></ui-progress-step>
+</ui-progress-indicator>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-6-0">HTML</ui-tab><ui-tab panel="code-6-1">React</ui-tab><ui-tab panel="code-6-2">React + Tailwind</ui-tab><ui-tab-panel name="code-6-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-indicator</span> <span style="color:var(--ui-tag-color-purple)">current-index</span>=<span style="color:var(--ui-tag-color-teal)">"1"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Contract details"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Signers"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Attachments"</span> <span style="color:var(--ui-tag-color-purple)">complete</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Send"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-indicator</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-6-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiProgressIndicator</span> <span style="color:var(--ui-tag-color-purple)">currentIndex</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">1</span>}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contract details"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Signers"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Attachments"</span> <span style="color:var(--ui-tag-color-purple)">complete</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Send"</span> /&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiProgressIndicator</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-6-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">ProgressIndicator</span> <span style="color:var(--ui-tag-color-purple)">currentIndex</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">1</span>}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contract details"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Signers"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Attachments"</span> <span style="color:var(--ui-tag-color-purple)">complete</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Send"</span> /&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ProgressIndicator</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="let-the-user-jump-between-steps">Let the user jump between steps</h2>
+<p><code>interactive</code> makes the steps buttons: a click on a step (not the current one, not a disabled one) makes it current and fires <code>ui-change</code> with <code>detail.index</code>. In React + Tailwind, <code>onChange</code> gets the index. Use it when going back to an earlier step is safe, for example to correct the details before sending.</p>
+<div class="doc-demo"><ui-progress-indicator id="progress-jump" current-index="2" interactive>
+  <ui-progress-step label="Contract details"></ui-progress-step>
+  <ui-progress-step label="Signers"></ui-progress-step>
+  <ui-progress-step label="Review"></ui-progress-step>
+  <ui-progress-step label="Send" disabled></ui-progress-step>
+</ui-progress-indicator>
+<p>Current step: <output id="progress-jump-out">2</output></p>
+
+<script type="text/x-demo">
+  const steps = document.getElementById('progress-jump');
+  const out = document.getElementById('progress-jump-out');
+  steps.addEventListener('ui-change', (event) => (out.value = event.detail.index));
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-7-0">HTML</ui-tab><ui-tab panel="code-7-1">React</ui-tab><ui-tab panel="code-7-2">React + Tailwind</ui-tab><ui-tab-panel name="code-7-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-indicator</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"progress-jump"</span> <span style="color:var(--ui-tag-color-purple)">current-index</span>=<span style="color:var(--ui-tag-color-teal)">"2"</span> <span style="color:var(--ui-tag-color-purple)">interactive</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Contract details"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Signers"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Review"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Send"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-indicator</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;Current step: &lt;<span style="color:var(--ui-tag-color-blue)">output</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"progress-jump-out"</span>&gt;2&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> steps <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'progress-jump'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> out <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'progress-jump-out'</span>);
+  steps.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'ui-change'</span>, (event) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (out.value <span style="color:var(--ui-tag-color-magenta)">=</span> event.detail.index));
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-7-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> [step, setStep] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-green)">2</span>);
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiProgressIndicator</span> <span style="color:var(--ui-tag-color-purple)">currentIndex</span><span style="color:var(--ui-tag-color-magenta)">=</span>{step} <span style="color:var(--ui-tag-color-purple)">interactive</span> <span style="color:var(--ui-tag-color-purple)">onUiChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setStep</span>(e.detail.index)}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contract details"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Signers"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Review"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Send"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span> /&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiProgressIndicator</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;Current step: &lt;<span style="color:var(--ui-tag-color-blue)">output</span>&gt;{step}&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-7-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> [step, setStep] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-green)">2</span>);
+
+&lt;<span style="color:var(--ui-tag-color-blue)">ProgressIndicator</span> <span style="color:var(--ui-tag-color-purple)">currentIndex</span><span style="color:var(--ui-tag-color-magenta)">=</span>{step} <span style="color:var(--ui-tag-color-purple)">interactive</span> <span style="color:var(--ui-tag-color-purple)">onChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{setStep}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contract details"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Signers"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Review"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Send"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span> /&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ProgressIndicator</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;Current step: &lt;<span style="color:var(--ui-tag-color-blue)">output</span>&gt;{step}&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>React + Tailwind also takes <code>defaultCurrentIndex</code> when you don't need to hold the step yourself.</p>
+<h2 id="back-and-next-buttons">Back and Next buttons</h2>
+<p>Most often the page moves through the steps itself: set <code>current-index</code> from your Back and Next buttons. The indicator only shows the position; it doesn't change it on its own unless it is <code>interactive</code>.</p>
+<div class="doc-demo"><ui-progress-indicator id="progress-wizard" current-index="0">
+  <ui-progress-step label="Contract details"></ui-progress-step>
+  <ui-progress-step label="Signers"></ui-progress-step>
+  <ui-progress-step label="Review"></ui-progress-step>
+  <ui-progress-step label="Send"></ui-progress-step>
+</ui-progress-indicator>
+<p id="progress-wizard-text">Step 1 of 4: Contract details</p>
+<div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center">
+  <ui-button id="progress-wizard-back" kind="secondary" disabled>Back</ui-button>
+  <ui-button id="progress-wizard-next">Next</ui-button>
+</div>
+
+<script type="text/x-demo">
+  const indicator = document.getElementById('progress-wizard');
+  const text = document.getElementById('progress-wizard-text');
+  const back = document.getElementById('progress-wizard-back');
+  const next = document.getElementById('progress-wizard-next');
+  const labels = [...indicator.querySelectorAll('ui-progress-step')].map((step) => step.label);
+  const go = (index) => {
+    indicator.currentIndex = index;
+    text.textContent = `Step ${index + 1} of ${labels.length}: ${labels[index]}`;
+    back.disabled = index === 0;
+    next.disabled = index === labels.length - 1;
+  };
+  back.addEventListener('click', () => go(indicator.currentIndex - 1));
+  next.addEventListener('click', () => go(indicator.currentIndex + 1));
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-8-0">HTML</ui-tab><ui-tab panel="code-8-1">React</ui-tab><ui-tab panel="code-8-2">React + Tailwind</ui-tab><ui-tab-panel name="code-8-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-indicator</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"progress-wizard"</span> <span style="color:var(--ui-tag-color-purple)">current-index</span>=<span style="color:var(--ui-tag-color-teal)">"0"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Contract details"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Signers"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Review"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Send"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-indicator</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"progress-wizard-text"</span>&gt;Step 1 of 4: Contract details&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"display: flex; flex-wrap: wrap; gap: 16px; align-items: center"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"progress-wizard-back"</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"secondary"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span>&gt;Back&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"progress-wizard-next"</span>&gt;Next&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> indicator <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'progress-wizard'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> text <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'progress-wizard-text'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> back <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'progress-wizard-back'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> next <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'progress-wizard-next'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> labels <span style="color:var(--ui-tag-color-magenta)">=</span> [<span style="color:var(--ui-tag-color-magenta)">...</span>indicator.<span style="color:var(--ui-tag-color-cyan)">querySelectorAll</span>(<span style="color:var(--ui-tag-color-teal)">'ui-progress-step'</span>)].<span style="color:var(--ui-tag-color-cyan)">map</span>((step) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> step.label);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> <span style="color:var(--ui-tag-color-cyan)">go</span> <span style="color:var(--ui-tag-color-magenta)">=</span> (index) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    indicator.currentIndex <span style="color:var(--ui-tag-color-magenta)">=</span> index;
+    text.textContent <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">`Step ${</span><span style="color:var(--ui-tag-color-teal)">index </span><span style="color:var(--ui-tag-color-magenta)">+</span><span style="color:var(--ui-tag-color-teal)"> </span><span style="color:var(--ui-tag-color-green)">1</span><span style="color:var(--ui-tag-color-teal)">} of ${</span><span style="color:var(--ui-tag-color-teal)">labels.length</span><span style="color:var(--ui-tag-color-teal)">}: ${</span><span style="color:var(--ui-tag-color-teal)">labels[index]</span><span style="color:var(--ui-tag-color-teal)">}`</span>;
+    back.disabled <span style="color:var(--ui-tag-color-magenta)">=</span> index <span style="color:var(--ui-tag-color-magenta)">===</span> <span style="color:var(--ui-tag-color-green)">0</span>;
+    next.disabled <span style="color:var(--ui-tag-color-magenta)">=</span> index <span style="color:var(--ui-tag-color-magenta)">===</span> labels.length <span style="color:var(--ui-tag-color-magenta)">-</span> <span style="color:var(--ui-tag-color-green)">1</span>;
+  };
+  back.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">go</span>(indicator.currentIndex <span style="color:var(--ui-tag-color-magenta)">-</span> <span style="color:var(--ui-tag-color-green)">1</span>));
+  next.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">go</span>(indicator.currentIndex <span style="color:var(--ui-tag-color-magenta)">+</span> <span style="color:var(--ui-tag-color-green)">1</span>));
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-8-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> labels <span style="color:var(--ui-tag-color-magenta)">=</span> [<span style="color:var(--ui-tag-color-teal)">'Contract details'</span>, <span style="color:var(--ui-tag-color-teal)">'Signers'</span>, <span style="color:var(--ui-tag-color-teal)">'Review'</span>, <span style="color:var(--ui-tag-color-teal)">'Send'</span>];
+<span style="color:var(--ui-tag-color-magenta)">const</span> [step, setStep] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-green)">0</span>);
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiProgressIndicator</span> <span style="color:var(--ui-tag-color-purple)">currentIndex</span><span style="color:var(--ui-tag-color-magenta)">=</span>{step}&gt;
+  {labels.<span style="color:var(--ui-tag-color-cyan)">map</span>((label) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> &lt;<span style="color:var(--ui-tag-color-blue)">UiProgressStep</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{label} <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span>{label} /&gt;)}
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiProgressIndicator</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;Step {step <span style="color:var(--ui-tag-color-magenta)">+</span> <span style="color:var(--ui-tag-color-green)">1</span>} of {labels.length}: {labels[step]}&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiButton</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"secondary"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span><span style="color:var(--ui-tag-color-magenta)">=</span>{step <span style="color:var(--ui-tag-color-magenta)">===</span> <span style="color:var(--ui-tag-color-green)">0</span>} <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setStep</span>(step <span style="color:var(--ui-tag-color-magenta)">-</span> <span style="color:var(--ui-tag-color-green)">1</span>)}&gt;Back&lt;/<span style="color:var(--ui-tag-color-blue)">UiButton</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiButton</span> <span style="color:var(--ui-tag-color-purple)">disabled</span><span style="color:var(--ui-tag-color-magenta)">=</span>{step <span style="color:var(--ui-tag-color-magenta)">===</span> labels.length <span style="color:var(--ui-tag-color-magenta)">-</span> <span style="color:var(--ui-tag-color-green)">1</span>} <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setStep</span>(step <span style="color:var(--ui-tag-color-magenta)">+</span> <span style="color:var(--ui-tag-color-green)">1</span>)}&gt;Next&lt;/<span style="color:var(--ui-tag-color-blue)">UiButton</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-8-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> labels <span style="color:var(--ui-tag-color-magenta)">=</span> [<span style="color:var(--ui-tag-color-teal)">'Contract details'</span>, <span style="color:var(--ui-tag-color-teal)">'Signers'</span>, <span style="color:var(--ui-tag-color-teal)">'Review'</span>, <span style="color:var(--ui-tag-color-teal)">'Send'</span>];
+<span style="color:var(--ui-tag-color-magenta)">const</span> [step, setStep] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-green)">0</span>);
+
+&lt;<span style="color:var(--ui-tag-color-blue)">ProgressIndicator</span> <span style="color:var(--ui-tag-color-purple)">currentIndex</span><span style="color:var(--ui-tag-color-magenta)">=</span>{step}&gt;
+  {labels.<span style="color:var(--ui-tag-color-cyan)">map</span>((label) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> &lt;<span style="color:var(--ui-tag-color-blue)">ProgressStep</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{label} <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span>{label} /&gt;)}
+&lt;/<span style="color:var(--ui-tag-color-blue)">ProgressIndicator</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;Step {step <span style="color:var(--ui-tag-color-magenta)">+</span> <span style="color:var(--ui-tag-color-green)">1</span>} of {labels.length}: {labels[step]}&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">Button</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"secondary"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span><span style="color:var(--ui-tag-color-magenta)">=</span>{step <span style="color:var(--ui-tag-color-magenta)">===</span> <span style="color:var(--ui-tag-color-green)">0</span>} <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setStep</span>(step <span style="color:var(--ui-tag-color-magenta)">-</span> <span style="color:var(--ui-tag-color-green)">1</span>)}&gt;Back&lt;/<span style="color:var(--ui-tag-color-blue)">Button</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">Button</span> <span style="color:var(--ui-tag-color-purple)">disabled</span><span style="color:var(--ui-tag-color-magenta)">=</span>{step <span style="color:var(--ui-tag-color-magenta)">===</span> labels.length <span style="color:var(--ui-tag-color-magenta)">-</span> <span style="color:var(--ui-tag-color-green)">1</span>} <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setStep</span>(step <span style="color:var(--ui-tag-color-magenta)">+</span> <span style="color:var(--ui-tag-color-green)">1</span>)}&gt;Next&lt;/<span style="color:var(--ui-tag-color-blue)">Button</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="vertical">Vertical</h2>
+<p><code>vertical</code> stacks the steps. Use it in a narrow column beside the form, or when the labels are long.</p>
+<div class="doc-demo"><ui-progress-indicator current-index="1" vertical>
+  <ui-progress-step label="Request submitted" secondary-label="1 Oct, 09:12"></ui-progress-step>
+  <ui-progress-step label="Legal review" secondary-label="In progress"></ui-progress-step>
+  <ui-progress-step label="Approval by the managing director"></ui-progress-step>
+  <ui-progress-step label="Signing"></ui-progress-step>
+</ui-progress-indicator>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-9-0">HTML</ui-tab><ui-tab panel="code-9-1">React</ui-tab><ui-tab panel="code-9-2">React + Tailwind</ui-tab><ui-tab-panel name="code-9-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-indicator</span> <span style="color:var(--ui-tag-color-purple)">current-index</span>=<span style="color:var(--ui-tag-color-teal)">"1"</span> <span style="color:var(--ui-tag-color-purple)">vertical</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Request submitted"</span> <span style="color:var(--ui-tag-color-purple)">secondary-label</span>=<span style="color:var(--ui-tag-color-teal)">"1 Oct, 09:12"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Legal review"</span> <span style="color:var(--ui-tag-color-purple)">secondary-label</span>=<span style="color:var(--ui-tag-color-teal)">"In progress"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Approval by the managing director"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Signing"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-indicator</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-9-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiProgressIndicator</span> <span style="color:var(--ui-tag-color-purple)">currentIndex</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">1</span>} <span style="color:var(--ui-tag-color-purple)">vertical</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Request submitted"</span> <span style="color:var(--ui-tag-color-purple)">secondaryLabel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"1 Oct, 09:12"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Legal review"</span> <span style="color:var(--ui-tag-color-purple)">secondaryLabel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"In progress"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Approval by the managing director"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Signing"</span> /&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiProgressIndicator</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-9-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">ProgressIndicator</span> <span style="color:var(--ui-tag-color-purple)">currentIndex</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">1</span>} <span style="color:var(--ui-tag-color-purple)">vertical</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Request submitted"</span> <span style="color:var(--ui-tag-color-purple)">secondaryLabel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"1 Oct, 09:12"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Legal review"</span> <span style="color:var(--ui-tag-color-purple)">secondaryLabel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"In progress"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Approval by the managing director"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Signing"</span> /&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ProgressIndicator</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="space-equally">Space equally</h2>
+<p>By default each step is 128px wide, and a longer label wraps at 88px (Carbon cuts it with an ellipsis; here no step name is hidden). <code>space-equally</code> stretches the steps to share the full width instead. It has no effect with <code>vertical</code>.</p>
+<div class="doc-demo"><ui-progress-indicator current-index="2" space-equally>
+  <ui-progress-step label="Details"></ui-progress-step>
+  <ui-progress-step label="Signers"></ui-progress-step>
+  <ui-progress-step label="Review"></ui-progress-step>
+  <ui-progress-step label="Send"></ui-progress-step>
+</ui-progress-indicator>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-10-0">HTML</ui-tab><ui-tab panel="code-10-1">React</ui-tab><ui-tab panel="code-10-2">React + Tailwind</ui-tab><ui-tab-panel name="code-10-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-indicator</span> <span style="color:var(--ui-tag-color-purple)">current-index</span>=<span style="color:var(--ui-tag-color-teal)">"2"</span> <span style="color:var(--ui-tag-color-purple)">space-equally</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Details"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Signers"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Review"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Send"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-indicator</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-10-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiProgressIndicator</span> <span style="color:var(--ui-tag-color-purple)">currentIndex</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">2</span>} <span style="color:var(--ui-tag-color-purple)">spaceEqually</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Details"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Signers"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Review"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Send"</span> /&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiProgressIndicator</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-10-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">ProgressIndicator</span> <span style="color:var(--ui-tag-color-purple)">currentIndex</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">2</span>} <span style="color:var(--ui-tag-color-purple)">spaceEqually</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Details"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Signers"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Review"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Send"</span> /&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ProgressIndicator</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="skeleton">Skeleton</h2>
+<p>While the steps load, show <code>ui-progress-indicator-skeleton</code>: <code>steps</code> empty steps (4 by default), in a row or stacked with <code>vertical</code>. It is hidden from screen readers, so say &quot;loading&quot; on the container (for example <code>aria-busy</code>).</p>
+<div class="doc-demo"><ui-progress-indicator-skeleton></ui-progress-indicator-skeleton>
+<ui-progress-indicator-skeleton steps="3" vertical></ui-progress-indicator-skeleton>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-11-0">HTML</ui-tab><ui-tab panel="code-11-1">React</ui-tab><ui-tab panel="code-11-2">React + Tailwind</ui-tab><ui-tab-panel name="code-11-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-indicator-skeleton</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-indicator-skeleton</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-indicator-skeleton</span> <span style="color:var(--ui-tag-color-purple)">steps</span>=<span style="color:var(--ui-tag-color-teal)">"3"</span> <span style="color:var(--ui-tag-color-purple)">vertical</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-indicator-skeleton</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-11-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { UiProgressIndicatorSkeleton } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/react'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiProgressIndicatorSkeleton</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiProgressIndicatorSkeleton</span> <span style="color:var(--ui-tag-color-purple)">steps</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">3</span>} <span style="color:var(--ui-tag-color-purple)">vertical</span> /&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-11-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { ProgressIndicatorSkeleton } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@/components/ui/react-tw/progress-indicator'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">ProgressIndicatorSkeleton</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ProgressIndicatorSkeleton</span> <span style="color:var(--ui-tag-color-purple)">steps</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">3</span>} <span style="color:var(--ui-tag-color-purple)">vertical</span> /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>On the web component, import it from <code>@purpurabog/ui/progress-indicator-skeleton</code>.</p>
+<h2 id="keyboard">Keyboard</h2>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tab / Shift+Tab</td>
+<td>With <code>interactive</code>: moves between the steps (disabled steps are skipped). Without it the steps aren't Tab stops.</td>
+</tr>
+<tr>
+<td>Enter, Space</td>
+<td>With <code>interactive</code>: makes the focused step current (nothing on the current step)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="accessibility">Accessibility</h2>
+<ul>
+<li>The indicator is a list and each step a list item, as Carbon's <code>&lt;ul&gt;</code> / <code>&lt;li&gt;</code>.</li>
+<li>The current step has <code>aria-current=&quot;step&quot;</code>. After each label, screen readers hear the step's state: &quot;Complete&quot;, &quot;Current&quot;, &quot;Incomplete&quot; or &quot;Invalid&quot; (in Thai with <code>lang=&quot;th&quot;</code>).</li>
+<li>A disabled step's button is disabled and <code>aria-disabled</code>.</li>
+<li>The indicator shows progress; it doesn't name the task. Put a heading above it, and repeat the current step in text (as &quot;Step 2 of 4&quot; above) for people who don't see the icons.</li>
+</ul>
+<p>Unstyled React parts with the same behaviour: <a href="/kanok-ui-docs/en/headless-progress-indicator/">Headless Progress indicator</a>.</p>
+<h2 id="api">API</h2>
+<p>Generated from the package. In React, pass a property as a prop of the same name; events are props too (the React column).</p>
+<h3 id="ui-progress-indicator-react-uiprogressindicator"><code>&lt;ui-progress-indicator&gt;</code> · React <code>UiProgressIndicator</code></h3>
+<h4 id="attributes">Attributes</h4>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>current-index</code></td>
+<td><code>currentIndex</code></td>
+<td><code>number</code></td>
+<td><code>0</code></td>
+<td>Index of the current step (0-based).</td>
+</tr>
+<tr>
+<td><code>vertical</code></td>
+<td><code>vertical</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>space-equally</code></td>
+<td><code>spaceEqually</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Stretch the steps to share the width (horizontal only).</td>
+</tr>
+<tr>
+<td><code>interactive</code></td>
+<td><code>interactive</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Let the user jump between steps (fires <code>ui-change</code>).</td>
+</tr>
+</tbody>
+</table>
+<h4 id="methods">Methods</h4>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>focus(options)</code></td>
+<td>Interactive indicators: focus the current step.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="events">Events</h4>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>React</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ui-change</code></td>
+<td><code>onUiChange</code></td>
+<td>detail: { index } when the user picks another step</td>
+</tr>
+</tbody>
+</table>
+<h4 id="slots">Slots</h4>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(default)</td>
+<td><code>&lt;ui-progress-step&gt;</code> elements</td>
+</tr>
+</tbody>
+</table>
+<h4 id="css-parts">CSS parts</h4>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>base</code></td>
+<td>The list</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ui-progress-step-react-uiprogressstep"><code>&lt;ui-progress-step&gt;</code> · React <code>UiProgressStep</code></h3>
+<h4 id="attributes-2">Attributes</h4>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>label</code></td>
+<td><code>label</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>secondary-label</code></td>
+<td><code>secondaryLabel</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>Smaller text under the label (Carbon <code>secondaryLabel</code>).</td>
+</tr>
+<tr>
+<td><code>complete</code></td>
+<td><code>complete</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Marks the step done regardless of <code>current-index</code>.</td>
+</tr>
+<tr>
+<td><code>invalid</code></td>
+<td><code>invalid</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>disabled</code></td>
+<td><code>disabled</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>data-state</code></td>
+<td><code>state</code></td>
+<td><code>ProgressStepState</code></td>
+<td><code>'incomplete'</code></td>
+<td>Set by the indicator: the resolved state.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="properties">Properties</h4>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>clickable</code></td>
+<td><code>boolean</code></td>
+<td>Set by the indicator: whether steps are clickable.</td>
+</tr>
+<tr>
+<td><code>index</code></td>
+<td><code>number</code></td>
+<td>Set by the indicator: this step's position.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="events-2">Events</h4>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>React</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ui-step-click</code></td>
+<td>none (use a ref)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="slots-2">Slots</h4>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(default)</td>
+<td>Nothing; use <code>label</code> and <code>secondary-label</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="css-parts-2">CSS parts</h4>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>button</code></td>
+<td>The clickable step</td>
+</tr>
+<tr>
+<td><code>icon</code></td>
+<td>The state icon</td>
+</tr>
+<tr>
+<td><code>label</code></td>
+<td>The label</td>
+</tr>
+<tr>
+<td><code>secondary-label</code></td>
+<td>The secondary label</td>
+</tr>
+<tr>
+<td><code>line</code></td>
+<td>The progress line</td>
+</tr>
+</tbody>
+</table>
+<h4 id="css-custom-properties">CSS custom properties</h4>
+<table>
+<thead>
+<tr>
+<th>Custom property</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--ui-progress-step-flex</code></td>
+<td></td>
+<td>/ --ui-progress-step-min-width - A horizontal step's <code>flex</code> and least width (default <code>0 1 auto</code>, 112px: Carbon's 128px steps; Kanok: <code>1 1 0</code>, 120px)</td>
+</tr>
+<tr>
+<td><code>--ui-progress-label-max-width</code></td>
+<td></td>
+<td>/ --ui-progress-label-gap - Its label's <code>max-width</code> and end margin (default 88px, 0)</td>
+</tr>
+<tr>
+<td><code>--ui-progress-label-white-space</code></td>
+<td></td>
+<td>/ --ui-progress-label-overflow / --ui-progress-label-text-overflow - Its label on one line (default normal, visible, clip: it wraps; Kanok: one line, an ellipsis)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ui-progress-indicator-skeleton-react-uiprogressindicatorskeleton"><code>&lt;ui-progress-indicator-skeleton&gt;</code> · React <code>UiProgressIndicatorSkeleton</code></h3>
+<h4 id="attributes-3">Attributes</h4>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>steps</code></td>
+<td><code>steps</code></td>
+<td><code>number</code></td>
+<td><code>4</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>vertical</code></td>
+<td><code>vertical</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="css-parts-3">CSS parts</h4>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>step</code></td>
+<td>Each step</td>
+</tr>
+<tr>
+<td><code>label</code></td>
+<td>Each label bar</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+<nav class="doc-toc" aria-labelledby="doc-toc-title"><p id="doc-toc-title" class="doc-toc-title">On this page</p><ul><li class="doc-toc-h2"><a href="#installation">Installation</a></li><li class="doc-toc-h2"><a href="#use-it">Use it</a></li><li class="doc-toc-h2"><a href="#step-states">Step states</a></li><li class="doc-toc-h2"><a href="#secondary-label">Secondary label</a></li><li class="doc-toc-h2"><a href="#complete-out-of-order">Complete out of order</a></li><li class="doc-toc-h2"><a href="#let-the-user-jump-between-steps">Let the user jump between steps</a></li><li class="doc-toc-h2"><a href="#back-and-next-buttons">Back and Next buttons</a></li><li class="doc-toc-h2"><a href="#vertical">Vertical</a></li><li class="doc-toc-h2"><a href="#space-equally">Space equally</a></li><li class="doc-toc-h2"><a href="#skeleton">Skeleton</a></li><li class="doc-toc-h2"><a href="#keyboard">Keyboard</a></li><li class="doc-toc-h2"><a href="#accessibility">Accessibility</a></li><li class="doc-toc-h2"><a href="#api">API</a></li><li class="doc-toc-h3"><a href="#ui-progress-indicator-react-uiprogressindicator">&lt;ui-progress-indicator></a></li><li class="doc-toc-h3"><a href="#ui-progress-step-react-uiprogressstep">&lt;ui-progress-step></a></li><li class="doc-toc-h3"><a href="#ui-progress-indicator-skeleton-react-uiprogressindicatorskeleton">&lt;ui-progress-indicator-skeleton></a></li></ul></nav>
+</div>
+<nav class="doc-pager" aria-label="Next / Previous"><a class="doc-pager-prev" href="/kanok-ui-docs/en/accordion/" rel="prev"><span>Previous</span>Accordion</a><a class="doc-pager-next" href="/kanok-ui-docs/en/ui-shell/" rel="next"><span>Next</span>UI shell</a></nav>
+<footer class="doc-footer">@purpurabog/ui 1.4.3 · MIT · <a href="https://cdn.jsdelivr.net/npm/@purpurabog/ui@1.4.3/THIRD-PARTY-NOTICES.md">Third-party notices</a><br>Built on the Carbon Design System. Not affiliated with or endorsed by IBM; IBM and Carbon are trademarks of IBM Corp.</footer>
+</ui-content>
+<ui-modal id="doc-search" heading="Search" data-count="{n} results" data-empty="No results for “{q}”">
+<ui-search label="Search the docs" placeholder="Search the docs" size="lg"></ui-search>
+<p class="doc-search-status" role="status"></p>
+<ul class="doc-search-results"></ul>
+</ui-modal>
+</body>
+</html>

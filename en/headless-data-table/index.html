@@ -1,0 +1,1192 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Headless Data table · @purpurabog/ui</title>
+<link rel="alternate" hreflang="en" href="/kanok-ui-docs/en/headless-data-table/"  /><link rel="alternate" hreflang="th" href="/kanok-ui-docs/th/headless-data-table/"  />
+<script>(function(){try{var q=new URLSearchParams(location.search).get("design"),d=q;if(q==="kanok"||q==="carbon")localStorage.setItem("ui-docs-design",q);else d=localStorage.getItem("ui-docs-design");if(d==="kanok")document.documentElement.setAttribute("data-design","kanok")}catch(e){}})();(function(){try{var m=localStorage.getItem("ui-docs-theme");if(m!=="light"&&m!=="dark"&&m!=="system")return;var d=m==="dark"||(m==="system"&&matchMedia("(prefers-color-scheme: dark)").matches),r=document.documentElement,t=d?"g100":"white";if(r.getAttribute("data-design")==="kanok")t=d?"lacquer":"paper";r.setAttribute("data-theme",t)}catch(e){}})();</script>
+<style>ui-header:not(:defined){z-index:8000;box-sizing:border-box;border-block-end:1px solid var(--ui-border-subtle-1);background:var(--ui-canvas);block-size:48px;display:block;position:fixed;inset:0 0 auto}:is(ui-header:not(:defined)>*,ui-side-nav:not(:defined)>*){visibility:hidden}:is(ui-header-panel:not(:defined),ui-modal:not(:defined)){display:none}ui-side-nav:not(:defined){display:none}ui-content:not(:defined){margin-block-start:48px;padding:32px;display:block}@media (width>=1056px){ui-side-nav[expanded]:not(:defined){background:var(--ui-canvas);inline-size:256px;display:block;position:fixed;inset:48px auto 0 0}ui-side-nav[expanded]:not(:defined)~ui-content:not(:defined){margin-inline-start:256px}}ui-tabs:not(:defined){display:block}ui-tabs:not(:defined)>ui-tab{box-sizing:border-box;border-block-end:2px solid var(--ui-hairline);block-size:40px;color:var(--ui-ink-muted);font:var(--ui-font-body-sm);padding:0 16px;line-height:38px;display:inline-block}ui-tabs:not(:defined)>ui-tab:first-of-type{border-block-end-color:var(--ui-interactive);color:var(--ui-ink)}ui-tabs:not(:defined)>ui-tab-panel{padding:16px;display:block}ui-tabs:not(:defined)>ui-tab-panel~ui-tab-panel{display:none}ui-code-snippet:not(:defined){background:var(--ui-layer-1);max-block-size:272px;font:var(--ui-font-code,12px/16px monospace);white-space:pre;padding:16px;display:block;overflow:hidden}[data-react-example]:empty>*{visibility:hidden}.doc-demo:has(:not(:defined))>*{visibility:hidden}[data-react-example]:empty{box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}.doc-demo:has(:not(:defined)){box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}@keyframes doc-skeleton{to{background-position:-200% 0}}@media (prefers-reduced-motion:reduce){[data-react-example]:empty{animation:none}.doc-demo:has(:not(:defined)){animation:none}}</style>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/index-clEscpWq.js"></script>
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/theme-switcher-BGAHXRgF.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/listbox-gjElSjvA.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/headless-CpcU3xFD.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/pagination-BgZ55sJe.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/grid-BrZ5xmQT.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/flag-D0Ou26eR.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/checkbox-DeUXY4Ve.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/data-table-DdhWhi3s.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/pagination-D17fZAiy.js">
+  <link rel="stylesheet" crossorigin href="/kanok-ui-docs/assets/theme-switcher-CL5yB6XE.css">
+  <link rel="stylesheet" crossorigin href="/kanok-ui-docs/assets/headless-JjfvojKd.css">
+</head>
+<body>
+<ui-header label="@purpurabog/ui">
+<ui-skip-to-content></ui-skip-to-content>
+<ui-header-menu-button></ui-header-menu-button>
+<ui-header-name href="/kanok-ui-docs/en/" prefix="@purpurabog">ui</ui-header-name>
+<ui-header-global-bar>
+<ui-header-global-action id="doc-search-open" label="Search" tooltip-placement="bottom"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="m18.5 17.8-4.9-4.9a7 7 0 1 0-.7.7l4.9 4.9zM3 8.5a5.5 5.5 0 1 1 5.5 5.5A5.5 5.5 0 0 1 3 8.5Z" /></svg></ui-header-global-action>
+<ui-header-global-action label="Settings" panel="doc-settings" tooltip-placement="bottom-end"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="M16.9 10.6a7 7 0 0 0 0-1.2l1.8-1.4-1.6-2.8-2.1.8a6.6 6.6 0 0 0-1-.6L13.6 3h-3.2l-.4 2.4a6.6 6.6 0 0 0-1 .6l-2.1-.8L5.3 8l1.8 1.4a7 7 0 0 0 0 1.2L5.3 12l1.6 2.8 2.1-.8a6.6 6.6 0 0 0 1 .6l.4 2.4h3.2l.4-2.4a6.6 6.6 0 0 0 1-.6l2.1.8 1.6-2.8zM12 13a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" /></svg></ui-header-global-action>
+</ui-header-global-bar>
+<ui-header-panel id="doc-settings" label="Settings">
+<div class="doc-settings">
+<span class="doc-settings-label">Theme</span>
+<ui-theme-switcher storage-key="ui-docs-theme" tooltip-placement="bottom"></ui-theme-switcher>
+<span class="doc-settings-label">Style</span>
+<ui-content-switcher id="doc-design" aria-label="Style" size="sm"><ui-content-switcher-item name="carbon">Carbon</ui-content-switcher-item><ui-content-switcher-item name="kanok">Kanok</ui-content-switcher-item></ui-content-switcher>
+<span class="doc-settings-label">Language</span>
+<ui-link href="/kanok-ui-docs/th/headless-data-table/" hreflang="th" lang="th">ไทย</ui-link>
+</div>
+</ui-header-panel>
+</ui-header>
+<ui-side-nav label="Documentation"><ui-side-nav-items><ui-side-nav-menu label="Get started"><ui-side-nav-menu-item href="/kanok-ui-docs/en/">Overview</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/installation/">Installation</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/migration-1-0/">Migrating to 1.0</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Guides"><ui-side-nav-menu-item href="/kanok-ui-docs/en/themes/">Themes and layers</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/kanok/">Kanok design</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/customizing/">Customizing</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/icons/">Icons</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/forms/">Forms and validation</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/frameworks/">Frameworks</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/ai/">Using with AI</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Forms and actions"><ui-side-nav-menu-item href="/kanok-ui-docs/en/button/">Button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/file-uploader/">File uploader</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Overlays"><ui-side-nav-menu-item href="/kanok-ui-docs/en/modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/toggletip/">Toggletip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/menu/">Menu</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Data"><ui-side-nav-menu-item href="/kanok-ui-docs/en/data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/contained-list/">Contained list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tree-view/">Tree view</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Navigation"><ui-side-nav-menu-item href="/kanok-ui-docs/en/tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/breadcrumb/">Breadcrumb</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/link/">Link</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/ui-shell/">UI shell</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Content"><ui-side-nav-menu-item href="/kanok-ui-docs/en/tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tile/">Tile</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/user-avatar/">User avatar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/list/">List</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Status and loading"><ui-side-nav-menu-item href="/kanok-ui-docs/en/loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/inline-loading/">Inline loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/progress-bar/">Progress bar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/skeleton/">Skeleton</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/badge-indicator/">Badge indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/status-indicator/">Status indicator</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Layout"><ui-side-nav-menu-item href="/kanok-ui-docs/en/grid/">Grid</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/heading/">Heading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/layer/">Layer</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/action-set/">Action set</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/page-header/">Page header</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/big-number/">Big number</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Headless" expanded><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless/">Introduction</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-file-uploader/">File uploader</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-menu/">Menu</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-ui-shell/">UI shell</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-data-table/" current>Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tree-view/">Tree view</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu></ui-side-nav-items></ui-side-nav><script>if(matchMedia('(min-width: 66rem)').matches)document.currentScript.previousElementSibling.setAttribute('expanded','')</script>
+<ui-content>
+<div class="doc-page">
+<article class="doc">
+<!-- nav: Data table -->
+<h1 id="headless-data-table">Headless Data table</h1>
+<p><code>DataTable</code> is the behaviour of the styled <a href="/kanok-ui-docs/en/data-table/">Data table</a> without a single class, in the style of TanStack Table: the <code>useDataTable(options)</code> hook holds the state — sort, search, pages, selection, open rows, hidden columns, column widths and the editable grid — and hands back the rows to show, actions and prop getters. You write the <code>&lt;table&gt;</code>; the parts add the keyboard, focus and ARIA rules where they are needed.</p>
+<p>You own the markup: every cell, the header, the toolbar, the icons, the empty state and every style. State shows as <code>data-*</code> attributes on the parts.</p>
+<h2 id="installation">Installation</h2>
+<p>The headless parts come with the package (there is no shadcn item; the React + Tailwind items are built on them):</p>
+<ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">@purpurabog/ui</span></ui-code-snippet>
+<ui-code-snippet type="single" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { DataTable } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;</ui-code-snippet>
+<h2 id="use-it">Use it</h2>
+<div class="doc-demo" data-react-example="0"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { DataTable } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">interface</span> <span style="color:var(--ui-tag-color-cyan)">Contract</span> {
+  id<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>;
+  name<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>;
+  party<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>;
+  status<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>;
+  [key<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>]<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">unknown</span>;
+}
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> headers <span style="color:var(--ui-tag-color-magenta)">=</span> [
+  { <span style="color:var(--ui-tag-color-purple)">key:</span> <span style="color:var(--ui-tag-color-teal)">'name'</span>, <span style="color:var(--ui-tag-color-purple)">header:</span> <span style="color:var(--ui-tag-color-teal)">'Contract'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">key:</span> <span style="color:var(--ui-tag-color-teal)">'party'</span>, <span style="color:var(--ui-tag-color-purple)">header:</span> <span style="color:var(--ui-tag-color-teal)">'Counterparty'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">key:</span> <span style="color:var(--ui-tag-color-teal)">'status'</span>, <span style="color:var(--ui-tag-color-purple)">header:</span> <span style="color:var(--ui-tag-color-teal)">'Status'</span> },
+];
+<span style="color:var(--ui-tag-color-magenta)">const</span> rows<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">Contract</span>[] <span style="color:var(--ui-tag-color-magenta)">=</span> [
+  { <span style="color:var(--ui-tag-color-purple)">id:</span> <span style="color:var(--ui-tag-color-teal)">'1'</span>, <span style="color:var(--ui-tag-color-purple)">name:</span> <span style="color:var(--ui-tag-color-teal)">'Service agreement'</span>, <span style="color:var(--ui-tag-color-purple)">party:</span> <span style="color:var(--ui-tag-color-teal)">'Acme Co., Ltd.'</span>, <span style="color:var(--ui-tag-color-purple)">status:</span> <span style="color:var(--ui-tag-color-teal)">'Signed'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">id:</span> <span style="color:var(--ui-tag-color-teal)">'2'</span>, <span style="color:var(--ui-tag-color-purple)">name:</span> <span style="color:var(--ui-tag-color-teal)">'NDA'</span>, <span style="color:var(--ui-tag-color-purple)">party:</span> <span style="color:var(--ui-tag-color-teal)">'Globex'</span>, <span style="color:var(--ui-tag-color-purple)">status:</span> <span style="color:var(--ui-tag-color-teal)">'Draft'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">id:</span> <span style="color:var(--ui-tag-color-teal)">'3'</span>, <span style="color:var(--ui-tag-color-purple)">name:</span> <span style="color:var(--ui-tag-color-teal)">'Lease renewal'</span>, <span style="color:var(--ui-tag-color-purple)">party:</span> <span style="color:var(--ui-tag-color-teal)">'Initech'</span>, <span style="color:var(--ui-tag-color-purple)">status:</span> <span style="color:var(--ui-tag-color-teal)">'In review'</span> },
+];
+<span style="color:var(--ui-tag-color-magenta)">const</span> arrows <span style="color:var(--ui-tag-color-magenta)">=</span> { <span style="color:var(--ui-tag-color-purple)">ascending:</span> <span style="color:var(--ui-tag-color-teal)">'↑'</span>, <span style="color:var(--ui-tag-color-purple)">descending:</span> <span style="color:var(--ui-tag-color-teal)">'↓'</span>, <span style="color:var(--ui-tag-color-purple)">none:</span> <span style="color:var(--ui-tag-color-teal)">'↕'</span> } <span style="color:var(--ui-tag-color-magenta)">as</span> <span style="color:var(--ui-tag-color-magenta)">const</span>;
+<span style="color:var(--ui-tag-color-magenta)">const</span> head <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'h-12 bg-layer-accent text-start text-sm font-semibold text-ink'</span>;
+<span style="color:var(--ui-tag-color-magenta)">const</span> cell <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'h-12 border-b border-hairline px-4 text-sm text-ink-muted'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> table <span style="color:var(--ui-tag-color-magenta)">=</span> DataTable.<span style="color:var(--ui-tag-color-cyan)">useDataTable</span>({ headers, rows, <span style="color:var(--ui-tag-color-purple)">sortable:</span> <span style="color:var(--ui-tag-color-green)">true</span>, <span style="color:var(--ui-tag-color-purple)">selectable:</span> <span style="color:var(--ui-tag-color-green)">true</span> });
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Root</span> <span style="color:var(--ui-tag-color-purple)">table</span><span style="color:var(--ui-tag-color-magenta)">=</span>{table}&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Table</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contracts"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"w-full border-collapse"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">thead</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">tr</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">td</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-teal)">`${</span><span style="color:var(--ui-tag-color-teal)">head</span><span style="color:var(--ui-tag-color-teal)">} w-12 ps-4`</span>}&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.SelectAll</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Select all rows"</span> /&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">td</span>&gt;
+            {table.columns.<span style="color:var(--ui-tag-color-cyan)">map</span>((column) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+              &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.ColumnHeader</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{column.key} <span style="color:var(--ui-tag-color-purple)">column</span><span style="color:var(--ui-tag-color-magenta)">=</span>{column.key} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{head}&gt;
+                &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.SortButton</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex h-12 w-full items-center justify-between px-4 font-semibold hover:bg-layer-selected-hover focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus"</span>&gt;
+                  {column.header}
+                  &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span>&gt;{arrows[table.<span style="color:var(--ui-tag-color-cyan)">sortDirectionOf</span>(column.key)]}&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+                &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.SortButton</span>&gt;
+              &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.ColumnHeader</span>&gt;
+            ))}
+          &lt;/<span style="color:var(--ui-tag-color-blue)">tr</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">thead</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Body</span>&gt;
+          {table.pageRows.<span style="color:var(--ui-tag-color-cyan)">map</span>((row) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+            &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Row</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{row.id} <span style="color:var(--ui-tag-color-purple)">rowId</span><span style="color:var(--ui-tag-color-magenta)">=</span>{row.id} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"hover:bg-ghost-hover data-selected:bg-layer-selected-1 data-selected:text-ink"</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span> <span style="color:var(--ui-tag-color-purple)">index</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">0</span>} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{cell}&gt;
+                &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.SelectRow</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-teal)">`Select row, ${</span><span style="color:var(--ui-tag-color-teal)">row.name</span><span style="color:var(--ui-tag-color-teal)">}`</span>} /&gt;
+              &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span>&gt;
+              {table.columns.<span style="color:var(--ui-tag-color-cyan)">map</span>((column, i) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+                &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{column.key} <span style="color:var(--ui-tag-color-purple)">index</span><span style="color:var(--ui-tag-color-magenta)">=</span>{i <span style="color:var(--ui-tag-color-magenta)">+</span> <span style="color:var(--ui-tag-color-green)">1</span>} <span style="color:var(--ui-tag-color-purple)">column</span><span style="color:var(--ui-tag-color-magenta)">=</span>{column.key} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{cell}&gt;
+                  {<span style="color:var(--ui-tag-color-cyan)">String</span>(row[column.key])}
+                &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span>&gt;
+              ))}
+            &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Row</span>&gt;
+          ))}
+        &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Body</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Table</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"mt-2 text-xs text-ink-muted"</span>&gt;Selected: {table.selectedIds.<span style="color:var(--ui-tag-color-cyan)">join</span>(<span style="color:var(--ui-tag-color-teal)">', '</span>) <span style="color:var(--ui-tag-color-magenta)">||</span> <span style="color:var(--ui-tag-color-teal)">'(none)'</span>}&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Root</span>&gt;
+  );
+}</ui-code-snippet>
+<h2 id="anatomy">Anatomy</h2>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> table <span style="color:var(--ui-tag-color-magenta)">=</span> DataTable.<span style="color:var(--ui-tag-color-cyan)">useDataTable</span>({ headers, rows });
+
+&lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Root</span> <span style="color:var(--ui-tag-color-purple)">table</span><span style="color:var(--ui-tag-color-magenta)">=</span>{table}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.EditHint</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Table</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">thead</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">tr</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">td</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">DataTable.ExpandAll</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">td</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">td</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">DataTable.SelectAll</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">td</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.ColumnHeader</span> <span style="color:var(--ui-tag-color-purple)">column</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"…"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.SortButton</span> /&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.ResizeHandle</span> /&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.ColumnHeader</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Filler</span> /&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">tr</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">thead</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Body</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Row</span> <span style="color:var(--ui-tag-color-purple)">rowId</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"…"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span> <span style="color:var(--ui-tag-color-purple)">index</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">0</span>}&gt;&lt;<span style="color:var(--ui-tag-color-blue)">DataTable.ExpandToggle</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span> <span style="color:var(--ui-tag-color-purple)">index</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">1</span>}&gt;&lt;<span style="color:var(--ui-tag-color-blue)">DataTable.SelectRow</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span> <span style="color:var(--ui-tag-color-purple)">index</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">2</span>} <span style="color:var(--ui-tag-color-purple)">column</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"…"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.CellValue</span> /&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.CellInput</span> /&gt; or &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.CellSelect</span> /&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.CellError</span> /&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Filler</span> /&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Row</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.ExpandedRow</span> <span style="color:var(--ui-tag-color-purple)">rowId</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"…"</span> /&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Body</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Table</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Root</span>&gt;</ui-code-snippet>
+<p>Use only the parts you need: a read-only table is <code>Root</code>, <code>Table</code>, <code>Body</code>, <code>Row</code> and <code>Cell</code>, or even plain <code>&lt;tr&gt;</code> and <code>&lt;td&gt;</code> around <code>table.pageRows</code>.</p>
+<h2 id="search-and-pages">Search and pages</h2>
+<p><code>table.setFilterText(text)</code> filters the rows (any cell shown contains the text, case-insensitive) and goes back to page 1. With <code>pageSize</code> (or <code>defaultPageSize</code>), <code>table.pageRows</code> is one page; drive it with the headless <a href="/kanok-ui-docs/en/headless-pagination/">Pagination</a> or your own buttons through <code>table.setPagination</code>.</p>
+<div class="doc-demo" data-react-example="1"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { DataTable, Pagination } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">interface</span> <span style="color:var(--ui-tag-color-cyan)">Contract</span> {
+  id<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>;
+  name<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>;
+  party<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>;
+  [key<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>]<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">unknown</span>;
+}
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> parties <span style="color:var(--ui-tag-color-magenta)">=</span> [<span style="color:var(--ui-tag-color-teal)">'Acme'</span>, <span style="color:var(--ui-tag-color-teal)">'Globex'</span>, <span style="color:var(--ui-tag-color-teal)">'Initech'</span>, <span style="color:var(--ui-tag-color-teal)">'Umbrella'</span>];
+<span style="color:var(--ui-tag-color-magenta)">const</span> headers <span style="color:var(--ui-tag-color-magenta)">=</span> [
+  { <span style="color:var(--ui-tag-color-purple)">key:</span> <span style="color:var(--ui-tag-color-teal)">'name'</span>, <span style="color:var(--ui-tag-color-purple)">header:</span> <span style="color:var(--ui-tag-color-teal)">'Contract'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">key:</span> <span style="color:var(--ui-tag-color-teal)">'party'</span>, <span style="color:var(--ui-tag-color-purple)">header:</span> <span style="color:var(--ui-tag-color-teal)">'Counterparty'</span> },
+];
+<span style="color:var(--ui-tag-color-magenta)">const</span> rows<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">Contract</span>[] <span style="color:var(--ui-tag-color-magenta)">=</span> Array.<span style="color:var(--ui-tag-color-cyan)">from</span>({ <span style="color:var(--ui-tag-color-purple)">length:</span> <span style="color:var(--ui-tag-color-green)">23</span> }, (_, i) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> ({ <span style="color:var(--ui-tag-color-purple)">id:</span> <span style="color:var(--ui-tag-color-teal)">`c${</span><span style="color:var(--ui-tag-color-teal)">i </span><span style="color:var(--ui-tag-color-magenta)">+</span><span style="color:var(--ui-tag-color-teal)"> </span><span style="color:var(--ui-tag-color-green)">1</span><span style="color:var(--ui-tag-color-teal)">}`</span>, <span style="color:var(--ui-tag-color-purple)">name:</span> <span style="color:var(--ui-tag-color-teal)">`Contract ${</span><span style="color:var(--ui-tag-color-cyan)">String</span><span style="color:var(--ui-tag-color-teal)">(i </span><span style="color:var(--ui-tag-color-magenta)">+</span><span style="color:var(--ui-tag-color-teal)"> </span><span style="color:var(--ui-tag-color-green)">1</span><span style="color:var(--ui-tag-color-teal)">).</span><span style="color:var(--ui-tag-color-cyan)">padStart</span><span style="color:var(--ui-tag-color-teal)">(</span><span style="color:var(--ui-tag-color-green)">3</span><span style="color:var(--ui-tag-color-teal)">, </span><span style="color:var(--ui-tag-color-teal)">'0'</span><span style="color:var(--ui-tag-color-teal)">)</span><span style="color:var(--ui-tag-color-teal)">}`</span>, <span style="color:var(--ui-tag-color-purple)">party:</span> parties[i <span style="color:var(--ui-tag-color-magenta)">%</span> <span style="color:var(--ui-tag-color-green)">4</span>] }));
+<span style="color:var(--ui-tag-color-magenta)">const</span> cell <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'h-10 border-b border-hairline px-4 text-sm text-ink-muted'</span>;
+<span style="color:var(--ui-tag-color-magenta)">const</span> arrow <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'size-8 text-ink hover:bg-ghost-hover focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus data-disabled:text-ink-disabled data-disabled:hover:bg-transparent'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> table <span style="color:var(--ui-tag-color-magenta)">=</span> DataTable.<span style="color:var(--ui-tag-color-cyan)">useDataTable</span>({ headers, rows, <span style="color:var(--ui-tag-color-purple)">defaultPageSize:</span> <span style="color:var(--ui-tag-color-green)">5</span> });
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Root</span> <span style="color:var(--ui-tag-color-purple)">table</span><span style="color:var(--ui-tag-color-magenta)">=</span>{table}&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid max-w-md gap-2"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">input</span>
+          <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"search"</span>
+          <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Filter contracts"</span>
+          <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Filter contracts"</span>
+          <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{table.filterText}
+          <span style="color:var(--ui-tag-color-purple)">onChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> table.<span style="color:var(--ui-tag-color-cyan)">setFilterText</span>(e.target.value)}
+          <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-10 border-b border-border-strong-1 bg-field-1 px-4 text-sm text-ink placeholder:text-ink-placeholder focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus"</span>
+        /&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Table</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contracts"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"w-full border-collapse"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">thead</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">tr</span>&gt;
+              {table.columns.<span style="color:var(--ui-tag-color-cyan)">map</span>((column) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+                &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.ColumnHeader</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{column.key} <span style="color:var(--ui-tag-color-purple)">column</span><span style="color:var(--ui-tag-color-magenta)">=</span>{column.key} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-10 bg-layer-accent px-4 text-start text-sm font-semibold text-ink"</span>&gt;
+                  {column.header}
+                &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.ColumnHeader</span>&gt;
+              ))}
+            &lt;/<span style="color:var(--ui-tag-color-blue)">tr</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">thead</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Body</span>&gt;
+            {table.pageRows.<span style="color:var(--ui-tag-color-cyan)">map</span>((row) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+              &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Row</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{row.id} <span style="color:var(--ui-tag-color-purple)">rowId</span><span style="color:var(--ui-tag-color-magenta)">=</span>{row.id}&gt;
+                &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span> <span style="color:var(--ui-tag-color-purple)">index</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">0</span>} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{cell}&gt;{row.name}&lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span>&gt;
+                &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span> <span style="color:var(--ui-tag-color-purple)">index</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">1</span>} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{cell}&gt;{row.party}&lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span>&gt;
+              &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Row</span>&gt;
+            ))}
+          &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Body</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Table</span>&gt;
+        {table.filteredRows.length <span style="color:var(--ui-tag-color-magenta)">===</span> <span style="color:var(--ui-tag-color-green)">0</span> <span style="color:var(--ui-tag-color-magenta)">?</span> &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-sm text-ink-muted"</span>&gt;No results found.&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt; <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-green)">null</span>}
+        &lt;<span style="color:var(--ui-tag-color-blue)">Pagination.Root</span> <span style="color:var(--ui-tag-color-purple)">page</span><span style="color:var(--ui-tag-color-magenta)">=</span>{table.page} <span style="color:var(--ui-tag-color-purple)">pageSize</span><span style="color:var(--ui-tag-color-magenta)">=</span>{table.pageSize} <span style="color:var(--ui-tag-color-purple)">totalItems</span><span style="color:var(--ui-tag-color-magenta)">=</span>{table.filteredRows.length} <span style="color:var(--ui-tag-color-purple)">onChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{table.setPagination} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex items-center gap-2 text-sm text-ink"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"me-auto"</span> <span style="color:var(--ui-tag-color-purple)">role</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"status"</span>&gt;
+            {table.filteredRows.length} of {table.rows.length} rows · page {table.page} of {table.pageCount}
+          &lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Pagination.Prev</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Previous page"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{arrow}&gt;‹&lt;/<span style="color:var(--ui-tag-color-blue)">Pagination.Prev</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Pagination.Next</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Next page"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{arrow}&gt;›&lt;/<span style="color:var(--ui-tag-color-blue)">Pagination.Next</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Pagination.Root</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Root</span>&gt;
+  );
+}</ui-code-snippet>
+<p><code>filterRows(row, text, headers)</code> replaces the test, and <code>manualFiltering</code> keeps every row while you filter on the server. <code>filterText</code> / <code>onFilterChange</code> and <code>page</code> / <code>onPageChange</code> make both controlled.</p>
+<h2 id="expandable-rows">Expandable rows</h2>
+<p>With <code>expandable</code>, each row's <code>ExpandToggle</code> opens it; render an <code>ExpandedRow</code> under every open row (<code>table.isExpanded(id)</code>). <code>ExpandAll</code> opens every row shown, or closes them all once all are open. The toggles get <code>aria-expanded</code> and <code>aria-controls</code> pointing at the open row.</p>
+<div class="doc-demo" data-react-example="2"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { DataTable } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">interface</span> <span style="color:var(--ui-tag-color-cyan)">Contract</span> {
+  id<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>;
+  name<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>;
+  party<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>;
+  owner<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>;
+  [key<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>]<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">unknown</span>;
+}
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> headers <span style="color:var(--ui-tag-color-magenta)">=</span> [
+  { <span style="color:var(--ui-tag-color-purple)">key:</span> <span style="color:var(--ui-tag-color-teal)">'name'</span>, <span style="color:var(--ui-tag-color-purple)">header:</span> <span style="color:var(--ui-tag-color-teal)">'Contract'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">key:</span> <span style="color:var(--ui-tag-color-teal)">'party'</span>, <span style="color:var(--ui-tag-color-purple)">header:</span> <span style="color:var(--ui-tag-color-teal)">'Counterparty'</span> },
+];
+<span style="color:var(--ui-tag-color-magenta)">const</span> rows<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">Contract</span>[] <span style="color:var(--ui-tag-color-magenta)">=</span> [
+  { <span style="color:var(--ui-tag-color-purple)">id:</span> <span style="color:var(--ui-tag-color-teal)">'1'</span>, <span style="color:var(--ui-tag-color-purple)">name:</span> <span style="color:var(--ui-tag-color-teal)">'Service agreement'</span>, <span style="color:var(--ui-tag-color-purple)">party:</span> <span style="color:var(--ui-tag-color-teal)">'Acme Co., Ltd.'</span>, <span style="color:var(--ui-tag-color-purple)">owner:</span> <span style="color:var(--ui-tag-color-teal)">'Kanya S.'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">id:</span> <span style="color:var(--ui-tag-color-teal)">'2'</span>, <span style="color:var(--ui-tag-color-purple)">name:</span> <span style="color:var(--ui-tag-color-teal)">'NDA'</span>, <span style="color:var(--ui-tag-color-purple)">party:</span> <span style="color:var(--ui-tag-color-teal)">'Globex'</span>, <span style="color:var(--ui-tag-color-purple)">owner:</span> <span style="color:var(--ui-tag-color-teal)">'Anan P.'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">id:</span> <span style="color:var(--ui-tag-color-teal)">'3'</span>, <span style="color:var(--ui-tag-color-purple)">name:</span> <span style="color:var(--ui-tag-color-teal)">'Lease renewal'</span>, <span style="color:var(--ui-tag-color-purple)">party:</span> <span style="color:var(--ui-tag-color-teal)">'Initech'</span>, <span style="color:var(--ui-tag-color-purple)">owner:</span> <span style="color:var(--ui-tag-color-teal)">'Malee K.'</span> },
+];
+<span style="color:var(--ui-tag-color-magenta)">const</span> toggle <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'flex size-8 items-center justify-center text-ink hover:bg-ghost-hover focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus [&amp;&gt;svg]:transition-transform data-expanded:[&amp;&gt;svg]:rotate-90'</span>;
+<span style="color:var(--ui-tag-color-magenta)">const</span> <span style="color:var(--ui-tag-color-cyan)">chevron</span> <span style="color:var(--ui-tag-color-magenta)">=</span> (
+  &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-4 fill-current"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M11 8 6 13l-.7-.7L9.6 8 5.3 3.7 6 3z"</span> /&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+);
+<span style="color:var(--ui-tag-color-magenta)">const</span> cell <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'h-12 border-b border-hairline px-4 text-sm text-ink-muted'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> table <span style="color:var(--ui-tag-color-magenta)">=</span> DataTable.<span style="color:var(--ui-tag-color-cyan)">useDataTable</span>({ headers, rows, <span style="color:var(--ui-tag-color-purple)">expandable:</span> <span style="color:var(--ui-tag-color-green)">true</span>, <span style="color:var(--ui-tag-color-purple)">defaultExpandedIds:</span> [<span style="color:var(--ui-tag-color-teal)">'2'</span>] });
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Root</span> <span style="color:var(--ui-tag-color-purple)">table</span><span style="color:var(--ui-tag-color-magenta)">=</span>{table}&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Table</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contracts"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"w-full border-collapse"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">thead</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">tr</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"bg-layer-accent text-start text-sm font-semibold text-ink"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">td</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"w-12 ps-2"</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.ExpandAll</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span>{table.allExpanded <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-teal)">'Collapse all rows'</span> <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-teal)">'Expand all rows'</span>} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{toggle}&gt;{chevron}&lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.ExpandAll</span>&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">td</span>&gt;
+            {table.columns.<span style="color:var(--ui-tag-color-cyan)">map</span>((column) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+              &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.ColumnHeader</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{column.key} <span style="color:var(--ui-tag-color-purple)">column</span><span style="color:var(--ui-tag-color-magenta)">=</span>{column.key} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-12 px-4 text-start"</span>&gt;
+                {column.header}
+              &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.ColumnHeader</span>&gt;
+            ))}
+          &lt;/<span style="color:var(--ui-tag-color-blue)">tr</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">thead</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Body</span>&gt;
+          {table.pageRows.<span style="color:var(--ui-tag-color-cyan)">flatMap</span>((row) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+            <span style="color:var(--ui-tag-color-magenta)">const</span> <span style="color:var(--ui-tag-color-cyan)">parent</span> <span style="color:var(--ui-tag-color-magenta)">=</span> (
+              &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Row</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{row.id} <span style="color:var(--ui-tag-color-purple)">rowId</span><span style="color:var(--ui-tag-color-magenta)">=</span>{row.id} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"data-expanded:[&amp;&gt;td]:border-transparent"</span>&gt;
+                &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span> <span style="color:var(--ui-tag-color-purple)">index</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">0</span>} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-teal)">`${</span><span style="color:var(--ui-tag-color-teal)">cell</span><span style="color:var(--ui-tag-color-teal)">} ps-2`</span>}&gt;
+                  &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.ExpandToggle</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-teal)">`Expand row, ${</span><span style="color:var(--ui-tag-color-teal)">row.name</span><span style="color:var(--ui-tag-color-teal)">}`</span>} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{toggle}&gt;{chevron}&lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.ExpandToggle</span>&gt;
+                &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span>&gt;
+                &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span> <span style="color:var(--ui-tag-color-purple)">index</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">1</span>} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{cell}&gt;{row.name}&lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span>&gt;
+                &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span> <span style="color:var(--ui-tag-color-purple)">index</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">2</span>} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{cell}&gt;{row.party}&lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span>&gt;
+              &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Row</span>&gt;
+            );
+            <span style="color:var(--ui-tag-color-magenta)">if</span> (<span style="color:var(--ui-tag-color-magenta)">!</span>table.<span style="color:var(--ui-tag-color-cyan)">isExpanded</span>(row.id)) <span style="color:var(--ui-tag-color-magenta)">return</span> [parent];
+            <span style="color:var(--ui-tag-color-magenta)">return</span> [
+              parent,
+              &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.ExpandedRow</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-teal)">`${</span><span style="color:var(--ui-tag-color-teal)">row.id</span><span style="color:var(--ui-tag-color-teal)">}-detail`</span>} <span style="color:var(--ui-tag-color-purple)">rowId</span><span style="color:var(--ui-tag-color-magenta)">=</span>{row.id}&gt;
+                &lt;<span style="color:var(--ui-tag-color-blue)">td</span> <span style="color:var(--ui-tag-color-purple)">colSpan</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">3</span>} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"border-b border-hairline px-14 pb-6 pt-2 text-sm text-ink-muted"</span>&gt;
+                  Owner: {row.owner}
+                &lt;/<span style="color:var(--ui-tag-color-blue)">td</span>&gt;
+              &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.ExpandedRow</span>&gt;,
+            ];
+          })}
+        &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Body</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Table</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Root</span>&gt;
+  );
+}</ui-code-snippet>
+<p>Return the rows as one flat list (as here with <code>flatMap</code>), so opening a row doesn't remount it.</p>
+<h2 id="pick-one-row">Pick one row</h2>
+<p>With <code>radio</code>, <code>SelectRow</code> is a radio: the radios are one Tab stop (the chosen row, else the first enabled one), and the arrow keys move to the next enabled row and select it, wrapping. <code>SelectAll</code> renders nothing. A row with <code>disabled: true</code> can't be chosen.</p>
+<div class="doc-demo" data-react-example="3"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { DataTable } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">interface</span> <span style="color:var(--ui-tag-color-cyan)">Template</span> {
+  id<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>;
+  name<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>;
+  type<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>;
+  disabled<span style="color:var(--ui-tag-color-magenta)">?:</span> <span style="color:var(--ui-tag-color-cyan)">boolean</span>;
+  [key<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>]<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">unknown</span>;
+}
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> headers <span style="color:var(--ui-tag-color-magenta)">=</span> [
+  { <span style="color:var(--ui-tag-color-purple)">key:</span> <span style="color:var(--ui-tag-color-teal)">'name'</span>, <span style="color:var(--ui-tag-color-purple)">header:</span> <span style="color:var(--ui-tag-color-teal)">'Template'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">key:</span> <span style="color:var(--ui-tag-color-teal)">'type'</span>, <span style="color:var(--ui-tag-color-purple)">header:</span> <span style="color:var(--ui-tag-color-teal)">'Type'</span> },
+];
+<span style="color:var(--ui-tag-color-magenta)">const</span> rows<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">Template</span>[] <span style="color:var(--ui-tag-color-magenta)">=</span> [
+  { <span style="color:var(--ui-tag-color-purple)">id:</span> <span style="color:var(--ui-tag-color-teal)">'nda'</span>, <span style="color:var(--ui-tag-color-purple)">name:</span> <span style="color:var(--ui-tag-color-teal)">'Standard NDA'</span>, <span style="color:var(--ui-tag-color-purple)">type:</span> <span style="color:var(--ui-tag-color-teal)">'Confidentiality'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">id:</span> <span style="color:var(--ui-tag-color-teal)">'lease'</span>, <span style="color:var(--ui-tag-color-purple)">name:</span> <span style="color:var(--ui-tag-color-teal)">'Office lease'</span>, <span style="color:var(--ui-tag-color-purple)">type:</span> <span style="color:var(--ui-tag-color-teal)">'Property'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">id:</span> <span style="color:var(--ui-tag-color-teal)">'msa'</span>, <span style="color:var(--ui-tag-color-purple)">name:</span> <span style="color:var(--ui-tag-color-teal)">'Master services (being revised)'</span>, <span style="color:var(--ui-tag-color-purple)">type:</span> <span style="color:var(--ui-tag-color-teal)">'Services'</span>, <span style="color:var(--ui-tag-color-purple)">disabled:</span> <span style="color:var(--ui-tag-color-green)">true</span> },
+];
+<span style="color:var(--ui-tag-color-magenta)">const</span> cell <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'h-12 border-b border-hairline px-4 text-sm text-ink-muted'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> table <span style="color:var(--ui-tag-color-magenta)">=</span> DataTable.<span style="color:var(--ui-tag-color-cyan)">useDataTable</span>({ headers, rows, <span style="color:var(--ui-tag-color-purple)">radio:</span> <span style="color:var(--ui-tag-color-green)">true</span> });
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Root</span> <span style="color:var(--ui-tag-color-purple)">table</span><span style="color:var(--ui-tag-color-magenta)">=</span>{table}&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Table</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Pick a template"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"w-full border-collapse"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">thead</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">tr</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-12 bg-layer-accent text-sm font-semibold text-ink"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">th</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"w-12"</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sr-only"</span>&gt;Select&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">th</span>&gt;
+            {table.columns.<span style="color:var(--ui-tag-color-cyan)">map</span>((column) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+              &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.ColumnHeader</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{column.key} <span style="color:var(--ui-tag-color-purple)">column</span><span style="color:var(--ui-tag-color-magenta)">=</span>{column.key} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"px-4 text-start"</span>&gt;
+                {column.header}
+              &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.ColumnHeader</span>&gt;
+            ))}
+          &lt;/<span style="color:var(--ui-tag-color-blue)">tr</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">thead</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Body</span>&gt;
+          {table.pageRows.<span style="color:var(--ui-tag-color-cyan)">map</span>((row) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+            &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Row</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{row.id} <span style="color:var(--ui-tag-color-purple)">rowId</span><span style="color:var(--ui-tag-color-magenta)">=</span>{row.id} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"data-selected:bg-layer-selected-1 data-selected:[&amp;&gt;td]:text-ink"</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span> <span style="color:var(--ui-tag-color-purple)">index</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">0</span>} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-teal)">`${</span><span style="color:var(--ui-tag-color-teal)">cell</span><span style="color:var(--ui-tag-color-teal)">} ps-4`</span>}&gt;
+                &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.SelectRow</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-teal)">`Select row, ${</span><span style="color:var(--ui-tag-color-teal)">row.name</span><span style="color:var(--ui-tag-color-teal)">}`</span>} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"accent-ink"</span> /&gt;
+              &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span> <span style="color:var(--ui-tag-color-purple)">index</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">1</span>} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{cell}&gt;{row.name}&lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span> <span style="color:var(--ui-tag-color-purple)">index</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">2</span>} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{cell}&gt;{row.type}&lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span>&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Row</span>&gt;
+          ))}
+        &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Body</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Table</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"mt-2 text-xs text-ink-muted"</span>&gt;Template: {table.selectedIds[<span style="color:var(--ui-tag-color-green)">0</span>] <span style="color:var(--ui-tag-color-magenta)">??</span> <span style="color:var(--ui-tag-color-teal)">'(none)'</span>}&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Root</span>&gt;
+  );
+}</ui-code-snippet>
+<h2 id="show-and-hide-columns">Show and hide columns</h2>
+<p><code>table.columns</code> is the columns shown; <code>table.headers</code> is all of them. <code>toggleColumn(key, show)</code> shows or hides one, <code>isColumnLocked(key)</code> says it can't be hidden (<code>hideable: false</code>, or the last one shown), and <code>resetColumns()</code> goes back to the headers' <code>hidden</code>. <code>columnsChanged</code> says the choice differs from that.</p>
+<div class="doc-demo" data-react-example="4"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { DataTable } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">interface</span> <span style="color:var(--ui-tag-color-cyan)">Contract</span> {
+  id<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>;
+  name<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>;
+  party<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>;
+  status<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>;
+  updated<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>;
+  [key<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>]<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">unknown</span>;
+}
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> headers <span style="color:var(--ui-tag-color-magenta)">=</span> [
+  { <span style="color:var(--ui-tag-color-purple)">key:</span> <span style="color:var(--ui-tag-color-teal)">'name'</span>, <span style="color:var(--ui-tag-color-purple)">header:</span> <span style="color:var(--ui-tag-color-teal)">'Contract'</span>, <span style="color:var(--ui-tag-color-purple)">hideable:</span> <span style="color:var(--ui-tag-color-green)">false</span> },
+  { <span style="color:var(--ui-tag-color-purple)">key:</span> <span style="color:var(--ui-tag-color-teal)">'party'</span>, <span style="color:var(--ui-tag-color-purple)">header:</span> <span style="color:var(--ui-tag-color-teal)">'Counterparty'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">key:</span> <span style="color:var(--ui-tag-color-teal)">'status'</span>, <span style="color:var(--ui-tag-color-purple)">header:</span> <span style="color:var(--ui-tag-color-teal)">'Status'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">key:</span> <span style="color:var(--ui-tag-color-teal)">'updated'</span>, <span style="color:var(--ui-tag-color-purple)">header:</span> <span style="color:var(--ui-tag-color-teal)">'Updated'</span>, <span style="color:var(--ui-tag-color-purple)">hidden:</span> <span style="color:var(--ui-tag-color-green)">true</span> },
+];
+<span style="color:var(--ui-tag-color-magenta)">const</span> rows<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">Contract</span>[] <span style="color:var(--ui-tag-color-magenta)">=</span> [
+  { <span style="color:var(--ui-tag-color-purple)">id:</span> <span style="color:var(--ui-tag-color-teal)">'1'</span>, <span style="color:var(--ui-tag-color-purple)">name:</span> <span style="color:var(--ui-tag-color-teal)">'Service agreement'</span>, <span style="color:var(--ui-tag-color-purple)">party:</span> <span style="color:var(--ui-tag-color-teal)">'Acme Co., Ltd.'</span>, <span style="color:var(--ui-tag-color-purple)">status:</span> <span style="color:var(--ui-tag-color-teal)">'Signed'</span>, <span style="color:var(--ui-tag-color-purple)">updated:</span> <span style="color:var(--ui-tag-color-teal)">'2026-09-30'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">id:</span> <span style="color:var(--ui-tag-color-teal)">'2'</span>, <span style="color:var(--ui-tag-color-purple)">name:</span> <span style="color:var(--ui-tag-color-teal)">'NDA'</span>, <span style="color:var(--ui-tag-color-purple)">party:</span> <span style="color:var(--ui-tag-color-teal)">'Globex'</span>, <span style="color:var(--ui-tag-color-purple)">status:</span> <span style="color:var(--ui-tag-color-teal)">'Draft'</span>, <span style="color:var(--ui-tag-color-purple)">updated:</span> <span style="color:var(--ui-tag-color-teal)">'2026-10-01'</span> },
+];
+<span style="color:var(--ui-tag-color-magenta)">const</span> cell <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'h-10 border-b border-hairline px-4 text-sm text-ink-muted'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> table <span style="color:var(--ui-tag-color-magenta)">=</span> DataTable.<span style="color:var(--ui-tag-color-cyan)">useDataTable</span>({ headers, rows });
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Root</span> <span style="color:var(--ui-tag-color-purple)">table</span><span style="color:var(--ui-tag-color-magenta)">=</span>{table}&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">fieldset</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"mb-3 flex flex-wrap items-center gap-4 text-sm text-ink"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">legend</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"mb-1 text-xs text-ink-muted"</span>&gt;Columns&lt;/<span style="color:var(--ui-tag-color-blue)">legend</span>&gt;
+        {table.headers.<span style="color:var(--ui-tag-color-cyan)">map</span>((column) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+          &lt;<span style="color:var(--ui-tag-color-blue)">label</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{column.key} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex items-center gap-2 has-disabled:text-ink-disabled"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">input</span>
+              <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"checkbox"</span>
+              <span style="color:var(--ui-tag-color-purple)">checked</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-magenta)">!</span>table.hiddenColumns.<span style="color:var(--ui-tag-color-cyan)">includes</span>(column.key)}
+              <span style="color:var(--ui-tag-color-purple)">disabled</span><span style="color:var(--ui-tag-color-magenta)">=</span>{table.<span style="color:var(--ui-tag-color-cyan)">isColumnLocked</span>(column.key)}
+              <span style="color:var(--ui-tag-color-purple)">onChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> table.<span style="color:var(--ui-tag-color-cyan)">toggleColumn</span>(column.key, e.target.checked)}
+            /&gt;
+            {column.header}
+          &lt;/<span style="color:var(--ui-tag-color-blue)">label</span>&gt;
+        ))}
+        &lt;<span style="color:var(--ui-tag-color-blue)">button</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"button"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-magenta)">!</span>table.columnsChanged} <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{table.resetColumns} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-8 px-3 text-link hover:bg-ghost-hover disabled:text-ink-disabled focus-visible:outline-2 focus-visible:outline-focus"</span>&gt;
+          Reset
+        &lt;/<span style="color:var(--ui-tag-color-blue)">button</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">fieldset</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Table</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contracts"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"w-full border-collapse"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">thead</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">tr</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-10 bg-layer-accent text-sm font-semibold text-ink"</span>&gt;
+            {table.columns.<span style="color:var(--ui-tag-color-cyan)">map</span>((column) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+              &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.ColumnHeader</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{column.key} <span style="color:var(--ui-tag-color-purple)">column</span><span style="color:var(--ui-tag-color-magenta)">=</span>{column.key} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"px-4 text-start"</span>&gt;
+                {column.header}
+              &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.ColumnHeader</span>&gt;
+            ))}
+          &lt;/<span style="color:var(--ui-tag-color-blue)">tr</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">thead</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Body</span>&gt;
+          {table.pageRows.<span style="color:var(--ui-tag-color-cyan)">map</span>((row) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+            &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Row</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{row.id} <span style="color:var(--ui-tag-color-purple)">rowId</span><span style="color:var(--ui-tag-color-magenta)">=</span>{row.id}&gt;
+              {table.columns.<span style="color:var(--ui-tag-color-cyan)">map</span>((column, i) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+                &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{column.key} <span style="color:var(--ui-tag-color-purple)">index</span><span style="color:var(--ui-tag-color-magenta)">=</span>{i} <span style="color:var(--ui-tag-color-purple)">column</span><span style="color:var(--ui-tag-color-magenta)">=</span>{column.key} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{cell}&gt;
+                  {<span style="color:var(--ui-tag-color-cyan)">String</span>(row[column.key])}
+                &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span>&gt;
+              ))}
+            &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Row</span>&gt;
+          ))}
+        &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Body</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Table</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Root</span>&gt;
+  );
+}</ui-code-snippet>
+<p>Hidden columns leave the search too. <code>hiddenColumns</code> / <code>onColumnsChange</code> make the choice controlled, so you can save it.</p>
+<h2 id="edit-cells-in-place">Edit cells in place</h2>
+<p>A column with <code>editable: 'text' | 'number' | 'select'</code> makes the table an APG grid: <code>Table</code> gets <code>role=&quot;grid&quot;</code>, one body cell is the Tab stop, and the arrow keys, Home / End and Ctrl + Home / End move it. Enter, F2, a double click, a click on a <code>data-edit-icon</code> element or typing opens the editor. Render <code>CellInput</code> or <code>CellSelect</code> while the cell is edited (<code>useCellContext().editing</code>), and <code>CellError</code> for <code>validate</code>'s message. <code>onCellEdit</code> hands you the new <code>rows</code>.</p>
+<div class="doc-demo" data-react-example="5"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { useState } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { DataTable } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">interface</span> <span style="color:var(--ui-tag-color-cyan)">Contract</span> {
+  id<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>;
+  name<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>;
+  amount<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">number</span>;
+  status<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>;
+  [key<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>]<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">unknown</span>;
+}
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> headers<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">DataTable</span>.<span style="color:var(--ui-tag-color-cyan)">DataTableColumn</span>[] <span style="color:var(--ui-tag-color-magenta)">=</span> [
+  { <span style="color:var(--ui-tag-color-purple)">key:</span> <span style="color:var(--ui-tag-color-teal)">'name'</span>, <span style="color:var(--ui-tag-color-purple)">header:</span> <span style="color:var(--ui-tag-color-teal)">'Name'</span>, <span style="color:var(--ui-tag-color-purple)">editable:</span> <span style="color:var(--ui-tag-color-teal)">'text'</span>, <span style="color:var(--ui-tag-color-cyan)">validate</span><span style="color:var(--ui-tag-color-purple)">:</span> (value) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (<span style="color:var(--ui-tag-color-cyan)">String</span>(value).<span style="color:var(--ui-tag-color-cyan)">trim</span>() <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-teal)">''</span> <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-teal)">'Name is required'</span>) },
+  { <span style="color:var(--ui-tag-color-purple)">key:</span> <span style="color:var(--ui-tag-color-teal)">'amount'</span>, <span style="color:var(--ui-tag-color-purple)">header:</span> <span style="color:var(--ui-tag-color-teal)">'Amount (THB)'</span>, <span style="color:var(--ui-tag-color-purple)">editable:</span> <span style="color:var(--ui-tag-color-teal)">'number'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">key:</span> <span style="color:var(--ui-tag-color-teal)">'status'</span>, <span style="color:var(--ui-tag-color-purple)">header:</span> <span style="color:var(--ui-tag-color-teal)">'Status'</span>, <span style="color:var(--ui-tag-color-purple)">editable:</span> <span style="color:var(--ui-tag-color-teal)">'select'</span>, <span style="color:var(--ui-tag-color-purple)">options:</span> [
+    { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'draft'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Draft'</span> },
+    { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'signed'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Signed'</span> },
+  ] },
+];
+<span style="color:var(--ui-tag-color-magenta)">const</span> initialRows<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">Contract</span>[] <span style="color:var(--ui-tag-color-magenta)">=</span> [
+  { <span style="color:var(--ui-tag-color-purple)">id:</span> <span style="color:var(--ui-tag-color-teal)">'1'</span>, <span style="color:var(--ui-tag-color-purple)">name:</span> <span style="color:var(--ui-tag-color-teal)">'Office lease 2026'</span>, <span style="color:var(--ui-tag-color-purple)">amount:</span> <span style="color:var(--ui-tag-color-green)">250000</span>, <span style="color:var(--ui-tag-color-purple)">status:</span> <span style="color:var(--ui-tag-color-teal)">'draft'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">id:</span> <span style="color:var(--ui-tag-color-teal)">'2'</span>, <span style="color:var(--ui-tag-color-purple)">name:</span> <span style="color:var(--ui-tag-color-teal)">'NDA – Acme'</span>, <span style="color:var(--ui-tag-color-purple)">amount:</span> <span style="color:var(--ui-tag-color-green)">0</span>, <span style="color:var(--ui-tag-color-purple)">status:</span> <span style="color:var(--ui-tag-color-teal)">'signed'</span> },
+];
+<span style="color:var(--ui-tag-color-magenta)">const</span> editor <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'h-full w-full bg-surface-1 px-4 text-sm text-ink outline-2 -outline-offset-2 outline-focus aria-invalid:outline-error'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">CellContent</span>({ column, value }<span style="color:var(--ui-tag-color-magenta)">:</span> { column<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">DataTable</span>.<span style="color:var(--ui-tag-color-cyan)">DataTableColumn</span>; value<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">unknown</span> }) {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> { editing } <span style="color:var(--ui-tag-color-magenta)">=</span> DataTable.<span style="color:var(--ui-tag-color-cyan)">useCellContext</span>();
+  <span style="color:var(--ui-tag-color-magenta)">if</span> (editing) {
+    <span style="color:var(--ui-tag-color-magenta)">return</span> (
+      &lt;&gt;
+        {column.editable <span style="color:var(--ui-tag-color-magenta)">===</span> <span style="color:var(--ui-tag-color-teal)">'select'</span> <span style="color:var(--ui-tag-color-magenta)">?</span> &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.CellSelect</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span>{column.header} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{editor} /&gt; <span style="color:var(--ui-tag-color-magenta)">:</span> &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.CellInput</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span>{column.header} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{editor} /&gt;}
+        &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.CellError</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"absolute start-0 top-full z-10 whitespace-nowrap bg-surface-1 px-2 py-1 text-xs text-error-text shadow"</span> /&gt;
+      &lt;/&gt;
+    );
+  }
+  <span style="color:var(--ui-tag-color-magenta)">const</span> shown <span style="color:var(--ui-tag-color-magenta)">=</span> column.options?.<span style="color:var(--ui-tag-color-cyan)">find</span>((option) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> option.value <span style="color:var(--ui-tag-color-magenta)">===</span> value)?.label <span style="color:var(--ui-tag-color-magenta)">??</span> <span style="color:var(--ui-tag-color-cyan)">String</span>(value);
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.CellValue</span>&gt;{shown}&lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.CellValue</span>&gt;
+      {column.editable <span style="color:var(--ui-tag-color-magenta)">?</span> &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">data-edit-icon</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">""</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ms-2 cursor-pointer opacity-0 group-hover:opacity-100 group-focus:opacity-100"</span>&gt;✎&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt; <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-green)">null</span>}
+    &lt;/&gt;
+  );
+}
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [rows, setRows] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(initialRows);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [last, setLast] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">''</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> table <span style="color:var(--ui-tag-color-magenta)">=</span> DataTable.<span style="color:var(--ui-tag-color-cyan)">useDataTable</span>({
+    headers,
+    rows,
+    <span style="color:var(--ui-tag-color-cyan)">onCellEdit</span><span style="color:var(--ui-tag-color-purple)">:</span> (edit) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+      <span style="color:var(--ui-tag-color-cyan)">setRows</span>(edit.rows);
+      <span style="color:var(--ui-tag-color-cyan)">setLast</span>(<span style="color:var(--ui-tag-color-teal)">`${</span><span style="color:var(--ui-tag-color-teal)">edit.key</span><span style="color:var(--ui-tag-color-teal)">}: ${</span><span style="color:var(--ui-tag-color-cyan)">String</span><span style="color:var(--ui-tag-color-teal)">(edit.previous)</span><span style="color:var(--ui-tag-color-teal)">} → ${</span><span style="color:var(--ui-tag-color-teal)">edit.value</span><span style="color:var(--ui-tag-color-teal)">}`</span>);
+    },
+  });
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Root</span> <span style="color:var(--ui-tag-color-purple)">table</span><span style="color:var(--ui-tag-color-magenta)">=</span>{table}&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.EditHint</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sr-only"</span>&gt;Press Enter to edit&lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.EditHint</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Table</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contracts"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"w-full border-collapse"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">thead</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">tr</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-12 bg-layer-accent text-sm font-semibold text-ink"</span>&gt;
+            {table.columns.<span style="color:var(--ui-tag-color-cyan)">map</span>((column) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+              &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.ColumnHeader</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{column.key} <span style="color:var(--ui-tag-color-purple)">column</span><span style="color:var(--ui-tag-color-magenta)">=</span>{column.key} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"px-4 text-start"</span>&gt;
+                {column.header}
+              &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.ColumnHeader</span>&gt;
+            ))}
+          &lt;/<span style="color:var(--ui-tag-color-blue)">tr</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">thead</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Body</span>&gt;
+          {table.pageRows.<span style="color:var(--ui-tag-color-cyan)">map</span>((row) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+            &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Row</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{row.id} <span style="color:var(--ui-tag-color-purple)">rowId</span><span style="color:var(--ui-tag-color-magenta)">=</span>{row.id}&gt;
+              {table.columns.<span style="color:var(--ui-tag-color-cyan)">map</span>((column, i) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+                &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span>
+                  <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{column.key}
+                  <span style="color:var(--ui-tag-color-purple)">index</span><span style="color:var(--ui-tag-color-magenta)">=</span>{i}
+                  <span style="color:var(--ui-tag-color-purple)">column</span><span style="color:var(--ui-tag-color-magenta)">=</span>{column.key}
+                  <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"group relative h-12 border-b border-hairline px-4 text-sm text-ink-muted data-editing:p-0 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus"</span>
+                &gt;
+                  &lt;<span style="color:var(--ui-tag-color-blue)">CellContent</span> <span style="color:var(--ui-tag-color-purple)">column</span><span style="color:var(--ui-tag-color-magenta)">=</span>{column} <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{row[column.key]} /&gt;
+                &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span>&gt;
+              ))}
+            &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Row</span>&gt;
+          ))}
+        &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Body</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Table</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"mt-2 text-xs text-ink-muted"</span>&gt;Last edit: {last}&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Root</span>&gt;
+  );
+}</ui-code-snippet>
+<p>In the editor, Enter saves, Escape cancels, Tab / Shift + Tab save and edit the next / previous editable cell, and leaving the cell saves. Controls inside cells (links, buttons) leave the Tab order in a grid; Enter or Space on their cell presses them.</p>
+<h2 id="resize-columns">Resize columns</h2>
+<p><code>resizable</code> (or a column's <code>resizable</code>) gives <code>ResizeHandle</code> something to do: a native range input on the header's edge — drag it, or arrows 2px, Shift / Page Up / Down 16px, Home / End narrowest / widest. The first resize freezes the automatic layout into fixed widths (<code>table.resize.fixed</code>); <code>Filler</code> then takes the rest of the row. Attach <code>table.boxRef</code> to the scroll box, so the widest a column gets is the box's width.</p>
+<div class="doc-demo" data-react-example="6"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { DataTable } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">interface</span> <span style="color:var(--ui-tag-color-cyan)">Contract</span> {
+  id<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>;
+  name<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>;
+  owner<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>;
+  amount<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>;
+  [key<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>]<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">unknown</span>;
+}
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> headers <span style="color:var(--ui-tag-color-magenta)">=</span> [
+  { <span style="color:var(--ui-tag-color-purple)">key:</span> <span style="color:var(--ui-tag-color-teal)">'name'</span>, <span style="color:var(--ui-tag-color-purple)">header:</span> <span style="color:var(--ui-tag-color-teal)">'Name'</span>, <span style="color:var(--ui-tag-color-purple)">minWidth:</span> <span style="color:var(--ui-tag-color-green)">120</span> },
+  { <span style="color:var(--ui-tag-color-purple)">key:</span> <span style="color:var(--ui-tag-color-teal)">'owner'</span>, <span style="color:var(--ui-tag-color-purple)">header:</span> <span style="color:var(--ui-tag-color-teal)">'Owner'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">key:</span> <span style="color:var(--ui-tag-color-teal)">'amount'</span>, <span style="color:var(--ui-tag-color-purple)">header:</span> <span style="color:var(--ui-tag-color-teal)">'Amount (THB)'</span>, <span style="color:var(--ui-tag-color-purple)">resizable:</span> <span style="color:var(--ui-tag-color-green)">false</span> },
+];
+<span style="color:var(--ui-tag-color-magenta)">const</span> rows<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">Contract</span>[] <span style="color:var(--ui-tag-color-magenta)">=</span> [
+  { <span style="color:var(--ui-tag-color-purple)">id:</span> <span style="color:var(--ui-tag-color-teal)">'1'</span>, <span style="color:var(--ui-tag-color-purple)">name:</span> <span style="color:var(--ui-tag-color-teal)">'Office lease 2026'</span>, <span style="color:var(--ui-tag-color-purple)">owner:</span> <span style="color:var(--ui-tag-color-teal)">'Ananya'</span>, <span style="color:var(--ui-tag-color-purple)">amount:</span> <span style="color:var(--ui-tag-color-teal)">'250,000'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">id:</span> <span style="color:var(--ui-tag-color-teal)">'2'</span>, <span style="color:var(--ui-tag-color-purple)">name:</span> <span style="color:var(--ui-tag-color-teal)">'Software licence'</span>, <span style="color:var(--ui-tag-color-purple)">owner:</span> <span style="color:var(--ui-tag-color-teal)">'Chai'</span>, <span style="color:var(--ui-tag-color-purple)">amount:</span> <span style="color:var(--ui-tag-color-teal)">'48,000'</span> },
+];
+<span style="color:var(--ui-tag-color-magenta)">const</span> cell <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'h-10 border-b border-hairline px-4 text-sm text-ink-muted'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> table <span style="color:var(--ui-tag-color-magenta)">=</span> DataTable.<span style="color:var(--ui-tag-color-cyan)">useDataTable</span>({ headers, rows, <span style="color:var(--ui-tag-color-purple)">resizable:</span> <span style="color:var(--ui-tag-color-green)">true</span> });
+  <span style="color:var(--ui-tag-color-magenta)">const</span> { boxRef } <span style="color:var(--ui-tag-color-magenta)">=</span> table;
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Root</span> <span style="color:var(--ui-tag-color-purple)">table</span><span style="color:var(--ui-tag-color-magenta)">=</span>{table}&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">ref</span><span style="color:var(--ui-tag-color-magenta)">=</span>{boxRef} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"overflow-x-auto"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Table</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contracts"</span> <span style="color:var(--ui-tag-color-purple)">style</span><span style="color:var(--ui-tag-color-magenta)">=</span>{table.resize.tableStyle} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-teal)">`w-full border-collapse ${</span><span style="color:var(--ui-tag-color-teal)">table.resize.fixed </span><span style="color:var(--ui-tag-color-magenta)">?</span><span style="color:var(--ui-tag-color-teal)"> </span><span style="color:var(--ui-tag-color-teal)">'table-fixed'</span><span style="color:var(--ui-tag-color-teal)"> </span><span style="color:var(--ui-tag-color-magenta)">:</span><span style="color:var(--ui-tag-color-teal)"> </span><span style="color:var(--ui-tag-color-teal)">''}`</span>}&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">thead</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">tr</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-10 bg-layer-accent text-sm font-semibold text-ink"</span>&gt;
+              {table.columns.<span style="color:var(--ui-tag-color-cyan)">map</span>((column) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+                &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.ColumnHeader</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{column.key} <span style="color:var(--ui-tag-color-purple)">column</span><span style="color:var(--ui-tag-color-magenta)">=</span>{column.key} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"group relative px-4 text-start"</span>&gt;
+                  {column.header}
+                  &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.ResizeHandle</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-teal)">`Resize ${</span><span style="color:var(--ui-tag-color-teal)">column.header</span><span style="color:var(--ui-tag-color-teal)">} column`</span>} <span style="color:var(--ui-tag-color-purple)">valueText</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(px) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-teal)">`${</span><span style="color:var(--ui-tag-color-teal)">px</span><span style="color:var(--ui-tag-color-teal)">} pixels`</span>} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"peer absolute -end-3 top-0 z-10 m-0 h-full w-6 cursor-col-resize appearance-none bg-transparent opacity-0"</span> /&gt;
+                  &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"pointer-events-none absolute inset-y-0 end-0 w-0.5 group-hover:bg-border-strong-1 group-data-resizing:bg-interactive peer-focus-visible:bg-focus"</span> /&gt;
+                &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.ColumnHeader</span>&gt;
+              ))}
+              &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Filler</span> /&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">tr</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">thead</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Body</span>&gt;
+            {table.pageRows.<span style="color:var(--ui-tag-color-cyan)">map</span>((row) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+              &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Row</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{row.id} <span style="color:var(--ui-tag-color-purple)">rowId</span><span style="color:var(--ui-tag-color-magenta)">=</span>{row.id}&gt;
+                {table.columns.<span style="color:var(--ui-tag-color-cyan)">map</span>((column, i) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+                  &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{column.key} <span style="color:var(--ui-tag-color-purple)">index</span><span style="color:var(--ui-tag-color-magenta)">=</span>{i} <span style="color:var(--ui-tag-color-purple)">column</span><span style="color:var(--ui-tag-color-magenta)">=</span>{column.key} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{cell}&gt;
+                    {<span style="color:var(--ui-tag-color-cyan)">String</span>(row[column.key])}
+                  &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span>&gt;
+                ))}
+                &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Filler</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{cell} /&gt;
+              &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Row</span>&gt;
+            ))}
+          &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Body</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Table</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"mt-2 text-xs text-ink-muted"</span>&gt;Widths: {JSON.<span style="color:var(--ui-tag-color-cyan)">stringify</span>(table.columnWidths)}&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Root</span>&gt;
+  );
+}</ui-code-snippet>
+<p><code>columnWidths</code> / <code>onColumnResize</code> make the widths controlled, so you can save and restore them. Columns take <code>width</code>, <code>minWidth</code> (default 50) and <code>maxWidth</code>.</p>
+<h2 id="style-it">Style it</h2>
+<p>Draw the checkboxes yourself from <code>data-checked</code> and <code>data-indeterminate</code>, turn the sort arrow from <code>data-direction</code>, and shade selected and striped rows.</p>
+<div class="doc-demo" data-react-example="7"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { DataTable } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">interface</span> <span style="color:var(--ui-tag-color-cyan)">Signer</span> {
+  id<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>;
+  name<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>;
+  role<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>;
+  [key<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>]<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">unknown</span>;
+}
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> headers <span style="color:var(--ui-tag-color-magenta)">=</span> [
+  { <span style="color:var(--ui-tag-color-purple)">key:</span> <span style="color:var(--ui-tag-color-teal)">'name'</span>, <span style="color:var(--ui-tag-color-purple)">header:</span> <span style="color:var(--ui-tag-color-teal)">'Name'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">key:</span> <span style="color:var(--ui-tag-color-teal)">'role'</span>, <span style="color:var(--ui-tag-color-purple)">header:</span> <span style="color:var(--ui-tag-color-teal)">'Role'</span> },
+];
+<span style="color:var(--ui-tag-color-magenta)">const</span> rows<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">Signer</span>[] <span style="color:var(--ui-tag-color-magenta)">=</span> [
+  { <span style="color:var(--ui-tag-color-purple)">id:</span> <span style="color:var(--ui-tag-color-teal)">'1'</span>, <span style="color:var(--ui-tag-color-purple)">name:</span> <span style="color:var(--ui-tag-color-teal)">'Anan P.'</span>, <span style="color:var(--ui-tag-color-purple)">role:</span> <span style="color:var(--ui-tag-color-teal)">'Managing director'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">id:</span> <span style="color:var(--ui-tag-color-teal)">'2'</span>, <span style="color:var(--ui-tag-color-purple)">name:</span> <span style="color:var(--ui-tag-color-teal)">'Kanya S.'</span>, <span style="color:var(--ui-tag-color-purple)">role:</span> <span style="color:var(--ui-tag-color-teal)">'Legal counsel'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">id:</span> <span style="color:var(--ui-tag-color-teal)">'3'</span>, <span style="color:var(--ui-tag-color-purple)">name:</span> <span style="color:var(--ui-tag-color-teal)">'Somchai D.'</span>, <span style="color:var(--ui-tag-color-purple)">role:</span> <span style="color:var(--ui-tag-color-teal)">'Witness'</span> },
+];
+<span style="color:var(--ui-tag-color-magenta)">const</span> cell <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'h-12 border-b border-hairline px-4 text-sm text-ink-muted'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Box</span>({ label, all <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-green)">false</span> }<span style="color:var(--ui-tag-color-magenta)">:</span> { label<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>; all<span style="color:var(--ui-tag-color-magenta)">?:</span> <span style="color:var(--ui-tag-color-cyan)">boolean</span> }) {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> input <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'peer absolute inset-0 m-0 cursor-pointer opacity-0'</span>;
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"relative inline-flex size-4"</span>&gt;
+      {all <span style="color:var(--ui-tag-color-magenta)">?</span> &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.SelectAll</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span>{label} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{input} /&gt; <span style="color:var(--ui-tag-color-magenta)">:</span> &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.SelectRow</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span>{label} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{input} /&gt;}
+      &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"pointer-events-none flex size-4 items-center justify-center border border-icon-primary text-[11px] leading-none text-on-primary peer-focus-visible:outline-2 peer-focus-visible:outline-offset-1 peer-focus-visible:outline-focus peer-data-checked:bg-icon-primary peer-data-checked:after:content-['✓'] peer-data-indeterminate:bg-icon-primary peer-data-indeterminate:after:content-['–']"</span> /&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+  );
+}
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> table <span style="color:var(--ui-tag-color-magenta)">=</span> DataTable.<span style="color:var(--ui-tag-color-cyan)">useDataTable</span>({ headers, rows, <span style="color:var(--ui-tag-color-purple)">sortable:</span> <span style="color:var(--ui-tag-color-green)">true</span>, <span style="color:var(--ui-tag-color-purple)">selectable:</span> <span style="color:var(--ui-tag-color-green)">true</span> });
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Root</span> <span style="color:var(--ui-tag-color-purple)">table</span><span style="color:var(--ui-tag-color-magenta)">=</span>{table}&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Table</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Signers"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"w-full border-collapse"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">thead</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">tr</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"bg-layer-accent text-sm text-ink"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">td</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"w-12 ps-4"</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">Box</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Select all rows"</span> <span style="color:var(--ui-tag-color-purple)">all</span> /&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">td</span>&gt;
+            {table.columns.<span style="color:var(--ui-tag-color-cyan)">map</span>((column) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+              &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.ColumnHeader</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{column.key} <span style="color:var(--ui-tag-color-purple)">column</span><span style="color:var(--ui-tag-color-magenta)">=</span>{column.key} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"p-0 text-start font-semibold"</span>&gt;
+                &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.SortButton</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"group flex h-12 w-full items-center justify-between px-4 hover:bg-layer-selected-hover focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus data-[direction=ascending]:bg-layer-selected-hover data-[direction=descending]:bg-layer-selected-hover"</span>&gt;
+                  {column.header}
+                  &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 32 32"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-4 fill-icon-primary opacity-0 transition-transform group-hover:opacity-100 group-data-[direction=ascending]:opacity-100 group-data-[direction=descending]:rotate-180 group-data-[direction=descending]:opacity-100"</span>&gt;
+                    &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M16 4 6 14l1.41 1.41L15 7.83V28h2V7.83l7.59 7.58L26 14 16 4z"</span> /&gt;
+                  &lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+                &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.SortButton</span>&gt;
+              &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.ColumnHeader</span>&gt;
+            ))}
+          &lt;/<span style="color:var(--ui-tag-color-blue)">tr</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">thead</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Body</span>&gt;
+          {table.pageRows.<span style="color:var(--ui-tag-color-cyan)">map</span>((row) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+            &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Row</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{row.id} <span style="color:var(--ui-tag-color-purple)">rowId</span><span style="color:var(--ui-tag-color-magenta)">=</span>{row.id} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"even:bg-layer-accent hover:bg-ghost-hover data-selected:bg-layer-selected-1 data-selected:[&amp;&gt;td]:text-ink"</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span> <span style="color:var(--ui-tag-color-purple)">index</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">0</span>} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-teal)">`${</span><span style="color:var(--ui-tag-color-teal)">cell</span><span style="color:var(--ui-tag-color-teal)">} ps-4`</span>}&gt;
+                &lt;<span style="color:var(--ui-tag-color-blue)">Box</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-teal)">`Select row, ${</span><span style="color:var(--ui-tag-color-teal)">row.name</span><span style="color:var(--ui-tag-color-teal)">}`</span>} /&gt;
+              &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span>&gt;
+              {table.columns.<span style="color:var(--ui-tag-color-cyan)">map</span>((column, i) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+                &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{column.key} <span style="color:var(--ui-tag-color-purple)">index</span><span style="color:var(--ui-tag-color-magenta)">=</span>{i <span style="color:var(--ui-tag-color-magenta)">+</span> <span style="color:var(--ui-tag-color-green)">1</span>} <span style="color:var(--ui-tag-color-purple)">column</span><span style="color:var(--ui-tag-color-magenta)">=</span>{column.key} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{cell}&gt;
+                  {<span style="color:var(--ui-tag-color-cyan)">String</span>(row[column.key])}
+                &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span>&gt;
+              ))}
+            &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Row</span>&gt;
+          ))}
+        &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Body</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Table</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Root</span>&gt;
+  );
+}</ui-code-snippet>
+<ui-code-snippet type="multi" class="doc-code" data-lang="css"><span style="color:var(--ui-tag-color-blue)">th</span>[<span style="color:var(--ui-tag-color-purple)">data-sortable</span>] <span style="color:var(--ui-tag-color-blue)">button</span><span style="color:var(--ui-tag-color-purple)">:hover</span> { <span style="color:var(--ui-tag-color-purple)">background</span>: #d1d1d1; }
+<span style="color:var(--ui-tag-color-blue)">button</span>[<span style="color:var(--ui-tag-color-purple)">data-direction</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">'ascending'</span>] <span style="color:var(--ui-tag-color-purple)">.arrow</span>,
+<span style="color:var(--ui-tag-color-blue)">button</span>[<span style="color:var(--ui-tag-color-purple)">data-direction</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">'descending'</span>] <span style="color:var(--ui-tag-color-purple)">.arrow</span> { <span style="color:var(--ui-tag-color-purple)">opacity</span>: <span style="color:var(--ui-tag-color-green)">1</span>; }
+<span style="color:var(--ui-tag-color-blue)">button</span>[<span style="color:var(--ui-tag-color-purple)">data-direction</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">'descending'</span>] <span style="color:var(--ui-tag-color-purple)">.arrow</span> { <span style="color:var(--ui-tag-color-purple)">transform</span>: <span style="color:var(--ui-tag-color-cyan)">rotate</span>(<span style="color:var(--ui-tag-color-green)">180deg</span>); }
+<span style="color:var(--ui-tag-color-blue)">tr</span>[<span style="color:var(--ui-tag-color-purple)">data-row-id</span>]<span style="color:var(--ui-tag-color-purple)">:nth-child</span>(<span style="color:var(--ui-tag-color-green)">even</span>) { <span style="color:var(--ui-tag-color-purple)">background</span>: #e0e0e0; }
+<span style="color:var(--ui-tag-color-blue)">tr</span>[<span style="color:var(--ui-tag-color-purple)">data-selected</span>] { <span style="color:var(--ui-tag-color-purple)">background</span>: #e0e0e0; <span style="color:var(--ui-tag-color-purple)">color</span>: #161616; }
+<span style="color:var(--ui-tag-color-blue)">input</span>[<span style="color:var(--ui-tag-color-purple)">data-checked</span>] <span style="color:var(--ui-tag-color-magenta)">+</span> <span style="color:var(--ui-tag-color-purple)">.box</span>,
+<span style="color:var(--ui-tag-color-blue)">input</span>[<span style="color:var(--ui-tag-color-purple)">data-indeterminate</span>] <span style="color:var(--ui-tag-color-magenta)">+</span> <span style="color:var(--ui-tag-color-purple)">.box</span> { <span style="color:var(--ui-tag-color-purple)">background</span>: #161616; }
+<span style="color:var(--ui-tag-color-blue)">td</span>[<span style="color:var(--ui-tag-color-purple)">data-editable</span>]<span style="color:var(--ui-tag-color-purple)">:focus-visible</span> { <span style="color:var(--ui-tag-color-purple)">outline</span>: <span style="color:var(--ui-tag-color-green)">2px</span> <span style="color:var(--ui-tag-color-green)">solid</span> #0f62fe; <span style="color:var(--ui-tag-color-purple)">outline-offset</span>: <span style="color:var(--ui-tag-color-green)">-2px</span>; }
+<span style="color:var(--ui-tag-color-blue)">td</span>[<span style="color:var(--ui-tag-color-purple)">data-editing</span>] { <span style="color:var(--ui-tag-color-purple)">padding</span>: <span style="color:var(--ui-tag-color-green)">0</span>; }
+<span style="color:var(--ui-tag-color-blue)">th</span>[<span style="color:var(--ui-tag-color-purple)">data-resizing</span>] { <span style="color:var(--ui-tag-color-purple)">background</span>: #c6c6c6; }</ui-code-snippet>
+<h2 id="the-hook">The hook</h2>
+<h3 id="datatable-usedatatable-options">DataTable.useDataTable(options)</h3>
+<p>Holds the state. Every piece of state can be controlled (<code>sortKey</code>, <code>selectedIds</code> …) or left to the hook (<code>default…</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>headers</code></td>
+<td><code>DataTableColumn[]</code></td>
+<td></td>
+<td>The columns: <code>{ key, header }</code> plus the column options below (required)</td>
+</tr>
+<tr>
+<td><code>rows</code></td>
+<td><code>R[]</code></td>
+<td></td>
+<td>The rows: <code>{ id, …cells }</code>, <code>disabled</code> to block selection (required)</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>generated</td>
+<td>Base of the ids the parts give their elements</td>
+</tr>
+<tr>
+<td><code>sortable</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Every column sorts unless its header sets <code>sortable: false</code></td>
+</tr>
+<tr>
+<td><code>sortKey</code>, <code>sortDirection</code></td>
+<td><code>string</code>, <code>SortDirection</code></td>
+<td></td>
+<td>The sort (controlled)</td>
+</tr>
+<tr>
+<td><code>defaultSortKey</code>, <code>defaultSortDirection</code></td>
+<td><code>string</code>, <code>SortDirection</code></td>
+<td><code>''</code>, <code>'none'</code></td>
+<td>The starting sort</td>
+</tr>
+<tr>
+<td><code>onSortChange</code></td>
+<td><code>(sort: { key, direction }) =&gt; void</code></td>
+<td></td>
+<td>After a sort button was pressed</td>
+</tr>
+<tr>
+<td><code>manualSorting</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Keep <code>rows</code> in your order (sort on the server); the headers still show the sort</td>
+</tr>
+<tr>
+<td><code>sortRow</code></td>
+<td><code>(a, b, context) =&gt; number</code></td>
+<td></td>
+<td>Replaces the comparison</td>
+</tr>
+<tr>
+<td><code>locale</code></td>
+<td><code>string</code></td>
+<td><code>'en'</code></td>
+<td>Orders the sort</td>
+</tr>
+<tr>
+<td><code>selectable</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Checkboxes with select-all</td>
+</tr>
+<tr>
+<td><code>radio</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>One choice with a radio per row</td>
+</tr>
+<tr>
+<td><code>selectedIds</code>, <code>defaultSelectedIds</code></td>
+<td><code>string[]</code></td>
+<td><code>[]</code></td>
+<td>The selected rows</td>
+</tr>
+<tr>
+<td><code>onSelectionChange</code></td>
+<td><code>(ids: string[], rows: R[]) =&gt; void</code></td>
+<td></td>
+<td>After the selection changed</td>
+</tr>
+<tr>
+<td><code>filterText</code>, <code>defaultFilterText</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>The search text</td>
+</tr>
+<tr>
+<td><code>onFilterChange</code></td>
+<td><code>(value: string) =&gt; void</code></td>
+<td></td>
+<td>After <code>setFilterText</code></td>
+</tr>
+<tr>
+<td><code>filterRows</code></td>
+<td><code>(row, text, headers) =&gt; boolean</code></td>
+<td></td>
+<td>Replaces the search's row test</td>
+</tr>
+<tr>
+<td><code>manualFiltering</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Keep every row (filter on the server)</td>
+</tr>
+<tr>
+<td><code>expandable</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Rows open and close</td>
+</tr>
+<tr>
+<td><code>expandedIds</code>, <code>defaultExpandedIds</code></td>
+<td><code>string[]</code></td>
+<td><code>[]</code></td>
+<td>The open rows</td>
+</tr>
+<tr>
+<td><code>onExpandChange</code></td>
+<td><code>(change: { expandedIds, expanded, id? }) =&gt; void</code></td>
+<td></td>
+<td>After a row (or, without <code>id</code>, every row) opened or closed</td>
+</tr>
+<tr>
+<td><code>pageSize</code>, <code>defaultPageSize</code></td>
+<td><code>number</code></td>
+<td><code>0</code></td>
+<td>Rows per page (0: one page of every row)</td>
+</tr>
+<tr>
+<td><code>page</code>, <code>defaultPage</code></td>
+<td><code>number</code></td>
+<td><code>1</code></td>
+<td>The page, from 1</td>
+</tr>
+<tr>
+<td><code>onPageChange</code></td>
+<td><code>(change: { page, pageSize }) =&gt; void</code></td>
+<td></td>
+<td>After <code>setPagination</code>, or a new search on a later page</td>
+</tr>
+<tr>
+<td><code>hiddenColumns</code>, <code>defaultHiddenColumns</code></td>
+<td><code>string[]</code></td>
+<td>headers marked <code>hidden</code></td>
+<td>Keys of the columns not shown</td>
+</tr>
+<tr>
+<td><code>onColumnsChange</code></td>
+<td><code>(change: { hiddenColumns, key, hidden }) =&gt; void</code></td>
+<td></td>
+<td>After a column was shown or hidden (<code>key</code> <code>''</code> after a reset)</td>
+</tr>
+<tr>
+<td><code>resizable</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Every column gets a resize handle</td>
+</tr>
+<tr>
+<td><code>columnWidths</code>, <code>defaultColumnWidths</code></td>
+<td><code>Record&lt;string, number&gt;</code></td>
+<td><code>{}</code></td>
+<td>Column widths in px by key</td>
+</tr>
+<tr>
+<td><code>onColumnResize</code></td>
+<td><code>(change: { key, width, widths }) =&gt; void</code></td>
+<td></td>
+<td>After a resize (once per drag or key press)</td>
+</tr>
+<tr>
+<td><code>staticWidth</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>A resized table is as wide as its columns, not its box</td>
+</tr>
+<tr>
+<td><code>onCellEdit</code></td>
+<td><code>(edit: { rowId, key, value, previous, row, rows }) =&gt; void</code></td>
+<td></td>
+<td>An edited cell was saved: set <code>rows</code> to <code>edit.rows</code></td>
+</tr>
+</tbody>
+</table>
+<p>Column options on each header: <code>sortable</code>, <code>editable</code> (<code>'text' \| 'number' \| 'select'</code>), <code>options</code> (<code>{ value, label }[]</code> for a select), <code>validate(value, row)</code>, <code>resizable</code>, <code>width</code>, <code>minWidth</code>, <code>maxWidth</code>, <code>hideable</code>, <code>hidden</code>, <code>pinned</code> (<code>'start' \| 'end'</code>).</p>
+<p>What it returns, by topic:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rows</td>
+<td><code>rows</code>, <code>filteredRows</code> (search kept), <code>sortedRows</code>, <code>pageRows</code> (the rows to render), <code>rowById</code></td>
+</tr>
+<tr>
+<td>Columns</td>
+<td><code>headers</code> (all), <code>columns</code> (shown), <code>hiddenColumns</code>, <code>toggleColumn(key, show)</code>, <code>resetColumns()</code>, <code>isColumnLocked(key)</code>, <code>columnsChanged</code>, <code>pins</code></td>
+</tr>
+<tr>
+<td>Sort</td>
+<td><code>sortKey</code>, <code>sortDirection</code>, <code>sortDirectionOf(key)</code>, <code>isSortable(column)</code>, <code>sortBy(key)</code></td>
+</tr>
+<tr>
+<td>Search</td>
+<td><code>filterText</code>, <code>setFilterText(text)</code></td>
+</tr>
+<tr>
+<td>Pages</td>
+<td><code>paged</code>, <code>page</code>, <code>pageSize</code>, <code>pageCount</code>, <code>setPagination({ page, pageSize })</code></td>
+</tr>
+<tr>
+<td>Selection</td>
+<td><code>selectable</code>, <code>radio</code>, <code>selectedIds</code>, <code>isSelected(id)</code>, <code>setSelectedIds(ids)</code>, <code>toggleRow(row, checked)</code>, <code>toggleAll()</code>, <code>selectAll()</code>, <code>allSelected</code>, <code>someSelected</code>, <code>radioStop</code>, <code>getSelectAllProps()</code>, <code>getSelectRowProps(row)</code></td>
+</tr>
+<tr>
+<td>Open rows</td>
+<td><code>expandable</code>, <code>expandedIds</code>, <code>isExpanded(id)</code>, <code>allExpanded</code>, <code>toggleExpanded(id)</code>, <code>toggleAllExpanded()</code>, <code>expandedRowId(id)</code></td>
+</tr>
+<tr>
+<td>Widths and grid</td>
+<td><code>columnWidths</code>, <code>resize</code> (<code>fixed</code>, <code>hasFiller</code>, <code>tableStyle</code>, <code>widthOf(column)</code> …), <code>grid</code> (<code>enabled</code> …), <code>tableRef</code>, <code>boxRef</code>, <code>id</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>DataTable.useDataTableContext()</code> returns the same object to any component inside <code>Root</code>.</p>
+<h2 id="parts">Parts</h2>
+<h3 id="datatable-root">DataTable.Root</h3>
+<p>Renders nothing of its own: it gives its children the hook's table.</p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>table</code></td>
+<td>what <code>useDataTable</code> returned</td>
+<td></td>
+<td>Required</td>
+</tr>
+</tbody>
+</table>
+<h3 id="datatable-table">DataTable.Table</h3>
+<p>Renders a <code>&lt;table&gt;</code> with the hook's <code>tableRef</code>; <code>role=&quot;grid&quot;</code> once a column is <code>editable</code>. It takes every <code>&lt;table&gt;</code> prop.</p>
+<h3 id="datatable-body">DataTable.Body</h3>
+<p>Renders a <code>&lt;tbody&gt;</code>. In a grid it handles the cells' keys, clicks, double clicks and focus.</p>
+<h3 id="datatable-columnheader">DataTable.ColumnHeader</h3>
+<p>Renders a <code>&lt;th scope=&quot;col&quot;&gt;</code> with <code>aria-sort</code> on a sortable column, <code>data-key</code>, and its resized width. It takes every <code>&lt;th&gt;</code> prop.</p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>column</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>The column's key (required)</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-sortable</code></td>
+<td>The column sorts</td>
+</tr>
+<tr>
+<td><code>data-resizing</code></td>
+<td>Its handle is being dragged</td>
+</tr>
+</tbody>
+</table>
+<h3 id="datatable-sortbutton">DataTable.SortButton</h3>
+<p>Renders a <code>&lt;button type=&quot;button&quot;&gt;</code> that steps its column's sort: none → ascending → descending → none; a new column starts ascending. Describe the next step with <code>aria-describedby</code> if you like.</p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-direction</code></td>
+<td>Always: <code>none</code>, <code>ascending</code> or <code>descending</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="datatable-resizehandle">DataTable.ResizeHandle</h3>
+<p>Renders an <code>&lt;input type=&quot;range&quot;&gt;</code> (nothing for a column that doesn't resize). Name it (&quot;Resize Name column&quot;). It takes every input prop except <code>type</code>, <code>value</code>, <code>min</code>, <code>max</code> and <code>step</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>valueText</code></td>
+<td><code>(width: number) =&gt; string</code></td>
+<td></td>
+<td>The width as words for assistive tech (&quot;120 pixels&quot;)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="datatable-row">DataTable.Row</h3>
+<p>Renders a <code>&lt;tr&gt;</code> with <code>data-row-id</code>, which the grid and the radios find it by.</p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>rowId</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>The row's <code>id</code> (required)</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-selected</code></td>
+<td>The row is selected</td>
+</tr>
+<tr>
+<td><code>data-expanded</code></td>
+<td>The row is open</td>
+</tr>
+</tbody>
+</table>
+<h3 id="datatable-cell">DataTable.Cell</h3>
+<p>Renders a <code>&lt;td&gt;</code>. In a grid one body cell is the Tab stop and the others are <code>tabIndex={-1}</code>; cells that can't be edited are <code>aria-readonly</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>index</code></td>
+<td><code>number</code></td>
+<td></td>
+<td>The cell's place in its row, from 0, counting every cell (expand, select, data) (required)</td>
+</tr>
+<tr>
+<td><code>column</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>The column's key, for a data cell; an <code>editable</code> column makes the cell editable</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-editable</code></td>
+<td>The cell can be edited</td>
+</tr>
+<tr>
+<td><code>data-editing</code></td>
+<td>The cell is being edited</td>
+</tr>
+<tr>
+<td><code>data-key</code></td>
+<td>The column's key, on an editable cell</td>
+</tr>
+</tbody>
+</table>
+<p><code>DataTable.useCellContext()</code> returns the cell's <code>rowId</code>, <code>column</code> and <code>editing</code> (<code>{ draft, error }</code> while edited, else <code>null</code>).</p>
+<h3 id="datatable-cellvalue-datatable-edithint">DataTable.CellValue, DataTable.EditHint</h3>
+<p><code>CellValue</code> renders a <code>&lt;span&gt;</code> around an editable cell's value: a click on it focuses the cell. <code>EditHint</code> renders a <code>&lt;span&gt;</code> with the text that describes every editable cell (&quot;Press Enter to edit&quot;); only in a grid. Hide it visually.</p>
+<h3 id="datatable-cellinput-datatable-cellselect-datatable-cellerror">DataTable.CellInput, DataTable.CellSelect, DataTable.CellError</h3>
+<p>The editor while a cell is edited: <code>CellInput</code> an <code>&lt;input&gt;</code> (text, or number with <code>inputMode=&quot;decimal&quot;</code>), <code>CellSelect</code> a <code>&lt;select&gt;</code> of the column's <code>options</code> (or your own <code>&lt;option&gt;</code> children). Both are <code>aria-invalid</code> and described by the error while <code>validate</code> refuses the value. <code>CellError</code> renders a <code>&lt;span role=&quot;alert&quot;&gt;</code> with the message, and nothing while the value is valid.</p>
+<h3 id="datatable-selectall">DataTable.SelectAll</h3>
+<p>Renders a native checkbox (the headless <a href="/kanok-ui-docs/en/headless-checkbox/">Checkbox</a>): checked when every row in scope is selected, mixed when some are. A press clears the selection when any row is selected, else selects every enabled row shown (Carbon). Nothing in a <code>radio</code> table.</p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-checked</code></td>
+<td>Every row in scope is selected</td>
+</tr>
+<tr>
+<td><code>data-indeterminate</code></td>
+<td>Some are</td>
+</tr>
+</tbody>
+</table>
+<h3 id="datatable-selectrow">DataTable.SelectRow</h3>
+<p>Renders a native checkbox for its row, or a radio in a <code>radio</code> table. A disabled row's box is disabled.</p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-checked</code></td>
+<td>The row is selected</td>
+</tr>
+</tbody>
+</table>
+<h3 id="datatable-expandtoggle-datatable-expandall">DataTable.ExpandToggle, DataTable.ExpandAll</h3>
+<p>Each renders a <code>&lt;button type=&quot;button&quot;&gt;</code> with <code>aria-expanded</code>; <code>aria-controls</code> points at the open row(s). <code>ExpandToggle</code> opens or closes its row; <code>ExpandAll</code> opens every row shown, or closes them all once all are open. Name them with <code>aria-label</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-expanded</code></td>
+<td>Its row is open (every row, for <code>ExpandAll</code>)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="datatable-expandedrow">DataTable.ExpandedRow</h3>
+<p>Renders the <code>&lt;tr&gt;</code> under an open row, with the id its toggle controls.</p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>rowId</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>The open row's <code>id</code> (required)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="datatable-filler">DataTable.Filler</h3>
+<p>Renders an empty <code>&lt;td aria-hidden=&quot;true&quot;&gt;</code> that takes the rest of a row of resized columns — only then.</p>
+<h2 id="keyboard-and-accessibility">Keyboard and accessibility</h2>
+<ul>
+<li>Without editable columns, the parts are native: sort buttons, checkboxes and expand buttons are each in the Tab order. A <code>radio</code> table's radios are one Tab stop, and the arrow keys move and select, wrapping.</li>
+<li>With an editable column, the table is a WAI-ARIA grid: one Tab stop among the body cells, the arrow keys, Home / End and Ctrl + Home / End move it, and Enter or Space press a control in a cell.</li>
+<li>You add the table's name (<code>aria-label</code>, or <code>aria-labelledby</code> to your heading), names for the select and expand controls (say the row: &quot;Select row, NDA&quot;), a screen-reader name for the radio column, and the &quot;Press Enter to edit&quot; text.</li>
+<li>Announce what changed yourself: after a sort (&quot;Sorted by Contract, ascending&quot;) and once typing in a search pauses (&quot;3 of 12 rows&quot;), with a polite status. Set <code>aria-busy</code> on the table while it reloads.</li>
+</ul>
+
+</article>
+<nav class="doc-toc" aria-labelledby="doc-toc-title"><p id="doc-toc-title" class="doc-toc-title">On this page</p><ul><li class="doc-toc-h2"><a href="#installation">Installation</a></li><li class="doc-toc-h2"><a href="#use-it">Use it</a></li><li class="doc-toc-h2"><a href="#anatomy">Anatomy</a></li><li class="doc-toc-h2"><a href="#search-and-pages">Search and pages</a></li><li class="doc-toc-h2"><a href="#expandable-rows">Expandable rows</a></li><li class="doc-toc-h2"><a href="#pick-one-row">Pick one row</a></li><li class="doc-toc-h2"><a href="#show-and-hide-columns">Show and hide columns</a></li><li class="doc-toc-h2"><a href="#edit-cells-in-place">Edit cells in place</a></li><li class="doc-toc-h2"><a href="#resize-columns">Resize columns</a></li><li class="doc-toc-h2"><a href="#style-it">Style it</a></li><li class="doc-toc-h2"><a href="#the-hook">The hook</a></li><li class="doc-toc-h3"><a href="#datatable-usedatatable-options">DataTable.useDataTable(options)</a></li><li class="doc-toc-h2"><a href="#parts">Parts</a></li><li class="doc-toc-h3"><a href="#datatable-root">DataTable.Root</a></li><li class="doc-toc-h3"><a href="#datatable-table">DataTable.Table</a></li><li class="doc-toc-h3"><a href="#datatable-body">DataTable.Body</a></li><li class="doc-toc-h3"><a href="#datatable-columnheader">DataTable.ColumnHeader</a></li><li class="doc-toc-h3"><a href="#datatable-sortbutton">DataTable.SortButton</a></li><li class="doc-toc-h3"><a href="#datatable-resizehandle">DataTable.ResizeHandle</a></li><li class="doc-toc-h3"><a href="#datatable-row">DataTable.Row</a></li><li class="doc-toc-h3"><a href="#datatable-cell">DataTable.Cell</a></li><li class="doc-toc-h3"><a href="#datatable-cellvalue-datatable-edithint">DataTable.CellValue, DataTable.EditHint</a></li><li class="doc-toc-h3"><a href="#datatable-cellinput-datatable-cellselect-datatable-cellerror">DataTable.CellInput, DataTable.CellSelect, DataTable.CellError</a></li><li class="doc-toc-h3"><a href="#datatable-selectall">DataTable.SelectAll</a></li><li class="doc-toc-h3"><a href="#datatable-selectrow">DataTable.SelectRow</a></li><li class="doc-toc-h3"><a href="#datatable-expandtoggle-datatable-expandall">DataTable.ExpandToggle, DataTable.ExpandAll</a></li><li class="doc-toc-h3"><a href="#datatable-expandedrow">DataTable.ExpandedRow</a></li><li class="doc-toc-h3"><a href="#datatable-filler">DataTable.Filler</a></li><li class="doc-toc-h2"><a href="#keyboard-and-accessibility">Keyboard and accessibility</a></li></ul></nav>
+</div>
+<nav class="doc-pager" aria-label="Next / Previous"><a class="doc-pager-prev" href="/kanok-ui-docs/en/headless-toast/" rel="prev"><span>Previous</span>Toast</a><a class="doc-pager-next" href="/kanok-ui-docs/en/headless-structured-list/" rel="next"><span>Next</span>Structured list</a></nav>
+<footer class="doc-footer">@purpurabog/ui 1.4.3 · MIT · <a href="https://cdn.jsdelivr.net/npm/@purpurabog/ui@1.4.3/THIRD-PARTY-NOTICES.md">Third-party notices</a><br>Built on the Carbon Design System. Not affiliated with or endorsed by IBM; IBM and Carbon are trademarks of IBM Corp.</footer>
+</ui-content>
+<ui-modal id="doc-search" heading="Search" data-count="{n} results" data-empty="No results for “{q}”">
+<ui-search label="Search the docs" placeholder="Search the docs" size="lg"></ui-search>
+<p class="doc-search-status" role="status"></p>
+<ul class="doc-search-results"></ul>
+</ui-modal>
+</body>
+</html>

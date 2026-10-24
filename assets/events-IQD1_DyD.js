@@ -1,0 +1,1 @@
+var e=e=>e.target===e.currentTarget;export{e as t};

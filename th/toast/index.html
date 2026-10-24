@@ -1,0 +1,596 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Toast · @purpurabog/ui</title>
+<link rel="alternate" hreflang="en" href="/kanok-ui-docs/en/toast/"  /><link rel="alternate" hreflang="th" href="/kanok-ui-docs/th/toast/"  />
+<script>(function(){try{var q=new URLSearchParams(location.search).get("design"),d=q;if(q==="kanok"||q==="carbon")localStorage.setItem("ui-docs-design",q);else d=localStorage.getItem("ui-docs-design");if(d==="kanok")document.documentElement.setAttribute("data-design","kanok")}catch(e){}})();(function(){try{var m=localStorage.getItem("ui-docs-theme");if(m!=="light"&&m!=="dark"&&m!=="system")return;var d=m==="dark"||(m==="system"&&matchMedia("(prefers-color-scheme: dark)").matches),r=document.documentElement,t=d?"g100":"white";if(r.getAttribute("data-design")==="kanok")t=d?"lacquer":"paper";r.setAttribute("data-theme",t)}catch(e){}})();</script>
+<style>ui-header:not(:defined){z-index:8000;box-sizing:border-box;border-block-end:1px solid var(--ui-border-subtle-1);background:var(--ui-canvas);block-size:48px;display:block;position:fixed;inset:0 0 auto}:is(ui-header:not(:defined)>*,ui-side-nav:not(:defined)>*){visibility:hidden}:is(ui-header-panel:not(:defined),ui-modal:not(:defined)){display:none}ui-side-nav:not(:defined){display:none}ui-content:not(:defined){margin-block-start:48px;padding:32px;display:block}@media (width>=1056px){ui-side-nav[expanded]:not(:defined){background:var(--ui-canvas);inline-size:256px;display:block;position:fixed;inset:48px auto 0 0}ui-side-nav[expanded]:not(:defined)~ui-content:not(:defined){margin-inline-start:256px}}ui-tabs:not(:defined){display:block}ui-tabs:not(:defined)>ui-tab{box-sizing:border-box;border-block-end:2px solid var(--ui-hairline);block-size:40px;color:var(--ui-ink-muted);font:var(--ui-font-body-sm);padding:0 16px;line-height:38px;display:inline-block}ui-tabs:not(:defined)>ui-tab:first-of-type{border-block-end-color:var(--ui-interactive);color:var(--ui-ink)}ui-tabs:not(:defined)>ui-tab-panel{padding:16px;display:block}ui-tabs:not(:defined)>ui-tab-panel~ui-tab-panel{display:none}ui-code-snippet:not(:defined){background:var(--ui-layer-1);max-block-size:272px;font:var(--ui-font-code,12px/16px monospace);white-space:pre;padding:16px;display:block;overflow:hidden}[data-react-example]:empty>*{visibility:hidden}.doc-demo:has(:not(:defined))>*{visibility:hidden}[data-react-example]:empty{box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}.doc-demo:has(:not(:defined)){box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}@keyframes doc-skeleton{to{background-position:-200% 0}}@media (prefers-reduced-motion:reduce){[data-react-example]:empty{animation:none}.doc-demo:has(:not(:defined)){animation:none}}</style>
+
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/theme-switcher-BGAHXRgF.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/tabs-CvVVO2Pb.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/affixes-D94Y17_6.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/mask-BgmAmoJG.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/text-input-D_nMa3l3.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/button-CTeCEJcq.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/notification-BnkpnhKh.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/notification-KWrCMVMD.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/toaster-CEyFJ2l2.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/toaster-D60X5ewX.js"></script>
+  <link rel="stylesheet" crossorigin href="/kanok-ui-docs/assets/theme-switcher-CL5yB6XE.css">
+</head>
+<body>
+<ui-header label="@purpurabog/ui">
+<ui-skip-to-content></ui-skip-to-content>
+<ui-header-menu-button></ui-header-menu-button>
+<ui-header-name href="/kanok-ui-docs/th/" prefix="@purpurabog">ui</ui-header-name>
+<ui-header-global-bar>
+<ui-header-global-action id="doc-search-open" label="ค้นหา" tooltip-placement="bottom"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="m18.5 17.8-4.9-4.9a7 7 0 1 0-.7.7l4.9 4.9zM3 8.5a5.5 5.5 0 1 1 5.5 5.5A5.5 5.5 0 0 1 3 8.5Z" /></svg></ui-header-global-action>
+<ui-header-global-action label="ตั้งค่า" panel="doc-settings" tooltip-placement="bottom-end"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="M16.9 10.6a7 7 0 0 0 0-1.2l1.8-1.4-1.6-2.8-2.1.8a6.6 6.6 0 0 0-1-.6L13.6 3h-3.2l-.4 2.4a6.6 6.6 0 0 0-1 .6l-2.1-.8L5.3 8l1.8 1.4a7 7 0 0 0 0 1.2L5.3 12l1.6 2.8 2.1-.8a6.6 6.6 0 0 0 1 .6l.4 2.4h3.2l.4-2.4a6.6 6.6 0 0 0 1-.6l2.1.8 1.6-2.8zM12 13a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" /></svg></ui-header-global-action>
+</ui-header-global-bar>
+<ui-header-panel id="doc-settings" label="ตั้งค่า">
+<div class="doc-settings">
+<span class="doc-settings-label">ธีม</span>
+<ui-theme-switcher storage-key="ui-docs-theme" tooltip-placement="bottom"></ui-theme-switcher>
+<span class="doc-settings-label">รูปแบบ</span>
+<ui-content-switcher id="doc-design" aria-label="รูปแบบ" size="sm"><ui-content-switcher-item name="carbon">Carbon</ui-content-switcher-item><ui-content-switcher-item name="kanok">Kanok</ui-content-switcher-item></ui-content-switcher>
+<span class="doc-settings-label">ภาษา</span>
+<ui-link href="/kanok-ui-docs/en/toast/" hreflang="en" lang="en">English</ui-link>
+</div>
+</ui-header-panel>
+</ui-header>
+<ui-side-nav label="เอกสาร"><ui-side-nav-items><ui-side-nav-menu label="เริ่มต้น"><ui-side-nav-menu-item href="/kanok-ui-docs/th/">ภาพรวม</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/installation/">ติดตั้ง</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/migration-1-0/">การย้ายไป 1.0</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="คู่มือ"><ui-side-nav-menu-item href="/kanok-ui-docs/th/themes/">ธีมและ layer</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/kanok/">ดีไซน์ Kanok</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/customizing/">ปรับแต่งหน้าตา</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/icons/">ไอคอน</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/forms/">ฟอร์มและการตรวจค่า</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/frameworks/">ใช้กับ framework</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/ai/">ใช้กับ AI</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="ฟอร์มและปุ่ม"><ui-side-nav-menu-item href="/kanok-ui-docs/th/button/">Button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/file-uploader/">File uploader</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Overlay" expanded><ui-side-nav-menu-item href="/kanok-ui-docs/th/modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/toast/" current>Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/toggletip/">Toggletip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/menu/">Menu</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="ข้อมูล"><ui-side-nav-menu-item href="/kanok-ui-docs/th/data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/contained-list/">Contained list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tree-view/">Tree view</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="การนำทาง"><ui-side-nav-menu-item href="/kanok-ui-docs/th/tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/breadcrumb/">Breadcrumb</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/link/">Link</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/ui-shell/">UI shell</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="เนื้อหา"><ui-side-nav-menu-item href="/kanok-ui-docs/th/tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tile/">Tile</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/user-avatar/">User avatar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/list/">List</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="สถานะและการโหลด"><ui-side-nav-menu-item href="/kanok-ui-docs/th/loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/inline-loading/">Inline loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/progress-bar/">Progress bar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/skeleton/">Skeleton</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/badge-indicator/">Badge indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/status-indicator/">Status indicator</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="เลย์เอาต์"><ui-side-nav-menu-item href="/kanok-ui-docs/th/grid/">Grid</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/heading/">Heading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/layer/">Layer</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/action-set/">Action set</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/page-header/">Page header</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/big-number/">Big number</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Headless"><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless/">แนะนำ</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-file-uploader/">File uploader</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-menu/">Menu</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-ui-shell/">UI shell</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tree-view/">Tree view</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu></ui-side-nav-items></ui-side-nav><script>if(matchMedia('(min-width: 66rem)').matches)document.currentScript.previousElementSibling.setAttribute('expanded','')</script>
+<ui-content>
+<div class="doc-page">
+<article class="doc">
+<h1 id="toast">Toast</h1>
+<p>Toast คือข้อความสั้น ๆ ที่โผล่ขึ้นที่มุมจอหลังมีอะไรเกิดขึ้นที่อื่นในหน้า เช่น บันทึกสัญญาแล้ว หรืออัปโหลดเบื้องหลังไม่สำเร็จ toast จะซ้อนกัน ตัวใหม่สุดอยู่ใกล้มุมที่สุด และตัวที่ไม่สำคัญจะหายไปเอง Carbon ไม่มีตัวจัดการ toast ส่วน <code>ui-toaster</code> และ <code>toast()</code> เป็นของไลบรารีนี้ ถ้าข้อความควรอยู่ในหน้า ให้ใช้ <a href="/kanok-ui-docs/th/notification/">Notification</a> แบบ inline</p>
+<div class="doc-demo"><div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center">
+  <ui-button id="toast-save">บันทึกสัญญา</ui-button>
+  <ui-toaster></ui-toaster>
+</div>
+
+<script type="text/x-demo">
+  // สิ่งที่ toast({ kind: 'success', title: 'บันทึกสัญญาแล้ว', subtitle: 'CT-2026-0142' }) ทำ
+  const toaster = document.querySelector('ui-toaster');
+  document.getElementById('toast-save').addEventListener('click', () => {
+    const toast = document.createElement('ui-notification');
+    Object.assign(toast, { variant: 'toast', role: 'none', kind: 'success', heading: 'บันทึกสัญญาแล้ว', subtitle: 'CT-2026-0142', timeout: 5000 });
+    toaster.add(toast);
+  });
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-1-0">HTML</ui-tab><ui-tab panel="code-1-1">React</ui-tab><ui-tab panel="code-1-2">React + Tailwind</ui-tab><ui-tab-panel name="code-1-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"display: flex; flex-wrap: wrap; gap: 16px; align-items: center"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"toast-save"</span>&gt;บันทึกสัญญา&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-toaster</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-toaster</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-ink-muted);font-style:italic">// สิ่งที่ toast({ kind: 'success', title: 'บันทึกสัญญาแล้ว', subtitle: 'CT-2026-0142' }) ทำ</span>
+  <span style="color:var(--ui-tag-color-magenta)">const</span> toaster <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">querySelector</span>(<span style="color:var(--ui-tag-color-teal)">'ui-toaster'</span>);
+  document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'toast-save'</span>).<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    <span style="color:var(--ui-tag-color-magenta)">const</span> toast <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">createElement</span>(<span style="color:var(--ui-tag-color-teal)">'ui-notification'</span>);
+    Object.<span style="color:var(--ui-tag-color-cyan)">assign</span>(toast, { <span style="color:var(--ui-tag-color-purple)">variant:</span> <span style="color:var(--ui-tag-color-teal)">'toast'</span>, <span style="color:var(--ui-tag-color-purple)">role:</span> <span style="color:var(--ui-tag-color-teal)">'none'</span>, <span style="color:var(--ui-tag-color-purple)">kind:</span> <span style="color:var(--ui-tag-color-teal)">'success'</span>, <span style="color:var(--ui-tag-color-purple)">heading:</span> <span style="color:var(--ui-tag-color-teal)">'บันทึกสัญญาแล้ว'</span>, <span style="color:var(--ui-tag-color-purple)">subtitle:</span> <span style="color:var(--ui-tag-color-teal)">'CT-2026-0142'</span>, <span style="color:var(--ui-tag-color-purple)">timeout:</span> <span style="color:var(--ui-tag-color-green)">5000</span> });
+    toaster.<span style="color:var(--ui-tag-color-cyan)">add</span>(toast);
+  });
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-1-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { toast } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/toaster'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiButton</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">toast</span>({ <span style="color:var(--ui-tag-color-purple)">kind:</span> <span style="color:var(--ui-tag-color-teal)">'success'</span>, <span style="color:var(--ui-tag-color-purple)">title:</span> <span style="color:var(--ui-tag-color-teal)">'บันทึกสัญญาแล้ว'</span>, <span style="color:var(--ui-tag-color-purple)">subtitle:</span> <span style="color:var(--ui-tag-color-teal)">'CT-2026-0142'</span> })}&gt;บันทึกสัญญา&lt;/<span style="color:var(--ui-tag-color-blue)">UiButton</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-1-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { toast } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@/components/ui/react-tw/toaster'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">Button</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">toast</span>({ <span style="color:var(--ui-tag-color-purple)">kind:</span> <span style="color:var(--ui-tag-color-teal)">'success'</span>, <span style="color:var(--ui-tag-color-purple)">title:</span> <span style="color:var(--ui-tag-color-teal)">'บันทึกสัญญาแล้ว'</span>, <span style="color:var(--ui-tag-color-purple)">subtitle:</span> <span style="color:var(--ui-tag-color-teal)">'CT-2026-0142'</span> })}&gt;บันทึกสัญญา&lt;/<span style="color:var(--ui-tag-color-blue)">Button</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="ติดตั้ง">ติดตั้ง</h2>
+<ui-tabs class="doc-code-tabs" label="โค้ด"><ui-tab panel="code-2-0">npm</ui-tab><ui-tab panel="code-2-1">shadcn · Web component</ui-tab><ui-tab panel="code-2-2">shadcn · React + Tailwind</ui-tab><ui-tab panel="code-2-3">คัดลอกเอง</ui-tab><ui-tab-panel name="code-2-0"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">@purpurabog/ui</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-1"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npx</span> <span style="color:var(--ui-tag-color-teal)">shadcn@4</span> <span style="color:var(--ui-tag-color-teal)">add</span> <span style="color:var(--ui-tag-color-teal)">@kanok-ui/toaster</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-2"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npx</span> <span style="color:var(--ui-tag-color-teal)">shadcn@4</span> <span style="color:var(--ui-tag-color-teal)">add</span> <span style="color:var(--ui-tag-color-teal)">@kanok-ui/tw-toaster</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-3"><ui-code-snippet type="multi" class="doc-code" data-lang="bash"><span style="color:var(--ui-ink-muted);font-style:italic"># Web component</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 1. ติดตั้ง dependency</span>
+<span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">lit@^3.3.0</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 2. คัดลอก "content" ของแต่ละไฟล์จาก</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    https://cdn.jsdelivr.net/npm/@purpurabog/ui@1.4.3/registry/toaster.json</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    ไปไว้ที่ target ของมัน:</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/toaster/toaster.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 3. ทำแบบเดียวกันกับ item ที่มันใช้ (registry/&lt;name&gt;.json):</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    core-toaster, notification, shared-element, shared-localize, tokens</span>
+
+<span style="color:var(--ui-ink-muted);font-style:italic"># React + Tailwind</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 1. ติดตั้ง dependency</span>
+<span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">@purpurabog/ui@^1.4.3</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 2. คัดลอก "content" ของแต่ละไฟล์จาก</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    https://cdn.jsdelivr.net/npm/@purpurabog/ui@1.4.3/registry/tw-toaster.json</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    ไปไว้ที่ target ของมัน:</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/react-tw/toaster.tsx</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 3. ทำแบบเดียวกันกับ item ที่มันใช้ (registry/&lt;name&gt;.json):</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    core-notification, core-toaster, tw-i18n, tw-notification, tw-refs, tw-theme, tw-utils</span></ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>npm ให้ทุก component จากแพ็กเกจ ส่วน shadcn คัดลอกซอร์สเข้าแอปของคุณแทน เป็นสำเนาที่ล็อกเวอร์ชันนี้และแก้เองได้ คำสั่ง shadcn ต้องตั้ง registry <code>@kanok-ui</code> ใน <code>components.json</code> ครั้งเดียวก่อน ดู <a href="/kanok-ui-docs/th/installation/#react-tailwind-%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2-shadcn">ติดตั้ง</a></p>
+<h2 id="วิธีใช้">วิธีใช้</h2>
+<ui-tabs class="doc-code-tabs" label="โค้ด"><ui-tab panel="code-3-0">HTML</ui-tab><ui-tab panel="code-3-1">React</ui-tab><ui-tab panel="code-3-2">React + Tailwind</ui-tab><ui-tab-panel name="code-3-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">import</span> { toast } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/toaster'</span>;
+
+  document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'save'</span>).<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    <span style="color:var(--ui-tag-color-cyan)">toast</span>({ <span style="color:var(--ui-tag-color-purple)">kind:</span> <span style="color:var(--ui-tag-color-teal)">'success'</span>, <span style="color:var(--ui-tag-color-purple)">title:</span> <span style="color:var(--ui-tag-color-teal)">'บันทึกสัญญาแล้ว'</span>, <span style="color:var(--ui-tag-color-purple)">subtitle:</span> <span style="color:var(--ui-tag-color-teal)">'CT-2026-0142'</span> });
+  });
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"save"</span>&gt;บันทึกสัญญา&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-3-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { toast } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/toaster'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiButton</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">toast</span>({ <span style="color:var(--ui-tag-color-purple)">kind:</span> <span style="color:var(--ui-tag-color-teal)">'success'</span>, <span style="color:var(--ui-tag-color-purple)">title:</span> <span style="color:var(--ui-tag-color-teal)">'บันทึกสัญญาแล้ว'</span>, <span style="color:var(--ui-tag-color-purple)">subtitle:</span> <span style="color:var(--ui-tag-color-teal)">'CT-2026-0142'</span> })}&gt;บันทึกสัญญา&lt;/<span style="color:var(--ui-tag-color-blue)">UiButton</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-3-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { Toaster, toast } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@/components/ui/react-tw/toaster'</span>;
+
+<span style="color:var(--ui-ink-muted);font-style:italic">// ครั้งเดียว ใกล้ root ของแอป</span>
+&lt;<span style="color:var(--ui-tag-color-blue)">Toaster</span> /&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">Button</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">toast</span>({ <span style="color:var(--ui-tag-color-purple)">kind:</span> <span style="color:var(--ui-tag-color-teal)">'success'</span>, <span style="color:var(--ui-tag-color-purple)">title:</span> <span style="color:var(--ui-tag-color-teal)">'บันทึกสัญญาแล้ว'</span>, <span style="color:var(--ui-tag-color-purple)">subtitle:</span> <span style="color:var(--ui-tag-color-teal)">'CT-2026-0142'</span> })}&gt;บันทึกสัญญา&lt;/<span style="color:var(--ui-tag-color-blue)">Button</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p><code>toast(options)</code> สร้าง <code>&lt;ui-notification variant=&quot;toast&quot;&gt;</code> แล้วเพิ่มเข้า <code>&lt;ui-toaster&gt;</code> ของหน้า ครั้งแรกจะสร้าง toaster ไว้ท้าย <code>&lt;body&gt;</code> ให้ และคืนค่า <code>{ element, close }</code> ตัวเลือกมี <code>kind</code>, <code>title</code>, <code>subtitle</code>, <code>caption</code>, <code>timeout</code>, <code>actionLabel</code>, <code>onAction</code>, <code>lowContrast</code> และ <code>id</code></p>
+<p>ตัวอย่างที่ใช้งานได้ในหน้านี้ import module ไม่ได้ จึงทำสิ่งที่ <code>toast()</code> ทำด้วยมือ คือสร้าง element แล้วส่งให้ <code>add()</code> ของ toaster ในแอปของคุณให้เรียก <code>toast()</code> React + Tailwind มี <code>toast()</code> ของตัวเอง และมี <code>&lt;Toaster&gt;</code> ที่ต้อง mount ครั้งเดียว <code>toast()</code> ของมันคืนค่า <code>{ close }</code> และ <code>toast.clear()</code> ลบ toast ทั้งหมด</p>
+<p>toaster เป็น live region แบบสุภาพหนึ่งอัน ชื่อ &quot;การแจ้งเตือน&quot; ซึ่งอยู่ในหน้าก่อนจะมี toast ใด ๆ screen reader จึงอ่านทุกตัว มันอยู่ใน top layer ห่างมุมบนด้านท้าย 16px หรือห่าง 16px ใต้ <code>ui-header</code></p>
+<h2 id="ชนิดและเวลาที่อยู่">ชนิดและเวลาที่อยู่</h2>
+<p><code>kind</code> เริ่มต้นเป็น <code>info</code> toast แบบ info และ success ปิดเองหลัง 5 วินาที แบบ error และ warning อยู่จนกว่าจะปิด เพราะต้องอ่าน <code>timeout</code> ตั้งเวลาอื่นเป็นมิลลิวินาที หรือ 0 เพื่อให้อยู่ตลอด การนับเวลาหยุดชั่วคราวระหว่างที่เมาส์ชี้อยู่หรือโฟกัสอยู่ใน toast</p>
+<div class="doc-demo"><div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center">
+  <ui-button kind="tertiary" data-toast-kind="success">Success</ui-button>
+  <ui-button kind="tertiary" data-toast-kind="info">Info</ui-button>
+  <ui-button kind="tertiary" data-toast-kind="warning">Warning</ui-button>
+  <ui-button kind="danger" data-toast-kind="error">Error</ui-button>
+  <ui-toaster></ui-toaster>
+</div>
+
+<script type="text/x-demo">
+  const toaster = document.querySelector('ui-toaster');
+  const texts = {
+    success: ['ส่งคำขออนุมัติแล้ว', 'ชัยยา ร. จะได้รับอีเมล'],
+    info: ['มีแบบฟอร์มใหม่', 'สัญญาเช่า 2569 พร้อมใช้แล้ว'],
+    warning: ['ยังไม่ได้ชำระอากรแสตมป์', 'ชำระก่อนยื่นสัญญา'],
+    error: ['บันทึกไม่สำเร็จ', 'เซิร์ฟเวอร์ไม่ตอบกลับ'],
+  };
+  for (const button of document.querySelectorAll('[data-toast-kind]')) {
+    button.addEventListener('click', () => {
+      const kind = button.dataset.toastKind;
+      const toast = document.createElement('ui-notification');
+      // toast() เลือกเวลาให้: 5 วินาทีสำหรับ success และ info, 0 (อยู่ตลอด) สำหรับ warning และ error
+      Object.assign(toast, { variant: 'toast', role: 'none', kind, heading: texts[kind][0], subtitle: texts[kind][1], timeout: kind === 'success' || kind === 'info' ? 5000 : 0 });
+      toaster.add(toast);
+    });
+  }
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-4-0">HTML</ui-tab><ui-tab panel="code-4-1">React</ui-tab><ui-tab panel="code-4-2">React + Tailwind</ui-tab><ui-tab-panel name="code-4-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"display: flex; flex-wrap: wrap; gap: 16px; align-items: center"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"tertiary"</span> <span style="color:var(--ui-tag-color-purple)">data-toast-kind</span>=<span style="color:var(--ui-tag-color-teal)">"success"</span>&gt;Success&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"tertiary"</span> <span style="color:var(--ui-tag-color-purple)">data-toast-kind</span>=<span style="color:var(--ui-tag-color-teal)">"info"</span>&gt;Info&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"tertiary"</span> <span style="color:var(--ui-tag-color-purple)">data-toast-kind</span>=<span style="color:var(--ui-tag-color-teal)">"warning"</span>&gt;Warning&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"danger"</span> <span style="color:var(--ui-tag-color-purple)">data-toast-kind</span>=<span style="color:var(--ui-tag-color-teal)">"error"</span>&gt;Error&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-toaster</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-toaster</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> toaster <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">querySelector</span>(<span style="color:var(--ui-tag-color-teal)">'ui-toaster'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> texts <span style="color:var(--ui-tag-color-magenta)">=</span> {
+    <span style="color:var(--ui-tag-color-purple)">success:</span> [<span style="color:var(--ui-tag-color-teal)">'ส่งคำขออนุมัติแล้ว'</span>, <span style="color:var(--ui-tag-color-teal)">'ชัยยา ร. จะได้รับอีเมล'</span>],
+    <span style="color:var(--ui-tag-color-purple)">info:</span> [<span style="color:var(--ui-tag-color-teal)">'มีแบบฟอร์มใหม่'</span>, <span style="color:var(--ui-tag-color-teal)">'สัญญาเช่า 2569 พร้อมใช้แล้ว'</span>],
+    <span style="color:var(--ui-tag-color-purple)">warning:</span> [<span style="color:var(--ui-tag-color-teal)">'ยังไม่ได้ชำระอากรแสตมป์'</span>, <span style="color:var(--ui-tag-color-teal)">'ชำระก่อนยื่นสัญญา'</span>],
+    <span style="color:var(--ui-tag-color-purple)">error:</span> [<span style="color:var(--ui-tag-color-teal)">'บันทึกไม่สำเร็จ'</span>, <span style="color:var(--ui-tag-color-teal)">'เซิร์ฟเวอร์ไม่ตอบกลับ'</span>],
+  };
+  <span style="color:var(--ui-tag-color-magenta)">for</span> (<span style="color:var(--ui-tag-color-magenta)">const</span> button <span style="color:var(--ui-tag-color-magenta)">of</span> document.<span style="color:var(--ui-tag-color-cyan)">querySelectorAll</span>(<span style="color:var(--ui-tag-color-teal)">'[data-toast-kind]'</span>)) {
+    button.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+      <span style="color:var(--ui-tag-color-magenta)">const</span> kind <span style="color:var(--ui-tag-color-magenta)">=</span> button.dataset.toastKind;
+      <span style="color:var(--ui-tag-color-magenta)">const</span> toast <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">createElement</span>(<span style="color:var(--ui-tag-color-teal)">'ui-notification'</span>);
+      <span style="color:var(--ui-ink-muted);font-style:italic">// toast() เลือกเวลาให้: 5 วินาทีสำหรับ success และ info, 0 (อยู่ตลอด) สำหรับ warning และ error</span>
+      Object.<span style="color:var(--ui-tag-color-cyan)">assign</span>(toast, { <span style="color:var(--ui-tag-color-purple)">variant:</span> <span style="color:var(--ui-tag-color-teal)">'toast'</span>, <span style="color:var(--ui-tag-color-purple)">role:</span> <span style="color:var(--ui-tag-color-teal)">'none'</span>, kind, <span style="color:var(--ui-tag-color-purple)">heading:</span> texts[kind][<span style="color:var(--ui-tag-color-green)">0</span>], <span style="color:var(--ui-tag-color-purple)">subtitle:</span> texts[kind][<span style="color:var(--ui-tag-color-green)">1</span>], <span style="color:var(--ui-tag-color-purple)">timeout:</span> kind <span style="color:var(--ui-tag-color-magenta)">===</span> <span style="color:var(--ui-tag-color-teal)">'success'</span> <span style="color:var(--ui-tag-color-magenta)">||</span> kind <span style="color:var(--ui-tag-color-magenta)">===</span> <span style="color:var(--ui-tag-color-teal)">'info'</span> <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-green)">5000</span> <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-green)">0</span> });
+      toaster.<span style="color:var(--ui-tag-color-cyan)">add</span>(toast);
+    });
+  }
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-4-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-cyan)">toast</span>({ <span style="color:var(--ui-tag-color-purple)">kind:</span> <span style="color:var(--ui-tag-color-teal)">'success'</span>, <span style="color:var(--ui-tag-color-purple)">title:</span> <span style="color:var(--ui-tag-color-teal)">'ส่งคำขออนุมัติแล้ว'</span>, <span style="color:var(--ui-tag-color-purple)">subtitle:</span> <span style="color:var(--ui-tag-color-teal)">'ชัยยา ร. จะได้รับอีเมล'</span> });
+<span style="color:var(--ui-tag-color-cyan)">toast</span>({ <span style="color:var(--ui-tag-color-purple)">title:</span> <span style="color:var(--ui-tag-color-teal)">'มีแบบฟอร์มใหม่'</span>, <span style="color:var(--ui-tag-color-purple)">subtitle:</span> <span style="color:var(--ui-tag-color-teal)">'สัญญาเช่า 2569 พร้อมใช้แล้ว'</span> });
+<span style="color:var(--ui-tag-color-cyan)">toast</span>({ <span style="color:var(--ui-tag-color-purple)">kind:</span> <span style="color:var(--ui-tag-color-teal)">'warning'</span>, <span style="color:var(--ui-tag-color-purple)">title:</span> <span style="color:var(--ui-tag-color-teal)">'ยังไม่ได้ชำระอากรแสตมป์'</span>, <span style="color:var(--ui-tag-color-purple)">subtitle:</span> <span style="color:var(--ui-tag-color-teal)">'ชำระก่อนยื่นสัญญา'</span> });
+<span style="color:var(--ui-tag-color-cyan)">toast</span>({ <span style="color:var(--ui-tag-color-purple)">kind:</span> <span style="color:var(--ui-tag-color-teal)">'error'</span>, <span style="color:var(--ui-tag-color-purple)">title:</span> <span style="color:var(--ui-tag-color-teal)">'บันทึกไม่สำเร็จ'</span>, <span style="color:var(--ui-tag-color-purple)">subtitle:</span> <span style="color:var(--ui-tag-color-teal)">'เซิร์ฟเวอร์ไม่ตอบกลับ'</span> });</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-4-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-cyan)">toast</span>({ <span style="color:var(--ui-tag-color-purple)">kind:</span> <span style="color:var(--ui-tag-color-teal)">'success'</span>, <span style="color:var(--ui-tag-color-purple)">title:</span> <span style="color:var(--ui-tag-color-teal)">'ส่งคำขออนุมัติแล้ว'</span>, <span style="color:var(--ui-tag-color-purple)">subtitle:</span> <span style="color:var(--ui-tag-color-teal)">'ชัยยา ร. จะได้รับอีเมล'</span> });
+<span style="color:var(--ui-tag-color-cyan)">toast</span>({ <span style="color:var(--ui-tag-color-purple)">title:</span> <span style="color:var(--ui-tag-color-teal)">'มีแบบฟอร์มใหม่'</span>, <span style="color:var(--ui-tag-color-purple)">subtitle:</span> <span style="color:var(--ui-tag-color-teal)">'สัญญาเช่า 2569 พร้อมใช้แล้ว'</span> });
+<span style="color:var(--ui-tag-color-cyan)">toast</span>({ <span style="color:var(--ui-tag-color-purple)">kind:</span> <span style="color:var(--ui-tag-color-teal)">'warning'</span>, <span style="color:var(--ui-tag-color-purple)">title:</span> <span style="color:var(--ui-tag-color-teal)">'ยังไม่ได้ชำระอากรแสตมป์'</span>, <span style="color:var(--ui-tag-color-purple)">subtitle:</span> <span style="color:var(--ui-tag-color-teal)">'ชำระก่อนยื่นสัญญา'</span> });
+<span style="color:var(--ui-tag-color-cyan)">toast</span>({ <span style="color:var(--ui-tag-color-purple)">kind:</span> <span style="color:var(--ui-tag-color-teal)">'error'</span>, <span style="color:var(--ui-tag-color-purple)">title:</span> <span style="color:var(--ui-tag-color-teal)">'บันทึกไม่สำเร็จ'</span>, <span style="color:var(--ui-tag-color-purple)">subtitle:</span> <span style="color:var(--ui-tag-color-teal)">'เซิร์ฟเวอร์ไม่ตอบกลับ'</span> });</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="caption-และคอนทราสต์ต่ำ">Caption และคอนทราสต์ต่ำ</h2>
+<p><code>caption</code> เพิ่มบรรทัดเล็ก ๆ ใต้ subtitle มักเป็นเวลา <code>lowContrast</code> เปลี่ยน toast เป็นพื้นสีอ่อนแทนพื้นสีเข้ม</p>
+<div class="doc-demo"><div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center">
+  <ui-button id="toast-caption" kind="tertiary">ส่งออกเสร็จแล้ว</ui-button>
+  <ui-toaster></ui-toaster>
+</div>
+
+<script type="text/x-demo">
+  const toaster = document.querySelector('ui-toaster');
+  document.getElementById('toast-caption').addEventListener('click', () => {
+    const toast = document.createElement('ui-notification');
+    const caption = new Date().toLocaleTimeString('th-TH', { hour: '2-digit', minute: '2-digit' });
+    Object.assign(toast, { variant: 'toast', role: 'none', kind: 'success', lowContrast: true, heading: 'ส่งออกเสร็จแล้ว', subtitle: 'contracts-2026.csv', caption, timeout: 5000 });
+    toaster.add(toast);
+  });
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-5-0">HTML</ui-tab><ui-tab panel="code-5-1">React</ui-tab><ui-tab panel="code-5-2">React + Tailwind</ui-tab><ui-tab-panel name="code-5-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"display: flex; flex-wrap: wrap; gap: 16px; align-items: center"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"toast-caption"</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"tertiary"</span>&gt;ส่งออกเสร็จแล้ว&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-toaster</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-toaster</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> toaster <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">querySelector</span>(<span style="color:var(--ui-tag-color-teal)">'ui-toaster'</span>);
+  document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'toast-caption'</span>).<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    <span style="color:var(--ui-tag-color-magenta)">const</span> toast <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">createElement</span>(<span style="color:var(--ui-tag-color-teal)">'ui-notification'</span>);
+    <span style="color:var(--ui-tag-color-magenta)">const</span> caption <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-magenta)">new</span> <span style="color:var(--ui-tag-color-cyan)">Date</span>().<span style="color:var(--ui-tag-color-cyan)">toLocaleTimeString</span>(<span style="color:var(--ui-tag-color-teal)">'th-TH'</span>, { <span style="color:var(--ui-tag-color-purple)">hour:</span> <span style="color:var(--ui-tag-color-teal)">'2-digit'</span>, <span style="color:var(--ui-tag-color-purple)">minute:</span> <span style="color:var(--ui-tag-color-teal)">'2-digit'</span> });
+    Object.<span style="color:var(--ui-tag-color-cyan)">assign</span>(toast, { <span style="color:var(--ui-tag-color-purple)">variant:</span> <span style="color:var(--ui-tag-color-teal)">'toast'</span>, <span style="color:var(--ui-tag-color-purple)">role:</span> <span style="color:var(--ui-tag-color-teal)">'none'</span>, <span style="color:var(--ui-tag-color-purple)">kind:</span> <span style="color:var(--ui-tag-color-teal)">'success'</span>, <span style="color:var(--ui-tag-color-purple)">lowContrast:</span> <span style="color:var(--ui-tag-color-green)">true</span>, <span style="color:var(--ui-tag-color-purple)">heading:</span> <span style="color:var(--ui-tag-color-teal)">'ส่งออกเสร็จแล้ว'</span>, <span style="color:var(--ui-tag-color-purple)">subtitle:</span> <span style="color:var(--ui-tag-color-teal)">'contracts-2026.csv'</span>, caption, <span style="color:var(--ui-tag-color-purple)">timeout:</span> <span style="color:var(--ui-tag-color-green)">5000</span> });
+    toaster.<span style="color:var(--ui-tag-color-cyan)">add</span>(toast);
+  });
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-5-1"><ui-code-snippet type="single" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-cyan)">toast</span>({ <span style="color:var(--ui-tag-color-purple)">kind:</span> <span style="color:var(--ui-tag-color-teal)">'success'</span>, <span style="color:var(--ui-tag-color-purple)">lowContrast:</span> <span style="color:var(--ui-tag-color-green)">true</span>, <span style="color:var(--ui-tag-color-purple)">title:</span> <span style="color:var(--ui-tag-color-teal)">'ส่งออกเสร็จแล้ว'</span>, <span style="color:var(--ui-tag-color-purple)">subtitle:</span> <span style="color:var(--ui-tag-color-teal)">'contracts-2026.csv'</span>, <span style="color:var(--ui-tag-color-purple)">caption:</span> <span style="color:var(--ui-tag-color-magenta)">new</span> <span style="color:var(--ui-tag-color-cyan)">Date</span>().<span style="color:var(--ui-tag-color-cyan)">toLocaleTimeString</span>(<span style="color:var(--ui-tag-color-teal)">'th-TH'</span>) });</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-5-2"><ui-code-snippet type="single" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-cyan)">toast</span>({ <span style="color:var(--ui-tag-color-purple)">kind:</span> <span style="color:var(--ui-tag-color-teal)">'success'</span>, <span style="color:var(--ui-tag-color-purple)">lowContrast:</span> <span style="color:var(--ui-tag-color-green)">true</span>, <span style="color:var(--ui-tag-color-purple)">title:</span> <span style="color:var(--ui-tag-color-teal)">'ส่งออกเสร็จแล้ว'</span>, <span style="color:var(--ui-tag-color-purple)">subtitle:</span> <span style="color:var(--ui-tag-color-teal)">'contracts-2026.csv'</span>, <span style="color:var(--ui-tag-color-purple)">caption:</span> <span style="color:var(--ui-tag-color-magenta)">new</span> <span style="color:var(--ui-tag-color-cyan)">Date</span>().<span style="color:var(--ui-tag-color-cyan)">toLocaleTimeString</span>(<span style="color:var(--ui-tag-color-teal)">'th-TH'</span>) });</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="มีปุ่มคำสั่ง">มีปุ่มคำสั่ง</h2>
+<p><code>actionLabel</code> เพิ่มปุ่มสำหรับคำสั่งด่วนหนึ่งอย่าง และ <code>onAction</code> ทำงานเมื่อกดปุ่ม toast ที่มีปุ่มคำสั่งจะไม่ปิดเอง จะดึงโฟกัสตอนแสดง และกัก Tab ไว้ข้างในจนกว่าจะปิด (actionable notification ของ Carbon) ใช้เฉพาะเมื่อคำสั่งนั้นคุ้มกับการขัดจังหวะผู้ใช้</p>
+<div class="doc-demo"><div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center">
+  <ui-button id="toast-action" kind="tertiary">อัปโหลด contract.pdf</ui-button>
+  <ui-toaster></ui-toaster>
+</div>
+
+<script type="text/x-demo">
+  const toaster = document.querySelector('ui-toaster');
+  const show = (options) => {
+    const toast = document.createElement('ui-notification');
+    Object.assign(toast, { variant: 'toast', ...options });
+    toaster.add(toast);
+    return toast;
+  };
+  document.getElementById('toast-action').addEventListener('click', () => {
+    // toast ที่มีปุ่มคำสั่งใช้ role ของตัวเอง (alertdialog)
+    const failed = show({ kind: 'warning', heading: 'อัปโหลดไม่สำเร็จ', subtitle: 'contract.pdf', actionLabel: 'ลองอีกครั้ง' });
+    failed.addEventListener('ui-action', () => {
+      failed.close();
+      show({ role: 'none', kind: 'info', heading: 'กำลังลองอีกครั้ง…', subtitle: 'contract.pdf', timeout: 5000 });
+    });
+  });
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-6-0">HTML</ui-tab><ui-tab panel="code-6-1">React</ui-tab><ui-tab panel="code-6-2">React + Tailwind</ui-tab><ui-tab-panel name="code-6-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"display: flex; flex-wrap: wrap; gap: 16px; align-items: center"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"toast-action"</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"tertiary"</span>&gt;อัปโหลด contract.pdf&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-toaster</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-toaster</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> toaster <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">querySelector</span>(<span style="color:var(--ui-tag-color-teal)">'ui-toaster'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> <span style="color:var(--ui-tag-color-cyan)">show</span> <span style="color:var(--ui-tag-color-magenta)">=</span> (options) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    <span style="color:var(--ui-tag-color-magenta)">const</span> toast <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">createElement</span>(<span style="color:var(--ui-tag-color-teal)">'ui-notification'</span>);
+    Object.<span style="color:var(--ui-tag-color-cyan)">assign</span>(toast, { <span style="color:var(--ui-tag-color-purple)">variant:</span> <span style="color:var(--ui-tag-color-teal)">'toast'</span>, <span style="color:var(--ui-tag-color-magenta)">...</span>options });
+    toaster.<span style="color:var(--ui-tag-color-cyan)">add</span>(toast);
+    <span style="color:var(--ui-tag-color-magenta)">return</span> toast;
+  };
+  document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'toast-action'</span>).<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    <span style="color:var(--ui-ink-muted);font-style:italic">// toast ที่มีปุ่มคำสั่งใช้ role ของตัวเอง (alertdialog)</span>
+    <span style="color:var(--ui-tag-color-magenta)">const</span> failed <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">show</span>({ <span style="color:var(--ui-tag-color-purple)">kind:</span> <span style="color:var(--ui-tag-color-teal)">'warning'</span>, <span style="color:var(--ui-tag-color-purple)">heading:</span> <span style="color:var(--ui-tag-color-teal)">'อัปโหลดไม่สำเร็จ'</span>, <span style="color:var(--ui-tag-color-purple)">subtitle:</span> <span style="color:var(--ui-tag-color-teal)">'contract.pdf'</span>, <span style="color:var(--ui-tag-color-purple)">actionLabel:</span> <span style="color:var(--ui-tag-color-teal)">'ลองอีกครั้ง'</span> });
+    failed.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'ui-action'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+      failed.<span style="color:var(--ui-tag-color-cyan)">close</span>();
+      <span style="color:var(--ui-tag-color-cyan)">show</span>({ <span style="color:var(--ui-tag-color-purple)">role:</span> <span style="color:var(--ui-tag-color-teal)">'none'</span>, <span style="color:var(--ui-tag-color-purple)">kind:</span> <span style="color:var(--ui-tag-color-teal)">'info'</span>, <span style="color:var(--ui-tag-color-purple)">heading:</span> <span style="color:var(--ui-tag-color-teal)">'กำลังลองอีกครั้ง…'</span>, <span style="color:var(--ui-tag-color-purple)">subtitle:</span> <span style="color:var(--ui-tag-color-teal)">'contract.pdf'</span>, <span style="color:var(--ui-tag-color-purple)">timeout:</span> <span style="color:var(--ui-tag-color-green)">5000</span> });
+    });
+  });
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-6-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-cyan)">toast</span>({
+  <span style="color:var(--ui-tag-color-purple)">kind:</span> <span style="color:var(--ui-tag-color-teal)">'warning'</span>,
+  <span style="color:var(--ui-tag-color-purple)">title:</span> <span style="color:var(--ui-tag-color-teal)">'อัปโหลดไม่สำเร็จ'</span>,
+  <span style="color:var(--ui-tag-color-purple)">subtitle:</span> <span style="color:var(--ui-tag-color-teal)">'contract.pdf'</span>,
+  <span style="color:var(--ui-tag-color-purple)">actionLabel:</span> <span style="color:var(--ui-tag-color-teal)">'ลองอีกครั้ง'</span>,
+  <span style="color:var(--ui-tag-color-cyan)">onAction</span><span style="color:var(--ui-tag-color-purple)">:</span> () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">upload</span>(file),
+});</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-6-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-cyan)">toast</span>({
+  <span style="color:var(--ui-tag-color-purple)">kind:</span> <span style="color:var(--ui-tag-color-teal)">'warning'</span>,
+  <span style="color:var(--ui-tag-color-purple)">title:</span> <span style="color:var(--ui-tag-color-teal)">'อัปโหลดไม่สำเร็จ'</span>,
+  <span style="color:var(--ui-tag-color-purple)">subtitle:</span> <span style="color:var(--ui-tag-color-teal)">'contract.pdf'</span>,
+  <span style="color:var(--ui-tag-color-purple)">actionLabel:</span> <span style="color:var(--ui-tag-color-teal)">'ลองอีกครั้ง'</span>,
+  <span style="color:var(--ui-tag-color-cyan)">onAction</span><span style="color:var(--ui-tag-color-purple)">:</span> () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">upload</span>(file),
+});</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="แทนที่-toast-เดิม">แทนที่ toast เดิม</h2>
+<p>toast ที่มี <code>id</code> เดียวกับตัวที่ยังเปิดอยู่จะแทนที่ตัวเดิม แทนที่จะซ้อนเพิ่มอีกตัว ใช้กับสถานะที่เปลี่ยนไป เช่น &quot;กำลังซิงก์…&quot; แล้วเป็น &quot;ซิงก์แล้ว&quot;</p>
+<div class="doc-demo"><div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center">
+  <ui-button id="toast-sync" kind="tertiary">ซิงก์สัญญา</ui-button>
+  <ui-toaster></ui-toaster>
+</div>
+
+<script type="text/x-demo">
+  const toaster = document.querySelector('ui-toaster');
+  // toast({ id: 'sync', … }) ลบ toast ที่เปิดอยู่ซึ่งมี id นี้ก่อน
+  const show = (options) => {
+    toaster.querySelector('[data-toast-id="sync"]')?.remove();
+    const toast = document.createElement('ui-notification');
+    Object.assign(toast, { variant: 'toast', role: 'none', ...options });
+    toast.dataset.toastId = 'sync';
+    toaster.add(toast);
+  };
+  document.getElementById('toast-sync').addEventListener('click', () => {
+    show({ kind: 'info', heading: 'กำลังซิงก์…', subtitle: 'สัญญา 24 ฉบับ' });
+    setTimeout(() => show({ kind: 'success', heading: 'ซิงก์แล้ว', subtitle: 'สัญญา 24 ฉบับเป็นข้อมูลล่าสุด', timeout: 5000 }), 2000);
+  });
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-7-0">HTML</ui-tab><ui-tab panel="code-7-1">React</ui-tab><ui-tab panel="code-7-2">React + Tailwind</ui-tab><ui-tab-panel name="code-7-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"display: flex; flex-wrap: wrap; gap: 16px; align-items: center"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"toast-sync"</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"tertiary"</span>&gt;ซิงก์สัญญา&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-toaster</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-toaster</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> toaster <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">querySelector</span>(<span style="color:var(--ui-tag-color-teal)">'ui-toaster'</span>);
+  <span style="color:var(--ui-ink-muted);font-style:italic">// toast({ id: 'sync', … }) ลบ toast ที่เปิดอยู่ซึ่งมี id นี้ก่อน</span>
+  <span style="color:var(--ui-tag-color-magenta)">const</span> <span style="color:var(--ui-tag-color-cyan)">show</span> <span style="color:var(--ui-tag-color-magenta)">=</span> (options) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    toaster.<span style="color:var(--ui-tag-color-cyan)">querySelector</span>(<span style="color:var(--ui-tag-color-teal)">'[data-toast-id="sync"]'</span>)?.<span style="color:var(--ui-tag-color-cyan)">remove</span>();
+    <span style="color:var(--ui-tag-color-magenta)">const</span> toast <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">createElement</span>(<span style="color:var(--ui-tag-color-teal)">'ui-notification'</span>);
+    Object.<span style="color:var(--ui-tag-color-cyan)">assign</span>(toast, { <span style="color:var(--ui-tag-color-purple)">variant:</span> <span style="color:var(--ui-tag-color-teal)">'toast'</span>, <span style="color:var(--ui-tag-color-purple)">role:</span> <span style="color:var(--ui-tag-color-teal)">'none'</span>, <span style="color:var(--ui-tag-color-magenta)">...</span>options });
+    toast.dataset.toastId <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'sync'</span>;
+    toaster.<span style="color:var(--ui-tag-color-cyan)">add</span>(toast);
+  };
+  document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'toast-sync'</span>).<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    <span style="color:var(--ui-tag-color-cyan)">show</span>({ <span style="color:var(--ui-tag-color-purple)">kind:</span> <span style="color:var(--ui-tag-color-teal)">'info'</span>, <span style="color:var(--ui-tag-color-purple)">heading:</span> <span style="color:var(--ui-tag-color-teal)">'กำลังซิงก์…'</span>, <span style="color:var(--ui-tag-color-purple)">subtitle:</span> <span style="color:var(--ui-tag-color-teal)">'สัญญา 24 ฉบับ'</span> });
+    <span style="color:var(--ui-tag-color-cyan)">setTimeout</span>(() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">show</span>({ <span style="color:var(--ui-tag-color-purple)">kind:</span> <span style="color:var(--ui-tag-color-teal)">'success'</span>, <span style="color:var(--ui-tag-color-purple)">heading:</span> <span style="color:var(--ui-tag-color-teal)">'ซิงก์แล้ว'</span>, <span style="color:var(--ui-tag-color-purple)">subtitle:</span> <span style="color:var(--ui-tag-color-teal)">'สัญญา 24 ฉบับเป็นข้อมูลล่าสุด'</span>, <span style="color:var(--ui-tag-color-purple)">timeout:</span> <span style="color:var(--ui-tag-color-green)">5000</span> }), <span style="color:var(--ui-tag-color-green)">2000</span>);
+  });
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-7-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-cyan)">toast</span>({ <span style="color:var(--ui-tag-color-purple)">id:</span> <span style="color:var(--ui-tag-color-teal)">'sync'</span>, <span style="color:var(--ui-tag-color-purple)">title:</span> <span style="color:var(--ui-tag-color-teal)">'กำลังซิงก์…'</span>, <span style="color:var(--ui-tag-color-purple)">subtitle:</span> <span style="color:var(--ui-tag-color-teal)">'สัญญา 24 ฉบับ'</span>, <span style="color:var(--ui-tag-color-purple)">timeout:</span> <span style="color:var(--ui-tag-color-green)">0</span> });
+<span style="color:var(--ui-tag-color-magenta)">await</span> <span style="color:var(--ui-tag-color-cyan)">sync</span>();
+<span style="color:var(--ui-tag-color-cyan)">toast</span>({ <span style="color:var(--ui-tag-color-purple)">id:</span> <span style="color:var(--ui-tag-color-teal)">'sync'</span>, <span style="color:var(--ui-tag-color-purple)">kind:</span> <span style="color:var(--ui-tag-color-teal)">'success'</span>, <span style="color:var(--ui-tag-color-purple)">title:</span> <span style="color:var(--ui-tag-color-teal)">'ซิงก์แล้ว'</span>, <span style="color:var(--ui-tag-color-purple)">subtitle:</span> <span style="color:var(--ui-tag-color-teal)">'สัญญา 24 ฉบับเป็นข้อมูลล่าสุด'</span> });</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-7-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-cyan)">toast</span>({ <span style="color:var(--ui-tag-color-purple)">id:</span> <span style="color:var(--ui-tag-color-teal)">'sync'</span>, <span style="color:var(--ui-tag-color-purple)">title:</span> <span style="color:var(--ui-tag-color-teal)">'กำลังซิงก์…'</span>, <span style="color:var(--ui-tag-color-purple)">subtitle:</span> <span style="color:var(--ui-tag-color-teal)">'สัญญา 24 ฉบับ'</span>, <span style="color:var(--ui-tag-color-purple)">timeout:</span> <span style="color:var(--ui-tag-color-green)">0</span> });
+<span style="color:var(--ui-tag-color-magenta)">await</span> <span style="color:var(--ui-tag-color-cyan)">sync</span>();
+<span style="color:var(--ui-tag-color-cyan)">toast</span>({ <span style="color:var(--ui-tag-color-purple)">id:</span> <span style="color:var(--ui-tag-color-teal)">'sync'</span>, <span style="color:var(--ui-tag-color-purple)">kind:</span> <span style="color:var(--ui-tag-color-teal)">'success'</span>, <span style="color:var(--ui-tag-color-purple)">title:</span> <span style="color:var(--ui-tag-color-teal)">'ซิงก์แล้ว'</span>, <span style="color:var(--ui-tag-color-purple)">subtitle:</span> <span style="color:var(--ui-tag-color-teal)">'สัญญา 24 ฉบับเป็นข้อมูลล่าสุด'</span> });</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="ปิดจากโค้ด">ปิดจากโค้ด</h2>
+<p><code>toast()</code> คืนค่า handle ที่มี <code>close()</code> ไว้ปิด toast ตัวนั้น เช่น เมื่องานที่มันพูดถึงเสร็จแล้ว <code>close()</code> ของ element ก็ทำแบบเดียวกัน</p>
+<div class="doc-demo"><div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center">
+  <ui-button id="toast-handle" kind="tertiary">สร้างรายงาน</ui-button>
+  <ui-toaster></ui-toaster>
+</div>
+
+<script type="text/x-demo">
+  const toaster = document.querySelector('ui-toaster');
+  document.getElementById('toast-handle').addEventListener('click', () => {
+    const toast = document.createElement('ui-notification');
+    Object.assign(toast, { variant: 'toast', role: 'none', kind: 'info', heading: 'กำลังสร้างรายงาน…', subtitle: 'ใช้เวลาไม่กี่วินาที' });
+    toaster.add(toast);
+    setTimeout(() => toast.close(), 3000);
+  });
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-8-0">HTML</ui-tab><ui-tab panel="code-8-1">React</ui-tab><ui-tab panel="code-8-2">React + Tailwind</ui-tab><ui-tab-panel name="code-8-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"display: flex; flex-wrap: wrap; gap: 16px; align-items: center"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"toast-handle"</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"tertiary"</span>&gt;สร้างรายงาน&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-toaster</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-toaster</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> toaster <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">querySelector</span>(<span style="color:var(--ui-tag-color-teal)">'ui-toaster'</span>);
+  document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'toast-handle'</span>).<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    <span style="color:var(--ui-tag-color-magenta)">const</span> toast <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">createElement</span>(<span style="color:var(--ui-tag-color-teal)">'ui-notification'</span>);
+    Object.<span style="color:var(--ui-tag-color-cyan)">assign</span>(toast, { <span style="color:var(--ui-tag-color-purple)">variant:</span> <span style="color:var(--ui-tag-color-teal)">'toast'</span>, <span style="color:var(--ui-tag-color-purple)">role:</span> <span style="color:var(--ui-tag-color-teal)">'none'</span>, <span style="color:var(--ui-tag-color-purple)">kind:</span> <span style="color:var(--ui-tag-color-teal)">'info'</span>, <span style="color:var(--ui-tag-color-purple)">heading:</span> <span style="color:var(--ui-tag-color-teal)">'กำลังสร้างรายงาน…'</span>, <span style="color:var(--ui-tag-color-purple)">subtitle:</span> <span style="color:var(--ui-tag-color-teal)">'ใช้เวลาไม่กี่วินาที'</span> });
+    toaster.<span style="color:var(--ui-tag-color-cyan)">add</span>(toast);
+    <span style="color:var(--ui-tag-color-cyan)">setTimeout</span>(() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> toast.<span style="color:var(--ui-tag-color-cyan)">close</span>(), <span style="color:var(--ui-tag-color-green)">3000</span>);
+  });
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-8-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> working <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">toast</span>({ <span style="color:var(--ui-tag-color-purple)">title:</span> <span style="color:var(--ui-tag-color-teal)">'กำลังสร้างรายงาน…'</span>, <span style="color:var(--ui-tag-color-purple)">subtitle:</span> <span style="color:var(--ui-tag-color-teal)">'ใช้เวลาไม่กี่วินาที'</span>, <span style="color:var(--ui-tag-color-purple)">timeout:</span> <span style="color:var(--ui-tag-color-green)">0</span> });
+<span style="color:var(--ui-tag-color-magenta)">await</span> <span style="color:var(--ui-tag-color-cyan)">generateReport</span>();
+working.<span style="color:var(--ui-tag-color-cyan)">close</span>();</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-8-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> working <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">toast</span>({ <span style="color:var(--ui-tag-color-purple)">title:</span> <span style="color:var(--ui-tag-color-teal)">'กำลังสร้างรายงาน…'</span>, <span style="color:var(--ui-tag-color-purple)">subtitle:</span> <span style="color:var(--ui-tag-color-teal)">'ใช้เวลาไม่กี่วินาที'</span>, <span style="color:var(--ui-tag-color-purple)">timeout:</span> <span style="color:var(--ui-tag-color-green)">0</span> });
+<span style="color:var(--ui-tag-color-magenta)">await</span> <span style="color:var(--ui-tag-color-cyan)">generateReport</span>();
+working.<span style="color:var(--ui-tag-color-cyan)">close</span>();</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="แสดงได้กี่ตัวพร้อมกัน">แสดงได้กี่ตัวพร้อมกัน</h2>
+<p>toaster แสดง toast ได้ไม่เกิน <code>max</code> ตัว (ค่าเริ่มต้น 3) ตัวใหม่จะปิดตัวที่เก่าที่สุด ถ้าจะเปลี่ยนค่านี้ ให้วาง <code>&lt;ui-toaster&gt;</code> เอง <code>toast()</code> จะใช้ตัวแรกในหน้า ลองกดปุ่มหลาย ๆ ครั้ง</p>
+<div class="doc-demo"><div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center">
+  <ui-button id="toast-max" kind="tertiary">เพิ่มผู้ลงนาม</ui-button>
+  <ui-toaster id="toast-max-toaster" max="2"></ui-toaster>
+</div>
+
+<script type="text/x-demo">
+  const toaster = document.getElementById('toast-max-toaster');
+  let count = 0;
+  document.getElementById('toast-max').addEventListener('click', () => {
+    count += 1;
+    const toast = document.createElement('ui-notification');
+    Object.assign(toast, { variant: 'toast', role: 'none', kind: 'success', heading: `เพิ่มผู้ลงนามคนที่ ${count} แล้ว`, timeout: 5000 });
+    toaster.add(toast);
+  });
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-9-0">HTML</ui-tab><ui-tab panel="code-9-1">React</ui-tab><ui-tab panel="code-9-2">React + Tailwind</ui-tab><ui-tab-panel name="code-9-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"display: flex; flex-wrap: wrap; gap: 16px; align-items: center"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"toast-max"</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"tertiary"</span>&gt;เพิ่มผู้ลงนาม&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-toaster</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"toast-max-toaster"</span> <span style="color:var(--ui-tag-color-purple)">max</span>=<span style="color:var(--ui-tag-color-teal)">"2"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-toaster</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> toaster <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'toast-max-toaster'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">let</span> count <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-green)">0</span>;
+  document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'toast-max'</span>).<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    count <span style="color:var(--ui-tag-color-magenta)">+=</span> <span style="color:var(--ui-tag-color-green)">1</span>;
+    <span style="color:var(--ui-tag-color-magenta)">const</span> toast <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">createElement</span>(<span style="color:var(--ui-tag-color-teal)">'ui-notification'</span>);
+    Object.<span style="color:var(--ui-tag-color-cyan)">assign</span>(toast, { <span style="color:var(--ui-tag-color-purple)">variant:</span> <span style="color:var(--ui-tag-color-teal)">'toast'</span>, <span style="color:var(--ui-tag-color-purple)">role:</span> <span style="color:var(--ui-tag-color-teal)">'none'</span>, <span style="color:var(--ui-tag-color-purple)">kind:</span> <span style="color:var(--ui-tag-color-teal)">'success'</span>, <span style="color:var(--ui-tag-color-purple)">heading:</span> <span style="color:var(--ui-tag-color-teal)">`เพิ่มผู้ลงนามคนที่ ${</span><span style="color:var(--ui-tag-color-teal)">count</span><span style="color:var(--ui-tag-color-teal)">} แล้ว`</span>, <span style="color:var(--ui-tag-color-purple)">timeout:</span> <span style="color:var(--ui-tag-color-green)">5000</span> });
+    toaster.<span style="color:var(--ui-tag-color-cyan)">add</span>(toast);
+  });
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-9-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-ink-muted);font-style:italic">// ครั้งเดียวในแอป แล้ว toast() จะใช้ตัวนี้</span>
+&lt;<span style="color:var(--ui-tag-color-blue)">UiToaster</span> <span style="color:var(--ui-tag-color-purple)">max</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">2</span>} /&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-9-2"><ui-code-snippet type="single" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">Toaster</span> <span style="color:var(--ui-tag-color-purple)">max</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">2</span>} /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="มุมล่าง">มุมล่าง</h2>
+<p><code>placement=&quot;bottom-end&quot;</code> ให้ toast ซ้อนกันที่มุมล่างด้านท้าย ตัวใหม่สุดอยู่ล่างสุด <code>--ui-toaster-offset</code> กำหนดระยะห่างจากขอบ (React + Tailwind ใช้ <code>offset</code>)</p>
+<div class="doc-demo"><div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center">
+  <ui-button id="toast-bottom" kind="tertiary">คัดลอกลิงก์</ui-button>
+  <ui-toaster id="toast-bottom-toaster" placement="bottom-end" style="--ui-toaster-offset: 32px"></ui-toaster>
+</div>
+
+<script type="text/x-demo">
+  const toaster = document.getElementById('toast-bottom-toaster');
+  document.getElementById('toast-bottom').addEventListener('click', () => {
+    const toast = document.createElement('ui-notification');
+    Object.assign(toast, { variant: 'toast', role: 'none', kind: 'info', heading: 'คัดลอกลิงก์แล้ว', timeout: 5000 });
+    toaster.add(toast);
+  });
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-10-0">HTML</ui-tab><ui-tab panel="code-10-1">React</ui-tab><ui-tab panel="code-10-2">React + Tailwind</ui-tab><ui-tab-panel name="code-10-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"display: flex; flex-wrap: wrap; gap: 16px; align-items: center"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"toast-bottom"</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"tertiary"</span>&gt;คัดลอกลิงก์&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-toaster</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"toast-bottom-toaster"</span> <span style="color:var(--ui-tag-color-purple)">placement</span>=<span style="color:var(--ui-tag-color-teal)">"bottom-end"</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"--ui-toaster-offset: 32px"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-toaster</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> toaster <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'toast-bottom-toaster'</span>);
+  document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'toast-bottom'</span>).<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    <span style="color:var(--ui-tag-color-magenta)">const</span> toast <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">createElement</span>(<span style="color:var(--ui-tag-color-teal)">'ui-notification'</span>);
+    Object.<span style="color:var(--ui-tag-color-cyan)">assign</span>(toast, { <span style="color:var(--ui-tag-color-purple)">variant:</span> <span style="color:var(--ui-tag-color-teal)">'toast'</span>, <span style="color:var(--ui-tag-color-purple)">role:</span> <span style="color:var(--ui-tag-color-teal)">'none'</span>, <span style="color:var(--ui-tag-color-purple)">kind:</span> <span style="color:var(--ui-tag-color-teal)">'info'</span>, <span style="color:var(--ui-tag-color-purple)">heading:</span> <span style="color:var(--ui-tag-color-teal)">'คัดลอกลิงก์แล้ว'</span>, <span style="color:var(--ui-tag-color-purple)">timeout:</span> <span style="color:var(--ui-tag-color-green)">5000</span> });
+    toaster.<span style="color:var(--ui-tag-color-cyan)">add</span>(toast);
+  });
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-10-1"><ui-code-snippet type="single" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiToaster</span> <span style="color:var(--ui-tag-color-purple)">placement</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"bottom-end"</span> <span style="color:var(--ui-tag-color-purple)">style</span><span style="color:var(--ui-tag-color-magenta)">=</span>{{ <span style="color:var(--ui-tag-color-teal)">'--ui-toaster-offset'</span><span style="color:var(--ui-tag-color-purple)">:</span> <span style="color:var(--ui-tag-color-teal)">'32px'</span> } <span style="color:var(--ui-tag-color-magenta)">as</span> <span style="color:var(--ui-tag-color-cyan)">CSSProperties</span>} /&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-10-2"><ui-code-snippet type="single" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">Toaster</span> <span style="color:var(--ui-tag-color-purple)">placement</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"bottom-end"</span> <span style="color:var(--ui-tag-color-purple)">offset</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"32px"</span> /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="toast-กับ-modal">Toast กับ modal</h2>
+<p>toast ที่เพิ่มเข้ามาระหว่างที่ <a href="/kanok-ui-docs/th/modal/">Modal</a> เปิดอยู่จะถูกวาดทับ modal แต่หน้าเว็บนอก modal เป็น inert จึงไม่มีใครคลิกได้ และ screen reader เข้าไม่ถึง การแจ้งผลใน modal ให้ใช้ <a href="/kanok-ui-docs/th/notification/">Notification</a> แบบ inline แทน (ตามแนวทางของ Carbon)</p>
+<div class="doc-demo"><ui-button id="toast-modal-open" kind="tertiary">แก้ไขหน่วยงาน</ui-button>
+<ui-modal id="toast-modal" heading="แก้ไขหน่วยงาน" size="sm">
+  <ui-notification id="toast-modal-saved" kind="success" low-contrast open="false" heading="บันทึกแล้ว" subtitle="ใช้ชื่อใหม่แล้ว"></ui-notification>
+  <ui-text-input label="ชื่อหน่วยงาน" value="กฎหมาย"></ui-text-input>
+  <ui-button slot="footer" kind="secondary" id="toast-modal-close">ปิด</ui-button>
+  <ui-button slot="footer" id="toast-modal-save">บันทึก</ui-button>
+</ui-modal>
+
+<script type="text/x-demo">
+  const modal = document.getElementById('toast-modal');
+  document.getElementById('toast-modal-open').addEventListener('click', () => {
+    document.getElementById('toast-modal-saved').open = false;
+    modal.show();
+  });
+  document.getElementById('toast-modal-close').addEventListener('click', () => modal.close());
+  document.getElementById('toast-modal-save').addEventListener('click', () => (document.getElementById('toast-modal-saved').open = true));
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-11-0">HTML</ui-tab><ui-tab panel="code-11-1">React</ui-tab><ui-tab panel="code-11-2">React + Tailwind</ui-tab><ui-tab-panel name="code-11-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"toast-modal-open"</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"tertiary"</span>&gt;แก้ไขหน่วยงาน&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-modal</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"toast-modal"</span> <span style="color:var(--ui-tag-color-purple)">heading</span>=<span style="color:var(--ui-tag-color-teal)">"แก้ไขหน่วยงาน"</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"sm"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-notification</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"toast-modal-saved"</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"success"</span> <span style="color:var(--ui-tag-color-purple)">low-contrast</span> <span style="color:var(--ui-tag-color-purple)">open</span>=<span style="color:var(--ui-tag-color-teal)">"false"</span> <span style="color:var(--ui-tag-color-purple)">heading</span>=<span style="color:var(--ui-tag-color-teal)">"บันทึกแล้ว"</span> <span style="color:var(--ui-tag-color-purple)">subtitle</span>=<span style="color:var(--ui-tag-color-teal)">"ใช้ชื่อใหม่แล้ว"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-notification</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-text-input</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ชื่อหน่วยงาน"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"กฎหมาย"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-text-input</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"footer"</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"secondary"</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"toast-modal-close"</span>&gt;ปิด&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"footer"</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"toast-modal-save"</span>&gt;บันทึก&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-modal</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> modal <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'toast-modal'</span>);
+  document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'toast-modal-open'</span>).<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'toast-modal-saved'</span>).open <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-green)">false</span>;
+    modal.<span style="color:var(--ui-tag-color-cyan)">show</span>();
+  });
+  document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'toast-modal-close'</span>).<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> modal.<span style="color:var(--ui-tag-color-cyan)">close</span>());
+  document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'toast-modal-save'</span>).<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'toast-modal-saved'</span>).open <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-green)">true</span>));
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-11-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiModal</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"แก้ไขหน่วยงาน"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">onUiClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> { <span style="color:var(--ui-tag-color-magenta)">if</span> (e.target <span style="color:var(--ui-tag-color-magenta)">===</span> e.currentTarget) <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>); }}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiNotification</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"success"</span> <span style="color:var(--ui-tag-color-purple)">lowContrast</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{saved} <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"บันทึกแล้ว"</span> <span style="color:var(--ui-tag-color-purple)">subtitle</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ใช้ชื่อใหม่แล้ว"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ชื่อหน่วยงาน"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"กฎหมาย"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiButton</span> <span style="color:var(--ui-tag-color-purple)">slot</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"footer"</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"secondary"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}&gt;ปิด&lt;/<span style="color:var(--ui-tag-color-blue)">UiButton</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiButton</span> <span style="color:var(--ui-tag-color-purple)">slot</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"footer"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{save}&gt;บันทึก&lt;/<span style="color:var(--ui-tag-color-blue)">UiButton</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiModal</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-11-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">Modal</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">onClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)} <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"แก้ไขหน่วยงาน"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">footer</span><span style="color:var(--ui-tag-color-magenta)">=</span>{…}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">Notification</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"success"</span> <span style="color:var(--ui-tag-color-purple)">lowContrast</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{saved} <span style="color:var(--ui-tag-color-purple)">title</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"บันทึกแล้ว"</span> <span style="color:var(--ui-tag-color-purple)">subtitle</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ใช้ชื่อใหม่แล้ว"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ชื่อหน่วยงาน"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"กฎหมาย"</span> /&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Modal</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="accessibility">Accessibility</h2>
+<ul>
+<li>toast แต่ละตัวถูกอ่านผ่าน region ของ toaster ตัว toast เองไม่มี live role ส่วน toast ที่มีปุ่มคำสั่งยังเป็น <code>alertdialog</code> และดึงโฟกัส</li>
+<li>toast ที่ปิดแล้วจะถูกลบออกจากหน้า</li>
+<li>เขียน toast ให้สั้น และอย่าใส่สิ่งที่ผู้ใช้หาได้จาก toast เท่านั้น เพราะเมื่อหายไปแล้วก็หายไปเลย</li>
+</ul>
+<p>ต้องการแค่พฤติกรรมโดยไม่มี style: <a href="/kanok-ui-docs/th/headless-toast/">Headless Toast</a></p>
+<h2 id="api">API</h2>
+<p>สร้างจากแพ็กเกจโดยตรง ใน React ส่ง property เป็น prop ชื่อเดียวกัน ส่วน event ก็เป็น prop เช่นกัน (ดูคอลัมน์ React)</p>
+<h3 id="ui-toaster-react-uitoaster"><code>&lt;ui-toaster&gt;</code> · React <code>UiToaster</code></h3>
+<h4 id="attribute">Attribute</h4>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Property</th>
+<th>ชนิด</th>
+<th>ค่าเริ่มต้น</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>placement</code></td>
+<td><code>placement</code></td>
+<td><code>ToasterPlacement</code></td>
+<td><code>'top-end'</code></td>
+<td>Corner: newest toast nearest the edge.</td>
+</tr>
+<tr>
+<td><code>max</code></td>
+<td><code>max</code></td>
+<td><code>number</code></td>
+<td><code>3</code></td>
+<td>Most toasts shown at once; a new one closes the oldest.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="method">Method</h4>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>add(toast)</code></td>
+<td>Adds <code>toast</code>, closes the oldest beyond <code>max</code>, and lifts the region above anything opened since.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="slot">Slot</h4>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(ค่าเริ่มต้น)</td>
+<td><code>&lt;ui-notification variant=&quot;toast&quot;&gt;</code> elements (added by <code>toast()</code>)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="css-custom-property">CSS custom property</h4>
+<table>
+<thead>
+<tr>
+<th>Custom property</th>
+<th>ค่าเริ่มต้น</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--ui-toaster-offset</code></td>
+<td></td>
+<td>Distance from the top (or bottom) edge (default 16px; 64px under a ui-header)</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+<nav class="doc-toc" aria-labelledby="doc-toc-title"><p id="doc-toc-title" class="doc-toc-title">ในหน้านี้</p><ul><li class="doc-toc-h2"><a href="#ติดตั้ง">ติดตั้ง</a></li><li class="doc-toc-h2"><a href="#วิธีใช้">วิธีใช้</a></li><li class="doc-toc-h2"><a href="#ชนิดและเวลาที่อยู่">ชนิดและเวลาที่อยู่</a></li><li class="doc-toc-h2"><a href="#caption-และคอนทราสต์ต่ำ">Caption และคอนทราสต์ต่ำ</a></li><li class="doc-toc-h2"><a href="#มีปุ่มคำสั่ง">มีปุ่มคำสั่ง</a></li><li class="doc-toc-h2"><a href="#แทนที่-toast-เดิม">แทนที่ toast เดิม</a></li><li class="doc-toc-h2"><a href="#ปิดจากโค้ด">ปิดจากโค้ด</a></li><li class="doc-toc-h2"><a href="#แสดงได้กี่ตัวพร้อมกัน">แสดงได้กี่ตัวพร้อมกัน</a></li><li class="doc-toc-h2"><a href="#มุมล่าง">มุมล่าง</a></li><li class="doc-toc-h2"><a href="#toast-กับ-modal">Toast กับ modal</a></li><li class="doc-toc-h2"><a href="#accessibility">Accessibility</a></li><li class="doc-toc-h2"><a href="#api">API</a></li><li class="doc-toc-h3"><a href="#ui-toaster-react-uitoaster">&lt;ui-toaster></a></li></ul></nav>
+</div>
+<nav class="doc-pager" aria-label="ถัดไป / ก่อนหน้า"><a class="doc-pager-prev" href="/kanok-ui-docs/th/notification/" rel="prev"><span>ก่อนหน้า</span>Notification</a><a class="doc-pager-next" href="/kanok-ui-docs/th/tooltip/" rel="next"><span>ถัดไป</span>Tooltip</a></nav>
+<footer class="doc-footer">@purpurabog/ui 1.4.3 · MIT · <a href="https://cdn.jsdelivr.net/npm/@purpurabog/ui@1.4.3/THIRD-PARTY-NOTICES.md">ประกาศของบุคคลที่สาม</a><br>สร้างตาม Carbon Design System ไม่ได้เกี่ยวข้องหรือได้รับการรับรองจาก IBM — IBM และ Carbon เป็นเครื่องหมายการค้าของ IBM Corp.</footer>
+</ui-content>
+<ui-modal id="doc-search" heading="ค้นหา" data-count="พบ {n} รายการ" data-empty="ไม่พบ “{q}”">
+<ui-search label="ค้นหาในเอกสาร" placeholder="ค้นหาในเอกสาร" size="lg"></ui-search>
+<p class="doc-search-status" role="status"></p>
+<ul class="doc-search-results"></ul>
+</ui-modal>
+</body>
+</html>

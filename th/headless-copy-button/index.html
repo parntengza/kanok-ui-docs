@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Headless Copy button · @purpurabog/ui</title>
+<link rel="alternate" hreflang="en" href="/kanok-ui-docs/en/headless-copy-button/"  /><link rel="alternate" hreflang="th" href="/kanok-ui-docs/th/headless-copy-button/"  />
+<script>(function(){try{var q=new URLSearchParams(location.search).get("design"),d=q;if(q==="kanok"||q==="carbon")localStorage.setItem("ui-docs-design",q);else d=localStorage.getItem("ui-docs-design");if(d==="kanok")document.documentElement.setAttribute("data-design","kanok")}catch(e){}})();(function(){try{var m=localStorage.getItem("ui-docs-theme");if(m!=="light"&&m!=="dark"&&m!=="system")return;var d=m==="dark"||(m==="system"&&matchMedia("(prefers-color-scheme: dark)").matches),r=document.documentElement,t=d?"g100":"white";if(r.getAttribute("data-design")==="kanok")t=d?"lacquer":"paper";r.setAttribute("data-theme",t)}catch(e){}})();</script>
+<style>ui-header:not(:defined){z-index:8000;box-sizing:border-box;border-block-end:1px solid var(--ui-border-subtle-1);background:var(--ui-canvas);block-size:48px;display:block;position:fixed;inset:0 0 auto}:is(ui-header:not(:defined)>*,ui-side-nav:not(:defined)>*){visibility:hidden}:is(ui-header-panel:not(:defined),ui-modal:not(:defined)){display:none}ui-side-nav:not(:defined){display:none}ui-content:not(:defined){margin-block-start:48px;padding:32px;display:block}@media (width>=1056px){ui-side-nav[expanded]:not(:defined){background:var(--ui-canvas);inline-size:256px;display:block;position:fixed;inset:48px auto 0 0}ui-side-nav[expanded]:not(:defined)~ui-content:not(:defined){margin-inline-start:256px}}ui-tabs:not(:defined){display:block}ui-tabs:not(:defined)>ui-tab{box-sizing:border-box;border-block-end:2px solid var(--ui-hairline);block-size:40px;color:var(--ui-ink-muted);font:var(--ui-font-body-sm);padding:0 16px;line-height:38px;display:inline-block}ui-tabs:not(:defined)>ui-tab:first-of-type{border-block-end-color:var(--ui-interactive);color:var(--ui-ink)}ui-tabs:not(:defined)>ui-tab-panel{padding:16px;display:block}ui-tabs:not(:defined)>ui-tab-panel~ui-tab-panel{display:none}ui-code-snippet:not(:defined){background:var(--ui-layer-1);max-block-size:272px;font:var(--ui-font-code,12px/16px monospace);white-space:pre;padding:16px;display:block;overflow:hidden}[data-react-example]:empty>*{visibility:hidden}.doc-demo:has(:not(:defined))>*{visibility:hidden}[data-react-example]:empty{box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}.doc-demo:has(:not(:defined)){box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}@keyframes doc-skeleton{to{background-position:-200% 0}}@media (prefers-reduced-motion:reduce){[data-react-example]:empty{animation:none}.doc-demo:has(:not(:defined)){animation:none}}</style>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/index-B47b-8vr.js"></script>
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/theme-switcher-BGAHXRgF.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/listbox-gjElSjvA.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/headless-CpcU3xFD.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/flag-D0Ou26eR.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/popup-position-SaIiGkPq.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/tooltip-H8WUnTz7.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/copy-RvfYxcjN.js">
+  <link rel="stylesheet" crossorigin href="/kanok-ui-docs/assets/theme-switcher-CL5yB6XE.css">
+  <link rel="stylesheet" crossorigin href="/kanok-ui-docs/assets/headless-JjfvojKd.css">
+</head>
+<body>
+<ui-header label="@purpurabog/ui">
+<ui-skip-to-content></ui-skip-to-content>
+<ui-header-menu-button></ui-header-menu-button>
+<ui-header-name href="/kanok-ui-docs/th/" prefix="@purpurabog">ui</ui-header-name>
+<ui-header-global-bar>
+<ui-header-global-action id="doc-search-open" label="ค้นหา" tooltip-placement="bottom"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="m18.5 17.8-4.9-4.9a7 7 0 1 0-.7.7l4.9 4.9zM3 8.5a5.5 5.5 0 1 1 5.5 5.5A5.5 5.5 0 0 1 3 8.5Z" /></svg></ui-header-global-action>
+<ui-header-global-action label="ตั้งค่า" panel="doc-settings" tooltip-placement="bottom-end"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="M16.9 10.6a7 7 0 0 0 0-1.2l1.8-1.4-1.6-2.8-2.1.8a6.6 6.6 0 0 0-1-.6L13.6 3h-3.2l-.4 2.4a6.6 6.6 0 0 0-1 .6l-2.1-.8L5.3 8l1.8 1.4a7 7 0 0 0 0 1.2L5.3 12l1.6 2.8 2.1-.8a6.6 6.6 0 0 0 1 .6l.4 2.4h3.2l.4-2.4a6.6 6.6 0 0 0 1-.6l2.1.8 1.6-2.8zM12 13a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" /></svg></ui-header-global-action>
+</ui-header-global-bar>
+<ui-header-panel id="doc-settings" label="ตั้งค่า">
+<div class="doc-settings">
+<span class="doc-settings-label">ธีม</span>
+<ui-theme-switcher storage-key="ui-docs-theme" tooltip-placement="bottom"></ui-theme-switcher>
+<span class="doc-settings-label">รูปแบบ</span>
+<ui-content-switcher id="doc-design" aria-label="รูปแบบ" size="sm"><ui-content-switcher-item name="carbon">Carbon</ui-content-switcher-item><ui-content-switcher-item name="kanok">Kanok</ui-content-switcher-item></ui-content-switcher>
+<span class="doc-settings-label">ภาษา</span>
+<ui-link href="/kanok-ui-docs/en/headless-copy-button/" hreflang="en" lang="en">English</ui-link>
+</div>
+</ui-header-panel>
+</ui-header>
+<ui-side-nav label="เอกสาร"><ui-side-nav-items><ui-side-nav-menu label="เริ่มต้น"><ui-side-nav-menu-item href="/kanok-ui-docs/th/">ภาพรวม</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/installation/">ติดตั้ง</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/migration-1-0/">การย้ายไป 1.0</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="คู่มือ"><ui-side-nav-menu-item href="/kanok-ui-docs/th/themes/">ธีมและ layer</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/kanok/">ดีไซน์ Kanok</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/customizing/">ปรับแต่งหน้าตา</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/icons/">ไอคอน</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/forms/">ฟอร์มและการตรวจค่า</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/frameworks/">ใช้กับ framework</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/ai/">ใช้กับ AI</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="ฟอร์มและปุ่ม"><ui-side-nav-menu-item href="/kanok-ui-docs/th/button/">Button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/file-uploader/">File uploader</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Overlay"><ui-side-nav-menu-item href="/kanok-ui-docs/th/modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/toggletip/">Toggletip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/menu/">Menu</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="ข้อมูล"><ui-side-nav-menu-item href="/kanok-ui-docs/th/data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/contained-list/">Contained list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tree-view/">Tree view</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="การนำทาง"><ui-side-nav-menu-item href="/kanok-ui-docs/th/tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/breadcrumb/">Breadcrumb</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/link/">Link</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/ui-shell/">UI shell</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="เนื้อหา"><ui-side-nav-menu-item href="/kanok-ui-docs/th/tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tile/">Tile</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/user-avatar/">User avatar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/list/">List</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="สถานะและการโหลด"><ui-side-nav-menu-item href="/kanok-ui-docs/th/loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/inline-loading/">Inline loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/progress-bar/">Progress bar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/skeleton/">Skeleton</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/badge-indicator/">Badge indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/status-indicator/">Status indicator</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="เลย์เอาต์"><ui-side-nav-menu-item href="/kanok-ui-docs/th/grid/">Grid</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/heading/">Heading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/layer/">Layer</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/action-set/">Action set</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/page-header/">Page header</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/big-number/">Big number</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Headless" expanded><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless/">แนะนำ</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-file-uploader/">File uploader</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-menu/">Menu</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-ui-shell/">UI shell</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tree-view/">Tree view</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-copy-button/" current>Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu></ui-side-nav-items></ui-side-nav><script>if(matchMedia('(min-width: 66rem)').matches)document.currentScript.previousElementSibling.setAttribute('expanded','')</script>
+<ui-content>
+<div class="doc-page">
+<article class="doc">
+<!-- nav: Copy button -->
+<h1 id="headless-copy-button">Headless Copy button</h1>
+<p><code>Copy</code> คือพฤติกรรมของ <a href="/kanok-ui-docs/th/copy-button/">Copy button</a> แบบมี style ในรูป React part ที่ไม่มี style <code>Root</code> เก็บข้อความและตัวจับเวลาของข้อความหลังคัดลอก <code>Trigger</code> ใส่ข้อความลงคลิปบอร์ดแล้วรายงาน <code>copied</code> อยู่สองวินาที และ <code>Status</code> เป็น live region แบบ polite ที่อ่านข้อความหลังคัดลอกของคุณในช่วงนั้น ถ้าคัดลอกไม่สำเร็จจะไม่แสดงอะไร <code>Copy.useCopy</code> ให้พฤติกรรมเดียวกันในรูป hook สำหรับ control ของคุณเอง</p>
+<p>ส่วนที่คุณทำเองคือไอคอน tooltip ข้อความหลังคัดลอก และ style ทั้งหมด <a href="/kanok-ui-docs/th/code-snippet/">Code snippet</a> แบบมี style ใช้ part ชุดนี้กับชิป inline ด้วย</p>
+<h2 id="ติดตั้ง">ติดตั้ง</h2>
+<p>ส่วน headless มากับแพ็กเกจเลย (ไม่มี item ของ shadcn; item ของ React + Tailwind สร้างบนมัน):</p>
+<ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">@purpurabog/ui</span></ui-code-snippet>
+<ui-code-snippet type="single" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { Copy } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;</ui-code-snippet>
+<h2 id="วิธีใช้">วิธีใช้</h2>
+<div class="doc-demo" data-react-example="0"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { Copy } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex items-center gap-2 text-sm text-ink"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">span</span>&gt;RQ-2026-00123&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Copy.Root</span> <span style="color:var(--ui-tag-color-purple)">text</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"RQ-2026-00123"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Copy.Trigger</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"คัดลอกเลขที่คำขอ"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid size-10 cursor-pointer place-items-center bg-surface-1 text-icon-primary hover:bg-ghost-hover active:bg-ghost-active focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-4 fill-current"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M14 5v9H5V5h9m0-1H5a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1Z"</span> /&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M2 9H1V2a1 1 0 0 1 1-1h7v1H2Z"</span> /&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Copy.Trigger</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Copy.Status</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sr-only"</span>&gt;คัดลอกแล้ว&lt;/<span style="color:var(--ui-tag-color-blue)">Copy.Status</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">Copy.Root</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<p><code>Trigger</code> คือ <code>&lt;button type=&quot;button&quot;&gt;</code> ที่ไม่มีชื่อในตัว trigger ที่มีแต่ไอคอนต้องมี <code>aria-label</code> (หรือ tooltip ที่ตั้งชื่อให้ ดูด้านล่าง)</p>
+<h2 id="โครงสร้าง">โครงสร้าง</h2>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">Copy.Root</span> <span style="color:var(--ui-tag-color-purple)">text</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"…"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">Copy.Trigger</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">Copy.Status</span> /&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Copy.Root</span>&gt;</ui-code-snippet>
+<h2 id="แสดงผลหลังคัดลอก">แสดงผลหลังคัดลอก</h2>
+<p>ในช่วงหลังคัดลอก <code>Trigger</code> มี <code>data-copied</code> สลับไอคอนเป็นเครื่องหมายถูกด้วย <code>group-data-copied:</code> หรืออ่าน <code>copied</code> จาก <code>Copy.useCopyContext()</code> ใน component ที่อยู่ใน <code>Root</code></p>
+<div class="doc-demo" data-react-example="1"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { Copy } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Label</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> { copied } <span style="color:var(--ui-tag-color-magenta)">=</span> Copy.<span style="color:var(--ui-tag-color-cyan)">useCopyContext</span>();
+  <span style="color:var(--ui-tag-color-magenta)">return</span> &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-sm"</span>&gt;{copied <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-teal)">'คัดลอกแล้ว'</span> <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-teal)">'คัดลอกลิงก์'</span>}&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;;
+}
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">Copy.Root</span> <span style="color:var(--ui-tag-color-purple)">text</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"https://contracts.example.com/CT-2026-0142"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Copy.Trigger</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"group inline-flex h-10 cursor-pointer items-center gap-2 bg-surface-1 px-4 text-ink hover:bg-ghost-hover focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus data-copied:text-success"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-4 fill-current group-data-copied:hidden"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M14 5v9H5V5h9m0-1H5a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1Z"</span> /&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M2 9H1V2a1 1 0 0 1 1-1h7v1H2Z"</span> /&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"hidden size-4 fill-current group-data-copied:block"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M6 10.6 2.7 7.3 2 8l4 4 8-8-.7-.7z"</span> /&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Label</span> /&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">Copy.Trigger</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Copy.Status</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sr-only"</span>&gt;คัดลอกลิงก์แล้ว&lt;/<span style="color:var(--ui-tag-color-blue)">Copy.Status</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">Copy.Root</span>&gt;
+  );
+}</ui-code-snippet>
+<h2 id="แสดงผลใน-tooltip">แสดงผลใน tooltip</h2>
+<p>Carbon แสดง label และข้อความหลังคัดลอกใน tooltip ของปุ่ม ใช้ <code>Copy</code> คู่กับ <a href="/kanok-ui-docs/th/headless-tooltip/">Tooltip</a> แบบ headless: <code>label</code> ของ tooltip เป็นชื่อปุ่มไอคอน และ <code>open</code> ทำให้ tooltip ค้างอยู่ระหว่างที่ <code>copied</code> เป็น true</p>
+<div class="doc-demo" data-react-example="2"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { Copy, Tooltip } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">CopyWithTooltip</span>({ label, feedback }<span style="color:var(--ui-tag-color-magenta)">:</span> { label<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>; feedback<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span> }) {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> { copied } <span style="color:var(--ui-tag-color-magenta)">=</span> Copy.<span style="color:var(--ui-tag-color-cyan)">useCopyContext</span>();
+  <span style="color:var(--ui-tag-color-magenta)">const</span> text <span style="color:var(--ui-tag-color-magenta)">=</span> copied <span style="color:var(--ui-tag-color-magenta)">?</span> feedback <span style="color:var(--ui-tag-color-magenta)">:</span> label;
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Tooltip.Root</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span>{text} <span style="color:var(--ui-tag-color-purple)">placement</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"bottom"</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{copied <span style="color:var(--ui-tag-color-magenta)">||</span> <span style="color:var(--ui-tag-color-green)">undefined</span>}&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Tooltip.Trigger</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"inline-block"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Copy.Trigger</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid size-10 cursor-pointer place-items-center bg-surface-1 text-icon-primary hover:bg-ghost-hover focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-4 fill-current"</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M14 5v9H5V5h9m0-1H5a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1Z"</span> /&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M2 9H1V2a1 1 0 0 1 1-1h7v1H2Z"</span> /&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">Copy.Trigger</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Tooltip.Trigger</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Tooltip.Popup</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"w-max rounded-xs bg-inverse-surface-1 px-4 py-0.5 text-sm text-inverse-ink"</span>&gt;{text}&lt;/<span style="color:var(--ui-tag-color-blue)">Tooltip.Popup</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">Tooltip.Root</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Copy.Status</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sr-only"</span>&gt;{feedback}&lt;/<span style="color:var(--ui-tag-color-blue)">Copy.Status</span>&gt;
+    &lt;/&gt;
+  );
+}
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex items-center gap-2 text-sm text-ink"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">span</span>&gt;0105556012345&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Copy.Root</span> <span style="color:var(--ui-tag-color-purple)">text</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0105556012345"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">CopyWithTooltip</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"คัดลอกเลขผู้เสียภาษี"</span> <span style="color:var(--ui-tag-color-purple)">feedback</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"คัดลอกเลขผู้เสียภาษีแล้ว"</span> /&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">Copy.Root</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<h2 id="เวลาแสดงผล">เวลาแสดงผล</h2>
+<p><code>feedbackTimeout</code> ที่ <code>Root</code> คือเวลาที่ <code>copied</code> เป็น true หน่วยเป็น ms (2000) กดซ้ำจะเริ่มนับใหม่</p>
+<div class="doc-demo" data-react-example="3"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { Copy } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">Copy.Root</span> <span style="color:var(--ui-tag-color-purple)">text</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"CT-2026-0142"</span> <span style="color:var(--ui-tag-color-purple)">feedbackTimeout</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">5000</span>}&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Copy.Trigger</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-10 cursor-pointer bg-surface-1 px-4 text-sm text-ink hover:bg-ghost-hover focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus data-copied:bg-layer-selected-1"</span>&gt;
+        คัดลอก CT-2026-0142
+      &lt;/<span style="color:var(--ui-tag-color-blue)">Copy.Trigger</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Copy.Status</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ms-3 text-sm text-ink-muted"</span>&gt;คัดลอกแล้ว (แสดง 5 วินาที)&lt;/<span style="color:var(--ui-tag-color-blue)">Copy.Status</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">Copy.Root</span>&gt;
+  );
+}</ui-code-snippet>
+<p><code>Status</code> ในตัวอย่างนี้มองเห็นได้ ข้อความของมันมีอยู่เฉพาะช่วงหลังคัดลอก จึงใช้เป็นผลที่มองเห็นได้ไปด้วย</p>
+<h2 id="คัดลอกเอง">คัดลอกเอง</h2>
+<p><code>onCopy</code> ที่ <code>Root</code> ทำงานก่อนคัดลอกพร้อมข้อความ คืนค่า <code>false</code> เพื่อคัดลอกค่าอื่นเอง ข้อความหลังคัดลอกยังแสดง ถ้าไม่คืนค่าอะไร part จะคัดลอกตามปกติ (ใช้บันทึกการคัดลอกได้)</p>
+<div class="doc-demo" data-react-example="4"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { useState } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { Copy } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [copiedText, setCopiedText] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">''</span>);
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid justify-items-start gap-3"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Copy.Root</span>
+        <span style="color:var(--ui-tag-color-purple)">text</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"CT-2026-0142"</span>
+        <span style="color:var(--ui-tag-color-purple)">onCopy</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(text) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+          <span style="color:var(--ui-tag-color-magenta)">const</span> summary <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">`${</span><span style="color:var(--ui-tag-color-teal)">text</span><span style="color:var(--ui-tag-color-teal)">}: วัสดุสำนักงาน 120,000 บาท ฝ่ายจัดซื้อ`</span>;
+          navigator.clipboard?.<span style="color:var(--ui-tag-color-cyan)">writeText</span>(summary).<span style="color:var(--ui-tag-color-cyan)">catch</span>(() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {});
+          <span style="color:var(--ui-tag-color-cyan)">setCopiedText</span>(summary);
+          <span style="color:var(--ui-tag-color-magenta)">return</span> <span style="color:var(--ui-tag-color-green)">false</span>;
+        }}
+      &gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Copy.Trigger</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-10 cursor-pointer bg-surface-1 px-4 text-sm text-ink hover:bg-ghost-hover focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus"</span>&gt;
+          คัดลอกสรุปสัญญา
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Copy.Trigger</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Copy.Status</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sr-only"</span>&gt;คัดลอกสรุปแล้ว&lt;/<span style="color:var(--ui-tag-color-blue)">Copy.Status</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">Copy.Root</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-ink-muted"</span>&gt;คัดลอกแล้ว: {copiedText}&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<h2 id="ปิดใช้งาน">ปิดใช้งาน</h2>
+<p><code>disabled</code> ที่ <code>Trigger</code> ปิดปุ่ม: ไม่รับโฟกัส ไม่คัดลอก ถ้ามี <code>focusableWhenDisabled</code> ปุ่มยังอยู่ในลำดับ Tab พร้อม <code>aria-disabled</code> และไม่คัดลอกอะไร แบบเดียวกับ code snippet แบบ inline ของ Carbon ผู้ใช้จึงยังไปถึงและอ่านเหตุผลได้ ทั้งสองแบบตั้ง <code>data-disabled</code></p>
+<div class="doc-demo" data-react-example="5"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { Copy } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> button <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'h-10 cursor-pointer bg-surface-1 px-4 text-sm text-ink hover:bg-ghost-hover focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus data-disabled:cursor-not-allowed data-disabled:bg-surface-1 data-disabled:text-ink-disabled'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex flex-wrap gap-4"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Copy.Root</span> <span style="color:var(--ui-tag-color-purple)">text</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">""</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Copy.Trigger</span> <span style="color:var(--ui-tag-color-purple)">disabled</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{button}&gt;คัดลอก (ปิดใช้งาน)&lt;/<span style="color:var(--ui-tag-color-blue)">Copy.Trigger</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">Copy.Root</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Copy.Root</span> <span style="color:var(--ui-tag-color-purple)">text</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ak_live_7f3c9a1e"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Copy.Trigger</span> <span style="color:var(--ui-tag-color-purple)">disabled</span> <span style="color:var(--ui-tag-color-purple)">focusableWhenDisabled</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{button}&gt;คัดลอก API key (ยังรับโฟกัส)&lt;/<span style="color:var(--ui-tag-color-blue)">Copy.Trigger</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">Copy.Root</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<h2 id="ใช้แค่-hook">ใช้แค่ hook</h2>
+<p><code>Copy.useCopy(text, { onCopy, feedbackTimeout })</code> คืน <code>{ copied, copy }</code> โดยไม่ต้องใช้ part ใช้เมื่อ control ที่คัดลอกเป็นอย่างอื่น เช่น รายการในเมนู ปุ่มหน้าตาแบบลิงก์ หรือคีย์ลัด แล้วเพิ่ม live region เอง</p>
+<div class="doc-demo" data-react-example="6"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { Copy } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> { copied, copy } <span style="color:var(--ui-tag-color-magenta)">=</span> Copy.<span style="color:var(--ui-tag-color-cyan)">useCopy</span>(<span style="color:var(--ui-tag-color-teal)">'finance@example.com'</span>, { <span style="color:var(--ui-tag-color-purple)">feedbackTimeout:</span> <span style="color:var(--ui-tag-color-green)">3000</span> });
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-sm text-ink"</span>&gt;
+      มีคำถาม เขียนถึง finance@example.com{<span style="color:var(--ui-tag-color-teal)">' '</span>}
+      &lt;<span style="color:var(--ui-tag-color-blue)">button</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"button"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-magenta)">void</span> <span style="color:var(--ui-tag-color-cyan)">copy</span>()} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"cursor-pointer border-0 bg-transparent p-0 text-link underline hover:text-link-hover focus-visible:outline-2 focus-visible:outline-focus"</span>&gt;
+        {copied <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-teal)">'คัดลอกแล้ว'</span> <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-teal)">'คัดลอกอีเมล'</span>}
+      &lt;/<span style="color:var(--ui-tag-color-blue)">button</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">role</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"status"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sr-only"</span>&gt;{copied <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-teal)">'คัดลอกอีเมลแล้ว'</span> <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-teal)">''</span>}&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+  );
+}</ui-code-snippet>
+<h2 id="ใส่-style">ใส่ style</h2>
+<div class="doc-demo" data-react-example="7"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { Copy } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex flex-wrap items-center gap-4"</span>&gt;
+      {[<span style="color:var(--ui-tag-color-teal)">'md'</span>, <span style="color:var(--ui-tag-color-teal)">'sm'</span>].<span style="color:var(--ui-tag-color-cyan)">map</span>((size) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+        &lt;<span style="color:var(--ui-tag-color-blue)">Copy.Root</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{size} <span style="color:var(--ui-tag-color-purple)">text</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"RQ-2026-00123"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Copy.Trigger</span>
+            <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"คัดลอกเลขที่คำขอ"</span>
+            <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-teal)">`group grid cursor-pointer place-items-center bg-surface-1 text-icon-primary hover:bg-ghost-hover active:bg-ghost-active focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus data-copied:text-success data-disabled:cursor-not-allowed data-disabled:text-icon-disabled ${</span><span style="color:var(--ui-tag-color-teal)">size </span><span style="color:var(--ui-tag-color-magenta)">===</span><span style="color:var(--ui-tag-color-teal)"> </span><span style="color:var(--ui-tag-color-teal)">'sm'</span><span style="color:var(--ui-tag-color-teal)"> </span><span style="color:var(--ui-tag-color-magenta)">?</span><span style="color:var(--ui-tag-color-teal)"> </span><span style="color:var(--ui-tag-color-teal)">'size-8'</span><span style="color:var(--ui-tag-color-teal)"> </span><span style="color:var(--ui-tag-color-magenta)">:</span><span style="color:var(--ui-tag-color-teal)"> </span><span style="color:var(--ui-tag-color-teal)">'size-10'}`</span>}
+          &gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-4 fill-current group-data-copied:hidden"</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M14 5v9H5V5h9m0-1H5a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1Z"</span> /&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M2 9H1V2a1 1 0 0 1 1-1h7v1H2Z"</span> /&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"hidden size-4 fill-current group-data-copied:block"</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M6 10.6 2.7 7.3 2 8l4 4 8-8-.7-.7z"</span> /&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">Copy.Trigger</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Copy.Status</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sr-only"</span>&gt;คัดลอกแล้ว&lt;/<span style="color:var(--ui-tag-color-blue)">Copy.Status</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Copy.Root</span>&gt;
+      ))}
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<ui-code-snippet type="multi" class="doc-code" data-lang="css"><span style="color:var(--ui-ink-muted);font-style:italic">/* className="copy" ที่ Trigger */</span>
+<span style="color:var(--ui-tag-color-purple)">.copy</span> { <span style="color:var(--ui-tag-color-purple)">display</span>: <span style="color:var(--ui-tag-color-green)">grid</span>; <span style="color:var(--ui-tag-color-purple)">place-items</span>: <span style="color:var(--ui-tag-color-green)">center</span>; <span style="color:var(--ui-tag-color-purple)">width</span>: <span style="color:var(--ui-tag-color-green)">40px</span>; <span style="color:var(--ui-tag-color-purple)">height</span>: <span style="color:var(--ui-tag-color-green)">40px</span>; <span style="color:var(--ui-tag-color-purple)">border</span>: <span style="color:var(--ui-tag-color-green)">0</span>; <span style="color:var(--ui-tag-color-purple)">background</span>: #f4f4f4; <span style="color:var(--ui-tag-color-purple)">cursor</span>: <span style="color:var(--ui-tag-color-green)">pointer</span>; }
+<span style="color:var(--ui-tag-color-purple)">.copy:hover</span> { <span style="color:var(--ui-tag-color-purple)">background</span>: #e8e8e8; }
+<span style="color:var(--ui-tag-color-purple)">.copy:focus-visible</span> { <span style="color:var(--ui-tag-color-purple)">outline</span>: <span style="color:var(--ui-tag-color-green)">2px</span> <span style="color:var(--ui-tag-color-green)">solid</span> #0f62fe; <span style="color:var(--ui-tag-color-purple)">outline-offset</span>: <span style="color:var(--ui-tag-color-green)">-2px</span>; }
+<span style="color:var(--ui-tag-color-purple)">.copy</span>[<span style="color:var(--ui-tag-color-purple)">data-copied</span>] { <span style="color:var(--ui-tag-color-purple)">color</span>: #24a148; }
+<span style="color:var(--ui-tag-color-purple)">.copy</span>[<span style="color:var(--ui-tag-color-purple)">data-disabled</span>] { <span style="color:var(--ui-tag-color-purple)">color</span>: #c6c6c6; <span style="color:var(--ui-tag-color-purple)">cursor</span>: <span style="color:var(--ui-tag-color-green)">not-allowed</span>; }</ui-code-snippet>
+<h2 id="parts">Parts</h2>
+<h3 id="copy-root">Copy.Root</h3>
+<p>render แค่ children เก็บข้อความและตัวจับเวลาของข้อความหลังคัดลอก ซึ่งหยุดพร้อม component</p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>ค่าเริ่มต้น</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>text</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>สิ่งที่คัดลอก (ต้องมี)</td>
+</tr>
+<tr>
+<td><code>onCopy</code></td>
+<td><code>(text: string) =&gt; boolean | void</code></td>
+<td></td>
+<td>ก่อนคัดลอก คืน <code>false</code> เพื่อคัดลอกเอง (ข้อความหลังคัดลอกยังแสดง)</td>
+</tr>
+<tr>
+<td><code>feedbackTimeout</code></td>
+<td><code>number</code></td>
+<td><code>2000</code></td>
+<td>เวลาที่ <code>copied</code> เป็น true หน่วย ms</td>
+</tr>
+</tbody>
+</table>
+<p><code>Copy.useCopyContext()</code> คืน <code>text</code>, <code>copied</code> และ <code>copy()</code> ให้ component ที่อยู่ใน <code>Root</code></p>
+<h3 id="copy-trigger">Copy.Trigger</h3>
+<p><code>&lt;button type=&quot;button&quot;&gt;</code> กดแล้วคัดลอก ยกเว้นตอนปิดใช้งาน รับ prop ของ button ได้ทุกตัว ยกเว้น <code>type</code></p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>ค่าเริ่มต้น</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>disabled</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>ไม่คัดลอก ใช้ <code>disabled</code> ของ button เว้นแต่มี <code>focusableWhenDisabled</code></td>
+</tr>
+<tr>
+<td><code>focusableWhenDisabled</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>ปิดใช้งานแต่ยังอยู่ในลำดับ Tab พร้อม <code>aria-disabled</code></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>เมื่อ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-copied</code></td>
+<td>อยู่ในช่วงหลังคัดลอก</td>
+</tr>
+<tr>
+<td><code>data-disabled</code></td>
+<td>ปิดใช้งาน</td>
+</tr>
+</tbody>
+</table>
+<h3 id="copy-status">Copy.Status</h3>
+<p><code>&lt;span role=&quot;status&quot;&gt;</code> เป็น live region แบบ polite children ของมัน (ข้อความหลังคัดลอกของคุณ) render เฉพาะช่วงหลังคัดลอก screen reader จึงอ่านหนึ่งครั้ง ซ่อนด้วย <code>sr-only</code> หรือให้เป็นผลที่มองเห็นได้ก็ได้</p>
+<h3 id="copy-usecopy">Copy.useCopy</h3>
+<p><code>useCopy(text, { onCopy?, feedbackTimeout? })</code> คืน <code>{ copied, copy }</code>: <code>copy()</code> คัดลอก (เว้นแต่ <code>onCopy</code> คืน <code>false</code>) แล้วตั้ง <code>copied</code> เป็นเวลา <code>feedbackTimeout</code> ms <code>Root</code> ใช้ hook นี้</p>
+<h2 id="คีย์บอร์ดและ-accessibility">คีย์บอร์ดและ accessibility</h2>
+<table>
+<thead>
+<tr>
+<th>ปุ่ม</th>
+<th>ทำอะไร</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Enter, Space</td>
+<td>ที่ <code>Trigger</code>: คัดลอก</td>
+</tr>
+<tr>
+<td>Tab</td>
+<td>ไปตัวควบคุมถัดไป (trigger ที่มี <code>focusableWhenDisabled</code> ยังอยู่ในลำดับ)</td>
+</tr>
+</tbody>
+</table>
+<p>part ให้ปุ่มจริงและ live region แบบ polite ที่พูดเฉพาะหลังคัดลอกสำเร็จ ถ้าไม่มี Clipboard API (หน้า intranet แบบ http ธรรมดา) จะใช้ <code>document.execCommand('copy')</code> แทน</p>
+<p>ส่วนที่คุณเพิ่มเอง</p>
+<ul>
+<li>ชื่อของ <code>Trigger</code> ที่มีแต่ไอคอน: <code>aria-label</code> หรือ <code>label</code> ของ Tooltip แบบ headless</li>
+<li>ข้อความหลังคัดลอกใน <code>Status</code> (&quot;คัดลอกแล้ว&quot;, &quot;คัดลอกลิงก์แล้ว&quot;)</li>
+<li>ผลที่มองเห็นได้สำหรับผู้ใช้ที่มองเห็น: style ของ <code>data-copied</code>, tooltip หรือ <code>Status</code> ที่มองเห็นได้</li>
+<li>style ของโฟกัสที่มองเห็นได้</li>
+</ul>
+
+</article>
+<nav class="doc-toc" aria-labelledby="doc-toc-title"><p id="doc-toc-title" class="doc-toc-title">ในหน้านี้</p><ul><li class="doc-toc-h2"><a href="#ติดตั้ง">ติดตั้ง</a></li><li class="doc-toc-h2"><a href="#วิธีใช้">วิธีใช้</a></li><li class="doc-toc-h2"><a href="#โครงสร้าง">โครงสร้าง</a></li><li class="doc-toc-h2"><a href="#แสดงผลหลังคัดลอก">แสดงผลหลังคัดลอก</a></li><li class="doc-toc-h2"><a href="#แสดงผลใน-tooltip">แสดงผลใน tooltip</a></li><li class="doc-toc-h2"><a href="#เวลาแสดงผล">เวลาแสดงผล</a></li><li class="doc-toc-h2"><a href="#คัดลอกเอง">คัดลอกเอง</a></li><li class="doc-toc-h2"><a href="#ปิดใช้งาน">ปิดใช้งาน</a></li><li class="doc-toc-h2"><a href="#ใช้แค่-hook">ใช้แค่ hook</a></li><li class="doc-toc-h2"><a href="#ใส่-style">ใส่ style</a></li><li class="doc-toc-h2"><a href="#parts">Parts</a></li><li class="doc-toc-h3"><a href="#copy-root">Copy.Root</a></li><li class="doc-toc-h3"><a href="#copy-trigger">Copy.Trigger</a></li><li class="doc-toc-h3"><a href="#copy-status">Copy.Status</a></li><li class="doc-toc-h3"><a href="#copy-usecopy">Copy.useCopy</a></li><li class="doc-toc-h2"><a href="#คีย์บอร์ดและ-accessibility">คีย์บอร์ดและ accessibility</a></li></ul></nav>
+</div>
+<nav class="doc-pager" aria-label="ถัดไป / ก่อนหน้า"><a class="doc-pager-prev" href="/kanok-ui-docs/th/headless-code-snippet/" rel="prev"><span>ก่อนหน้า</span>Code snippet</a><a class="doc-pager-next" href="/kanok-ui-docs/th/headless-truncated-text/" rel="next"><span>ถัดไป</span>Truncated text</a></nav>
+<footer class="doc-footer">@purpurabog/ui 1.4.3 · MIT · <a href="https://cdn.jsdelivr.net/npm/@purpurabog/ui@1.4.3/THIRD-PARTY-NOTICES.md">ประกาศของบุคคลที่สาม</a><br>สร้างตาม Carbon Design System ไม่ได้เกี่ยวข้องหรือได้รับการรับรองจาก IBM — IBM และ Carbon เป็นเครื่องหมายการค้าของ IBM Corp.</footer>
+</ui-content>
+<ui-modal id="doc-search" heading="ค้นหา" data-count="พบ {n} รายการ" data-empty="ไม่พบ “{q}”">
+<ui-search label="ค้นหาในเอกสาร" placeholder="ค้นหาในเอกสาร" size="lg"></ui-search>
+<p class="doc-search-status" role="status"></p>
+<ul class="doc-search-results"></ul>
+</ui-modal>
+</body>
+</html>

@@ -1,0 +1,1320 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Tabs · @purpurabog/ui</title>
+<link rel="alternate" hreflang="en" href="/kanok-ui-docs/en/tabs/"  /><link rel="alternate" hreflang="th" href="/kanok-ui-docs/th/tabs/"  />
+<script>(function(){try{var q=new URLSearchParams(location.search).get("design"),d=q;if(q==="kanok"||q==="carbon")localStorage.setItem("ui-docs-design",q);else d=localStorage.getItem("ui-docs-design");if(d==="kanok")document.documentElement.setAttribute("data-design","kanok")}catch(e){}})();(function(){try{var m=localStorage.getItem("ui-docs-theme");if(m!=="light"&&m!=="dark"&&m!=="system")return;var d=m==="dark"||(m==="system"&&matchMedia("(prefers-color-scheme: dark)").matches),r=document.documentElement,t=d?"g100":"white";if(r.getAttribute("data-design")==="kanok")t=d?"lacquer":"paper";r.setAttribute("data-theme",t)}catch(e){}})();</script>
+<style>ui-header:not(:defined){z-index:8000;box-sizing:border-box;border-block-end:1px solid var(--ui-border-subtle-1);background:var(--ui-canvas);block-size:48px;display:block;position:fixed;inset:0 0 auto}:is(ui-header:not(:defined)>*,ui-side-nav:not(:defined)>*){visibility:hidden}:is(ui-header-panel:not(:defined),ui-modal:not(:defined)){display:none}ui-side-nav:not(:defined){display:none}ui-content:not(:defined){margin-block-start:48px;padding:32px;display:block}@media (width>=1056px){ui-side-nav[expanded]:not(:defined){background:var(--ui-canvas);inline-size:256px;display:block;position:fixed;inset:48px auto 0 0}ui-side-nav[expanded]:not(:defined)~ui-content:not(:defined){margin-inline-start:256px}}ui-tabs:not(:defined){display:block}ui-tabs:not(:defined)>ui-tab{box-sizing:border-box;border-block-end:2px solid var(--ui-hairline);block-size:40px;color:var(--ui-ink-muted);font:var(--ui-font-body-sm);padding:0 16px;line-height:38px;display:inline-block}ui-tabs:not(:defined)>ui-tab:first-of-type{border-block-end-color:var(--ui-interactive);color:var(--ui-ink)}ui-tabs:not(:defined)>ui-tab-panel{padding:16px;display:block}ui-tabs:not(:defined)>ui-tab-panel~ui-tab-panel{display:none}ui-code-snippet:not(:defined){background:var(--ui-layer-1);max-block-size:272px;font:var(--ui-font-code,12px/16px monospace);white-space:pre;padding:16px;display:block;overflow:hidden}[data-react-example]:empty>*{visibility:hidden}.doc-demo:has(:not(:defined))>*{visibility:hidden}[data-react-example]:empty{box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}.doc-demo:has(:not(:defined)){box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}@keyframes doc-skeleton{to{background-position:-200% 0}}@media (prefers-reduced-motion:reduce){[data-react-example]:empty{animation:none}.doc-demo:has(:not(:defined)){animation:none}}</style>
+
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/theme-switcher-BGAHXRgF.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/tabs-CvVVO2Pb.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/affixes-D94Y17_6.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/mask-BgmAmoJG.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/text-input-D_nMa3l3.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/button-CTeCEJcq.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/checkbox-D7iKtRMD.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/skeleton-BESm0w-6.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/tabs-skeleton-hayPjetp.js"></script>
+  <link rel="stylesheet" crossorigin href="/kanok-ui-docs/assets/theme-switcher-CL5yB6XE.css">
+</head>
+<body>
+<ui-header label="@purpurabog/ui">
+<ui-skip-to-content></ui-skip-to-content>
+<ui-header-menu-button></ui-header-menu-button>
+<ui-header-name href="/kanok-ui-docs/en/" prefix="@purpurabog">ui</ui-header-name>
+<ui-header-global-bar>
+<ui-header-global-action id="doc-search-open" label="Search" tooltip-placement="bottom"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="m18.5 17.8-4.9-4.9a7 7 0 1 0-.7.7l4.9 4.9zM3 8.5a5.5 5.5 0 1 1 5.5 5.5A5.5 5.5 0 0 1 3 8.5Z" /></svg></ui-header-global-action>
+<ui-header-global-action label="Settings" panel="doc-settings" tooltip-placement="bottom-end"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="M16.9 10.6a7 7 0 0 0 0-1.2l1.8-1.4-1.6-2.8-2.1.8a6.6 6.6 0 0 0-1-.6L13.6 3h-3.2l-.4 2.4a6.6 6.6 0 0 0-1 .6l-2.1-.8L5.3 8l1.8 1.4a7 7 0 0 0 0 1.2L5.3 12l1.6 2.8 2.1-.8a6.6 6.6 0 0 0 1 .6l.4 2.4h3.2l.4-2.4a6.6 6.6 0 0 0 1-.6l2.1.8 1.6-2.8zM12 13a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" /></svg></ui-header-global-action>
+</ui-header-global-bar>
+<ui-header-panel id="doc-settings" label="Settings">
+<div class="doc-settings">
+<span class="doc-settings-label">Theme</span>
+<ui-theme-switcher storage-key="ui-docs-theme" tooltip-placement="bottom"></ui-theme-switcher>
+<span class="doc-settings-label">Style</span>
+<ui-content-switcher id="doc-design" aria-label="Style" size="sm"><ui-content-switcher-item name="carbon">Carbon</ui-content-switcher-item><ui-content-switcher-item name="kanok">Kanok</ui-content-switcher-item></ui-content-switcher>
+<span class="doc-settings-label">Language</span>
+<ui-link href="/kanok-ui-docs/th/tabs/" hreflang="th" lang="th">ไทย</ui-link>
+</div>
+</ui-header-panel>
+</ui-header>
+<ui-side-nav label="Documentation"><ui-side-nav-items><ui-side-nav-menu label="Get started"><ui-side-nav-menu-item href="/kanok-ui-docs/en/">Overview</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/installation/">Installation</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/migration-1-0/">Migrating to 1.0</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Guides"><ui-side-nav-menu-item href="/kanok-ui-docs/en/themes/">Themes and layers</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/kanok/">Kanok design</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/customizing/">Customizing</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/icons/">Icons</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/forms/">Forms and validation</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/frameworks/">Frameworks</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/ai/">Using with AI</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Forms and actions"><ui-side-nav-menu-item href="/kanok-ui-docs/en/button/">Button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/file-uploader/">File uploader</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Overlays"><ui-side-nav-menu-item href="/kanok-ui-docs/en/modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/toggletip/">Toggletip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/menu/">Menu</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Data"><ui-side-nav-menu-item href="/kanok-ui-docs/en/data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/contained-list/">Contained list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tree-view/">Tree view</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Navigation" expanded><ui-side-nav-menu-item href="/kanok-ui-docs/en/tabs/" current>Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/breadcrumb/">Breadcrumb</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/link/">Link</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/ui-shell/">UI shell</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Content"><ui-side-nav-menu-item href="/kanok-ui-docs/en/tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tile/">Tile</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/user-avatar/">User avatar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/list/">List</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Status and loading"><ui-side-nav-menu-item href="/kanok-ui-docs/en/loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/inline-loading/">Inline loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/progress-bar/">Progress bar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/skeleton/">Skeleton</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/badge-indicator/">Badge indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/status-indicator/">Status indicator</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Layout"><ui-side-nav-menu-item href="/kanok-ui-docs/en/grid/">Grid</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/heading/">Heading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/layer/">Layer</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/action-set/">Action set</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/page-header/">Page header</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/big-number/">Big number</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Headless"><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless/">Introduction</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-file-uploader/">File uploader</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-menu/">Menu</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-ui-shell/">UI shell</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tree-view/">Tree view</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu></ui-side-nav-items></ui-side-nav><script>if(matchMedia('(min-width: 66rem)').matches)document.currentScript.previousElementSibling.setAttribute('expanded','')</script>
+<ui-content>
+<div class="doc-page">
+<article class="doc">
+<h1 id="tabs">Tabs</h1>
+<p>Tabs split related content into views on one page. One tab is selected at a time, and only its panel shows. A <code>disabled</code> tab stays in the strip but can't be chosen.</p>
+<div class="doc-demo"><ui-tabs label="Contract details">
+  <ui-tab panel="overview">Overview</ui-tab>
+  <ui-tab panel="parties">Parties</ui-tab>
+  <ui-tab panel="history">History</ui-tab>
+  <ui-tab panel="archive" disabled>Archive</ui-tab>
+  <ui-tab-panel name="overview">Summary of the contract terms.</ui-tab-panel>
+  <ui-tab-panel name="parties">Signers and counterparties.</ui-tab-panel>
+  <ui-tab-panel name="history">Every change, newest first.</ui-tab-panel>
+  <ui-tab-panel name="archive">Archived copies.</ui-tab-panel>
+</ui-tabs>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-1-0">HTML</ui-tab><ui-tab panel="code-1-1">React</ui-tab><ui-tab panel="code-1-2">React + Tailwind</ui-tab><ui-tab-panel name="code-1-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-tabs</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Contract details"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab</span> <span style="color:var(--ui-tag-color-purple)">panel</span>=<span style="color:var(--ui-tag-color-teal)">"overview"</span>&gt;Overview&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab</span> <span style="color:var(--ui-tag-color-purple)">panel</span>=<span style="color:var(--ui-tag-color-teal)">"parties"</span>&gt;Parties&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab</span> <span style="color:var(--ui-tag-color-purple)">panel</span>=<span style="color:var(--ui-tag-color-teal)">"history"</span>&gt;History&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab</span> <span style="color:var(--ui-tag-color-purple)">panel</span>=<span style="color:var(--ui-tag-color-teal)">"archive"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span>&gt;Archive&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"overview"</span>&gt;Summary of the contract terms.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"parties"</span>&gt;Signers and counterparties.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"history"</span>&gt;Every change, newest first.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"archive"</span>&gt;Archived copies.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tabs</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-1-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiTabs</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contract details"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTab</span> <span style="color:var(--ui-tag-color-purple)">panel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"overview"</span>&gt;Overview&lt;/<span style="color:var(--ui-tag-color-blue)">UiTab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTab</span> <span style="color:var(--ui-tag-color-purple)">panel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"parties"</span>&gt;Parties&lt;/<span style="color:var(--ui-tag-color-blue)">UiTab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTab</span> <span style="color:var(--ui-tag-color-purple)">panel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"history"</span>&gt;History&lt;/<span style="color:var(--ui-tag-color-blue)">UiTab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTab</span> <span style="color:var(--ui-tag-color-purple)">panel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"archive"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span>&gt;Archive&lt;/<span style="color:var(--ui-tag-color-blue)">UiTab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTabPanel</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"overview"</span>&gt;Summary of the contract terms.&lt;/<span style="color:var(--ui-tag-color-blue)">UiTabPanel</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTabPanel</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"parties"</span>&gt;Signers and counterparties.&lt;/<span style="color:var(--ui-tag-color-blue)">UiTabPanel</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTabPanel</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"history"</span>&gt;Every change, newest first.&lt;/<span style="color:var(--ui-tag-color-blue)">UiTabPanel</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTabPanel</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"archive"</span>&gt;Archived copies.&lt;/<span style="color:var(--ui-tag-color-blue)">UiTabPanel</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiTabs</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-1-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">Tabs</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TabList</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contract details"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Tab</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"overview"</span>&gt;Overview&lt;/<span style="color:var(--ui-tag-color-blue)">Tab</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Tab</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"parties"</span>&gt;Parties&lt;/<span style="color:var(--ui-tag-color-blue)">Tab</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Tab</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"history"</span>&gt;History&lt;/<span style="color:var(--ui-tag-color-blue)">Tab</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Tab</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"archive"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span>&gt;Archive&lt;/<span style="color:var(--ui-tag-color-blue)">Tab</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">TabList</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TabPanel</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"overview"</span>&gt;Summary of the contract terms.&lt;/<span style="color:var(--ui-tag-color-blue)">TabPanel</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TabPanel</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"parties"</span>&gt;Signers and counterparties.&lt;/<span style="color:var(--ui-tag-color-blue)">TabPanel</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TabPanel</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"history"</span>&gt;Every change, newest first.&lt;/<span style="color:var(--ui-tag-color-blue)">TabPanel</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TabPanel</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"archive"</span>&gt;Archived copies.&lt;/<span style="color:var(--ui-tag-color-blue)">TabPanel</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Tabs</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="installation">Installation</h2>
+<ui-tabs class="doc-code-tabs" label="Code"><ui-tab panel="code-2-0">npm</ui-tab><ui-tab panel="code-2-1">shadcn · Web component</ui-tab><ui-tab panel="code-2-2">shadcn · React + Tailwind</ui-tab><ui-tab panel="code-2-3">Manual</ui-tab><ui-tab-panel name="code-2-0"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">@purpurabog/ui</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-1"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npx</span> <span style="color:var(--ui-tag-color-teal)">shadcn@4</span> <span style="color:var(--ui-tag-color-teal)">add</span> <span style="color:var(--ui-tag-color-teal)">@kanok-ui/tabs</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-2"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npx</span> <span style="color:var(--ui-tag-color-teal)">shadcn@4</span> <span style="color:var(--ui-tag-color-teal)">add</span> <span style="color:var(--ui-tag-color-teal)">@kanok-ui/tw-tabs</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-3"><ui-code-snippet type="multi" class="doc-code" data-lang="bash"><span style="color:var(--ui-ink-muted);font-style:italic"># Web component</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 1. Install the dependencies</span>
+<span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">lit@^3.3.0</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 2. Copy each file's "content" from</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    https://cdn.jsdelivr.net/npm/@purpurabog/ui@1.4.3/registry/tabs.json</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    to its target:</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/tabs/tab-panel.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/tabs/tab.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/tabs/tabs-skeleton.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/tabs/tabs.styles.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/tabs/tabs.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 3. Do the same for the items it needs (registry/&lt;name&gt;.json):</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    core-roving, layer, shared-element, shared-field, shared-localize, shared-skeleton, tooltip, tokens</span>
+
+<span style="color:var(--ui-ink-muted);font-style:italic"># React + Tailwind</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 1. Install the dependencies</span>
+<span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">@purpurabog/ui@^1.4.3</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 2. Copy each file's "content" from</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    https://cdn.jsdelivr.net/npm/@purpurabog/ui@1.4.3/registry/tw-tabs.json</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    to its target:</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/react-tw/tabs.tsx</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 3. Do the same for the items it needs (registry/&lt;name&gt;.json):</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    tw-i18n, tw-layer, tw-theme, tw-tooltip, tw-utils</span></ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>npm gives you every component from the package. shadcn copies the source into your app instead: a copy pinned to this version that you can change. The shadcn commands need the <code>@kanok-ui</code> registry in your <code>components.json</code> once, see <a href="/kanok-ui-docs/en/installation/#react-tailwind-with-shadcn">Installation</a>.</p>
+<h2 id="use-it">Use it</h2>
+<p>Each <code>&lt;ui-tab panel&gt;</code> matches the <code>name</code> of a <code>&lt;ui-tab-panel&gt;</code>. Tabs and panels may come in any order in the markup: the tabs go into the strip by themselves. <code>label</code> names the strip for screen readers.</p>
+<ui-tabs class="doc-code-tabs" label="Code"><ui-tab panel="code-3-0">HTML</ui-tab><ui-tab panel="code-3-1">React</ui-tab><ui-tab panel="code-3-2">React + Tailwind</ui-tab><ui-tab-panel name="code-3-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;<span style="color:var(--ui-tag-color-magenta)">import</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/tabs'</span>;&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-tabs</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Contract details"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab</span> <span style="color:var(--ui-tag-color-purple)">panel</span>=<span style="color:var(--ui-tag-color-teal)">"overview"</span>&gt;Overview&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab</span> <span style="color:var(--ui-tag-color-purple)">panel</span>=<span style="color:var(--ui-tag-color-teal)">"parties"</span>&gt;Parties&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"overview"</span>&gt;Summary of the contract terms.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"parties"</span>&gt;Signers and counterparties.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tabs</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-3-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { UiTabs, UiTab, UiTabPanel } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/react'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiTabs</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contract details"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTab</span> <span style="color:var(--ui-tag-color-purple)">panel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"overview"</span>&gt;Overview&lt;/<span style="color:var(--ui-tag-color-blue)">UiTab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTab</span> <span style="color:var(--ui-tag-color-purple)">panel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"parties"</span>&gt;Parties&lt;/<span style="color:var(--ui-tag-color-blue)">UiTab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTabPanel</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"overview"</span>&gt;Summary of the contract terms.&lt;/<span style="color:var(--ui-tag-color-blue)">UiTabPanel</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTabPanel</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"parties"</span>&gt;Signers and counterparties.&lt;/<span style="color:var(--ui-tag-color-blue)">UiTabPanel</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiTabs</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-3-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { Tabs, TabList, Tab, TabPanel } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@/components/ui/react-tw/tabs'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">Tabs</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TabList</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contract details"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Tab</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"overview"</span>&gt;Overview&lt;/<span style="color:var(--ui-tag-color-blue)">Tab</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Tab</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"parties"</span>&gt;Parties&lt;/<span style="color:var(--ui-tag-color-blue)">Tab</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">TabList</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TabPanel</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"overview"</span>&gt;Summary of the contract terms.&lt;/<span style="color:var(--ui-tag-color-blue)">TabPanel</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TabPanel</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"parties"</span>&gt;Signers and counterparties.&lt;/<span style="color:var(--ui-tag-color-blue)">TabPanel</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Tabs</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>In React + Tailwind, the <code>Tab</code>s sit in a <code>TabList</code> (it takes <code>label</code>), and a <code>Tab</code> and its <code>TabPanel</code> share a <code>value</code>.</p>
+<h2 id="tabs-content-switcher-or-accordion">Tabs, content switcher or accordion?</h2>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Use it when</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tabs</td>
+<td>The views are sections of one item (a contract's terms, parties, history) and the reader looks at one at a time.</td>
+</tr>
+<tr>
+<td><a href="/kanok-ui-docs/en/content-switcher/">Content switcher</a></td>
+<td>The same content in another form or filter: table or grid, all requests or mine.</td>
+</tr>
+<tr>
+<td><a href="/kanok-ui-docs/en/accordion/">Accordion</a></td>
+<td>A long page of sections the reader may open several of, or read top to bottom.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="starting-tab-and-changes">Starting tab and changes</h2>
+<p><code>value</code> is the <code>name</code> of the panel that shows; left out, the first enabled tab is selected. <code>ui-tab-change</code> fires after the user selects another tab, with the panel's name in <code>detail.name</code>.</p>
+<div class="doc-demo"><ui-tabs id="tabs-start" label="Approval steps" value="review">
+  <ui-tab panel="draft">Draft</ui-tab>
+  <ui-tab panel="review">Legal review</ui-tab>
+  <ui-tab panel="sign">Signing</ui-tab>
+  <ui-tab-panel name="draft">The requester fills in the contract form.</ui-tab-panel>
+  <ui-tab-panel name="review">Legal checks the terms and the counterparty.</ui-tab-panel>
+  <ui-tab-panel name="sign">Both parties sign, and the contract is filed.</ui-tab-panel>
+</ui-tabs>
+<p>Selected: <output id="tabs-start-out"></output></p>
+
+<script type="text/x-demo">
+  const tabs = document.getElementById('tabs-start');
+  const out = document.getElementById('tabs-start-out');
+  out.value = tabs.value;
+  tabs.addEventListener('ui-tab-change', (event) => (out.value = event.detail.name));
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-4-0">HTML</ui-tab><ui-tab panel="code-4-1">React</ui-tab><ui-tab panel="code-4-2">React + Tailwind</ui-tab><ui-tab-panel name="code-4-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-tabs</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"tabs-start"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Approval steps"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"review"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab</span> <span style="color:var(--ui-tag-color-purple)">panel</span>=<span style="color:var(--ui-tag-color-teal)">"draft"</span>&gt;Draft&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab</span> <span style="color:var(--ui-tag-color-purple)">panel</span>=<span style="color:var(--ui-tag-color-teal)">"review"</span>&gt;Legal review&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab</span> <span style="color:var(--ui-tag-color-purple)">panel</span>=<span style="color:var(--ui-tag-color-teal)">"sign"</span>&gt;Signing&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"draft"</span>&gt;The requester fills in the contract form.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"review"</span>&gt;Legal checks the terms and the counterparty.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"sign"</span>&gt;Both parties sign, and the contract is filed.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tabs</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;Selected: &lt;<span style="color:var(--ui-tag-color-blue)">output</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"tabs-start-out"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> tabs <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'tabs-start'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> out <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'tabs-start-out'</span>);
+  out.value <span style="color:var(--ui-tag-color-magenta)">=</span> tabs.value;
+  tabs.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'ui-tab-change'</span>, (event) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (out.value <span style="color:var(--ui-tag-color-magenta)">=</span> event.detail.name));
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-4-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> [step, setStep] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">'review'</span>);
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiTabs</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Approval steps"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{step} <span style="color:var(--ui-tag-color-purple)">onUiTabChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setStep</span>(e.detail.name)}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTab</span> <span style="color:var(--ui-tag-color-purple)">panel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"draft"</span>&gt;Draft&lt;/<span style="color:var(--ui-tag-color-blue)">UiTab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTab</span> <span style="color:var(--ui-tag-color-purple)">panel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"review"</span>&gt;Legal review&lt;/<span style="color:var(--ui-tag-color-blue)">UiTab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTab</span> <span style="color:var(--ui-tag-color-purple)">panel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sign"</span>&gt;Signing&lt;/<span style="color:var(--ui-tag-color-blue)">UiTab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTabPanel</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"draft"</span>&gt;The requester fills in the contract form.&lt;/<span style="color:var(--ui-tag-color-blue)">UiTabPanel</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTabPanel</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"review"</span>&gt;Legal checks the terms and the counterparty.&lt;/<span style="color:var(--ui-tag-color-blue)">UiTabPanel</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTabPanel</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sign"</span>&gt;Both parties sign, and the contract is filed.&lt;/<span style="color:var(--ui-tag-color-blue)">UiTabPanel</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiTabs</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;Selected: &lt;<span style="color:var(--ui-tag-color-blue)">output</span>&gt;{step}&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-4-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> [step, setStep] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">'review'</span>);
+
+&lt;<span style="color:var(--ui-tag-color-blue)">Tabs</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{step} <span style="color:var(--ui-tag-color-purple)">onValueChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{setStep}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TabList</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Approval steps"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Tab</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"draft"</span>&gt;Draft&lt;/<span style="color:var(--ui-tag-color-blue)">Tab</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Tab</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"review"</span>&gt;Legal review&lt;/<span style="color:var(--ui-tag-color-blue)">Tab</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Tab</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sign"</span>&gt;Signing&lt;/<span style="color:var(--ui-tag-color-blue)">Tab</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">TabList</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TabPanel</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"draft"</span>&gt;The requester fills in the contract form.&lt;/<span style="color:var(--ui-tag-color-blue)">TabPanel</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TabPanel</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"review"</span>&gt;Legal checks the terms and the counterparty.&lt;/<span style="color:var(--ui-tag-color-blue)">TabPanel</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TabPanel</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sign"</span>&gt;Both parties sign, and the contract is filed.&lt;/<span style="color:var(--ui-tag-color-blue)">TabPanel</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Tabs</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;Selected: &lt;<span style="color:var(--ui-tag-color-blue)">output</span>&gt;{step}&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>React + Tailwind also takes <code>defaultValue</code> for an uncontrolled start.</p>
+<h2 id="contained">Contained</h2>
+<p><code>type=&quot;contained&quot;</code> draws 48px tabs on a grey strip with dividers. The selected tab sits on the layer with a blue top edge, and the panels sit on the layer too. Use it where the tabs head a card or a section of their own.</p>
+<div class="doc-demo"><ui-tabs label="Contract details" type="contained">
+  <ui-tab panel="overview">Overview</ui-tab>
+  <ui-tab panel="parties">Parties</ui-tab>
+  <ui-tab panel="history">History</ui-tab>
+  <ui-tab panel="archive" disabled>Archive</ui-tab>
+  <ui-tab-panel name="overview">Summary of the contract terms.</ui-tab-panel>
+  <ui-tab-panel name="parties">Signers and counterparties.</ui-tab-panel>
+  <ui-tab-panel name="history">Every change, newest first.</ui-tab-panel>
+  <ui-tab-panel name="archive">Archived copies.</ui-tab-panel>
+</ui-tabs>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-5-0">HTML</ui-tab><ui-tab panel="code-5-1">React</ui-tab><ui-tab panel="code-5-2">React + Tailwind</ui-tab><ui-tab-panel name="code-5-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-tabs</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Contract details"</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"contained"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab</span> <span style="color:var(--ui-tag-color-purple)">panel</span>=<span style="color:var(--ui-tag-color-teal)">"overview"</span>&gt;Overview&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab</span> <span style="color:var(--ui-tag-color-purple)">panel</span>=<span style="color:var(--ui-tag-color-teal)">"parties"</span>&gt;Parties&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab</span> <span style="color:var(--ui-tag-color-purple)">panel</span>=<span style="color:var(--ui-tag-color-teal)">"history"</span>&gt;History&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab</span> <span style="color:var(--ui-tag-color-purple)">panel</span>=<span style="color:var(--ui-tag-color-teal)">"archive"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span>&gt;Archive&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"overview"</span>&gt;Summary of the contract terms.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"parties"</span>&gt;Signers and counterparties.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"history"</span>&gt;Every change, newest first.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"archive"</span>&gt;Archived copies.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tabs</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-5-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiTabs</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contract details"</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"contained"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTab</span> <span style="color:var(--ui-tag-color-purple)">panel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"overview"</span>&gt;Overview&lt;/<span style="color:var(--ui-tag-color-blue)">UiTab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTab</span> <span style="color:var(--ui-tag-color-purple)">panel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"parties"</span>&gt;Parties&lt;/<span style="color:var(--ui-tag-color-blue)">UiTab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTab</span> <span style="color:var(--ui-tag-color-purple)">panel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"history"</span>&gt;History&lt;/<span style="color:var(--ui-tag-color-blue)">UiTab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTab</span> <span style="color:var(--ui-tag-color-purple)">panel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"archive"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span>&gt;Archive&lt;/<span style="color:var(--ui-tag-color-blue)">UiTab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTabPanel</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"overview"</span>&gt;Summary of the contract terms.&lt;/<span style="color:var(--ui-tag-color-blue)">UiTabPanel</span>&gt;
+  …
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiTabs</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-5-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">Tabs</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"contained"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TabList</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contract details"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Tab</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"overview"</span>&gt;Overview&lt;/<span style="color:var(--ui-tag-color-blue)">Tab</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Tab</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"parties"</span>&gt;Parties&lt;/<span style="color:var(--ui-tag-color-blue)">Tab</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Tab</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"history"</span>&gt;History&lt;/<span style="color:var(--ui-tag-color-blue)">Tab</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Tab</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"archive"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span>&gt;Archive&lt;/<span style="color:var(--ui-tag-color-blue)">Tab</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">TabList</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TabPanel</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"overview"</span>&gt;Summary of the contract terms.&lt;/<span style="color:var(--ui-tag-color-blue)">TabPanel</span>&gt;
+  …
+&lt;/<span style="color:var(--ui-tag-color-blue)">Tabs</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="full-width">Full width</h2>
+<p>With <code>type=&quot;contained&quot;</code>, <code>full-width</code> (<code>fullWidth</code>) shares the strip in equal columns. A label that doesn't fit ends in an ellipsis.</p>
+<div class="doc-demo"><ui-tabs label="Case sections" type="contained" full-width>
+  <ui-tab panel="case">Case details</ui-tab>
+  <ui-tab panel="parties">Parties</ui-tab>
+  <ui-tab panel="evidence">Attachments and supporting evidence for the hearing</ui-tab>
+  <ui-tab panel="history">History</ui-tab>
+  <ui-tab-panel name="case">Case number, court and filing date.</ui-tab-panel>
+  <ui-tab-panel name="parties">Plaintiffs, defendants and their lawyers.</ui-tab-panel>
+  <ui-tab-panel name="evidence">Documents filed with the case.</ui-tab-panel>
+  <ui-tab-panel name="history">Every hearing, newest first.</ui-tab-panel>
+</ui-tabs>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-6-0">HTML</ui-tab><ui-tab panel="code-6-1">React</ui-tab><ui-tab panel="code-6-2">React + Tailwind</ui-tab><ui-tab-panel name="code-6-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-tabs</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Case sections"</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"contained"</span> <span style="color:var(--ui-tag-color-purple)">full-width</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab</span> <span style="color:var(--ui-tag-color-purple)">panel</span>=<span style="color:var(--ui-tag-color-teal)">"case"</span>&gt;Case details&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab</span> <span style="color:var(--ui-tag-color-purple)">panel</span>=<span style="color:var(--ui-tag-color-teal)">"parties"</span>&gt;Parties&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab</span> <span style="color:var(--ui-tag-color-purple)">panel</span>=<span style="color:var(--ui-tag-color-teal)">"evidence"</span>&gt;Attachments and supporting evidence for the hearing&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab</span> <span style="color:var(--ui-tag-color-purple)">panel</span>=<span style="color:var(--ui-tag-color-teal)">"history"</span>&gt;History&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"case"</span>&gt;Case number, court and filing date.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"parties"</span>&gt;Plaintiffs, defendants and their lawyers.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"evidence"</span>&gt;Documents filed with the case.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"history"</span>&gt;Every hearing, newest first.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tabs</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-6-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiTabs</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Case sections"</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"contained"</span> <span style="color:var(--ui-tag-color-purple)">fullWidth</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTab</span> <span style="color:var(--ui-tag-color-purple)">panel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"case"</span>&gt;Case details&lt;/<span style="color:var(--ui-tag-color-blue)">UiTab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTab</span> <span style="color:var(--ui-tag-color-purple)">panel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"parties"</span>&gt;Parties&lt;/<span style="color:var(--ui-tag-color-blue)">UiTab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTab</span> <span style="color:var(--ui-tag-color-purple)">panel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"evidence"</span>&gt;Attachments and supporting evidence for the hearing&lt;/<span style="color:var(--ui-tag-color-blue)">UiTab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTab</span> <span style="color:var(--ui-tag-color-purple)">panel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"history"</span>&gt;History&lt;/<span style="color:var(--ui-tag-color-blue)">UiTab</span>&gt;
+  …
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiTabs</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-6-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">Tabs</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"contained"</span> <span style="color:var(--ui-tag-color-purple)">fullWidth</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TabList</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Case sections"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Tab</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"case"</span>&gt;Case details&lt;/<span style="color:var(--ui-tag-color-blue)">Tab</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Tab</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"parties"</span>&gt;Parties&lt;/<span style="color:var(--ui-tag-color-blue)">Tab</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Tab</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"evidence"</span>&gt;Attachments and supporting evidence for the hearing&lt;/<span style="color:var(--ui-tag-color-blue)">Tab</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Tab</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"history"</span>&gt;History&lt;/<span style="color:var(--ui-tag-color-blue)">Tab</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">TabList</span>&gt;
+  …
+&lt;/<span style="color:var(--ui-tag-color-blue)">Tabs</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="sizes">Sizes</h2>
+<p><code>size</code>: <code>sm</code> 32px, <code>md</code> 40px (the line default), <code>lg</code> 48px (the contained default), <code>xl</code> 64px (contained only; line tabs stop at 48px).</p>
+<div class="doc-demo"><ui-tabs label="Small" size="sm">
+  <ui-tab panel="a">Overview</ui-tab>
+  <ui-tab panel="b">Parties</ui-tab>
+</ui-tabs>
+<ui-tabs label="Large" size="lg">
+  <ui-tab panel="a">Overview</ui-tab>
+  <ui-tab panel="b">Parties</ui-tab>
+</ui-tabs>
+<ui-tabs label="Contained, extra large" type="contained" size="xl">
+  <ui-tab panel="a">Overview</ui-tab>
+  <ui-tab panel="b">Parties</ui-tab>
+</ui-tabs>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-7-0">HTML</ui-tab><ui-tab panel="code-7-1">React</ui-tab><ui-tab panel="code-7-2">React + Tailwind</ui-tab><ui-tab-panel name="code-7-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-tabs</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Small"</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"sm"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab</span> <span style="color:var(--ui-tag-color-purple)">panel</span>=<span style="color:var(--ui-tag-color-teal)">"a"</span>&gt;Overview&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab</span> <span style="color:var(--ui-tag-color-purple)">panel</span>=<span style="color:var(--ui-tag-color-teal)">"b"</span>&gt;Parties&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tabs</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-tabs</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Large"</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"lg"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab</span> <span style="color:var(--ui-tag-color-purple)">panel</span>=<span style="color:var(--ui-tag-color-teal)">"a"</span>&gt;Overview&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab</span> <span style="color:var(--ui-tag-color-purple)">panel</span>=<span style="color:var(--ui-tag-color-teal)">"b"</span>&gt;Parties&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tabs</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-tabs</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Contained, extra large"</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"contained"</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"xl"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab</span> <span style="color:var(--ui-tag-color-purple)">panel</span>=<span style="color:var(--ui-tag-color-teal)">"a"</span>&gt;Overview&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab</span> <span style="color:var(--ui-tag-color-purple)">panel</span>=<span style="color:var(--ui-tag-color-teal)">"b"</span>&gt;Parties&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tabs</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-7-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiTabs</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Small"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">UiTabs</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiTabs</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Large"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"lg"</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">UiTabs</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiTabs</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contained, extra large"</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"contained"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"xl"</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">UiTabs</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-7-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">Tabs</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">Tabs</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">Tabs</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"lg"</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">Tabs</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">Tabs</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"contained"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"xl"</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">Tabs</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>The three strips above have no panels: tabs without a matching panel still select, they just show nothing.</p>
+<h2 id="icons">Icons</h2>
+<p>Put a 16px icon in a tab's <code>icon</code> slot (the <code>icon</code> prop in React + Tailwind). It follows the label and takes its colour. The label still names the tab.</p>
+<div class="doc-demo"><ui-tabs label="Contract">
+  <ui-tab panel="document">Document <svg slot="icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M12.85 4.65l-3.5-3.5A.5.5 0 0 0 9 1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V5a.5.5 0 0 0-.15-.35ZM9 2.2 11.8 5H9ZM12 14H4V2h4v3a1 1 0 0 0 1 1h3Z" /></svg></ui-tab>
+  <ui-tab panel="signers">Signers <svg slot="icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0-1a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm5 14h-1v-2.5A2.5 2.5 0 0 0 9.5 10h-3A2.5 2.5 0 0 0 4 12.5V15H3v-2.5A3.5 3.5 0 0 1 6.5 9h3a3.5 3.5 0 0 1 3.5 3.5Z" /></svg></ui-tab>
+  <ui-tab panel="history" disabled>History <svg slot="icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14ZM8 2a6 6 0 1 0 0 12A6 6 0 0 0 8 2Zm2.3 9L7.5 8.2V4h1v3.8l2.5 2.5Z" /></svg></ui-tab>
+  <ui-tab-panel name="document">The signed PDF and its pages.</ui-tab-panel>
+  <ui-tab-panel name="signers">Who signed, and when.</ui-tab-panel>
+  <ui-tab-panel name="history">Every change, newest first.</ui-tab-panel>
+</ui-tabs>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-8-0">HTML</ui-tab><ui-tab panel="code-8-1">React</ui-tab><ui-tab panel="code-8-2">React + Tailwind</ui-tab><ui-tab-panel name="code-8-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-tabs</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Contract"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab</span> <span style="color:var(--ui-tag-color-purple)">panel</span>=<span style="color:var(--ui-tag-color-teal)">"document"</span>&gt;Document &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"icon"</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span>=<span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span>=<span style="color:var(--ui-tag-color-teal)">"true"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span>=<span style="color:var(--ui-tag-color-teal)">"M12.85 4.65l-3.5-3.5A.5.5 0 0 0 9 1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V5a.5.5 0 0 0-.15-.35ZM9 2.2 11.8 5H9ZM12 14H4V2h4v3a1 1 0 0 0 1 1h3Z"</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab</span> <span style="color:var(--ui-tag-color-purple)">panel</span>=<span style="color:var(--ui-tag-color-teal)">"signers"</span>&gt;Signers &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"icon"</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span>=<span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span>=<span style="color:var(--ui-tag-color-teal)">"true"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span>=<span style="color:var(--ui-tag-color-teal)">"M8 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0-1a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm5 14h-1v-2.5A2.5 2.5 0 0 0 9.5 10h-3A2.5 2.5 0 0 0 4 12.5V15H3v-2.5A3.5 3.5 0 0 1 6.5 9h3a3.5 3.5 0 0 1 3.5 3.5Z"</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab</span> <span style="color:var(--ui-tag-color-purple)">panel</span>=<span style="color:var(--ui-tag-color-teal)">"history"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span>&gt;History &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"icon"</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span>=<span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span>=<span style="color:var(--ui-tag-color-teal)">"true"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span>=<span style="color:var(--ui-tag-color-teal)">"M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14ZM8 2a6 6 0 1 0 0 12A6 6 0 0 0 8 2Zm2.3 9L7.5 8.2V4h1v3.8l2.5 2.5Z"</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"document"</span>&gt;The signed PDF and its pages.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"signers"</span>&gt;Who signed, and when.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"history"</span>&gt;Every change, newest first.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tabs</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-8-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-ink-muted);font-style:italic">// documentIcon = &lt;svg slot="icon" viewBox="0 0 16 16" aria-hidden="true"&gt;&lt;path d="…" /&gt;&lt;/svg&gt;, the same for the others</span>
+&lt;<span style="color:var(--ui-tag-color-blue)">UiTabs</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contract"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTab</span> <span style="color:var(--ui-tag-color-purple)">panel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"document"</span>&gt;Document {documentIcon}&lt;/<span style="color:var(--ui-tag-color-blue)">UiTab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTab</span> <span style="color:var(--ui-tag-color-purple)">panel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"signers"</span>&gt;Signers {userIcon}&lt;/<span style="color:var(--ui-tag-color-blue)">UiTab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTab</span> <span style="color:var(--ui-tag-color-purple)">panel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"history"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span>&gt;History {timeIcon}&lt;/<span style="color:var(--ui-tag-color-blue)">UiTab</span>&gt;
+  …
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiTabs</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-8-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-ink-muted);font-style:italic">// documentIcon = &lt;svg viewBox="0 0 16 16" aria-hidden="true"&gt;&lt;path d="…" /&gt;&lt;/svg&gt;, the same for the others</span>
+&lt;<span style="color:var(--ui-tag-color-blue)">Tabs</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TabList</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contract"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Tab</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"document"</span> <span style="color:var(--ui-tag-color-purple)">icon</span><span style="color:var(--ui-tag-color-magenta)">=</span>{documentIcon}&gt;Document&lt;/<span style="color:var(--ui-tag-color-blue)">Tab</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Tab</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"signers"</span> <span style="color:var(--ui-tag-color-purple)">icon</span><span style="color:var(--ui-tag-color-magenta)">=</span>{userIcon}&gt;Signers&lt;/<span style="color:var(--ui-tag-color-blue)">Tab</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Tab</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"history"</span> <span style="color:var(--ui-tag-color-purple)">icon</span><span style="color:var(--ui-tag-color-magenta)">=</span>{timeIcon} <span style="color:var(--ui-tag-color-purple)">disabled</span>&gt;History&lt;/<span style="color:var(--ui-tag-color-blue)">Tab</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">TabList</span>&gt;
+  …
+&lt;/<span style="color:var(--ui-tag-color-blue)">Tabs</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="secondary-labels">Secondary labels</h2>
+<p>On contained tabs, <code>secondary-label</code> (<code>secondaryLabel</code>) adds a second, smaller line, such as a count. One secondary label makes every tab in the strip 64px tall.</p>
+<div class="doc-demo"><ui-tabs label="Contract review" type="contained">
+  <ui-tab panel="new" secondary-label="(12)">New</ui-tab>
+  <ui-tab panel="review" secondary-label="(4)">In review</ui-tab>
+  <ui-tab panel="signed" secondary-label="(0)" disabled>Signed</ui-tab>
+  <ui-tab panel="all">All</ui-tab>
+  <ui-tab-panel name="new">Contracts waiting for a reviewer.</ui-tab-panel>
+  <ui-tab-panel name="review">Contracts a reviewer has opened.</ui-tab-panel>
+  <ui-tab-panel name="signed">Contracts both parties signed.</ui-tab-panel>
+  <ui-tab-panel name="all">Every contract.</ui-tab-panel>
+</ui-tabs>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-9-0">HTML</ui-tab><ui-tab panel="code-9-1">React</ui-tab><ui-tab panel="code-9-2">React + Tailwind</ui-tab><ui-tab-panel name="code-9-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-tabs</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Contract review"</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"contained"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab</span> <span style="color:var(--ui-tag-color-purple)">panel</span>=<span style="color:var(--ui-tag-color-teal)">"new"</span> <span style="color:var(--ui-tag-color-purple)">secondary-label</span>=<span style="color:var(--ui-tag-color-teal)">"(12)"</span>&gt;New&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab</span> <span style="color:var(--ui-tag-color-purple)">panel</span>=<span style="color:var(--ui-tag-color-teal)">"review"</span> <span style="color:var(--ui-tag-color-purple)">secondary-label</span>=<span style="color:var(--ui-tag-color-teal)">"(4)"</span>&gt;In review&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab</span> <span style="color:var(--ui-tag-color-purple)">panel</span>=<span style="color:var(--ui-tag-color-teal)">"signed"</span> <span style="color:var(--ui-tag-color-purple)">secondary-label</span>=<span style="color:var(--ui-tag-color-teal)">"(0)"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span>&gt;Signed&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab</span> <span style="color:var(--ui-tag-color-purple)">panel</span>=<span style="color:var(--ui-tag-color-teal)">"all"</span>&gt;All&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"new"</span>&gt;Contracts waiting for a reviewer.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"review"</span>&gt;Contracts a reviewer has opened.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"signed"</span>&gt;Contracts both parties signed.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"all"</span>&gt;Every contract.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tabs</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-9-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiTabs</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contract review"</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"contained"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTab</span> <span style="color:var(--ui-tag-color-purple)">panel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"new"</span> <span style="color:var(--ui-tag-color-purple)">secondaryLabel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"(12)"</span>&gt;New&lt;/<span style="color:var(--ui-tag-color-blue)">UiTab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTab</span> <span style="color:var(--ui-tag-color-purple)">panel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"review"</span> <span style="color:var(--ui-tag-color-purple)">secondaryLabel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"(4)"</span>&gt;In review&lt;/<span style="color:var(--ui-tag-color-blue)">UiTab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTab</span> <span style="color:var(--ui-tag-color-purple)">panel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"signed"</span> <span style="color:var(--ui-tag-color-purple)">secondaryLabel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"(0)"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span>&gt;Signed&lt;/<span style="color:var(--ui-tag-color-blue)">UiTab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTab</span> <span style="color:var(--ui-tag-color-purple)">panel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"all"</span>&gt;All&lt;/<span style="color:var(--ui-tag-color-blue)">UiTab</span>&gt;
+  …
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiTabs</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-9-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">Tabs</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"contained"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TabList</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contract review"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Tab</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"new"</span> <span style="color:var(--ui-tag-color-purple)">secondaryLabel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"(12)"</span>&gt;New&lt;/<span style="color:var(--ui-tag-color-blue)">Tab</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Tab</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"review"</span> <span style="color:var(--ui-tag-color-purple)">secondaryLabel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"(4)"</span>&gt;In review&lt;/<span style="color:var(--ui-tag-color-blue)">Tab</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Tab</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"signed"</span> <span style="color:var(--ui-tag-color-purple)">secondaryLabel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"(0)"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span>&gt;Signed&lt;/<span style="color:var(--ui-tag-color-blue)">Tab</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Tab</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"all"</span>&gt;All&lt;/<span style="color:var(--ui-tag-color-blue)">Tab</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">TabList</span>&gt;
+  …
+&lt;/<span style="color:var(--ui-tag-color-blue)">Tabs</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="icon-only">Icon only</h2>
+<p><code>icon-only</code> (<code>iconOnly</code>) shows just the icon in a square tab. <code>label</code> is then required: it names the tab and shows as its tooltip on hover and on keyboard focus. With <code>size=&quot;lg&quot;</code> the icons grow to 20px.</p>
+<div class="doc-demo"><ui-tabs label="Contract views">
+  <ui-tab panel="document" icon-only label="Document"><svg slot="icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M12.85 4.65l-3.5-3.5A.5.5 0 0 0 9 1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V5a.5.5 0 0 0-.15-.35ZM9 2.2 11.8 5H9ZM12 14H4V2h4v3a1 1 0 0 0 1 1h3Z" /></svg></ui-tab>
+  <ui-tab panel="signers" icon-only label="Signers"><svg slot="icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0-1a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm5 14h-1v-2.5A2.5 2.5 0 0 0 9.5 10h-3A2.5 2.5 0 0 0 4 12.5V15H3v-2.5A3.5 3.5 0 0 1 6.5 9h3a3.5 3.5 0 0 1 3.5 3.5Z" /></svg></ui-tab>
+  <ui-tab panel="history" icon-only label="History"><svg slot="icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14ZM8 2a6 6 0 1 0 0 12A6 6 0 0 0 8 2Zm2.3 9L7.5 8.2V4h1v3.8l2.5 2.5Z" /></svg></ui-tab>
+  <ui-tab-panel name="document">The signed PDF and its pages.</ui-tab-panel>
+  <ui-tab-panel name="signers">Who signed, and when.</ui-tab-panel>
+  <ui-tab-panel name="history">Every change, newest first.</ui-tab-panel>
+</ui-tabs>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-10-0">HTML</ui-tab><ui-tab panel="code-10-1">React</ui-tab><ui-tab panel="code-10-2">React + Tailwind</ui-tab><ui-tab-panel name="code-10-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-tabs</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Contract views"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab</span> <span style="color:var(--ui-tag-color-purple)">panel</span>=<span style="color:var(--ui-tag-color-teal)">"document"</span> <span style="color:var(--ui-tag-color-purple)">icon-only</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Document"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"icon"</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span>=<span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span>=<span style="color:var(--ui-tag-color-teal)">"true"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span>=<span style="color:var(--ui-tag-color-teal)">"M12.85 4.65l-3.5-3.5A.5.5 0 0 0 9 1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V5a.5.5 0 0 0-.15-.35ZM9 2.2 11.8 5H9ZM12 14H4V2h4v3a1 1 0 0 0 1 1h3Z"</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab</span> <span style="color:var(--ui-tag-color-purple)">panel</span>=<span style="color:var(--ui-tag-color-teal)">"signers"</span> <span style="color:var(--ui-tag-color-purple)">icon-only</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Signers"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"icon"</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span>=<span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span>=<span style="color:var(--ui-tag-color-teal)">"true"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span>=<span style="color:var(--ui-tag-color-teal)">"M8 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0-1a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm5 14h-1v-2.5A2.5 2.5 0 0 0 9.5 10h-3A2.5 2.5 0 0 0 4 12.5V15H3v-2.5A3.5 3.5 0 0 1 6.5 9h3a3.5 3.5 0 0 1 3.5 3.5Z"</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab</span> <span style="color:var(--ui-tag-color-purple)">panel</span>=<span style="color:var(--ui-tag-color-teal)">"history"</span> <span style="color:var(--ui-tag-color-purple)">icon-only</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"History"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"icon"</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span>=<span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span>=<span style="color:var(--ui-tag-color-teal)">"true"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span>=<span style="color:var(--ui-tag-color-teal)">"M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14ZM8 2a6 6 0 1 0 0 12A6 6 0 0 0 8 2Zm2.3 9L7.5 8.2V4h1v3.8l2.5 2.5Z"</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"document"</span>&gt;The signed PDF and its pages.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"signers"</span>&gt;Who signed, and when.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"history"</span>&gt;Every change, newest first.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tabs</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-10-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiTabs</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contract views"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTab</span> <span style="color:var(--ui-tag-color-purple)">panel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"document"</span> <span style="color:var(--ui-tag-color-purple)">iconOnly</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Document"</span>&gt;{documentIcon}&lt;/<span style="color:var(--ui-tag-color-blue)">UiTab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTab</span> <span style="color:var(--ui-tag-color-purple)">panel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"signers"</span> <span style="color:var(--ui-tag-color-purple)">iconOnly</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Signers"</span>&gt;{userIcon}&lt;/<span style="color:var(--ui-tag-color-blue)">UiTab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTab</span> <span style="color:var(--ui-tag-color-purple)">panel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"history"</span> <span style="color:var(--ui-tag-color-purple)">iconOnly</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"History"</span>&gt;{timeIcon}&lt;/<span style="color:var(--ui-tag-color-blue)">UiTab</span>&gt;
+  …
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiTabs</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-10-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">Tabs</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TabList</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contract views"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Tab</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"document"</span> <span style="color:var(--ui-tag-color-purple)">iconOnly</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Document"</span> <span style="color:var(--ui-tag-color-purple)">icon</span><span style="color:var(--ui-tag-color-magenta)">=</span>{documentIcon} /&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Tab</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"signers"</span> <span style="color:var(--ui-tag-color-purple)">iconOnly</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Signers"</span> <span style="color:var(--ui-tag-color-purple)">icon</span><span style="color:var(--ui-tag-color-magenta)">=</span>{userIcon} /&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Tab</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"history"</span> <span style="color:var(--ui-tag-color-purple)">iconOnly</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"History"</span> <span style="color:var(--ui-tag-color-purple)">icon</span><span style="color:var(--ui-tag-color-magenta)">=</span>{timeIcon} /&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">TabList</span>&gt;
+  …
+&lt;/<span style="color:var(--ui-tag-color-blue)">Tabs</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="manual-activation">Manual activation</h2>
+<p>By default the arrow keys select as they move (<code>activation=&quot;automatic&quot;</code>). With <code>activation=&quot;manual&quot;</code>, the arrows only move focus, and Enter or Space selects. Use it when a panel is slow to render or loads data.</p>
+<div class="doc-demo"><ui-tabs label="Reports" activation="manual">
+  <ui-tab panel="month">This month</ui-tab>
+  <ui-tab panel="quarter">This quarter</ui-tab>
+  <ui-tab panel="year">This year</ui-tab>
+  <ui-tab-panel name="month">Focus a tab, move with the arrow keys, then press Enter or Space.</ui-tab-panel>
+  <ui-tab-panel name="quarter">The quarter's report loads only when you choose it.</ui-tab-panel>
+  <ui-tab-panel name="year">The year's report loads only when you choose it.</ui-tab-panel>
+</ui-tabs>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-11-0">HTML</ui-tab><ui-tab panel="code-11-1">React</ui-tab><ui-tab panel="code-11-2">React + Tailwind</ui-tab><ui-tab-panel name="code-11-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-tabs</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Reports"</span> <span style="color:var(--ui-tag-color-purple)">activation</span>=<span style="color:var(--ui-tag-color-teal)">"manual"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab</span> <span style="color:var(--ui-tag-color-purple)">panel</span>=<span style="color:var(--ui-tag-color-teal)">"month"</span>&gt;This month&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab</span> <span style="color:var(--ui-tag-color-purple)">panel</span>=<span style="color:var(--ui-tag-color-teal)">"quarter"</span>&gt;This quarter&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab</span> <span style="color:var(--ui-tag-color-purple)">panel</span>=<span style="color:var(--ui-tag-color-teal)">"year"</span>&gt;This year&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"month"</span>&gt;Focus a tab, move with the arrow keys, then press Enter or Space.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"quarter"</span>&gt;The quarter's report loads only when you choose it.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"year"</span>&gt;The year's report loads only when you choose it.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tabs</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-11-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiTabs</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Reports"</span> <span style="color:var(--ui-tag-color-purple)">activation</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"manual"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTab</span> <span style="color:var(--ui-tag-color-purple)">panel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"month"</span>&gt;This month&lt;/<span style="color:var(--ui-tag-color-blue)">UiTab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTab</span> <span style="color:var(--ui-tag-color-purple)">panel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"quarter"</span>&gt;This quarter&lt;/<span style="color:var(--ui-tag-color-blue)">UiTab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTab</span> <span style="color:var(--ui-tag-color-purple)">panel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"year"</span>&gt;This year&lt;/<span style="color:var(--ui-tag-color-blue)">UiTab</span>&gt;
+  …
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiTabs</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-11-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">Tabs</span> <span style="color:var(--ui-tag-color-purple)">activation</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"manual"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TabList</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Reports"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Tab</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"month"</span>&gt;This month&lt;/<span style="color:var(--ui-tag-color-blue)">Tab</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Tab</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"quarter"</span>&gt;This quarter&lt;/<span style="color:var(--ui-tag-color-blue)">Tab</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Tab</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"year"</span>&gt;This year&lt;/<span style="color:var(--ui-tag-color-blue)">Tab</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">TabList</span>&gt;
+  …
+&lt;/<span style="color:var(--ui-tag-color-blue)">Tabs</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="an-action-at-the-end-of-the-strip">An action at the end of the strip</h2>
+<p>The <code>end</code> slot (the <code>end</code> prop of <code>TabList</code> in React + Tailwind) puts content after the tabs, on the strip's line, for example a ghost button that adds a section.</p>
+<div class="doc-demo"><ui-tabs label="Contract sections">
+  <ui-tab panel="terms">Terms</ui-tab>
+  <ui-tab panel="payment">Payment</ui-tab>
+  <ui-tab panel="annex">Annex</ui-tab>
+  <ui-button slot="end" kind="ghost" size="md">Add section</ui-button>
+  <ui-tab-panel name="terms">The terms both parties agreed to.</ui-tab-panel>
+  <ui-tab-panel name="payment">Instalments and due dates.</ui-tab-panel>
+  <ui-tab-panel name="annex">Extra documents.</ui-tab-panel>
+</ui-tabs>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-12-0">HTML</ui-tab><ui-tab panel="code-12-1">React</ui-tab><ui-tab panel="code-12-2">React + Tailwind</ui-tab><ui-tab-panel name="code-12-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-tabs</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Contract sections"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab</span> <span style="color:var(--ui-tag-color-purple)">panel</span>=<span style="color:var(--ui-tag-color-teal)">"terms"</span>&gt;Terms&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab</span> <span style="color:var(--ui-tag-color-purple)">panel</span>=<span style="color:var(--ui-tag-color-teal)">"payment"</span>&gt;Payment&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab</span> <span style="color:var(--ui-tag-color-purple)">panel</span>=<span style="color:var(--ui-tag-color-teal)">"annex"</span>&gt;Annex&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"end"</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"ghost"</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"md"</span>&gt;Add section&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"terms"</span>&gt;The terms both parties agreed to.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"payment"</span>&gt;Instalments and due dates.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"annex"</span>&gt;Extra documents.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tabs</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-12-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiTabs</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contract sections"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTab</span> <span style="color:var(--ui-tag-color-purple)">panel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"terms"</span>&gt;Terms&lt;/<span style="color:var(--ui-tag-color-blue)">UiTab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTab</span> <span style="color:var(--ui-tag-color-purple)">panel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"payment"</span>&gt;Payment&lt;/<span style="color:var(--ui-tag-color-blue)">UiTab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTab</span> <span style="color:var(--ui-tag-color-purple)">panel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"annex"</span>&gt;Annex&lt;/<span style="color:var(--ui-tag-color-blue)">UiTab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiButton</span> <span style="color:var(--ui-tag-color-purple)">slot</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"end"</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ghost"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"md"</span>&gt;Add section&lt;/<span style="color:var(--ui-tag-color-blue)">UiButton</span>&gt;
+  …
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiTabs</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-12-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">Tabs</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TabList</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contract sections"</span> <span style="color:var(--ui-tag-color-purple)">end</span><span style="color:var(--ui-tag-color-magenta)">=</span>{&lt;<span style="color:var(--ui-tag-color-blue)">Button</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ghost"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"md"</span>&gt;Add section&lt;/<span style="color:var(--ui-tag-color-blue)">Button</span>&gt;}&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Tab</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"terms"</span>&gt;Terms&lt;/<span style="color:var(--ui-tag-color-blue)">Tab</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Tab</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"payment"</span>&gt;Payment&lt;/<span style="color:var(--ui-tag-color-blue)">Tab</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Tab</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"annex"</span>&gt;Annex&lt;/<span style="color:var(--ui-tag-color-blue)">Tab</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">TabList</span>&gt;
+  …
+&lt;/<span style="color:var(--ui-tag-color-blue)">Tabs</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="keep-the-current-tab">Keep the current tab</h2>
+<p><code>ui-tab-before-change</code> fires before the selection moves, with <code>detail.name</code> (the new tab) and <code>detail.previous</code>. Call <code>preventDefault()</code> to keep the current tab, for example while a form in it has unsaved changes. In React + Tailwind, keep <code>value</code> as it is in <code>onValueChange</code>.</p>
+<div class="doc-demo"><ui-checkbox id="tabs-dirty" label="The contract form has unsaved changes" checked></ui-checkbox>
+<ui-tabs id="tabs-guard" label="Contract">
+  <ui-tab panel="form">Form</ui-tab>
+  <ui-tab panel="preview">Preview</ui-tab>
+  <ui-tab-panel name="form">Edit the contract here.</ui-tab-panel>
+  <ui-tab-panel name="preview">The contract as the counterparty will see it.</ui-tab-panel>
+</ui-tabs>
+<p><output id="tabs-guard-out"></output></p>
+
+<script type="text/x-demo">
+  const dirty = document.getElementById('tabs-dirty');
+  const tabs = document.getElementById('tabs-guard');
+  const out = document.getElementById('tabs-guard-out');
+  tabs.addEventListener('ui-tab-before-change', (event) => {
+    out.value = '';
+    if (!dirty.checked) return;
+    event.preventDefault();
+    out.value = `Save the form before you open "${event.detail.name}".`;
+  });
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-13-0">HTML</ui-tab><ui-tab panel="code-13-1">React</ui-tab><ui-tab panel="code-13-2">React + Tailwind</ui-tab><ui-tab-panel name="code-13-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-checkbox</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"tabs-dirty"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"The contract form has unsaved changes"</span> <span style="color:var(--ui-tag-color-purple)">checked</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-checkbox</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-tabs</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"tabs-guard"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Contract"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab</span> <span style="color:var(--ui-tag-color-purple)">panel</span>=<span style="color:var(--ui-tag-color-teal)">"form"</span>&gt;Form&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab</span> <span style="color:var(--ui-tag-color-purple)">panel</span>=<span style="color:var(--ui-tag-color-teal)">"preview"</span>&gt;Preview&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"form"</span>&gt;Edit the contract here.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"preview"</span>&gt;The contract as the counterparty will see it.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tabs</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">output</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"tabs-guard-out"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> dirty <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'tabs-dirty'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> tabs <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'tabs-guard'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> out <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'tabs-guard-out'</span>);
+  tabs.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'ui-tab-before-change'</span>, (event) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    out.value <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">''</span>;
+    <span style="color:var(--ui-tag-color-magenta)">if</span> (<span style="color:var(--ui-tag-color-magenta)">!</span>dirty.checked) <span style="color:var(--ui-tag-color-magenta)">return</span>;
+    event.<span style="color:var(--ui-tag-color-cyan)">preventDefault</span>();
+    out.value <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">`Save the form before you open "${</span><span style="color:var(--ui-tag-color-teal)">event.detail.name</span><span style="color:var(--ui-tag-color-teal)">}".`</span>;
+  });
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-13-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> <span style="color:var(--ui-tag-color-magenta)">type</span> { UiCheckbox <span style="color:var(--ui-tag-color-magenta)">as</span> CheckboxElement } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> [dirty, setDirty] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-green)">true</span>);
+<span style="color:var(--ui-tag-color-magenta)">const</span> [message, setMessage] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">''</span>);
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiCheckbox</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"The contract form has unsaved changes"</span> <span style="color:var(--ui-tag-color-purple)">checked</span><span style="color:var(--ui-tag-color-magenta)">=</span>{dirty} <span style="color:var(--ui-tag-color-purple)">onChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setDirty</span>((e.target <span style="color:var(--ui-tag-color-magenta)">as</span> <span style="color:var(--ui-tag-color-cyan)">CheckboxElement</span>).checked)} /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiTabs</span>
+  <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contract"</span>
+  <span style="color:var(--ui-tag-color-purple)">onUiTabBeforeChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    <span style="color:var(--ui-tag-color-cyan)">setMessage</span>(dirty <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-teal)">`Save the form before you open "${</span><span style="color:var(--ui-tag-color-teal)">e.detail.name</span><span style="color:var(--ui-tag-color-teal)">}".`</span> <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-teal)">''</span>);
+    <span style="color:var(--ui-tag-color-magenta)">if</span> (dirty) e.<span style="color:var(--ui-tag-color-cyan)">preventDefault</span>();
+  }}
+&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTab</span> <span style="color:var(--ui-tag-color-purple)">panel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"form"</span>&gt;Form&lt;/<span style="color:var(--ui-tag-color-blue)">UiTab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTab</span> <span style="color:var(--ui-tag-color-purple)">panel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"preview"</span>&gt;Preview&lt;/<span style="color:var(--ui-tag-color-blue)">UiTab</span>&gt;
+  …
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiTabs</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">output</span>&gt;{message}&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-13-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-ink-muted);font-style:italic">// dirty and message as in React</span>
+<span style="color:var(--ui-tag-color-magenta)">const</span> [tab, setTab] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">'form'</span>);
+
+&lt;<span style="color:var(--ui-tag-color-blue)">Checkbox</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"The contract form has unsaved changes"</span> <span style="color:var(--ui-tag-color-purple)">checked</span><span style="color:var(--ui-tag-color-magenta)">=</span>{dirty} <span style="color:var(--ui-tag-color-purple)">onChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setDirty</span>(e.target.checked)} /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">Tabs</span>
+  <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{tab}
+  <span style="color:var(--ui-tag-color-purple)">onValueChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(next) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    <span style="color:var(--ui-tag-color-cyan)">setMessage</span>(dirty <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-teal)">`Save the form before you open "${</span><span style="color:var(--ui-tag-color-teal)">next</span><span style="color:var(--ui-tag-color-teal)">}".`</span> <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-teal)">''</span>);
+    <span style="color:var(--ui-tag-color-magenta)">if</span> (<span style="color:var(--ui-tag-color-magenta)">!</span>dirty) <span style="color:var(--ui-tag-color-cyan)">setTab</span>(next);
+  }}
+&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TabList</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contract"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Tab</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"form"</span>&gt;Form&lt;/<span style="color:var(--ui-tag-color-blue)">Tab</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Tab</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"preview"</span>&gt;Preview&lt;/<span style="color:var(--ui-tag-color-blue)">Tab</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">TabList</span>&gt;
+  …
+&lt;/<span style="color:var(--ui-tag-color-blue)">Tabs</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">output</span>&gt;{message}&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="dismissable-tabs">Dismissable tabs</h2>
+<p><code>dismissable</code> gives every tab a close button, and Delete closes the focused tab. The tab first fires a cancelable <code>ui-request-close</code> (<code>detail.name</code>); unless you prevent it, the tab is hidden and fires <code>ui-close</code>. A closed selected tab passes the selection to the first enabled tab, and focus moves to the tab now in its place. Not with <code>vertical</code>.</p>
+<p>In React + Tailwind, <code>onTabCloseRequest</code> gets the tab's <code>value</code>: remove that tab from your list to close it.</p>
+<div class="doc-demo"><ui-tabs id="tabs-docs" label="Open documents" dismissable>
+  <ui-tab panel="contract">Contract.pdf</ui-tab>
+  <ui-tab panel="memo">Memo.docx</ui-tab>
+  <ui-tab panel="notes">Notes</ui-tab>
+  <ui-tab panel="archive" disabled>Archive</ui-tab>
+  <ui-tab-panel name="contract">The × or Delete on the focused tab closes it.</ui-tab-panel>
+  <ui-tab-panel name="memo">The legal team's memo.</ui-tab-panel>
+  <ui-tab-panel name="notes">Your own notes.</ui-tab-panel>
+  <ui-tab-panel name="archive">Archived copies.</ui-tab-panel>
+</ui-tabs>
+<p>Closed: <output id="tabs-docs-out"></output></p>
+
+<script type="text/x-demo">
+  const tabs = document.getElementById('tabs-docs');
+  const out = document.getElementById('tabs-docs-out');
+  const closed = [];
+  tabs.addEventListener('ui-close', (event) => {
+    closed.push(event.detail.name);
+    out.value = closed.join(', ');
+  });
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-14-0">HTML</ui-tab><ui-tab panel="code-14-1">React</ui-tab><ui-tab panel="code-14-2">React + Tailwind</ui-tab><ui-tab-panel name="code-14-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-tabs</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"tabs-docs"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Open documents"</span> <span style="color:var(--ui-tag-color-purple)">dismissable</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab</span> <span style="color:var(--ui-tag-color-purple)">panel</span>=<span style="color:var(--ui-tag-color-teal)">"contract"</span>&gt;Contract.pdf&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab</span> <span style="color:var(--ui-tag-color-purple)">panel</span>=<span style="color:var(--ui-tag-color-teal)">"memo"</span>&gt;Memo.docx&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab</span> <span style="color:var(--ui-tag-color-purple)">panel</span>=<span style="color:var(--ui-tag-color-teal)">"notes"</span>&gt;Notes&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab</span> <span style="color:var(--ui-tag-color-purple)">panel</span>=<span style="color:var(--ui-tag-color-teal)">"archive"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span>&gt;Archive&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"contract"</span>&gt;The × or Delete on the focused tab closes it.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"memo"</span>&gt;The legal team's memo.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"notes"</span>&gt;Your own notes.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"archive"</span>&gt;Archived copies.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tabs</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;Closed: &lt;<span style="color:var(--ui-tag-color-blue)">output</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"tabs-docs-out"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> tabs <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'tabs-docs'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> out <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'tabs-docs-out'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> closed <span style="color:var(--ui-tag-color-magenta)">=</span> [];
+  tabs.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'ui-close'</span>, (event) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    closed.<span style="color:var(--ui-tag-color-cyan)">push</span>(event.detail.name);
+    out.value <span style="color:var(--ui-tag-color-magenta)">=</span> closed.<span style="color:var(--ui-tag-color-cyan)">join</span>(<span style="color:var(--ui-tag-color-teal)">', '</span>);
+  });
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-14-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> [closed, setClosed] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>&lt;<span style="color:var(--ui-tag-color-cyan)">string</span>[]&gt;([]);
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiTabs</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Open documents"</span> <span style="color:var(--ui-tag-color-purple)">dismissable</span> <span style="color:var(--ui-tag-color-purple)">onUiClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setClosed</span>((list) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> [<span style="color:var(--ui-tag-color-magenta)">...</span>list, e.detail.name])}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTab</span> <span style="color:var(--ui-tag-color-purple)">panel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"contract"</span>&gt;Contract.pdf&lt;/<span style="color:var(--ui-tag-color-blue)">UiTab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTab</span> <span style="color:var(--ui-tag-color-purple)">panel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"memo"</span>&gt;Memo.docx&lt;/<span style="color:var(--ui-tag-color-blue)">UiTab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTab</span> <span style="color:var(--ui-tag-color-purple)">panel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"notes"</span>&gt;Notes&lt;/<span style="color:var(--ui-tag-color-blue)">UiTab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTab</span> <span style="color:var(--ui-tag-color-purple)">panel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"archive"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span>&gt;Archive&lt;/<span style="color:var(--ui-tag-color-blue)">UiTab</span>&gt;
+  …
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiTabs</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;Closed: &lt;<span style="color:var(--ui-tag-color-blue)">output</span>&gt;{closed.<span style="color:var(--ui-tag-color-cyan)">join</span>(<span style="color:var(--ui-tag-color-teal)">', '</span>)}&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-14-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> [open, setOpen] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>([<span style="color:var(--ui-tag-color-teal)">'contract'</span>, <span style="color:var(--ui-tag-color-teal)">'memo'</span>, <span style="color:var(--ui-tag-color-teal)">'notes'</span>]);
+<span style="color:var(--ui-tag-color-magenta)">const</span> names<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">Record</span>&lt;<span style="color:var(--ui-tag-color-cyan)">string</span>, <span style="color:var(--ui-tag-color-cyan)">string</span>&gt; <span style="color:var(--ui-tag-color-magenta)">=</span> { <span style="color:var(--ui-tag-color-purple)">contract:</span> <span style="color:var(--ui-tag-color-teal)">'Contract.pdf'</span>, <span style="color:var(--ui-tag-color-purple)">memo:</span> <span style="color:var(--ui-tag-color-teal)">'Memo.docx'</span>, <span style="color:var(--ui-tag-color-purple)">notes:</span> <span style="color:var(--ui-tag-color-teal)">'Notes'</span> };
+
+&lt;<span style="color:var(--ui-tag-color-blue)">Tabs</span> <span style="color:var(--ui-tag-color-purple)">dismissable</span> <span style="color:var(--ui-tag-color-purple)">onTabCloseRequest</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(value) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>((list) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> list.<span style="color:var(--ui-tag-color-cyan)">filter</span>((v) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> v <span style="color:var(--ui-tag-color-magenta)">!==</span> value))}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TabList</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Open documents"</span>&gt;
+    {open.<span style="color:var(--ui-tag-color-cyan)">map</span>((value) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> &lt;<span style="color:var(--ui-tag-color-blue)">Tab</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{value} <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{value}&gt;{names[value]}&lt;/<span style="color:var(--ui-tag-color-blue)">Tab</span>&gt;)}
+  &lt;/<span style="color:var(--ui-tag-color-blue)">TabList</span>&gt;
+  {open.<span style="color:var(--ui-tag-color-cyan)">map</span>((value) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> &lt;<span style="color:var(--ui-tag-color-blue)">TabPanel</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{value} <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{value}&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">TabPanel</span>&gt;)}
+&lt;/<span style="color:var(--ui-tag-color-blue)">Tabs</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="vertical-tabs">Vertical tabs</h2>
+<p><code>vertical</code> puts the tabs in a column beside the panels once the window is wider than 672px (42rem); on a narrower window they become contained tabs in a row. Labels wrap to two lines, then end in an ellipsis. <code>height</code> fixes the height: the tab list and the panels then scroll inside it.</p>
+<div class="doc-demo"><ui-tabs label="Settings" vertical height="320px">
+  <ui-tab panel="profile">Profile</ui-tab>
+  <ui-tab panel="approvals">Approval rules for contracts above the department's limit</ui-tab>
+  <ui-tab panel="notifications">Notifications</ui-tab>
+  <ui-tab panel="signatures">Signatures</ui-tab>
+  <ui-tab panel="retention">Retention</ui-tab>
+  <ui-tab panel="audit" disabled>Audit log</ui-tab>
+  <ui-tab-panel name="profile"><ui-text-input label="Display name" value="Somchai K."></ui-text-input></ui-tab-panel>
+  <ui-tab-panel name="approvals">Who approves a contract, by amount.</ui-tab-panel>
+  <ui-tab-panel name="notifications">Email and in-app alerts.</ui-tab-panel>
+  <ui-tab-panel name="signatures">Your saved signature.</ui-tab-panel>
+  <ui-tab-panel name="retention">How long signed copies are kept.</ui-tab-panel>
+  <ui-tab-panel name="audit">Who changed what.</ui-tab-panel>
+</ui-tabs>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-15-0">HTML</ui-tab><ui-tab panel="code-15-1">React</ui-tab><ui-tab panel="code-15-2">React + Tailwind</ui-tab><ui-tab-panel name="code-15-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-tabs</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Settings"</span> <span style="color:var(--ui-tag-color-purple)">vertical</span> <span style="color:var(--ui-tag-color-purple)">height</span>=<span style="color:var(--ui-tag-color-teal)">"320px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab</span> <span style="color:var(--ui-tag-color-purple)">panel</span>=<span style="color:var(--ui-tag-color-teal)">"profile"</span>&gt;Profile&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab</span> <span style="color:var(--ui-tag-color-purple)">panel</span>=<span style="color:var(--ui-tag-color-teal)">"approvals"</span>&gt;Approval rules for contracts above the department's limit&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab</span> <span style="color:var(--ui-tag-color-purple)">panel</span>=<span style="color:var(--ui-tag-color-teal)">"notifications"</span>&gt;Notifications&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab</span> <span style="color:var(--ui-tag-color-purple)">panel</span>=<span style="color:var(--ui-tag-color-teal)">"signatures"</span>&gt;Signatures&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab</span> <span style="color:var(--ui-tag-color-purple)">panel</span>=<span style="color:var(--ui-tag-color-teal)">"retention"</span>&gt;Retention&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab</span> <span style="color:var(--ui-tag-color-purple)">panel</span>=<span style="color:var(--ui-tag-color-teal)">"audit"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span>&gt;Audit log&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"profile"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-text-input</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Display name"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"Somchai K."</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-text-input</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"approvals"</span>&gt;Who approves a contract, by amount.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"notifications"</span>&gt;Email and in-app alerts.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"signatures"</span>&gt;Your saved signature.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"retention"</span>&gt;How long signed copies are kept.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"audit"</span>&gt;Who changed what.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tabs</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-15-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiTabs</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Settings"</span> <span style="color:var(--ui-tag-color-purple)">vertical</span> <span style="color:var(--ui-tag-color-purple)">height</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"320px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTab</span> <span style="color:var(--ui-tag-color-purple)">panel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"profile"</span>&gt;Profile&lt;/<span style="color:var(--ui-tag-color-blue)">UiTab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTab</span> <span style="color:var(--ui-tag-color-purple)">panel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"approvals"</span>&gt;Approval rules for contracts above the department's limit&lt;/<span style="color:var(--ui-tag-color-blue)">UiTab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTab</span> <span style="color:var(--ui-tag-color-purple)">panel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"notifications"</span>&gt;Notifications&lt;/<span style="color:var(--ui-tag-color-blue)">UiTab</span>&gt;
+  …
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTabPanel</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"profile"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">UiTextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Display name"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Somchai K."</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">UiTabPanel</span>&gt;
+  …
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiTabs</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-15-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">Tabs</span> <span style="color:var(--ui-tag-color-purple)">vertical</span> <span style="color:var(--ui-tag-color-purple)">height</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"320px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TabList</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Settings"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Tab</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"profile"</span>&gt;Profile&lt;/<span style="color:var(--ui-tag-color-blue)">Tab</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Tab</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"approvals"</span>&gt;Approval rules for contracts above the department's limit&lt;/<span style="color:var(--ui-tag-color-blue)">Tab</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Tab</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"notifications"</span>&gt;Notifications&lt;/<span style="color:var(--ui-tag-color-blue)">Tab</span>&gt;
+    …
+  &lt;/<span style="color:var(--ui-tag-color-blue)">TabList</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TabPanel</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"profile"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">TextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Display name"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Somchai K."</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">TabPanel</span>&gt;
+  …
+&lt;/<span style="color:var(--ui-tag-color-blue)">Tabs</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>In the column, ↑ and ↓ move between the tabs, and the panels sit one layer up, so their fields keep their contrast.</p>
+<h2 id="many-tabs">Many tabs</h2>
+<p>When the tabs don't fit, the strip scrolls. Previous and next buttons appear at its ends for the mouse; keyboard users have the arrow keys, so the buttons are no Tab stops and are hidden from screen readers.</p>
+<div class="doc-demo"><ui-tabs label="Months" style="max-width: 480px">
+  <ui-tab panel="jan">January</ui-tab>
+  <ui-tab panel="feb">February</ui-tab>
+  <ui-tab panel="mar">March</ui-tab>
+  <ui-tab panel="apr">April</ui-tab>
+  <ui-tab panel="may">May</ui-tab>
+  <ui-tab panel="jun">June</ui-tab>
+  <ui-tab panel="jul">July</ui-tab>
+  <ui-tab panel="aug">August</ui-tab>
+  <ui-tab-panel name="jan">Contracts signed in January.</ui-tab-panel>
+  <ui-tab-panel name="feb">Contracts signed in February.</ui-tab-panel>
+  <ui-tab-panel name="mar">Contracts signed in March.</ui-tab-panel>
+  <ui-tab-panel name="apr">Contracts signed in April.</ui-tab-panel>
+  <ui-tab-panel name="may">Contracts signed in May.</ui-tab-panel>
+  <ui-tab-panel name="jun">Contracts signed in June.</ui-tab-panel>
+  <ui-tab-panel name="jul">Contracts signed in July.</ui-tab-panel>
+  <ui-tab-panel name="aug">Contracts signed in August.</ui-tab-panel>
+</ui-tabs>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-16-0">HTML</ui-tab><ui-tab panel="code-16-1">React</ui-tab><ui-tab panel="code-16-2">React + Tailwind</ui-tab><ui-tab-panel name="code-16-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-tabs</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Months"</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"max-width: 480px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab</span> <span style="color:var(--ui-tag-color-purple)">panel</span>=<span style="color:var(--ui-tag-color-teal)">"jan"</span>&gt;January&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab</span> <span style="color:var(--ui-tag-color-purple)">panel</span>=<span style="color:var(--ui-tag-color-teal)">"feb"</span>&gt;February&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab</span> <span style="color:var(--ui-tag-color-purple)">panel</span>=<span style="color:var(--ui-tag-color-teal)">"mar"</span>&gt;March&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab</span> <span style="color:var(--ui-tag-color-purple)">panel</span>=<span style="color:var(--ui-tag-color-teal)">"apr"</span>&gt;April&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab</span> <span style="color:var(--ui-tag-color-purple)">panel</span>=<span style="color:var(--ui-tag-color-teal)">"may"</span>&gt;May&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab</span> <span style="color:var(--ui-tag-color-purple)">panel</span>=<span style="color:var(--ui-tag-color-teal)">"jun"</span>&gt;June&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab</span> <span style="color:var(--ui-tag-color-purple)">panel</span>=<span style="color:var(--ui-tag-color-teal)">"jul"</span>&gt;July&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab</span> <span style="color:var(--ui-tag-color-purple)">panel</span>=<span style="color:var(--ui-tag-color-teal)">"aug"</span>&gt;August&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"jan"</span>&gt;Contracts signed in January.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"feb"</span>&gt;Contracts signed in February.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"mar"</span>&gt;Contracts signed in March.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"apr"</span>&gt;Contracts signed in April.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"may"</span>&gt;Contracts signed in May.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"jun"</span>&gt;Contracts signed in June.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"jul"</span>&gt;Contracts signed in July.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"aug"</span>&gt;Contracts signed in August.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tab-panel</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tabs</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-16-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-ink-muted);font-style:italic">// months = [{ value: 'jan', label: 'January' }, …]</span>
+&lt;<span style="color:var(--ui-tag-color-blue)">UiTabs</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Months"</span> <span style="color:var(--ui-tag-color-purple)">style</span><span style="color:var(--ui-tag-color-magenta)">=</span>{{ <span style="color:var(--ui-tag-color-purple)">maxWidth:</span> <span style="color:var(--ui-tag-color-green)">480</span> }}&gt;
+  {months.<span style="color:var(--ui-tag-color-cyan)">map</span>((m) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> &lt;<span style="color:var(--ui-tag-color-blue)">UiTab</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{m.value} <span style="color:var(--ui-tag-color-purple)">panel</span><span style="color:var(--ui-tag-color-magenta)">=</span>{m.value}&gt;{m.label}&lt;/<span style="color:var(--ui-tag-color-blue)">UiTab</span>&gt;)}
+  {months.<span style="color:var(--ui-tag-color-cyan)">map</span>((m) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> &lt;<span style="color:var(--ui-tag-color-blue)">UiTabPanel</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{m.value} <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span>{m.value}&gt;Contracts signed in {m.label}.&lt;/<span style="color:var(--ui-tag-color-blue)">UiTabPanel</span>&gt;)}
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiTabs</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-16-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-ink-muted);font-style:italic">// months = [{ value: 'jan', label: 'January' }, …]</span>
+&lt;<span style="color:var(--ui-tag-color-blue)">Tabs</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"max-w-[480px]"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TabList</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Months"</span>&gt;
+    {months.<span style="color:var(--ui-tag-color-cyan)">map</span>((m) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> &lt;<span style="color:var(--ui-tag-color-blue)">Tab</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{m.value} <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{m.value}&gt;{m.label}&lt;/<span style="color:var(--ui-tag-color-blue)">Tab</span>&gt;)}
+  &lt;/<span style="color:var(--ui-tag-color-blue)">TabList</span>&gt;
+  {months.<span style="color:var(--ui-tag-color-cyan)">map</span>((m) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> &lt;<span style="color:var(--ui-tag-color-blue)">TabPanel</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{m.value} <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{m.value}&gt;Contracts signed in {m.label}.&lt;/<span style="color:var(--ui-tag-color-blue)">TabPanel</span>&gt;)}
+&lt;/<span style="color:var(--ui-tag-color-blue)">Tabs</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="skeleton">Skeleton</h2>
+<p>While the page loads, <code>ui-tabs-skeleton</code> stands in for the strip: <code>tabs</code> bars of 160 × 40px (5 by default). It is hidden from screen readers.</p>
+<div class="doc-demo"><ui-tabs-skeleton tabs="4"></ui-tabs-skeleton>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-17-0">HTML</ui-tab><ui-tab panel="code-17-1">React</ui-tab><ui-tab panel="code-17-2">React + Tailwind</ui-tab><ui-tab-panel name="code-17-0"><ui-code-snippet type="single" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-tabs-skeleton</span> <span style="color:var(--ui-tag-color-purple)">tabs</span>=<span style="color:var(--ui-tag-color-teal)">"4"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tabs-skeleton</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-17-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { UiTabsSkeleton } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/react'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiTabsSkeleton</span> <span style="color:var(--ui-tag-color-purple)">tabs</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">4</span>} /&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-17-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { TabsSkeleton } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@/components/ui/react-tw/tabs'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">TabsSkeleton</span> <span style="color:var(--ui-tag-color-purple)">tabs</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">4</span>} /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>On the web component, import it from <code>@purpurabog/ui/tabs-skeleton</code>.</p>
+<h2 id="accessibility">Accessibility</h2>
+<ul>
+<li>The strip is a <code>tablist</code> named by <code>label</code>; each tab is a <code>tab</code> with <code>aria-selected</code> and <code>aria-controls</code>, and each panel a <code>tabpanel</code> labelled by its tab.</li>
+<li>One Tab stop: Tab reaches the selected tab, then moves into the panel. ← and → move between tabs and wrap (↑ and ↓ in a vertical column); Home and End jump to the first and last. Disabled tabs are skipped.</li>
+<li>A panel with nothing focusable inside becomes a Tab stop itself, so keyboard users can reach and scroll its text.</li>
+<li>Icon-only tabs need <code>label</code>: it is the tab's name and its tooltip.</li>
+<li>In dismissable tabs the close button is hidden from screen readers; each tab announces Delete as its shortcut (<code>aria-keyshortcuts</code>).</li>
+</ul>
+<p>Unstyled React parts with the same behaviour: <a href="/kanok-ui-docs/en/headless-tabs/">Headless Tabs</a>.</p>
+<h2 id="api">API</h2>
+<p>Generated from the package. In React, pass a property as a prop of the same name; events are props too (the React column).</p>
+<h3 id="ui-tabs-react-uitabs"><code>&lt;ui-tabs&gt;</code> · React <code>UiTabs</code></h3>
+<h4 id="attributes">Attributes</h4>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>value</code></td>
+<td><code>value</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>Name of the active panel. Defaults to the first enabled tab.</td>
+</tr>
+<tr>
+<td><code>label</code></td>
+<td><code>label</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>Accessible name for the tab strip, e.g. &quot;Product details&quot;.</td>
+</tr>
+<tr>
+<td><code>activation</code></td>
+<td><code>activation</code></td>
+<td><code>TabsActivation</code></td>
+<td><code>'automatic'</code></td>
+<td><code>automatic</code> (Carbon's name; <code>auto</code> is still accepted) or <code>manual</code>.</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>type</code></td>
+<td><code>TabsType</code></td>
+<td><code>'line'</code></td>
+<td><code>line</code> (default) or <code>contained</code> (Carbon cds-tabs <code>type=&quot;contained&quot;</code>).</td>
+</tr>
+<tr>
+<td><code>size</code></td>
+<td><code>size</code></td>
+<td><code>TabsSize | undefined</code></td>
+<td></td>
+<td>Tab height (Carbon <code>size</code>): sm 32px, md 40px, lg 48px, xl 64px (contained only); unset = md for line, lg for contained.</td>
+</tr>
+<tr>
+<td><code>full-width</code></td>
+<td><code>fullWidth</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>With <code>type=&quot;contained&quot;</code>: the tabs share the full width in equal columns (Carbon <code>full-width</code> / <code>fullWidth</code>).</td>
+</tr>
+<tr>
+<td><code>vertical</code></td>
+<td><code>vertical</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Carbon <code>TabsVertical</code>: the tabs in a column beside the panels from md up (contained tabs in a row below).</td>
+</tr>
+<tr>
+<td><code>height</code></td>
+<td><code>height</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>A fixed height for vertical tabs (Carbon <code>height</code>), e.g. <code>&quot;400px&quot;</code>: the tab list and the panels then scroll.</td>
+</tr>
+<tr>
+<td><code>dismissable</code></td>
+<td><code>dismissable</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>A close button on every tab, and Delete closes the focused tab (Carbon <code>dismissable</code>); not with <code>vertical</code>.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="methods">Methods</h4>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>focus(options)</code></td>
+<td>Focus the active tab (the tablist's tab stop).</td>
+</tr>
+</tbody>
+</table>
+<h4 id="events">Events</h4>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>React</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ui-tab-change</code></td>
+<td><code>onUiTabChange</code></td>
+<td>detail: { name } after the user selects a tab</td>
+</tr>
+<tr>
+<td><code>ui-tab-before-change</code></td>
+<td><code>onUiTabBeforeChange</code></td>
+<td>Cancelable; detail: { name, previous }. preventDefault() keeps the current tab (e.g. unsaved changes).</td>
+</tr>
+<tr>
+<td><code>ui-request-close</code></td>
+<td><code>onUiRequestClose</code></td>
+<td>From a <code>&lt;ui-tab&gt;</code> of dismissable tabs (close button or Delete); cancelable; detail: { name }. preventDefault() keeps the tab.</td>
+</tr>
+<tr>
+<td><code>ui-close</code></td>
+<td><code>onUiClose</code></td>
+<td>From a <code>&lt;ui-tab&gt;</code> after it closed (hidden); detail: { name }</td>
+</tr>
+</tbody>
+</table>
+<h4 id="slots">Slots</h4>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>nav</code></td>
+<td><code>&lt;ui-tab&gt;</code> elements (assigned automatically)</td>
+</tr>
+<tr>
+<td>(default)</td>
+<td><code>&lt;ui-tab-panel&gt;</code> elements</td>
+</tr>
+<tr>
+<td><code>end</code></td>
+<td>Content at the end of the strip, e.g. an action button</td>
+</tr>
+</tbody>
+</table>
+<h4 id="css-parts">CSS parts</h4>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>base</code></td>
+<td>The strip holding the tab list and scroll buttons</td>
+</tr>
+<tr>
+<td><code>tablist</code></td>
+<td>The role=tablist container (tabs themselves are light-DOM <code>&lt;ui-tab&gt;</code>s: style the element)</td>
+</tr>
+<tr>
+<td><code>scroll-button</code></td>
+<td>The overflow scroll buttons</td>
+</tr>
+<tr>
+<td><code>end</code></td>
+<td>Wrapper of the <code>end</code> slot</td>
+</tr>
+</tbody>
+</table>
+<h4 id="css-custom-properties">CSS custom properties</h4>
+<table>
+<thead>
+<tr>
+<th>Custom property</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--ui-tabs-track</code></td>
+<td></td>
+<td><code>box-shadow</code> of the tab strip, for one line under every tab (default none; Kanok: a 1px hairline)</td>
+</tr>
+<tr>
+<td><code>--ui-tabs-gap</code></td>
+<td></td>
+<td>Gap between line tabs (default 1px; Kanok: 4px)</td>
+</tr>
+<tr>
+<td><code>--ui-tabs-contained-height</code></td>
+<td></td>
+<td>Tab height of <code>type=&quot;contained&quot;</code> (default 48px; Kanok: 32px)</td>
+</tr>
+<tr>
+<td><code>--ui-tabs-contained-track</code></td>
+<td></td>
+<td>/ --ui-tabs-contained-padding / --ui-tabs-contained-radius / --ui-tabs-contained-gap - The track behind contained tabs (default none: Carbon's full-width strip; Kanok: a grey rounded track)</td>
+</tr>
+<tr>
+<td><code>--ui-tabs-contained-flex</code></td>
+<td></td>
+<td><code>flex</code> of the contained strip (default 1, full width; Kanok: hugs the tabs)</td>
+</tr>
+<tr>
+<td><code>--ui-tab-vertical-background</code></td>
+<td></td>
+<td>The vertical tab list's fill (default the layer; on <code>&lt;ui-tab&gt;</code> with the other --ui-tab-vertical-* settings)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ui-tab-react-uitab"><code>&lt;ui-tab&gt;</code> · React <code>UiTab</code></h3>
+<h4 id="attributes-2">Attributes</h4>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>hidden</code></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>panel</code></td>
+<td><code>panel</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>selected</code></td>
+<td><code>selected</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>disabled</code></td>
+<td><code>disabled</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Disables the control; a disabled <code>&lt;fieldset&gt;</code> ancestor does the same.</td>
+</tr>
+<tr>
+<td><code>secondary-label</code></td>
+<td><code>secondaryLabel</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>A second line under the label (Carbon <code>secondaryLabel</code>); contained tabs only.</td>
+</tr>
+<tr>
+<td><code>icon-only</code></td>
+<td><code>iconOnly</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Only the <code>icon</code> slot shows (Carbon <code>IconTab</code>); <code>label</code> names the tab and is its tooltip.</td>
+</tr>
+<tr>
+<td><code>label</code></td>
+<td><code>label</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>Accessible name and tooltip of an <code>icon-only</code> tab — required with it.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="events-2">Events</h4>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>React</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ui-request-close</code></td>
+<td><code>onUiRequestClose</code></td>
+<td>Dismissable tabs: its close button or Delete; cancelable; detail: { name } (its <code>panel</code>)</td>
+</tr>
+<tr>
+<td><code>ui-close</code></td>
+<td><code>onUiClose</code></td>
+<td>Dismissable tabs: after it closed (now <code>hidden</code>); detail: { name }</td>
+</tr>
+</tbody>
+</table>
+<h4 id="slots-2">Slots</h4>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(default)</td>
+<td>Tab label</td>
+</tr>
+<tr>
+<td><code>icon</code></td>
+<td>A 16px icon (20px in icon-only tabs of <code>size=&quot;lg&quot;</code>), coloured like the label</td>
+</tr>
+</tbody>
+</table>
+<h4 id="css-parts-2">CSS parts</h4>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>secondary-label</code></td>
+<td>The second line of a contained tab</td>
+</tr>
+<tr>
+<td><code>close-button</code></td>
+<td>The close button of a dismissable tab (no tab stop: Delete closes the focused tab)</td>
+</tr>
+<tr>
+<td><code>tooltip</code></td>
+<td>The <code>&lt;ui-tooltip&gt;</code> of an <code>icon-only</code> tab</td>
+</tr>
+</tbody>
+</table>
+<h4 id="css-custom-properties-2">CSS custom properties</h4>
+<table>
+<thead>
+<tr>
+<th>Custom property</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--ui-tab-line</code></td>
+<td></td>
+<td>The underline of every tab (default <code>2px solid --ui-hairline</code>; Kanok: transparent, the strip draws one line)</td>
+</tr>
+<tr>
+<td><code>--ui-tab-selected-line</code></td>
+<td></td>
+<td>The selected tab's mark (default <code>--ui-border-interactive</code>, as in Kanok)</td>
+</tr>
+<tr>
+<td><code>--ui-tab-hover-line</code></td>
+<td></td>
+<td>Underline colour on hover (default <code>--ui-ink-subtle</code>)</td>
+</tr>
+<tr>
+<td><code>--ui-tab-disabled-line</code></td>
+<td></td>
+<td>Underline colour when disabled (default <code>--ui-hairline</code>)</td>
+</tr>
+<tr>
+<td><code>--ui-tab-background</code></td>
+<td></td>
+<td>Fill of a line tab (default <code>--ui-canvas</code>; Kanok: transparent)</td>
+</tr>
+<tr>
+<td><code>--ui-tab-contained-background</code></td>
+<td></td>
+<td>/ --ui-tab-contained-hover / --ui-tab-contained-selected - Fills of a contained tab at rest, hovered and selected (Carbon: layer-accent, its hover, the layer)</td>
+</tr>
+<tr>
+<td><code>--ui-tab-contained-selected-shadow</code></td>
+<td></td>
+<td><code>box-shadow</code> of the selected contained tab (default: a 2px top bar in <code>--ui-tab-selected-line</code>)</td>
+</tr>
+<tr>
+<td><code>--ui-tab-contained-radius</code></td>
+<td></td>
+<td>Corner radius of a contained tab (default 0; Kanok: 6px)</td>
+</tr>
+<tr>
+<td><code>--ui-tab-contained-divider</code></td>
+<td></td>
+<td>The 1px line between contained tabs (default <code>--ui-hairline-strong</code>; Kanok: none)</td>
+</tr>
+<tr>
+<td><code>--ui-tab-focus-radius</code></td>
+<td></td>
+<td>Corner radius of the focus ring (default 0; Kanok: 6px)</td>
+</tr>
+<tr>
+<td><code>--ui-tab-focus-offset</code></td>
+<td></td>
+<td>/ --ui-tab-contained-focus-offset - Where the focus ring sits, line and contained tabs (default -2px, over the selected underline; Kanok: -5px, clear of it, and 1px around the chip)</td>
+</tr>
+<tr>
+<td><code>--ui-tab-vertical-background</code></td>
+<td></td>
+<td>/ --ui-tab-vertical-selected / --ui-tab-vertical-bar / --ui-tab-vertical-hover-bar / --ui-tab-vertical-divider / --ui-tab-vertical-inset / --ui-tab-vertical-radius - Vertical tabs: fill, the chosen tab's fill, the side bars, the rule between tabs, inset and corners (default Carbon's layer fill with bars and rules; Kanok: inset rounded rows, the chosen one tinted)</td>
+</tr>
+<tr>
+<td><code>--ui-tab-vertical-mark</code></td>
+<td></td>
+<td>The chosen vertical tab's 3px start bar (default <code>--ui-tab-selected-line</code>; Kanok: none, the tint alone)</td>
+</tr>
+<tr>
+<td><code>--ui-icon-control-radius</code></td>
+<td></td>
+<td>Corners of its small icon buttons, their hover fill and ring (default 0; Kanok: round)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ui-tab-panel-react-uitabpanel"><code>&lt;ui-tab-panel&gt;</code> · React <code>UiTabPanel</code></h3>
+<h4 id="attributes-3">Attributes</h4>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="slots-3">Slots</h4>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(default)</td>
+<td>Panel content</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ui-tabs-skeleton-react-uitabsskeleton"><code>&lt;ui-tabs-skeleton&gt;</code> · React <code>UiTabsSkeleton</code></h3>
+<h4 id="attributes-4">Attributes</h4>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>tabs</code></td>
+<td><code>tabs</code></td>
+<td><code>number</code></td>
+<td><code>5</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="css-parts-3">CSS parts</h4>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>tab</code></td>
+<td>Each tab</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+<nav class="doc-toc" aria-labelledby="doc-toc-title"><p id="doc-toc-title" class="doc-toc-title">On this page</p><ul><li class="doc-toc-h2"><a href="#installation">Installation</a></li><li class="doc-toc-h2"><a href="#use-it">Use it</a></li><li class="doc-toc-h2"><a href="#tabs-content-switcher-or-accordion">Tabs, content switcher or accordion?</a></li><li class="doc-toc-h2"><a href="#starting-tab-and-changes">Starting tab and changes</a></li><li class="doc-toc-h2"><a href="#contained">Contained</a></li><li class="doc-toc-h2"><a href="#full-width">Full width</a></li><li class="doc-toc-h2"><a href="#sizes">Sizes</a></li><li class="doc-toc-h2"><a href="#icons">Icons</a></li><li class="doc-toc-h2"><a href="#secondary-labels">Secondary labels</a></li><li class="doc-toc-h2"><a href="#icon-only">Icon only</a></li><li class="doc-toc-h2"><a href="#manual-activation">Manual activation</a></li><li class="doc-toc-h2"><a href="#an-action-at-the-end-of-the-strip">An action at the end of the strip</a></li><li class="doc-toc-h2"><a href="#keep-the-current-tab">Keep the current tab</a></li><li class="doc-toc-h2"><a href="#dismissable-tabs">Dismissable tabs</a></li><li class="doc-toc-h2"><a href="#vertical-tabs">Vertical tabs</a></li><li class="doc-toc-h2"><a href="#many-tabs">Many tabs</a></li><li class="doc-toc-h2"><a href="#skeleton">Skeleton</a></li><li class="doc-toc-h2"><a href="#accessibility">Accessibility</a></li><li class="doc-toc-h2"><a href="#api">API</a></li><li class="doc-toc-h3"><a href="#ui-tabs-react-uitabs">&lt;ui-tabs></a></li><li class="doc-toc-h3"><a href="#ui-tab-react-uitab">&lt;ui-tab></a></li><li class="doc-toc-h3"><a href="#ui-tab-panel-react-uitabpanel">&lt;ui-tab-panel></a></li><li class="doc-toc-h3"><a href="#ui-tabs-skeleton-react-uitabsskeleton">&lt;ui-tabs-skeleton></a></li></ul></nav>
+</div>
+<nav class="doc-pager" aria-label="Next / Previous"><a class="doc-pager-prev" href="/kanok-ui-docs/en/tree-view/" rel="prev"><span>Previous</span>Tree view</a><a class="doc-pager-next" href="/kanok-ui-docs/en/breadcrumb/" rel="next"><span>Next</span>Breadcrumb</a></nav>
+<footer class="doc-footer">@purpurabog/ui 1.4.3 · MIT · <a href="https://cdn.jsdelivr.net/npm/@purpurabog/ui@1.4.3/THIRD-PARTY-NOTICES.md">Third-party notices</a><br>Built on the Carbon Design System. Not affiliated with or endorsed by IBM; IBM and Carbon are trademarks of IBM Corp.</footer>
+</ui-content>
+<ui-modal id="doc-search" heading="Search" data-count="{n} results" data-empty="No results for “{q}”">
+<ui-search label="Search the docs" placeholder="Search the docs" size="lg"></ui-search>
+<p class="doc-search-status" role="status"></p>
+<ul class="doc-search-results"></ul>
+</ui-modal>
+</body>
+</html>

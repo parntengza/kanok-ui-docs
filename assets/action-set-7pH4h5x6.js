@@ -1,0 +1,5 @@
+import{Ct as e,D as t,E as n,Ot as r,St as i,bt as a,jt as o}from"./theme-switcher-BGAHXRgF.js";import{i as s,n as c,r as l,t as u}from"./action-set-BrGCGIn9.js";var d=class extends t{constructor(...e){super(...e),this.size=`md`,this.condensed=!1,this.disableStacking=!1}static{this.styles=[o`
+            :host {
+                display: block;
+            }
+        `,u(`.set`)]}get stacked(){return this.set?.hasAttribute(`data-stacked`)??!1}updated(e){super.updated(e),this.layout()}layout(){if(!this.set||!this.slotEl)return;let e=l(this.slotEl);s(this,e,this.size),c(this.set,e,this.size,this.disableStacking)}render(){return r`<div class="set" part="base" ?data-condensed=${this.condensed}><slot @slotchange=${this.layout}></slot></div>`}};n([i({reflect:!0})],d.prototype,`size`,void 0),n([i({type:Boolean,reflect:!0})],d.prototype,`condensed`,void 0),n([i({type:Boolean,attribute:`disable-stacking`})],d.prototype,`disableStacking`,void 0),n([a(`.set`)],d.prototype,`set`,void 0),n([a(`slot`)],d.prototype,`slotEl`,void 0),d=n([e(`ui-action-set`)],d);
