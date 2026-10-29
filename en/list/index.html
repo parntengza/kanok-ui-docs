@@ -1,0 +1,608 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>List · @purpurabog/ui</title>
+<link rel="alternate" hreflang="en" href="/kanok-ui-docs/en/list/"  /><link rel="alternate" hreflang="th" href="/kanok-ui-docs/th/list/"  />
+<script>(function(){try{var q=new URLSearchParams(location.search).get("design"),d=q;if(q==="kanok"||q==="carbon")localStorage.setItem("ui-docs-design",q);else d=localStorage.getItem("ui-docs-design");if(d==="kanok")document.documentElement.setAttribute("data-design","kanok")}catch(e){}})();(function(){try{var m=localStorage.getItem("ui-docs-theme");if(m!=="light"&&m!=="dark"&&m!=="system")return;var d=m==="dark"||(m==="system"&&matchMedia("(prefers-color-scheme: dark)").matches),r=document.documentElement,t=d?"g100":"white";if(r.getAttribute("data-design")==="kanok")t=d?"lacquer":"paper";r.setAttribute("data-theme",t)}catch(e){}})();</script>
+<style>ui-header:not(:defined){z-index:8000;box-sizing:border-box;border-block-end:1px solid var(--ui-border-subtle-1);background:var(--ui-canvas);block-size:48px;display:block;position:fixed;inset:0 0 auto}:is(ui-header:not(:defined)>*,ui-side-nav:not(:defined)>*){visibility:hidden}:is(ui-header-panel:not(:defined),ui-modal:not(:defined)){display:none}ui-side-nav:not(:defined){display:none}ui-content:not(:defined){margin-block-start:48px;padding:32px;display:block}@media (width>=1056px){ui-side-nav[expanded]:not(:defined){background:var(--ui-canvas);inline-size:256px;display:block;position:fixed;inset:48px auto 0 0}ui-side-nav[expanded]:not(:defined)~ui-content:not(:defined){margin-inline-start:256px}}ui-tabs:not(:defined){display:block}ui-tabs:not(:defined)>ui-tab{box-sizing:border-box;border-block-end:2px solid var(--ui-hairline);block-size:40px;color:var(--ui-ink-muted);font:var(--ui-font-body-sm);padding:0 16px;line-height:38px;display:inline-block}ui-tabs:not(:defined)>ui-tab:first-of-type{border-block-end-color:var(--ui-interactive);color:var(--ui-ink)}ui-tabs:not(:defined)>ui-tab-panel{padding:16px;display:block}ui-tabs:not(:defined)>ui-tab-panel~ui-tab-panel{display:none}ui-code-snippet:not(:defined){background:var(--ui-layer-1);max-block-size:272px;font:var(--ui-font-code,12px/16px monospace);white-space:pre;padding:16px;display:block;overflow:hidden}[data-react-example]:empty>*{visibility:hidden}.doc-demo:has(:not(:defined))>*{visibility:hidden}[data-react-example]:empty{box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}.doc-demo:has(:not(:defined)){box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}@keyframes doc-skeleton{to{background-position:-200% 0}}@media (prefers-reduced-motion:reduce){[data-react-example]:empty{animation:none}.doc-demo:has(:not(:defined)){animation:none}}</style>
+
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/theme-switcher-BZXGbHfR.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/tab-ChjAM0hz.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/unordered-list-DVBB83Yo.js"></script>
+  <link rel="stylesheet" crossorigin href="/kanok-ui-docs/assets/theme-switcher-BXY5AIvi.css">
+</head>
+<body>
+<ui-header label="@purpurabog/ui">
+<ui-skip-to-content></ui-skip-to-content>
+<ui-header-menu-button></ui-header-menu-button>
+<ui-header-name href="/kanok-ui-docs/en/" prefix="@purpurabog">ui</ui-header-name>
+<ui-header-global-bar>
+<ui-header-global-action id="doc-search-open" label="Search" tooltip-placement="bottom"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="m18.5 17.8-4.9-4.9a7 7 0 1 0-.7.7l4.9 4.9zM3 8.5a5.5 5.5 0 1 1 5.5 5.5A5.5 5.5 0 0 1 3 8.5Z" /></svg></ui-header-global-action>
+<ui-header-global-action label="Settings" panel="doc-settings" tooltip-placement="bottom-end"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="M16.9 10.6a7 7 0 0 0 0-1.2l1.8-1.4-1.6-2.8-2.1.8a6.6 6.6 0 0 0-1-.6L13.6 3h-3.2l-.4 2.4a6.6 6.6 0 0 0-1 .6l-2.1-.8L5.3 8l1.8 1.4a7 7 0 0 0 0 1.2L5.3 12l1.6 2.8 2.1-.8a6.6 6.6 0 0 0 1 .6l.4 2.4h3.2l.4-2.4a6.6 6.6 0 0 0 1-.6l2.1.8 1.6-2.8zM12 13a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" /></svg></ui-header-global-action>
+</ui-header-global-bar>
+<ui-header-panel id="doc-settings" label="Settings">
+<div class="doc-settings">
+<span class="doc-settings-label">Theme</span>
+<ui-theme-switcher storage-key="ui-docs-theme" tooltip-placement="bottom"></ui-theme-switcher>
+<span class="doc-settings-label">Style</span>
+<ui-content-switcher id="doc-design" aria-label="Style" size="sm"><ui-content-switcher-item name="carbon">Carbon</ui-content-switcher-item><ui-content-switcher-item name="kanok">Kanok</ui-content-switcher-item></ui-content-switcher>
+<span class="doc-settings-label">Language</span>
+<ui-link href="/kanok-ui-docs/th/list/" hreflang="th" lang="th">ไทย</ui-link>
+</div>
+</ui-header-panel>
+</ui-header>
+<ui-side-nav label="Documentation"><ui-side-nav-items><ui-side-nav-menu label="Get started"><ui-side-nav-menu-item href="/kanok-ui-docs/en/">Overview</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/installation/">Installation</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/migration-1-0/">Migrating to 1.0</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Guides"><ui-side-nav-menu-item href="/kanok-ui-docs/en/themes/">Themes and layers</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/kanok/">Kanok design</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/customizing/">Customizing</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/icons/">Icons</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/forms/">Forms and validation</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/frameworks/">Frameworks</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/ai/">Using with AI</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Forms and actions"><ui-side-nav-menu-item href="/kanok-ui-docs/en/button/">Button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/file-uploader/">File uploader</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Overlays"><ui-side-nav-menu-item href="/kanok-ui-docs/en/modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/toggletip/">Toggletip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/menu/">Menu</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Data"><ui-side-nav-menu-item href="/kanok-ui-docs/en/data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/contained-list/">Contained list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tree-view/">Tree view</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Navigation"><ui-side-nav-menu-item href="/kanok-ui-docs/en/tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/breadcrumb/">Breadcrumb</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/link/">Link</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/ui-shell/">UI shell</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Content" expanded><ui-side-nav-menu-item href="/kanok-ui-docs/en/tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tile/">Tile</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/user-avatar/">User avatar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/list/" current>List</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Status and loading"><ui-side-nav-menu-item href="/kanok-ui-docs/en/loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/inline-loading/">Inline loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/progress-bar/">Progress bar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/skeleton/">Skeleton</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/badge-indicator/">Badge indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/status-indicator/">Status indicator</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Layout"><ui-side-nav-menu-item href="/kanok-ui-docs/en/grid/">Grid</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/heading/">Heading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/layer/">Layer</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/action-set/">Action set</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/page-header/">Page header</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/big-number/">Big number</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Headless"><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless/">Introduction</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-file-uploader/">File uploader</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-menu/">Menu</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-ui-shell/">UI shell</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tree-view/">Tree view</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu></ui-side-nav-items></ui-side-nav><script>if(matchMedia('(min-width: 66rem)').matches)document.currentScript.previousElementSibling.setAttribute('expanded','')</script>
+<ui-content>
+<div class="doc-page">
+<article class="doc">
+<h1 id="list">List</h1>
+<p>Carbon's lists show related items in running content: steps to follow, conditions, documents to attach. <code>ui-unordered-list</code> marks each item with an en dash, <code>ui-ordered-list</code> numbers them, and <code>ui-list-item</code> is one item. A list inside an item is nested, and the elements notice that for you.</p>
+<div class="doc-demo"><ui-unordered-list>
+  <ui-list-item>A copy of the company registration</ui-list-item>
+  <ui-list-item>The vendor's quotation</ui-list-item>
+  <ui-list-item>Bank account details for payment</ui-list-item>
+</ui-unordered-list>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-1-0">HTML</ui-tab><ui-tab panel="code-1-1">React</ui-tab><ui-tab panel="code-1-2">React + Tailwind</ui-tab><ui-tab-panel name="code-1-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-unordered-list</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;A copy of the company registration&lt;/<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;The vendor's quotation&lt;/<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;Bank account details for payment&lt;/<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-unordered-list</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-1-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiUnorderedList</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;A copy of the company registration&lt;/<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;The vendor's quotation&lt;/<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;Bank account details for payment&lt;/<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiUnorderedList</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-1-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UnorderedList</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;A copy of the company registration&lt;/<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;The vendor's quotation&lt;/<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;Bank account details for payment&lt;/<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UnorderedList</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="installation">Installation</h2>
+<ui-tabs class="doc-code-tabs" label="Code"><ui-tab panel="code-2-0">npm</ui-tab><ui-tab panel="code-2-1">shadcn · Web component</ui-tab><ui-tab panel="code-2-2">shadcn · React + Tailwind</ui-tab><ui-tab panel="code-2-3">Manual</ui-tab><ui-tab-panel name="code-2-0"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">@purpurabog/ui</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-1"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npx</span> <span style="color:var(--ui-tag-color-teal)">shadcn@4</span> <span style="color:var(--ui-tag-color-teal)">add</span> <span style="color:var(--ui-tag-color-teal)">@kanok-ui/list</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-2"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npx</span> <span style="color:var(--ui-tag-color-teal)">shadcn@4</span> <span style="color:var(--ui-tag-color-teal)">add</span> <span style="color:var(--ui-tag-color-teal)">@kanok-ui/tw-lists</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-3"><ui-code-snippet type="multi" class="doc-code" data-lang="bash"><span style="color:var(--ui-ink-muted);font-style:italic"># Web component</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 1. Install the dependencies</span>
+<span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">lit@^3.3.0</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 2. Copy each file's "content" from</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    https://cdn.jsdelivr.net/npm/@purpurabog/ui@2.3.0/registry/list.json</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    to its target:</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/list/list-item.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/list/list-shared.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/list/list.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/list/ordered-list.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/list/unordered-list.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 3. Do the same for the items it needs (registry/&lt;name&gt;.json):</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    shared-element, tokens</span>
+
+<span style="color:var(--ui-ink-muted);font-style:italic"># React + Tailwind</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 1. Install the dependencies</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># (none)</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 2. Copy each file's "content" from</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    https://cdn.jsdelivr.net/npm/@purpurabog/ui@2.3.0/registry/tw-lists.json</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    to its target:</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/react-tw/lists.tsx</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 3. Do the same for the items it needs (registry/&lt;name&gt;.json):</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    tw-theme, tw-utils</span></ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>npm gives you every component from the package. shadcn copies the source into your app instead: a copy pinned to this version that you can change. The shadcn commands need the <code>@kanok-ui</code> registry in your <code>components.json</code> once, see <a href="/kanok-ui-docs/en/installation/#react-tailwind-with-shadcn">Installation</a>.</p>
+<h2 id="use-it">Use it</h2>
+<ui-tabs class="doc-code-tabs" label="Code"><ui-tab panel="code-3-0">HTML</ui-tab><ui-tab panel="code-3-1">React</ui-tab><ui-tab panel="code-3-2">React + Tailwind</ui-tab><ui-tab-panel name="code-3-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;<span style="color:var(--ui-tag-color-magenta)">import</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/list'</span>;&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-unordered-list</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;The vendor's quotation&lt;/<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-unordered-list</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-3-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { UiUnorderedList, UiOrderedList, UiListItem } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/react'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiUnorderedList</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;The vendor's quotation&lt;/<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiUnorderedList</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-3-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { UnorderedList, OrderedList, ListItem } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@/components/ui/react-tw/lists'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UnorderedList</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;The vendor's quotation&lt;/<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UnorderedList</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>The React + Tailwind components render real <code>&lt;ul&gt;</code>, <code>&lt;ol&gt;</code> and <code>&lt;li&gt;</code> elements. This list is for content; for a list people pick from or act on, see <a href="/kanok-ui-docs/en/contained-list/">Contained list</a> and <a href="/kanok-ui-docs/en/structured-list/">Structured list</a>.</p>
+<h2 id="unordered">Unordered</h2>
+<p>Use an unordered list when the order doesn't matter. Each item gets an en dash 16px before the text, and the list is indented 16px.</p>
+<div class="doc-demo"><p>Before you submit the purchase request, attach:</p>
+<ui-unordered-list>
+  <ui-list-item>The vendor's quotation, signed and dated</ui-list-item>
+  <ui-list-item>A comparison of at least three quotations for amounts over 100,000 THB</ui-list-item>
+  <ui-list-item>The budget code from your department head</ui-list-item>
+</ui-unordered-list>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-4-0">HTML</ui-tab><ui-tab panel="code-4-1">React</ui-tab><ui-tab panel="code-4-2">React + Tailwind</ui-tab><ui-tab-panel name="code-4-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;Before you submit the purchase request, attach:&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-unordered-list</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;The vendor's quotation, signed and dated&lt;/<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;A comparison of at least three quotations for amounts over 100,000 THB&lt;/<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;The budget code from your department head&lt;/<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-unordered-list</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-4-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;Before you submit the purchase request, attach:&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiUnorderedList</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;The vendor's quotation, signed and dated&lt;/<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;A comparison of at least three quotations for amounts over 100,000 THB&lt;/<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;The budget code from your department head&lt;/<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiUnorderedList</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-4-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;Before you submit the purchase request, attach:&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UnorderedList</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;The vendor's quotation, signed and dated&lt;/<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;A comparison of at least three quotations for amounts over 100,000 THB&lt;/<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;The budget code from your department head&lt;/<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UnorderedList</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="ordered">Ordered</h2>
+<p>Use an ordered list for steps that happen in order. The numbers (&quot;1.&quot;) sit 24px before the text, outside the list's own box, as in Carbon: leave at least 24px of room on the start side (the demo box has it).</p>
+<div class="doc-demo"><ui-ordered-list>
+  <ui-list-item>Fill in the request and attach the quotation.</ui-list-item>
+  <ui-list-item>Your department head approves it.</ui-list-item>
+  <ui-list-item>Finance checks the budget code.</ui-list-item>
+  <ui-list-item>Procurement issues the purchase order.</ui-list-item>
+</ui-ordered-list>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-5-0">HTML</ui-tab><ui-tab panel="code-5-1">React</ui-tab><ui-tab panel="code-5-2">React + Tailwind</ui-tab><ui-tab-panel name="code-5-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-ordered-list</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;Fill in the request and attach the quotation.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;Your department head approves it.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;Finance checks the budget code.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;Procurement issues the purchase order.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-ordered-list</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-5-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiOrderedList</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;Fill in the request and attach the quotation.&lt;/<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;Your department head approves it.&lt;/<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;Finance checks the budget code.&lt;/<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;Procurement issues the purchase order.&lt;/<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiOrderedList</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-5-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">OrderedList</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;Fill in the request and attach the quotation.&lt;/<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;Your department head approves it.&lt;/<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;Finance checks the budget code.&lt;/<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;Procurement issues the purchase order.&lt;/<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">OrderedList</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="nested-unordered">Nested unordered</h2>
+<p>Put a list inside an item to nest it. The inner list is 32px in, and its items get a small square (▪) 12px before the text. You don't set <code>nested</code>: a list inside a <code>ui-list-item</code> (a <code>ListItem</code> in React + Tailwind) sets it itself.</p>
+<div class="doc-demo"><ui-unordered-list>
+  <ui-list-item>Company documents
+    <ui-unordered-list>
+      <ui-list-item>Company registration, issued in the last 6 months</ui-list-item>
+      <ui-list-item>VAT registration (ภ.พ.20)</ui-list-item>
+    </ui-unordered-list>
+  </ui-list-item>
+  <ui-list-item>Bank details
+    <ui-unordered-list>
+      <ui-list-item>A copy of the account book's first page</ui-list-item>
+    </ui-unordered-list>
+  </ui-list-item>
+</ui-unordered-list>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-6-0">HTML</ui-tab><ui-tab panel="code-6-1">React</ui-tab><ui-tab panel="code-6-2">React + Tailwind</ui-tab><ui-tab-panel name="code-6-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-unordered-list</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;Company documents
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-unordered-list</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;Company registration, issued in the last 6 months&lt;/<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;VAT registration (ภ.พ.20)&lt;/<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">ui-unordered-list</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;Bank details
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-unordered-list</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;A copy of the account book's first page&lt;/<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">ui-unordered-list</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-unordered-list</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-6-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiUnorderedList</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;
+    Company documents
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiUnorderedList</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;Company registration, issued in the last 6 months&lt;/<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;VAT registration (ภ.พ.20)&lt;/<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">UiUnorderedList</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;
+    Bank details
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiUnorderedList</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;A copy of the account book's first page&lt;/<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">UiUnorderedList</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiUnorderedList</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-6-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UnorderedList</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;
+    Company documents
+    &lt;<span style="color:var(--ui-tag-color-blue)">UnorderedList</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;Company registration, issued in the last 6 months&lt;/<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;VAT registration (ภ.พ.20)&lt;/<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">UnorderedList</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;
+    Bank details
+    &lt;<span style="color:var(--ui-tag-color-blue)">UnorderedList</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;A copy of the account book's first page&lt;/<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">UnorderedList</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UnorderedList</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="nested-ordered">Nested ordered</h2>
+<p>A nested ordered list counts with letters (a. b. c.), 32px in. Use it for sub-steps.</p>
+<div class="doc-demo"><ui-ordered-list>
+  <ui-list-item>Prepare the contract
+    <ui-ordered-list>
+      <ui-list-item>Copy the latest template from the legal site.</ui-list-item>
+      <ui-list-item>Fill in the parties, the amount and the dates.</ui-list-item>
+    </ui-ordered-list>
+  </ui-list-item>
+  <ui-list-item>Send it for review
+    <ui-ordered-list>
+      <ui-list-item>Finance checks the amount and payment terms.</ui-list-item>
+      <ui-list-item>Legal checks the clauses.</ui-list-item>
+    </ui-ordered-list>
+  </ui-list-item>
+  <ui-list-item>Sign and file it.</ui-list-item>
+</ui-ordered-list>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-7-0">HTML</ui-tab><ui-tab panel="code-7-1">React</ui-tab><ui-tab panel="code-7-2">React + Tailwind</ui-tab><ui-tab-panel name="code-7-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-ordered-list</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;Prepare the contract
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-ordered-list</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;Copy the latest template from the legal site.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;Fill in the parties, the amount and the dates.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">ui-ordered-list</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;Send it for review
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-ordered-list</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;Finance checks the amount and payment terms.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;Legal checks the clauses.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">ui-ordered-list</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;Sign and file it.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-ordered-list</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-7-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiOrderedList</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;
+    Prepare the contract
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiOrderedList</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;Copy the latest template from the legal site.&lt;/<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;Fill in the parties, the amount and the dates.&lt;/<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">UiOrderedList</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;
+    Send it for review
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiOrderedList</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;Finance checks the amount and payment terms.&lt;/<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;Legal checks the clauses.&lt;/<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">UiOrderedList</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;Sign and file it.&lt;/<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiOrderedList</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-7-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">OrderedList</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;
+    Prepare the contract
+    &lt;<span style="color:var(--ui-tag-color-blue)">OrderedList</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;Copy the latest template from the legal site.&lt;/<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;Fill in the parties, the amount and the dates.&lt;/<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">OrderedList</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;
+    Send it for review
+    &lt;<span style="color:var(--ui-tag-color-blue)">OrderedList</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;Finance checks the amount and payment terms.&lt;/<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;Legal checks the clauses.&lt;/<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">OrderedList</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;Sign and file it.&lt;/<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">OrderedList</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="mixed">Mixed</h2>
+<p>The two kinds nest inside each other: steps with a list of things to bring, for example. Three levels is the most people can follow.</p>
+<div class="doc-demo"><ui-ordered-list>
+  <ui-list-item>Book a room for the signing.</ui-list-item>
+  <ui-list-item>Bring to the meeting:
+    <ui-unordered-list>
+      <ui-list-item>Two printed copies of the contract</ui-list-item>
+      <ui-list-item>The company seal</ui-list-item>
+      <ui-list-item>ID cards of both signers</ui-list-item>
+    </ui-unordered-list>
+  </ui-list-item>
+  <ui-list-item>Scan the signed copy and upload it.</ui-list-item>
+</ui-ordered-list>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-8-0">HTML</ui-tab><ui-tab panel="code-8-1">React</ui-tab><ui-tab panel="code-8-2">React + Tailwind</ui-tab><ui-tab-panel name="code-8-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-ordered-list</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;Book a room for the signing.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;Bring to the meeting:
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-unordered-list</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;Two printed copies of the contract&lt;/<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;The company seal&lt;/<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;ID cards of both signers&lt;/<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">ui-unordered-list</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;Scan the signed copy and upload it.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-ordered-list</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-8-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiOrderedList</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;Book a room for the signing.&lt;/<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;
+    Bring to the meeting:
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiUnorderedList</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;Two printed copies of the contract&lt;/<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;The company seal&lt;/<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;ID cards of both signers&lt;/<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">UiUnorderedList</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;Scan the signed copy and upload it.&lt;/<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiOrderedList</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-8-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">OrderedList</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;Book a room for the signing.&lt;/<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;
+    Bring to the meeting:
+    &lt;<span style="color:var(--ui-tag-color-blue)">UnorderedList</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;Two printed copies of the contract&lt;/<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;The company seal&lt;/<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;ID cards of both signers&lt;/<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">UnorderedList</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;Scan the signed copy and upload it.&lt;/<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">OrderedList</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="browser-numbers">Browser numbers</h2>
+<p><code>native</code> uses the browser's own decimal numbers instead of Carbon's counter. The browser lines them up on the dot once the list passes 9 items. In React + Tailwind, it also lets the <code>&lt;ol&gt;</code> attributes <code>start</code> and <code>reversed</code> work, which Carbon's counter ignores. Leave room on the start side here too.</p>
+<div class="doc-demo"><ui-ordered-list native>
+  <ui-list-item>Request</ui-list-item>
+  <ui-list-item>Department head</ui-list-item>
+  <ui-list-item>Finance</ui-list-item>
+  <ui-list-item>Legal</ui-list-item>
+  <ui-list-item>Procurement</ui-list-item>
+  <ui-list-item>Vendor signs</ui-list-item>
+  <ui-list-item>Company signs</ui-list-item>
+  <ui-list-item>Filing</ui-list-item>
+  <ui-list-item>Payment set-up</ui-list-item>
+  <ui-list-item>First delivery</ui-list-item>
+</ui-ordered-list>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-9-0">HTML</ui-tab><ui-tab panel="code-9-1">React</ui-tab><ui-tab panel="code-9-2">React + Tailwind</ui-tab><ui-tab-panel name="code-9-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-ordered-list</span> <span style="color:var(--ui-tag-color-purple)">native</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;Request&lt;/<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;Department head&lt;/<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;Finance&lt;/<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;Legal&lt;/<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;Procurement&lt;/<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;Vendor signs&lt;/<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;Company signs&lt;/<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;Filing&lt;/<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;Payment set-up&lt;/<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;First delivery&lt;/<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-ordered-list</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-9-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiOrderedList</span> <span style="color:var(--ui-tag-color-purple)">native</span>&gt;
+  {steps.<span style="color:var(--ui-tag-color-cyan)">map</span>((step) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> &lt;<span style="color:var(--ui-tag-color-blue)">UiListItem</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{step}&gt;{step}&lt;/<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;)}
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiOrderedList</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-9-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">OrderedList</span> <span style="color:var(--ui-tag-color-purple)">native</span>&gt;
+  {steps.<span style="color:var(--ui-tag-color-cyan)">map</span>((step) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> &lt;<span style="color:var(--ui-tag-color-blue)">ListItem</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{step}&gt;{step}&lt;/<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;)}
+&lt;/<span style="color:var(--ui-tag-color-blue)">OrderedList</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="expressive">Expressive</h2>
+<p><code>is-expressive</code> (<code>isExpressive</code>) sets the text in body-02 (16px / 24px) instead of body-01 (14px / 20px). Use it on reading pages, such as a policy or a help article. Nested lists take the size of their parent.</p>
+<div class="doc-demo"><ui-unordered-list is-expressive>
+  <ui-list-item>Contracts over 1,000,000 THB need two signers.</ui-list-item>
+  <ui-list-item>Keep signed copies for 10 years.
+    <ui-unordered-list>
+      <ui-list-item>Paper copies go to the archive room.</ui-list-item>
+      <ui-list-item>Scans go to the contract system.</ui-list-item>
+    </ui-unordered-list>
+  </ui-list-item>
+</ui-unordered-list>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-10-0">HTML</ui-tab><ui-tab panel="code-10-1">React</ui-tab><ui-tab panel="code-10-2">React + Tailwind</ui-tab><ui-tab-panel name="code-10-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-unordered-list</span> <span style="color:var(--ui-tag-color-purple)">is-expressive</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;Contracts over 1,000,000 THB need two signers.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;Keep signed copies for 10 years.
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-unordered-list</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;Paper copies go to the archive room.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;Scans go to the contract system.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">ui-unordered-list</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-unordered-list</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-10-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiUnorderedList</span> <span style="color:var(--ui-tag-color-purple)">isExpressive</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;Contracts over 1,000,000 THB need two signers.&lt;/<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;
+    Keep signed copies for 10 years.
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiUnorderedList</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;Paper copies go to the archive room.&lt;/<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;Scans go to the contract system.&lt;/<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">UiUnorderedList</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiUnorderedList</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-10-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UnorderedList</span> <span style="color:var(--ui-tag-color-purple)">isExpressive</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;Contracts over 1,000,000 THB need two signers.&lt;/<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;
+    Keep signed copies for 10 years.
+    &lt;<span style="color:var(--ui-tag-color-blue)">UnorderedList</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;Paper copies go to the archive room.&lt;/<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;Scans go to the contract system.&lt;/<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">UnorderedList</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UnorderedList</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="links-and-code-in-items">Links and code in items</h2>
+<p>Items take any inline content: <a href="/kanok-ui-docs/en/link/">links</a>, <a href="/kanok-ui-docs/en/code-snippet/#inline">inline code</a>, emphasis. Long items wrap under their own text, not under the marker.</p>
+<div class="doc-demo"><ui-unordered-list>
+  <ui-list-item>Read the <ui-link href="#list-policy" inline>signing policy</ui-link> before your first contract.</ui-list-item>
+  <ui-list-item>Use the cost centre <ui-code-snippet type="inline">CC-4410-PROC</ui-code-snippet> for office supplies.</ui-list-item>
+  <ui-list-item><strong>Don't</strong> sign a contract that legal hasn't reviewed, even when the vendor asks you to hurry because the price is only valid until the end of the week.</ui-list-item>
+</ui-unordered-list>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-11-0">HTML</ui-tab><ui-tab panel="code-11-1">React</ui-tab><ui-tab panel="code-11-2">React + Tailwind</ui-tab><ui-tab-panel name="code-11-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-unordered-list</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;Read the &lt;<span style="color:var(--ui-tag-color-blue)">ui-link</span> <span style="color:var(--ui-tag-color-purple)">href</span>=<span style="color:var(--ui-tag-color-teal)">"#list-policy"</span> <span style="color:var(--ui-tag-color-purple)">inline</span>&gt;signing policy&lt;/<span style="color:var(--ui-tag-color-blue)">ui-link</span>&gt; before your first contract.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;Use the cost centre &lt;<span style="color:var(--ui-tag-color-blue)">ui-code-snippet</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"inline"</span>&gt;CC-4410-PROC&lt;/<span style="color:var(--ui-tag-color-blue)">ui-code-snippet</span>&gt; for office supplies.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">strong</span>&gt;Don't&lt;/<span style="color:var(--ui-tag-color-blue)">strong</span>&gt; sign a contract that legal hasn't reviewed, even when the vendor asks you to hurry because the price is only valid until the end of the week.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-list-item</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-unordered-list</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-11-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiUnorderedList</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;Read the &lt;<span style="color:var(--ui-tag-color-blue)">UiLink</span> <span style="color:var(--ui-tag-color-purple)">href</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"/policies/signing"</span> <span style="color:var(--ui-tag-color-purple)">inline</span>&gt;signing policy&lt;/<span style="color:var(--ui-tag-color-blue)">UiLink</span>&gt; before your first contract.&lt;/<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;Use the cost centre &lt;<span style="color:var(--ui-tag-color-blue)">UiCodeSnippet</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"inline"</span>&gt;CC-4410-PROC&lt;/<span style="color:var(--ui-tag-color-blue)">UiCodeSnippet</span>&gt; for office supplies.&lt;/<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">strong</span>&gt;Don't&lt;/<span style="color:var(--ui-tag-color-blue)">strong</span>&gt; sign a contract that legal hasn't reviewed, even when the vendor asks you to hurry …&lt;/<span style="color:var(--ui-tag-color-blue)">UiListItem</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiUnorderedList</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-11-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UnorderedList</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;Read the &lt;<span style="color:var(--ui-tag-color-blue)">Link</span> <span style="color:var(--ui-tag-color-purple)">href</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"/policies/signing"</span> <span style="color:var(--ui-tag-color-purple)">inline</span>&gt;signing policy&lt;/<span style="color:var(--ui-tag-color-blue)">Link</span>&gt; before your first contract.&lt;/<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;Use the cost centre &lt;<span style="color:var(--ui-tag-color-blue)">CodeSnippet</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"inline"</span>&gt;CC-4410-PROC&lt;/<span style="color:var(--ui-tag-color-blue)">CodeSnippet</span>&gt; for office supplies.&lt;/<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">strong</span>&gt;Don't&lt;/<span style="color:var(--ui-tag-color-blue)">strong</span>&gt; sign a contract that legal hasn't reviewed, even when the vendor asks you to hurry …&lt;/<span style="color:var(--ui-tag-color-blue)">ListItem</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UnorderedList</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="accessibility">Accessibility</h2>
+<ul>
+<li>Screen readers announce a list and its item count. <code>ui-list-item</code> gets <code>role=&quot;listitem&quot;</code> (unless you set a role), and the list's <code>&lt;ul&gt;</code> / <code>&lt;ol&gt;</code> sits in the element's shadow root around the items.</li>
+<li>Use an ordered list only when the order matters; the numbers are read out.</li>
+<li>The markers are drawn with CSS, so they aren't read; don't put meaning in them.</li>
+<li>Keep items short and parallel: start each one the same way (all nouns, or all verbs).</li>
+</ul>
+<h2 id="api">API</h2>
+<p>Generated from the package. In React, pass a property as a prop of the same name; events are props too (the React column).</p>
+<h3 id="ui-unordered-list-react-uiunorderedlist"><code>&lt;ui-unordered-list&gt;</code> · React <code>UiUnorderedList</code></h3>
+<h4 id="attributes">Attributes</h4>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>nested</code></td>
+<td><code>nested</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Nested in another list's item (set for you when it sits in a <code>&lt;ui-list-item&gt;</code>).</td>
+</tr>
+<tr>
+<td><code>is-expressive</code></td>
+<td><code>isExpressive</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Body-02 type (16px) for expressive pages.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="slots">Slots</h4>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(default)</td>
+<td><code>&lt;ui-list-item&gt;</code> elements</td>
+</tr>
+</tbody>
+</table>
+<h4 id="css-parts">CSS parts</h4>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>list</code></td>
+<td>The <code>&lt;ul&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="ui-ordered-list-react-uiorderedlist"><code>&lt;ui-ordered-list&gt;</code> · React <code>UiOrderedList</code></h3>
+<h4 id="attributes-2">Attributes</h4>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>nested</code></td>
+<td><code>nested</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Nested in another list's item (set for you when it sits in a <code>&lt;ui-list-item&gt;</code>).</td>
+</tr>
+<tr>
+<td><code>native</code></td>
+<td><code>native</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>The browser's own markers (<code>decimal</code>) instead of Carbon's counter.</td>
+</tr>
+<tr>
+<td><code>is-expressive</code></td>
+<td><code>isExpressive</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Body-02 type (16px) for expressive pages.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="slots-2">Slots</h4>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(default)</td>
+<td><code>&lt;ui-list-item&gt;</code> elements</td>
+</tr>
+</tbody>
+</table>
+<h4 id="css-parts-2">CSS parts</h4>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>list</code></td>
+<td>The <code>&lt;ol&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="ui-list-item-react-uilistitem"><code>&lt;ui-list-item&gt;</code> · React <code>UiListItem</code></h3>
+<h4 id="slots-3">Slots</h4>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(default)</td>
+<td>The item's content, and a nested list</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+<nav class="doc-toc" aria-labelledby="doc-toc-title"><p id="doc-toc-title" class="doc-toc-title">On this page</p><ul><li class="doc-toc-h2"><a href="#installation">Installation</a></li><li class="doc-toc-h2"><a href="#use-it">Use it</a></li><li class="doc-toc-h2"><a href="#unordered">Unordered</a></li><li class="doc-toc-h2"><a href="#ordered">Ordered</a></li><li class="doc-toc-h2"><a href="#nested-unordered">Nested unordered</a></li><li class="doc-toc-h2"><a href="#nested-ordered">Nested ordered</a></li><li class="doc-toc-h2"><a href="#mixed">Mixed</a></li><li class="doc-toc-h2"><a href="#browser-numbers">Browser numbers</a></li><li class="doc-toc-h2"><a href="#expressive">Expressive</a></li><li class="doc-toc-h2"><a href="#links-and-code-in-items">Links and code in items</a></li><li class="doc-toc-h2"><a href="#accessibility">Accessibility</a></li><li class="doc-toc-h2"><a href="#api">API</a></li><li class="doc-toc-h3"><a href="#ui-unordered-list-react-uiunorderedlist">&lt;ui-unordered-list></a></li><li class="doc-toc-h3"><a href="#ui-ordered-list-react-uiorderedlist">&lt;ui-ordered-list></a></li><li class="doc-toc-h3"><a href="#ui-list-item-react-uilistitem">&lt;ui-list-item></a></li></ul></nav>
+</div>
+<nav class="doc-pager" aria-label="Next / Previous"><a class="doc-pager-prev" href="/kanok-ui-docs/en/truncated-text/" rel="prev"><span>Previous</span>Truncated text</a><a class="doc-pager-next" href="/kanok-ui-docs/en/loading/" rel="next"><span>Next</span>Loading</a></nav>
+<footer class="doc-footer">@purpurabog/ui 2.3.0 · MIT · <a href="https://cdn.jsdelivr.net/npm/@purpurabog/ui@2.3.0/THIRD-PARTY-NOTICES.md">Third-party notices</a><br>Built on the Carbon Design System. Not affiliated with or endorsed by IBM; IBM and Carbon are trademarks of IBM Corp.</footer>
+</ui-content>
+<ui-modal id="doc-search" heading="Search" data-count="{n} results" data-empty="No results for “{q}”">
+<ui-search label="Search the docs" placeholder="Search the docs" size="lg"></ui-search>
+<p class="doc-search-status" role="status"></p>
+<ul class="doc-search-results"></ul>
+</ui-modal>
+</body>
+</html>

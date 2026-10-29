@@ -1,0 +1,601 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Headless Tree view · @purpurabog/ui</title>
+<link rel="alternate" hreflang="en" href="/kanok-ui-docs/en/headless-tree-view/"  /><link rel="alternate" hreflang="th" href="/kanok-ui-docs/th/headless-tree-view/"  />
+<script>(function(){try{var q=new URLSearchParams(location.search).get("design"),d=q;if(q==="kanok"||q==="carbon")localStorage.setItem("ui-docs-design",q);else d=localStorage.getItem("ui-docs-design");if(d==="kanok")document.documentElement.setAttribute("data-design","kanok")}catch(e){}})();(function(){try{var m=localStorage.getItem("ui-docs-theme");if(m!=="light"&&m!=="dark"&&m!=="system")return;var d=m==="dark"||(m==="system"&&matchMedia("(prefers-color-scheme: dark)").matches),r=document.documentElement,t=d?"g100":"white";if(r.getAttribute("data-design")==="kanok")t=d?"lacquer":"paper";r.setAttribute("data-theme",t)}catch(e){}})();</script>
+<style>ui-header:not(:defined){z-index:8000;box-sizing:border-box;border-block-end:1px solid var(--ui-border-subtle-1);background:var(--ui-canvas);block-size:48px;display:block;position:fixed;inset:0 0 auto}:is(ui-header:not(:defined)>*,ui-side-nav:not(:defined)>*){visibility:hidden}:is(ui-header-panel:not(:defined),ui-modal:not(:defined)){display:none}ui-side-nav:not(:defined){display:none}ui-content:not(:defined){margin-block-start:48px;padding:32px;display:block}@media (width>=1056px){ui-side-nav[expanded]:not(:defined){background:var(--ui-canvas);inline-size:256px;display:block;position:fixed;inset:48px auto 0 0}ui-side-nav[expanded]:not(:defined)~ui-content:not(:defined){margin-inline-start:256px}}ui-tabs:not(:defined){display:block}ui-tabs:not(:defined)>ui-tab{box-sizing:border-box;border-block-end:2px solid var(--ui-hairline);block-size:40px;color:var(--ui-ink-muted);font:var(--ui-font-body-sm);padding:0 16px;line-height:38px;display:inline-block}ui-tabs:not(:defined)>ui-tab:first-of-type{border-block-end-color:var(--ui-interactive);color:var(--ui-ink)}ui-tabs:not(:defined)>ui-tab-panel{padding:16px;display:block}ui-tabs:not(:defined)>ui-tab-panel~ui-tab-panel{display:none}ui-code-snippet:not(:defined){background:var(--ui-layer-1);max-block-size:272px;font:var(--ui-font-code,12px/16px monospace);white-space:pre;padding:16px;display:block;overflow:hidden}[data-react-example]:empty>*{visibility:hidden}.doc-demo:has(:not(:defined))>*{visibility:hidden}[data-react-example]:empty{box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}.doc-demo:has(:not(:defined)){box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}@keyframes doc-skeleton{to{background-position:-200% 0}}@media (prefers-reduced-motion:reduce){[data-react-example]:empty{animation:none}.doc-demo:has(:not(:defined)){animation:none}}</style>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/index-DVJN5XF1.js"></script>
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/theme-switcher-BZXGbHfR.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/listbox-gjElSjvA.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/headless-CCX6tx99.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/typeahead-CDCzrGcR.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/tree-h2xfYOIE.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/flag-D0Ou26eR.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/tree-view-CeyeYLpu.js">
+  <link rel="stylesheet" crossorigin href="/kanok-ui-docs/assets/theme-switcher-BXY5AIvi.css">
+  <link rel="stylesheet" crossorigin href="/kanok-ui-docs/assets/headless-CtsneZec.css">
+</head>
+<body>
+<ui-header label="@purpurabog/ui">
+<ui-skip-to-content></ui-skip-to-content>
+<ui-header-menu-button></ui-header-menu-button>
+<ui-header-name href="/kanok-ui-docs/en/" prefix="@purpurabog">ui</ui-header-name>
+<ui-header-global-bar>
+<ui-header-global-action id="doc-search-open" label="Search" tooltip-placement="bottom"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="m18.5 17.8-4.9-4.9a7 7 0 1 0-.7.7l4.9 4.9zM3 8.5a5.5 5.5 0 1 1 5.5 5.5A5.5 5.5 0 0 1 3 8.5Z" /></svg></ui-header-global-action>
+<ui-header-global-action label="Settings" panel="doc-settings" tooltip-placement="bottom-end"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="M16.9 10.6a7 7 0 0 0 0-1.2l1.8-1.4-1.6-2.8-2.1.8a6.6 6.6 0 0 0-1-.6L13.6 3h-3.2l-.4 2.4a6.6 6.6 0 0 0-1 .6l-2.1-.8L5.3 8l1.8 1.4a7 7 0 0 0 0 1.2L5.3 12l1.6 2.8 2.1-.8a6.6 6.6 0 0 0 1 .6l.4 2.4h3.2l.4-2.4a6.6 6.6 0 0 0 1-.6l2.1.8 1.6-2.8zM12 13a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" /></svg></ui-header-global-action>
+</ui-header-global-bar>
+<ui-header-panel id="doc-settings" label="Settings">
+<div class="doc-settings">
+<span class="doc-settings-label">Theme</span>
+<ui-theme-switcher storage-key="ui-docs-theme" tooltip-placement="bottom"></ui-theme-switcher>
+<span class="doc-settings-label">Style</span>
+<ui-content-switcher id="doc-design" aria-label="Style" size="sm"><ui-content-switcher-item name="carbon">Carbon</ui-content-switcher-item><ui-content-switcher-item name="kanok">Kanok</ui-content-switcher-item></ui-content-switcher>
+<span class="doc-settings-label">Language</span>
+<ui-link href="/kanok-ui-docs/th/headless-tree-view/" hreflang="th" lang="th">ไทย</ui-link>
+</div>
+</ui-header-panel>
+</ui-header>
+<ui-side-nav label="Documentation"><ui-side-nav-items><ui-side-nav-menu label="Get started"><ui-side-nav-menu-item href="/kanok-ui-docs/en/">Overview</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/installation/">Installation</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/migration-1-0/">Migrating to 1.0</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Guides"><ui-side-nav-menu-item href="/kanok-ui-docs/en/themes/">Themes and layers</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/kanok/">Kanok design</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/customizing/">Customizing</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/icons/">Icons</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/forms/">Forms and validation</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/frameworks/">Frameworks</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/ai/">Using with AI</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Forms and actions"><ui-side-nav-menu-item href="/kanok-ui-docs/en/button/">Button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/file-uploader/">File uploader</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Overlays"><ui-side-nav-menu-item href="/kanok-ui-docs/en/modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/toggletip/">Toggletip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/menu/">Menu</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Data"><ui-side-nav-menu-item href="/kanok-ui-docs/en/data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/contained-list/">Contained list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tree-view/">Tree view</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Navigation"><ui-side-nav-menu-item href="/kanok-ui-docs/en/tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/breadcrumb/">Breadcrumb</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/link/">Link</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/ui-shell/">UI shell</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Content"><ui-side-nav-menu-item href="/kanok-ui-docs/en/tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tile/">Tile</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/user-avatar/">User avatar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/list/">List</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Status and loading"><ui-side-nav-menu-item href="/kanok-ui-docs/en/loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/inline-loading/">Inline loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/progress-bar/">Progress bar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/skeleton/">Skeleton</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/badge-indicator/">Badge indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/status-indicator/">Status indicator</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Layout"><ui-side-nav-menu-item href="/kanok-ui-docs/en/grid/">Grid</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/heading/">Heading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/layer/">Layer</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/action-set/">Action set</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/page-header/">Page header</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/big-number/">Big number</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Headless" expanded><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless/">Introduction</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-file-uploader/">File uploader</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-menu/">Menu</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-ui-shell/">UI shell</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tree-view/" current>Tree view</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu></ui-side-nav-items></ui-side-nav><script>if(matchMedia('(min-width: 66rem)').matches)document.currentScript.previousElementSibling.setAttribute('expanded','')</script>
+<ui-content>
+<div class="doc-page">
+<article class="doc">
+<!-- nav: Tree view -->
+<h1 id="headless-tree-view">Headless Tree view</h1>
+<p><code>TreeView</code> is the behaviour of the styled <a href="/kanok-ui-docs/en/tree-view/">Tree view</a> as unstyled React parts, following the WAI-ARIA tree pattern: a <code>role=&quot;tree&quot;</code> of nested <code>Node</code>s, one Tab stop, the arrow keys, Home / End, typing to jump, single or multiple selection, an active node, and children loaded on demand.</p>
+<p>You own the markup: each node's <code>Row</code> (caret, icon, label), the indent, and every style. State shows as <code>data-*</code> attributes on the node and its row; <code>useNodeContext()</code> gives a node's depth for the indent.</p>
+<h2 id="installation">Installation</h2>
+<p>The headless parts come with the package (there is no shadcn item; the React + Tailwind items are built on them):</p>
+<ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">@purpurabog/ui</span></ui-code-snippet>
+<ui-code-snippet type="single" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { TreeView } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;</ui-code-snippet>
+<h2 id="use-it">Use it</h2>
+<div class="doc-demo" data-react-example="0"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> <span style="color:var(--ui-tag-color-magenta)">type</span> { ReactNode } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { TreeView } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">interface</span> <span style="color:var(--ui-tag-color-cyan)">Item</span> {
+  value<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>;
+  label<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>;
+  children<span style="color:var(--ui-tag-color-magenta)">?:</span> <span style="color:var(--ui-tag-color-cyan)">Item</span>[];
+}
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> folders<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">Item</span>[] <span style="color:var(--ui-tag-color-magenta)">=</span> [
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'contracts'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Contracts'</span>, <span style="color:var(--ui-tag-color-purple)">children:</span> [
+    { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'c1'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Service agreement – Acme'</span> },
+    { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'c2'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'NDA – Globex'</span> },
+  ] },
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'templates'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Templates'</span>, <span style="color:var(--ui-tag-color-purple)">children:</span> [{ <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'t1'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Standard NDA'</span> }] },
+];
+
+<span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Row</span>({ children }<span style="color:var(--ui-tag-color-magenta)">:</span> { children<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">ReactNode</span> }) {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> node <span style="color:var(--ui-tag-color-magenta)">=</span> TreeView.<span style="color:var(--ui-tag-color-cyan)">useNodeContext</span>();
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">TreeView.Row</span> <span style="color:var(--ui-tag-color-purple)">style</span><span style="color:var(--ui-tag-color-magenta)">=</span>{{ <span style="color:var(--ui-tag-color-purple)">paddingInlineStart:</span> <span style="color:var(--ui-tag-color-green)">8</span> <span style="color:var(--ui-tag-color-magenta)">+</span> node.depth <span style="color:var(--ui-tag-color-magenta)">*</span> <span style="color:var(--ui-tag-color-green)">24</span> }} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex h-8 cursor-pointer items-center gap-2 pe-4 text-sm text-ink-muted hover:bg-ghost-hover hover:text-ink data-selected:bg-layer-selected-1 data-selected:text-ink"</span>&gt;
+      {node.branch <span style="color:var(--ui-tag-color-magenta)">?</span> (
+        &lt;<span style="color:var(--ui-tag-color-blue)">TreeView.Toggle</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex size-4 items-center justify-center"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-teal)">`size-4 fill-current transition-transform ${</span><span style="color:var(--ui-tag-color-teal)">node.expanded </span><span style="color:var(--ui-tag-color-magenta)">?</span><span style="color:var(--ui-tag-color-teal)"> </span><span style="color:var(--ui-tag-color-teal)">''</span><span style="color:var(--ui-tag-color-teal)"> </span><span style="color:var(--ui-tag-color-magenta)">:</span><span style="color:var(--ui-tag-color-teal)"> </span><span style="color:var(--ui-tag-color-teal)">'-rotate-90'}`</span>}&gt;&lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M8 11 3 6l.7-.7L8 9.6l4.3-4.3.7.7z"</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">TreeView.Toggle</span>&gt;
+      ) <span style="color:var(--ui-tag-color-magenta)">:</span> (
+        &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-4"</span> /&gt;
+      )}
+      {children}
+    &lt;/<span style="color:var(--ui-tag-color-blue)">TreeView.Row</span>&gt;
+  );
+}
+
+<span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Branch</span>({ item }<span style="color:var(--ui-tag-color-magenta)">:</span> { item<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">Item</span> }) {
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">TreeView.Node</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{item.value} <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span>{item.label} <span style="color:var(--ui-tag-color-purple)">hasChildren</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-magenta)">!!</span>item.children} <span style="color:var(--ui-tag-color-purple)">defaultExpanded</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"outline-none [&amp;:focus-visible&gt;:first-child]:outline-2 [&amp;:focus-visible&gt;:first-child]:-outline-offset-2 [&amp;:focus-visible&gt;:first-child]:outline-focus"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Row</span>&gt;{item.label}&lt;/<span style="color:var(--ui-tag-color-blue)">Row</span>&gt;
+      {item.children <span style="color:var(--ui-tag-color-magenta)">?</span> (
+        &lt;<span style="color:var(--ui-tag-color-blue)">TreeView.Group</span>&gt;
+          {item.children.<span style="color:var(--ui-tag-color-cyan)">map</span>((child) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> &lt;<span style="color:var(--ui-tag-color-blue)">Branch</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{child.value} <span style="color:var(--ui-tag-color-purple)">item</span><span style="color:var(--ui-tag-color-magenta)">=</span>{child} /&gt;)}
+        &lt;/<span style="color:var(--ui-tag-color-blue)">TreeView.Group</span>&gt;
+      ) <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-green)">null</span>}
+    &lt;/<span style="color:var(--ui-tag-color-blue)">TreeView.Node</span>&gt;
+  );
+}
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">TreeView.Root</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Folders"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"max-w-xs bg-layer-1"</span>&gt;
+      {folders.<span style="color:var(--ui-tag-color-cyan)">map</span>((item) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> &lt;<span style="color:var(--ui-tag-color-blue)">Branch</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{item.value} <span style="color:var(--ui-tag-color-purple)">item</span><span style="color:var(--ui-tag-color-magenta)">=</span>{item} /&gt;)}
+    &lt;/<span style="color:var(--ui-tag-color-blue)">TreeView.Root</span>&gt;
+  );
+}</ui-code-snippet>
+<h2 id="anatomy">Anatomy</h2>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">TreeView.Root</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TreeView.Node</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"…"</span> <span style="color:var(--ui-tag-color-purple)">hasChildren</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">TreeView.Row</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">TreeView.Toggle</span> /&gt;
+      label
+    &lt;/<span style="color:var(--ui-tag-color-blue)">TreeView.Row</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">TreeView.Group</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">TreeView.Node</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"…"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">TreeView.Row</span>&gt;label&lt;/<span style="color:var(--ui-tag-color-blue)">TreeView.Row</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">TreeView.Node</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">TreeView.Group</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">TreeView.Node</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">TreeView.Root</span>&gt;</ui-code-snippet>
+<p><code>hasChildren</code> tells a <code>Node</code> it is a branch. The tree finds the nodes in the DOM, so they can come from any component, at any depth.</p>
+<h2 id="selection-and-the-active-node">Selection and the active node</h2>
+<p>A click, Space or Enter selects a node and makes it the active one. Hold both with <code>selected</code> / <code>onSelect</code> and <code>active</code> / <code>onActivate</code>, or start them with <code>defaultSelected</code> / <code>defaultActive</code>. With <code>multiselect</code>, Ctrl / ⌘ + click and Space toggle a node, and Ctrl / ⌘ + A selects every enabled node.</p>
+<div class="doc-demo" data-react-example="1"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { useState, <span style="color:var(--ui-tag-color-magenta)">type</span> ReactNode } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { TreeView } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Row</span>({ children }<span style="color:var(--ui-tag-color-magenta)">:</span> { children<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">ReactNode</span> }) {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> node <span style="color:var(--ui-tag-color-magenta)">=</span> TreeView.<span style="color:var(--ui-tag-color-cyan)">useNodeContext</span>();
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">TreeView.Row</span> <span style="color:var(--ui-tag-color-purple)">style</span><span style="color:var(--ui-tag-color-magenta)">=</span>{{ <span style="color:var(--ui-tag-color-purple)">paddingInlineStart:</span> <span style="color:var(--ui-tag-color-green)">8</span> <span style="color:var(--ui-tag-color-magenta)">+</span> node.depth <span style="color:var(--ui-tag-color-magenta)">*</span> <span style="color:var(--ui-tag-color-green)">24</span> }} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex h-8 cursor-pointer items-center gap-2 border-s-4 border-transparent pe-4 text-sm text-ink-muted hover:bg-ghost-hover data-active:border-interactive data-selected:bg-layer-selected-1 data-selected:text-ink data-disabled:cursor-not-allowed data-disabled:text-ink-disabled data-disabled:hover:bg-transparent"</span>&gt;
+      {node.branch <span style="color:var(--ui-tag-color-magenta)">?</span> &lt;<span style="color:var(--ui-tag-color-blue)">TreeView.Toggle</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"w-4 text-center"</span>&gt;{node.expanded <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-teal)">'▾'</span> <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-teal)">'▸'</span>}&lt;/<span style="color:var(--ui-tag-color-blue)">TreeView.Toggle</span>&gt; <span style="color:var(--ui-tag-color-magenta)">:</span> &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"w-4"</span> /&gt;}
+      {children}
+    &lt;/<span style="color:var(--ui-tag-color-blue)">TreeView.Row</span>&gt;
+  );
+}
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> nodeClass <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'outline-none [&amp;:focus-visible&gt;:first-child]:outline-2 [&amp;:focus-visible&gt;:first-child]:-outline-offset-2 [&amp;:focus-visible&gt;:first-child]:outline-focus'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [multiselect, setMultiselect] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-green)">true</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [selected, setSelected] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>&lt;<span style="color:var(--ui-tag-color-cyan)">string</span>[]&gt;([<span style="color:var(--ui-tag-color-teal)">'contracts-team'</span>]);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [active, setActive] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">'contracts-team'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid max-w-xs gap-3"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">label</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex items-center gap-2 text-sm text-ink"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">input</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"checkbox"</span> <span style="color:var(--ui-tag-color-purple)">checked</span><span style="color:var(--ui-tag-color-magenta)">=</span>{multiselect} <span style="color:var(--ui-tag-color-purple)">onChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setMultiselect</span>(e.target.checked)} /&gt;
+        multiselect
+      &lt;/<span style="color:var(--ui-tag-color-blue)">label</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">TreeView.Root</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Share with"</span> <span style="color:var(--ui-tag-color-purple)">multiselect</span><span style="color:var(--ui-tag-color-magenta)">=</span>{multiselect} <span style="color:var(--ui-tag-color-purple)">selected</span><span style="color:var(--ui-tag-color-magenta)">=</span>{selected} <span style="color:var(--ui-tag-color-purple)">onSelect</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(next) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setSelected</span>(next)} <span style="color:var(--ui-tag-color-purple)">active</span><span style="color:var(--ui-tag-color-magenta)">=</span>{active} <span style="color:var(--ui-tag-color-purple)">onActivate</span><span style="color:var(--ui-tag-color-magenta)">=</span>{setActive} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"bg-layer-1"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">TreeView.Node</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"legal"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Legal"</span> <span style="color:var(--ui-tag-color-purple)">hasChildren</span> <span style="color:var(--ui-tag-color-purple)">defaultExpanded</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{nodeClass}&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Row</span>&gt;Legal&lt;/<span style="color:var(--ui-tag-color-blue)">Row</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">TreeView.Group</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">TreeView.Node</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"contracts-team"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contracts team"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{nodeClass}&gt;&lt;<span style="color:var(--ui-tag-color-blue)">Row</span>&gt;Contracts team&lt;/<span style="color:var(--ui-tag-color-blue)">Row</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">TreeView.Node</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">TreeView.Node</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"litigation"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Litigation team"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{nodeClass}&gt;&lt;<span style="color:var(--ui-tag-color-blue)">Row</span>&gt;Litigation team&lt;/<span style="color:var(--ui-tag-color-blue)">Row</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">TreeView.Node</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">TreeView.Group</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">TreeView.Node</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">TreeView.Node</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"finance"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Finance"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{nodeClass}&gt;&lt;<span style="color:var(--ui-tag-color-blue)">Row</span>&gt;Finance&lt;/<span style="color:var(--ui-tag-color-blue)">Row</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">TreeView.Node</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">TreeView.Node</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"archive"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Archive (read only)"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{nodeClass}&gt;&lt;<span style="color:var(--ui-tag-color-blue)">Row</span>&gt;Archive (read only)&lt;/<span style="color:var(--ui-tag-color-blue)">Row</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">TreeView.Node</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">TreeView.Root</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-ink-muted"</span>&gt;Selected: {selected.<span style="color:var(--ui-tag-color-cyan)">join</span>(<span style="color:var(--ui-tag-color-teal)">', '</span>) <span style="color:var(--ui-tag-color-magenta)">||</span> <span style="color:var(--ui-tag-color-teal)">'(none)'</span>} · active: {active <span style="color:var(--ui-tag-color-magenta)">||</span> <span style="color:var(--ui-tag-color-teal)">'(none)'</span>}&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<p>A <code>disabled</code> node can't be selected or opened, and the arrow keys skip it.</p>
+<h2 id="open-and-close-branches">Open and close branches</h2>
+<p>Each <code>Node</code> keeps its own open state (<code>defaultExpanded</code>), or takes <code>expanded</code> with <code>onToggle</code> when you hold it, for example for an &quot;Expand all&quot; button. Right opens a branch and Left closes it; the <code>Toggle</code> caret does the same with the mouse.</p>
+<div class="doc-demo" data-react-example="2"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { useState, <span style="color:var(--ui-tag-color-magenta)">type</span> ReactNode } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { TreeView } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> branches <span style="color:var(--ui-tag-color-magenta)">=</span> [<span style="color:var(--ui-tag-color-teal)">'hq'</span>, <span style="color:var(--ui-tag-color-teal)">'legal'</span>, <span style="color:var(--ui-tag-color-teal)">'branches'</span>];
+
+<span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Row</span>({ children }<span style="color:var(--ui-tag-color-magenta)">:</span> { children<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">ReactNode</span> }) {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> node <span style="color:var(--ui-tag-color-magenta)">=</span> TreeView.<span style="color:var(--ui-tag-color-cyan)">useNodeContext</span>();
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">TreeView.Row</span> <span style="color:var(--ui-tag-color-purple)">style</span><span style="color:var(--ui-tag-color-magenta)">=</span>{{ <span style="color:var(--ui-tag-color-purple)">paddingInlineStart:</span> <span style="color:var(--ui-tag-color-green)">8</span> <span style="color:var(--ui-tag-color-magenta)">+</span> node.depth <span style="color:var(--ui-tag-color-magenta)">*</span> <span style="color:var(--ui-tag-color-green)">24</span> }} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex h-8 cursor-pointer items-center gap-2 pe-4 text-sm text-ink-muted hover:bg-ghost-hover data-selected:bg-layer-selected-1 data-selected:text-ink"</span>&gt;
+      {node.branch <span style="color:var(--ui-tag-color-magenta)">?</span> &lt;<span style="color:var(--ui-tag-color-blue)">TreeView.Toggle</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"w-4 text-center"</span>&gt;{node.expanded <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-teal)">'▾'</span> <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-teal)">'▸'</span>}&lt;/<span style="color:var(--ui-tag-color-blue)">TreeView.Toggle</span>&gt; <span style="color:var(--ui-tag-color-magenta)">:</span> &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"w-4"</span> /&gt;}
+      {children}
+    &lt;/<span style="color:var(--ui-tag-color-blue)">TreeView.Row</span>&gt;
+  );
+}
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> nodeClass <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'outline-none [&amp;:focus-visible&gt;:first-child]:outline-2 [&amp;:focus-visible&gt;:first-child]:-outline-offset-2 [&amp;:focus-visible&gt;:first-child]:outline-focus'</span>;
+<span style="color:var(--ui-tag-color-magenta)">const</span> button <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'h-8 px-3 text-sm text-link hover:bg-ghost-hover focus-visible:outline-2 focus-visible:outline-focus'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [open, setOpen] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>&lt;<span style="color:var(--ui-tag-color-cyan)">string</span>[]&gt;([<span style="color:var(--ui-tag-color-teal)">'hq'</span>]);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> <span style="color:var(--ui-tag-color-cyan)">props</span> <span style="color:var(--ui-tag-color-magenta)">=</span> (value<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> ({
+    <span style="color:var(--ui-tag-color-purple)">expanded:</span> open.<span style="color:var(--ui-tag-color-cyan)">includes</span>(value),
+    <span style="color:var(--ui-tag-color-cyan)">onToggle</span><span style="color:var(--ui-tag-color-purple)">:</span> (expanded<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">boolean</span>) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>((now) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (expanded <span style="color:var(--ui-tag-color-magenta)">?</span> [<span style="color:var(--ui-tag-color-magenta)">...</span>now, value] <span style="color:var(--ui-tag-color-magenta)">:</span> now.<span style="color:var(--ui-tag-color-cyan)">filter</span>((v) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> v <span style="color:var(--ui-tag-color-magenta)">!==</span> value))),
+  });
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid max-w-xs gap-2"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex gap-2"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">button</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"button"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{button} <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(branches)}&gt;Expand all&lt;/<span style="color:var(--ui-tag-color-blue)">button</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">button</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"button"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{button} <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>([])}&gt;Collapse all&lt;/<span style="color:var(--ui-tag-color-blue)">button</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">TreeView.Root</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Organisation"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"bg-layer-1"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">TreeView.Node</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"hq"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Head office"</span> <span style="color:var(--ui-tag-color-purple)">hasChildren</span> {<span style="color:var(--ui-tag-color-magenta)">...</span><span style="color:var(--ui-tag-color-cyan)">props</span>(<span style="color:var(--ui-tag-color-teal)">'hq'</span>)} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{nodeClass}&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Row</span>&gt;Head office&lt;/<span style="color:var(--ui-tag-color-blue)">Row</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">TreeView.Group</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">TreeView.Node</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"legal"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Legal"</span> <span style="color:var(--ui-tag-color-purple)">hasChildren</span> {<span style="color:var(--ui-tag-color-magenta)">...</span><span style="color:var(--ui-tag-color-cyan)">props</span>(<span style="color:var(--ui-tag-color-teal)">'legal'</span>)} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{nodeClass}&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">Row</span>&gt;Legal&lt;/<span style="color:var(--ui-tag-color-blue)">Row</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">TreeView.Group</span>&gt;
+                &lt;<span style="color:var(--ui-tag-color-blue)">TreeView.Node</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"contracts"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contracts team"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{nodeClass}&gt;&lt;<span style="color:var(--ui-tag-color-blue)">Row</span>&gt;Contracts team&lt;/<span style="color:var(--ui-tag-color-blue)">Row</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">TreeView.Node</span>&gt;
+              &lt;/<span style="color:var(--ui-tag-color-blue)">TreeView.Group</span>&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">TreeView.Node</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">TreeView.Node</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"finance"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Finance"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{nodeClass}&gt;&lt;<span style="color:var(--ui-tag-color-blue)">Row</span>&gt;Finance&lt;/<span style="color:var(--ui-tag-color-blue)">Row</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">TreeView.Node</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">TreeView.Group</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">TreeView.Node</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">TreeView.Node</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"branches"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Branches"</span> <span style="color:var(--ui-tag-color-purple)">hasChildren</span> {<span style="color:var(--ui-tag-color-magenta)">...</span><span style="color:var(--ui-tag-color-cyan)">props</span>(<span style="color:var(--ui-tag-color-teal)">'branches'</span>)} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{nodeClass}&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Row</span>&gt;Branches&lt;/<span style="color:var(--ui-tag-color-blue)">Row</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">TreeView.Group</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">TreeView.Node</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"cnx"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Chiang Mai"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{nodeClass}&gt;&lt;<span style="color:var(--ui-tag-color-blue)">Row</span>&gt;Chiang Mai&lt;/<span style="color:var(--ui-tag-color-blue)">Row</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">TreeView.Node</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">TreeView.Group</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">TreeView.Node</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">TreeView.Root</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-ink-muted"</span>&gt;Open: {open.<span style="color:var(--ui-tag-color-cyan)">join</span>(<span style="color:var(--ui-tag-color-teal)">', '</span>) <span style="color:var(--ui-tag-color-magenta)">||</span> <span style="color:var(--ui-tag-color-teal)">'(none)'</span>}&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<h2 id="load-children-on-demand">Load children on demand</h2>
+<p><code>lazy</code> makes a node a branch before it has children. The first time it opens, it gets <code>data-loading</code> and <code>aria-busy</code> and calls <code>onLazyLoad(value)</code>: render the children when they arrive. A returned promise that resolves while there are still no children makes the node a leaf; one that rejects closes it, so opening it again retries.</p>
+<div class="doc-demo" data-react-example="3"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { useState, <span style="color:var(--ui-tag-color-magenta)">type</span> ReactNode } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { TreeView } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Row</span>({ children }<span style="color:var(--ui-tag-color-magenta)">:</span> { children<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">ReactNode</span> }) {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> node <span style="color:var(--ui-tag-color-magenta)">=</span> TreeView.<span style="color:var(--ui-tag-color-cyan)">useNodeContext</span>();
+  <span style="color:var(--ui-tag-color-magenta)">let</span> caret<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">ReactNode</span> <span style="color:var(--ui-tag-color-magenta)">=</span> &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"w-4"</span> /&gt;;
+  <span style="color:var(--ui-tag-color-magenta)">if</span> (node.loading) caret <span style="color:var(--ui-tag-color-magenta)">=</span> &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-3 animate-spin rounded-full border-2 border-border-subtle-1 border-t-interactive"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> /&gt;;
+  <span style="color:var(--ui-tag-color-magenta)">else</span> <span style="color:var(--ui-tag-color-magenta)">if</span> (node.branch) caret <span style="color:var(--ui-tag-color-magenta)">=</span> &lt;<span style="color:var(--ui-tag-color-blue)">TreeView.Toggle</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"w-4 text-center"</span>&gt;{node.expanded <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-teal)">'▾'</span> <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-teal)">'▸'</span>}&lt;/<span style="color:var(--ui-tag-color-blue)">TreeView.Toggle</span>&gt;;
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">TreeView.Row</span> <span style="color:var(--ui-tag-color-purple)">style</span><span style="color:var(--ui-tag-color-magenta)">=</span>{{ <span style="color:var(--ui-tag-color-purple)">paddingInlineStart:</span> <span style="color:var(--ui-tag-color-green)">8</span> <span style="color:var(--ui-tag-color-magenta)">+</span> node.depth <span style="color:var(--ui-tag-color-magenta)">*</span> <span style="color:var(--ui-tag-color-green)">24</span> }} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex h-8 cursor-pointer items-center gap-2 pe-4 text-sm text-ink-muted hover:bg-ghost-hover data-selected:bg-layer-selected-1 data-selected:text-ink"</span>&gt;
+      {caret}
+      {children}
+      {node.loading <span style="color:var(--ui-tag-color-magenta)">?</span> &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sr-only"</span>&gt;, loading&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt; <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-green)">null</span>}
+    &lt;/<span style="color:var(--ui-tag-color-blue)">TreeView.Row</span>&gt;
+  );
+}
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> nodeClass <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'outline-none [&amp;:focus-visible&gt;:first-child]:outline-2 [&amp;:focus-visible&gt;:first-child]:-outline-offset-2 [&amp;:focus-visible&gt;:first-child]:outline-focus'</span>;
+<span style="color:var(--ui-tag-color-magenta)">const</span> folders <span style="color:var(--ui-tag-color-magenta)">=</span> [
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'civil'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Civil cases'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'criminal'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Criminal cases'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'empty'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Empty folder'</span> },
+];
+
+<span style="color:var(--ui-ink-muted);font-style:italic">/** A pretend server: three files after 800ms, none for the empty folder. */</span>
+<span style="color:var(--ui-tag-color-magenta)">const</span> <span style="color:var(--ui-tag-color-cyan)">fetchFolder</span> <span style="color:var(--ui-tag-color-magenta)">=</span> (value<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span>
+  <span style="color:var(--ui-tag-color-magenta)">new</span> Promise&lt;<span style="color:var(--ui-tag-color-cyan)">string</span>[]&gt;((resolve) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setTimeout</span>(() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">resolve</span>(value <span style="color:var(--ui-tag-color-magenta)">===</span> <span style="color:var(--ui-tag-color-teal)">'empty'</span> <span style="color:var(--ui-tag-color-magenta)">?</span> [] <span style="color:var(--ui-tag-color-magenta)">:</span> [<span style="color:var(--ui-tag-color-green)">1</span>, <span style="color:var(--ui-tag-color-green)">2</span>, <span style="color:var(--ui-tag-color-green)">3</span>].<span style="color:var(--ui-tag-color-cyan)">map</span>((n) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-teal)">`${</span><span style="color:var(--ui-tag-color-teal)">value</span><span style="color:var(--ui-tag-color-teal)">}-${</span><span style="color:var(--ui-tag-color-teal)">n</span><span style="color:var(--ui-tag-color-teal)">}`</span>)), <span style="color:var(--ui-tag-color-green)">800</span>));
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [children, setChildren] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>&lt;<span style="color:var(--ui-tag-color-cyan)">Record</span>&lt;<span style="color:var(--ui-tag-color-cyan)">string</span>, <span style="color:var(--ui-tag-color-cyan)">string</span>[]&gt;&gt;({});
+  <span style="color:var(--ui-tag-color-magenta)">const</span> <span style="color:var(--ui-tag-color-cyan)">load</span> <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-magenta)">async</span> (value<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    <span style="color:var(--ui-tag-color-magenta)">const</span> files <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-magenta)">await</span> <span style="color:var(--ui-tag-color-cyan)">fetchFolder</span>(value);
+    <span style="color:var(--ui-tag-color-cyan)">setChildren</span>((now) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> ({ <span style="color:var(--ui-tag-color-magenta)">...</span>now, <span style="color:var(--ui-tag-color-purple)">[value]:</span> files }));
+  };
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">TreeView.Root</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Case files on the server"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"max-w-xs bg-layer-1"</span>&gt;
+      {folders.<span style="color:var(--ui-tag-color-cyan)">map</span>((folder) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+        <span style="color:var(--ui-tag-color-magenta)">const</span> files <span style="color:var(--ui-tag-color-magenta)">=</span> children[folder.value] <span style="color:var(--ui-tag-color-magenta)">??</span> [];
+        <span style="color:var(--ui-tag-color-magenta)">return</span> (
+          &lt;<span style="color:var(--ui-tag-color-blue)">TreeView.Node</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{folder.value} <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{folder.value} <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span>{folder.label} <span style="color:var(--ui-tag-color-purple)">lazy</span> <span style="color:var(--ui-tag-color-purple)">hasChildren</span><span style="color:var(--ui-tag-color-magenta)">=</span>{files.length <span style="color:var(--ui-tag-color-magenta)">&gt;</span> <span style="color:var(--ui-tag-color-green)">0</span>} <span style="color:var(--ui-tag-color-purple)">onLazyLoad</span><span style="color:var(--ui-tag-color-magenta)">=</span>{load} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{nodeClass}&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">Row</span>&gt;{folder.label}&lt;/<span style="color:var(--ui-tag-color-blue)">Row</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">TreeView.Group</span>&gt;
+              {files.<span style="color:var(--ui-tag-color-cyan)">map</span>((file) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+                &lt;<span style="color:var(--ui-tag-color-blue)">TreeView.Node</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{file} <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{file} <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span>{file} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{nodeClass}&gt;
+                  &lt;<span style="color:var(--ui-tag-color-blue)">Row</span>&gt;File {file}&lt;/<span style="color:var(--ui-tag-color-blue)">Row</span>&gt;
+                &lt;/<span style="color:var(--ui-tag-color-blue)">TreeView.Node</span>&gt;
+              ))}
+            &lt;/<span style="color:var(--ui-tag-color-blue)">TreeView.Group</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">TreeView.Node</span>&gt;
+        );
+      })}
+    &lt;/<span style="color:var(--ui-tag-color-blue)">TreeView.Root</span>&gt;
+  );
+}</ui-code-snippet>
+<h2 id="links">Links</h2>
+<p>Put an <code>&lt;a&gt;</code> in a node's <code>Row</code>. Enter follows the node's own link (after selecting it); keep the link out of the Tab order with <code>tabIndex={-1}</code>, since the node takes the keyboard.</p>
+<div class="doc-demo" data-react-example="4"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { useState } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { TreeView } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> policies <span style="color:var(--ui-tag-color-magenta)">=</span> [
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'retention'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Retention policy'</span>, <span style="color:var(--ui-tag-color-purple)">href:</span> <span style="color:var(--ui-tag-color-teal)">'#retention'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'signing'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Signing authority'</span>, <span style="color:var(--ui-tag-color-purple)">href:</span> <span style="color:var(--ui-tag-color-teal)">'#signing'</span> },
+];
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [opened, setOpened] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">''</span>);
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid max-w-xs gap-2"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">TreeView.Root</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Policies"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"bg-layer-1"</span>&gt;
+        {policies.<span style="color:var(--ui-tag-color-cyan)">map</span>((p) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+          &lt;<span style="color:var(--ui-tag-color-blue)">TreeView.Node</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{p.value} <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{p.value} <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span>{p.label} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"outline-none [&amp;:focus-visible&gt;:first-child]:outline-2 [&amp;:focus-visible&gt;:first-child]:-outline-offset-2 [&amp;:focus-visible&gt;:first-child]:outline-focus"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">TreeView.Row</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex h-8 items-center px-4 text-sm hover:bg-ghost-hover data-selected:bg-layer-selected-1"</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">a</span>
+                <span style="color:var(--ui-tag-color-purple)">href</span><span style="color:var(--ui-tag-color-magenta)">=</span>{p.href}
+                <span style="color:var(--ui-tag-color-purple)">tabIndex</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-magenta)">-</span><span style="color:var(--ui-tag-color-green)">1</span>}
+                <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-link no-underline"</span>
+                <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+                  e.<span style="color:var(--ui-tag-color-cyan)">preventDefault</span>(); <span style="color:var(--ui-ink-muted);font-style:italic">// route in the app instead</span>
+                  <span style="color:var(--ui-tag-color-cyan)">setOpened</span>(p.href);
+                }}
+              &gt;
+                {p.label}
+              &lt;/<span style="color:var(--ui-tag-color-blue)">a</span>&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">TreeView.Row</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">TreeView.Node</span>&gt;
+        ))}
+      &lt;/<span style="color:var(--ui-tag-color-blue)">TreeView.Root</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-ink-muted"</span>&gt;Would open: {opened}&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<h2 id="style-it">Style it</h2>
+<div class="doc-demo" data-react-example="5"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> <span style="color:var(--ui-tag-color-magenta)">type</span> { ReactNode } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { TreeView } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> folderIcon <span style="color:var(--ui-tag-color-magenta)">=</span> &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M14 4H8.6L7.3 2.3A1 1 0 0 0 6.5 2H2a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1ZM2 3h4.5l1.3 1.7A1 1 0 0 0 8.6 5H14v1H2Zm0 10V7h12v6Z"</span> /&gt;;
+<span style="color:var(--ui-tag-color-magenta)">const</span> docIcon <span style="color:var(--ui-tag-color-magenta)">=</span> &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M13 3.6 10.4 1H3v14h10zM10 2.4 11.6 4H10zM4 14V2h5v3h3v9z"</span> /&gt;;
+
+<span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Row</span>({ children }<span style="color:var(--ui-tag-color-magenta)">:</span> { children<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">ReactNode</span> }) {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> node <span style="color:var(--ui-tag-color-magenta)">=</span> TreeView.<span style="color:var(--ui-tag-color-cyan)">useNodeContext</span>();
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">TreeView.Row</span>
+      <span style="color:var(--ui-tag-color-purple)">style</span><span style="color:var(--ui-tag-color-magenta)">=</span>{{ <span style="color:var(--ui-tag-color-purple)">paddingInlineStart:</span> <span style="color:var(--ui-tag-color-green)">8</span> <span style="color:var(--ui-tag-color-magenta)">+</span> node.depth <span style="color:var(--ui-tag-color-magenta)">*</span> <span style="color:var(--ui-tag-color-green)">24</span> }}
+      <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"group/row relative flex h-8 cursor-pointer items-center gap-2 pe-4 text-sm text-ink-muted hover:bg-ghost-hover hover:text-ink data-selected:bg-layer-selected-1 data-selected:text-ink data-active:before:absolute data-active:before:inset-y-0 data-active:before:start-0 data-active:before:w-1 data-active:before:bg-interactive data-disabled:cursor-not-allowed data-disabled:text-ink-disabled"</span>
+    &gt;
+      {node.branch <span style="color:var(--ui-tag-color-magenta)">?</span> (
+        &lt;<span style="color:var(--ui-tag-color-blue)">TreeView.Toggle</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex size-4 items-center justify-center"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-4 -rotate-90 fill-icon-secondary transition-transform group-data-expanded/row:rotate-0"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M8 11 3 6l.7-.7L8 9.6l4.3-4.3.7.7z"</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">TreeView.Toggle</span>&gt;
+      ) <span style="color:var(--ui-tag-color-magenta)">:</span> (
+        &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-4"</span> /&gt;
+      )}
+      &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-4 fill-icon-secondary group-data-selected/row:fill-icon-primary"</span>&gt;{node.branch <span style="color:var(--ui-tag-color-magenta)">?</span> folderIcon <span style="color:var(--ui-tag-color-magenta)">:</span> docIcon}&lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+      {children}
+    &lt;/<span style="color:var(--ui-tag-color-blue)">TreeView.Row</span>&gt;
+  );
+}
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> nodeClass <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'outline-none [&amp;:focus-visible&gt;:first-child]:outline-2 [&amp;:focus-visible&gt;:first-child]:-outline-offset-2 [&amp;:focus-visible&gt;:first-child]:outline-focus'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">TreeView.Root</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contract folder"</span> <span style="color:var(--ui-tag-color-purple)">defaultSelected</span><span style="color:var(--ui-tag-color-magenta)">=</span>{[<span style="color:var(--ui-tag-color-teal)">'sa'</span>]} <span style="color:var(--ui-tag-color-purple)">defaultActive</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sa"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"max-w-xs bg-layer-1"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">TreeView.Node</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"acme"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Acme Co., Ltd."</span> <span style="color:var(--ui-tag-color-purple)">hasChildren</span> <span style="color:var(--ui-tag-color-purple)">defaultExpanded</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{nodeClass}&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Row</span>&gt;Acme Co., Ltd.&lt;/<span style="color:var(--ui-tag-color-blue)">Row</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">TreeView.Group</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">TreeView.Node</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sa"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Service agreement.pdf"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{nodeClass}&gt;&lt;<span style="color:var(--ui-tag-color-blue)">Row</span>&gt;Service agreement.pdf&lt;/<span style="color:var(--ui-tag-color-blue)">Row</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">TreeView.Node</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">TreeView.Node</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"pl"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Price list.pdf"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{nodeClass}&gt;&lt;<span style="color:var(--ui-tag-color-blue)">Row</span>&gt;Price list.pdf&lt;/<span style="color:var(--ui-tag-color-blue)">Row</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">TreeView.Node</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">TreeView.Node</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"draft"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Draft.pdf"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{nodeClass}&gt;&lt;<span style="color:var(--ui-tag-color-blue)">Row</span>&gt;Draft.pdf&lt;/<span style="color:var(--ui-tag-color-blue)">Row</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">TreeView.Node</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">TreeView.Group</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">TreeView.Node</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">TreeView.Root</span>&gt;
+  );
+}</ui-code-snippet>
+<ui-code-snippet type="multi" class="doc-code" data-lang="css">[<span style="color:var(--ui-tag-color-purple)">role</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">'treeitem'</span>] { <span style="color:var(--ui-tag-color-purple)">outline</span>: <span style="color:var(--ui-tag-color-green)">none</span>; }
+[<span style="color:var(--ui-tag-color-purple)">role</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">'treeitem'</span>]<span style="color:var(--ui-tag-color-purple)">:focus-visible</span> <span style="color:var(--ui-tag-color-magenta)">&gt;</span> <span style="color:var(--ui-tag-color-purple)">.tree-row</span> { <span style="color:var(--ui-tag-color-purple)">outline</span>: <span style="color:var(--ui-tag-color-green)">2px</span> <span style="color:var(--ui-tag-color-green)">solid</span> #0f62fe; <span style="color:var(--ui-tag-color-purple)">outline-offset</span>: <span style="color:var(--ui-tag-color-green)">-2px</span>; }
+<span style="color:var(--ui-tag-color-purple)">.tree-row:hover</span> { <span style="color:var(--ui-tag-color-purple)">background</span>: #e8e8e8; }
+<span style="color:var(--ui-tag-color-purple)">.tree-row</span>[<span style="color:var(--ui-tag-color-purple)">data-selected</span>] { <span style="color:var(--ui-tag-color-purple)">background</span>: #e0e0e0; <span style="color:var(--ui-tag-color-purple)">color</span>: #161616; }
+<span style="color:var(--ui-tag-color-purple)">.tree-row</span>[<span style="color:var(--ui-tag-color-purple)">data-active</span>] { <span style="color:var(--ui-tag-color-purple)">box-shadow</span>: <span style="color:var(--ui-tag-color-green)">inset</span> <span style="color:var(--ui-tag-color-green)">4px</span> <span style="color:var(--ui-tag-color-green)">0</span> <span style="color:var(--ui-tag-color-green)">0</span> #0f62fe; }
+<span style="color:var(--ui-tag-color-purple)">.tree-row</span>[<span style="color:var(--ui-tag-color-purple)">data-disabled</span>] { <span style="color:var(--ui-tag-color-purple)">color</span>: #c6c6c6; <span style="color:var(--ui-tag-color-purple)">cursor</span>: <span style="color:var(--ui-tag-color-green)">not-allowed</span>; }
+<span style="color:var(--ui-tag-color-purple)">.tree-caret</span> { <span style="color:var(--ui-tag-color-purple)">transform</span>: <span style="color:var(--ui-tag-color-cyan)">rotate</span>(<span style="color:var(--ui-tag-color-green)">-90deg</span>); }
+<span style="color:var(--ui-tag-color-purple)">.tree-caret</span>[<span style="color:var(--ui-tag-color-purple)">data-expanded</span>] { <span style="color:var(--ui-tag-color-purple)">transform</span>: <span style="color:var(--ui-tag-color-green)">none</span>; }</ui-code-snippet>
+<h2 id="parts">Parts</h2>
+<h3 id="treeview-root">TreeView.Root</h3>
+<p>Renders a <code>&lt;div role=&quot;tree&quot;&gt;</code> and handles the keys, clicks and the one Tab stop for every node inside. It takes every <code>&lt;div&gt;</code> prop except <code>role</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>multiselect</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Ctrl / ⌘ + click and Space toggle nodes; Ctrl / ⌘ + A selects all (<code>aria-multiselectable</code>)</td>
+</tr>
+<tr>
+<td><code>selected</code></td>
+<td><code>readonly string[]</code></td>
+<td></td>
+<td>Selected node values (controlled)</td>
+</tr>
+<tr>
+<td><code>defaultSelected</code></td>
+<td><code>readonly string[]</code></td>
+<td><code>[]</code></td>
+<td>The starting selection (uncontrolled)</td>
+</tr>
+<tr>
+<td><code>onSelect</code></td>
+<td><code>(selected: string[], value: string) =&gt; void</code></td>
+<td></td>
+<td>After the user changed the selection; <code>value</code> is the node that did it</td>
+</tr>
+<tr>
+<td><code>active</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>The node last activated (controlled)</td>
+</tr>
+<tr>
+<td><code>defaultActive</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>The starting active node (uncontrolled)</td>
+</tr>
+<tr>
+<td><code>onActivate</code></td>
+<td><code>(value: string) =&gt; void</code></td>
+<td></td>
+<td>After a node became the active one</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-multiselect</code></td>
+<td><code>multiselect</code> is set</td>
+</tr>
+</tbody>
+</table>
+<p><code>TreeView.useTreeViewContext()</code> returns <code>multiselect</code>, <code>selected</code>, <code>active</code> and <code>tabStop</code> to any component inside <code>Root</code>.</p>
+<h3 id="treeview-node">TreeView.Node</h3>
+<p>Renders a <code>&lt;div role=&quot;treeitem&quot;&gt;</code> with <code>aria-expanded</code> (branches), <code>aria-selected</code>, <code>aria-disabled</code> and <code>aria-busy</code>. Put its <code>Row</code> and, for a branch, its <code>Group</code> inside. It takes every <code>&lt;div&gt;</code> prop except <code>role</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>value</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Identifies the node in <code>selected</code> and <code>active</code> (required)</td>
+</tr>
+<tr>
+<td><code>label</code></td>
+<td><code>string</code></td>
+<td><code>value</code></td>
+<td>The text typing matches</td>
+</tr>
+<tr>
+<td><code>hasChildren</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>The node has child nodes in its <code>Group</code>: a branch</td>
+</tr>
+<tr>
+<td><code>disabled</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Can't be selected or opened; the keys skip it</td>
+</tr>
+<tr>
+<td><code>expanded</code></td>
+<td><code>boolean</code></td>
+<td></td>
+<td>Open (controlled)</td>
+</tr>
+<tr>
+<td><code>defaultExpanded</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Open at first (uncontrolled)</td>
+</tr>
+<tr>
+<td><code>onToggle</code></td>
+<td><code>(expanded: boolean) =&gt; void</code></td>
+<td></td>
+<td>After the branch opened or closed</td>
+</tr>
+<tr>
+<td><code>lazy</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>A branch whose children aren't loaded yet</td>
+</tr>
+<tr>
+<td><code>onLazyLoad</code></td>
+<td><code>(value: string) =&gt; void | Promise&lt;void&gt;</code></td>
+<td></td>
+<td>Called the first time a <code>lazy</code> node opens</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-selected</code></td>
+<td>The node is selected</td>
+</tr>
+<tr>
+<td><code>data-active</code></td>
+<td>The node is the active one</td>
+</tr>
+<tr>
+<td><code>data-disabled</code></td>
+<td><code>disabled</code> is set</td>
+</tr>
+<tr>
+<td><code>data-branch</code></td>
+<td>It has children, or is <code>lazy</code> and may get some</td>
+</tr>
+<tr>
+<td><code>data-expanded</code></td>
+<td>A branch that is open</td>
+</tr>
+<tr>
+<td><code>data-loading</code></td>
+<td>A <code>lazy</code> node waiting for its children</td>
+</tr>
+</tbody>
+</table>
+<p><code>TreeView.useNodeContext()</code> returns the node's <code>value</code>, <code>branch</code>, <code>expanded</code>, <code>loading</code>, <code>selected</code>, <code>active</code>, <code>disabled</code>, <code>depth</code> (0 at the top level), <code>rowId</code> and <code>toggle(expanded)</code>.</p>
+<h3 id="treeview-row">TreeView.Row</h3>
+<p>Renders a <code>&lt;div&gt;</code>: what the user sees and clicks. Its id names the node's <code>Group</code>. It has the same <code>data-*</code> attributes as its <code>Node</code>.</p>
+<h3 id="treeview-toggle">TreeView.Toggle</h3>
+<p>Renders a <code>&lt;button type=&quot;button&quot;&gt;</code> that opens and closes the branch; a click on the rest of the row selects instead. It is out of the Tab order and hidden from assistive tech (<code>aria-hidden</code>), since the node takes the keyboard.</p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-expanded</code></td>
+<td>The branch is open</td>
+</tr>
+</tbody>
+</table>
+<h3 id="treeview-group">TreeView.Group</h3>
+<p>Renders a <code>&lt;div role=&quot;group&quot;&gt;</code> holding the child nodes, named by the row (<code>aria-labelledby</code>) and <code>hidden</code> while the branch is closed. Each <code>Group</code> adds one to the depth of the nodes inside.</p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-expanded</code></td>
+<td>The branch is open</td>
+</tr>
+</tbody>
+</table>
+<h2 id="keyboard-and-accessibility">Keyboard and accessibility</h2>
+<ul>
+<li>One Tab stop for the whole tree: the node focused last, else the selected one, else the first visible one.</li>
+<li>Up / Down move through the visible nodes, Home / End jump to the first / last. Right opens a branch or moves to its first child; Left closes it or moves to the parent.</li>
+<li>Enter opens or closes a branch, selects the node and follows the node's own link. Space selects (toggles in a <code>multiselect</code> tree). Typing a letter moves to the next node whose <code>label</code> starts with it.</li>
+<li>You add the tree's name (<code>aria-label</code> or <code>aria-labelledby</code> on <code>Root</code>), the indent, the caret and a visible focus style on the row.</li>
+<li>Say &quot;loading&quot; for a loading node in its row (for example a visually hidden text), as the styled tree does.</li>
+</ul>
+
+</article>
+<nav class="doc-toc" aria-labelledby="doc-toc-title"><p id="doc-toc-title" class="doc-toc-title">On this page</p><ul><li class="doc-toc-h2"><a href="#installation">Installation</a></li><li class="doc-toc-h2"><a href="#use-it">Use it</a></li><li class="doc-toc-h2"><a href="#anatomy">Anatomy</a></li><li class="doc-toc-h2"><a href="#selection-and-the-active-node">Selection and the active node</a></li><li class="doc-toc-h2"><a href="#open-and-close-branches">Open and close branches</a></li><li class="doc-toc-h2"><a href="#load-children-on-demand">Load children on demand</a></li><li class="doc-toc-h2"><a href="#links">Links</a></li><li class="doc-toc-h2"><a href="#style-it">Style it</a></li><li class="doc-toc-h2"><a href="#parts">Parts</a></li><li class="doc-toc-h3"><a href="#treeview-root">TreeView.Root</a></li><li class="doc-toc-h3"><a href="#treeview-node">TreeView.Node</a></li><li class="doc-toc-h3"><a href="#treeview-row">TreeView.Row</a></li><li class="doc-toc-h3"><a href="#treeview-toggle">TreeView.Toggle</a></li><li class="doc-toc-h3"><a href="#treeview-group">TreeView.Group</a></li><li class="doc-toc-h2"><a href="#keyboard-and-accessibility">Keyboard and accessibility</a></li></ul></nav>
+</div>
+<nav class="doc-pager" aria-label="Next / Previous"><a class="doc-pager-prev" href="/kanok-ui-docs/en/headless-pagination/" rel="prev"><span>Previous</span>Pagination</a><a class="doc-pager-next" href="/kanok-ui-docs/en/headless-code-snippet/" rel="next"><span>Next</span>Code snippet</a></nav>
+<footer class="doc-footer">@purpurabog/ui 2.3.0 · MIT · <a href="https://cdn.jsdelivr.net/npm/@purpurabog/ui@2.3.0/THIRD-PARTY-NOTICES.md">Third-party notices</a><br>Built on the Carbon Design System. Not affiliated with or endorsed by IBM; IBM and Carbon are trademarks of IBM Corp.</footer>
+</ui-content>
+<ui-modal id="doc-search" heading="Search" data-count="{n} results" data-empty="No results for “{q}”">
+<ui-search label="Search the docs" placeholder="Search the docs" size="lg"></ui-search>
+<p class="doc-search-status" role="status"></p>
+<ul class="doc-search-results"></ul>
+</ui-modal>
+</body>
+</html>

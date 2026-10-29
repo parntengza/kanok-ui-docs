@@ -1,0 +1,1107 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Time picker · @purpurabog/ui</title>
+<link rel="alternate" hreflang="en" href="/kanok-ui-docs/en/time-picker/"  /><link rel="alternate" hreflang="th" href="/kanok-ui-docs/th/time-picker/"  />
+<script>(function(){try{var q=new URLSearchParams(location.search).get("design"),d=q;if(q==="kanok"||q==="carbon")localStorage.setItem("ui-docs-design",q);else d=localStorage.getItem("ui-docs-design");if(d==="kanok")document.documentElement.setAttribute("data-design","kanok")}catch(e){}})();(function(){try{var m=localStorage.getItem("ui-docs-theme");if(m!=="light"&&m!=="dark"&&m!=="system")return;var d=m==="dark"||(m==="system"&&matchMedia("(prefers-color-scheme: dark)").matches),r=document.documentElement,t=d?"g100":"white";if(r.getAttribute("data-design")==="kanok")t=d?"lacquer":"paper";r.setAttribute("data-theme",t)}catch(e){}})();</script>
+<style>ui-header:not(:defined){z-index:8000;box-sizing:border-box;border-block-end:1px solid var(--ui-border-subtle-1);background:var(--ui-canvas);block-size:48px;display:block;position:fixed;inset:0 0 auto}:is(ui-header:not(:defined)>*,ui-side-nav:not(:defined)>*){visibility:hidden}:is(ui-header-panel:not(:defined),ui-modal:not(:defined)){display:none}ui-side-nav:not(:defined){display:none}ui-content:not(:defined){margin-block-start:48px;padding:32px;display:block}@media (width>=1056px){ui-side-nav[expanded]:not(:defined){background:var(--ui-canvas);inline-size:256px;display:block;position:fixed;inset:48px auto 0 0}ui-side-nav[expanded]:not(:defined)~ui-content:not(:defined){margin-inline-start:256px}}ui-tabs:not(:defined){display:block}ui-tabs:not(:defined)>ui-tab{box-sizing:border-box;border-block-end:2px solid var(--ui-hairline);block-size:40px;color:var(--ui-ink-muted);font:var(--ui-font-body-sm);padding:0 16px;line-height:38px;display:inline-block}ui-tabs:not(:defined)>ui-tab:first-of-type{border-block-end-color:var(--ui-interactive);color:var(--ui-ink)}ui-tabs:not(:defined)>ui-tab-panel{padding:16px;display:block}ui-tabs:not(:defined)>ui-tab-panel~ui-tab-panel{display:none}ui-code-snippet:not(:defined){background:var(--ui-layer-1);max-block-size:272px;font:var(--ui-font-code,12px/16px monospace);white-space:pre;padding:16px;display:block;overflow:hidden}[data-react-example]:empty>*{visibility:hidden}.doc-demo:has(:not(:defined))>*{visibility:hidden}[data-react-example]:empty{box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}.doc-demo:has(:not(:defined)){box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}@keyframes doc-skeleton{to{background-position:-200% 0}}@media (prefers-reduced-motion:reduce){[data-react-example]:empty{animation:none}.doc-demo:has(:not(:defined)){animation:none}}</style>
+
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/theme-switcher-BZXGbHfR.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/tab-ChjAM0hz.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/button-DGUm7Yxm.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/date-_JG37lMZ.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/time-picker-1TL-eZRf.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/skeleton-Bt17J2no.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/time-picker-skeleton-CiApr5eO.js"></script>
+  <link rel="stylesheet" crossorigin href="/kanok-ui-docs/assets/theme-switcher-BXY5AIvi.css">
+</head>
+<body>
+<ui-header label="@purpurabog/ui">
+<ui-skip-to-content></ui-skip-to-content>
+<ui-header-menu-button></ui-header-menu-button>
+<ui-header-name href="/kanok-ui-docs/th/" prefix="@purpurabog">ui</ui-header-name>
+<ui-header-global-bar>
+<ui-header-global-action id="doc-search-open" label="ค้นหา" tooltip-placement="bottom"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="m18.5 17.8-4.9-4.9a7 7 0 1 0-.7.7l4.9 4.9zM3 8.5a5.5 5.5 0 1 1 5.5 5.5A5.5 5.5 0 0 1 3 8.5Z" /></svg></ui-header-global-action>
+<ui-header-global-action label="ตั้งค่า" panel="doc-settings" tooltip-placement="bottom-end"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="M16.9 10.6a7 7 0 0 0 0-1.2l1.8-1.4-1.6-2.8-2.1.8a6.6 6.6 0 0 0-1-.6L13.6 3h-3.2l-.4 2.4a6.6 6.6 0 0 0-1 .6l-2.1-.8L5.3 8l1.8 1.4a7 7 0 0 0 0 1.2L5.3 12l1.6 2.8 2.1-.8a6.6 6.6 0 0 0 1 .6l.4 2.4h3.2l.4-2.4a6.6 6.6 0 0 0 1-.6l2.1.8 1.6-2.8zM12 13a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" /></svg></ui-header-global-action>
+</ui-header-global-bar>
+<ui-header-panel id="doc-settings" label="ตั้งค่า">
+<div class="doc-settings">
+<span class="doc-settings-label">ธีม</span>
+<ui-theme-switcher storage-key="ui-docs-theme" tooltip-placement="bottom"></ui-theme-switcher>
+<span class="doc-settings-label">รูปแบบ</span>
+<ui-content-switcher id="doc-design" aria-label="รูปแบบ" size="sm"><ui-content-switcher-item name="carbon">Carbon</ui-content-switcher-item><ui-content-switcher-item name="kanok">Kanok</ui-content-switcher-item></ui-content-switcher>
+<span class="doc-settings-label">ภาษา</span>
+<ui-link href="/kanok-ui-docs/en/time-picker/" hreflang="en" lang="en">English</ui-link>
+</div>
+</ui-header-panel>
+</ui-header>
+<ui-side-nav label="เอกสาร"><ui-side-nav-items><ui-side-nav-menu label="เริ่มต้น"><ui-side-nav-menu-item href="/kanok-ui-docs/th/">ภาพรวม</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/installation/">ติดตั้ง</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/migration-1-0/">การย้ายไป 1.0</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="คู่มือ"><ui-side-nav-menu-item href="/kanok-ui-docs/th/themes/">ธีมและ layer</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/kanok/">ดีไซน์ Kanok</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/customizing/">ปรับแต่งหน้าตา</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/icons/">ไอคอน</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/forms/">ฟอร์มและการตรวจค่า</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/frameworks/">ใช้กับ framework</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/ai/">ใช้กับ AI</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="ฟอร์มและปุ่ม" expanded><ui-side-nav-menu-item href="/kanok-ui-docs/th/button/">Button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/time-picker/" current>Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/file-uploader/">File uploader</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Overlay"><ui-side-nav-menu-item href="/kanok-ui-docs/th/modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/toggletip/">Toggletip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/menu/">Menu</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="ข้อมูล"><ui-side-nav-menu-item href="/kanok-ui-docs/th/data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/contained-list/">Contained list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tree-view/">Tree view</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="การนำทาง"><ui-side-nav-menu-item href="/kanok-ui-docs/th/tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/breadcrumb/">Breadcrumb</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/link/">Link</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/ui-shell/">UI shell</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="เนื้อหา"><ui-side-nav-menu-item href="/kanok-ui-docs/th/tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tile/">Tile</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/user-avatar/">User avatar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/list/">List</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="สถานะและการโหลด"><ui-side-nav-menu-item href="/kanok-ui-docs/th/loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/inline-loading/">Inline loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/progress-bar/">Progress bar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/skeleton/">Skeleton</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/badge-indicator/">Badge indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/status-indicator/">Status indicator</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="เลย์เอาต์"><ui-side-nav-menu-item href="/kanok-ui-docs/th/grid/">Grid</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/heading/">Heading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/layer/">Layer</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/action-set/">Action set</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/page-header/">Page header</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/big-number/">Big number</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Headless"><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless/">แนะนำ</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-file-uploader/">File uploader</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-menu/">Menu</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-ui-shell/">UI shell</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tree-view/">Tree view</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu></ui-side-nav-items></ui-side-nav><script>if(matchMedia('(min-width: 66rem)').matches)document.currentScript.previousElementSibling.setAttribute('expanded','')</script>
+<ui-content>
+<div class="doc-page">
+<article class="doc">
+<h1 id="time-picker">Time picker</h1>
+<p>time picker รับเวลาเป็นข้อความสั้น ๆ แบบ <code>hh:mm</code> และวาง select ไว้ข้าง ๆ ได้ สำหรับ AM / PM และ time zone</p>
+<div class="doc-demo"><ui-time-picker label="เวลาเริ่ม" name="time">
+  <ui-time-picker-select label="AM หรือ PM" name="period">
+    <option value="AM">AM</option>
+    <option value="PM">PM</option>
+  </ui-time-picker-select>
+  <ui-time-picker-select label="Time zone" name="zone">
+    <option value="ict">กรุงเทพฯ (ICT)</option>
+    <option value="utc">UTC</option>
+  </ui-time-picker-select>
+</ui-time-picker>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-1-0">HTML</ui-tab><ui-tab panel="code-1-1">React</ui-tab><ui-tab panel="code-1-2">React + Tailwind</ui-tab><ui-tab-panel name="code-1-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-time-picker</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"เวลาเริ่ม"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"time"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-time-picker-select</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"AM หรือ PM"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"period"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"AM"</span>&gt;AM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"PM"</span>&gt;PM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-time-picker-select</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-time-picker-select</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Time zone"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"zone"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"ict"</span>&gt;กรุงเทพฯ (ICT)&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"utc"</span>&gt;UTC&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-time-picker-select</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-time-picker</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-1-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiTimePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เวลาเริ่ม"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"time"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTimePickerSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM หรือ PM"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"period"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM"</span>&gt;AM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"PM"</span>&gt;PM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiTimePickerSelect</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTimePickerSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Time zone"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"zone"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ict"</span>&gt;กรุงเทพฯ (ICT)&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"utc"</span>&gt;UTC&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiTimePickerSelect</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiTimePicker</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-1-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">TimePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เวลาเริ่ม"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"time"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TimePickerSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM หรือ PM"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"period"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM"</span>&gt;AM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"PM"</span>&gt;PM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">TimePickerSelect</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TimePickerSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Time zone"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"zone"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ict"</span>&gt;กรุงเทพฯ (ICT)&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"utc"</span>&gt;UTC&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">TimePickerSelect</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">TimePicker</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="ติดตั้ง">ติดตั้ง</h2>
+<ui-tabs class="doc-code-tabs" label="โค้ด"><ui-tab panel="code-2-0">npm</ui-tab><ui-tab panel="code-2-1">shadcn · Web component</ui-tab><ui-tab panel="code-2-2">shadcn · React + Tailwind</ui-tab><ui-tab panel="code-2-3">คัดลอกเอง</ui-tab><ui-tab-panel name="code-2-0"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">@purpurabog/ui</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-1"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npx</span> <span style="color:var(--ui-tag-color-teal)">shadcn@4</span> <span style="color:var(--ui-tag-color-teal)">add</span> <span style="color:var(--ui-tag-color-teal)">@kanok-ui/time-picker</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-2"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npx</span> <span style="color:var(--ui-tag-color-teal)">shadcn@4</span> <span style="color:var(--ui-tag-color-teal)">add</span> <span style="color:var(--ui-tag-color-teal)">@kanok-ui/tw-time-picker</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-3"><ui-code-snippet type="multi" class="doc-code" data-lang="bash"><span style="color:var(--ui-ink-muted);font-style:italic"># Web component</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 1. ติดตั้ง dependency</span>
+<span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">lit@^3.3.0</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 2. คัดลอก "content" ของแต่ละไฟล์จาก</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    https://cdn.jsdelivr.net/npm/@purpurabog/ui@2.3.0/registry/time-picker.json</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    ไปไว้ที่ target ของมัน:</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/time-picker/time-picker-select.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/time-picker/time-picker-shared.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/time-picker/time-picker-skeleton.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/time-picker/time-picker.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 3. ทำแบบเดียวกันกับ item ที่มันใช้ (registry/&lt;name&gt;.json):</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    core-date, shared-element, shared-field, shared-form-control, shared-localize, shared-skeleton, shared-slots, tokens</span>
+
+<span style="color:var(--ui-ink-muted);font-style:italic"># React + Tailwind</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 1. ติดตั้ง dependency</span>
+<span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">@purpurabog/ui@^2.3.0</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 2. คัดลอก "content" ของแต่ละไฟล์จาก</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    https://cdn.jsdelivr.net/npm/@purpurabog/ui@2.3.0/registry/tw-time-picker.json</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    ไปไว้ที่ target ของมัน:</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/react-tw/time-picker.tsx</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 3. ทำแบบเดียวกันกับ item ที่มันใช้ (registry/&lt;name&gt;.json):</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    tw-field, tw-i18n, tw-skeleton, tw-theme, tw-utils</span></ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>npm ให้ทุก component จากแพ็กเกจ ส่วน shadcn คัดลอกซอร์สเข้าแอปของคุณแทน เป็นสำเนาที่ล็อกเวอร์ชันนี้และแก้เองได้ คำสั่ง shadcn ต้องตั้ง registry <code>@kanok-ui</code> ใน <code>components.json</code> ครั้งเดียวก่อน ดู <a href="/kanok-ui-docs/th/installation/#react-tailwind-%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2-shadcn">ติดตั้ง</a></p>
+<h2 id="วิธีใช้">วิธีใช้</h2>
+<ui-tabs class="doc-code-tabs" label="โค้ด"><ui-tab panel="code-3-0">HTML</ui-tab><ui-tab panel="code-3-1">React</ui-tab><ui-tab panel="code-3-2">React + Tailwind</ui-tab><ui-tab-panel name="code-3-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;<span style="color:var(--ui-tag-color-magenta)">import</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/time-picker'</span>;&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-time-picker</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"เวลาเริ่ม"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"time"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-time-picker</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-3-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { UiTimePicker, UiTimePickerSelect } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/react'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiTimePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เวลาเริ่ม"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"time"</span> /&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-3-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { TimePicker, TimePickerSelect } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@/components/ui/react-tw/time-picker'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">TimePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เวลาเริ่ม"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"time"</span> /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="12-ชั่วโมงหรือ-24-ชั่วโมง">12 ชั่วโมงหรือ 24 ชั่วโมง</h2>
+<p>ค่าเริ่มต้นช่องรับเวลาแบบ 12 ชั่วโมง <code>h:mm</code> หรือ <code>hh:mm</code> (<code>9:30</code>, <code>09:30</code>, <code>12:45</code>) ยาวไม่เกิน 5 ตัวอักษร pattern ของ Carbon เองไม่รับเลข 0 นำหน้า แต่ตัวนี้รับ ผู้ใช้จึงพิมพ์ตามที่ placeholder <code>hh:mm</code> แสดงได้</p>
+<p>ถ้าต้องการแบบ 24 ชั่วโมง ใส่ <code>pattern</code> ของตัวเองและไม่ต้องใส่ select AM / PM:</p>
+<div class="doc-demo"><ui-time-picker label="เวลาออกเดินทาง" name="departure" pattern="([01]?[0-9]|2[0-3]):[0-5][0-9]"></ui-time-picker>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-4-0">HTML</ui-tab><ui-tab panel="code-4-1">React</ui-tab><ui-tab panel="code-4-2">React + Tailwind</ui-tab><ui-tab-panel name="code-4-0"><ui-code-snippet type="single" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-time-picker</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"เวลาออกเดินทาง"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"departure"</span> <span style="color:var(--ui-tag-color-purple)">pattern</span>=<span style="color:var(--ui-tag-color-teal)">"([01]?[0-9]|2[0-3]):[0-5][0-9]"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-time-picker</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-4-1"><ui-code-snippet type="single" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiTimePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เวลาออกเดินทาง"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"departure"</span> <span style="color:var(--ui-tag-color-purple)">pattern</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"([01]?[0-9]|2[0-3]):[0-5][0-9]"</span> /&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-4-2"><ui-code-snippet type="single" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">TimePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เวลาออกเดินทาง"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"departure"</span> <span style="color:var(--ui-tag-color-purple)">pattern</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"([01]?[0-9]|2[0-3]):[0-5][0-9]"</span> /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p><code>maxlength</code> (<code>maxLength</code> ใน React) เปลี่ยนความยาวสูงสุด และ <code>placeholder</code> เปลี่ยนคำใบ้ในช่อง</p>
+<h2 id="เริ่มด้วยค่าที่มีอยู่">เริ่มด้วยค่าที่มีอยู่</h2>
+<p>ถ้าจะแก้เวลาที่บันทึกไว้แล้ว ใส่ <code>value</code> ที่ picker และที่ select แต่ละตัว select ที่ไม่มี <code>value</code> จะเริ่มที่ <code>&lt;option selected&gt;</code> ถ้าไม่มีก็ตัวเลือกแรก เหมือน select แบบ native</p>
+<div class="doc-demo"><ui-time-picker label="ประชุมกรรมการ" value="2:30">
+  <ui-time-picker-select label="AM หรือ PM" value="PM">
+    <option value="AM">AM</option>
+    <option value="PM">PM</option>
+  </ui-time-picker-select>
+  <ui-time-picker-select label="Time zone">
+    <option value="ict" selected>กรุงเทพฯ (ICT)</option>
+    <option value="sgt">สิงคโปร์ (SGT)</option>
+    <option value="utc">UTC</option>
+  </ui-time-picker-select>
+</ui-time-picker>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-5-0">HTML</ui-tab><ui-tab panel="code-5-1">React</ui-tab><ui-tab panel="code-5-2">React + Tailwind</ui-tab><ui-tab-panel name="code-5-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-time-picker</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ประชุมกรรมการ"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"2:30"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-time-picker-select</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"AM หรือ PM"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"PM"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"AM"</span>&gt;AM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"PM"</span>&gt;PM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-time-picker-select</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-time-picker-select</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Time zone"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"ict"</span> <span style="color:var(--ui-tag-color-purple)">selected</span>&gt;กรุงเทพฯ (ICT)&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"sgt"</span>&gt;สิงคโปร์ (SGT)&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"utc"</span>&gt;UTC&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-time-picker-select</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-time-picker</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-5-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiTimePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ประชุมกรรมการ"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"2:30"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTimePickerSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM หรือ PM"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"PM"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM"</span>&gt;AM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"PM"</span>&gt;PM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiTimePickerSelect</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTimePickerSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Time zone"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ict"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ict"</span>&gt;กรุงเทพฯ (ICT)&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sgt"</span>&gt;สิงคโปร์ (SGT)&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"utc"</span>&gt;UTC&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiTimePickerSelect</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiTimePicker</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-5-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">TimePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ประชุมกรรมการ"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"2:30"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TimePickerSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM หรือ PM"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"PM"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM"</span>&gt;AM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"PM"</span>&gt;PM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">TimePickerSelect</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TimePickerSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Time zone"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ict"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ict"</span>&gt;กรุงเทพฯ (ICT)&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sgt"</span>&gt;สิงคโปร์ (SGT)&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"utc"</span>&gt;UTC&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">TimePickerSelect</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">TimePicker</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="ขนาด">ขนาด</h2>
+<p><code>size</code>: <code>sm</code> 32px, <code>md</code> 40px (ค่าเริ่มต้น ตาม Carbon), <code>lg</code> 48px select ใช้ขนาดตาม picker prop นี้ชื่อเดียวกันใน React และ React + Tailwind</p>
+<div class="doc-demo"><ui-time-picker size="sm" label="เล็ก (sm)" value="9:30">
+  <ui-time-picker-select label="AM หรือ PM">
+    <option value="AM">AM</option>
+    <option value="PM">PM</option>
+  </ui-time-picker-select>
+</ui-time-picker>
+<ui-time-picker size="lg" label="ใหญ่ (lg)" value="9:30">
+  <ui-time-picker-select label="AM หรือ PM">
+    <option value="AM">AM</option>
+    <option value="PM">PM</option>
+  </ui-time-picker-select>
+</ui-time-picker>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-6-0">HTML</ui-tab><ui-tab panel="code-6-1">React</ui-tab><ui-tab panel="code-6-2">React + Tailwind</ui-tab><ui-tab-panel name="code-6-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-time-picker</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"เล็ก (sm)"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"9:30"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-time-picker-select</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"AM หรือ PM"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"AM"</span>&gt;AM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"PM"</span>&gt;PM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-time-picker-select</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-time-picker</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-time-picker</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"lg"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ใหญ่ (lg)"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"9:30"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-time-picker-select</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"AM หรือ PM"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"AM"</span>&gt;AM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"PM"</span>&gt;PM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-time-picker-select</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-time-picker</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-6-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiTimePicker</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เล็ก (sm)"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"9:30"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTimePickerSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM หรือ PM"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM"</span>&gt;AM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"PM"</span>&gt;PM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiTimePickerSelect</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiTimePicker</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiTimePicker</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"lg"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ใหญ่ (lg)"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"9:30"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTimePickerSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM หรือ PM"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM"</span>&gt;AM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"PM"</span>&gt;PM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiTimePickerSelect</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiTimePicker</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-6-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">TimePicker</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เล็ก (sm)"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"9:30"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TimePickerSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM หรือ PM"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM"</span>&gt;AM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"PM"</span>&gt;PM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">TimePickerSelect</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">TimePicker</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">TimePicker</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"lg"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ใหญ่ (lg)"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"9:30"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TimePickerSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM หรือ PM"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM"</span>&gt;AM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"PM"</span>&gt;PM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">TimePickerSelect</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">TimePicker</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="แบบ-fluid">แบบ fluid</h2>
+<p><code>fluid</code> หรือการวางในฟอร์มแบบ fluid (<code>&lt;ui-fluid-form&gt;</code>, <code>FluidForm</code> ใน React + Tailwind) ให้ time picker แบบ fluid ของ Carbon คือช่องเวลาและ select แต่ละตัวเป็นคอลัมน์สูง 64px กว้างเท่ากัน มี label อยู่ข้างใน prop นี้ชื่อเดียวกันใน React และ React + Tailwind</p>
+<div class="doc-demo"><ui-time-picker fluid label="เริ่มช่วงเวลาจัดส่ง" value="10:00">
+  <ui-time-picker-select label="AM หรือ PM">
+    <option value="AM">AM</option>
+    <option value="PM">PM</option>
+  </ui-time-picker-select>
+  <ui-time-picker-select label="Time zone">
+    <option value="ict">กรุงเทพฯ (ICT)</option>
+    <option value="utc">UTC</option>
+  </ui-time-picker-select>
+</ui-time-picker>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-7-0">HTML</ui-tab><ui-tab panel="code-7-1">React</ui-tab><ui-tab panel="code-7-2">React + Tailwind</ui-tab><ui-tab-panel name="code-7-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-time-picker</span> <span style="color:var(--ui-tag-color-purple)">fluid</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"เริ่มช่วงเวลาจัดส่ง"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"10:00"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-time-picker-select</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"AM หรือ PM"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"AM"</span>&gt;AM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"PM"</span>&gt;PM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-time-picker-select</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-time-picker-select</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Time zone"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"ict"</span>&gt;กรุงเทพฯ (ICT)&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"utc"</span>&gt;UTC&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-time-picker-select</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-time-picker</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-7-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiTimePicker</span> <span style="color:var(--ui-tag-color-purple)">fluid</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เริ่มช่วงเวลาจัดส่ง"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"10:00"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTimePickerSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM หรือ PM"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM"</span>&gt;AM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"PM"</span>&gt;PM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiTimePickerSelect</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTimePickerSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Time zone"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ict"</span>&gt;กรุงเทพฯ (ICT)&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"utc"</span>&gt;UTC&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiTimePickerSelect</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiTimePicker</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-7-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">TimePicker</span> <span style="color:var(--ui-tag-color-purple)">fluid</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เริ่มช่วงเวลาจัดส่ง"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"10:00"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TimePickerSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM หรือ PM"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM"</span>&gt;AM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"PM"</span>&gt;PM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">TimePickerSelect</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TimePickerSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Time zone"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ict"</span>&gt;กรุงเทพฯ (ICT)&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"utc"</span>&gt;UTC&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">TimePickerSelect</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">TimePicker</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="แบบมีขอบ-ดีไซน์-kanok">แบบมีขอบ (ดีไซน์ Kanok)</h2>
+<p>ในดีไซน์ Kanok ช่องกรอกเป็นแบบ filled โดยปกติ คือพื้นเทาอ่อน ไม่มีขอบ ใส่ <code>data-field-variant=&quot;outlined&quot;</code> ที่ element ที่ครอบช่อง (เช่น <code>&lt;form&gt;</code> หรือ <code>&lt;html&gt;</code> ถ้าต้องการทั้งแอป) จะเปลี่ยนเป็นขอบ 1px บนพื้นใส ส่วน focus ยังเป็นวงแสงสีฟ้าเหมือนเดิม attribute นี้ไม่มีผลในดีไซน์ Carbon ตัวอย่างด้านล่างจึงครอบด้วย <code>data-design=&quot;kanok&quot;</code> ดูรายละเอียดทั้งหมดที่ <a href="/kanok-ui-docs/th/kanok/#%E0%B8%8A%E0%B9%88%E0%B8%AD%E0%B8%87%E0%B8%81%E0%B8%A3%E0%B8%AD%E0%B8%81%E0%B9%81%E0%B8%9A%E0%B8%9A%E0%B8%A1%E0%B8%B5%E0%B8%82%E0%B8%AD%E0%B8%9A">ดีไซน์ Kanok</a></p>
+<div class="doc-demo"><div data-design="kanok" data-theme="paper" data-field-variant="outlined">
+  <ui-time-picker label="เวลาเริ่ม" name="time">
+    <ui-time-picker-select label="AM หรือ PM" name="period">
+      <option value="AM">AM</option>
+      <option value="PM">PM</option>
+    </ui-time-picker-select>
+    <ui-time-picker-select label="Time zone" name="zone">
+      <option value="ict">กรุงเทพฯ (ICT)</option>
+      <option value="utc">UTC</option>
+    </ui-time-picker-select>
+  </ui-time-picker>
+</div>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-8-0">HTML</ui-tab><ui-tab panel="code-8-1">React</ui-tab><ui-tab panel="code-8-2">React + Tailwind</ui-tab><ui-tab-panel name="code-8-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">data-design</span>=<span style="color:var(--ui-tag-color-teal)">"kanok"</span> <span style="color:var(--ui-tag-color-purple)">data-theme</span>=<span style="color:var(--ui-tag-color-teal)">"paper"</span> <span style="color:var(--ui-tag-color-purple)">data-field-variant</span>=<span style="color:var(--ui-tag-color-teal)">"outlined"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-time-picker</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"เวลาเริ่ม"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"time"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-time-picker-select</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"AM หรือ PM"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"period"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"AM"</span>&gt;AM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"PM"</span>&gt;PM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">ui-time-picker-select</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-time-picker-select</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Time zone"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"zone"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"ict"</span>&gt;กรุงเทพฯ (ICT)&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"utc"</span>&gt;UTC&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">ui-time-picker-select</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-time-picker</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-8-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">data-field-variant</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"outlined"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTimePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เวลาเริ่ม"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"time"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiTimePickerSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM หรือ PM"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"period"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM"</span>&gt;AM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"PM"</span>&gt;PM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">UiTimePickerSelect</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiTimePickerSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Time zone"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"zone"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ict"</span>&gt;กรุงเทพฯ (ICT)&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"utc"</span>&gt;UTC&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">UiTimePickerSelect</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiTimePicker</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-8-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">data-field-variant</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"outlined"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TimePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เวลาเริ่ม"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"time"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">TimePickerSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM หรือ PM"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"period"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM"</span>&gt;AM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"PM"</span>&gt;PM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">TimePickerSelect</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">TimePickerSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Time zone"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"zone"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ict"</span>&gt;กรุงเทพฯ (ICT)&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"utc"</span>&gt;UTC&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">TimePickerSelect</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">TimePicker</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="error-และคำเตือน">error และคำเตือน</h2>
+<p>web component ตรวจข้อความกับ <code>pattern</code> หลังผู้ใช้ออกจากช่องหรือพยายามส่งฟอร์ม แล้วแสดง error ใต้ช่อง <code>invalid-text</code> ใช้แทนข้อความของ browser (&quot;Please match the requested format&quot;) ใส่ <code>invalid</code> เมื่อการตรวจของแอปไม่ผ่าน หรือ <code>warn</code> กับ <code>warn-text</code> สำหรับคำเตือนที่ไม่กันการส่งฟอร์ม:</p>
+<div class="doc-demo"><ui-time-picker label="เวลารับของ" value="13:30" invalid invalid-text="ร้านปิด 12:00 น."></ui-time-picker>
+<ui-time-picker label="เวลาตรวจหน้างาน" value="7:00" warn warn-text="ก่อนเวลาทำการ ต้องมีคนมาเปิดประตูให้">
+  <ui-time-picker-select label="AM หรือ PM">
+    <option value="AM">AM</option>
+    <option value="PM">PM</option>
+  </ui-time-picker-select>
+</ui-time-picker>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-9-0">HTML</ui-tab><ui-tab panel="code-9-1">React</ui-tab><ui-tab panel="code-9-2">React + Tailwind</ui-tab><ui-tab-panel name="code-9-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-time-picker</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"เวลารับของ"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"13:30"</span> <span style="color:var(--ui-tag-color-purple)">invalid</span> <span style="color:var(--ui-tag-color-purple)">invalid-text</span>=<span style="color:var(--ui-tag-color-teal)">"ร้านปิด 12:00 น."</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-time-picker</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-time-picker</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"เวลาตรวจหน้างาน"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"7:00"</span> <span style="color:var(--ui-tag-color-purple)">warn</span> <span style="color:var(--ui-tag-color-purple)">warn-text</span>=<span style="color:var(--ui-tag-color-teal)">"ก่อนเวลาทำการ ต้องมีคนมาเปิดประตูให้"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-time-picker-select</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"AM หรือ PM"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"AM"</span>&gt;AM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"PM"</span>&gt;PM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-time-picker-select</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-time-picker</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-9-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiTimePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เวลารับของ"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"13:30"</span> <span style="color:var(--ui-tag-color-purple)">invalid</span> <span style="color:var(--ui-tag-color-purple)">invalidText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ร้านปิด 12:00 น."</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiTimePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เวลาตรวจหน้างาน"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"7:00"</span> <span style="color:var(--ui-tag-color-purple)">warn</span> <span style="color:var(--ui-tag-color-purple)">warnText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ก่อนเวลาทำการ ต้องมีคนมาเปิดประตูให้"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTimePickerSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM หรือ PM"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM"</span>&gt;AM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"PM"</span>&gt;PM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiTimePickerSelect</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiTimePicker</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-9-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">TimePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เวลารับของ"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"13:30"</span> <span style="color:var(--ui-tag-color-purple)">invalid</span> <span style="color:var(--ui-tag-color-purple)">invalidText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ร้านปิด 12:00 น."</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">TimePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เวลาตรวจหน้างาน"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"7:00"</span> <span style="color:var(--ui-tag-color-purple)">warn</span> <span style="color:var(--ui-tag-color-purple)">warnText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ก่อนเวลาทำการ ต้องมีคนมาเปิดประตูให้"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TimePickerSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM หรือ PM"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM"</span>&gt;AM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"PM"</span>&gt;PM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">TimePickerSelect</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">TimePicker</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>React + Tailwind ทำตาม Carbon React: <code>pattern</code> ยังร่วมการตรวจค่าของฟอร์ม แต่ไม่มีข้อความขึ้นเอง ให้ใส่ <code>invalid</code> และ <code>invalidText</code> เมื่อการตรวจของคุณไม่ผ่าน ดูเพิ่มที่ <a href="/kanok-ui-docs/th/forms/">ฟอร์มและการตรวจค่า</a></p>
+<h2 id="อ่านอย่างเดียวและปิดใช้งาน">อ่านอย่างเดียวและปิดใช้งาน</h2>
+<p><code>readonly</code> เก็บค่าทุกช่องและส่งไปกับฟอร์ม: ช่องเวลาแก้ไม่ได้ select ยังรับโฟกัสได้แต่ไม่เปิดและไม่เปลี่ยนค่า <code>disabled</code> ปิดทั้งช่องเวลาและ select ทุกตัวข้างใน</p>
+<div class="doc-demo"><ui-time-picker label="เวลาเริ่ม" value="9:30" readonly>
+  <ui-time-picker-select label="AM หรือ PM">
+    <option value="AM">AM</option>
+    <option value="PM">PM</option>
+  </ui-time-picker-select>
+</ui-time-picker>
+<ui-time-picker label="เวลาเริ่ม" value="9:30" disabled>
+  <ui-time-picker-select label="AM หรือ PM">
+    <option value="AM">AM</option>
+    <option value="PM">PM</option>
+  </ui-time-picker-select>
+</ui-time-picker>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-10-0">HTML</ui-tab><ui-tab panel="code-10-1">React</ui-tab><ui-tab panel="code-10-2">React + Tailwind</ui-tab><ui-tab-panel name="code-10-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-time-picker</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"เวลาเริ่ม"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"9:30"</span> <span style="color:var(--ui-tag-color-purple)">readonly</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-time-picker-select</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"AM หรือ PM"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"AM"</span>&gt;AM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"PM"</span>&gt;PM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-time-picker-select</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-time-picker</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-time-picker</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"เวลาเริ่ม"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"9:30"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-time-picker-select</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"AM หรือ PM"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"AM"</span>&gt;AM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"PM"</span>&gt;PM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-time-picker-select</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-time-picker</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-10-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiTimePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เวลาเริ่ม"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"9:30"</span> <span style="color:var(--ui-tag-color-purple)">readonly</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTimePickerSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM หรือ PM"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM"</span>&gt;AM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"PM"</span>&gt;PM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiTimePickerSelect</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiTimePicker</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiTimePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เวลาเริ่ม"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"9:30"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTimePickerSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM หรือ PM"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM"</span>&gt;AM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"PM"</span>&gt;PM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiTimePickerSelect</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiTimePicker</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-10-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">TimePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เวลาเริ่ม"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"9:30"</span> <span style="color:var(--ui-tag-color-purple)">readOnly</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TimePickerSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM หรือ PM"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM"</span>&gt;AM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"PM"</span>&gt;PM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">TimePickerSelect</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">TimePicker</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">TimePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เวลาเริ่ม"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"9:30"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TimePickerSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM หรือ PM"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM"</span>&gt;AM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"PM"</span>&gt;PM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">TimePickerSelect</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">TimePicker</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>web component และ wrapper ของ React สะกดว่า <code>readonly</code> ส่วน React + Tailwind ใช้ <code>readOnly</code></p>
+<h2 id="ค่าที่ฟอร์มได้">ค่าที่ฟอร์มได้</h2>
+<p>แต่ละส่วนส่งค่าแยกกัน: ช่องเวลาส่งภายใต้ <code>name</code> ของมัน และ select แต่ละตัวส่งภายใต้ <code>name</code> ของตัวเอง เวลาเป็นข้อความตามที่พิมพ์ (<code>9:30</code> หรือ <code>09:30</code>) และค่าของ select คือ value ของ <code>&lt;option&gt;</code> ที่คุณใส่ ไม่มีการแปลงใด ๆ: select ของ time zone เป็นแค่ตัวเลือก ไม่มีการคำนวณ time zone อยู่เบื้องหลัง <code>required</code> กันการส่งฟอร์มเมื่อช่องเวลาว่าง</p>
+<div class="doc-demo"><form id="time-picker-form" method="dialog" style="display: grid; gap: 16px">
+  <ui-time-picker label="กำหนดเวลาลงนาม" name="time" required>
+    <ui-time-picker-select label="AM หรือ PM" name="period">
+      <option value="AM">AM</option>
+      <option value="PM">PM</option>
+    </ui-time-picker-select>
+    <ui-time-picker-select label="Time zone" name="zone">
+      <option value="ict">กรุงเทพฯ (ICT)</option>
+      <option value="utc">UTC</option>
+    </ui-time-picker-select>
+  </ui-time-picker>
+  <div><ui-button type="submit">บันทึก</ui-button></div>
+</form>
+<p>ค่าที่ส่ง: <output id="time-picker-form-out">ยังไม่มี</output></p>
+
+<script type="text/x-demo">
+  const form = document.getElementById('time-picker-form');
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const entries = [...new FormData(form)].map(([key, value]) => `${key}=${value}`);
+    document.getElementById('time-picker-form-out').textContent = entries.join(', ');
+  });
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-11-0">HTML</ui-tab><ui-tab panel="code-11-1">React</ui-tab><ui-tab panel="code-11-2">React + Tailwind</ui-tab><ui-tab-panel name="code-11-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">form</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"time-picker-form"</span> <span style="color:var(--ui-tag-color-purple)">method</span>=<span style="color:var(--ui-tag-color-teal)">"dialog"</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"display: grid; gap: 16px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-time-picker</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"กำหนดเวลาลงนาม"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"time"</span> <span style="color:var(--ui-tag-color-purple)">required</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-time-picker-select</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"AM หรือ PM"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"period"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"AM"</span>&gt;AM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"PM"</span>&gt;PM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">ui-time-picker-select</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-time-picker-select</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Time zone"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"zone"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"ict"</span>&gt;กรุงเทพฯ (ICT)&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"utc"</span>&gt;UTC&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">ui-time-picker-select</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-time-picker</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">div</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"submit"</span>&gt;บันทึก&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">form</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;ค่าที่ส่ง: &lt;<span style="color:var(--ui-tag-color-blue)">output</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"time-picker-form-out"</span>&gt;ยังไม่มี&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> form <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'time-picker-form'</span>);
+  form.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'submit'</span>, (event) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    event.<span style="color:var(--ui-tag-color-cyan)">preventDefault</span>();
+    <span style="color:var(--ui-tag-color-magenta)">const</span> entries <span style="color:var(--ui-tag-color-magenta)">=</span> [<span style="color:var(--ui-tag-color-magenta)">...new</span> <span style="color:var(--ui-tag-color-cyan)">FormData</span>(form)].<span style="color:var(--ui-tag-color-cyan)">map</span>(([key, value]) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-teal)">`${</span><span style="color:var(--ui-tag-color-teal)">key</span><span style="color:var(--ui-tag-color-teal)">}=${</span><span style="color:var(--ui-tag-color-teal)">value</span><span style="color:var(--ui-tag-color-teal)">}`</span>);
+    document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'time-picker-form-out'</span>).textContent <span style="color:var(--ui-tag-color-magenta)">=</span> entries.<span style="color:var(--ui-tag-color-cyan)">join</span>(<span style="color:var(--ui-tag-color-teal)">', '</span>);
+  });
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-11-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">form</span> <span style="color:var(--ui-tag-color-purple)">onSubmit</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> { e.<span style="color:var(--ui-tag-color-cyan)">preventDefault</span>(); <span style="color:var(--ui-tag-color-cyan)">save</span>(<span style="color:var(--ui-tag-color-magenta)">new</span> <span style="color:var(--ui-tag-color-cyan)">FormData</span>(e.currentTarget)); }}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTimePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"กำหนดเวลาลงนาม"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"time"</span> <span style="color:var(--ui-tag-color-purple)">required</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiTimePickerSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM หรือ PM"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"period"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM"</span>&gt;AM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"PM"</span>&gt;PM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">UiTimePickerSelect</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiTimePickerSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Time zone"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"zone"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ict"</span>&gt;กรุงเทพฯ (ICT)&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"utc"</span>&gt;UTC&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">UiTimePickerSelect</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiTimePicker</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiButton</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"submit"</span>&gt;บันทึก&lt;/<span style="color:var(--ui-tag-color-blue)">UiButton</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">form</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-11-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">form</span> <span style="color:var(--ui-tag-color-purple)">onSubmit</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> { e.<span style="color:var(--ui-tag-color-cyan)">preventDefault</span>(); <span style="color:var(--ui-tag-color-cyan)">save</span>(<span style="color:var(--ui-tag-color-magenta)">new</span> <span style="color:var(--ui-tag-color-cyan)">FormData</span>(e.currentTarget)); }}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TimePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"กำหนดเวลาลงนาม"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"time"</span> <span style="color:var(--ui-tag-color-purple)">required</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">TimePickerSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM หรือ PM"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"period"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"AM"</span>&gt;AM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"PM"</span>&gt;PM&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">TimePickerSelect</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">TimePickerSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Time zone"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"zone"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ict"</span>&gt;กรุงเทพฯ (ICT)&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"utc"</span>&gt;UTC&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">TimePickerSelect</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">TimePicker</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">Button</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"submit"</span>&gt;บันทึก&lt;/<span style="color:var(--ui-tag-color-blue)">Button</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">form</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p><code>save</code> แทนโค้ดของคุณเอง</p>
+<h2 id="event">Event</h2>
+<p>web component ยิง <code>input</code> ระหว่างพิมพ์และ <code>change</code> เมื่อยืนยันค่า select แต่ละตัวยิง <code>change</code> ใน React prop ของ wrapper คือ <code>onInput</code> / <code>onChange</code> ส่วน <code>TimePicker</code> ของ Tailwind ส่ง <code>onChange</code> ต่อให้ <code>&lt;input&gt;</code> แบบ React ปกติ</p>
+<div class="doc-demo"><ui-time-picker id="time-picker-events" label="เวลาแจ้งเตือน"></ui-time-picker>
+<p>input: <output id="time-picker-events-input">–</output>, change: <output id="time-picker-events-change">–</output></p>
+
+<script type="text/x-demo">
+  const reminder = document.getElementById('time-picker-events');
+  reminder.addEventListener('input', () => {
+    document.getElementById('time-picker-events-input').textContent = reminder.value;
+  });
+  reminder.addEventListener('change', () => {
+    document.getElementById('time-picker-events-change').textContent = reminder.value;
+  });
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-12-0">HTML</ui-tab><ui-tab panel="code-12-1">React</ui-tab><ui-tab panel="code-12-2">React + Tailwind</ui-tab><ui-tab-panel name="code-12-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-time-picker</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"time-picker-events"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"เวลาแจ้งเตือน"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-time-picker</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;input: &lt;<span style="color:var(--ui-tag-color-blue)">output</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"time-picker-events-input"</span>&gt;–&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;, change: &lt;<span style="color:var(--ui-tag-color-blue)">output</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"time-picker-events-change"</span>&gt;–&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> reminder <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'time-picker-events'</span>);
+  reminder.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'input'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'time-picker-events-input'</span>).textContent <span style="color:var(--ui-tag-color-magenta)">=</span> reminder.value;
+  });
+  reminder.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'change'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'time-picker-events-change'</span>).textContent <span style="color:var(--ui-tag-color-magenta)">=</span> reminder.value;
+  });
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-12-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> <span style="color:var(--ui-tag-color-magenta)">type</span> { UiTimePicker <span style="color:var(--ui-tag-color-magenta)">as</span> TimePickerElement } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiTimePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เวลาแจ้งเตือน"</span>
+  <span style="color:var(--ui-tag-color-purple)">onInput</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setTyped</span>((e.target <span style="color:var(--ui-tag-color-magenta)">as</span> <span style="color:var(--ui-tag-color-cyan)">TimePickerElement</span>).value)}
+  <span style="color:var(--ui-tag-color-purple)">onChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setCommitted</span>((e.target <span style="color:var(--ui-tag-color-magenta)">as</span> <span style="color:var(--ui-tag-color-cyan)">TimePickerElement</span>).value)} /&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-12-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-ink-muted);font-style:italic">// onChange ของ React ทำงานทุกครั้งที่พิมพ์ ส่วน onBlur คือตอนยืนยันค่า</span>
+&lt;<span style="color:var(--ui-tag-color-blue)">TimePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เวลาแจ้งเตือน"</span>
+  <span style="color:var(--ui-tag-color-purple)">onChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setTyped</span>(e.target.value)}
+  <span style="color:var(--ui-tag-color-purple)">onBlur</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setCommitted</span>(e.target.value)} /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="ตรวจเวลาเทียบกับอีกช่อง">ตรวจเวลาเทียบกับอีกช่อง</h2>
+<p>กฎของคุณเอง เช่น เวลาปิดต้องอยู่หลังเวลาเปิด ให้ใช้ <code>invalid</code> และ <code>invalid-text</code>: ตรวจตอน <code>change</code> แล้วตั้งค่าทั้งสอง ตัวอย่างนี้ทั้งสองช่องรับเวลาแบบ 24 ชั่วโมง</p>
+<div class="doc-demo"><div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start">
+  <ui-time-picker id="time-picker-opens" label="สาขาเปิด" value="08:30" pattern="([01]?[0-9]|2[0-3]):[0-5][0-9]"></ui-time-picker>
+  <ui-time-picker id="time-picker-closes" label="สาขาปิด" value="17:30" pattern="([01]?[0-9]|2[0-3]):[0-5][0-9]"></ui-time-picker>
+</div>
+
+<script type="text/x-demo">
+  const opens = document.getElementById('time-picker-opens');
+  const closes = document.getElementById('time-picker-closes');
+  const minutes = (text) => {
+    const [h, m] = text.split(':').map(Number);
+    return h * 60 + m;
+  };
+  const check = () => {
+    const wrong = minutes(closes.value) <= minutes(opens.value);
+    closes.invalid = wrong;
+    closes.invalidText = wrong ? 'ต้องหลังเวลาเปิด' : '';
+  };
+  opens.addEventListener('change', check);
+  closes.addEventListener('change', check);
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-13-0">HTML</ui-tab><ui-tab panel="code-13-1">React</ui-tab><ui-tab panel="code-13-2">React + Tailwind</ui-tab><ui-tab-panel name="code-13-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-time-picker</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"time-picker-opens"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"สาขาเปิด"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"08:30"</span> <span style="color:var(--ui-tag-color-purple)">pattern</span>=<span style="color:var(--ui-tag-color-teal)">"([01]?[0-9]|2[0-3]):[0-5][0-9]"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-time-picker</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-time-picker</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"time-picker-closes"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"สาขาปิด"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"17:30"</span> <span style="color:var(--ui-tag-color-purple)">pattern</span>=<span style="color:var(--ui-tag-color-teal)">"([01]?[0-9]|2[0-3]):[0-5][0-9]"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-time-picker</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> opens <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'time-picker-opens'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> closes <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'time-picker-closes'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> <span style="color:var(--ui-tag-color-cyan)">minutes</span> <span style="color:var(--ui-tag-color-magenta)">=</span> (text) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    <span style="color:var(--ui-tag-color-magenta)">const</span> [h, m] <span style="color:var(--ui-tag-color-magenta)">=</span> text.<span style="color:var(--ui-tag-color-cyan)">split</span>(<span style="color:var(--ui-tag-color-teal)">':'</span>).<span style="color:var(--ui-tag-color-cyan)">map</span>(Number);
+    <span style="color:var(--ui-tag-color-magenta)">return</span> h <span style="color:var(--ui-tag-color-magenta)">*</span> <span style="color:var(--ui-tag-color-green)">60</span> <span style="color:var(--ui-tag-color-magenta)">+</span> m;
+  };
+  <span style="color:var(--ui-tag-color-magenta)">const</span> <span style="color:var(--ui-tag-color-cyan)">check</span> <span style="color:var(--ui-tag-color-magenta)">=</span> () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    <span style="color:var(--ui-tag-color-magenta)">const</span> wrong <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">minutes</span>(closes.value) <span style="color:var(--ui-tag-color-magenta)">&lt;=</span> <span style="color:var(--ui-tag-color-cyan)">minutes</span>(opens.value);
+    closes.invalid <span style="color:var(--ui-tag-color-magenta)">=</span> wrong;
+    closes.invalidText <span style="color:var(--ui-tag-color-magenta)">=</span> wrong <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-teal)">'ต้องหลังเวลาเปิด'</span> <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-teal)">''</span>;
+  };
+  opens.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'change'</span>, check);
+  closes.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'change'</span>, check);
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-13-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> H24 <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'([01]?[0-9]|2[0-3]):[0-5][0-9]'</span>;
+<span style="color:var(--ui-tag-color-magenta)">const</span> <span style="color:var(--ui-tag-color-cyan)">minutes</span> <span style="color:var(--ui-tag-color-magenta)">=</span> (text<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [h, m] <span style="color:var(--ui-tag-color-magenta)">=</span> text.<span style="color:var(--ui-tag-color-cyan)">split</span>(<span style="color:var(--ui-tag-color-teal)">':'</span>).<span style="color:var(--ui-tag-color-cyan)">map</span>(Number);
+  <span style="color:var(--ui-tag-color-magenta)">return</span> h <span style="color:var(--ui-tag-color-magenta)">*</span> <span style="color:var(--ui-tag-color-green)">60</span> <span style="color:var(--ui-tag-color-magenta)">+</span> m;
+};
+<span style="color:var(--ui-tag-color-magenta)">const</span> wrong <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">minutes</span>(closes) <span style="color:var(--ui-tag-color-magenta)">&lt;=</span> <span style="color:var(--ui-tag-color-cyan)">minutes</span>(opens);
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiTimePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"สาขาเปิด"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{opens} <span style="color:var(--ui-tag-color-purple)">pattern</span><span style="color:var(--ui-tag-color-magenta)">=</span>{H24}
+  <span style="color:var(--ui-tag-color-purple)">onChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpens</span>((e.target <span style="color:var(--ui-tag-color-magenta)">as</span> <span style="color:var(--ui-tag-color-cyan)">TimePickerElement</span>).value)} /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiTimePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"สาขาปิด"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{closes} <span style="color:var(--ui-tag-color-purple)">pattern</span><span style="color:var(--ui-tag-color-magenta)">=</span>{H24}
+  <span style="color:var(--ui-tag-color-purple)">onChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setCloses</span>((e.target <span style="color:var(--ui-tag-color-magenta)">as</span> <span style="color:var(--ui-tag-color-cyan)">TimePickerElement</span>).value)}
+  <span style="color:var(--ui-tag-color-purple)">invalid</span><span style="color:var(--ui-tag-color-magenta)">=</span>{wrong} <span style="color:var(--ui-tag-color-purple)">invalidText</span><span style="color:var(--ui-tag-color-magenta)">=</span>{wrong <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-teal)">'ต้องหลังเวลาเปิด'</span> <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-teal)">''</span>} /&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-13-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-ink-muted);font-style:italic">// H24 และ minutes เหมือนในแท็บ React</span>
+<span style="color:var(--ui-tag-color-magenta)">const</span> wrong <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">minutes</span>(closes) <span style="color:var(--ui-tag-color-magenta)">&lt;=</span> <span style="color:var(--ui-tag-color-cyan)">minutes</span>(opens);
+
+&lt;<span style="color:var(--ui-tag-color-blue)">TimePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"สาขาเปิด"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{opens} <span style="color:var(--ui-tag-color-purple)">pattern</span><span style="color:var(--ui-tag-color-magenta)">=</span>{H24} <span style="color:var(--ui-tag-color-purple)">onChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpens</span>(e.target.value)} /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">TimePicker</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"สาขาปิด"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{closes} <span style="color:var(--ui-tag-color-purple)">pattern</span><span style="color:var(--ui-tag-color-magenta)">=</span>{H24} <span style="color:var(--ui-tag-color-purple)">onChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setCloses</span>(e.target.value)}
+  <span style="color:var(--ui-tag-color-purple)">invalid</span><span style="color:var(--ui-tag-color-magenta)">=</span>{wrong} <span style="color:var(--ui-tag-color-purple)">invalidText</span><span style="color:var(--ui-tag-color-magenta)">=</span>{wrong <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-teal)">'ต้องหลังเวลาเปิด'</span> <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-teal)">''</span>} /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="skeleton">Skeleton</h2>
+<p>ระหว่างที่หน้ากำลังโหลดข้อมูล ให้แสดง <code>&lt;ui-time-picker-skeleton&gt;</code> แทนที่ picker Carbon มีแค่ skeleton ของ time picker แบบ fluid ตัวนี้จึงเป็นแบบนั้น: ช่องเวลา select AM / PM และ select time zone ส่วน <code>is-only-two</code> (<code>isOnlyTwo</code> ใน React + Tailwind) วาดสองส่วนเท่ากันแทน ตัวนี้ import แยกจาก <code>@purpurabog/ui/time-picker-skeleton</code> และ screen reader มองไม่เห็น</p>
+<div class="doc-demo"><ui-time-picker-skeleton></ui-time-picker-skeleton>
+<ui-time-picker-skeleton is-only-two></ui-time-picker-skeleton>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-14-0">HTML</ui-tab><ui-tab panel="code-14-1">React</ui-tab><ui-tab panel="code-14-2">React + Tailwind</ui-tab><ui-tab-panel name="code-14-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-time-picker-skeleton</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-time-picker-skeleton</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-time-picker-skeleton</span> <span style="color:var(--ui-tag-color-purple)">is-only-two</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-time-picker-skeleton</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-14-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { UiTimePickerSkeleton } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/react'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiTimePickerSkeleton</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiTimePickerSkeleton</span> <span style="color:var(--ui-tag-color-purple)">isOnlyTwo</span> /&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-14-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { TimePickerSkeleton } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@/components/ui/react-tw/time-picker'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">TimePickerSkeleton</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">TimePickerSkeleton</span> <span style="color:var(--ui-tag-color-purple)">isOnlyTwo</span> /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="คีย์บอร์ด">คีย์บอร์ด</h2>
+<table>
+<thead>
+<tr>
+<th>ปุ่ม</th>
+<th>ผล</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Enter (ในช่องเวลา)</td>
+<td>ส่งฟอร์มที่ช่องอยู่ เหมือน input แบบ native</td>
+</tr>
+<tr>
+<td>↑ / ↓, Space (ที่ select)</td>
+<td>ปุ่มของ select ตามปกติของ browser ใช้ไม่ได้ขณะอ่านอย่างเดียว</td>
+</tr>
+</tbody>
+</table>
+<h2 id="accessibility">Accessibility</h2>
+<ul>
+<li>ช่องเวลาเป็น text input แบบ native ที่มี <code>&lt;label&gt;</code> ส่วน select เป็น <code>&lt;select&gt;</code> แบบ native</li>
+<li>ตั้งชื่อ select แต่ละตัวด้วย <code>label</code> ถ้าไม่ตั้ง web component และ React + Tailwind จะใช้ &quot;เปิดรายการตัวเลือก&quot; แบบที่ Carbon ทำ</li>
+<li>error ตั้ง <code>aria-invalid</code> ที่ช่องเวลาและผูกกับช่องด้วย <code>aria-describedby</code></li>
+<li>select ที่อ่านอย่างเดียวมี <code>aria-readonly</code></li>
+</ul>
+<p>ต้องการแค่พฤติกรรมโดยไม่มี style: <a href="/kanok-ui-docs/th/headless-time-picker/">Headless Time picker</a></p>
+<h2 id="api">API</h2>
+<p>สร้างจากแพ็กเกจโดยตรง ใน React ส่ง property เป็น prop ชื่อเดียวกัน ส่วน event ก็เป็น prop เช่นกัน (ดูคอลัมน์ React)</p>
+<h3 id="ui-time-picker-react-uitimepicker"><code>&lt;ui-time-picker&gt;</code> · React <code>UiTimePicker</code></h3>
+<h4 id="attribute">Attribute</h4>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Property</th>
+<th>ชนิด</th>
+<th>ค่าเริ่มต้น</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>max-length</code></td>
+<td></td>
+<td></td>
+<td></td>
+<td>Deprecated: use <code>maxlength</code></td>
+</tr>
+<tr>
+<td><code>label</code></td>
+<td><code>label</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>hide-label</code></td>
+<td><code>hideLabel</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>value</code></td>
+<td><code>value</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>placeholder</code></td>
+<td><code>placeholder</code></td>
+<td><code>string</code></td>
+<td><code>'hh:mm'</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>pattern</code></td>
+<td><code>pattern</code></td>
+<td></td>
+<td><code>String.raw`(1[012]|0?[1-9]):[0-5][0-9](\s)?`</code></td>
+<td>12-hour time with an optional trailing space. Carbon's default rejects a leading zero, so &quot;09:30&quot; typed as the <code>hh:mm</code> placeholder shows would fail; this one accepts &quot;9:30&quot; and &quot;09:30&quot;.</td>
+</tr>
+<tr>
+<td><code>maxlength</code></td>
+<td><code>maxLength</code></td>
+<td><code>number</code></td>
+<td><code>5</code></td>
+<td>Like <code>&lt;input maxlength&gt;</code> (Carbon <code>maxLength</code>); the <code>max-length</code> attribute of 0.8 and earlier is still read.</td>
+</tr>
+<tr>
+<td><code>size</code></td>
+<td><code>size</code></td>
+<td><code>TimePickerSize</code></td>
+<td><code>'md'</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>disabled</code></td>
+<td><code>disabled</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>readonly</code></td>
+<td><code>readonly</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>fluid</code></td>
+<td><code>fluid</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Carbon <code>FluidTimePicker</code>: equal 64px columns with labels inside, an error / warning inside the box. <code>&lt;ui-fluid-form&gt;</code> sets it for every field inside.</td>
+</tr>
+<tr>
+<td><code>required</code></td>
+<td><code>required</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>invalid</code></td>
+<td><code>invalid</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>invalid-text</code></td>
+<td><code>invalidText</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>warn</code></td>
+<td><code>warn</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>warn-text</code></td>
+<td><code>warnText</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="property">Property</h4>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>ชนิด</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>willValidate</code></td>
+<td></td>
+<td>(อ่านอย่างเดียว) Whether the field takes part in constraint validation (not while disabled), as natively.</td>
+</tr>
+<tr>
+<td><code>labels</code></td>
+<td></td>
+<td>(อ่านอย่างเดียว) The <code>&lt;label&gt;</code>s that point at this field.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="method">Method</h4>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>setCustomValidity(message)</code></td>
+<td>Like <code>&lt;input&gt;.setCustomValidity()</code>: a non-empty message makes the field invalid (and is shown as its error once touched) until cleared with ''.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="event-2">Event</h4>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>React</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>change</code></td>
+<td><code>onChange</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="slot">Slot</h4>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(ค่าเริ่มต้น)</td>
+<td><code>&lt;ui-time-picker-select&gt;</code> elements</td>
+</tr>
+<tr>
+<td><code>label</code></td>
+<td>Rich label</td>
+</tr>
+<tr>
+<td><code>invalid-text</code></td>
+<td>Rich error text</td>
+</tr>
+<tr>
+<td><code>warn-text</code></td>
+<td>Rich warning text</td>
+</tr>
+</tbody>
+</table>
+<h4 id="css-part">CSS part</h4>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>label</code></td>
+<td>The label</td>
+</tr>
+<tr>
+<td><code>base</code></td>
+<td>Row with the input and the selects</td>
+</tr>
+<tr>
+<td><code>input</code></td>
+<td>The text input</td>
+</tr>
+<tr>
+<td><code>error-text</code></td>
+<td>Error text</td>
+</tr>
+<tr>
+<td><code>invalid-text</code></td>
+<td>Same line as <code>error-text</code> (named after the <code>invalid-text</code> attribute / slot)</td>
+</tr>
+<tr>
+<td><code>warning-text</code></td>
+<td>Warning text</td>
+</tr>
+<tr>
+<td><code>warn-text</code></td>
+<td>Same line as <code>warning-text</code> (named after the <code>warn-text</code> attribute / slot)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="css-custom-property">CSS custom property</h4>
+<table>
+<thead>
+<tr>
+<th>Custom property</th>
+<th>ค่าเริ่มต้น</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--ui-field-border</code></td>
+<td></td>
+<td>Border on every side of the box (default none: Carbon's underline only; Kanok: a 1px outline)</td>
+</tr>
+<tr>
+<td><code>--ui-field-disabled-border-color</code></td>
+<td></td>
+<td>Border colour when disabled (default: the underline transparent)</td>
+</tr>
+<tr>
+<td><code>--ui-field-readonly-border-color</code></td>
+<td></td>
+<td>Border colour when read-only (default: a hairline underline)</td>
+</tr>
+<tr>
+<td><code>--ui-field-radius</code></td>
+<td></td>
+<td>Corner radius of the box (default 0; Kanok: 6px)</td>
+</tr>
+<tr>
+<td><code>--ui-field-background</code></td>
+<td></td>
+<td>Fill of the box (default <code>--ui-surface-1</code>; Kanok: transparent)</td>
+</tr>
+<tr>
+<td><code>--ui-label-font</code></td>
+<td></td>
+<td>Font of the label (default <code>--ui-font-caption</code>; Kanok: 14px semibold)</td>
+</tr>
+<tr>
+<td><code>--ui-label-color</code></td>
+<td></td>
+<td>Colour of the label (default <code>--ui-ink-muted</code>; Kanok: <code>--ui-ink</code>)</td>
+</tr>
+<tr>
+<td><code>--ui-field-readonly-background</code></td>
+<td></td>
+<td>The box's fill when read-only (default transparent; Kanok: a faint ink tint, so read-only reads as set and never weaker than disabled)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ui-time-picker-select-react-uitimepickerselect"><code>&lt;ui-time-picker-select&gt;</code> · React <code>UiTimePickerSelect</code></h3>
+<h4 id="attribute-2">Attribute</h4>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Property</th>
+<th>ชนิด</th>
+<th>ค่าเริ่มต้น</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>label</code></td>
+<td><code>label</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>Accessible name of the select (Carbon default &quot;open list of options&quot;).</td>
+</tr>
+<tr>
+<td><code>value</code></td>
+<td><code>value</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>size</code></td>
+<td><code>size</code></td>
+<td><code>TimePickerSize</code></td>
+<td><code>'md'</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>disabled</code></td>
+<td><code>disabled</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>readonly</code></td>
+<td><code>readonly</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="property-2">Property</h4>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>ชนิด</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pickerDisabled</code></td>
+<td><code>boolean</code></td>
+<td>Set by the surrounding <code>&lt;ui-time-picker&gt;</code> when it is disabled.</td>
+</tr>
+<tr>
+<td><code>willValidate</code></td>
+<td></td>
+<td>(อ่านอย่างเดียว) Whether the field takes part in constraint validation (not while disabled), as natively.</td>
+</tr>
+<tr>
+<td><code>labels</code></td>
+<td></td>
+<td>(อ่านอย่างเดียว) The <code>&lt;label&gt;</code>s that point at this field.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="event-3">Event</h4>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>React</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>change</code></td>
+<td><code>onChange</code></td>
+<td>When the user picks an option</td>
+</tr>
+</tbody>
+</table>
+<h4 id="slot-2">Slot</h4>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(ค่าเริ่มต้น)</td>
+<td><code>&lt;option&gt;</code> elements</td>
+</tr>
+</tbody>
+</table>
+<h4 id="css-part-2">CSS part</h4>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>input</code></td>
+<td>The native select</td>
+</tr>
+</tbody>
+</table>
+<h4 id="css-custom-property-2">CSS custom property</h4>
+<table>
+<thead>
+<tr>
+<th>Custom property</th>
+<th>ค่าเริ่มต้น</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--ui-field-readonly-background</code></td>
+<td></td>
+<td>The box's fill when read-only (default transparent; Kanok: a faint ink tint, so read-only reads as set and never weaker than disabled)</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+<nav class="doc-toc" aria-labelledby="doc-toc-title"><p id="doc-toc-title" class="doc-toc-title">ในหน้านี้</p><ul><li class="doc-toc-h2"><a href="#ติดตั้ง">ติดตั้ง</a></li><li class="doc-toc-h2"><a href="#วิธีใช้">วิธีใช้</a></li><li class="doc-toc-h2"><a href="#12-ชั่วโมงหรือ-24-ชั่วโมง">12 ชั่วโมงหรือ 24 ชั่วโมง</a></li><li class="doc-toc-h2"><a href="#เริ่มด้วยค่าที่มีอยู่">เริ่มด้วยค่าที่มีอยู่</a></li><li class="doc-toc-h2"><a href="#ขนาด">ขนาด</a></li><li class="doc-toc-h2"><a href="#แบบ-fluid">แบบ fluid</a></li><li class="doc-toc-h2"><a href="#แบบมีขอบ-ดีไซน์-kanok">แบบมีขอบ (ดีไซน์ Kanok)</a></li><li class="doc-toc-h2"><a href="#error-และคำเตือน">error และคำเตือน</a></li><li class="doc-toc-h2"><a href="#อ่านอย่างเดียวและปิดใช้งาน">อ่านอย่างเดียวและปิดใช้งาน</a></li><li class="doc-toc-h2"><a href="#ค่าที่ฟอร์มได้">ค่าที่ฟอร์มได้</a></li><li class="doc-toc-h2"><a href="#event">Event</a></li><li class="doc-toc-h2"><a href="#ตรวจเวลาเทียบกับอีกช่อง">ตรวจเวลาเทียบกับอีกช่อง</a></li><li class="doc-toc-h2"><a href="#skeleton">Skeleton</a></li><li class="doc-toc-h2"><a href="#คีย์บอร์ด">คีย์บอร์ด</a></li><li class="doc-toc-h2"><a href="#accessibility">Accessibility</a></li><li class="doc-toc-h2"><a href="#api">API</a></li><li class="doc-toc-h3"><a href="#ui-time-picker-react-uitimepicker">&lt;ui-time-picker></a></li><li class="doc-toc-h3"><a href="#ui-time-picker-select-react-uitimepickerselect">&lt;ui-time-picker-select></a></li></ul></nav>
+</div>
+<nav class="doc-pager" aria-label="ถัดไป / ก่อนหน้า"><a class="doc-pager-prev" href="/kanok-ui-docs/th/date-picker/" rel="prev"><span>ก่อนหน้า</span>Date picker</a><a class="doc-pager-next" href="/kanok-ui-docs/th/slider/" rel="next"><span>ถัดไป</span>Slider</a></nav>
+<footer class="doc-footer">@purpurabog/ui 2.3.0 · MIT · <a href="https://cdn.jsdelivr.net/npm/@purpurabog/ui@2.3.0/THIRD-PARTY-NOTICES.md">ประกาศของบุคคลที่สาม</a><br>สร้างตาม Carbon Design System ไม่ได้เกี่ยวข้องหรือได้รับการรับรองจาก IBM — IBM และ Carbon เป็นเครื่องหมายการค้าของ IBM Corp.</footer>
+</ui-content>
+<ui-modal id="doc-search" heading="ค้นหา" data-count="พบ {n} รายการ" data-empty="ไม่พบ “{q}”">
+<ui-search label="ค้นหาในเอกสาร" placeholder="ค้นหาในเอกสาร" size="lg"></ui-search>
+<p class="doc-search-status" role="status"></p>
+<ul class="doc-search-results"></ul>
+</ui-modal>
+</body>
+</html>

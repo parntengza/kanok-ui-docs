@@ -1,0 +1,1192 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Headless Data table · @purpurabog/ui</title>
+<link rel="alternate" hreflang="en" href="/kanok-ui-docs/en/headless-data-table/"  /><link rel="alternate" hreflang="th" href="/kanok-ui-docs/th/headless-data-table/"  />
+<script>(function(){try{var q=new URLSearchParams(location.search).get("design"),d=q;if(q==="kanok"||q==="carbon")localStorage.setItem("ui-docs-design",q);else d=localStorage.getItem("ui-docs-design");if(d==="kanok")document.documentElement.setAttribute("data-design","kanok")}catch(e){}})();(function(){try{var m=localStorage.getItem("ui-docs-theme");if(m!=="light"&&m!=="dark"&&m!=="system")return;var d=m==="dark"||(m==="system"&&matchMedia("(prefers-color-scheme: dark)").matches),r=document.documentElement,t=d?"g100":"white";if(r.getAttribute("data-design")==="kanok")t=d?"lacquer":"paper";r.setAttribute("data-theme",t)}catch(e){}})();</script>
+<style>ui-header:not(:defined){z-index:8000;box-sizing:border-box;border-block-end:1px solid var(--ui-border-subtle-1);background:var(--ui-canvas);block-size:48px;display:block;position:fixed;inset:0 0 auto}:is(ui-header:not(:defined)>*,ui-side-nav:not(:defined)>*){visibility:hidden}:is(ui-header-panel:not(:defined),ui-modal:not(:defined)){display:none}ui-side-nav:not(:defined){display:none}ui-content:not(:defined){margin-block-start:48px;padding:32px;display:block}@media (width>=1056px){ui-side-nav[expanded]:not(:defined){background:var(--ui-canvas);inline-size:256px;display:block;position:fixed;inset:48px auto 0 0}ui-side-nav[expanded]:not(:defined)~ui-content:not(:defined){margin-inline-start:256px}}ui-tabs:not(:defined){display:block}ui-tabs:not(:defined)>ui-tab{box-sizing:border-box;border-block-end:2px solid var(--ui-hairline);block-size:40px;color:var(--ui-ink-muted);font:var(--ui-font-body-sm);padding:0 16px;line-height:38px;display:inline-block}ui-tabs:not(:defined)>ui-tab:first-of-type{border-block-end-color:var(--ui-interactive);color:var(--ui-ink)}ui-tabs:not(:defined)>ui-tab-panel{padding:16px;display:block}ui-tabs:not(:defined)>ui-tab-panel~ui-tab-panel{display:none}ui-code-snippet:not(:defined){background:var(--ui-layer-1);max-block-size:272px;font:var(--ui-font-code,12px/16px monospace);white-space:pre;padding:16px;display:block;overflow:hidden}[data-react-example]:empty>*{visibility:hidden}.doc-demo:has(:not(:defined))>*{visibility:hidden}[data-react-example]:empty{box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}.doc-demo:has(:not(:defined)){box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}@keyframes doc-skeleton{to{background-position:-200% 0}}@media (prefers-reduced-motion:reduce){[data-react-example]:empty{animation:none}.doc-demo:has(:not(:defined)){animation:none}}</style>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/index-Cv3LcH5Q.js"></script>
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/theme-switcher-BZXGbHfR.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/listbox-gjElSjvA.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/headless-CCX6tx99.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/pagination-Dj6o8Hee.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/grid-CcI9j4p7.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/flag-D0Ou26eR.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/checkbox-DSpjwG1-.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/data-table-BPPQ1Bm7.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/pagination-BXeMlWj5.js">
+  <link rel="stylesheet" crossorigin href="/kanok-ui-docs/assets/theme-switcher-BXY5AIvi.css">
+  <link rel="stylesheet" crossorigin href="/kanok-ui-docs/assets/headless-CtsneZec.css">
+</head>
+<body>
+<ui-header label="@purpurabog/ui">
+<ui-skip-to-content></ui-skip-to-content>
+<ui-header-menu-button></ui-header-menu-button>
+<ui-header-name href="/kanok-ui-docs/th/" prefix="@purpurabog">ui</ui-header-name>
+<ui-header-global-bar>
+<ui-header-global-action id="doc-search-open" label="ค้นหา" tooltip-placement="bottom"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="m18.5 17.8-4.9-4.9a7 7 0 1 0-.7.7l4.9 4.9zM3 8.5a5.5 5.5 0 1 1 5.5 5.5A5.5 5.5 0 0 1 3 8.5Z" /></svg></ui-header-global-action>
+<ui-header-global-action label="ตั้งค่า" panel="doc-settings" tooltip-placement="bottom-end"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="M16.9 10.6a7 7 0 0 0 0-1.2l1.8-1.4-1.6-2.8-2.1.8a6.6 6.6 0 0 0-1-.6L13.6 3h-3.2l-.4 2.4a6.6 6.6 0 0 0-1 .6l-2.1-.8L5.3 8l1.8 1.4a7 7 0 0 0 0 1.2L5.3 12l1.6 2.8 2.1-.8a6.6 6.6 0 0 0 1 .6l.4 2.4h3.2l.4-2.4a6.6 6.6 0 0 0 1-.6l2.1.8 1.6-2.8zM12 13a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" /></svg></ui-header-global-action>
+</ui-header-global-bar>
+<ui-header-panel id="doc-settings" label="ตั้งค่า">
+<div class="doc-settings">
+<span class="doc-settings-label">ธีม</span>
+<ui-theme-switcher storage-key="ui-docs-theme" tooltip-placement="bottom"></ui-theme-switcher>
+<span class="doc-settings-label">รูปแบบ</span>
+<ui-content-switcher id="doc-design" aria-label="รูปแบบ" size="sm"><ui-content-switcher-item name="carbon">Carbon</ui-content-switcher-item><ui-content-switcher-item name="kanok">Kanok</ui-content-switcher-item></ui-content-switcher>
+<span class="doc-settings-label">ภาษา</span>
+<ui-link href="/kanok-ui-docs/en/headless-data-table/" hreflang="en" lang="en">English</ui-link>
+</div>
+</ui-header-panel>
+</ui-header>
+<ui-side-nav label="เอกสาร"><ui-side-nav-items><ui-side-nav-menu label="เริ่มต้น"><ui-side-nav-menu-item href="/kanok-ui-docs/th/">ภาพรวม</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/installation/">ติดตั้ง</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/migration-1-0/">การย้ายไป 1.0</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="คู่มือ"><ui-side-nav-menu-item href="/kanok-ui-docs/th/themes/">ธีมและ layer</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/kanok/">ดีไซน์ Kanok</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/customizing/">ปรับแต่งหน้าตา</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/icons/">ไอคอน</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/forms/">ฟอร์มและการตรวจค่า</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/frameworks/">ใช้กับ framework</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/ai/">ใช้กับ AI</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="ฟอร์มและปุ่ม"><ui-side-nav-menu-item href="/kanok-ui-docs/th/button/">Button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/file-uploader/">File uploader</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Overlay"><ui-side-nav-menu-item href="/kanok-ui-docs/th/modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/toggletip/">Toggletip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/menu/">Menu</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="ข้อมูล"><ui-side-nav-menu-item href="/kanok-ui-docs/th/data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/contained-list/">Contained list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tree-view/">Tree view</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="การนำทาง"><ui-side-nav-menu-item href="/kanok-ui-docs/th/tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/breadcrumb/">Breadcrumb</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/link/">Link</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/ui-shell/">UI shell</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="เนื้อหา"><ui-side-nav-menu-item href="/kanok-ui-docs/th/tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tile/">Tile</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/user-avatar/">User avatar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/list/">List</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="สถานะและการโหลด"><ui-side-nav-menu-item href="/kanok-ui-docs/th/loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/inline-loading/">Inline loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/progress-bar/">Progress bar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/skeleton/">Skeleton</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/badge-indicator/">Badge indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/status-indicator/">Status indicator</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="เลย์เอาต์"><ui-side-nav-menu-item href="/kanok-ui-docs/th/grid/">Grid</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/heading/">Heading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/layer/">Layer</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/action-set/">Action set</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/page-header/">Page header</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/big-number/">Big number</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Headless" expanded><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless/">แนะนำ</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-file-uploader/">File uploader</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-menu/">Menu</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-ui-shell/">UI shell</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-data-table/" current>Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tree-view/">Tree view</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu></ui-side-nav-items></ui-side-nav><script>if(matchMedia('(min-width: 66rem)').matches)document.currentScript.previousElementSibling.setAttribute('expanded','')</script>
+<ui-content>
+<div class="doc-page">
+<article class="doc">
+<!-- nav: Data table -->
+<h1 id="headless-data-table">Headless Data table</h1>
+<p><code>DataTable</code> คือพฤติกรรมของ <a href="/kanok-ui-docs/th/data-table/">Data table</a> แบบมี style โดยไม่มี class เลย ในแบบ TanStack Table: hook <code>useDataTable(options)</code> เก็บ state ทั้งหมด คือการเรียง การค้นหา หน้า การเลือก แถวที่เปิด คอลัมน์ที่ซ่อน ความกว้างคอลัมน์ และ grid ที่แก้ไขได้ แล้วคืนแถวที่จะแสดง action และ prop getter ให้ คุณเขียน <code>&lt;table&gt;</code> เอง ส่วน parts ใส่กฎคีย์บอร์ด focus และ ARIA ในจุดที่ต้องใช้</p>
+<p>ส่วนที่คุณเขียนเอง: ทุกเซลล์ หัวตาราง toolbar ไอคอน ข้อความตอนไม่มีข้อมูล และ style ทั้งหมด สถานะแสดงเป็น attribute <code>data-*</code> ที่ parts</p>
+<h2 id="ติดตั้ง">ติดตั้ง</h2>
+<p>ส่วน headless มากับแพ็กเกจเลย (ไม่มี item ของ shadcn; item ของ React + Tailwind สร้างบนมัน):</p>
+<ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">@purpurabog/ui</span></ui-code-snippet>
+<ui-code-snippet type="single" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { DataTable } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;</ui-code-snippet>
+<h2 id="วิธีใช้">วิธีใช้</h2>
+<div class="doc-demo" data-react-example="0"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { DataTable } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">interface</span> <span style="color:var(--ui-tag-color-cyan)">Contract</span> {
+  id<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>;
+  name<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>;
+  party<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>;
+  status<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>;
+  [key<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>]<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">unknown</span>;
+}
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> headers <span style="color:var(--ui-tag-color-magenta)">=</span> [
+  { <span style="color:var(--ui-tag-color-purple)">key:</span> <span style="color:var(--ui-tag-color-teal)">'name'</span>, <span style="color:var(--ui-tag-color-purple)">header:</span> <span style="color:var(--ui-tag-color-teal)">'สัญญา'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">key:</span> <span style="color:var(--ui-tag-color-teal)">'party'</span>, <span style="color:var(--ui-tag-color-purple)">header:</span> <span style="color:var(--ui-tag-color-teal)">'คู่สัญญา'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">key:</span> <span style="color:var(--ui-tag-color-teal)">'status'</span>, <span style="color:var(--ui-tag-color-purple)">header:</span> <span style="color:var(--ui-tag-color-teal)">'สถานะ'</span> },
+];
+<span style="color:var(--ui-tag-color-magenta)">const</span> rows<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">Contract</span>[] <span style="color:var(--ui-tag-color-magenta)">=</span> [
+  { <span style="color:var(--ui-tag-color-purple)">id:</span> <span style="color:var(--ui-tag-color-teal)">'1'</span>, <span style="color:var(--ui-tag-color-purple)">name:</span> <span style="color:var(--ui-tag-color-teal)">'สัญญาบริการ'</span>, <span style="color:var(--ui-tag-color-purple)">party:</span> <span style="color:var(--ui-tag-color-teal)">'บริษัท เอซีเอ็ม จำกัด'</span>, <span style="color:var(--ui-tag-color-purple)">status:</span> <span style="color:var(--ui-tag-color-teal)">'ลงนามแล้ว'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">id:</span> <span style="color:var(--ui-tag-color-teal)">'2'</span>, <span style="color:var(--ui-tag-color-purple)">name:</span> <span style="color:var(--ui-tag-color-teal)">'สัญญารักษาความลับ'</span>, <span style="color:var(--ui-tag-color-purple)">party:</span> <span style="color:var(--ui-tag-color-teal)">'โกลเบ็กซ์'</span>, <span style="color:var(--ui-tag-color-purple)">status:</span> <span style="color:var(--ui-tag-color-teal)">'ฉบับร่าง'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">id:</span> <span style="color:var(--ui-tag-color-teal)">'3'</span>, <span style="color:var(--ui-tag-color-purple)">name:</span> <span style="color:var(--ui-tag-color-teal)">'ต่อสัญญาเช่า'</span>, <span style="color:var(--ui-tag-color-purple)">party:</span> <span style="color:var(--ui-tag-color-teal)">'อินิเทค'</span>, <span style="color:var(--ui-tag-color-purple)">status:</span> <span style="color:var(--ui-tag-color-teal)">'กำลังตรวจ'</span> },
+];
+<span style="color:var(--ui-tag-color-magenta)">const</span> arrows <span style="color:var(--ui-tag-color-magenta)">=</span> { <span style="color:var(--ui-tag-color-purple)">ascending:</span> <span style="color:var(--ui-tag-color-teal)">'↑'</span>, <span style="color:var(--ui-tag-color-purple)">descending:</span> <span style="color:var(--ui-tag-color-teal)">'↓'</span>, <span style="color:var(--ui-tag-color-purple)">none:</span> <span style="color:var(--ui-tag-color-teal)">'↕'</span> } <span style="color:var(--ui-tag-color-magenta)">as</span> <span style="color:var(--ui-tag-color-magenta)">const</span>;
+<span style="color:var(--ui-tag-color-magenta)">const</span> head <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'h-12 bg-layer-accent text-start text-sm font-semibold text-ink'</span>;
+<span style="color:var(--ui-tag-color-magenta)">const</span> cell <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'h-12 border-b border-hairline px-4 text-sm text-ink-muted'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> table <span style="color:var(--ui-tag-color-magenta)">=</span> DataTable.<span style="color:var(--ui-tag-color-cyan)">useDataTable</span>({ headers, rows, <span style="color:var(--ui-tag-color-purple)">sortable:</span> <span style="color:var(--ui-tag-color-green)">true</span>, <span style="color:var(--ui-tag-color-purple)">selectable:</span> <span style="color:var(--ui-tag-color-green)">true</span>, <span style="color:var(--ui-tag-color-purple)">locale:</span> <span style="color:var(--ui-tag-color-teal)">'th'</span> });
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Root</span> <span style="color:var(--ui-tag-color-purple)">table</span><span style="color:var(--ui-tag-color-magenta)">=</span>{table}&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Table</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"สัญญา"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"w-full border-collapse"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">thead</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">tr</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">td</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-teal)">`${</span><span style="color:var(--ui-tag-color-teal)">head</span><span style="color:var(--ui-tag-color-teal)">} w-12 ps-4`</span>}&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.SelectAll</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เลือกทุกแถว"</span> /&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">td</span>&gt;
+            {table.columns.<span style="color:var(--ui-tag-color-cyan)">map</span>((column) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+              &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.ColumnHeader</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{column.key} <span style="color:var(--ui-tag-color-purple)">column</span><span style="color:var(--ui-tag-color-magenta)">=</span>{column.key} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{head}&gt;
+                &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.SortButton</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex h-12 w-full items-center justify-between px-4 font-semibold hover:bg-layer-selected-hover focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus"</span>&gt;
+                  {column.header}
+                  &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span>&gt;{arrows[table.<span style="color:var(--ui-tag-color-cyan)">sortDirectionOf</span>(column.key)]}&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+                &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.SortButton</span>&gt;
+              &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.ColumnHeader</span>&gt;
+            ))}
+          &lt;/<span style="color:var(--ui-tag-color-blue)">tr</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">thead</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Body</span>&gt;
+          {table.pageRows.<span style="color:var(--ui-tag-color-cyan)">map</span>((row) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+            &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Row</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{row.id} <span style="color:var(--ui-tag-color-purple)">rowId</span><span style="color:var(--ui-tag-color-magenta)">=</span>{row.id} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"hover:bg-ghost-hover data-selected:bg-layer-selected-1 data-selected:text-ink"</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span> <span style="color:var(--ui-tag-color-purple)">index</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">0</span>} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{cell}&gt;
+                &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.SelectRow</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-teal)">`เลือกแถว, ${</span><span style="color:var(--ui-tag-color-teal)">row.name</span><span style="color:var(--ui-tag-color-teal)">}`</span>} /&gt;
+              &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span>&gt;
+              {table.columns.<span style="color:var(--ui-tag-color-cyan)">map</span>((column, i) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+                &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{column.key} <span style="color:var(--ui-tag-color-purple)">index</span><span style="color:var(--ui-tag-color-magenta)">=</span>{i <span style="color:var(--ui-tag-color-magenta)">+</span> <span style="color:var(--ui-tag-color-green)">1</span>} <span style="color:var(--ui-tag-color-purple)">column</span><span style="color:var(--ui-tag-color-magenta)">=</span>{column.key} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{cell}&gt;
+                  {<span style="color:var(--ui-tag-color-cyan)">String</span>(row[column.key])}
+                &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span>&gt;
+              ))}
+            &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Row</span>&gt;
+          ))}
+        &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Body</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Table</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"mt-2 text-xs text-ink-muted"</span>&gt;ที่เลือก: {table.selectedIds.<span style="color:var(--ui-tag-color-cyan)">join</span>(<span style="color:var(--ui-tag-color-teal)">', '</span>) <span style="color:var(--ui-tag-color-magenta)">||</span> <span style="color:var(--ui-tag-color-teal)">'(ไม่มี)'</span>}&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Root</span>&gt;
+  );
+}</ui-code-snippet>
+<h2 id="โครงสร้าง">โครงสร้าง</h2>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> table <span style="color:var(--ui-tag-color-magenta)">=</span> DataTable.<span style="color:var(--ui-tag-color-cyan)">useDataTable</span>({ headers, rows });
+
+&lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Root</span> <span style="color:var(--ui-tag-color-purple)">table</span><span style="color:var(--ui-tag-color-magenta)">=</span>{table}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.EditHint</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Table</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">thead</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">tr</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">td</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">DataTable.ExpandAll</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">td</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">td</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">DataTable.SelectAll</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">td</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.ColumnHeader</span> <span style="color:var(--ui-tag-color-purple)">column</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"…"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.SortButton</span> /&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.ResizeHandle</span> /&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.ColumnHeader</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Filler</span> /&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">tr</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">thead</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Body</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Row</span> <span style="color:var(--ui-tag-color-purple)">rowId</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"…"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span> <span style="color:var(--ui-tag-color-purple)">index</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">0</span>}&gt;&lt;<span style="color:var(--ui-tag-color-blue)">DataTable.ExpandToggle</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span> <span style="color:var(--ui-tag-color-purple)">index</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">1</span>}&gt;&lt;<span style="color:var(--ui-tag-color-blue)">DataTable.SelectRow</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span> <span style="color:var(--ui-tag-color-purple)">index</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">2</span>} <span style="color:var(--ui-tag-color-purple)">column</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"…"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.CellValue</span> /&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.CellInput</span> /&gt; or &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.CellSelect</span> /&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.CellError</span> /&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Filler</span> /&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Row</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.ExpandedRow</span> <span style="color:var(--ui-tag-color-purple)">rowId</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"…"</span> /&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Body</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Table</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Root</span>&gt;</ui-code-snippet>
+<p>ใช้เฉพาะ part ที่ต้องการ ตารางที่อ่านอย่างเดียวใช้แค่ <code>Root</code>, <code>Table</code>, <code>Body</code>, <code>Row</code> และ <code>Cell</code> หรือแม้แต่ <code>&lt;tr&gt;</code> และ <code>&lt;td&gt;</code> ธรรมดาครอบ <code>table.pageRows</code></p>
+<h2 id="ค้นหาและแบ่งหน้า">ค้นหาและแบ่งหน้า</h2>
+<p><code>table.setFilterText(text)</code> กรองแถว (เซลล์ใดที่แสดงอยู่มีข้อความนั้น ไม่สนตัวพิมพ์เล็กใหญ่) และกลับไปหน้า 1 เมื่อมี <code>pageSize</code> (หรือ <code>defaultPageSize</code>) <code>table.pageRows</code> จะเป็นหนึ่งหน้า ควบคุมด้วย <a href="/kanok-ui-docs/th/headless-pagination/">Pagination</a> แบบ headless หรือปุ่มของคุณเองผ่าน <code>table.setPagination</code></p>
+<div class="doc-demo" data-react-example="1"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { DataTable, Pagination } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">interface</span> <span style="color:var(--ui-tag-color-cyan)">Contract</span> {
+  id<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>;
+  name<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>;
+  party<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>;
+  [key<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>]<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">unknown</span>;
+}
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> parties <span style="color:var(--ui-tag-color-magenta)">=</span> [<span style="color:var(--ui-tag-color-teal)">'เอซีเอ็ม'</span>, <span style="color:var(--ui-tag-color-teal)">'โกลเบ็กซ์'</span>, <span style="color:var(--ui-tag-color-teal)">'อินิเทค'</span>, <span style="color:var(--ui-tag-color-teal)">'อัมเบรลลา'</span>];
+<span style="color:var(--ui-tag-color-magenta)">const</span> headers <span style="color:var(--ui-tag-color-magenta)">=</span> [
+  { <span style="color:var(--ui-tag-color-purple)">key:</span> <span style="color:var(--ui-tag-color-teal)">'name'</span>, <span style="color:var(--ui-tag-color-purple)">header:</span> <span style="color:var(--ui-tag-color-teal)">'สัญญา'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">key:</span> <span style="color:var(--ui-tag-color-teal)">'party'</span>, <span style="color:var(--ui-tag-color-purple)">header:</span> <span style="color:var(--ui-tag-color-teal)">'คู่สัญญา'</span> },
+];
+<span style="color:var(--ui-tag-color-magenta)">const</span> rows<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">Contract</span>[] <span style="color:var(--ui-tag-color-magenta)">=</span> Array.<span style="color:var(--ui-tag-color-cyan)">from</span>({ <span style="color:var(--ui-tag-color-purple)">length:</span> <span style="color:var(--ui-tag-color-green)">23</span> }, (_, i) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> ({ <span style="color:var(--ui-tag-color-purple)">id:</span> <span style="color:var(--ui-tag-color-teal)">`c${</span><span style="color:var(--ui-tag-color-teal)">i </span><span style="color:var(--ui-tag-color-magenta)">+</span><span style="color:var(--ui-tag-color-teal)"> </span><span style="color:var(--ui-tag-color-green)">1</span><span style="color:var(--ui-tag-color-teal)">}`</span>, <span style="color:var(--ui-tag-color-purple)">name:</span> <span style="color:var(--ui-tag-color-teal)">`สัญญาเลขที่ ${</span><span style="color:var(--ui-tag-color-cyan)">String</span><span style="color:var(--ui-tag-color-teal)">(i </span><span style="color:var(--ui-tag-color-magenta)">+</span><span style="color:var(--ui-tag-color-teal)"> </span><span style="color:var(--ui-tag-color-green)">1</span><span style="color:var(--ui-tag-color-teal)">).</span><span style="color:var(--ui-tag-color-cyan)">padStart</span><span style="color:var(--ui-tag-color-teal)">(</span><span style="color:var(--ui-tag-color-green)">3</span><span style="color:var(--ui-tag-color-teal)">, </span><span style="color:var(--ui-tag-color-teal)">'0'</span><span style="color:var(--ui-tag-color-teal)">)</span><span style="color:var(--ui-tag-color-teal)">}`</span>, <span style="color:var(--ui-tag-color-purple)">party:</span> parties[i <span style="color:var(--ui-tag-color-magenta)">%</span> <span style="color:var(--ui-tag-color-green)">4</span>] }));
+<span style="color:var(--ui-tag-color-magenta)">const</span> cell <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'h-10 border-b border-hairline px-4 text-sm text-ink-muted'</span>;
+<span style="color:var(--ui-tag-color-magenta)">const</span> arrow <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'size-8 text-ink hover:bg-ghost-hover focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus data-disabled:text-ink-disabled data-disabled:hover:bg-transparent'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> table <span style="color:var(--ui-tag-color-magenta)">=</span> DataTable.<span style="color:var(--ui-tag-color-cyan)">useDataTable</span>({ headers, rows, <span style="color:var(--ui-tag-color-purple)">defaultPageSize:</span> <span style="color:var(--ui-tag-color-green)">5</span> });
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Root</span> <span style="color:var(--ui-tag-color-purple)">table</span><span style="color:var(--ui-tag-color-magenta)">=</span>{table}&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid max-w-md gap-2"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">input</span>
+          <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"search"</span>
+          <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"กรองสัญญา"</span>
+          <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"กรองสัญญา"</span>
+          <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{table.filterText}
+          <span style="color:var(--ui-tag-color-purple)">onChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> table.<span style="color:var(--ui-tag-color-cyan)">setFilterText</span>(e.target.value)}
+          <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-10 border-b border-border-strong-1 bg-field-1 px-4 text-sm text-ink placeholder:text-ink-placeholder focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus"</span>
+        /&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Table</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contracts"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"w-full border-collapse"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">thead</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">tr</span>&gt;
+              {table.columns.<span style="color:var(--ui-tag-color-cyan)">map</span>((column) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+                &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.ColumnHeader</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{column.key} <span style="color:var(--ui-tag-color-purple)">column</span><span style="color:var(--ui-tag-color-magenta)">=</span>{column.key} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-10 bg-layer-accent px-4 text-start text-sm font-semibold text-ink"</span>&gt;
+                  {column.header}
+                &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.ColumnHeader</span>&gt;
+              ))}
+            &lt;/<span style="color:var(--ui-tag-color-blue)">tr</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">thead</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Body</span>&gt;
+            {table.pageRows.<span style="color:var(--ui-tag-color-cyan)">map</span>((row) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+              &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Row</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{row.id} <span style="color:var(--ui-tag-color-purple)">rowId</span><span style="color:var(--ui-tag-color-magenta)">=</span>{row.id}&gt;
+                &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span> <span style="color:var(--ui-tag-color-purple)">index</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">0</span>} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{cell}&gt;{row.name}&lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span>&gt;
+                &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span> <span style="color:var(--ui-tag-color-purple)">index</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">1</span>} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{cell}&gt;{row.party}&lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span>&gt;
+              &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Row</span>&gt;
+            ))}
+          &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Body</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Table</span>&gt;
+        {table.filteredRows.length <span style="color:var(--ui-tag-color-magenta)">===</span> <span style="color:var(--ui-tag-color-green)">0</span> <span style="color:var(--ui-tag-color-magenta)">?</span> &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-sm text-ink-muted"</span>&gt;ไม่พบข้อมูลที่ค้นหา&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt; <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-green)">null</span>}
+        &lt;<span style="color:var(--ui-tag-color-blue)">Pagination.Root</span> <span style="color:var(--ui-tag-color-purple)">page</span><span style="color:var(--ui-tag-color-magenta)">=</span>{table.page} <span style="color:var(--ui-tag-color-purple)">pageSize</span><span style="color:var(--ui-tag-color-magenta)">=</span>{table.pageSize} <span style="color:var(--ui-tag-color-purple)">totalItems</span><span style="color:var(--ui-tag-color-magenta)">=</span>{table.filteredRows.length} <span style="color:var(--ui-tag-color-purple)">onChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{table.setPagination} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex items-center gap-2 text-sm text-ink"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"me-auto"</span> <span style="color:var(--ui-tag-color-purple)">role</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"status"</span>&gt;
+            แสดง {table.filteredRows.length} จาก {table.rows.length} แถว · หน้า {table.page} จาก {table.pageCount}
+          &lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Pagination.Prev</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"หน้าก่อนหน้า"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{arrow}&gt;‹&lt;/<span style="color:var(--ui-tag-color-blue)">Pagination.Prev</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Pagination.Next</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"หน้าถัดไป"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{arrow}&gt;›&lt;/<span style="color:var(--ui-tag-color-blue)">Pagination.Next</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Pagination.Root</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Root</span>&gt;
+  );
+}</ui-code-snippet>
+<p><code>filterRows(row, text, headers)</code> ใช้แทนการตรวจเดิม และ <code>manualFiltering</code> คงทุกแถวไว้ขณะคุณกรองบน server <code>filterText</code> / <code>onFilterChange</code> และ <code>page</code> / <code>onPageChange</code> ทำให้ควบคุมทั้งสองอย่างเองได้</p>
+<h2 id="แถวที่ขยายได้">แถวที่ขยายได้</h2>
+<p>เมื่อใส่ <code>expandable</code> ปุ่ม <code>ExpandToggle</code> ของแต่ละแถวจะเปิดแถวนั้น ให้ render <code>ExpandedRow</code> ใต้ทุกแถวที่เปิดอยู่ (<code>table.isExpanded(id)</code>) <code>ExpandAll</code> เปิดทุกแถวที่แสดง หรือปิดทั้งหมดเมื่อเปิดครบแล้ว ปุ่มเหล่านี้มี <code>aria-expanded</code> และ <code>aria-controls</code> ที่ชี้ไปยังแถวที่เปิด</p>
+<div class="doc-demo" data-react-example="2"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { DataTable } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">interface</span> <span style="color:var(--ui-tag-color-cyan)">Contract</span> {
+  id<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>;
+  name<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>;
+  party<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>;
+  owner<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>;
+  [key<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>]<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">unknown</span>;
+}
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> headers <span style="color:var(--ui-tag-color-magenta)">=</span> [
+  { <span style="color:var(--ui-tag-color-purple)">key:</span> <span style="color:var(--ui-tag-color-teal)">'name'</span>, <span style="color:var(--ui-tag-color-purple)">header:</span> <span style="color:var(--ui-tag-color-teal)">'สัญญา'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">key:</span> <span style="color:var(--ui-tag-color-teal)">'party'</span>, <span style="color:var(--ui-tag-color-purple)">header:</span> <span style="color:var(--ui-tag-color-teal)">'คู่สัญญา'</span> },
+];
+<span style="color:var(--ui-tag-color-magenta)">const</span> rows<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">Contract</span>[] <span style="color:var(--ui-tag-color-magenta)">=</span> [
+  { <span style="color:var(--ui-tag-color-purple)">id:</span> <span style="color:var(--ui-tag-color-teal)">'1'</span>, <span style="color:var(--ui-tag-color-purple)">name:</span> <span style="color:var(--ui-tag-color-teal)">'สัญญาบริการ'</span>, <span style="color:var(--ui-tag-color-purple)">party:</span> <span style="color:var(--ui-tag-color-teal)">'บริษัท เอซีเอ็ม จำกัด'</span>, <span style="color:var(--ui-tag-color-purple)">owner:</span> <span style="color:var(--ui-tag-color-teal)">'กัญญา ศ.'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">id:</span> <span style="color:var(--ui-tag-color-teal)">'2'</span>, <span style="color:var(--ui-tag-color-purple)">name:</span> <span style="color:var(--ui-tag-color-teal)">'สัญญารักษาความลับ'</span>, <span style="color:var(--ui-tag-color-purple)">party:</span> <span style="color:var(--ui-tag-color-teal)">'โกลเบ็กซ์'</span>, <span style="color:var(--ui-tag-color-purple)">owner:</span> <span style="color:var(--ui-tag-color-teal)">'อนันต์ พ.'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">id:</span> <span style="color:var(--ui-tag-color-teal)">'3'</span>, <span style="color:var(--ui-tag-color-purple)">name:</span> <span style="color:var(--ui-tag-color-teal)">'ต่อสัญญาเช่า'</span>, <span style="color:var(--ui-tag-color-purple)">party:</span> <span style="color:var(--ui-tag-color-teal)">'อินิเทค'</span>, <span style="color:var(--ui-tag-color-purple)">owner:</span> <span style="color:var(--ui-tag-color-teal)">'มาลี ก.'</span> },
+];
+<span style="color:var(--ui-tag-color-magenta)">const</span> toggle <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'flex size-8 items-center justify-center text-ink hover:bg-ghost-hover focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus [&amp;&gt;svg]:transition-transform data-expanded:[&amp;&gt;svg]:rotate-90'</span>;
+<span style="color:var(--ui-tag-color-magenta)">const</span> <span style="color:var(--ui-tag-color-cyan)">chevron</span> <span style="color:var(--ui-tag-color-magenta)">=</span> (
+  &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-4 fill-current"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M11 8 6 13l-.7-.7L9.6 8 5.3 3.7 6 3z"</span> /&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+);
+<span style="color:var(--ui-tag-color-magenta)">const</span> cell <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'h-12 border-b border-hairline px-4 text-sm text-ink-muted'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> table <span style="color:var(--ui-tag-color-magenta)">=</span> DataTable.<span style="color:var(--ui-tag-color-cyan)">useDataTable</span>({ headers, rows, <span style="color:var(--ui-tag-color-purple)">expandable:</span> <span style="color:var(--ui-tag-color-green)">true</span>, <span style="color:var(--ui-tag-color-purple)">defaultExpandedIds:</span> [<span style="color:var(--ui-tag-color-teal)">'2'</span>] });
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Root</span> <span style="color:var(--ui-tag-color-purple)">table</span><span style="color:var(--ui-tag-color-magenta)">=</span>{table}&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Table</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"สัญญา"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"w-full border-collapse"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">thead</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">tr</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"bg-layer-accent text-start text-sm font-semibold text-ink"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">td</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"w-12 ps-2"</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.ExpandAll</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span>{table.allExpanded <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-teal)">'ยุบทุกแถว'</span> <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-teal)">'ขยายทุกแถว'</span>} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{toggle}&gt;{chevron}&lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.ExpandAll</span>&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">td</span>&gt;
+            {table.columns.<span style="color:var(--ui-tag-color-cyan)">map</span>((column) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+              &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.ColumnHeader</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{column.key} <span style="color:var(--ui-tag-color-purple)">column</span><span style="color:var(--ui-tag-color-magenta)">=</span>{column.key} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-12 px-4 text-start"</span>&gt;
+                {column.header}
+              &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.ColumnHeader</span>&gt;
+            ))}
+          &lt;/<span style="color:var(--ui-tag-color-blue)">tr</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">thead</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Body</span>&gt;
+          {table.pageRows.<span style="color:var(--ui-tag-color-cyan)">flatMap</span>((row) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+            <span style="color:var(--ui-tag-color-magenta)">const</span> <span style="color:var(--ui-tag-color-cyan)">parent</span> <span style="color:var(--ui-tag-color-magenta)">=</span> (
+              &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Row</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{row.id} <span style="color:var(--ui-tag-color-purple)">rowId</span><span style="color:var(--ui-tag-color-magenta)">=</span>{row.id} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"data-expanded:[&amp;&gt;td]:border-transparent"</span>&gt;
+                &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span> <span style="color:var(--ui-tag-color-purple)">index</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">0</span>} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-teal)">`${</span><span style="color:var(--ui-tag-color-teal)">cell</span><span style="color:var(--ui-tag-color-teal)">} ps-2`</span>}&gt;
+                  &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.ExpandToggle</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-teal)">`ขยายแถว, ${</span><span style="color:var(--ui-tag-color-teal)">row.name</span><span style="color:var(--ui-tag-color-teal)">}`</span>} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{toggle}&gt;{chevron}&lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.ExpandToggle</span>&gt;
+                &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span>&gt;
+                &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span> <span style="color:var(--ui-tag-color-purple)">index</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">1</span>} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{cell}&gt;{row.name}&lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span>&gt;
+                &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span> <span style="color:var(--ui-tag-color-purple)">index</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">2</span>} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{cell}&gt;{row.party}&lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span>&gt;
+              &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Row</span>&gt;
+            );
+            <span style="color:var(--ui-tag-color-magenta)">if</span> (<span style="color:var(--ui-tag-color-magenta)">!</span>table.<span style="color:var(--ui-tag-color-cyan)">isExpanded</span>(row.id)) <span style="color:var(--ui-tag-color-magenta)">return</span> [parent];
+            <span style="color:var(--ui-tag-color-magenta)">return</span> [
+              parent,
+              &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.ExpandedRow</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-teal)">`${</span><span style="color:var(--ui-tag-color-teal)">row.id</span><span style="color:var(--ui-tag-color-teal)">}-detail`</span>} <span style="color:var(--ui-tag-color-purple)">rowId</span><span style="color:var(--ui-tag-color-magenta)">=</span>{row.id}&gt;
+                &lt;<span style="color:var(--ui-tag-color-blue)">td</span> <span style="color:var(--ui-tag-color-purple)">colSpan</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">3</span>} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"border-b border-hairline px-14 pb-6 pt-2 text-sm text-ink-muted"</span>&gt;
+                  ผู้รับผิดชอบ: {row.owner}
+                &lt;/<span style="color:var(--ui-tag-color-blue)">td</span>&gt;
+              &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.ExpandedRow</span>&gt;,
+            ];
+          })}
+        &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Body</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Table</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Root</span>&gt;
+  );
+}</ui-code-snippet>
+<p>คืนแถวเป็นรายการชั้นเดียว (อย่างที่นี่ใช้ <code>flatMap</code>) การเปิดแถวจะได้ไม่ mount แถวนั้นใหม่</p>
+<h2 id="เลือกหนึ่งแถว">เลือกหนึ่งแถว</h2>
+<p>เมื่อใส่ <code>radio</code> ตัว <code>SelectRow</code> จะเป็น radio ทุก radio หยุด Tab ที่เดียว (แถวที่เลือก ถ้าไม่มีก็แถวแรกที่ใช้งานได้) ปุ่มลูกศรย้ายไปแถวถัดไปที่ใช้งานได้และเลือก วนกลับเมื่อสุดปลาย <code>SelectAll</code> ไม่ render อะไร แถวที่มี <code>disabled: true</code> เลือกไม่ได้</p>
+<div class="doc-demo" data-react-example="3"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { DataTable } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">interface</span> <span style="color:var(--ui-tag-color-cyan)">Template</span> {
+  id<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>;
+  name<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>;
+  type<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>;
+  disabled<span style="color:var(--ui-tag-color-magenta)">?:</span> <span style="color:var(--ui-tag-color-cyan)">boolean</span>;
+  [key<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>]<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">unknown</span>;
+}
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> headers <span style="color:var(--ui-tag-color-magenta)">=</span> [
+  { <span style="color:var(--ui-tag-color-purple)">key:</span> <span style="color:var(--ui-tag-color-teal)">'name'</span>, <span style="color:var(--ui-tag-color-purple)">header:</span> <span style="color:var(--ui-tag-color-teal)">'แม่แบบ'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">key:</span> <span style="color:var(--ui-tag-color-teal)">'type'</span>, <span style="color:var(--ui-tag-color-purple)">header:</span> <span style="color:var(--ui-tag-color-teal)">'ประเภท'</span> },
+];
+<span style="color:var(--ui-tag-color-magenta)">const</span> rows<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">Template</span>[] <span style="color:var(--ui-tag-color-magenta)">=</span> [
+  { <span style="color:var(--ui-tag-color-purple)">id:</span> <span style="color:var(--ui-tag-color-teal)">'nda'</span>, <span style="color:var(--ui-tag-color-purple)">name:</span> <span style="color:var(--ui-tag-color-teal)">'NDA มาตรฐาน'</span>, <span style="color:var(--ui-tag-color-purple)">type:</span> <span style="color:var(--ui-tag-color-teal)">'รักษาความลับ'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">id:</span> <span style="color:var(--ui-tag-color-teal)">'lease'</span>, <span style="color:var(--ui-tag-color-purple)">name:</span> <span style="color:var(--ui-tag-color-teal)">'สัญญาเช่าสำนักงาน'</span>, <span style="color:var(--ui-tag-color-purple)">type:</span> <span style="color:var(--ui-tag-color-teal)">'อสังหาริมทรัพย์'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">id:</span> <span style="color:var(--ui-tag-color-teal)">'msa'</span>, <span style="color:var(--ui-tag-color-purple)">name:</span> <span style="color:var(--ui-tag-color-teal)">'สัญญาบริการหลัก (กำลังปรับปรุง)'</span>, <span style="color:var(--ui-tag-color-purple)">type:</span> <span style="color:var(--ui-tag-color-teal)">'บริการ'</span>, <span style="color:var(--ui-tag-color-purple)">disabled:</span> <span style="color:var(--ui-tag-color-green)">true</span> },
+];
+<span style="color:var(--ui-tag-color-magenta)">const</span> cell <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'h-12 border-b border-hairline px-4 text-sm text-ink-muted'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> table <span style="color:var(--ui-tag-color-magenta)">=</span> DataTable.<span style="color:var(--ui-tag-color-cyan)">useDataTable</span>({ headers, rows, <span style="color:var(--ui-tag-color-purple)">radio:</span> <span style="color:var(--ui-tag-color-green)">true</span> });
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Root</span> <span style="color:var(--ui-tag-color-purple)">table</span><span style="color:var(--ui-tag-color-magenta)">=</span>{table}&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Table</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เลือกแม่แบบ"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"w-full border-collapse"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">thead</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">tr</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-12 bg-layer-accent text-sm font-semibold text-ink"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">th</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"w-12"</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sr-only"</span>&gt;เลือก&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">th</span>&gt;
+            {table.columns.<span style="color:var(--ui-tag-color-cyan)">map</span>((column) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+              &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.ColumnHeader</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{column.key} <span style="color:var(--ui-tag-color-purple)">column</span><span style="color:var(--ui-tag-color-magenta)">=</span>{column.key} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"px-4 text-start"</span>&gt;
+                {column.header}
+              &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.ColumnHeader</span>&gt;
+            ))}
+          &lt;/<span style="color:var(--ui-tag-color-blue)">tr</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">thead</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Body</span>&gt;
+          {table.pageRows.<span style="color:var(--ui-tag-color-cyan)">map</span>((row) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+            &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Row</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{row.id} <span style="color:var(--ui-tag-color-purple)">rowId</span><span style="color:var(--ui-tag-color-magenta)">=</span>{row.id} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"data-selected:bg-layer-selected-1 data-selected:[&amp;&gt;td]:text-ink"</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span> <span style="color:var(--ui-tag-color-purple)">index</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">0</span>} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-teal)">`${</span><span style="color:var(--ui-tag-color-teal)">cell</span><span style="color:var(--ui-tag-color-teal)">} ps-4`</span>}&gt;
+                &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.SelectRow</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-teal)">`เลือกแถว, ${</span><span style="color:var(--ui-tag-color-teal)">row.name</span><span style="color:var(--ui-tag-color-teal)">}`</span>} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"accent-ink"</span> /&gt;
+              &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span> <span style="color:var(--ui-tag-color-purple)">index</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">1</span>} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{cell}&gt;{row.name}&lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span> <span style="color:var(--ui-tag-color-purple)">index</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">2</span>} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{cell}&gt;{row.type}&lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span>&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Row</span>&gt;
+          ))}
+        &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Body</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Table</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"mt-2 text-xs text-ink-muted"</span>&gt;แม่แบบ: {table.selectedIds[<span style="color:var(--ui-tag-color-green)">0</span>] <span style="color:var(--ui-tag-color-magenta)">??</span> <span style="color:var(--ui-tag-color-teal)">'(ไม่มี)'</span>}&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Root</span>&gt;
+  );
+}</ui-code-snippet>
+<h2 id="แสดงและซ่อนคอลัมน์">แสดงและซ่อนคอลัมน์</h2>
+<p><code>table.columns</code> คือคอลัมน์ที่แสดง <code>table.headers</code> คือทั้งหมด <code>toggleColumn(key, show)</code> แสดงหรือซ่อนหนึ่งคอลัมน์ <code>isColumnLocked(key)</code> บอกว่าซ่อนไม่ได้ (<code>hideable: false</code> หรือเหลือคอลัมน์เดียว) และ <code>resetColumns()</code> กลับไปตาม <code>hidden</code> ของ header <code>columnsChanged</code> บอกว่าที่เลือกต่างจากค่านั้น</p>
+<div class="doc-demo" data-react-example="4"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { DataTable } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">interface</span> <span style="color:var(--ui-tag-color-cyan)">Contract</span> {
+  id<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>;
+  name<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>;
+  party<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>;
+  status<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>;
+  updated<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>;
+  [key<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>]<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">unknown</span>;
+}
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> headers <span style="color:var(--ui-tag-color-magenta)">=</span> [
+  { <span style="color:var(--ui-tag-color-purple)">key:</span> <span style="color:var(--ui-tag-color-teal)">'name'</span>, <span style="color:var(--ui-tag-color-purple)">header:</span> <span style="color:var(--ui-tag-color-teal)">'สัญญา'</span>, <span style="color:var(--ui-tag-color-purple)">hideable:</span> <span style="color:var(--ui-tag-color-green)">false</span> },
+  { <span style="color:var(--ui-tag-color-purple)">key:</span> <span style="color:var(--ui-tag-color-teal)">'party'</span>, <span style="color:var(--ui-tag-color-purple)">header:</span> <span style="color:var(--ui-tag-color-teal)">'คู่สัญญา'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">key:</span> <span style="color:var(--ui-tag-color-teal)">'status'</span>, <span style="color:var(--ui-tag-color-purple)">header:</span> <span style="color:var(--ui-tag-color-teal)">'สถานะ'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">key:</span> <span style="color:var(--ui-tag-color-teal)">'updated'</span>, <span style="color:var(--ui-tag-color-purple)">header:</span> <span style="color:var(--ui-tag-color-teal)">'แก้ไขล่าสุด'</span>, <span style="color:var(--ui-tag-color-purple)">hidden:</span> <span style="color:var(--ui-tag-color-green)">true</span> },
+];
+<span style="color:var(--ui-tag-color-magenta)">const</span> rows<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">Contract</span>[] <span style="color:var(--ui-tag-color-magenta)">=</span> [
+  { <span style="color:var(--ui-tag-color-purple)">id:</span> <span style="color:var(--ui-tag-color-teal)">'1'</span>, <span style="color:var(--ui-tag-color-purple)">name:</span> <span style="color:var(--ui-tag-color-teal)">'สัญญาบริการ'</span>, <span style="color:var(--ui-tag-color-purple)">party:</span> <span style="color:var(--ui-tag-color-teal)">'บริษัท เอซีเอ็ม จำกัด'</span>, <span style="color:var(--ui-tag-color-purple)">status:</span> <span style="color:var(--ui-tag-color-teal)">'ลงนามแล้ว'</span>, <span style="color:var(--ui-tag-color-purple)">updated:</span> <span style="color:var(--ui-tag-color-teal)">'2026-09-30'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">id:</span> <span style="color:var(--ui-tag-color-teal)">'2'</span>, <span style="color:var(--ui-tag-color-purple)">name:</span> <span style="color:var(--ui-tag-color-teal)">'สัญญารักษาความลับ'</span>, <span style="color:var(--ui-tag-color-purple)">party:</span> <span style="color:var(--ui-tag-color-teal)">'โกลเบ็กซ์'</span>, <span style="color:var(--ui-tag-color-purple)">status:</span> <span style="color:var(--ui-tag-color-teal)">'ฉบับร่าง'</span>, <span style="color:var(--ui-tag-color-purple)">updated:</span> <span style="color:var(--ui-tag-color-teal)">'2026-10-01'</span> },
+];
+<span style="color:var(--ui-tag-color-magenta)">const</span> cell <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'h-10 border-b border-hairline px-4 text-sm text-ink-muted'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> table <span style="color:var(--ui-tag-color-magenta)">=</span> DataTable.<span style="color:var(--ui-tag-color-cyan)">useDataTable</span>({ headers, rows });
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Root</span> <span style="color:var(--ui-tag-color-purple)">table</span><span style="color:var(--ui-tag-color-magenta)">=</span>{table}&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">fieldset</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"mb-3 flex flex-wrap items-center gap-4 text-sm text-ink"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">legend</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"mb-1 text-xs text-ink-muted"</span>&gt;คอลัมน์&lt;/<span style="color:var(--ui-tag-color-blue)">legend</span>&gt;
+        {table.headers.<span style="color:var(--ui-tag-color-cyan)">map</span>((column) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+          &lt;<span style="color:var(--ui-tag-color-blue)">label</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{column.key} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex items-center gap-2 has-disabled:text-ink-disabled"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">input</span>
+              <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"checkbox"</span>
+              <span style="color:var(--ui-tag-color-purple)">checked</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-magenta)">!</span>table.hiddenColumns.<span style="color:var(--ui-tag-color-cyan)">includes</span>(column.key)}
+              <span style="color:var(--ui-tag-color-purple)">disabled</span><span style="color:var(--ui-tag-color-magenta)">=</span>{table.<span style="color:var(--ui-tag-color-cyan)">isColumnLocked</span>(column.key)}
+              <span style="color:var(--ui-tag-color-purple)">onChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> table.<span style="color:var(--ui-tag-color-cyan)">toggleColumn</span>(column.key, e.target.checked)}
+            /&gt;
+            {column.header}
+          &lt;/<span style="color:var(--ui-tag-color-blue)">label</span>&gt;
+        ))}
+        &lt;<span style="color:var(--ui-tag-color-blue)">button</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"button"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-magenta)">!</span>table.columnsChanged} <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{table.resetColumns} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-8 px-3 text-link hover:bg-ghost-hover disabled:text-ink-disabled focus-visible:outline-2 focus-visible:outline-focus"</span>&gt;
+          รีเซ็ต
+        &lt;/<span style="color:var(--ui-tag-color-blue)">button</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">fieldset</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Table</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"สัญญา"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"w-full border-collapse"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">thead</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">tr</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-10 bg-layer-accent text-sm font-semibold text-ink"</span>&gt;
+            {table.columns.<span style="color:var(--ui-tag-color-cyan)">map</span>((column) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+              &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.ColumnHeader</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{column.key} <span style="color:var(--ui-tag-color-purple)">column</span><span style="color:var(--ui-tag-color-magenta)">=</span>{column.key} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"px-4 text-start"</span>&gt;
+                {column.header}
+              &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.ColumnHeader</span>&gt;
+            ))}
+          &lt;/<span style="color:var(--ui-tag-color-blue)">tr</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">thead</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Body</span>&gt;
+          {table.pageRows.<span style="color:var(--ui-tag-color-cyan)">map</span>((row) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+            &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Row</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{row.id} <span style="color:var(--ui-tag-color-purple)">rowId</span><span style="color:var(--ui-tag-color-magenta)">=</span>{row.id}&gt;
+              {table.columns.<span style="color:var(--ui-tag-color-cyan)">map</span>((column, i) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+                &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{column.key} <span style="color:var(--ui-tag-color-purple)">index</span><span style="color:var(--ui-tag-color-magenta)">=</span>{i} <span style="color:var(--ui-tag-color-purple)">column</span><span style="color:var(--ui-tag-color-magenta)">=</span>{column.key} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{cell}&gt;
+                  {<span style="color:var(--ui-tag-color-cyan)">String</span>(row[column.key])}
+                &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span>&gt;
+              ))}
+            &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Row</span>&gt;
+          ))}
+        &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Body</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Table</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Root</span>&gt;
+  );
+}</ui-code-snippet>
+<p>คอลัมน์ที่ซ่อนจะไม่ถูกค้นหาด้วย <code>hiddenColumns</code> / <code>onColumnsChange</code> ทำให้ควบคุมค่านี้เองและบันทึกไว้ได้</p>
+<h2 id="แก้ไขเซลล์ในตาราง">แก้ไขเซลล์ในตาราง</h2>
+<p>คอลัมน์ที่มี <code>editable: 'text' | 'number' | 'select'</code> ทำให้ตารางเป็น grid ตาม APG: <code>Table</code> ได้ <code>role=&quot;grid&quot;</code> เซลล์หนึ่งในตัวตารางเป็นที่หยุด Tab และปุ่มลูกศร Home / End และ Ctrl + Home / End ย้ายมัน Enter, F2, ดับเบิลคลิก คลิกที่ element ที่มี <code>data-edit-icon</code> หรือพิมพ์ จะเปิดช่องแก้ไข ให้ render <code>CellInput</code> หรือ <code>CellSelect</code> ขณะเซลล์ถูกแก้ไข (<code>useCellContext().editing</code>) และ <code>CellError</code> สำหรับข้อความจาก <code>validate</code> <code>onCellEdit</code> ส่ง <code>rows</code> ใหม่ให้คุณ</p>
+<div class="doc-demo" data-react-example="5"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { useState } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { DataTable } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">interface</span> <span style="color:var(--ui-tag-color-cyan)">Contract</span> {
+  id<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>;
+  name<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>;
+  amount<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">number</span>;
+  status<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>;
+  [key<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>]<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">unknown</span>;
+}
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> headers<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">DataTable</span>.<span style="color:var(--ui-tag-color-cyan)">DataTableColumn</span>[] <span style="color:var(--ui-tag-color-magenta)">=</span> [
+  { <span style="color:var(--ui-tag-color-purple)">key:</span> <span style="color:var(--ui-tag-color-teal)">'name'</span>, <span style="color:var(--ui-tag-color-purple)">header:</span> <span style="color:var(--ui-tag-color-teal)">'ชื่อ'</span>, <span style="color:var(--ui-tag-color-purple)">editable:</span> <span style="color:var(--ui-tag-color-teal)">'text'</span>, <span style="color:var(--ui-tag-color-cyan)">validate</span><span style="color:var(--ui-tag-color-purple)">:</span> (value) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (<span style="color:var(--ui-tag-color-cyan)">String</span>(value).<span style="color:var(--ui-tag-color-cyan)">trim</span>() <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-teal)">''</span> <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-teal)">'ต้องใส่ชื่อ'</span>) },
+  { <span style="color:var(--ui-tag-color-purple)">key:</span> <span style="color:var(--ui-tag-color-teal)">'amount'</span>, <span style="color:var(--ui-tag-color-purple)">header:</span> <span style="color:var(--ui-tag-color-teal)">'จำนวนเงิน (บาท)'</span>, <span style="color:var(--ui-tag-color-purple)">editable:</span> <span style="color:var(--ui-tag-color-teal)">'number'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">key:</span> <span style="color:var(--ui-tag-color-teal)">'status'</span>, <span style="color:var(--ui-tag-color-purple)">header:</span> <span style="color:var(--ui-tag-color-teal)">'สถานะ'</span>, <span style="color:var(--ui-tag-color-purple)">editable:</span> <span style="color:var(--ui-tag-color-teal)">'select'</span>, <span style="color:var(--ui-tag-color-purple)">options:</span> [
+    { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'draft'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'ฉบับร่าง'</span> },
+    { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'signed'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'ลงนามแล้ว'</span> },
+  ] },
+];
+<span style="color:var(--ui-tag-color-magenta)">const</span> initialRows<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">Contract</span>[] <span style="color:var(--ui-tag-color-magenta)">=</span> [
+  { <span style="color:var(--ui-tag-color-purple)">id:</span> <span style="color:var(--ui-tag-color-teal)">'1'</span>, <span style="color:var(--ui-tag-color-purple)">name:</span> <span style="color:var(--ui-tag-color-teal)">'สัญญาเช่าสำนักงาน 2569'</span>, <span style="color:var(--ui-tag-color-purple)">amount:</span> <span style="color:var(--ui-tag-color-green)">250000</span>, <span style="color:var(--ui-tag-color-purple)">status:</span> <span style="color:var(--ui-tag-color-teal)">'draft'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">id:</span> <span style="color:var(--ui-tag-color-teal)">'2'</span>, <span style="color:var(--ui-tag-color-purple)">name:</span> <span style="color:var(--ui-tag-color-teal)">'NDA – เอซีเอ็ม'</span>, <span style="color:var(--ui-tag-color-purple)">amount:</span> <span style="color:var(--ui-tag-color-green)">0</span>, <span style="color:var(--ui-tag-color-purple)">status:</span> <span style="color:var(--ui-tag-color-teal)">'signed'</span> },
+];
+<span style="color:var(--ui-tag-color-magenta)">const</span> editor <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'h-full w-full bg-surface-1 px-4 text-sm text-ink outline-2 -outline-offset-2 outline-focus aria-invalid:outline-error'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">CellContent</span>({ column, value }<span style="color:var(--ui-tag-color-magenta)">:</span> { column<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">DataTable</span>.<span style="color:var(--ui-tag-color-cyan)">DataTableColumn</span>; value<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">unknown</span> }) {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> { editing } <span style="color:var(--ui-tag-color-magenta)">=</span> DataTable.<span style="color:var(--ui-tag-color-cyan)">useCellContext</span>();
+  <span style="color:var(--ui-tag-color-magenta)">if</span> (editing) {
+    <span style="color:var(--ui-tag-color-magenta)">return</span> (
+      &lt;&gt;
+        {column.editable <span style="color:var(--ui-tag-color-magenta)">===</span> <span style="color:var(--ui-tag-color-teal)">'select'</span> <span style="color:var(--ui-tag-color-magenta)">?</span> &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.CellSelect</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span>{column.header} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{editor} /&gt; <span style="color:var(--ui-tag-color-magenta)">:</span> &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.CellInput</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span>{column.header} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{editor} /&gt;}
+        &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.CellError</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"absolute start-0 top-full z-10 whitespace-nowrap bg-surface-1 px-2 py-1 text-xs text-error-text shadow"</span> /&gt;
+      &lt;/&gt;
+    );
+  }
+  <span style="color:var(--ui-tag-color-magenta)">const</span> shown <span style="color:var(--ui-tag-color-magenta)">=</span> column.options?.<span style="color:var(--ui-tag-color-cyan)">find</span>((option) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> option.value <span style="color:var(--ui-tag-color-magenta)">===</span> value)?.label <span style="color:var(--ui-tag-color-magenta)">??</span> <span style="color:var(--ui-tag-color-cyan)">String</span>(value);
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.CellValue</span>&gt;{shown}&lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.CellValue</span>&gt;
+      {column.editable <span style="color:var(--ui-tag-color-magenta)">?</span> &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">data-edit-icon</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">""</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ms-2 cursor-pointer opacity-0 group-hover:opacity-100 group-focus:opacity-100"</span>&gt;✎&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt; <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-green)">null</span>}
+    &lt;/&gt;
+  );
+}
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [rows, setRows] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(initialRows);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [last, setLast] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">''</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> table <span style="color:var(--ui-tag-color-magenta)">=</span> DataTable.<span style="color:var(--ui-tag-color-cyan)">useDataTable</span>({
+    headers,
+    rows,
+    <span style="color:var(--ui-tag-color-cyan)">onCellEdit</span><span style="color:var(--ui-tag-color-purple)">:</span> (edit) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+      <span style="color:var(--ui-tag-color-cyan)">setRows</span>(edit.rows);
+      <span style="color:var(--ui-tag-color-cyan)">setLast</span>(<span style="color:var(--ui-tag-color-teal)">`${</span><span style="color:var(--ui-tag-color-teal)">edit.key</span><span style="color:var(--ui-tag-color-teal)">}: ${</span><span style="color:var(--ui-tag-color-cyan)">String</span><span style="color:var(--ui-tag-color-teal)">(edit.previous)</span><span style="color:var(--ui-tag-color-teal)">} → ${</span><span style="color:var(--ui-tag-color-teal)">edit.value</span><span style="color:var(--ui-tag-color-teal)">}`</span>);
+    },
+  });
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Root</span> <span style="color:var(--ui-tag-color-purple)">table</span><span style="color:var(--ui-tag-color-magenta)">=</span>{table}&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.EditHint</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sr-only"</span>&gt;กด Enter เพื่อแก้ไข&lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.EditHint</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Table</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"สัญญา"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"w-full border-collapse"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">thead</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">tr</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-12 bg-layer-accent text-sm font-semibold text-ink"</span>&gt;
+            {table.columns.<span style="color:var(--ui-tag-color-cyan)">map</span>((column) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+              &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.ColumnHeader</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{column.key} <span style="color:var(--ui-tag-color-purple)">column</span><span style="color:var(--ui-tag-color-magenta)">=</span>{column.key} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"px-4 text-start"</span>&gt;
+                {column.header}
+              &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.ColumnHeader</span>&gt;
+            ))}
+          &lt;/<span style="color:var(--ui-tag-color-blue)">tr</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">thead</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Body</span>&gt;
+          {table.pageRows.<span style="color:var(--ui-tag-color-cyan)">map</span>((row) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+            &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Row</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{row.id} <span style="color:var(--ui-tag-color-purple)">rowId</span><span style="color:var(--ui-tag-color-magenta)">=</span>{row.id}&gt;
+              {table.columns.<span style="color:var(--ui-tag-color-cyan)">map</span>((column, i) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+                &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span>
+                  <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{column.key}
+                  <span style="color:var(--ui-tag-color-purple)">index</span><span style="color:var(--ui-tag-color-magenta)">=</span>{i}
+                  <span style="color:var(--ui-tag-color-purple)">column</span><span style="color:var(--ui-tag-color-magenta)">=</span>{column.key}
+                  <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"group relative h-12 border-b border-hairline px-4 text-sm text-ink-muted data-editing:p-0 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus"</span>
+                &gt;
+                  &lt;<span style="color:var(--ui-tag-color-blue)">CellContent</span> <span style="color:var(--ui-tag-color-purple)">column</span><span style="color:var(--ui-tag-color-magenta)">=</span>{column} <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{row[column.key]} /&gt;
+                &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span>&gt;
+              ))}
+            &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Row</span>&gt;
+          ))}
+        &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Body</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Table</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"mt-2 text-xs text-ink-muted"</span>&gt;แก้ไขล่าสุด: {last}&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Root</span>&gt;
+  );
+}</ui-code-snippet>
+<p>ในช่องแก้ไข Enter บันทึก Escape ยกเลิก Tab / Shift + Tab บันทึกแล้วแก้เซลล์ถัดไป / ก่อนหน้าที่แก้ได้ และการออกจากเซลล์จะบันทึก ตัวควบคุมในเซลล์ (ลิงก์ ปุ่ม) จะออกจากลำดับ Tab เมื่อเป็น grid กด Enter หรือ Space ที่เซลล์ของมันเพื่อกด</p>
+<h2 id="ปรับความกว้างคอลัมน์">ปรับความกว้างคอลัมน์</h2>
+<p><code>resizable</code> (หรือ <code>resizable</code> ของคอลัมน์) ทำให้ <code>ResizeHandle</code> ทำงาน: เป็น range input จริงที่ขอบของหัวคอลัมน์ ลากได้ หรือใช้ลูกศรทีละ 2px, Shift / Page Up / Down ทีละ 16px, Home / End แคบสุด / กว้างสุด การปรับครั้งแรกจะตรึง layout อัตโนมัติเป็นความกว้างคงที่ (<code>table.resize.fixed</code>) แล้ว <code>Filler</code> จะกินพื้นที่ที่เหลือของแถว ผูก <code>table.boxRef</code> กับกล่องที่เลื่อนได้ คอลัมน์จะกว้างได้ไม่เกินกล่องนั้น</p>
+<div class="doc-demo" data-react-example="6"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { DataTable } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">interface</span> <span style="color:var(--ui-tag-color-cyan)">Contract</span> {
+  id<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>;
+  name<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>;
+  owner<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>;
+  amount<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>;
+  [key<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>]<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">unknown</span>;
+}
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> headers <span style="color:var(--ui-tag-color-magenta)">=</span> [
+  { <span style="color:var(--ui-tag-color-purple)">key:</span> <span style="color:var(--ui-tag-color-teal)">'name'</span>, <span style="color:var(--ui-tag-color-purple)">header:</span> <span style="color:var(--ui-tag-color-teal)">'ชื่อ'</span>, <span style="color:var(--ui-tag-color-purple)">minWidth:</span> <span style="color:var(--ui-tag-color-green)">120</span> },
+  { <span style="color:var(--ui-tag-color-purple)">key:</span> <span style="color:var(--ui-tag-color-teal)">'owner'</span>, <span style="color:var(--ui-tag-color-purple)">header:</span> <span style="color:var(--ui-tag-color-teal)">'ผู้รับผิดชอบ'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">key:</span> <span style="color:var(--ui-tag-color-teal)">'amount'</span>, <span style="color:var(--ui-tag-color-purple)">header:</span> <span style="color:var(--ui-tag-color-teal)">'จำนวนเงิน (บาท)'</span>, <span style="color:var(--ui-tag-color-purple)">resizable:</span> <span style="color:var(--ui-tag-color-green)">false</span> },
+];
+<span style="color:var(--ui-tag-color-magenta)">const</span> rows<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">Contract</span>[] <span style="color:var(--ui-tag-color-magenta)">=</span> [
+  { <span style="color:var(--ui-tag-color-purple)">id:</span> <span style="color:var(--ui-tag-color-teal)">'1'</span>, <span style="color:var(--ui-tag-color-purple)">name:</span> <span style="color:var(--ui-tag-color-teal)">'สัญญาเช่าสำนักงาน 2569'</span>, <span style="color:var(--ui-tag-color-purple)">owner:</span> <span style="color:var(--ui-tag-color-teal)">'อนัญญา'</span>, <span style="color:var(--ui-tag-color-purple)">amount:</span> <span style="color:var(--ui-tag-color-teal)">'250,000'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">id:</span> <span style="color:var(--ui-tag-color-teal)">'2'</span>, <span style="color:var(--ui-tag-color-purple)">name:</span> <span style="color:var(--ui-tag-color-teal)">'สัญญาอนุญาตใช้ซอฟต์แวร์'</span>, <span style="color:var(--ui-tag-color-purple)">owner:</span> <span style="color:var(--ui-tag-color-teal)">'ชัย'</span>, <span style="color:var(--ui-tag-color-purple)">amount:</span> <span style="color:var(--ui-tag-color-teal)">'48,000'</span> },
+];
+<span style="color:var(--ui-tag-color-magenta)">const</span> cell <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'h-10 border-b border-hairline px-4 text-sm text-ink-muted'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> table <span style="color:var(--ui-tag-color-magenta)">=</span> DataTable.<span style="color:var(--ui-tag-color-cyan)">useDataTable</span>({ headers, rows, <span style="color:var(--ui-tag-color-purple)">resizable:</span> <span style="color:var(--ui-tag-color-green)">true</span> });
+  <span style="color:var(--ui-tag-color-magenta)">const</span> { boxRef } <span style="color:var(--ui-tag-color-magenta)">=</span> table;
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Root</span> <span style="color:var(--ui-tag-color-purple)">table</span><span style="color:var(--ui-tag-color-magenta)">=</span>{table}&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">ref</span><span style="color:var(--ui-tag-color-magenta)">=</span>{boxRef} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"overflow-x-auto"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Table</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"สัญญา"</span> <span style="color:var(--ui-tag-color-purple)">style</span><span style="color:var(--ui-tag-color-magenta)">=</span>{table.resize.tableStyle} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-teal)">`w-full border-collapse ${</span><span style="color:var(--ui-tag-color-teal)">table.resize.fixed </span><span style="color:var(--ui-tag-color-magenta)">?</span><span style="color:var(--ui-tag-color-teal)"> </span><span style="color:var(--ui-tag-color-teal)">'table-fixed'</span><span style="color:var(--ui-tag-color-teal)"> </span><span style="color:var(--ui-tag-color-magenta)">:</span><span style="color:var(--ui-tag-color-teal)"> </span><span style="color:var(--ui-tag-color-teal)">''}`</span>}&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">thead</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">tr</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-10 bg-layer-accent text-sm font-semibold text-ink"</span>&gt;
+              {table.columns.<span style="color:var(--ui-tag-color-cyan)">map</span>((column) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+                &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.ColumnHeader</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{column.key} <span style="color:var(--ui-tag-color-purple)">column</span><span style="color:var(--ui-tag-color-magenta)">=</span>{column.key} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"group relative px-4 text-start"</span>&gt;
+                  {column.header}
+                  &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.ResizeHandle</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-teal)">`ปรับความกว้างคอลัมน์ ${</span><span style="color:var(--ui-tag-color-teal)">column.header</span><span style="color:var(--ui-tag-color-teal)">}`</span>} <span style="color:var(--ui-tag-color-purple)">valueText</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(px) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-teal)">`${</span><span style="color:var(--ui-tag-color-teal)">px</span><span style="color:var(--ui-tag-color-teal)">} พิกเซล`</span>} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"peer absolute -end-3 top-0 z-10 m-0 h-full w-6 cursor-col-resize appearance-none bg-transparent opacity-0"</span> /&gt;
+                  &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"pointer-events-none absolute inset-y-0 end-0 w-0.5 group-hover:bg-border-strong-1 group-data-resizing:bg-interactive peer-focus-visible:bg-focus"</span> /&gt;
+                &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.ColumnHeader</span>&gt;
+              ))}
+              &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Filler</span> /&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">tr</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">thead</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Body</span>&gt;
+            {table.pageRows.<span style="color:var(--ui-tag-color-cyan)">map</span>((row) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+              &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Row</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{row.id} <span style="color:var(--ui-tag-color-purple)">rowId</span><span style="color:var(--ui-tag-color-magenta)">=</span>{row.id}&gt;
+                {table.columns.<span style="color:var(--ui-tag-color-cyan)">map</span>((column, i) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+                  &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{column.key} <span style="color:var(--ui-tag-color-purple)">index</span><span style="color:var(--ui-tag-color-magenta)">=</span>{i} <span style="color:var(--ui-tag-color-purple)">column</span><span style="color:var(--ui-tag-color-magenta)">=</span>{column.key} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{cell}&gt;
+                    {<span style="color:var(--ui-tag-color-cyan)">String</span>(row[column.key])}
+                  &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span>&gt;
+                ))}
+                &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Filler</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{cell} /&gt;
+              &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Row</span>&gt;
+            ))}
+          &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Body</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Table</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"mt-2 text-xs text-ink-muted"</span>&gt;ความกว้าง: {JSON.<span style="color:var(--ui-tag-color-cyan)">stringify</span>(table.columnWidths)}&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Root</span>&gt;
+  );
+}</ui-code-snippet>
+<p><code>columnWidths</code> / <code>onColumnResize</code> ทำให้ควบคุมความกว้างเอง บันทึกและคืนค่าได้ คอลัมน์รับ <code>width</code>, <code>minWidth</code> (ค่าเริ่มต้น 50) และ <code>maxWidth</code></p>
+<h2 id="แต่ง-style">แต่ง style</h2>
+<p>วาด checkbox เองจาก <code>data-checked</code> และ <code>data-indeterminate</code> หมุนลูกศรเรียงจาก <code>data-direction</code> และแรเงาแถวที่เลือกและแถวสลับสี</p>
+<div class="doc-demo" data-react-example="7"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { DataTable } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">interface</span> <span style="color:var(--ui-tag-color-cyan)">Signer</span> {
+  id<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>;
+  name<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>;
+  role<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>;
+  [key<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>]<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">unknown</span>;
+}
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> headers <span style="color:var(--ui-tag-color-magenta)">=</span> [
+  { <span style="color:var(--ui-tag-color-purple)">key:</span> <span style="color:var(--ui-tag-color-teal)">'name'</span>, <span style="color:var(--ui-tag-color-purple)">header:</span> <span style="color:var(--ui-tag-color-teal)">'ชื่อ'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">key:</span> <span style="color:var(--ui-tag-color-teal)">'role'</span>, <span style="color:var(--ui-tag-color-purple)">header:</span> <span style="color:var(--ui-tag-color-teal)">'บทบาท'</span> },
+];
+<span style="color:var(--ui-tag-color-magenta)">const</span> rows<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">Signer</span>[] <span style="color:var(--ui-tag-color-magenta)">=</span> [
+  { <span style="color:var(--ui-tag-color-purple)">id:</span> <span style="color:var(--ui-tag-color-teal)">'1'</span>, <span style="color:var(--ui-tag-color-purple)">name:</span> <span style="color:var(--ui-tag-color-teal)">'อนันต์ พ.'</span>, <span style="color:var(--ui-tag-color-purple)">role:</span> <span style="color:var(--ui-tag-color-teal)">'กรรมการผู้จัดการ'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">id:</span> <span style="color:var(--ui-tag-color-teal)">'2'</span>, <span style="color:var(--ui-tag-color-purple)">name:</span> <span style="color:var(--ui-tag-color-teal)">'กัญญา ศ.'</span>, <span style="color:var(--ui-tag-color-purple)">role:</span> <span style="color:var(--ui-tag-color-teal)">'ที่ปรึกษากฎหมาย'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">id:</span> <span style="color:var(--ui-tag-color-teal)">'3'</span>, <span style="color:var(--ui-tag-color-purple)">name:</span> <span style="color:var(--ui-tag-color-teal)">'สมชาย ด.'</span>, <span style="color:var(--ui-tag-color-purple)">role:</span> <span style="color:var(--ui-tag-color-teal)">'พยาน'</span> },
+];
+<span style="color:var(--ui-tag-color-magenta)">const</span> cell <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'h-12 border-b border-hairline px-4 text-sm text-ink-muted'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Box</span>({ label, all <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-green)">false</span> }<span style="color:var(--ui-tag-color-magenta)">:</span> { label<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>; all<span style="color:var(--ui-tag-color-magenta)">?:</span> <span style="color:var(--ui-tag-color-cyan)">boolean</span> }) {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> input <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'peer absolute inset-0 m-0 cursor-pointer opacity-0'</span>;
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"relative inline-flex size-4"</span>&gt;
+      {all <span style="color:var(--ui-tag-color-magenta)">?</span> &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.SelectAll</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span>{label} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{input} /&gt; <span style="color:var(--ui-tag-color-magenta)">:</span> &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.SelectRow</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span>{label} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{input} /&gt;}
+      &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"pointer-events-none flex size-4 items-center justify-center border border-icon-primary text-[11px] leading-none text-on-primary peer-focus-visible:outline-2 peer-focus-visible:outline-offset-1 peer-focus-visible:outline-focus peer-data-checked:bg-icon-primary peer-data-checked:after:content-['✓'] peer-data-indeterminate:bg-icon-primary peer-data-indeterminate:after:content-['–']"</span> /&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+  );
+}
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> table <span style="color:var(--ui-tag-color-magenta)">=</span> DataTable.<span style="color:var(--ui-tag-color-cyan)">useDataTable</span>({ headers, rows, <span style="color:var(--ui-tag-color-purple)">sortable:</span> <span style="color:var(--ui-tag-color-green)">true</span>, <span style="color:var(--ui-tag-color-purple)">selectable:</span> <span style="color:var(--ui-tag-color-green)">true</span>, <span style="color:var(--ui-tag-color-purple)">locale:</span> <span style="color:var(--ui-tag-color-teal)">'th'</span> });
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Root</span> <span style="color:var(--ui-tag-color-purple)">table</span><span style="color:var(--ui-tag-color-magenta)">=</span>{table}&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Table</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ผู้ลงนาม"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"w-full border-collapse"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">thead</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">tr</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"bg-layer-accent text-sm text-ink"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">td</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"w-12 ps-4"</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">Box</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เลือกทุกแถว"</span> <span style="color:var(--ui-tag-color-purple)">all</span> /&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">td</span>&gt;
+            {table.columns.<span style="color:var(--ui-tag-color-cyan)">map</span>((column) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+              &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.ColumnHeader</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{column.key} <span style="color:var(--ui-tag-color-purple)">column</span><span style="color:var(--ui-tag-color-magenta)">=</span>{column.key} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"p-0 text-start font-semibold"</span>&gt;
+                &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.SortButton</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"group flex h-12 w-full items-center justify-between px-4 hover:bg-layer-selected-hover focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus data-[direction=ascending]:bg-layer-selected-hover data-[direction=descending]:bg-layer-selected-hover"</span>&gt;
+                  {column.header}
+                  &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 32 32"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-4 fill-icon-primary opacity-0 transition-transform group-hover:opacity-100 group-data-[direction=ascending]:opacity-100 group-data-[direction=descending]:rotate-180 group-data-[direction=descending]:opacity-100"</span>&gt;
+                    &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M16 4 6 14l1.41 1.41L15 7.83V28h2V7.83l7.59 7.58L26 14 16 4z"</span> /&gt;
+                  &lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+                &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.SortButton</span>&gt;
+              &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.ColumnHeader</span>&gt;
+            ))}
+          &lt;/<span style="color:var(--ui-tag-color-blue)">tr</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">thead</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Body</span>&gt;
+          {table.pageRows.<span style="color:var(--ui-tag-color-cyan)">map</span>((row) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+            &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Row</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{row.id} <span style="color:var(--ui-tag-color-purple)">rowId</span><span style="color:var(--ui-tag-color-magenta)">=</span>{row.id} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"even:bg-layer-accent hover:bg-ghost-hover data-selected:bg-layer-selected-1 data-selected:[&amp;&gt;td]:text-ink"</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span> <span style="color:var(--ui-tag-color-purple)">index</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">0</span>} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-teal)">`${</span><span style="color:var(--ui-tag-color-teal)">cell</span><span style="color:var(--ui-tag-color-teal)">} ps-4`</span>}&gt;
+                &lt;<span style="color:var(--ui-tag-color-blue)">Box</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-teal)">`เลือกแถว, ${</span><span style="color:var(--ui-tag-color-teal)">row.name</span><span style="color:var(--ui-tag-color-teal)">}`</span>} /&gt;
+              &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span>&gt;
+              {table.columns.<span style="color:var(--ui-tag-color-cyan)">map</span>((column, i) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+                &lt;<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{column.key} <span style="color:var(--ui-tag-color-purple)">index</span><span style="color:var(--ui-tag-color-magenta)">=</span>{i <span style="color:var(--ui-tag-color-magenta)">+</span> <span style="color:var(--ui-tag-color-green)">1</span>} <span style="color:var(--ui-tag-color-purple)">column</span><span style="color:var(--ui-tag-color-magenta)">=</span>{column.key} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{cell}&gt;
+                  {<span style="color:var(--ui-tag-color-cyan)">String</span>(row[column.key])}
+                &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Cell</span>&gt;
+              ))}
+            &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Row</span>&gt;
+          ))}
+        &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Body</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Table</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">DataTable.Root</span>&gt;
+  );
+}</ui-code-snippet>
+<ui-code-snippet type="multi" class="doc-code" data-lang="css"><span style="color:var(--ui-tag-color-blue)">th</span>[<span style="color:var(--ui-tag-color-purple)">data-sortable</span>] <span style="color:var(--ui-tag-color-blue)">button</span><span style="color:var(--ui-tag-color-purple)">:hover</span> { <span style="color:var(--ui-tag-color-purple)">background</span>: #d1d1d1; }
+<span style="color:var(--ui-tag-color-blue)">button</span>[<span style="color:var(--ui-tag-color-purple)">data-direction</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">'ascending'</span>] <span style="color:var(--ui-tag-color-purple)">.arrow</span>,
+<span style="color:var(--ui-tag-color-blue)">button</span>[<span style="color:var(--ui-tag-color-purple)">data-direction</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">'descending'</span>] <span style="color:var(--ui-tag-color-purple)">.arrow</span> { <span style="color:var(--ui-tag-color-purple)">opacity</span>: <span style="color:var(--ui-tag-color-green)">1</span>; }
+<span style="color:var(--ui-tag-color-blue)">button</span>[<span style="color:var(--ui-tag-color-purple)">data-direction</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">'descending'</span>] <span style="color:var(--ui-tag-color-purple)">.arrow</span> { <span style="color:var(--ui-tag-color-purple)">transform</span>: <span style="color:var(--ui-tag-color-cyan)">rotate</span>(<span style="color:var(--ui-tag-color-green)">180deg</span>); }
+<span style="color:var(--ui-tag-color-blue)">tr</span>[<span style="color:var(--ui-tag-color-purple)">data-row-id</span>]<span style="color:var(--ui-tag-color-purple)">:nth-child</span>(<span style="color:var(--ui-tag-color-green)">even</span>) { <span style="color:var(--ui-tag-color-purple)">background</span>: #e0e0e0; }
+<span style="color:var(--ui-tag-color-blue)">tr</span>[<span style="color:var(--ui-tag-color-purple)">data-selected</span>] { <span style="color:var(--ui-tag-color-purple)">background</span>: #e0e0e0; <span style="color:var(--ui-tag-color-purple)">color</span>: #161616; }
+<span style="color:var(--ui-tag-color-blue)">input</span>[<span style="color:var(--ui-tag-color-purple)">data-checked</span>] <span style="color:var(--ui-tag-color-magenta)">+</span> <span style="color:var(--ui-tag-color-purple)">.box</span>,
+<span style="color:var(--ui-tag-color-blue)">input</span>[<span style="color:var(--ui-tag-color-purple)">data-indeterminate</span>] <span style="color:var(--ui-tag-color-magenta)">+</span> <span style="color:var(--ui-tag-color-purple)">.box</span> { <span style="color:var(--ui-tag-color-purple)">background</span>: #161616; }
+<span style="color:var(--ui-tag-color-blue)">td</span>[<span style="color:var(--ui-tag-color-purple)">data-editable</span>]<span style="color:var(--ui-tag-color-purple)">:focus-visible</span> { <span style="color:var(--ui-tag-color-purple)">outline</span>: <span style="color:var(--ui-tag-color-green)">2px</span> <span style="color:var(--ui-tag-color-green)">solid</span> #0f62fe; <span style="color:var(--ui-tag-color-purple)">outline-offset</span>: <span style="color:var(--ui-tag-color-green)">-2px</span>; }
+<span style="color:var(--ui-tag-color-blue)">td</span>[<span style="color:var(--ui-tag-color-purple)">data-editing</span>] { <span style="color:var(--ui-tag-color-purple)">padding</span>: <span style="color:var(--ui-tag-color-green)">0</span>; }
+<span style="color:var(--ui-tag-color-blue)">th</span>[<span style="color:var(--ui-tag-color-purple)">data-resizing</span>] { <span style="color:var(--ui-tag-color-purple)">background</span>: #c6c6c6; }</ui-code-snippet>
+<h2 id="hook">Hook</h2>
+<h3 id="datatable-usedatatable-options">DataTable.useDataTable(options)</h3>
+<p>เก็บ state ทุกส่วนของ state ควบคุมเองได้ (<code>sortKey</code>, <code>selectedIds</code> …) หรือปล่อยให้ hook เก็บ (<code>default…</code>)</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Type</th>
+<th>ค่าเริ่มต้น</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>headers</code></td>
+<td><code>DataTableColumn[]</code></td>
+<td></td>
+<td>คอลัมน์: <code>{ key, header }</code> และตัวเลือกของคอลัมน์ข้างล่าง (ต้องใส่)</td>
+</tr>
+<tr>
+<td><code>rows</code></td>
+<td><code>R[]</code></td>
+<td></td>
+<td>แถว: <code>{ id, …cells }</code> ใส่ <code>disabled</code> เพื่อไม่ให้เลือก (ต้องใส่)</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>สร้างให้</td>
+<td>ส่วนต้นของ id ที่ parts ใส่ให้ element</td>
+</tr>
+<tr>
+<td><code>sortable</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>ทุกคอลัมน์เรียงได้ ยกเว้น header ที่ตั้ง <code>sortable: false</code></td>
+</tr>
+<tr>
+<td><code>sortKey</code>, <code>sortDirection</code></td>
+<td><code>string</code>, <code>SortDirection</code></td>
+<td></td>
+<td>การเรียง (ควบคุมเอง)</td>
+</tr>
+<tr>
+<td><code>defaultSortKey</code>, <code>defaultSortDirection</code></td>
+<td><code>string</code>, <code>SortDirection</code></td>
+<td><code>''</code>, <code>'none'</code></td>
+<td>การเรียงตอนเริ่ม</td>
+</tr>
+<tr>
+<td><code>onSortChange</code></td>
+<td><code>(sort: { key, direction }) =&gt; void</code></td>
+<td></td>
+<td>หลังกดปุ่มเรียง</td>
+</tr>
+<tr>
+<td><code>manualSorting</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>คง <code>rows</code> ตามลำดับของคุณ (เรียงบน server) หัวตารางยังแสดงการเรียง</td>
+</tr>
+<tr>
+<td><code>sortRow</code></td>
+<td><code>(a, b, context) =&gt; number</code></td>
+<td></td>
+<td>ใช้แทนการเปรียบเทียบเดิม</td>
+</tr>
+<tr>
+<td><code>locale</code></td>
+<td><code>string</code></td>
+<td><code>'en'</code></td>
+<td>ภาษาที่ใช้เรียง (ตารางภาษาไทยใส่ <code>'th'</code>)</td>
+</tr>
+<tr>
+<td><code>selectable</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>checkbox พร้อมช่องเลือกทั้งหมด</td>
+</tr>
+<tr>
+<td><code>radio</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>เลือกได้หนึ่งแถว มี radio ทุกแถว</td>
+</tr>
+<tr>
+<td><code>selectedIds</code>, <code>defaultSelectedIds</code></td>
+<td><code>string[]</code></td>
+<td><code>[]</code></td>
+<td>แถวที่เลือก</td>
+</tr>
+<tr>
+<td><code>onSelectionChange</code></td>
+<td><code>(ids: string[], rows: R[]) =&gt; void</code></td>
+<td></td>
+<td>หลังการเลือกเปลี่ยน</td>
+</tr>
+<tr>
+<td><code>filterText</code>, <code>defaultFilterText</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>คำค้น</td>
+</tr>
+<tr>
+<td><code>onFilterChange</code></td>
+<td><code>(value: string) =&gt; void</code></td>
+<td></td>
+<td>หลัง <code>setFilterText</code></td>
+</tr>
+<tr>
+<td><code>filterRows</code></td>
+<td><code>(row, text, headers) =&gt; boolean</code></td>
+<td></td>
+<td>ใช้แทนการตรวจแถวของการค้นหา</td>
+</tr>
+<tr>
+<td><code>manualFiltering</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>คงทุกแถวไว้ (กรองบน server)</td>
+</tr>
+<tr>
+<td><code>expandable</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>แถวเปิดปิดได้</td>
+</tr>
+<tr>
+<td><code>expandedIds</code>, <code>defaultExpandedIds</code></td>
+<td><code>string[]</code></td>
+<td><code>[]</code></td>
+<td>แถวที่เปิดอยู่</td>
+</tr>
+<tr>
+<td><code>onExpandChange</code></td>
+<td><code>(change: { expandedIds, expanded, id? }) =&gt; void</code></td>
+<td></td>
+<td>หลังแถวหนึ่ง (หรือทุกแถว เมื่อไม่มี <code>id</code>) เปิดหรือปิด</td>
+</tr>
+<tr>
+<td><code>pageSize</code>, <code>defaultPageSize</code></td>
+<td><code>number</code></td>
+<td><code>0</code></td>
+<td>แถวต่อหน้า (0: หน้าเดียวทุกแถว)</td>
+</tr>
+<tr>
+<td><code>page</code>, <code>defaultPage</code></td>
+<td><code>number</code></td>
+<td><code>1</code></td>
+<td>หน้า เริ่มที่ 1</td>
+</tr>
+<tr>
+<td><code>onPageChange</code></td>
+<td><code>(change: { page, pageSize }) =&gt; void</code></td>
+<td></td>
+<td>หลัง <code>setPagination</code> หรือเมื่อค้นหาใหม่ขณะอยู่หน้าหลัง ๆ</td>
+</tr>
+<tr>
+<td><code>hiddenColumns</code>, <code>defaultHiddenColumns</code></td>
+<td><code>string[]</code></td>
+<td>header ที่มี <code>hidden</code></td>
+<td>key ของคอลัมน์ที่ไม่แสดง</td>
+</tr>
+<tr>
+<td><code>onColumnsChange</code></td>
+<td><code>(change: { hiddenColumns, key, hidden }) =&gt; void</code></td>
+<td></td>
+<td>หลังแสดงหรือซ่อนคอลัมน์ (<code>key</code> เป็น <code>''</code> หลังรีเซ็ต)</td>
+</tr>
+<tr>
+<td><code>resizable</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>ทุกคอลัมน์มีที่จับปรับความกว้าง</td>
+</tr>
+<tr>
+<td><code>columnWidths</code>, <code>defaultColumnWidths</code></td>
+<td><code>Record&lt;string, number&gt;</code></td>
+<td><code>{}</code></td>
+<td>ความกว้างคอลัมน์เป็น px ตาม key</td>
+</tr>
+<tr>
+<td><code>onColumnResize</code></td>
+<td><code>(change: { key, width, widths }) =&gt; void</code></td>
+<td></td>
+<td>หลังปรับความกว้าง (ครั้งเดียวต่อการลากหรือการกดปุ่ม)</td>
+</tr>
+<tr>
+<td><code>staticWidth</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>ตารางที่ปรับความกว้างแล้วกว้างเท่าผลรวมคอลัมน์ ไม่ใช่เท่ากล่อง</td>
+</tr>
+<tr>
+<td><code>onCellEdit</code></td>
+<td><code>(edit: { rowId, key, value, previous, row, rows }) =&gt; void</code></td>
+<td></td>
+<td>เซลล์ที่แก้ถูกบันทึก: ตั้ง <code>rows</code> เป็น <code>edit.rows</code></td>
+</tr>
+</tbody>
+</table>
+<p>ตัวเลือกของคอลัมน์ในแต่ละ header: <code>sortable</code>, <code>editable</code> (<code>'text' \| 'number' \| 'select'</code>), <code>options</code> (<code>{ value, label }[]</code> for a select), <code>validate(value, row)</code>, <code>resizable</code>, <code>width</code>, <code>minWidth</code>, <code>maxWidth</code>, <code>hideable</code>, <code>hidden</code>, <code>pinned</code> (<code>'start' \| 'end'</code>).</p>
+<p>สิ่งที่คืนมา แยกตามหัวข้อ:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>แถว</td>
+<td><code>rows</code>, <code>filteredRows</code> (ที่การค้นหาเหลือไว้), <code>sortedRows</code>, <code>pageRows</code> (แถวที่จะ render), <code>rowById</code></td>
+</tr>
+<tr>
+<td>คอลัมน์</td>
+<td><code>headers</code> (ทั้งหมด), <code>columns</code> (ที่แสดง), <code>hiddenColumns</code>, <code>toggleColumn(key, show)</code>, <code>resetColumns()</code>, <code>isColumnLocked(key)</code>, <code>columnsChanged</code>, <code>pins</code></td>
+</tr>
+<tr>
+<td>การเรียง</td>
+<td><code>sortKey</code>, <code>sortDirection</code>, <code>sortDirectionOf(key)</code>, <code>isSortable(column)</code>, <code>sortBy(key)</code></td>
+</tr>
+<tr>
+<td>การค้นหา</td>
+<td><code>filterText</code>, <code>setFilterText(text)</code></td>
+</tr>
+<tr>
+<td>หน้า</td>
+<td><code>paged</code>, <code>page</code>, <code>pageSize</code>, <code>pageCount</code>, <code>setPagination({ page, pageSize })</code></td>
+</tr>
+<tr>
+<td>การเลือก</td>
+<td><code>selectable</code>, <code>radio</code>, <code>selectedIds</code>, <code>isSelected(id)</code>, <code>setSelectedIds(ids)</code>, <code>toggleRow(row, checked)</code>, <code>toggleAll()</code>, <code>selectAll()</code>, <code>allSelected</code>, <code>someSelected</code>, <code>radioStop</code>, <code>getSelectAllProps()</code>, <code>getSelectRowProps(row)</code></td>
+</tr>
+<tr>
+<td>แถวที่เปิด</td>
+<td><code>expandable</code>, <code>expandedIds</code>, <code>isExpanded(id)</code>, <code>allExpanded</code>, <code>toggleExpanded(id)</code>, <code>toggleAllExpanded()</code>, <code>expandedRowId(id)</code></td>
+</tr>
+<tr>
+<td>ความกว้างและ grid</td>
+<td><code>columnWidths</code>, <code>resize</code> (<code>fixed</code>, <code>hasFiller</code>, <code>tableStyle</code>, <code>widthOf(column)</code> …), <code>grid</code> (<code>enabled</code> …), <code>tableRef</code>, <code>boxRef</code>, <code>id</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>DataTable.useDataTableContext()</code> คืน object เดียวกันนี้ให้ component ใดก็ได้ที่อยู่ใน <code>Root</code></p>
+<h2 id="parts">Parts</h2>
+<h3 id="datatable-root">DataTable.Root</h3>
+<p>ไม่ render element ของตัวเอง แค่ส่งตารางจาก hook ให้ลูก</p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>ค่าเริ่มต้น</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>table</code></td>
+<td>สิ่งที่ <code>useDataTable</code> คืนมา</td>
+<td></td>
+<td>ต้องใส่</td>
+</tr>
+</tbody>
+</table>
+<h3 id="datatable-table">DataTable.Table</h3>
+<p>สร้าง <code>&lt;table&gt;</code> พร้อม <code>tableRef</code> ของ hook เป็น <code>role=&quot;grid&quot;</code> เมื่อมีคอลัมน์ที่ <code>editable</code> รับ prop ทุกตัวของ <code>&lt;table&gt;</code></p>
+<h3 id="datatable-body">DataTable.Body</h3>
+<p>สร้าง <code>&lt;tbody&gt;</code> เมื่อเป็น grid จะจัดการปุ่ม คลิก ดับเบิลคลิก และ focus ของเซลล์</p>
+<h3 id="datatable-columnheader">DataTable.ColumnHeader</h3>
+<p>สร้าง <code>&lt;th scope=&quot;col&quot;&gt;</code> ที่มี <code>aria-sort</code> เมื่อคอลัมน์เรียงได้ <code>data-key</code> และความกว้างที่ปรับแล้ว รับ prop ทุกตัวของ <code>&lt;th&gt;</code></p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>ค่าเริ่มต้น</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>column</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>key ของคอลัมน์ (ต้องใส่)</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>เมื่อ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-sortable</code></td>
+<td>คอลัมน์เรียงได้</td>
+</tr>
+<tr>
+<td><code>data-resizing</code></td>
+<td>กำลังลากที่จับของมัน</td>
+</tr>
+</tbody>
+</table>
+<h3 id="datatable-sortbutton">DataTable.SortButton</h3>
+<p>สร้าง <code>&lt;button type=&quot;button&quot;&gt;</code> ที่เลื่อนการเรียงของคอลัมน์: ไม่เรียง → น้อยไปมาก → มากไปน้อย → ไม่เรียง คอลัมน์ใหม่เริ่มที่น้อยไปมาก อธิบายขั้นถัดไปด้วย <code>aria-describedby</code> ได้ถ้าต้องการ</p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>เมื่อ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-direction</code></td>
+<td>มีเสมอ: <code>none</code>, <code>ascending</code> หรือ <code>descending</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="datatable-resizehandle">DataTable.ResizeHandle</h3>
+<p>สร้าง <code>&lt;input type=&quot;range&quot;&gt;</code> (ไม่ render อะไรถ้าคอลัมน์ปรับไม่ได้) ตั้งชื่อให้ด้วย (&quot;ปรับความกว้างคอลัมน์ ชื่อ&quot;) รับ prop ทุกตัวของ input ยกเว้น <code>type</code>, <code>value</code>, <code>min</code>, <code>max</code> และ <code>step</code></p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>ค่าเริ่มต้น</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>valueText</code></td>
+<td><code>(width: number) =&gt; string</code></td>
+<td></td>
+<td>ความกว้างเป็นคำสำหรับเทคโนโลยีช่วยเหลือ (&quot;120 พิกเซล&quot;)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="datatable-row">DataTable.Row</h3>
+<p>สร้าง <code>&lt;tr&gt;</code> ที่มี <code>data-row-id</code> ซึ่ง grid และ radio ใช้หาแถว</p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>ค่าเริ่มต้น</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>rowId</code></td>
+<td><code>string</code></td>
+<td></td>
+<td><code>id</code> ของแถว (ต้องใส่)</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>เมื่อ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-selected</code></td>
+<td>แถวถูกเลือก</td>
+</tr>
+<tr>
+<td><code>data-expanded</code></td>
+<td>แถวเปิดอยู่</td>
+</tr>
+</tbody>
+</table>
+<h3 id="datatable-cell">DataTable.Cell</h3>
+<p>สร้าง <code>&lt;td&gt;</code> เมื่อเป็น grid เซลล์หนึ่งในตัวตารางเป็นที่หยุด Tab ที่เหลือเป็น <code>tabIndex={-1}</code> เซลล์ที่แก้ไม่ได้เป็น <code>aria-readonly</code></p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>ค่าเริ่มต้น</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>index</code></td>
+<td><code>number</code></td>
+<td></td>
+<td>ลำดับของเซลล์ในแถว เริ่มที่ 0 นับทุกเซลล์ (ขยาย เลือก ข้อมูล) (ต้องใส่)</td>
+</tr>
+<tr>
+<td><code>column</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>key ของคอลัมน์ สำหรับเซลล์ข้อมูล คอลัมน์ที่ <code>editable</code> ทำให้เซลล์แก้ไขได้</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>เมื่อ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-editable</code></td>
+<td>เซลล์แก้ไขได้</td>
+</tr>
+<tr>
+<td><code>data-editing</code></td>
+<td>เซลล์กำลังถูกแก้ไข</td>
+</tr>
+<tr>
+<td><code>data-key</code></td>
+<td>key ของคอลัมน์ ที่เซลล์ที่แก้ได้</td>
+</tr>
+</tbody>
+</table>
+<p><code>DataTable.useCellContext()</code> คืน <code>rowId</code>, <code>column</code> และ <code>editing</code> ของเซลล์ (<code>{ draft, error }</code> ขณะแก้ไข ไม่อย่างนั้นเป็น <code>null</code>)</p>
+<h3 id="datatable-cellvalue-datatable-edithint">DataTable.CellValue, DataTable.EditHint</h3>
+<p><code>CellValue</code> สร้าง <code>&lt;span&gt;</code> ครอบค่าของเซลล์ที่แก้ได้ คลิกที่มันจะ focus เซลล์ <code>EditHint</code> สร้าง <code>&lt;span&gt;</code> ที่มีข้อความอธิบายเซลล์ที่แก้ได้ทุกเซลล์ (&quot;กด Enter เพื่อแก้ไข&quot;) เฉพาะเมื่อเป็น grid ให้ซ่อนจากสายตา</p>
+<h3 id="datatable-cellinput-datatable-cellselect-datatable-cellerror">DataTable.CellInput, DataTable.CellSelect, DataTable.CellError</h3>
+<p>ช่องแก้ไขขณะเซลล์ถูกแก้: <code>CellInput</code> เป็น <code>&lt;input&gt;</code> (ข้อความ หรือตัวเลขพร้อม <code>inputMode=&quot;decimal&quot;</code>) <code>CellSelect</code> เป็น <code>&lt;select&gt;</code> ของ <code>options</code> ของคอลัมน์ (หรือ <code>&lt;option&gt;</code> ที่คุณใส่เอง) ทั้งสองเป็น <code>aria-invalid</code> และอธิบายด้วยข้อความ error ขณะ <code>validate</code> ไม่รับค่า <code>CellError</code> สร้าง <code>&lt;span role=&quot;alert&quot;&gt;</code> พร้อมข้อความ และไม่ render อะไรเมื่อค่าถูกต้อง</p>
+<h3 id="datatable-selectall">DataTable.SelectAll</h3>
+<p>สร้าง checkbox จริง (<a href="/kanok-ui-docs/th/headless-checkbox/">Checkbox</a> แบบ headless) ติ๊กเมื่อเลือกครบทุกแถวในขอบเขต เป็นแบบผสมเมื่อเลือกบางแถว กดแล้วจะล้างการเลือกถ้ามีแถวที่เลือก ไม่อย่างนั้นเลือกทุกแถวที่ใช้งานได้ที่แสดงอยู่ (แบบ Carbon) ไม่ render ในตาราง <code>radio</code></p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>เมื่อ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-checked</code></td>
+<td>เลือกครบทุกแถวในขอบเขต</td>
+</tr>
+<tr>
+<td><code>data-indeterminate</code></td>
+<td>เลือกบางแถว</td>
+</tr>
+</tbody>
+</table>
+<h3 id="datatable-selectrow">DataTable.SelectRow</h3>
+<p>สร้าง checkbox จริงของแถว หรือ radio ในตาราง <code>radio</code> แถวที่ disabled จะมีช่องที่ disabled</p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>เมื่อ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-checked</code></td>
+<td>แถวถูกเลือก</td>
+</tr>
+</tbody>
+</table>
+<h3 id="datatable-expandtoggle-datatable-expandall">DataTable.ExpandToggle, DataTable.ExpandAll</h3>
+<p>แต่ละตัวสร้าง <code>&lt;button type=&quot;button&quot;&gt;</code> ที่มี <code>aria-expanded</code> และ <code>aria-controls</code> ชี้ไปที่แถวที่เปิด <code>ExpandToggle</code> เปิดหรือปิดแถวของมัน <code>ExpandAll</code> เปิดทุกแถวที่แสดง หรือปิดทั้งหมดเมื่อเปิดครบ ตั้งชื่อด้วย <code>aria-label</code></p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>เมื่อ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-expanded</code></td>
+<td>แถวของมันเปิดอยู่ (ทุกแถว สำหรับ <code>ExpandAll</code>)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="datatable-expandedrow">DataTable.ExpandedRow</h3>
+<p>สร้าง <code>&lt;tr&gt;</code> ใต้แถวที่เปิด พร้อม id ที่ปุ่มของมันควบคุม</p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>ค่าเริ่มต้น</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>rowId</code></td>
+<td><code>string</code></td>
+<td></td>
+<td><code>id</code> ของแถวที่เปิด (ต้องใส่)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="datatable-filler">DataTable.Filler</h3>
+<p>สร้าง <code>&lt;td aria-hidden=&quot;true&quot;&gt;</code> ว่าง ที่กินพื้นที่ที่เหลือของแถวเมื่อคอลัมน์ถูกปรับความกว้างแล้ว (เฉพาะตอนนั้น)</p>
+<h2 id="คีย์บอร์ดและ-accessibility">คีย์บอร์ดและ accessibility</h2>
+<ul>
+<li>เมื่อไม่มีคอลัมน์ที่แก้ได้ parts เป็นของจริงทั้งหมด ปุ่มเรียง checkbox และปุ่มขยาย อยู่ในลำดับ Tab ทุกตัว radio ของตาราง <code>radio</code> หยุด Tab ที่เดียว ปุ่มลูกศรย้ายและเลือก วนกลับเมื่อสุดปลาย</li>
+<li>เมื่อมีคอลัมน์ที่แก้ได้ ตารางเป็น grid ตาม WAI-ARIA: เซลล์ในตัวตารางหยุด Tab ที่เดียว ปุ่มลูกศร Home / End และ Ctrl + Home / End ย้ายมัน และ Enter หรือ Space กดตัวควบคุมในเซลล์</li>
+<li>สิ่งที่คุณต้องใส่เอง: ชื่อตาราง (<code>aria-label</code> หรือ <code>aria-labelledby</code> ไปที่หัวข้อของคุณ) ชื่อของตัวเลือกและปุ่มขยาย (บอกชื่อแถว: &quot;เลือกแถว, NDA&quot;) ชื่อสำหรับ screen reader ของคอลัมน์ radio และข้อความ &quot;กด Enter เพื่อแก้ไข&quot;</li>
+<li>ประกาศสิ่งที่เปลี่ยนเอง: หลังเรียง (&quot;เรียงตามคอลัมน์ สัญญา จากน้อยไปมาก&quot;) และเมื่อหยุดพิมพ์ค้นหา (&quot;แสดง 3 จาก 12 แถว&quot;) ด้วยสถานะแบบ polite ใส่ <code>aria-busy</code> ที่ตารางขณะโหลดใหม่</li>
+</ul>
+
+</article>
+<nav class="doc-toc" aria-labelledby="doc-toc-title"><p id="doc-toc-title" class="doc-toc-title">ในหน้านี้</p><ul><li class="doc-toc-h2"><a href="#ติดตั้ง">ติดตั้ง</a></li><li class="doc-toc-h2"><a href="#วิธีใช้">วิธีใช้</a></li><li class="doc-toc-h2"><a href="#โครงสร้าง">โครงสร้าง</a></li><li class="doc-toc-h2"><a href="#ค้นหาและแบ่งหน้า">ค้นหาและแบ่งหน้า</a></li><li class="doc-toc-h2"><a href="#แถวที่ขยายได้">แถวที่ขยายได้</a></li><li class="doc-toc-h2"><a href="#เลือกหนึ่งแถว">เลือกหนึ่งแถว</a></li><li class="doc-toc-h2"><a href="#แสดงและซ่อนคอลัมน์">แสดงและซ่อนคอลัมน์</a></li><li class="doc-toc-h2"><a href="#แก้ไขเซลล์ในตาราง">แก้ไขเซลล์ในตาราง</a></li><li class="doc-toc-h2"><a href="#ปรับความกว้างคอลัมน์">ปรับความกว้างคอลัมน์</a></li><li class="doc-toc-h2"><a href="#แต่ง-style">แต่ง style</a></li><li class="doc-toc-h2"><a href="#hook">Hook</a></li><li class="doc-toc-h3"><a href="#datatable-usedatatable-options">DataTable.useDataTable(options)</a></li><li class="doc-toc-h2"><a href="#parts">Parts</a></li><li class="doc-toc-h3"><a href="#datatable-root">DataTable.Root</a></li><li class="doc-toc-h3"><a href="#datatable-table">DataTable.Table</a></li><li class="doc-toc-h3"><a href="#datatable-body">DataTable.Body</a></li><li class="doc-toc-h3"><a href="#datatable-columnheader">DataTable.ColumnHeader</a></li><li class="doc-toc-h3"><a href="#datatable-sortbutton">DataTable.SortButton</a></li><li class="doc-toc-h3"><a href="#datatable-resizehandle">DataTable.ResizeHandle</a></li><li class="doc-toc-h3"><a href="#datatable-row">DataTable.Row</a></li><li class="doc-toc-h3"><a href="#datatable-cell">DataTable.Cell</a></li><li class="doc-toc-h3"><a href="#datatable-cellvalue-datatable-edithint">DataTable.CellValue, DataTable.EditHint</a></li><li class="doc-toc-h3"><a href="#datatable-cellinput-datatable-cellselect-datatable-cellerror">DataTable.CellInput, DataTable.CellSelect, DataTable.CellError</a></li><li class="doc-toc-h3"><a href="#datatable-selectall">DataTable.SelectAll</a></li><li class="doc-toc-h3"><a href="#datatable-selectrow">DataTable.SelectRow</a></li><li class="doc-toc-h3"><a href="#datatable-expandtoggle-datatable-expandall">DataTable.ExpandToggle, DataTable.ExpandAll</a></li><li class="doc-toc-h3"><a href="#datatable-expandedrow">DataTable.ExpandedRow</a></li><li class="doc-toc-h3"><a href="#datatable-filler">DataTable.Filler</a></li><li class="doc-toc-h2"><a href="#คีย์บอร์ดและ-accessibility">คีย์บอร์ดและ accessibility</a></li></ul></nav>
+</div>
+<nav class="doc-pager" aria-label="ถัดไป / ก่อนหน้า"><a class="doc-pager-prev" href="/kanok-ui-docs/th/headless-toast/" rel="prev"><span>ก่อนหน้า</span>Toast</a><a class="doc-pager-next" href="/kanok-ui-docs/th/headless-structured-list/" rel="next"><span>ถัดไป</span>Structured list</a></nav>
+<footer class="doc-footer">@purpurabog/ui 2.3.0 · MIT · <a href="https://cdn.jsdelivr.net/npm/@purpurabog/ui@2.3.0/THIRD-PARTY-NOTICES.md">ประกาศของบุคคลที่สาม</a><br>สร้างตาม Carbon Design System ไม่ได้เกี่ยวข้องหรือได้รับการรับรองจาก IBM — IBM และ Carbon เป็นเครื่องหมายการค้าของ IBM Corp.</footer>
+</ui-content>
+<ui-modal id="doc-search" heading="ค้นหา" data-count="พบ {n} รายการ" data-empty="ไม่พบ “{q}”">
+<ui-search label="ค้นหาในเอกสาร" placeholder="ค้นหาในเอกสาร" size="lg"></ui-search>
+<p class="doc-search-status" role="status"></p>
+<ul class="doc-search-results"></ul>
+</ui-modal>
+</body>
+</html>

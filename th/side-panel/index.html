@@ -1,0 +1,1072 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Side panel · @purpurabog/ui</title>
+<link rel="alternate" hreflang="en" href="/kanok-ui-docs/en/side-panel/"  /><link rel="alternate" hreflang="th" href="/kanok-ui-docs/th/side-panel/"  />
+<script>(function(){try{var q=new URLSearchParams(location.search).get("design"),d=q;if(q==="kanok"||q==="carbon")localStorage.setItem("ui-docs-design",q);else d=localStorage.getItem("ui-docs-design");if(d==="kanok")document.documentElement.setAttribute("data-design","kanok")}catch(e){}})();(function(){try{var m=localStorage.getItem("ui-docs-theme");if(m!=="light"&&m!=="dark"&&m!=="system")return;var d=m==="dark"||(m==="system"&&matchMedia("(prefers-color-scheme: dark)").matches),r=document.documentElement,t=d?"g100":"white";if(r.getAttribute("data-design")==="kanok")t=d?"lacquer":"paper";r.setAttribute("data-theme",t)}catch(e){}})();</script>
+<style>ui-header:not(:defined){z-index:8000;box-sizing:border-box;border-block-end:1px solid var(--ui-border-subtle-1);background:var(--ui-canvas);block-size:48px;display:block;position:fixed;inset:0 0 auto}:is(ui-header:not(:defined)>*,ui-side-nav:not(:defined)>*){visibility:hidden}:is(ui-header-panel:not(:defined),ui-modal:not(:defined)){display:none}ui-side-nav:not(:defined){display:none}ui-content:not(:defined){margin-block-start:48px;padding:32px;display:block}@media (width>=1056px){ui-side-nav[expanded]:not(:defined){background:var(--ui-canvas);inline-size:256px;display:block;position:fixed;inset:48px auto 0 0}ui-side-nav[expanded]:not(:defined)~ui-content:not(:defined){margin-inline-start:256px}}ui-tabs:not(:defined){display:block}ui-tabs:not(:defined)>ui-tab{box-sizing:border-box;border-block-end:2px solid var(--ui-hairline);block-size:40px;color:var(--ui-ink-muted);font:var(--ui-font-body-sm);padding:0 16px;line-height:38px;display:inline-block}ui-tabs:not(:defined)>ui-tab:first-of-type{border-block-end-color:var(--ui-interactive);color:var(--ui-ink)}ui-tabs:not(:defined)>ui-tab-panel{padding:16px;display:block}ui-tabs:not(:defined)>ui-tab-panel~ui-tab-panel{display:none}ui-code-snippet:not(:defined){background:var(--ui-layer-1);max-block-size:272px;font:var(--ui-font-code,12px/16px monospace);white-space:pre;padding:16px;display:block;overflow:hidden}[data-react-example]:empty>*{visibility:hidden}.doc-demo:has(:not(:defined))>*{visibility:hidden}[data-react-example]:empty{box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}.doc-demo:has(:not(:defined)){box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}@keyframes doc-skeleton{to{background-position:-200% 0}}@media (prefers-reduced-motion:reduce){[data-react-example]:empty{animation:none}.doc-demo:has(:not(:defined)){animation:none}}</style>
+
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/theme-switcher-BZXGbHfR.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/tab-ChjAM0hz.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/affixes-RbQJ6omC.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/mask-BgmAmoJG.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/text-input-CfhE-rX4.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/button-DGUm7Yxm.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/icon-button-D4pzZab2.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/auto-grow-B4XS1-9c.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/text-area-CDT2bI-K.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/select-Dpy2FROW.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/checkbox-jjWDPkAK.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/radio-2PVxQnjG.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/motion-C95bcdt7.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/action-set-Dh8aCanf.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/side-panel-DKbKE1AY.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/tag-CInHDJH1.js"></script>
+  <link rel="stylesheet" crossorigin href="/kanok-ui-docs/assets/theme-switcher-BXY5AIvi.css">
+</head>
+<body>
+<ui-header label="@purpurabog/ui">
+<ui-skip-to-content></ui-skip-to-content>
+<ui-header-menu-button></ui-header-menu-button>
+<ui-header-name href="/kanok-ui-docs/th/" prefix="@purpurabog">ui</ui-header-name>
+<ui-header-global-bar>
+<ui-header-global-action id="doc-search-open" label="ค้นหา" tooltip-placement="bottom"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="m18.5 17.8-4.9-4.9a7 7 0 1 0-.7.7l4.9 4.9zM3 8.5a5.5 5.5 0 1 1 5.5 5.5A5.5 5.5 0 0 1 3 8.5Z" /></svg></ui-header-global-action>
+<ui-header-global-action label="ตั้งค่า" panel="doc-settings" tooltip-placement="bottom-end"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="M16.9 10.6a7 7 0 0 0 0-1.2l1.8-1.4-1.6-2.8-2.1.8a6.6 6.6 0 0 0-1-.6L13.6 3h-3.2l-.4 2.4a6.6 6.6 0 0 0-1 .6l-2.1-.8L5.3 8l1.8 1.4a7 7 0 0 0 0 1.2L5.3 12l1.6 2.8 2.1-.8a6.6 6.6 0 0 0 1 .6l.4 2.4h3.2l.4-2.4a6.6 6.6 0 0 0 1-.6l2.1.8 1.6-2.8zM12 13a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" /></svg></ui-header-global-action>
+</ui-header-global-bar>
+<ui-header-panel id="doc-settings" label="ตั้งค่า">
+<div class="doc-settings">
+<span class="doc-settings-label">ธีม</span>
+<ui-theme-switcher storage-key="ui-docs-theme" tooltip-placement="bottom"></ui-theme-switcher>
+<span class="doc-settings-label">รูปแบบ</span>
+<ui-content-switcher id="doc-design" aria-label="รูปแบบ" size="sm"><ui-content-switcher-item name="carbon">Carbon</ui-content-switcher-item><ui-content-switcher-item name="kanok">Kanok</ui-content-switcher-item></ui-content-switcher>
+<span class="doc-settings-label">ภาษา</span>
+<ui-link href="/kanok-ui-docs/en/side-panel/" hreflang="en" lang="en">English</ui-link>
+</div>
+</ui-header-panel>
+</ui-header>
+<ui-side-nav label="เอกสาร"><ui-side-nav-items><ui-side-nav-menu label="เริ่มต้น"><ui-side-nav-menu-item href="/kanok-ui-docs/th/">ภาพรวม</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/installation/">ติดตั้ง</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/migration-1-0/">การย้ายไป 1.0</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="คู่มือ"><ui-side-nav-menu-item href="/kanok-ui-docs/th/themes/">ธีมและ layer</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/kanok/">ดีไซน์ Kanok</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/customizing/">ปรับแต่งหน้าตา</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/icons/">ไอคอน</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/forms/">ฟอร์มและการตรวจค่า</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/frameworks/">ใช้กับ framework</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/ai/">ใช้กับ AI</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="ฟอร์มและปุ่ม"><ui-side-nav-menu-item href="/kanok-ui-docs/th/button/">Button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/file-uploader/">File uploader</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Overlay" expanded><ui-side-nav-menu-item href="/kanok-ui-docs/th/modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/side-panel/" current>Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/toggletip/">Toggletip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/menu/">Menu</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="ข้อมูล"><ui-side-nav-menu-item href="/kanok-ui-docs/th/data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/contained-list/">Contained list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tree-view/">Tree view</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="การนำทาง"><ui-side-nav-menu-item href="/kanok-ui-docs/th/tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/breadcrumb/">Breadcrumb</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/link/">Link</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/ui-shell/">UI shell</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="เนื้อหา"><ui-side-nav-menu-item href="/kanok-ui-docs/th/tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tile/">Tile</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/user-avatar/">User avatar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/list/">List</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="สถานะและการโหลด"><ui-side-nav-menu-item href="/kanok-ui-docs/th/loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/inline-loading/">Inline loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/progress-bar/">Progress bar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/skeleton/">Skeleton</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/badge-indicator/">Badge indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/status-indicator/">Status indicator</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="เลย์เอาต์"><ui-side-nav-menu-item href="/kanok-ui-docs/th/grid/">Grid</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/heading/">Heading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/layer/">Layer</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/action-set/">Action set</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/page-header/">Page header</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/big-number/">Big number</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Headless"><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless/">แนะนำ</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-file-uploader/">File uploader</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-menu/">Menu</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-ui-shell/">UI shell</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tree-view/">Tree view</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu></ui-side-nav-items></ui-side-nav><script>if(matchMedia('(min-width: 66rem)').matches)document.currentScript.previousElementSibling.setAttribute('expanded','')</script>
+<ui-content>
+<div class="doc-page">
+<article class="doc">
+<h1 id="side-panel">Side panel</h1>
+<p>Side panel เลื่อนเข้ามาจากขอบจอ ใต้ header ของ UI shell สูง 48px ใช้แสดงรายละเอียดหรือฟอร์มสั้น ๆ โดยที่หน้าเว็บยังมองเห็นอยู่ ตัวนี้คือ <code>SidePanel</code> ของ Carbon for IBM Products ถ้างานต้องใช้ทั้งหน้าจอ ให้ใช้ <a href="/kanok-ui-docs/th/tearsheet/">Tearsheet</a> ถ้าเป็นการตัดสินใจสั้น ๆ ให้ใช้ <a href="/kanok-ui-docs/th/modal/">Modal</a></p>
+<p>panel เป็น <code>position: fixed</code> ตัวอย่างที่ใช้งานได้ด้านล่างจึงอยู่ในกล่องที่กัก panel ไว้ และตั้ง <code>--ui-side-panel-top: 0px</code> เพราะกล่องไม่มี header ด้านบน</p>
+<div class="doc-demo"><div style="transform: translateZ(0); position: relative; height: 420px; overflow: hidden; border: 1px solid var(--ui-hairline); --ui-side-panel-top: 0px">
+  <div style="padding: 16px"><ui-button id="side-panel-open">แก้ไขเหตุการณ์</ui-button></div>
+  <ui-side-panel id="side-panel-edit" heading="เหตุการณ์ INC-2041" size="sm" selector-initial-focus="#side-panel-edit-title">
+    <span slot="subtitle">ฝ่ายการเงินแจ้งเมื่อ 8 ตุลาคม 2569</span>
+    <div style="display: grid; gap: 16px; padding-block: 16px">
+      <ui-text-input id="side-panel-edit-title" label="หัวข้อ" value="ส่งออกใบแจ้งหนี้ไม่ได้"></ui-text-input>
+      <ui-select label="ความสำคัญ" value="high">
+        <option value="low">ต่ำ</option>
+        <option value="high">สูง</option>
+      </ui-select>
+      <ui-text-area label="หมายเหตุ"></ui-text-area>
+    </div>
+    <ui-button slot="actions" kind="secondary">ยกเลิก</ui-button>
+    <ui-button slot="actions">บันทึก</ui-button>
+  </ui-side-panel>
+</div>
+
+<script type="text/x-demo">
+  const panel = document.getElementById('side-panel-edit');
+  document.getElementById('side-panel-open').addEventListener('click', () => (panel.open = true));
+  for (const button of panel.querySelectorAll('[slot="actions"]')) button.addEventListener('click', () => (panel.open = false));
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-1-0">HTML</ui-tab><ui-tab panel="code-1-1">React</ui-tab><ui-tab panel="code-1-2">React + Tailwind</ui-tab><ui-tab-panel name="code-1-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"transform: translateZ(0); position: relative; height: 420px; overflow: hidden; border: 1px solid var(--ui-hairline); --ui-side-panel-top: 0px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"padding: 16px"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"side-panel-open"</span>&gt;แก้ไขเหตุการณ์&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-side-panel</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"side-panel-edit"</span> <span style="color:var(--ui-tag-color-purple)">heading</span>=<span style="color:var(--ui-tag-color-teal)">"เหตุการณ์ INC-2041"</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">selector-initial-focus</span>=<span style="color:var(--ui-tag-color-teal)">"#side-panel-edit-title"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"subtitle"</span>&gt;ฝ่ายการเงินแจ้งเมื่อ 8 ตุลาคม 2569&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"display: grid; gap: 16px; padding-block: 16px"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-text-input</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"side-panel-edit-title"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"หัวข้อ"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"ส่งออกใบแจ้งหนี้ไม่ได้"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-text-input</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-select</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ความสำคัญ"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"high"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"low"</span>&gt;ต่ำ&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"high"</span>&gt;สูง&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">ui-select</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-text-area</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"หมายเหตุ"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-text-area</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"actions"</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"secondary"</span>&gt;ยกเลิก&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"actions"</span>&gt;บันทึก&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-side-panel</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> panel <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'side-panel-edit'</span>);
+  document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'side-panel-open'</span>).<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (panel.open <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-green)">true</span>));
+  <span style="color:var(--ui-tag-color-magenta)">for</span> (<span style="color:var(--ui-tag-color-magenta)">const</span> button <span style="color:var(--ui-tag-color-magenta)">of</span> panel.<span style="color:var(--ui-tag-color-cyan)">querySelectorAll</span>(<span style="color:var(--ui-tag-color-teal)">'[slot="actions"]'</span>)) button.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (panel.open <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-green)">false</span>));
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-1-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> [open, setOpen] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-green)">false</span>);
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiButton</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">true</span>)}&gt;แก้ไขเหตุการณ์&lt;/<span style="color:var(--ui-tag-color-blue)">UiButton</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiSidePanel</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เหตุการณ์ INC-2041"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">selectorInitialFocus</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"#incident-title"</span> <span style="color:var(--ui-tag-color-purple)">onUiClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">slot</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"subtitle"</span>&gt;ฝ่ายการเงินแจ้งเมื่อ 8 ตุลาคม 2569&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTextInput</span> <span style="color:var(--ui-tag-color-purple)">id</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"incident-title"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"หัวข้อ"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ส่งออกใบแจ้งหนี้ไม่ได้"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ความสำคัญ"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"high"</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">UiSelect</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTextArea</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"หมายเหตุ"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiButton</span> <span style="color:var(--ui-tag-color-purple)">slot</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"actions"</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"secondary"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}&gt;ยกเลิก&lt;/<span style="color:var(--ui-tag-color-blue)">UiButton</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiButton</span> <span style="color:var(--ui-tag-color-purple)">slot</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"actions"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}&gt;บันทึก&lt;/<span style="color:var(--ui-tag-color-blue)">UiButton</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiSidePanel</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-1-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> [open, setOpen] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-green)">false</span>);
+
+&lt;<span style="color:var(--ui-tag-color-blue)">Button</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">true</span>)}&gt;แก้ไขเหตุการณ์&lt;/<span style="color:var(--ui-tag-color-blue)">Button</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">SidePanel</span>
+  <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open}
+  <span style="color:var(--ui-tag-color-purple)">onRequestClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}
+  <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เหตุการณ์ INC-2041"</span>
+  <span style="color:var(--ui-tag-color-purple)">subtitle</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ฝ่ายการเงินแจ้งเมื่อ 8 ตุลาคม 2569"</span>
+  <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span>
+  <span style="color:var(--ui-tag-color-purple)">selectorInitialFocus</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"#incident-title"</span>
+  <span style="color:var(--ui-tag-color-purple)">actions</span><span style="color:var(--ui-tag-color-magenta)">=</span>{[
+    { <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'ยกเลิก'</span>, <span style="color:var(--ui-tag-color-purple)">kind:</span> <span style="color:var(--ui-tag-color-teal)">'secondary'</span>, <span style="color:var(--ui-tag-color-cyan)">onClick</span><span style="color:var(--ui-tag-color-purple)">:</span> () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>) },
+    { <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'บันทึก'</span>, <span style="color:var(--ui-tag-color-cyan)">onClick</span><span style="color:var(--ui-tag-color-purple)">:</span> () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>) },
+  ]}
+&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TextInput</span> <span style="color:var(--ui-tag-color-purple)">id</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"incident-title"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"หัวข้อ"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ส่งออกใบแจ้งหนี้ไม่ได้"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">Select</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ความสำคัญ"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"high"</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">Select</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TextArea</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"หมายเหตุ"</span> /&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">SidePanel</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="ติดตั้ง">ติดตั้ง</h2>
+<ui-tabs class="doc-code-tabs" label="โค้ด"><ui-tab panel="code-2-0">npm</ui-tab><ui-tab panel="code-2-1">shadcn · Web component</ui-tab><ui-tab panel="code-2-2">shadcn · React + Tailwind</ui-tab><ui-tab panel="code-2-3">คัดลอกเอง</ui-tab><ui-tab-panel name="code-2-0"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">@purpurabog/ui</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-1"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npx</span> <span style="color:var(--ui-tag-color-teal)">shadcn@4</span> <span style="color:var(--ui-tag-color-teal)">add</span> <span style="color:var(--ui-tag-color-teal)">@kanok-ui/side-panel</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-2"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npx</span> <span style="color:var(--ui-tag-color-teal)">shadcn@4</span> <span style="color:var(--ui-tag-color-teal)">add</span> <span style="color:var(--ui-tag-color-teal)">@kanok-ui/tw-side-panel</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-3"><ui-code-snippet type="multi" class="doc-code" data-lang="bash"><span style="color:var(--ui-ink-muted);font-style:italic"># Web component</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 1. ติดตั้ง dependency</span>
+<span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">lit@^3.3.0</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 2. คัดลอก "content" ของแต่ละไฟล์จาก</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    https://cdn.jsdelivr.net/npm/@purpurabog/ui@2.3.0/registry/side-panel.json</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    ไปไว้ที่ target ของมัน:</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/side-panel/side-panel.styles.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/side-panel/side-panel.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 3. ทำแบบเดียวกันกับ item ที่มันใช้ (registry/&lt;name&gt;.json):</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    core-action-set, core-modal, core-motion, core-overlay, core-position, icon-button, layer, shared-action-set, shared-element, shared-events, shared-field, shared-localize, shared-quiet-focus, tokens</span>
+
+<span style="color:var(--ui-ink-muted);font-style:italic"># React + Tailwind</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 1. ติดตั้ง dependency</span>
+<span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">@purpurabog/ui@^2.3.0</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 2. คัดลอก "content" ของแต่ละไฟล์จาก</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    https://cdn.jsdelivr.net/npm/@purpurabog/ui@2.3.0/registry/tw-side-panel.json</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    ไปไว้ที่ target ของมัน:</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/react-tw/side-panel.tsx</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 3. ทำแบบเดียวกันกับ item ที่มันใช้ (registry/&lt;name&gt;.json):</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    core-action-set, core-motion, core-position, tw-action-set, tw-i18n, tw-icon-button, tw-layer, tw-refs, tw-theme, tw-utils</span></ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>npm ให้ทุก component จากแพ็กเกจ ส่วน shadcn คัดลอกซอร์สเข้าแอปของคุณแทน เป็นสำเนาที่ล็อกเวอร์ชันนี้และแก้เองได้ คำสั่ง shadcn ต้องตั้ง registry <code>@kanok-ui</code> ใน <code>components.json</code> ครั้งเดียวก่อน ดู <a href="/kanok-ui-docs/th/installation/#react-tailwind-%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2-shadcn">ติดตั้ง</a></p>
+<h2 id="วิธีใช้">วิธีใช้</h2>
+<ui-tabs class="doc-code-tabs" label="โค้ด"><ui-tab panel="code-3-0">HTML</ui-tab><ui-tab panel="code-3-1">React</ui-tab><ui-tab panel="code-3-2">React + Tailwind</ui-tab><ui-tab-panel name="code-3-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;<span style="color:var(--ui-tag-color-magenta)">import</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/side-panel'</span>;&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">onclick</span>=<span style="color:var(--ui-tag-color-teal)">"document.</span><span style="color:var(--ui-tag-color-cyan)">getElementById</span><span style="color:var(--ui-tag-color-teal)">('incident').open </span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)"> </span><span style="color:var(--ui-tag-color-green)">true</span><span style="color:var(--ui-tag-color-teal)">"</span>&gt;แก้ไขเหตุการณ์&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-side-panel</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"incident"</span> <span style="color:var(--ui-tag-color-purple)">heading</span>=<span style="color:var(--ui-tag-color-teal)">"เหตุการณ์ INC-2041"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;ส่งออกใบแจ้งหนี้ไม่ได้&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-side-panel</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-3-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { UiSidePanel } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/react'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiSidePanel</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เหตุการณ์ INC-2041"</span> <span style="color:var(--ui-tag-color-purple)">onUiClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;ส่งออกใบแจ้งหนี้ไม่ได้&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiSidePanel</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-3-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { SidePanel } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@/components/ui/react-tw/side-panel'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">SidePanel</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">onRequestClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)} <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เหตุการณ์ INC-2041"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;ส่งออกใบแจ้งหนี้ไม่ได้&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">SidePanel</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>ตั้ง <code>open</code> เพื่อแสดง และตั้งกลับเป็น false เพื่อซ่อน panel จะเลื่อนเข้ามา 320px จากขอบพร้อมค่อย ๆ ปรากฏ และออกแบบเดียวกัน (ครั้งละ 150ms ตาม Carbon) และไม่เคลื่อนไหวเลยถ้าผู้อ่านตั้งให้ลดการเคลื่อนไหว <code>heading</code> เป็นชื่อของ panel สำหรับ screen reader ด้วย ตอนเปิด โฟกัสจะไปที่ <code>selector-initial-focus</code> (selector ของ element ใน panel) ถ้าไม่ตั้งจะไปที่ช่องแรก ตอนปิดโฟกัสจะกลับไปที่ตัวเดิม</p>
+<p>× กด Esc และคลิกที่ overlay จะขอปิดก่อน (ดู <a href="#%E0%B8%82%E0%B8%AD%E0%B8%A2%E0%B8%B7%E0%B8%99%E0%B8%A2%E0%B8%B1%E0%B8%99%E0%B8%81%E0%B9%88%E0%B8%AD%E0%B8%99%E0%B8%9B%E0%B8%B4%E0%B8%94">ขอยืนยันก่อนปิด</a>) และส่ง <code>ui-close</code> เมื่อ panel เลื่อนออกไปแล้ว React + Tailwind เป็นแบบ controlled: <code>onRequestClose(reason)</code> บอกเหตุผล แล้วคุณตั้ง <code>open</code> เป็น false</p>
+<h2 id="ขนาด">ขนาด</h2>
+<p><code>size</code>: <code>xs</code> 16rem, <code>sm</code> 20rem, <code>md</code> 30rem (ค่าเริ่มต้น), <code>lg</code> 40rem, <code>xl</code> 65rem, <code>2xl</code> 80rem ตั้งแต่จอขนาดกลางขึ้นไป panel จะกว้างไม่เกิน 75% ของจอ และไม่กว้างเกินกล่องที่อยู่</p>
+<div class="doc-demo"><div style="transform: translateZ(0); position: relative; height: 360px; overflow: hidden; border: 1px solid var(--ui-hairline); --ui-side-panel-top: 0px">
+  <div style="display: flex; flex-wrap: wrap; gap: 16px; padding: 16px">
+    <ui-button kind="tertiary" data-side-panel-size="xs">xs</ui-button>
+    <ui-button kind="tertiary" data-side-panel-size="sm">sm</ui-button>
+    <ui-button kind="tertiary" data-side-panel-size="md">md</ui-button>
+    <ui-button kind="tertiary" data-side-panel-size="lg">lg</ui-button>
+  </div>
+  <ui-side-panel id="side-panel-size" heading="ข้อมูลผู้ขาย">
+    <p>บริษัท สยามโลจิสติกส์ จำกัด เลขประจำตัวผู้เสียภาษี 0105556000000</p>
+  </ui-side-panel>
+</div>
+
+<script type="text/x-demo">
+  const panel = document.getElementById('side-panel-size');
+  for (const button of document.querySelectorAll('[data-side-panel-size]')) {
+    button.addEventListener('click', () => {
+      panel.size = button.dataset.sidePanelSize;
+      panel.heading = `ข้อมูลผู้ขาย (${panel.size})`;
+      panel.open = true;
+    });
+  }
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-4-0">HTML</ui-tab><ui-tab panel="code-4-1">React</ui-tab><ui-tab panel="code-4-2">React + Tailwind</ui-tab><ui-tab-panel name="code-4-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"transform: translateZ(0); position: relative; height: 360px; overflow: hidden; border: 1px solid var(--ui-hairline); --ui-side-panel-top: 0px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"display: flex; flex-wrap: wrap; gap: 16px; padding: 16px"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"tertiary"</span> <span style="color:var(--ui-tag-color-purple)">data-side-panel-size</span>=<span style="color:var(--ui-tag-color-teal)">"xs"</span>&gt;xs&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"tertiary"</span> <span style="color:var(--ui-tag-color-purple)">data-side-panel-size</span>=<span style="color:var(--ui-tag-color-teal)">"sm"</span>&gt;sm&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"tertiary"</span> <span style="color:var(--ui-tag-color-purple)">data-side-panel-size</span>=<span style="color:var(--ui-tag-color-teal)">"md"</span>&gt;md&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"tertiary"</span> <span style="color:var(--ui-tag-color-purple)">data-side-panel-size</span>=<span style="color:var(--ui-tag-color-teal)">"lg"</span>&gt;lg&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-side-panel</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"side-panel-size"</span> <span style="color:var(--ui-tag-color-purple)">heading</span>=<span style="color:var(--ui-tag-color-teal)">"ข้อมูลผู้ขาย"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;บริษัท สยามโลจิสติกส์ จำกัด เลขประจำตัวผู้เสียภาษี 0105556000000&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-side-panel</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> panel <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'side-panel-size'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">for</span> (<span style="color:var(--ui-tag-color-magenta)">const</span> button <span style="color:var(--ui-tag-color-magenta)">of</span> document.<span style="color:var(--ui-tag-color-cyan)">querySelectorAll</span>(<span style="color:var(--ui-tag-color-teal)">'[data-side-panel-size]'</span>)) {
+    button.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+      panel.size <span style="color:var(--ui-tag-color-magenta)">=</span> button.dataset.sidePanelSize;
+      panel.heading <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">`ข้อมูลผู้ขาย (${</span><span style="color:var(--ui-tag-color-teal)">panel.size</span><span style="color:var(--ui-tag-color-teal)">})`</span>;
+      panel.open <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-green)">true</span>;
+    });
+  }
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-4-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiSidePanel</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"xs"</span> <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ข้อมูลผู้ขาย"</span> <span style="color:var(--ui-tag-color-purple)">onUiClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">UiSidePanel</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiSidePanel</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"lg"</span> <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ข้อมูลผู้ขาย"</span> <span style="color:var(--ui-tag-color-purple)">onUiClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">UiSidePanel</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-4-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">SidePanel</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">onRequestClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)} <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"xs"</span> <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ข้อมูลผู้ขาย"</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">SidePanel</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">SidePanel</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">onRequestClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)} <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"lg"</span> <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ข้อมูลผู้ขาย"</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">SidePanel</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="เข้าจากด้านซ้าย">เข้าจากด้านซ้าย</h2>
+<p><code>placement=&quot;left&quot;</code> ทำให้ panel เลื่อนเข้ามาจากขอบต้นบรรทัดแทนขอบท้าย</p>
+<div class="doc-demo"><div style="transform: translateZ(0); position: relative; height: 320px; overflow: hidden; border: 1px solid var(--ui-hairline); --ui-side-panel-top: 0px">
+  <div style="display: flex; justify-content: flex-end; padding: 16px"><ui-button id="side-panel-left-open" kind="tertiary">ตัวกรอง</ui-button></div>
+  <ui-side-panel id="side-panel-left" heading="ตัวกรอง" placement="left" size="sm">
+    <div style="display: grid; gap: 16px; padding-block: 16px">
+      <ui-checkbox>เปิดอยู่</ui-checkbox>
+      <ui-checkbox>รออนุมัติ</ui-checkbox>
+      <ui-checkbox>ปิดแล้ว</ui-checkbox>
+    </div>
+  </ui-side-panel>
+</div>
+
+<script type="text/x-demo">
+  const panel = document.getElementById('side-panel-left');
+  document.getElementById('side-panel-left-open').addEventListener('click', () => (panel.open = true));
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-5-0">HTML</ui-tab><ui-tab panel="code-5-1">React</ui-tab><ui-tab panel="code-5-2">React + Tailwind</ui-tab><ui-tab-panel name="code-5-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"transform: translateZ(0); position: relative; height: 320px; overflow: hidden; border: 1px solid var(--ui-hairline); --ui-side-panel-top: 0px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"display: flex; justify-content: flex-end; padding: 16px"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"side-panel-left-open"</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"tertiary"</span>&gt;ตัวกรอง&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-side-panel</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"side-panel-left"</span> <span style="color:var(--ui-tag-color-purple)">heading</span>=<span style="color:var(--ui-tag-color-teal)">"ตัวกรอง"</span> <span style="color:var(--ui-tag-color-purple)">placement</span>=<span style="color:var(--ui-tag-color-teal)">"left"</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"sm"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"display: grid; gap: 16px; padding-block: 16px"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-checkbox</span>&gt;เปิดอยู่&lt;/<span style="color:var(--ui-tag-color-blue)">ui-checkbox</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-checkbox</span>&gt;รออนุมัติ&lt;/<span style="color:var(--ui-tag-color-blue)">ui-checkbox</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-checkbox</span>&gt;ปิดแล้ว&lt;/<span style="color:var(--ui-tag-color-blue)">ui-checkbox</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-side-panel</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> panel <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'side-panel-left'</span>);
+  document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'side-panel-left-open'</span>).<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (panel.open <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-green)">true</span>));
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-5-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiSidePanel</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ตัวกรอง"</span> <span style="color:var(--ui-tag-color-purple)">placement</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"left"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">onUiClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCheckbox</span>&gt;เปิดอยู่&lt;/<span style="color:var(--ui-tag-color-blue)">UiCheckbox</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCheckbox</span>&gt;รออนุมัติ&lt;/<span style="color:var(--ui-tag-color-blue)">UiCheckbox</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCheckbox</span>&gt;ปิดแล้ว&lt;/<span style="color:var(--ui-tag-color-blue)">UiCheckbox</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiSidePanel</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-5-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">SidePanel</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">onRequestClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)} <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ตัวกรอง"</span> <span style="color:var(--ui-tag-color-purple)">placement</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"left"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">Checkbox</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เปิดอยู่"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">Checkbox</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"รออนุมัติ"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">Checkbox</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ปิดแล้ว"</span> /&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">SidePanel</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="หรี่หน้าเว็บ">หรี่หน้าเว็บ</h2>
+<p><code>include-overlay</code> หรี่หน้าเว็บข้างหลัง panel และทำให้หน้าเว็บเลื่อนไม่ได้ คลิกที่ overlay จะขอปิด (<code>overlay</code>) ยกเว้นตั้ง <code>prevent-close-on-click-outside</code></p>
+<div class="doc-demo"><div style="transform: translateZ(0); position: relative; height: 320px; overflow: hidden; border: 1px solid var(--ui-hairline); --ui-side-panel-top: 0px">
+  <div style="padding: 16px"><ui-button id="side-panel-overlay-open">มอบหมายผู้ตรวจ</ui-button></div>
+  <ui-side-panel id="side-panel-overlay" heading="มอบหมายผู้ตรวจ" include-overlay size="sm">
+    <div style="padding-block: 16px">
+      <ui-radio-group label="ผู้ตรวจ" name="reviewer" value="ananya">
+        <ui-radio value="ananya">อนัญญา พ.</ui-radio>
+        <ui-radio value="boonmee">บุญมี ส.</ui-radio>
+      </ui-radio-group>
+    </div>
+    <ui-button slot="actions" kind="secondary">ยกเลิก</ui-button>
+    <ui-button slot="actions">มอบหมาย</ui-button>
+  </ui-side-panel>
+</div>
+
+<script type="text/x-demo">
+  const panel = document.getElementById('side-panel-overlay');
+  document.getElementById('side-panel-overlay-open').addEventListener('click', () => (panel.open = true));
+  for (const button of panel.querySelectorAll('[slot="actions"]')) button.addEventListener('click', () => (panel.open = false));
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-6-0">HTML</ui-tab><ui-tab panel="code-6-1">React</ui-tab><ui-tab panel="code-6-2">React + Tailwind</ui-tab><ui-tab-panel name="code-6-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"transform: translateZ(0); position: relative; height: 320px; overflow: hidden; border: 1px solid var(--ui-hairline); --ui-side-panel-top: 0px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"padding: 16px"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"side-panel-overlay-open"</span>&gt;มอบหมายผู้ตรวจ&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-side-panel</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"side-panel-overlay"</span> <span style="color:var(--ui-tag-color-purple)">heading</span>=<span style="color:var(--ui-tag-color-teal)">"มอบหมายผู้ตรวจ"</span> <span style="color:var(--ui-tag-color-purple)">include-overlay</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"sm"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"padding-block: 16px"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-radio-group</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ผู้ตรวจ"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"reviewer"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"ananya"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">ui-radio</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"ananya"</span>&gt;อนัญญา พ.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-radio</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">ui-radio</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"boonmee"</span>&gt;บุญมี ส.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-radio</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">ui-radio-group</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"actions"</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"secondary"</span>&gt;ยกเลิก&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"actions"</span>&gt;มอบหมาย&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-side-panel</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> panel <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'side-panel-overlay'</span>);
+  document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'side-panel-overlay-open'</span>).<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (panel.open <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-green)">true</span>));
+  <span style="color:var(--ui-tag-color-magenta)">for</span> (<span style="color:var(--ui-tag-color-magenta)">const</span> button <span style="color:var(--ui-tag-color-magenta)">of</span> panel.<span style="color:var(--ui-tag-color-cyan)">querySelectorAll</span>(<span style="color:var(--ui-tag-color-teal)">'[slot="actions"]'</span>)) button.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (panel.open <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-green)">false</span>));
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-6-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiSidePanel</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"มอบหมายผู้ตรวจ"</span> <span style="color:var(--ui-tag-color-purple)">includeOverlay</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">onUiClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiRadioGroup</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ผู้ตรวจ"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"reviewer"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ananya"</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">UiRadioGroup</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiButton</span> <span style="color:var(--ui-tag-color-purple)">slot</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"actions"</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"secondary"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}&gt;ยกเลิก&lt;/<span style="color:var(--ui-tag-color-blue)">UiButton</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiButton</span> <span style="color:var(--ui-tag-color-purple)">slot</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"actions"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}&gt;มอบหมาย&lt;/<span style="color:var(--ui-tag-color-blue)">UiButton</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiSidePanel</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-6-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">SidePanel</span>
+  <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open}
+  <span style="color:var(--ui-tag-color-purple)">onRequestClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}
+  <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"มอบหมายผู้ตรวจ"</span>
+  <span style="color:var(--ui-tag-color-purple)">includeOverlay</span>
+  <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span>
+  <span style="color:var(--ui-tag-color-purple)">actions</span><span style="color:var(--ui-tag-color-magenta)">=</span>{[
+    { <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'ยกเลิก'</span>, <span style="color:var(--ui-tag-color-purple)">kind:</span> <span style="color:var(--ui-tag-color-teal)">'secondary'</span>, <span style="color:var(--ui-tag-color-cyan)">onClick</span><span style="color:var(--ui-tag-color-purple)">:</span> () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>) },
+    { <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'มอบหมาย'</span>, <span style="color:var(--ui-tag-color-cyan)">onClick</span><span style="color:var(--ui-tag-color-purple)">:</span> () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>) },
+  ]}
+&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">RadioGroup</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ผู้ตรวจ"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"reviewer"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ananya"</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">RadioGroup</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">SidePanel</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="ดันหน้าเว็บออกไป">ดันหน้าเว็บออกไป</h2>
+<p><code>slide-in</code> เปิดที่ให้ panel แทนการทับหน้าเว็บ: element ที่ <code>selector-page-content</code> ชี้ไปจะได้ margin กว้างเท่า panel panel แบบ slide-in ไม่ดึงโฟกัส ไม่กัก Tab ไว้ข้างใน และไม่ปิดด้วย Esc หน้าเว็บข้าง ๆ จึงยังใช้งานได้</p>
+<div class="doc-demo"><div style="transform: translateZ(0); position: relative; height: 300px; overflow: hidden; border: 1px solid var(--ui-hairline); --ui-side-panel-top: 0px">
+  <div id="side-panel-page" style="display: grid; gap: 16px; padding: 16px">
+    <p style="margin: 0">รายการสัญญา: 24 ฉบับรอลงนาม</p>
+    <div><ui-button id="side-panel-push-open" kind="tertiary">แสดงสรุป</ui-button></div>
+  </div>
+  <ui-side-panel id="side-panel-push" heading="สรุป" slide-in selector-page-content="#side-panel-page" size="xs">
+    <p>ซื้อขาย 8 เช่า 12 บริการ 4 ฉบับ</p>
+  </ui-side-panel>
+</div>
+
+<script type="text/x-demo">
+  const panel = document.getElementById('side-panel-push');
+  document.getElementById('side-panel-push-open').addEventListener('click', () => (panel.open = !panel.open));
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-7-0">HTML</ui-tab><ui-tab panel="code-7-1">React</ui-tab><ui-tab panel="code-7-2">React + Tailwind</ui-tab><ui-tab-panel name="code-7-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"transform: translateZ(0); position: relative; height: 300px; overflow: hidden; border: 1px solid var(--ui-hairline); --ui-side-panel-top: 0px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"side-panel-page"</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"display: grid; gap: 16px; padding: 16px"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"margin: 0"</span>&gt;รายการสัญญา: 24 ฉบับรอลงนาม&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"side-panel-push-open"</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"tertiary"</span>&gt;แสดงสรุป&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-side-panel</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"side-panel-push"</span> <span style="color:var(--ui-tag-color-purple)">heading</span>=<span style="color:var(--ui-tag-color-teal)">"สรุป"</span> <span style="color:var(--ui-tag-color-purple)">slide-in</span> <span style="color:var(--ui-tag-color-purple)">selector-page-content</span>=<span style="color:var(--ui-tag-color-teal)">"#side-panel-page"</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"xs"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;ซื้อขาย 8 เช่า 12 บริการ 4 ฉบับ&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-side-panel</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> panel <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'side-panel-push'</span>);
+  document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'side-panel-push-open'</span>).<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (panel.open <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-magenta)">!</span>panel.open));
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-7-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">main</span> <span style="color:var(--ui-tag-color-purple)">id</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"contracts"</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">main</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiSidePanel</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"สรุป"</span> <span style="color:var(--ui-tag-color-purple)">slideIn</span> <span style="color:var(--ui-tag-color-purple)">selectorPageContent</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"#contracts"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"xs"</span> <span style="color:var(--ui-tag-color-purple)">onUiClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;ซื้อขาย 8 เช่า 12 บริการ 4 ฉบับ&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiSidePanel</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-7-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">main</span> <span style="color:var(--ui-tag-color-purple)">id</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"contracts"</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">main</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">SidePanel</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">onRequestClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)} <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"สรุป"</span> <span style="color:var(--ui-tag-color-purple)">slideIn</span> <span style="color:var(--ui-tag-color-purple)">selectorPageContent</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"#contracts"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"xs"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;ซื้อขาย 8 เช่า 12 บริการ 4 ฉบับ&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">SidePanel</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="ปุ่มด้านล่าง">ปุ่มด้านล่าง</h2>
+<p><code>&lt;ui-button slot=&quot;actions&quot;&gt;</code> ใส่ได้ถึงสี่ปุ่มที่ท้าย panel จัดวางแบบ ActionSet ของ Carbon ตามขนาดของ panel: เรียงในแถวเดียว หรือเรียงทีละแถวเมื่อ panel เป็น <code>xs</code> หรือ <code>sm</code> และเมื่อ panel <code>md</code> มีมากกว่าสองปุ่ม ปุ่มสูง 64px ส่วน <code>condensed-actions</code> ทำให้สูง 48px React + Tailwind รับปุ่มเป็นข้อมูลใน <code>actions</code></p>
+<div class="doc-demo"><div style="transform: translateZ(0); position: relative; height: 380px; overflow: hidden; border: 1px solid var(--ui-hairline); --ui-side-panel-top: 0px">
+  <div style="display: flex; flex-wrap: wrap; gap: 16px; padding: 16px">
+    <ui-button id="side-panel-actions-open" kind="tertiary">สามปุ่ม</ui-button>
+    <ui-button id="side-panel-actions-condensed" kind="tertiary">แบบกะทัดรัด</ui-button>
+  </div>
+  <ui-side-panel id="side-panel-actions" heading="อนุมัติคำขอ" size="lg">
+    <p>ใบขอซื้อ PR-2026-0318 จำนวน 128,500 บาท จากฝ่ายไอที</p>
+    <ui-button slot="actions" kind="ghost">ยกเลิก</ui-button>
+    <ui-button slot="actions" kind="secondary">ส่งกลับ</ui-button>
+    <ui-button slot="actions">อนุมัติ</ui-button>
+  </ui-side-panel>
+</div>
+
+<script type="text/x-demo">
+  const panel = document.getElementById('side-panel-actions');
+  const show = (condensed) => {
+    panel.condensedActions = condensed;
+    panel.open = true;
+  };
+  document.getElementById('side-panel-actions-open').addEventListener('click', () => show(false));
+  document.getElementById('side-panel-actions-condensed').addEventListener('click', () => show(true));
+  for (const button of panel.querySelectorAll('[slot="actions"]')) button.addEventListener('click', () => (panel.open = false));
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-8-0">HTML</ui-tab><ui-tab panel="code-8-1">React</ui-tab><ui-tab panel="code-8-2">React + Tailwind</ui-tab><ui-tab-panel name="code-8-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"transform: translateZ(0); position: relative; height: 380px; overflow: hidden; border: 1px solid var(--ui-hairline); --ui-side-panel-top: 0px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"display: flex; flex-wrap: wrap; gap: 16px; padding: 16px"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"side-panel-actions-open"</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"tertiary"</span>&gt;สามปุ่ม&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"side-panel-actions-condensed"</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"tertiary"</span>&gt;แบบกะทัดรัด&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-side-panel</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"side-panel-actions"</span> <span style="color:var(--ui-tag-color-purple)">heading</span>=<span style="color:var(--ui-tag-color-teal)">"อนุมัติคำขอ"</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"lg"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;ใบขอซื้อ PR-2026-0318 จำนวน 128,500 บาท จากฝ่ายไอที&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"actions"</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"ghost"</span>&gt;ยกเลิก&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"actions"</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"secondary"</span>&gt;ส่งกลับ&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"actions"</span>&gt;อนุมัติ&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-side-panel</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> panel <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'side-panel-actions'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> <span style="color:var(--ui-tag-color-cyan)">show</span> <span style="color:var(--ui-tag-color-magenta)">=</span> (condensed) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    panel.condensedActions <span style="color:var(--ui-tag-color-magenta)">=</span> condensed;
+    panel.open <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-green)">true</span>;
+  };
+  document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'side-panel-actions-open'</span>).<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">show</span>(<span style="color:var(--ui-tag-color-green)">false</span>));
+  document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'side-panel-actions-condensed'</span>).<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">show</span>(<span style="color:var(--ui-tag-color-green)">true</span>));
+  <span style="color:var(--ui-tag-color-magenta)">for</span> (<span style="color:var(--ui-tag-color-magenta)">const</span> button <span style="color:var(--ui-tag-color-magenta)">of</span> panel.<span style="color:var(--ui-tag-color-cyan)">querySelectorAll</span>(<span style="color:var(--ui-tag-color-teal)">'[slot="actions"]'</span>)) button.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (panel.open <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-green)">false</span>));
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-8-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiSidePanel</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"อนุมัติคำขอ"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"lg"</span> <span style="color:var(--ui-tag-color-purple)">condensedActions</span> <span style="color:var(--ui-tag-color-purple)">onUiClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;ใบขอซื้อ PR-2026-0318 จำนวน 128,500 บาท จากฝ่ายไอที&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiButton</span> <span style="color:var(--ui-tag-color-purple)">slot</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"actions"</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ghost"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{close}&gt;ยกเลิก&lt;/<span style="color:var(--ui-tag-color-blue)">UiButton</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiButton</span> <span style="color:var(--ui-tag-color-purple)">slot</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"actions"</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"secondary"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{sendBack}&gt;ส่งกลับ&lt;/<span style="color:var(--ui-tag-color-blue)">UiButton</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiButton</span> <span style="color:var(--ui-tag-color-purple)">slot</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"actions"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{approve}&gt;อนุมัติ&lt;/<span style="color:var(--ui-tag-color-blue)">UiButton</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiSidePanel</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-8-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">SidePanel</span>
+  <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open}
+  <span style="color:var(--ui-tag-color-purple)">onRequestClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}
+  <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"อนุมัติคำขอ"</span>
+  <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"lg"</span>
+  <span style="color:var(--ui-tag-color-purple)">condensedActions</span>
+  <span style="color:var(--ui-tag-color-purple)">actions</span><span style="color:var(--ui-tag-color-magenta)">=</span>{[
+    { <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'ยกเลิก'</span>, <span style="color:var(--ui-tag-color-purple)">kind:</span> <span style="color:var(--ui-tag-color-teal)">'ghost'</span>, <span style="color:var(--ui-tag-color-purple)">onClick:</span> close },
+    { <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'ส่งกลับ'</span>, <span style="color:var(--ui-tag-color-purple)">kind:</span> <span style="color:var(--ui-tag-color-teal)">'secondary'</span>, <span style="color:var(--ui-tag-color-purple)">onClick:</span> sendBack },
+    { <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'อนุมัติ'</span>, <span style="color:var(--ui-tag-color-purple)">onClick:</span> approve },
+  ]}
+&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;ใบขอซื้อ PR-2026-0318 จำนวน 128,500 บาท จากฝ่ายไอที&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">SidePanel</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="แถบเครื่องมือใต้ส่วนหัว">แถบเครื่องมือใต้ส่วนหัว</h2>
+<p><code>slot=&quot;action-toolbar&quot;</code> วางปุ่มเล็ก ๆ ใต้ส่วนหัว ปุ่มแรกแสดงข้อความ ปุ่มที่เหลือเป็นปุ่มไอคอน React + Tailwind ใส่ใน <code>actionToolbar</code></p>
+<div class="doc-demo"><div style="transform: translateZ(0); position: relative; height: 340px; overflow: hidden; border: 1px solid var(--ui-hairline); --ui-side-panel-top: 0px">
+  <div style="padding: 16px"><ui-button id="side-panel-toolbar-open" kind="tertiary">เปิดสัญญา</ui-button></div>
+  <ui-side-panel id="side-panel-toolbar" heading="CT-2026-0142" size="md">
+    <span slot="subtitle">เช่าสำนักงานชั้น 3</span>
+    <ui-button slot="action-toolbar" kind="ghost" size="sm">คัดลอกลิงก์</ui-button>
+    <ui-icon-button slot="action-toolbar" kind="ghost" size="sm" label="แก้ไขสัญญา">
+      <svg viewBox="0 0 16 16"><path d="m13.7 4.3-2-2a1 1 0 0 0-1.4 0L2 10.6V14h3.4l8.3-8.3a1 1 0 0 0 0-1.4ZM5 13H3v-2l6-6 2 2Zm7-7-2-2 1-1 2 2Z"/></svg>
+    </ui-icon-button>
+    <p>24 เดือน ตั้งแต่ 1 พฤศจิกายน 2569 เดือนละ 45,000 บาท</p>
+  </ui-side-panel>
+</div>
+
+<script type="text/x-demo">
+  const panel = document.getElementById('side-panel-toolbar');
+  document.getElementById('side-panel-toolbar-open').addEventListener('click', () => (panel.open = true));
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-9-0">HTML</ui-tab><ui-tab panel="code-9-1">React</ui-tab><ui-tab panel="code-9-2">React + Tailwind</ui-tab><ui-tab-panel name="code-9-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"transform: translateZ(0); position: relative; height: 340px; overflow: hidden; border: 1px solid var(--ui-hairline); --ui-side-panel-top: 0px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"padding: 16px"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"side-panel-toolbar-open"</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"tertiary"</span>&gt;เปิดสัญญา&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-side-panel</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"side-panel-toolbar"</span> <span style="color:var(--ui-tag-color-purple)">heading</span>=<span style="color:var(--ui-tag-color-teal)">"CT-2026-0142"</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"md"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"subtitle"</span>&gt;เช่าสำนักงานชั้น 3&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"action-toolbar"</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"ghost"</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"sm"</span>&gt;คัดลอกลิงก์&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-button</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"action-toolbar"</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"ghost"</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"แก้ไขสัญญา"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span>=<span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span>=<span style="color:var(--ui-tag-color-teal)">"m13.7 4.3-2-2a1 1 0 0 0-1.4 0L2 10.6V14h3.4l8.3-8.3a1 1 0 0 0 0-1.4ZM5 13H3v-2l6-6 2 2Zm7-7-2-2 1-1 2 2Z"</span>/&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-button</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;24 เดือน ตั้งแต่ 1 พฤศจิกายน 2569 เดือนละ 45,000 บาท&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-side-panel</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> panel <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'side-panel-toolbar'</span>);
+  document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'side-panel-toolbar-open'</span>).<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (panel.open <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-green)">true</span>));
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-9-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { Edit <span style="color:var(--ui-tag-color-magenta)">as</span> EditIcon } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@carbon/icons-react'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiSidePanel</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"CT-2026-0142"</span> <span style="color:var(--ui-tag-color-purple)">onUiClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">slot</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"subtitle"</span>&gt;เช่าสำนักงานชั้น 3&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiButton</span> <span style="color:var(--ui-tag-color-purple)">slot</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"action-toolbar"</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ghost"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span>&gt;คัดลอกลิงก์&lt;/<span style="color:var(--ui-tag-color-blue)">UiButton</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiIconButton</span> <span style="color:var(--ui-tag-color-purple)">slot</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"action-toolbar"</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ghost"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"แก้ไขสัญญา"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">EditIcon</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">UiIconButton</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;24 เดือน ตั้งแต่ 1 พฤศจิกายน 2569 เดือนละ 45,000 บาท&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiSidePanel</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-9-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { Edit <span style="color:var(--ui-tag-color-magenta)">as</span> EditIcon } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@carbon/icons-react'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">SidePanel</span>
+  <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open}
+  <span style="color:var(--ui-tag-color-purple)">onRequestClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}
+  <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"CT-2026-0142"</span>
+  <span style="color:var(--ui-tag-color-purple)">subtitle</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เช่าสำนักงานชั้น 3"</span>
+  <span style="color:var(--ui-tag-color-purple)">actionToolbar</span><span style="color:var(--ui-tag-color-magenta)">=</span>{&lt;&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Button</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ghost"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span>&gt;คัดลอกลิงก์&lt;/<span style="color:var(--ui-tag-color-blue)">Button</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">IconButton</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ghost"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"แก้ไขสัญญา"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">EditIcon</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">IconButton</span>&gt;
+  &lt;/&gt;}
+&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;24 เดือน ตั้งแต่ 1 พฤศจิกายน 2569 เดือนละ 45,000 บาท&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">SidePanel</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="หัวข้อที่ย่อลงเมื่อเลื่อน">หัวข้อที่ย่อลงเมื่อเลื่อน</h2>
+<p>เมื่อมี <code>label-text</code> subtitle หรือแถบเครื่องมือ และเนื้อหายาวพอให้เลื่อน label กับ subtitle จะค่อย ๆ จางหายเมื่อเลื่อน และหัวข้อจะย่อเป็นแถบเล็ก (ค่าเริ่มต้นของ Carbon) <code>animate-title=&quot;false&quot;</code> ทำให้ส่วนหัวอยู่นิ่ง การตั้งให้ลดการเคลื่อนไหวก็ปิดลูกเล่นนี้ด้วย ลองเลื่อน panel ด้านล่าง</p>
+<div class="doc-demo"><div style="transform: translateZ(0); position: relative; height: 420px; overflow: hidden; border: 1px solid var(--ui-hairline); --ui-side-panel-top: 0px">
+  <div style="padding: 16px"><ui-button id="side-panel-title-open" kind="tertiary">เปิดงานตรวจสอบ</ui-button></div>
+  <ui-side-panel id="side-panel-title" heading="ตรวจสอบประจำปี 2569" label-text="ตรวจสอบภายใน" size="md">
+    <span slot="subtitle">ตอบทุกข้อก่อนส่ง</span>
+    <div style="display: grid; gap: 16px; padding-block: 16px">
+      <ui-text-input label="ผู้ตรวจสอบ"></ui-text-input>
+      <ui-text-input label="หน่วยงาน"></ui-text-input>
+      <ui-text-area label="สิ่งที่พบ"></ui-text-area>
+      <ui-text-area label="ความเสี่ยง"></ui-text-area>
+      <ui-text-area label="ข้อเสนอแนะ"></ui-text-area>
+    </div>
+    <ui-button slot="actions" kind="secondary">บันทึกร่าง</ui-button>
+    <ui-button slot="actions">ส่ง</ui-button>
+  </ui-side-panel>
+</div>
+
+<script type="text/x-demo">
+  const panel = document.getElementById('side-panel-title');
+  document.getElementById('side-panel-title-open').addEventListener('click', () => (panel.open = true));
+  for (const button of panel.querySelectorAll('[slot="actions"]')) button.addEventListener('click', () => (panel.open = false));
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-10-0">HTML</ui-tab><ui-tab panel="code-10-1">React</ui-tab><ui-tab panel="code-10-2">React + Tailwind</ui-tab><ui-tab-panel name="code-10-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"transform: translateZ(0); position: relative; height: 420px; overflow: hidden; border: 1px solid var(--ui-hairline); --ui-side-panel-top: 0px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"padding: 16px"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"side-panel-title-open"</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"tertiary"</span>&gt;เปิดงานตรวจสอบ&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-side-panel</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"side-panel-title"</span> <span style="color:var(--ui-tag-color-purple)">heading</span>=<span style="color:var(--ui-tag-color-teal)">"ตรวจสอบประจำปี 2569"</span> <span style="color:var(--ui-tag-color-purple)">label-text</span>=<span style="color:var(--ui-tag-color-teal)">"ตรวจสอบภายใน"</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"md"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"subtitle"</span>&gt;ตอบทุกข้อก่อนส่ง&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"display: grid; gap: 16px; padding-block: 16px"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-text-input</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ผู้ตรวจสอบ"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-text-input</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-text-input</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"หน่วยงาน"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-text-input</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-text-area</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"สิ่งที่พบ"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-text-area</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-text-area</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ความเสี่ยง"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-text-area</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-text-area</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ข้อเสนอแนะ"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-text-area</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"actions"</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"secondary"</span>&gt;บันทึกร่าง&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"actions"</span>&gt;ส่ง&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-side-panel</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> panel <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'side-panel-title'</span>);
+  document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'side-panel-title-open'</span>).<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (panel.open <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-green)">true</span>));
+  <span style="color:var(--ui-tag-color-magenta)">for</span> (<span style="color:var(--ui-tag-color-magenta)">const</span> button <span style="color:var(--ui-tag-color-magenta)">of</span> panel.<span style="color:var(--ui-tag-color-cyan)">querySelectorAll</span>(<span style="color:var(--ui-tag-color-teal)">'[slot="actions"]'</span>)) button.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (panel.open <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-green)">false</span>));
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-10-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiSidePanel</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ตรวจสอบประจำปี 2569"</span> <span style="color:var(--ui-tag-color-purple)">labelText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ตรวจสอบภายใน"</span> <span style="color:var(--ui-tag-color-purple)">onUiClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">slot</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"subtitle"</span>&gt;ตอบทุกข้อก่อนส่ง&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+  …
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiSidePanel</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-10-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">SidePanel</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">onRequestClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)} <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ตรวจสอบประจำปี 2569"</span> <span style="color:var(--ui-tag-color-purple)">labelText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ตรวจสอบภายใน"</span> <span style="color:var(--ui-tag-color-purple)">subtitle</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ตอบทุกข้อก่อนส่ง"</span> <span style="color:var(--ui-tag-color-purple)">actions</span><span style="color:var(--ui-tag-color-magenta)">=</span>{…}&gt;
+  …
+&lt;/<span style="color:var(--ui-tag-color-blue)">SidePanel</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="หลายขั้นตอน">หลายขั้นตอน</h2>
+<p>panel ใช้ทำขั้นตอนสั้น ๆ ได้ <code>current-step</code> ที่มากกว่า 0 จะแสดงปุ่มย้อนกลับด้านบน กดแล้วจะส่ง <code>ui-navigate-back</code> (React + Tailwind ใช้ <code>onNavigationBack</code>) แล้วคุณเปลี่ยนขั้นตอนและเนื้อหาเอง เนื้อหาจะเลื่อนกลับขึ้นบนสุดเมื่อเปลี่ยนขั้นตอน</p>
+<div class="doc-demo"><div style="transform: translateZ(0); position: relative; height: 360px; overflow: hidden; border: 1px solid var(--ui-hairline); --ui-side-panel-top: 0px">
+  <div style="padding: 16px"><ui-button id="side-panel-steps-open">คำขอใหม่</ui-button></div>
+  <ui-side-panel id="side-panel-steps" heading="เลือกแบบฟอร์ม" size="sm">
+    <div id="side-panel-step-0" style="padding-block: 16px">
+      <ui-radio-group label="แบบฟอร์ม" name="template" value="purchase">
+        <ui-radio value="purchase">ใบขอซื้อ</ui-radio>
+        <ui-radio value="travel">ขออนุมัติเดินทาง</ui-radio>
+      </ui-radio-group>
+    </div>
+    <div id="side-panel-step-1" hidden style="padding-block: 16px">
+      <ui-text-input label="จำนวนเงิน" suffix-text="บาท"></ui-text-input>
+    </div>
+    <ui-button slot="actions" id="side-panel-steps-next">ถัดไป</ui-button>
+  </ui-side-panel>
+</div>
+
+<script type="text/x-demo">
+  const panel = document.getElementById('side-panel-steps');
+  const next = document.getElementById('side-panel-steps-next');
+  const step = (n) => {
+    panel.currentStep = n;
+    panel.heading = n ? 'รายละเอียดคำขอ' : 'เลือกแบบฟอร์ม';
+    document.getElementById('side-panel-step-0').hidden = n !== 0;
+    document.getElementById('side-panel-step-1').hidden = n !== 1;
+    next.textContent = n ? 'ส่ง' : 'ถัดไป';
+  };
+  document.getElementById('side-panel-steps-open').addEventListener('click', () => {
+    step(0);
+    panel.open = true;
+  });
+  next.addEventListener('click', () => {
+    if (panel.currentStep === 0) step(1);
+    else panel.open = false;
+  });
+  panel.addEventListener('ui-navigate-back', () => step(panel.currentStep - 1));
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-11-0">HTML</ui-tab><ui-tab panel="code-11-1">React</ui-tab><ui-tab panel="code-11-2">React + Tailwind</ui-tab><ui-tab-panel name="code-11-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"transform: translateZ(0); position: relative; height: 360px; overflow: hidden; border: 1px solid var(--ui-hairline); --ui-side-panel-top: 0px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"padding: 16px"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"side-panel-steps-open"</span>&gt;คำขอใหม่&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-side-panel</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"side-panel-steps"</span> <span style="color:var(--ui-tag-color-purple)">heading</span>=<span style="color:var(--ui-tag-color-teal)">"เลือกแบบฟอร์ม"</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"sm"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"side-panel-step-0"</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"padding-block: 16px"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-radio-group</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"แบบฟอร์ม"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"template"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"purchase"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">ui-radio</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"purchase"</span>&gt;ใบขอซื้อ&lt;/<span style="color:var(--ui-tag-color-blue)">ui-radio</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">ui-radio</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"travel"</span>&gt;ขออนุมัติเดินทาง&lt;/<span style="color:var(--ui-tag-color-blue)">ui-radio</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">ui-radio-group</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"side-panel-step-1"</span> <span style="color:var(--ui-tag-color-purple)">hidden</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"padding-block: 16px"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-text-input</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"จำนวนเงิน"</span> <span style="color:var(--ui-tag-color-purple)">suffix-text</span>=<span style="color:var(--ui-tag-color-teal)">"บาท"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-text-input</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"actions"</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"side-panel-steps-next"</span>&gt;ถัดไป&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-side-panel</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> panel <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'side-panel-steps'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> next <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'side-panel-steps-next'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> <span style="color:var(--ui-tag-color-cyan)">step</span> <span style="color:var(--ui-tag-color-magenta)">=</span> (n) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    panel.currentStep <span style="color:var(--ui-tag-color-magenta)">=</span> n;
+    panel.heading <span style="color:var(--ui-tag-color-magenta)">=</span> n <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-teal)">'รายละเอียดคำขอ'</span> <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-teal)">'เลือกแบบฟอร์ม'</span>;
+    document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'side-panel-step-0'</span>).hidden <span style="color:var(--ui-tag-color-magenta)">=</span> n <span style="color:var(--ui-tag-color-magenta)">!==</span> <span style="color:var(--ui-tag-color-green)">0</span>;
+    document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'side-panel-step-1'</span>).hidden <span style="color:var(--ui-tag-color-magenta)">=</span> n <span style="color:var(--ui-tag-color-magenta)">!==</span> <span style="color:var(--ui-tag-color-green)">1</span>;
+    next.textContent <span style="color:var(--ui-tag-color-magenta)">=</span> n <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-teal)">'ส่ง'</span> <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-teal)">'ถัดไป'</span>;
+  };
+  document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'side-panel-steps-open'</span>).<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    <span style="color:var(--ui-tag-color-cyan)">step</span>(<span style="color:var(--ui-tag-color-green)">0</span>);
+    panel.open <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-green)">true</span>;
+  });
+  next.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    <span style="color:var(--ui-tag-color-magenta)">if</span> (panel.currentStep <span style="color:var(--ui-tag-color-magenta)">===</span> <span style="color:var(--ui-tag-color-green)">0</span>) <span style="color:var(--ui-tag-color-cyan)">step</span>(<span style="color:var(--ui-tag-color-green)">1</span>);
+    <span style="color:var(--ui-tag-color-magenta)">else</span> panel.open <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-green)">false</span>;
+  });
+  panel.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'ui-navigate-back'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">step</span>(panel.currentStep <span style="color:var(--ui-tag-color-magenta)">-</span> <span style="color:var(--ui-tag-color-green)">1</span>));
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-11-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> [step, setStep] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-green)">0</span>);
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiSidePanel</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span>{step <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-teal)">'รายละเอียดคำขอ'</span> <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-teal)">'เลือกแบบฟอร์ม'</span>} <span style="color:var(--ui-tag-color-purple)">currentStep</span><span style="color:var(--ui-tag-color-magenta)">=</span>{step} <span style="color:var(--ui-tag-color-purple)">onUiNavigateBack</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setStep</span>(step <span style="color:var(--ui-tag-color-magenta)">-</span> <span style="color:var(--ui-tag-color-green)">1</span>)} <span style="color:var(--ui-tag-color-purple)">onUiClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}&gt;
+  {step <span style="color:var(--ui-tag-color-magenta)">===</span> <span style="color:var(--ui-tag-color-green)">0</span> <span style="color:var(--ui-tag-color-magenta)">?</span> &lt;<span style="color:var(--ui-tag-color-blue)">TemplateStep</span> /&gt; <span style="color:var(--ui-tag-color-magenta)">:</span> &lt;<span style="color:var(--ui-tag-color-blue)">DetailsStep</span> /&gt;}
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiButton</span> <span style="color:var(--ui-tag-color-purple)">slot</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"actions"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (step <span style="color:var(--ui-tag-color-magenta)">===</span> <span style="color:var(--ui-tag-color-green)">0</span> <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-cyan)">setStep</span>(<span style="color:var(--ui-tag-color-green)">1</span>) <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">send</span>())}&gt;{step <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-teal)">'ส่ง'</span> <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-teal)">'ถัดไป'</span>}&lt;/<span style="color:var(--ui-tag-color-blue)">UiButton</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiSidePanel</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-11-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> [step, setStep] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-green)">0</span>);
+
+&lt;<span style="color:var(--ui-tag-color-blue)">SidePanel</span>
+  <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open}
+  <span style="color:var(--ui-tag-color-purple)">onRequestClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}
+  <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span>{step <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-teal)">'รายละเอียดคำขอ'</span> <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-teal)">'เลือกแบบฟอร์ม'</span>}
+  <span style="color:var(--ui-tag-color-purple)">currentStep</span><span style="color:var(--ui-tag-color-magenta)">=</span>{step}
+  <span style="color:var(--ui-tag-color-purple)">onNavigationBack</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setStep</span>(step <span style="color:var(--ui-tag-color-magenta)">-</span> <span style="color:var(--ui-tag-color-green)">1</span>)}
+  <span style="color:var(--ui-tag-color-purple)">actions</span><span style="color:var(--ui-tag-color-magenta)">=</span>{[{ <span style="color:var(--ui-tag-color-purple)">label:</span> step <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-teal)">'ส่ง'</span> <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-teal)">'ถัดไป'</span>, <span style="color:var(--ui-tag-color-cyan)">onClick</span><span style="color:var(--ui-tag-color-purple)">:</span> () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (step <span style="color:var(--ui-tag-color-magenta)">===</span> <span style="color:var(--ui-tag-color-green)">0</span> <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-cyan)">setStep</span>(<span style="color:var(--ui-tag-color-green)">1</span>) <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">send</span>()) }]}
+&gt;
+  {step <span style="color:var(--ui-tag-color-magenta)">===</span> <span style="color:var(--ui-tag-color-green)">0</span> <span style="color:var(--ui-tag-color-magenta)">?</span> &lt;<span style="color:var(--ui-tag-color-blue)">TemplateStep</span> /&gt; <span style="color:var(--ui-tag-color-magenta)">:</span> &lt;<span style="color:var(--ui-tag-color-blue)">DetailsStep</span> /&gt;}
+&lt;/<span style="color:var(--ui-tag-color-blue)">SidePanel</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>ปุ่มย้อนกลับมีชื่อว่า &quot;ย้อนกลับ&quot; ตามภาษาของหน้า เปลี่ยนได้ด้วย <code>navigation-back-icon-description</code></p>
+<h2 id="เนื้อหาเหนือและใต้หัวข้อ">เนื้อหาเหนือและใต้หัวข้อ</h2>
+<p><code>slot=&quot;above-title&quot;</code> อยู่เหนือ label และหัวข้อ <code>slot=&quot;below-title&quot;</code> อยู่ใต้ subtitle เช่น tag บอกสถานะ หรือช่องค้นหา React + Tailwind ไม่มีทั้งสองอย่าง ให้ใส่เนื้อหาไว้ต้น children ของ panel</p>
+<div class="doc-demo"><div style="transform: translateZ(0); position: relative; height: 320px; overflow: hidden; border: 1px solid var(--ui-hairline); --ui-side-panel-top: 0px">
+  <div style="padding: 16px"><ui-button id="side-panel-slots-open" kind="tertiary">เปิดคำขอ</ui-button></div>
+  <ui-side-panel id="side-panel-slots" heading="PR-2026-0318" size="sm">
+    <span slot="subtitle">โน้ตบุ๊กสำหรับฝ่ายไอที</span>
+    <div slot="below-title" style="padding-block-end: 16px"><ui-tag type="green">อนุมัติแล้ว</ui-tag></div>
+    <p>128,500 บาท ชัยยา ร. อนุมัติเมื่อ 9 ตุลาคม 2569</p>
+  </ui-side-panel>
+</div>
+
+<script type="text/x-demo">
+  const panel = document.getElementById('side-panel-slots');
+  document.getElementById('side-panel-slots-open').addEventListener('click', () => (panel.open = true));
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-12-0">HTML</ui-tab><ui-tab panel="code-12-1">React</ui-tab><ui-tab panel="code-12-2">React + Tailwind</ui-tab><ui-tab-panel name="code-12-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"transform: translateZ(0); position: relative; height: 320px; overflow: hidden; border: 1px solid var(--ui-hairline); --ui-side-panel-top: 0px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"padding: 16px"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"side-panel-slots-open"</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"tertiary"</span>&gt;เปิดคำขอ&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-side-panel</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"side-panel-slots"</span> <span style="color:var(--ui-tag-color-purple)">heading</span>=<span style="color:var(--ui-tag-color-teal)">"PR-2026-0318"</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"sm"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"subtitle"</span>&gt;โน้ตบุ๊กสำหรับฝ่ายไอที&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"below-title"</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"padding-block-end: 16px"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-tag</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"green"</span>&gt;อนุมัติแล้ว&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tag</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;128,500 บาท ชัยยา ร. อนุมัติเมื่อ 9 ตุลาคม 2569&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-side-panel</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> panel <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'side-panel-slots'</span>);
+  document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'side-panel-slots-open'</span>).<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (panel.open <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-green)">true</span>));
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-12-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiSidePanel</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"PR-2026-0318"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">onUiClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">slot</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"subtitle"</span>&gt;โน้ตบุ๊กสำหรับฝ่ายไอที&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">slot</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"below-title"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">UiTag</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"green"</span>&gt;อนุมัติแล้ว&lt;/<span style="color:var(--ui-tag-color-blue)">UiTag</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;128,500 บาท ชัยยา ร. อนุมัติเมื่อ 9 ตุลาคม 2569&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiSidePanel</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-12-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">SidePanel</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">onRequestClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)} <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"PR-2026-0318"</span> <span style="color:var(--ui-tag-color-purple)">subtitle</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"โน้ตบุ๊กสำหรับฝ่ายไอที"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">Tag</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"green"</span>&gt;อนุมัติแล้ว&lt;/<span style="color:var(--ui-tag-color-blue)">Tag</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;128,500 บาท ชัยยา ร. อนุมัติเมื่อ 9 ตุลาคม 2569&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">SidePanel</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="ขอยืนยันก่อนปิด">ขอยืนยันก่อนปิด</h2>
+<p>× กด Esc และคลิกที่ overlay จะส่ง <code>ui-request-close</code> ซึ่งยกเลิกได้ และมี <code>reason</code> เป็น <code>close-button</code>, <code>escape</code> หรือ <code>overlay</code> เรียก <code>preventDefault()</code> เพื่อให้ panel เปิดค้างไว้ <code>requestClose(reason)</code> ใช้ถามแบบเดียวกันจากปุ่มของคุณเอง ส่วนการตั้ง <code>open</code> เป็น false จะปิดโดยไม่ถาม panel ด้านล่างปิดได้ด้วยปุ่มเสร็จสิ้นเท่านั้น</p>
+<div class="doc-demo"><div style="transform: translateZ(0); position: relative; height: 300px; overflow: hidden; border: 1px solid var(--ui-hairline); --ui-side-panel-top: 0px">
+  <div style="padding: 16px">
+    <ui-button id="side-panel-guard-open" kind="tertiary">เปิดรายการตรวจ</ui-button>
+    <p>ขอปิดด้วย: <output id="side-panel-guard-out"></output></p>
+  </div>
+  <ui-side-panel id="side-panel-guard" heading="รายการตรวจก่อนลงนาม" size="sm" include-overlay>
+    <p>ติ๊กให้ครบทุกข้อ แล้วกดเสร็จสิ้น</p>
+    <ui-button slot="actions" id="side-panel-guard-done">เสร็จสิ้น</ui-button>
+  </ui-side-panel>
+</div>
+
+<script type="text/x-demo">
+  const panel = document.getElementById('side-panel-guard');
+  document.getElementById('side-panel-guard-open').addEventListener('click', () => (panel.open = true));
+  document.getElementById('side-panel-guard-done').addEventListener('click', () => (panel.open = false));
+  panel.addEventListener('ui-request-close', (event) => {
+    event.preventDefault();
+    document.getElementById('side-panel-guard-out').value = event.detail.reason;
+  });
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-13-0">HTML</ui-tab><ui-tab panel="code-13-1">React</ui-tab><ui-tab panel="code-13-2">React + Tailwind</ui-tab><ui-tab-panel name="code-13-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"transform: translateZ(0); position: relative; height: 300px; overflow: hidden; border: 1px solid var(--ui-hairline); --ui-side-panel-top: 0px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"padding: 16px"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"side-panel-guard-open"</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"tertiary"</span>&gt;เปิดรายการตรวจ&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;ขอปิดด้วย: &lt;<span style="color:var(--ui-tag-color-blue)">output</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"side-panel-guard-out"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-side-panel</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"side-panel-guard"</span> <span style="color:var(--ui-tag-color-purple)">heading</span>=<span style="color:var(--ui-tag-color-teal)">"รายการตรวจก่อนลงนาม"</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">include-overlay</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;ติ๊กให้ครบทุกข้อ แล้วกดเสร็จสิ้น&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"actions"</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"side-panel-guard-done"</span>&gt;เสร็จสิ้น&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-side-panel</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> panel <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'side-panel-guard'</span>);
+  document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'side-panel-guard-open'</span>).<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (panel.open <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-green)">true</span>));
+  document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'side-panel-guard-done'</span>).<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (panel.open <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-green)">false</span>));
+  panel.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'ui-request-close'</span>, (event) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    event.<span style="color:var(--ui-tag-color-cyan)">preventDefault</span>();
+    document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'side-panel-guard-out'</span>).value <span style="color:var(--ui-tag-color-magenta)">=</span> event.detail.reason;
+  });
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-13-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiSidePanel</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"รายการตรวจก่อนลงนาม"</span> <span style="color:var(--ui-tag-color-purple)">includeOverlay</span> <span style="color:var(--ui-tag-color-purple)">onUiRequestClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> { e.<span style="color:var(--ui-tag-color-cyan)">preventDefault</span>(); <span style="color:var(--ui-tag-color-cyan)">setReason</span>(e.detail.reason); }} <span style="color:var(--ui-tag-color-purple)">onUiClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;ติ๊กให้ครบทุกข้อ แล้วกดเสร็จสิ้น&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiButton</span> <span style="color:var(--ui-tag-color-purple)">slot</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"actions"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}&gt;เสร็จสิ้น&lt;/<span style="color:var(--ui-tag-color-blue)">UiButton</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiSidePanel</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-13-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-ink-muted);font-style:italic">// onRequestClose แค่แจ้ง panel จะเปิดค้างจนกว่าคุณตั้ง open เป็น false</span>
+&lt;<span style="color:var(--ui-tag-color-blue)">SidePanel</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">onRequestClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{setReason} <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"รายการตรวจก่อนลงนาม"</span> <span style="color:var(--ui-tag-color-purple)">includeOverlay</span> <span style="color:var(--ui-tag-color-purple)">actions</span><span style="color:var(--ui-tag-color-magenta)">=</span>{[{ <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'เสร็จสิ้น'</span>, <span style="color:var(--ui-tag-color-cyan)">onClick</span><span style="color:var(--ui-tag-color-purple)">:</span> () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>) }]}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;ติ๊กให้ครบทุกข้อ แล้วกดเสร็จสิ้น&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">SidePanel</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p><code>ui-request-close</code> และ <code>ui-close</code> bubble ขึ้นมา notification ที่อยู่ข้างในจึงส่ง event เหล่านี้ถึง panel ด้วย ต้องเช็กว่า <code>event.target</code> คือ panel ส่วน <code>UiSidePanel</code> ของ React เช็กให้แล้ว <code>onUiRequestClose</code> และ <code>onUiClose</code> ได้รับเฉพาะ event ของ panel เอง</p>
+<p><code>hide-close-button</code> เอาปุ่ม × ออก ถ้าใช้ ต้องมีทางอื่นให้ปิด panel ได้</p>
+<h2 id="คีย์บอร์ด">คีย์บอร์ด</h2>
+<table>
+<thead>
+<tr>
+<th>ปุ่ม</th>
+<th>ทำอะไร</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tab / Shift+Tab</td>
+<td>เลื่อนไปมาระหว่างช่องและปุ่มใน panel และวนอยู่ข้างใน (ยกเว้น <code>slide-in</code>)</td>
+</tr>
+<tr>
+<td>Esc</td>
+<td>ขอปิด (<code>escape</code> ยกเว้น <code>slide-in</code>) แล้วโฟกัสกลับไปที่ตัวที่เปิด panel</td>
+</tr>
+</tbody>
+</table>
+<h2 id="accessibility">Accessibility</h2>
+<ul>
+<li>panel เป็น landmark <code>complementary</code> ที่ใช้ <code>heading</code> เป็นชื่อ</li>
+<li>× มีชื่อว่า &quot;ปิด&quot; และปุ่มย้อนกลับมีชื่อว่า &quot;ย้อนกลับ&quot; ตามภาษาของหน้า พร้อม tooltip เปลี่ยนได้ด้วย <code>close-icon-description</code> และ <code>navigation-back-icon-description</code></li>
+<li>panel แบบ slide-over กัก Tab ไว้ข้างใน แต่หน้าเว็บข้างหลังไม่ได้เป็น inert ผู้ใช้ screen reader ยังอ่านไปถึงได้ด้วยปุ่มอ่านของตัวเอง ถ้าต้องกันไม่ให้เข้าถึงหน้าเว็บเลย ให้ใช้ <a href="/kanok-ui-docs/th/modal/">Modal</a></li>
+</ul>
+<p>ต้องการแค่พฤติกรรมโดยไม่มี style: <a href="/kanok-ui-docs/th/headless-side-panel/">Headless Side panel</a></p>
+<h2 id="api">API</h2>
+<p>สร้างจากแพ็กเกจโดยตรง ใน React ส่ง property เป็น prop ชื่อเดียวกัน ส่วน event ก็เป็น prop เช่นกัน (ดูคอลัมน์ React)</p>
+<h3 id="ui-side-panel-react-uisidepanel"><code>&lt;ui-side-panel&gt;</code> · React <code>UiSidePanel</code></h3>
+<h4 id="attribute">Attribute</h4>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Property</th>
+<th>ชนิด</th>
+<th>ค่าเริ่มต้น</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>open</code></td>
+<td><code>open</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>placement</code></td>
+<td><code>placement</code></td>
+<td><code>'right' | 'left'</code></td>
+<td><code>'right'</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>size</code></td>
+<td><code>size</code></td>
+<td><code>SidePanelSize</code></td>
+<td><code>'md'</code></td>
+<td>xs 16rem, sm 20rem, md 30rem, lg 40rem, xl 65rem, 2xl 80rem.</td>
+</tr>
+<tr>
+<td><code>heading</code></td>
+<td><code>heading</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>The heading (Carbon <code>title</code>); also the panel's accessible name.</td>
+</tr>
+<tr>
+<td><code>label-text</code></td>
+<td><code>labelText</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>A small label above the heading.</td>
+</tr>
+<tr>
+<td><code>slide-in</code></td>
+<td><code>slideIn</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Push the page aside (<code>selector-page-content</code>) instead of covering it; no focus trap, no Esc.</td>
+</tr>
+<tr>
+<td><code>include-overlay</code></td>
+<td><code>includeOverlay</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Dim the page; a click on it closes the panel (unless <code>prevent-close-on-click-outside</code>).</td>
+</tr>
+<tr>
+<td><code>prevent-close-on-click-outside</code></td>
+<td><code>preventCloseOnClickOutside</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>selector-initial-focus</code></td>
+<td><code>selectorInitialFocus</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>What takes focus on open (a selector in the content), else the first control.</td>
+</tr>
+<tr>
+<td><code>selector-page-content</code></td>
+<td><code>selectorPageContent</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>The page element a slide-in panel pushes aside.</td>
+</tr>
+<tr>
+<td><code>hide-close-button</code></td>
+<td><code>hideCloseButton</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>close-icon-description</code></td>
+<td><code>closeIconDescription</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>The × button's name and tooltip (default &quot;Close&quot;, translated).</td>
+</tr>
+<tr>
+<td><code>close-icon-tooltip-alignment</code></td>
+<td><code>closeIconTooltipAlignment</code></td>
+<td><code>Placement</code></td>
+<td><code>'left'</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>navigation-back-icon-description</code></td>
+<td><code>navigationBackIconDescription</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>The back button's name and tooltip (default &quot;Back&quot;, translated).</td>
+</tr>
+<tr>
+<td><code>current-step</code></td>
+<td><code>currentStep</code></td>
+<td><code>number</code></td>
+<td><code>0</code></td>
+<td>Above 0 shows the back button (a panel with steps).</td>
+</tr>
+<tr>
+<td><code>condensed-actions</code></td>
+<td><code>condensedActions</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>48px action buttons instead of 64px.</td>
+</tr>
+<tr>
+<td><code>animate-title</code></td>
+<td><code>animateTitle</code></td>
+<td><code>boolean</code></td>
+<td><code>true</code></td>
+<td>Shrink the heading as the content scrolls (Carbon's default).</td>
+</tr>
+</tbody>
+</table>
+<h4 id="method">Method</h4>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>requestClose(reason)</code></td>
+<td>Asks to close (cancelable <code>ui-request-close</code>), then closes.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="event">Event</h4>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>React</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ui-close</code></td>
+<td><code>onUiClose</code></td>
+<td>After it closed</td>
+</tr>
+<tr>
+<td><code>ui-navigate-back</code></td>
+<td><code>onUiNavigateBack</code></td>
+<td>The back button (<code>current-step</code> &gt; 0) was pressed</td>
+</tr>
+<tr>
+<td><code>ui-request-close</code></td>
+<td><code>onUiRequestClose</code></td>
+<td>Cancelable; detail: { reason: 'escape' | 'close-button' | 'overlay' }</td>
+</tr>
+</tbody>
+</table>
+<h4 id="slot">Slot</h4>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(ค่าเริ่มต้น)</td>
+<td>The content</td>
+</tr>
+<tr>
+<td><code>subtitle</code></td>
+<td>Text under the heading</td>
+</tr>
+<tr>
+<td><code>above-title</code></td>
+<td>Content above the label and heading</td>
+</tr>
+<tr>
+<td><code>below-title</code></td>
+<td>Content under the subtitle</td>
+</tr>
+<tr>
+<td><code>action-toolbar</code></td>
+<td>Small buttons under the header (the first one with its label)</td>
+</tr>
+<tr>
+<td><code>actions</code></td>
+<td>The action buttons</td>
+</tr>
+</tbody>
+</table>
+<h4 id="css-part">CSS part</h4>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>panel</code></td>
+<td>The panel</td>
+</tr>
+<tr>
+<td><code>overlay</code></td>
+<td>The overlay of <code>include-overlay</code></td>
+</tr>
+<tr>
+<td><code>header</code></td>
+<td>The header</td>
+</tr>
+<tr>
+<td><code>heading</code></td>
+<td>The heading</td>
+</tr>
+<tr>
+<td><code>body</code></td>
+<td>The content's box</td>
+</tr>
+<tr>
+<td><code>actions</code></td>
+<td>The row of action buttons</td>
+</tr>
+</tbody>
+</table>
+<h4 id="css-custom-property">CSS custom property</h4>
+<table>
+<thead>
+<tr>
+<th>Custom property</th>
+<th>ค่าเริ่มต้น</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--ui-side-panel-top</code></td>
+<td></td>
+<td>Where the panel starts (default 3rem, under the UI shell header)</td>
+</tr>
+<tr>
+<td><code>--ui-side-panel-radius</code></td>
+<td></td>
+<td>Corner radius of the edge facing the page (default 0; Kanok: 12px)</td>
+</tr>
+<tr>
+<td><code>--ui-actions-gap</code></td>
+<td></td>
+<td>/ --ui-actions-padding - Gap between the action buttons and padding round them (default none: full-bleed buttons that touch; Kanok: 8px / 16px 20px)</td>
+</tr>
+<tr>
+<td><code>--ui-actions-button-flex</code></td>
+<td></td>
+<td><code>flex</code> of each action button (default: Carbon's widths by count; Kanok: their own width)</td>
+</tr>
+<tr>
+<td><code>--ui-actions-button-align</code></td>
+<td></td>
+<td>/ --ui-actions-button-padding-top - Where a button's label sits (default: at the top, 16px in)</td>
+</tr>
+<tr>
+<td><code>--ui-actions-stacked-direction</code></td>
+<td></td>
+<td>/ --ui-actions-stacked-wrap / --ui-actions-stacked-width - Where Carbon stacks the actions (narrow): <code>flex-direction</code>, <code>flex-wrap</code> and each button's width (default column-reverse, nowrap, 100%; Kanok: one row that wraps)</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+<nav class="doc-toc" aria-labelledby="doc-toc-title"><p id="doc-toc-title" class="doc-toc-title">ในหน้านี้</p><ul><li class="doc-toc-h2"><a href="#ติดตั้ง">ติดตั้ง</a></li><li class="doc-toc-h2"><a href="#วิธีใช้">วิธีใช้</a></li><li class="doc-toc-h2"><a href="#ขนาด">ขนาด</a></li><li class="doc-toc-h2"><a href="#เข้าจากด้านซ้าย">เข้าจากด้านซ้าย</a></li><li class="doc-toc-h2"><a href="#หรี่หน้าเว็บ">หรี่หน้าเว็บ</a></li><li class="doc-toc-h2"><a href="#ดันหน้าเว็บออกไป">ดันหน้าเว็บออกไป</a></li><li class="doc-toc-h2"><a href="#ปุ่มด้านล่าง">ปุ่มด้านล่าง</a></li><li class="doc-toc-h2"><a href="#แถบเครื่องมือใต้ส่วนหัว">แถบเครื่องมือใต้ส่วนหัว</a></li><li class="doc-toc-h2"><a href="#หัวข้อที่ย่อลงเมื่อเลื่อน">หัวข้อที่ย่อลงเมื่อเลื่อน</a></li><li class="doc-toc-h2"><a href="#หลายขั้นตอน">หลายขั้นตอน</a></li><li class="doc-toc-h2"><a href="#เนื้อหาเหนือและใต้หัวข้อ">เนื้อหาเหนือและใต้หัวข้อ</a></li><li class="doc-toc-h2"><a href="#ขอยืนยันก่อนปิด">ขอยืนยันก่อนปิด</a></li><li class="doc-toc-h2"><a href="#คีย์บอร์ด">คีย์บอร์ด</a></li><li class="doc-toc-h2"><a href="#accessibility">Accessibility</a></li><li class="doc-toc-h2"><a href="#api">API</a></li><li class="doc-toc-h3"><a href="#ui-side-panel-react-uisidepanel">&lt;ui-side-panel></a></li></ul></nav>
+</div>
+<nav class="doc-pager" aria-label="ถัดไป / ก่อนหน้า"><a class="doc-pager-prev" href="/kanok-ui-docs/th/modal/" rel="prev"><span>ก่อนหน้า</span>Modal</a><a class="doc-pager-next" href="/kanok-ui-docs/th/tearsheet/" rel="next"><span>ถัดไป</span>Tearsheet</a></nav>
+<footer class="doc-footer">@purpurabog/ui 2.3.0 · MIT · <a href="https://cdn.jsdelivr.net/npm/@purpurabog/ui@2.3.0/THIRD-PARTY-NOTICES.md">ประกาศของบุคคลที่สาม</a><br>สร้างตาม Carbon Design System ไม่ได้เกี่ยวข้องหรือได้รับการรับรองจาก IBM — IBM และ Carbon เป็นเครื่องหมายการค้าของ IBM Corp.</footer>
+</ui-content>
+<ui-modal id="doc-search" heading="ค้นหา" data-count="พบ {n} รายการ" data-empty="ไม่พบ “{q}”">
+<ui-search label="ค้นหาในเอกสาร" placeholder="ค้นหาในเอกสาร" size="lg"></ui-search>
+<p class="doc-search-status" role="status"></p>
+<ul class="doc-search-results"></ul>
+</ui-modal>
+</body>
+</html>

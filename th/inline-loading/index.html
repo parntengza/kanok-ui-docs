@@ -1,0 +1,482 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Inline loading · @purpurabog/ui</title>
+<link rel="alternate" hreflang="en" href="/kanok-ui-docs/en/inline-loading/"  /><link rel="alternate" hreflang="th" href="/kanok-ui-docs/th/inline-loading/"  />
+<script>(function(){try{var q=new URLSearchParams(location.search).get("design"),d=q;if(q==="kanok"||q==="carbon")localStorage.setItem("ui-docs-design",q);else d=localStorage.getItem("ui-docs-design");if(d==="kanok")document.documentElement.setAttribute("data-design","kanok")}catch(e){}})();(function(){try{var m=localStorage.getItem("ui-docs-theme");if(m!=="light"&&m!=="dark"&&m!=="system")return;var d=m==="dark"||(m==="system"&&matchMedia("(prefers-color-scheme: dark)").matches),r=document.documentElement,t=d?"g100":"white";if(r.getAttribute("data-design")==="kanok")t=d?"lacquer":"paper";r.setAttribute("data-theme",t)}catch(e){}})();</script>
+<style>ui-header:not(:defined){z-index:8000;box-sizing:border-box;border-block-end:1px solid var(--ui-border-subtle-1);background:var(--ui-canvas);block-size:48px;display:block;position:fixed;inset:0 0 auto}:is(ui-header:not(:defined)>*,ui-side-nav:not(:defined)>*){visibility:hidden}:is(ui-header-panel:not(:defined),ui-modal:not(:defined)){display:none}ui-side-nav:not(:defined){display:none}ui-content:not(:defined){margin-block-start:48px;padding:32px;display:block}@media (width>=1056px){ui-side-nav[expanded]:not(:defined){background:var(--ui-canvas);inline-size:256px;display:block;position:fixed;inset:48px auto 0 0}ui-side-nav[expanded]:not(:defined)~ui-content:not(:defined){margin-inline-start:256px}}ui-tabs:not(:defined){display:block}ui-tabs:not(:defined)>ui-tab{box-sizing:border-box;border-block-end:2px solid var(--ui-hairline);block-size:40px;color:var(--ui-ink-muted);font:var(--ui-font-body-sm);padding:0 16px;line-height:38px;display:inline-block}ui-tabs:not(:defined)>ui-tab:first-of-type{border-block-end-color:var(--ui-interactive);color:var(--ui-ink)}ui-tabs:not(:defined)>ui-tab-panel{padding:16px;display:block}ui-tabs:not(:defined)>ui-tab-panel~ui-tab-panel{display:none}ui-code-snippet:not(:defined){background:var(--ui-layer-1);max-block-size:272px;font:var(--ui-font-code,12px/16px monospace);white-space:pre;padding:16px;display:block;overflow:hidden}[data-react-example]:empty>*{visibility:hidden}.doc-demo:has(:not(:defined))>*{visibility:hidden}[data-react-example]:empty{box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}.doc-demo:has(:not(:defined)){box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}@keyframes doc-skeleton{to{background-position:-200% 0}}@media (prefers-reduced-motion:reduce){[data-react-example]:empty{animation:none}.doc-demo:has(:not(:defined)){animation:none}}</style>
+
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/theme-switcher-BZXGbHfR.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/tab-ChjAM0hz.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/affixes-RbQJ6omC.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/mask-BgmAmoJG.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/text-input-CfhE-rX4.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/button-DGUm7Yxm.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/status-indicator-DhbzV_N0.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/inline-loading-B8oRTsu4.js"></script>
+  <link rel="stylesheet" crossorigin href="/kanok-ui-docs/assets/theme-switcher-BXY5AIvi.css">
+</head>
+<body>
+<ui-header label="@purpurabog/ui">
+<ui-skip-to-content></ui-skip-to-content>
+<ui-header-menu-button></ui-header-menu-button>
+<ui-header-name href="/kanok-ui-docs/th/" prefix="@purpurabog">ui</ui-header-name>
+<ui-header-global-bar>
+<ui-header-global-action id="doc-search-open" label="ค้นหา" tooltip-placement="bottom"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="m18.5 17.8-4.9-4.9a7 7 0 1 0-.7.7l4.9 4.9zM3 8.5a5.5 5.5 0 1 1 5.5 5.5A5.5 5.5 0 0 1 3 8.5Z" /></svg></ui-header-global-action>
+<ui-header-global-action label="ตั้งค่า" panel="doc-settings" tooltip-placement="bottom-end"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="M16.9 10.6a7 7 0 0 0 0-1.2l1.8-1.4-1.6-2.8-2.1.8a6.6 6.6 0 0 0-1-.6L13.6 3h-3.2l-.4 2.4a6.6 6.6 0 0 0-1 .6l-2.1-.8L5.3 8l1.8 1.4a7 7 0 0 0 0 1.2L5.3 12l1.6 2.8 2.1-.8a6.6 6.6 0 0 0 1 .6l.4 2.4h3.2l.4-2.4a6.6 6.6 0 0 0 1-.6l2.1.8 1.6-2.8zM12 13a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" /></svg></ui-header-global-action>
+</ui-header-global-bar>
+<ui-header-panel id="doc-settings" label="ตั้งค่า">
+<div class="doc-settings">
+<span class="doc-settings-label">ธีม</span>
+<ui-theme-switcher storage-key="ui-docs-theme" tooltip-placement="bottom"></ui-theme-switcher>
+<span class="doc-settings-label">รูปแบบ</span>
+<ui-content-switcher id="doc-design" aria-label="รูปแบบ" size="sm"><ui-content-switcher-item name="carbon">Carbon</ui-content-switcher-item><ui-content-switcher-item name="kanok">Kanok</ui-content-switcher-item></ui-content-switcher>
+<span class="doc-settings-label">ภาษา</span>
+<ui-link href="/kanok-ui-docs/en/inline-loading/" hreflang="en" lang="en">English</ui-link>
+</div>
+</ui-header-panel>
+</ui-header>
+<ui-side-nav label="เอกสาร"><ui-side-nav-items><ui-side-nav-menu label="เริ่มต้น"><ui-side-nav-menu-item href="/kanok-ui-docs/th/">ภาพรวม</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/installation/">ติดตั้ง</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/migration-1-0/">การย้ายไป 1.0</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="คู่มือ"><ui-side-nav-menu-item href="/kanok-ui-docs/th/themes/">ธีมและ layer</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/kanok/">ดีไซน์ Kanok</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/customizing/">ปรับแต่งหน้าตา</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/icons/">ไอคอน</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/forms/">ฟอร์มและการตรวจค่า</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/frameworks/">ใช้กับ framework</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/ai/">ใช้กับ AI</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="ฟอร์มและปุ่ม"><ui-side-nav-menu-item href="/kanok-ui-docs/th/button/">Button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/file-uploader/">File uploader</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Overlay"><ui-side-nav-menu-item href="/kanok-ui-docs/th/modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/toggletip/">Toggletip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/menu/">Menu</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="ข้อมูล"><ui-side-nav-menu-item href="/kanok-ui-docs/th/data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/contained-list/">Contained list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tree-view/">Tree view</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="การนำทาง"><ui-side-nav-menu-item href="/kanok-ui-docs/th/tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/breadcrumb/">Breadcrumb</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/link/">Link</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/ui-shell/">UI shell</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="เนื้อหา"><ui-side-nav-menu-item href="/kanok-ui-docs/th/tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tile/">Tile</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/user-avatar/">User avatar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/list/">List</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="สถานะและการโหลด" expanded><ui-side-nav-menu-item href="/kanok-ui-docs/th/loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/inline-loading/" current>Inline loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/progress-bar/">Progress bar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/skeleton/">Skeleton</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/badge-indicator/">Badge indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/status-indicator/">Status indicator</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="เลย์เอาต์"><ui-side-nav-menu-item href="/kanok-ui-docs/th/grid/">Grid</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/heading/">Heading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/layer/">Layer</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/action-set/">Action set</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/page-header/">Page header</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/big-number/">Big number</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Headless"><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless/">แนะนำ</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-file-uploader/">File uploader</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-menu/">Menu</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-ui-shell/">UI shell</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tree-view/">Tree view</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu></ui-side-nav-items></ui-side-nav><script>if(matchMedia('(min-width: 66rem)').matches)document.currentScript.previousElementSibling.setAttribute('expanded','')</script>
+<ui-content>
+<div class="doc-page">
+<article class="doc">
+<h1 id="inline-loading">Inline loading</h1>
+<p>Inline loading แสดงความคืบหน้าของการกระทำหนึ่งในที่ เช่น การบันทึกหรือการส่ง: spinner 16px กับข้อความสั้น ๆ ข้าง ๆ สถานะเปลี่ยนจาก <code>active</code> ไปเป็น <code>finished</code> (เครื่องหมายถูก) หรือ <code>error</code> และ screen reader ได้ยินทุกครั้งที่เปลี่ยน</p>
+<div class="doc-demo"><ui-inline-loading>กำลังบันทึกใบขอซื้อ…</ui-inline-loading>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-1-0">HTML</ui-tab><ui-tab panel="code-1-1">React</ui-tab><ui-tab panel="code-1-2">React + Tailwind</ui-tab><ui-tab-panel name="code-1-0"><ui-code-snippet type="single" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-inline-loading</span>&gt;กำลังบันทึกใบขอซื้อ…&lt;/<span style="color:var(--ui-tag-color-blue)">ui-inline-loading</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-1-1"><ui-code-snippet type="single" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiInlineLoading</span>&gt;กำลังบันทึกใบขอซื้อ…&lt;/<span style="color:var(--ui-tag-color-blue)">UiInlineLoading</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-1-2"><ui-code-snippet type="single" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">InlineLoading</span>&gt;กำลังบันทึกใบขอซื้อ…&lt;/<span style="color:var(--ui-tag-color-blue)">InlineLoading</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="ติดตั้ง">ติดตั้ง</h2>
+<ui-tabs class="doc-code-tabs" label="โค้ด"><ui-tab panel="code-2-0">npm</ui-tab><ui-tab panel="code-2-1">shadcn · Web component</ui-tab><ui-tab panel="code-2-2">shadcn · React + Tailwind</ui-tab><ui-tab panel="code-2-3">คัดลอกเอง</ui-tab><ui-tab-panel name="code-2-0"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">@purpurabog/ui</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-1"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npx</span> <span style="color:var(--ui-tag-color-teal)">shadcn@4</span> <span style="color:var(--ui-tag-color-teal)">add</span> <span style="color:var(--ui-tag-color-teal)">@kanok-ui/inline-loading</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-2"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npx</span> <span style="color:var(--ui-tag-color-teal)">shadcn@4</span> <span style="color:var(--ui-tag-color-teal)">add</span> <span style="color:var(--ui-tag-color-teal)">@kanok-ui/tw-loading</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-3"><ui-code-snippet type="multi" class="doc-code" data-lang="bash"><span style="color:var(--ui-ink-muted);font-style:italic"># Web component</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 1. ติดตั้ง dependency</span>
+<span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">lit@^3.3.0</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 2. คัดลอก "content" ของแต่ละไฟล์จาก</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    https://cdn.jsdelivr.net/npm/@purpurabog/ui@2.3.0/registry/inline-loading.json</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    ไปไว้ที่ target ของมัน:</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/inline-loading/inline-loading.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 3. ทำแบบเดียวกันกับ item ที่มันใช้ (registry/&lt;name&gt;.json):</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    core-status-indicator, shared-element, shared-localize, tokens</span>
+
+<span style="color:var(--ui-ink-muted);font-style:italic"># React + Tailwind</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 1. ติดตั้ง dependency</span>
+<span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">@purpurabog/ui@^2.3.0</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 2. คัดลอก "content" ของแต่ละไฟล์จาก</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    https://cdn.jsdelivr.net/npm/@purpurabog/ui@2.3.0/registry/tw-loading.json</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    ไปไว้ที่ target ของมัน:</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/react-tw/loading.tsx</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 3. ทำแบบเดียวกันกับ item ที่มันใช้ (registry/&lt;name&gt;.json):</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    core-status-indicator, tw-i18n, tw-theme, tw-utils</span></ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>npm ให้ทุก component จากแพ็กเกจ ส่วน shadcn คัดลอกซอร์สเข้าแอปของคุณแทน เป็นสำเนาที่ล็อกเวอร์ชันนี้และแก้เองได้ คำสั่ง shadcn ต้องตั้ง registry <code>@kanok-ui</code> ใน <code>components.json</code> ครั้งเดียวก่อน ดู <a href="/kanok-ui-docs/th/installation/#react-tailwind-%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2-shadcn">ติดตั้ง</a></p>
+<h2 id="วิธีใช้">วิธีใช้</h2>
+<ui-tabs class="doc-code-tabs" label="โค้ด"><ui-tab panel="code-3-0">HTML</ui-tab><ui-tab panel="code-3-1">React</ui-tab><ui-tab panel="code-3-2">React + Tailwind</ui-tab><ui-tab-panel name="code-3-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;<span style="color:var(--ui-tag-color-magenta)">import</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/inline-loading'</span>;&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-inline-loading</span>&gt;กำลังบันทึก…&lt;/<span style="color:var(--ui-tag-color-blue)">ui-inline-loading</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-3-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { UiInlineLoading } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/react'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiInlineLoading</span>&gt;กำลังบันทึก…&lt;/<span style="color:var(--ui-tag-color-blue)">UiInlineLoading</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-3-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { InlineLoading } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@/components/ui/react-tw/loading'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">InlineLoading</span>&gt;กำลังบันทึก…&lt;/<span style="color:var(--ui-tag-color-blue)">InlineLoading</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="inline-loading-หรือ-loading">Inline loading หรือ loading?</h2>
+<p>ใช้ inline loading ข้างตัวควบคุมที่เริ่มงาน เมื่อผลลัพธ์จบที่สำเร็จหรือไม่สำเร็จ ถ้าใช้ทั้งหน้าจอหรือพื้นที่หนึ่งไม่ได้จนกว่าข้อมูลจะมา ให้ใช้ <a href="/kanok-ui-docs/th/loading/">Loading</a> ถ้างานรู้ขนาด ให้ใช้ <a href="/kanok-ui-docs/th/progress-bar/">Progress bar</a> part ของ <a href="/kanok-ui-docs/th/headless-loading/">Headless Loading</a> ครอบคลุมแค่ spinner กับจังหวะเวลา ไม่มีสถานะเหล่านี้</p>
+<h2 id="สถานะ">สถานะ</h2>
+<p><code>status</code> เป็นค่าใดค่าหนึ่ง:</p>
+<ul>
+<li><code>active</code> (ค่าเริ่มต้น): ไอคอนหมุน</li>
+<li><code>finished</code>: เครื่องหมายถูกสีเขียว (ขึ้นทันทีแบบ Carbon)</li>
+<li><code>error</code>: ไอคอนข้อผิดพลาดสีแดง</li>
+<li><code>inactive</code>: มีแค่ข้อความ ใน HTML และ React (<code>UiInlineLoading</code>) spinner จะหยุดแบบ Carbon web components คือหมุนช้าลงแล้วหายไปใน 1.4 วินาที (หายทันทีถ้าผู้ใช้ตั้งลดการเคลื่อนไหว) ส่วน React + Tailwind ทำตาม Carbon React คือไม่มีไอคอนตั้งแต่แรก</li>
+</ul>
+<p>ข้อความใน element คือข้อความสถานะ (<code>description</code> ของ Carbon) เปลี่ยนไปพร้อมกับสถานะ</p>
+<div class="doc-demo"><div style="display: grid; gap: 8px; max-width: 320px">
+  <ui-inline-loading status="inactive">ยังไม่เริ่ม</ui-inline-loading>
+  <ui-inline-loading status="active">กำลังส่ง…</ui-inline-loading>
+  <ui-inline-loading status="finished">ส่งแล้ว</ui-inline-loading>
+  <ui-inline-loading status="error">ส่งไม่สำเร็จ</ui-inline-loading>
+</div>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-4-0">HTML</ui-tab><ui-tab panel="code-4-1">React</ui-tab><ui-tab panel="code-4-2">React + Tailwind</ui-tab><ui-tab-panel name="code-4-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"display: grid; gap: 8px; max-width: 320px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-inline-loading</span> <span style="color:var(--ui-tag-color-purple)">status</span>=<span style="color:var(--ui-tag-color-teal)">"inactive"</span>&gt;ยังไม่เริ่ม&lt;/<span style="color:var(--ui-tag-color-blue)">ui-inline-loading</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-inline-loading</span> <span style="color:var(--ui-tag-color-purple)">status</span>=<span style="color:var(--ui-tag-color-teal)">"active"</span>&gt;กำลังส่ง…&lt;/<span style="color:var(--ui-tag-color-blue)">ui-inline-loading</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-inline-loading</span> <span style="color:var(--ui-tag-color-purple)">status</span>=<span style="color:var(--ui-tag-color-teal)">"finished"</span>&gt;ส่งแล้ว&lt;/<span style="color:var(--ui-tag-color-blue)">ui-inline-loading</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-inline-loading</span> <span style="color:var(--ui-tag-color-purple)">status</span>=<span style="color:var(--ui-tag-color-teal)">"error"</span>&gt;ส่งไม่สำเร็จ&lt;/<span style="color:var(--ui-tag-color-blue)">ui-inline-loading</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-4-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiInlineLoading</span> <span style="color:var(--ui-tag-color-purple)">status</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"inactive"</span>&gt;ยังไม่เริ่ม&lt;/<span style="color:var(--ui-tag-color-blue)">UiInlineLoading</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiInlineLoading</span> <span style="color:var(--ui-tag-color-purple)">status</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"active"</span>&gt;กำลังส่ง…&lt;/<span style="color:var(--ui-tag-color-blue)">UiInlineLoading</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiInlineLoading</span> <span style="color:var(--ui-tag-color-purple)">status</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"finished"</span>&gt;ส่งแล้ว&lt;/<span style="color:var(--ui-tag-color-blue)">UiInlineLoading</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiInlineLoading</span> <span style="color:var(--ui-tag-color-purple)">status</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"error"</span>&gt;ส่งไม่สำเร็จ&lt;/<span style="color:var(--ui-tag-color-blue)">UiInlineLoading</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-4-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">InlineLoading</span> <span style="color:var(--ui-tag-color-purple)">status</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"inactive"</span>&gt;ยังไม่เริ่ม&lt;/<span style="color:var(--ui-tag-color-blue)">InlineLoading</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">InlineLoading</span> <span style="color:var(--ui-tag-color-purple)">status</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"active"</span>&gt;กำลังส่ง…&lt;/<span style="color:var(--ui-tag-color-blue)">InlineLoading</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">InlineLoading</span> <span style="color:var(--ui-tag-color-purple)">status</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"finished"</span>&gt;ส่งแล้ว&lt;/<span style="color:var(--ui-tag-color-blue)">InlineLoading</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">InlineLoading</span> <span style="color:var(--ui-tag-color-purple)">status</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"error"</span>&gt;ส่งไม่สำเร็จ&lt;/<span style="color:var(--ui-tag-color-blue)">InlineLoading</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="แทนที่ปุ่มส่ง">แทนที่ปุ่มส่ง</h2>
+<p>รูปแบบของ Carbon: เมื่อผู้ใช้กดส่ง ปุ่มส่งหลีกทางให้ inline loading เมื่องานเสร็จ เครื่องหมายถูกแสดง แล้ว <code>ui-success</code> เอาปุ่มกลับมา</p>
+<div class="doc-demo"><div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center; min-height: 48px">
+  <ui-button kind="secondary">ยกเลิก</ui-button>
+  <span id="inline-loading-submit-wrap"><ui-button id="inline-loading-submit">ส่ง</ui-button></span>
+  <div id="inline-loading-flow-wrap" hidden style="width: 200px">
+    <ui-inline-loading id="inline-loading-flow"></ui-inline-loading>
+  </div>
+</div>
+
+<script type="text/x-demo">
+  const submitWrap = document.getElementById('inline-loading-submit-wrap');
+  const flowWrap = document.getElementById('inline-loading-flow-wrap');
+  const flow = document.getElementById('inline-loading-flow');
+  document.getElementById('inline-loading-submit').addEventListener('click', () => {
+    submitWrap.hidden = true;
+    flowWrap.hidden = false;
+    flow.status = 'active';
+    flow.textContent = 'กำลังส่ง…';
+    setTimeout(() => {
+      flow.status = 'finished';
+      flow.textContent = 'ส่งแล้ว';
+    }, 2000);
+  });
+  flow.addEventListener('ui-success', () => {
+    flowWrap.hidden = true;
+    submitWrap.hidden = false;
+  });
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-5-0">HTML</ui-tab><ui-tab panel="code-5-1">React</ui-tab><ui-tab panel="code-5-2">React + Tailwind</ui-tab><ui-tab-panel name="code-5-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"display: flex; flex-wrap: wrap; gap: 16px; align-items: center; min-height: 48px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"secondary"</span>&gt;ยกเลิก&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"inline-loading-submit-wrap"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"inline-loading-submit"</span>&gt;ส่ง&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"inline-loading-flow-wrap"</span> <span style="color:var(--ui-tag-color-purple)">hidden</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"width: 200px"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-inline-loading</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"inline-loading-flow"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-inline-loading</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> submitWrap <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'inline-loading-submit-wrap'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> flowWrap <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'inline-loading-flow-wrap'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> flow <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'inline-loading-flow'</span>);
+  document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'inline-loading-submit'</span>).<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    submitWrap.hidden <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-green)">true</span>;
+    flowWrap.hidden <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-green)">false</span>;
+    flow.status <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'active'</span>;
+    flow.textContent <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'กำลังส่ง…'</span>;
+    <span style="color:var(--ui-tag-color-cyan)">setTimeout</span>(() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+      flow.status <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'finished'</span>;
+      flow.textContent <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'ส่งแล้ว'</span>;
+    }, <span style="color:var(--ui-tag-color-green)">2000</span>);
+  });
+  flow.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'ui-success'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    flowWrap.hidden <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-green)">true</span>;
+    submitWrap.hidden <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-green)">false</span>;
+  });
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-5-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> [status, setStatus] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>&lt;<span style="color:var(--ui-tag-color-teal)">'inactive'</span> <span style="color:var(--ui-tag-color-magenta)">|</span> <span style="color:var(--ui-tag-color-teal)">'active'</span> <span style="color:var(--ui-tag-color-magenta)">|</span> <span style="color:var(--ui-tag-color-teal)">'finished'</span>&gt;(<span style="color:var(--ui-tag-color-teal)">'inactive'</span>);
+<span style="color:var(--ui-tag-color-magenta)">const</span> <span style="color:var(--ui-tag-color-cyan)">submit</span> <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-magenta)">async</span> () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+  <span style="color:var(--ui-tag-color-cyan)">setStatus</span>(<span style="color:var(--ui-tag-color-teal)">'active'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">await</span> <span style="color:var(--ui-tag-color-cyan)">send</span>();
+  <span style="color:var(--ui-tag-color-cyan)">setStatus</span>(<span style="color:var(--ui-tag-color-teal)">'finished'</span>);
+};
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiButton</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"secondary"</span>&gt;ยกเลิก&lt;/<span style="color:var(--ui-tag-color-blue)">UiButton</span>&gt;
+{status <span style="color:var(--ui-tag-color-magenta)">===</span> <span style="color:var(--ui-tag-color-teal)">'inactive'</span> <span style="color:var(--ui-tag-color-magenta)">?</span> (
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiButton</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{submit}&gt;ส่ง&lt;/<span style="color:var(--ui-tag-color-blue)">UiButton</span>&gt;
+) <span style="color:var(--ui-tag-color-magenta)">:</span> (
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiInlineLoading</span> <span style="color:var(--ui-tag-color-purple)">status</span><span style="color:var(--ui-tag-color-magenta)">=</span>{status} <span style="color:var(--ui-tag-color-purple)">onUiSuccess</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setStatus</span>(<span style="color:var(--ui-tag-color-teal)">'inactive'</span>)}&gt;
+    {status <span style="color:var(--ui-tag-color-magenta)">===</span> <span style="color:var(--ui-tag-color-teal)">'active'</span> <span style="color:var(--ui-tag-color-magenta)">&amp;&amp;</span> <span style="color:var(--ui-tag-color-teal)">'กำลังส่ง…'</span>}
+    {status <span style="color:var(--ui-tag-color-magenta)">===</span> <span style="color:var(--ui-tag-color-teal)">'finished'</span> <span style="color:var(--ui-tag-color-magenta)">&amp;&amp;</span> <span style="color:var(--ui-tag-color-teal)">'ส่งแล้ว'</span>}
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiInlineLoading</span>&gt;
+)}</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-5-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> [status, setStatus] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>&lt;<span style="color:var(--ui-tag-color-teal)">'inactive'</span> <span style="color:var(--ui-tag-color-magenta)">|</span> <span style="color:var(--ui-tag-color-teal)">'active'</span> <span style="color:var(--ui-tag-color-magenta)">|</span> <span style="color:var(--ui-tag-color-teal)">'finished'</span>&gt;(<span style="color:var(--ui-tag-color-teal)">'inactive'</span>);
+<span style="color:var(--ui-tag-color-magenta)">const</span> <span style="color:var(--ui-tag-color-cyan)">submit</span> <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-magenta)">async</span> () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+  <span style="color:var(--ui-tag-color-cyan)">setStatus</span>(<span style="color:var(--ui-tag-color-teal)">'active'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">await</span> <span style="color:var(--ui-tag-color-cyan)">send</span>();
+  <span style="color:var(--ui-tag-color-cyan)">setStatus</span>(<span style="color:var(--ui-tag-color-teal)">'finished'</span>);
+};
+
+&lt;<span style="color:var(--ui-tag-color-blue)">Button</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"secondary"</span>&gt;ยกเลิก&lt;/<span style="color:var(--ui-tag-color-blue)">Button</span>&gt;
+{status <span style="color:var(--ui-tag-color-magenta)">===</span> <span style="color:var(--ui-tag-color-teal)">'inactive'</span> <span style="color:var(--ui-tag-color-magenta)">?</span> (
+  &lt;<span style="color:var(--ui-tag-color-blue)">Button</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{submit}&gt;ส่ง&lt;/<span style="color:var(--ui-tag-color-blue)">Button</span>&gt;
+) <span style="color:var(--ui-tag-color-magenta)">:</span> (
+  &lt;<span style="color:var(--ui-tag-color-blue)">InlineLoading</span> <span style="color:var(--ui-tag-color-purple)">status</span><span style="color:var(--ui-tag-color-magenta)">=</span>{status} <span style="color:var(--ui-tag-color-purple)">onSuccess</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setStatus</span>(<span style="color:var(--ui-tag-color-teal)">'inactive'</span>)}&gt;
+    {status <span style="color:var(--ui-tag-color-magenta)">===</span> <span style="color:var(--ui-tag-color-teal)">'active'</span> <span style="color:var(--ui-tag-color-magenta)">&amp;&amp;</span> <span style="color:var(--ui-tag-color-teal)">'กำลังส่ง…'</span>}
+    {status <span style="color:var(--ui-tag-color-magenta)">===</span> <span style="color:var(--ui-tag-color-teal)">'finished'</span> <span style="color:var(--ui-tag-color-magenta)">&amp;&amp;</span> <span style="color:var(--ui-tag-color-teal)">'ส่งแล้ว'</span>}
+  &lt;/<span style="color:var(--ui-tag-color-blue)">InlineLoading</span>&gt;
+)}</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p><code>send</code> แทนโค้ดของคุณเอง</p>
+<h2 id="หลังสำเร็จ">หลังสำเร็จ</h2>
+<p><code>ui-success</code> ยิงหลัง <code>status</code> เป็น <code>finished</code> ไปแล้ว <code>success-delay</code> มิลลิวินาที (ค่าเริ่มต้น 1500 เหมือน <code>successDelay</code> ของ Carbon) ใช้ปิด dialog ล้างฟอร์ม หรือเอาปุ่มกลับมา ใน React prop ของ event คือ <code>onUiSuccess</code> ใน React + Tailwind คือ <code>onSuccess</code></p>
+<div class="doc-demo"><ui-button id="inline-loading-success-run" kind="tertiary">ส่งใบแจ้งหนี้ INV-0412</ui-button>
+<ui-inline-loading id="inline-loading-success" status="inactive" success-delay="1000">ยังไม่ได้ส่ง</ui-inline-loading>
+<p>ui-success: <output id="inline-loading-success-out">ยังไม่ยิง</output></p>
+
+<script type="text/x-demo">
+  const status = document.getElementById('inline-loading-success');
+  const out = document.getElementById('inline-loading-success-out');
+  document.getElementById('inline-loading-success-run').addEventListener('click', () => {
+    status.status = 'active';
+    status.textContent = 'กำลังส่ง…';
+    out.textContent = 'รออยู่';
+    setTimeout(() => {
+      status.status = 'finished';
+      status.textContent = 'ส่งถึงลูกค้าแล้ว';
+    }, 1500);
+  });
+  status.addEventListener('ui-success', () => {
+    out.textContent = `ยิงเมื่อ ${new Date().toLocaleTimeString('th-TH')}`;
+  });
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-6-0">HTML</ui-tab><ui-tab panel="code-6-1">React</ui-tab><ui-tab panel="code-6-2">React + Tailwind</ui-tab><ui-tab-panel name="code-6-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"inline-loading-success-run"</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"tertiary"</span>&gt;ส่งใบแจ้งหนี้ INV-0412&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-inline-loading</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"inline-loading-success"</span> <span style="color:var(--ui-tag-color-purple)">status</span>=<span style="color:var(--ui-tag-color-teal)">"inactive"</span> <span style="color:var(--ui-tag-color-purple)">success-delay</span>=<span style="color:var(--ui-tag-color-teal)">"1000"</span>&gt;ยังไม่ได้ส่ง&lt;/<span style="color:var(--ui-tag-color-blue)">ui-inline-loading</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;ui-success: &lt;<span style="color:var(--ui-tag-color-blue)">output</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"inline-loading-success-out"</span>&gt;ยังไม่ยิง&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> status <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'inline-loading-success'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> out <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'inline-loading-success-out'</span>);
+  document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'inline-loading-success-run'</span>).<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    status.status <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'active'</span>;
+    status.textContent <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'กำลังส่ง…'</span>;
+    out.textContent <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'รออยู่'</span>;
+    <span style="color:var(--ui-tag-color-cyan)">setTimeout</span>(() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+      status.status <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'finished'</span>;
+      status.textContent <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'ส่งถึงลูกค้าแล้ว'</span>;
+    }, <span style="color:var(--ui-tag-color-green)">1500</span>);
+  });
+  status.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'ui-success'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    out.textContent <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">`ยิงเมื่อ ${</span><span style="color:var(--ui-tag-color-magenta)">new</span><span style="color:var(--ui-tag-color-teal)"> </span><span style="color:var(--ui-tag-color-cyan)">Date</span><span style="color:var(--ui-tag-color-teal)">().</span><span style="color:var(--ui-tag-color-cyan)">toLocaleTimeString</span><span style="color:var(--ui-tag-color-teal)">(</span><span style="color:var(--ui-tag-color-teal)">'th-TH'</span><span style="color:var(--ui-tag-color-teal)">)</span><span style="color:var(--ui-tag-color-teal)">}`</span>;
+  });
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-6-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiInlineLoading</span> <span style="color:var(--ui-tag-color-purple)">status</span><span style="color:var(--ui-tag-color-magenta)">=</span>{status} <span style="color:var(--ui-tag-color-purple)">successDelay</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">1000</span>} <span style="color:var(--ui-tag-color-purple)">onUiSuccess</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setLog</span>(<span style="color:var(--ui-tag-color-teal)">`ยิงเมื่อ ${</span><span style="color:var(--ui-tag-color-magenta)">new</span><span style="color:var(--ui-tag-color-teal)"> </span><span style="color:var(--ui-tag-color-cyan)">Date</span><span style="color:var(--ui-tag-color-teal)">().</span><span style="color:var(--ui-tag-color-cyan)">toLocaleTimeString</span><span style="color:var(--ui-tag-color-teal)">(</span><span style="color:var(--ui-tag-color-teal)">'th-TH'</span><span style="color:var(--ui-tag-color-teal)">)</span><span style="color:var(--ui-tag-color-teal)">}`</span>)}&gt;
+  {text}
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiInlineLoading</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-6-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">InlineLoading</span> <span style="color:var(--ui-tag-color-purple)">status</span><span style="color:var(--ui-tag-color-magenta)">=</span>{status} <span style="color:var(--ui-tag-color-purple)">successDelay</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">1000</span>} <span style="color:var(--ui-tag-color-purple)">onSuccess</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setLog</span>(<span style="color:var(--ui-tag-color-teal)">`ยิงเมื่อ ${</span><span style="color:var(--ui-tag-color-magenta)">new</span><span style="color:var(--ui-tag-color-teal)"> </span><span style="color:var(--ui-tag-color-cyan)">Date</span><span style="color:var(--ui-tag-color-teal)">().</span><span style="color:var(--ui-tag-color-cyan)">toLocaleTimeString</span><span style="color:var(--ui-tag-color-teal)">(</span><span style="color:var(--ui-tag-color-teal)">'th-TH'</span><span style="color:var(--ui-tag-color-teal)">)</span><span style="color:var(--ui-tag-color-teal)">}`</span>)}&gt;
+  {text}
+&lt;/<span style="color:var(--ui-tag-color-blue)">InlineLoading</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="ข้อผิดพลาดและลองอีกครั้ง">ข้อผิดพลาดและลองอีกครั้ง</h2>
+<p>เมื่อไม่สำเร็จ ตั้ง <code>status=&quot;error&quot;</code> แล้วบอกในข้อความว่าอะไรไม่สำเร็จ วางทางให้ลองอีกครั้งไว้ข้าง ๆ</p>
+<div class="doc-demo"><div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center">
+  <div style="width: 280px">
+    <ui-inline-loading id="inline-loading-retry-status" status="error">ส่งถึงผู้อนุมัติไม่สำเร็จ</ui-inline-loading>
+  </div>
+  <ui-button id="inline-loading-retry" kind="ghost" size="sm">ลองอีกครั้ง</ui-button>
+</div>
+
+<script type="text/x-demo">
+  const status = document.getElementById('inline-loading-retry-status');
+  document.getElementById('inline-loading-retry').addEventListener('click', () => {
+    status.status = 'active';
+    status.textContent = 'กำลังส่ง…';
+    setTimeout(() => {
+      status.status = 'finished';
+      status.textContent = 'ส่งถึงผู้อนุมัติแล้ว';
+    }, 1500);
+  });
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-7-0">HTML</ui-tab><ui-tab panel="code-7-1">React</ui-tab><ui-tab panel="code-7-2">React + Tailwind</ui-tab><ui-tab-panel name="code-7-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"display: flex; flex-wrap: wrap; gap: 16px; align-items: center"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"width: 280px"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-inline-loading</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"inline-loading-retry-status"</span> <span style="color:var(--ui-tag-color-purple)">status</span>=<span style="color:var(--ui-tag-color-teal)">"error"</span>&gt;ส่งถึงผู้อนุมัติไม่สำเร็จ&lt;/<span style="color:var(--ui-tag-color-blue)">ui-inline-loading</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"inline-loading-retry"</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"ghost"</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"sm"</span>&gt;ลองอีกครั้ง&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> status <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'inline-loading-retry-status'</span>);
+  document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'inline-loading-retry'</span>).<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    status.status <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'active'</span>;
+    status.textContent <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'กำลังส่ง…'</span>;
+    <span style="color:var(--ui-tag-color-cyan)">setTimeout</span>(() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+      status.status <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'finished'</span>;
+      status.textContent <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'ส่งถึงผู้อนุมัติแล้ว'</span>;
+    }, <span style="color:var(--ui-tag-color-green)">1500</span>);
+  });
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-7-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiInlineLoading</span> <span style="color:var(--ui-tag-color-purple)">status</span><span style="color:var(--ui-tag-color-magenta)">=</span>{status}&gt;{text}&lt;/<span style="color:var(--ui-tag-color-blue)">UiInlineLoading</span>&gt;
+{status <span style="color:var(--ui-tag-color-magenta)">===</span> <span style="color:var(--ui-tag-color-teal)">'error'</span> <span style="color:var(--ui-tag-color-magenta)">&amp;&amp;</span> &lt;<span style="color:var(--ui-tag-color-blue)">UiButton</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ghost"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{retry}&gt;ลองอีกครั้ง&lt;/<span style="color:var(--ui-tag-color-blue)">UiButton</span>&gt;}</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-7-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">InlineLoading</span> <span style="color:var(--ui-tag-color-purple)">status</span><span style="color:var(--ui-tag-color-magenta)">=</span>{status}&gt;{text}&lt;/<span style="color:var(--ui-tag-color-blue)">InlineLoading</span>&gt;
+{status <span style="color:var(--ui-tag-color-magenta)">===</span> <span style="color:var(--ui-tag-color-teal)">'error'</span> <span style="color:var(--ui-tag-color-magenta)">&amp;&amp;</span> &lt;<span style="color:var(--ui-tag-color-blue)">Button</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ghost"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{retry}&gt;ลองอีกครั้ง&lt;/<span style="color:var(--ui-tag-color-blue)">Button</span>&gt;}</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p><code>retry</code> แทนโค้ดของคุณเอง</p>
+<h2 id="ตรวจช่องกรอก">ตรวจช่องกรอก</h2>
+<p>inline loading วางใต้ช่องที่เซิร์ฟเวอร์ต้องตรวจก็ได้ เช่น เลขประจำตัวผู้เสียภาษี แสดงเมื่อเริ่มตรวจ แล้วจบด้วยผลลัพธ์</p>
+<div class="doc-demo"><ui-text-input id="inline-loading-tax" label="เลขประจำตัวผู้เสียภาษี" helper-text="13 หลัก" value="0105556000000"></ui-text-input>
+<ui-button id="inline-loading-tax-check" kind="tertiary">ตรวจสอบ</ui-button>
+<div id="inline-loading-tax-wrap" hidden>
+  <ui-inline-loading id="inline-loading-tax-status"></ui-inline-loading>
+</div>
+
+<script type="text/x-demo">
+  const input = document.getElementById('inline-loading-tax');
+  const wrap = document.getElementById('inline-loading-tax-wrap');
+  const status = document.getElementById('inline-loading-tax-status');
+  document.getElementById('inline-loading-tax-check').addEventListener('click', () => {
+    wrap.hidden = false;
+    status.status = 'active';
+    status.textContent = 'กำลังตรวจเลขประจำตัวผู้เสียภาษี…';
+    setTimeout(() => {
+      const found = /^\d{13}$/.test(input.value);
+      status.status = found ? 'finished' : 'error';
+      status.textContent = found ? 'พบ: บริษัท สยามโลจิสติกส์ จำกัด' : 'ไม่พบบริษัทที่ใช้เลขนี้';
+    }, 1500);
+  });
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-8-0">HTML</ui-tab><ui-tab panel="code-8-1">React</ui-tab><ui-tab panel="code-8-2">React + Tailwind</ui-tab><ui-tab-panel name="code-8-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-text-input</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"inline-loading-tax"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"เลขประจำตัวผู้เสียภาษี"</span> <span style="color:var(--ui-tag-color-purple)">helper-text</span>=<span style="color:var(--ui-tag-color-teal)">"13 หลัก"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"0105556000000"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-text-input</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"inline-loading-tax-check"</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"tertiary"</span>&gt;ตรวจสอบ&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"inline-loading-tax-wrap"</span> <span style="color:var(--ui-tag-color-purple)">hidden</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-inline-loading</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"inline-loading-tax-status"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-inline-loading</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> input <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'inline-loading-tax'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> wrap <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'inline-loading-tax-wrap'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> status <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'inline-loading-tax-status'</span>);
+  document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'inline-loading-tax-check'</span>).<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    wrap.hidden <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-green)">false</span>;
+    status.status <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'active'</span>;
+    status.textContent <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'กำลังตรวจเลขประจำตัวผู้เสียภาษี…'</span>;
+    <span style="color:var(--ui-tag-color-cyan)">setTimeout</span>(() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+      <span style="color:var(--ui-tag-color-magenta)">const</span> found <span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)"> /</span><span style="color:var(--ui-tag-color-magenta)">^</span><span style="color:var(--ui-tag-color-teal)">\d</span><span style="color:var(--ui-tag-color-magenta)">{13}$</span><span style="color:var(--ui-tag-color-teal)">/</span>.<span style="color:var(--ui-tag-color-cyan)">test</span>(input.value);
+      status.status <span style="color:var(--ui-tag-color-magenta)">=</span> found <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-teal)">'finished'</span> <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-teal)">'error'</span>;
+      status.textContent <span style="color:var(--ui-tag-color-magenta)">=</span> found <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-teal)">'พบ: บริษัท สยามโลจิสติกส์ จำกัด'</span> <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-teal)">'ไม่พบบริษัทที่ใช้เลขนี้'</span>;
+    }, <span style="color:var(--ui-tag-color-green)">1500</span>);
+  });
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-8-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiTextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เลขประจำตัวผู้เสียภาษี"</span> <span style="color:var(--ui-tag-color-purple)">helperText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"13 หลัก"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{taxId} <span style="color:var(--ui-tag-color-purple)">onInput</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setTaxId</span>((e.target <span style="color:var(--ui-tag-color-magenta)">as</span> <span style="color:var(--ui-tag-color-cyan)">HTMLInputElement</span>).value)} /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiButton</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"tertiary"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{check}&gt;ตรวจสอบ&lt;/<span style="color:var(--ui-tag-color-blue)">UiButton</span>&gt;
+{result.status <span style="color:var(--ui-tag-color-magenta)">&amp;&amp;</span> &lt;<span style="color:var(--ui-tag-color-blue)">UiInlineLoading</span> <span style="color:var(--ui-tag-color-purple)">status</span><span style="color:var(--ui-tag-color-magenta)">=</span>{result.status}&gt;{result.text}&lt;/<span style="color:var(--ui-tag-color-blue)">UiInlineLoading</span>&gt;}</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-8-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">TextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เลขประจำตัวผู้เสียภาษี"</span> <span style="color:var(--ui-tag-color-purple)">helperText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"13 หลัก"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{taxId} <span style="color:var(--ui-tag-color-purple)">onChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setTaxId</span>(e.target.value)} /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">Button</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"tertiary"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{check}&gt;ตรวจสอบ&lt;/<span style="color:var(--ui-tag-color-blue)">Button</span>&gt;
+{result.status <span style="color:var(--ui-tag-color-magenta)">&amp;&amp;</span> &lt;<span style="color:var(--ui-tag-color-blue)">InlineLoading</span> <span style="color:var(--ui-tag-color-purple)">status</span><span style="color:var(--ui-tag-color-magenta)">=</span>{result.status}&gt;{result.text}&lt;/<span style="color:var(--ui-tag-color-blue)">InlineLoading</span>&gt;}</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p><code>check</code> แทนโค้ดของคุณเองที่ถามเซิร์ฟเวอร์แล้วตั้ง <code>result</code> (สถานะและข้อความ)</p>
+<h2 id="ชื่อไอคอน">ชื่อไอคอน</h2>
+<p>ไอคอนใช้สถานะเป็นชื่อ: &quot;กำลังโหลด&quot; &quot;เสร็จแล้ว&quot; หรือ &quot;เกิดข้อผิดพลาด&quot; แปลตามภาษาของหน้า <code>icon-label</code> (<code>iconLabel</code> ใน React) ตั้งชื่อเองเมื่อข้อความสถานะต้องการคำอื่น</p>
+<div class="doc-demo"><ui-inline-loading status="finished" icon-label="บันทึกแล้ว">บันทึกฉบับร่างเมื่อ 10:42</ui-inline-loading>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-9-0">HTML</ui-tab><ui-tab panel="code-9-1">React</ui-tab><ui-tab panel="code-9-2">React + Tailwind</ui-tab><ui-tab-panel name="code-9-0"><ui-code-snippet type="single" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-inline-loading</span> <span style="color:var(--ui-tag-color-purple)">status</span>=<span style="color:var(--ui-tag-color-teal)">"finished"</span> <span style="color:var(--ui-tag-color-purple)">icon-label</span>=<span style="color:var(--ui-tag-color-teal)">"บันทึกแล้ว"</span>&gt;บันทึกฉบับร่างเมื่อ 10:42&lt;/<span style="color:var(--ui-tag-color-blue)">ui-inline-loading</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-9-1"><ui-code-snippet type="single" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiInlineLoading</span> <span style="color:var(--ui-tag-color-purple)">status</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"finished"</span> <span style="color:var(--ui-tag-color-purple)">iconLabel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"บันทึกแล้ว"</span>&gt;บันทึกฉบับร่างเมื่อ 10:42&lt;/<span style="color:var(--ui-tag-color-blue)">UiInlineLoading</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-9-2"><ui-code-snippet type="single" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">InlineLoading</span> <span style="color:var(--ui-tag-color-purple)">status</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"finished"</span> <span style="color:var(--ui-tag-color-purple)">iconLabel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"บันทึกแล้ว"</span>&gt;บันทึกฉบับร่างเมื่อ 10:42&lt;/<span style="color:var(--ui-tag-color-blue)">InlineLoading</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="accessibility">Accessibility</h2>
+<ul>
+<li>ทั้ง element เป็น live region แบบ polite screen reader จึงได้ยินชื่อไอคอนกับข้อความทุกครั้งที่สถานะเปลี่ยน</li>
+<li>เขียนข้อความให้สั้นและชัด: &quot;กำลังส่ง…&quot; &quot;ส่งแล้ว&quot; &quot;ส่งไม่สำเร็จ&quot;</li>
+<li>inline loading ไม่รับโฟกัส เมื่อมันแทนที่ปุ่มที่มีโฟกัสอยู่ ให้ย้ายโฟกัสไปที่ที่ใช้ต่อได้เมื่อจบ เช่น กลับไปที่ปุ่ม</li>
+<li>เมื่อผู้ใช้ตั้ง <code>prefers-reduced-motion</code> spinner จะไม่หมุน และเครื่องหมายถูกแสดงทันที</li>
+</ul>
+<h2 id="api">API</h2>
+<p>สร้างจากแพ็กเกจโดยตรง ใน React ส่ง property เป็น prop ชื่อเดียวกัน ส่วน event ก็เป็น prop เช่นกัน (ดูคอลัมน์ React)</p>
+<h3 id="ui-inline-loading-react-uiinlineloading"><code>&lt;ui-inline-loading&gt;</code> · React <code>UiInlineLoading</code></h3>
+<h4 id="attribute">Attribute</h4>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Property</th>
+<th>ชนิด</th>
+<th>ค่าเริ่มต้น</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>status</code></td>
+<td><code>status</code></td>
+<td><code>InlineLoadingStatus</code></td>
+<td><code>'active'</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>success-delay</code></td>
+<td><code>successDelay</code></td>
+<td><code>number</code></td>
+<td><code>1500</code></td>
+<td>Milliseconds after <code>finished</code> before <code>ui-success</code> fires (Carbon <code>successDelay</code>).</td>
+</tr>
+<tr>
+<td><code>icon-label</code></td>
+<td><code>iconLabel</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>Accessible name of the icon; defaults to the status.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="event">Event</h4>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>React</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ui-success</code></td>
+<td><code>onUiSuccess</code></td>
+<td><code>success-delay</code> ms after <code>status</code> became <code>finished</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="slot">Slot</h4>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(ค่าเริ่มต้น)</td>
+<td>The status text (Carbon <code>description</code>)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="css-part">CSS part</h4>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>base</code></td>
+<td>The row</td>
+</tr>
+<tr>
+<td><code>icon</code></td>
+<td>The spinner / check / error icon</td>
+</tr>
+<tr>
+<td><code>text</code></td>
+<td>The description</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+<nav class="doc-toc" aria-labelledby="doc-toc-title"><p id="doc-toc-title" class="doc-toc-title">ในหน้านี้</p><ul><li class="doc-toc-h2"><a href="#ติดตั้ง">ติดตั้ง</a></li><li class="doc-toc-h2"><a href="#วิธีใช้">วิธีใช้</a></li><li class="doc-toc-h2"><a href="#inline-loading-หรือ-loading">Inline loading หรือ loading?</a></li><li class="doc-toc-h2"><a href="#สถานะ">สถานะ</a></li><li class="doc-toc-h2"><a href="#แทนที่ปุ่มส่ง">แทนที่ปุ่มส่ง</a></li><li class="doc-toc-h2"><a href="#หลังสำเร็จ">หลังสำเร็จ</a></li><li class="doc-toc-h2"><a href="#ข้อผิดพลาดและลองอีกครั้ง">ข้อผิดพลาดและลองอีกครั้ง</a></li><li class="doc-toc-h2"><a href="#ตรวจช่องกรอก">ตรวจช่องกรอก</a></li><li class="doc-toc-h2"><a href="#ชื่อไอคอน">ชื่อไอคอน</a></li><li class="doc-toc-h2"><a href="#accessibility">Accessibility</a></li><li class="doc-toc-h2"><a href="#api">API</a></li><li class="doc-toc-h3"><a href="#ui-inline-loading-react-uiinlineloading">&lt;ui-inline-loading></a></li></ul></nav>
+</div>
+<nav class="doc-pager" aria-label="ถัดไป / ก่อนหน้า"><a class="doc-pager-prev" href="/kanok-ui-docs/th/loading/" rel="prev"><span>ก่อนหน้า</span>Loading</a><a class="doc-pager-next" href="/kanok-ui-docs/th/progress-bar/" rel="next"><span>ถัดไป</span>Progress bar</a></nav>
+<footer class="doc-footer">@purpurabog/ui 2.3.0 · MIT · <a href="https://cdn.jsdelivr.net/npm/@purpurabog/ui@2.3.0/THIRD-PARTY-NOTICES.md">ประกาศของบุคคลที่สาม</a><br>สร้างตาม Carbon Design System ไม่ได้เกี่ยวข้องหรือได้รับการรับรองจาก IBM — IBM และ Carbon เป็นเครื่องหมายการค้าของ IBM Corp.</footer>
+</ui-content>
+<ui-modal id="doc-search" heading="ค้นหา" data-count="พบ {n} รายการ" data-empty="ไม่พบ “{q}”">
+<ui-search label="ค้นหาในเอกสาร" placeholder="ค้นหาในเอกสาร" size="lg"></ui-search>
+<p class="doc-search-status" role="status"></p>
+<ul class="doc-search-results"></ul>
+</ui-modal>
+</body>
+</html>

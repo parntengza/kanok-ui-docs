@@ -1,0 +1,895 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Text input · @purpurabog/ui</title>
+<link rel="alternate" hreflang="en" href="/kanok-ui-docs/en/text-input/"  /><link rel="alternate" hreflang="th" href="/kanok-ui-docs/th/text-input/"  />
+<script>(function(){try{var q=new URLSearchParams(location.search).get("design"),d=q;if(q==="kanok"||q==="carbon")localStorage.setItem("ui-docs-design",q);else d=localStorage.getItem("ui-docs-design");if(d==="kanok")document.documentElement.setAttribute("data-design","kanok")}catch(e){}})();(function(){try{var m=localStorage.getItem("ui-docs-theme");if(m!=="light"&&m!=="dark"&&m!=="system")return;var d=m==="dark"||(m==="system"&&matchMedia("(prefers-color-scheme: dark)").matches),r=document.documentElement,t=d?"g100":"white";if(r.getAttribute("data-design")==="kanok")t=d?"lacquer":"paper";r.setAttribute("data-theme",t)}catch(e){}})();</script>
+<style>ui-header:not(:defined){z-index:8000;box-sizing:border-box;border-block-end:1px solid var(--ui-border-subtle-1);background:var(--ui-canvas);block-size:48px;display:block;position:fixed;inset:0 0 auto}:is(ui-header:not(:defined)>*,ui-side-nav:not(:defined)>*){visibility:hidden}:is(ui-header-panel:not(:defined),ui-modal:not(:defined)){display:none}ui-side-nav:not(:defined){display:none}ui-content:not(:defined){margin-block-start:48px;padding:32px;display:block}@media (width>=1056px){ui-side-nav[expanded]:not(:defined){background:var(--ui-canvas);inline-size:256px;display:block;position:fixed;inset:48px auto 0 0}ui-side-nav[expanded]:not(:defined)~ui-content:not(:defined){margin-inline-start:256px}}ui-tabs:not(:defined){display:block}ui-tabs:not(:defined)>ui-tab{box-sizing:border-box;border-block-end:2px solid var(--ui-hairline);block-size:40px;color:var(--ui-ink-muted);font:var(--ui-font-body-sm);padding:0 16px;line-height:38px;display:inline-block}ui-tabs:not(:defined)>ui-tab:first-of-type{border-block-end-color:var(--ui-interactive);color:var(--ui-ink)}ui-tabs:not(:defined)>ui-tab-panel{padding:16px;display:block}ui-tabs:not(:defined)>ui-tab-panel~ui-tab-panel{display:none}ui-code-snippet:not(:defined){background:var(--ui-layer-1);max-block-size:272px;font:var(--ui-font-code,12px/16px monospace);white-space:pre;padding:16px;display:block;overflow:hidden}[data-react-example]:empty>*{visibility:hidden}.doc-demo:has(:not(:defined))>*{visibility:hidden}[data-react-example]:empty{box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}.doc-demo:has(:not(:defined)){box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}@keyframes doc-skeleton{to{background-position:-200% 0}}@media (prefers-reduced-motion:reduce){[data-react-example]:empty{animation:none}.doc-demo:has(:not(:defined)){animation:none}}</style>
+
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/theme-switcher-BZXGbHfR.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/tab-ChjAM0hz.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/affixes-RbQJ6omC.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/mask-BgmAmoJG.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/text-input-CfhE-rX4.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/button-DGUm7Yxm.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/skeleton-Bt17J2no.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/text-input-skeleton-DXVTC6Wd.js"></script>
+  <link rel="stylesheet" crossorigin href="/kanok-ui-docs/assets/theme-switcher-BXY5AIvi.css">
+</head>
+<body>
+<ui-header label="@purpurabog/ui">
+<ui-skip-to-content></ui-skip-to-content>
+<ui-header-menu-button></ui-header-menu-button>
+<ui-header-name href="/kanok-ui-docs/en/" prefix="@purpurabog">ui</ui-header-name>
+<ui-header-global-bar>
+<ui-header-global-action id="doc-search-open" label="Search" tooltip-placement="bottom"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="m18.5 17.8-4.9-4.9a7 7 0 1 0-.7.7l4.9 4.9zM3 8.5a5.5 5.5 0 1 1 5.5 5.5A5.5 5.5 0 0 1 3 8.5Z" /></svg></ui-header-global-action>
+<ui-header-global-action label="Settings" panel="doc-settings" tooltip-placement="bottom-end"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="M16.9 10.6a7 7 0 0 0 0-1.2l1.8-1.4-1.6-2.8-2.1.8a6.6 6.6 0 0 0-1-.6L13.6 3h-3.2l-.4 2.4a6.6 6.6 0 0 0-1 .6l-2.1-.8L5.3 8l1.8 1.4a7 7 0 0 0 0 1.2L5.3 12l1.6 2.8 2.1-.8a6.6 6.6 0 0 0 1 .6l.4 2.4h3.2l.4-2.4a6.6 6.6 0 0 0 1-.6l2.1.8 1.6-2.8zM12 13a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" /></svg></ui-header-global-action>
+</ui-header-global-bar>
+<ui-header-panel id="doc-settings" label="Settings">
+<div class="doc-settings">
+<span class="doc-settings-label">Theme</span>
+<ui-theme-switcher storage-key="ui-docs-theme" tooltip-placement="bottom"></ui-theme-switcher>
+<span class="doc-settings-label">Style</span>
+<ui-content-switcher id="doc-design" aria-label="Style" size="sm"><ui-content-switcher-item name="carbon">Carbon</ui-content-switcher-item><ui-content-switcher-item name="kanok">Kanok</ui-content-switcher-item></ui-content-switcher>
+<span class="doc-settings-label">Language</span>
+<ui-link href="/kanok-ui-docs/th/text-input/" hreflang="th" lang="th">ไทย</ui-link>
+</div>
+</ui-header-panel>
+</ui-header>
+<ui-side-nav label="Documentation"><ui-side-nav-items><ui-side-nav-menu label="Get started"><ui-side-nav-menu-item href="/kanok-ui-docs/en/">Overview</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/installation/">Installation</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/migration-1-0/">Migrating to 1.0</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Guides"><ui-side-nav-menu-item href="/kanok-ui-docs/en/themes/">Themes and layers</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/kanok/">Kanok design</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/customizing/">Customizing</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/icons/">Icons</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/forms/">Forms and validation</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/frameworks/">Frameworks</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/ai/">Using with AI</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Forms and actions" expanded><ui-side-nav-menu-item href="/kanok-ui-docs/en/button/">Button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/text-input/" current>Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/file-uploader/">File uploader</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Overlays"><ui-side-nav-menu-item href="/kanok-ui-docs/en/modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/toggletip/">Toggletip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/menu/">Menu</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Data"><ui-side-nav-menu-item href="/kanok-ui-docs/en/data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/contained-list/">Contained list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tree-view/">Tree view</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Navigation"><ui-side-nav-menu-item href="/kanok-ui-docs/en/tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/breadcrumb/">Breadcrumb</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/link/">Link</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/ui-shell/">UI shell</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Content"><ui-side-nav-menu-item href="/kanok-ui-docs/en/tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tile/">Tile</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/user-avatar/">User avatar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/list/">List</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Status and loading"><ui-side-nav-menu-item href="/kanok-ui-docs/en/loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/inline-loading/">Inline loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/progress-bar/">Progress bar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/skeleton/">Skeleton</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/badge-indicator/">Badge indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/status-indicator/">Status indicator</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Layout"><ui-side-nav-menu-item href="/kanok-ui-docs/en/grid/">Grid</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/heading/">Heading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/layer/">Layer</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/action-set/">Action set</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/page-header/">Page header</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/big-number/">Big number</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Headless"><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless/">Introduction</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-file-uploader/">File uploader</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-menu/">Menu</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-ui-shell/">UI shell</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tree-view/">Tree view</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu></ui-side-nav-items></ui-side-nav><script>if(matchMedia('(min-width: 66rem)').matches)document.currentScript.previousElementSibling.setAttribute('expanded','')</script>
+<ui-content>
+<div class="doc-page">
+<article class="doc">
+<h1 id="text-input">Text input</h1>
+<p>A text input takes one line of text: a name, an email, a password, an ID number. For several lines, use a <a href="/kanok-ui-docs/en/text-area/">text area</a>; for amounts, a <a href="/kanok-ui-docs/en/number-input/">number input</a>.</p>
+<div class="doc-demo"><ui-text-input label="Full name" name="name" helper-text="As it appears on your ID card"></ui-text-input>
+<ui-text-input label="Password" name="password" type="password"></ui-text-input>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-1-0">HTML</ui-tab><ui-tab panel="code-1-1">React</ui-tab><ui-tab panel="code-1-2">React + Tailwind</ui-tab><ui-tab-panel name="code-1-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-text-input</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Full name"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"name"</span> <span style="color:var(--ui-tag-color-purple)">helper-text</span>=<span style="color:var(--ui-tag-color-teal)">"As it appears on your ID card"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-text-input</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-text-input</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Password"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"password"</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"password"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-text-input</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-1-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiTextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Full name"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"name"</span> <span style="color:var(--ui-tag-color-purple)">helperText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"As it appears on your ID card"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiTextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Password"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"password"</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"password"</span> /&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-1-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">TextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Full name"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"name"</span> <span style="color:var(--ui-tag-color-purple)">helperText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"As it appears on your ID card"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">TextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Password"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"password"</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"password"</span> /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="installation">Installation</h2>
+<ui-tabs class="doc-code-tabs" label="Code"><ui-tab panel="code-2-0">npm</ui-tab><ui-tab panel="code-2-1">shadcn · Web component</ui-tab><ui-tab panel="code-2-2">shadcn · React + Tailwind</ui-tab><ui-tab panel="code-2-3">Manual</ui-tab><ui-tab-panel name="code-2-0"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">@purpurabog/ui</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-1"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npx</span> <span style="color:var(--ui-tag-color-teal)">shadcn@4</span> <span style="color:var(--ui-tag-color-teal)">add</span> <span style="color:var(--ui-tag-color-teal)">@kanok-ui/text-input</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-2"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npx</span> <span style="color:var(--ui-tag-color-teal)">shadcn@4</span> <span style="color:var(--ui-tag-color-teal)">add</span> <span style="color:var(--ui-tag-color-teal)">@kanok-ui/tw-text-input</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-3"><ui-code-snippet type="multi" class="doc-code" data-lang="bash"><span style="color:var(--ui-ink-muted);font-style:italic"># Web component</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 1. Install the dependencies</span>
+<span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">lit@^3.3.0</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 2. Copy each file's "content" from</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    https://cdn.jsdelivr.net/npm/@purpurabog/ui@2.3.0/registry/text-input.json</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    to its target:</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/text-input/text-input-skeleton.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/text-input/text-input.styles.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/text-input/text-input.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 3. Do the same for the items it needs (registry/&lt;name&gt;.json):</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    core-field, core-mask, shared-affixes, shared-element, shared-field, shared-form-control, shared-localize, shared-skeleton, shared-slots, tooltip, tokens</span>
+
+<span style="color:var(--ui-ink-muted);font-style:italic"># React + Tailwind</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 1. Install the dependencies</span>
+<span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">class-variance-authority@0.7.1</span> <span style="color:var(--ui-tag-color-teal)">@purpurabog/ui@^2.3.0</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 2. Copy each file's "content" from</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    https://cdn.jsdelivr.net/npm/@purpurabog/ui@2.3.0/registry/tw-text-input.json</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    to its target:</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/react-tw/text-input.tsx</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 3. Do the same for the items it needs (registry/&lt;name&gt;.json):</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    tw-affix, tw-field, tw-skeleton, tw-theme, tw-tooltip, tw-utils</span></ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>npm gives you every component from the package. shadcn copies the source into your app instead: a copy pinned to this version that you can change. The shadcn commands need the <code>@kanok-ui</code> registry in your <code>components.json</code> once, see <a href="/kanok-ui-docs/en/installation/#react-tailwind-with-shadcn">Installation</a>.</p>
+<h2 id="use-it">Use it</h2>
+<ui-tabs class="doc-code-tabs" label="Code"><ui-tab panel="code-3-0">HTML</ui-tab><ui-tab panel="code-3-1">React</ui-tab><ui-tab panel="code-3-2">React + Tailwind</ui-tab><ui-tab-panel name="code-3-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;<span style="color:var(--ui-tag-color-magenta)">import</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/text-input'</span>;&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-text-input</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Full name"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"name"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-text-input</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-3-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { UiTextInput } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/react'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiTextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Full name"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"name"</span> <span style="color:var(--ui-tag-color-purple)">onInput</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setName</span>((e.target <span style="color:var(--ui-tag-color-magenta)">as</span> <span style="color:var(--ui-tag-color-cyan)">HTMLInputElement</span>).value)} /&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-3-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { TextInput } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@/components/ui/react-tw/text-input'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">TextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Full name"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"name"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{name} <span style="color:var(--ui-tag-color-purple)">onChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setName</span>(e.target.value)} /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<ul>
+<li>The element fires native <code>input</code> on every keystroke and <code>change</code> when the user commits the value, so the React wrapper has <code>onInput</code> and <code>onChange</code>.</li>
+<li>The React + Tailwind <code>onChange</code> is React's own (every keystroke). Its second argument is the value without a mask's separators.</li>
+</ul>
+<h2 id="sizes">Sizes</h2>
+<p><code>size</code>: <code>sm</code> 32px, <code>md</code> 40px (the default), <code>lg</code> 48px.</p>
+<div class="doc-demo"><ui-text-input label="Small" size="sm"></ui-text-input>
+<ui-text-input label="Medium"></ui-text-input>
+<ui-text-input label="Large" size="lg"></ui-text-input>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-4-0">HTML</ui-tab><ui-tab panel="code-4-1">React</ui-tab><ui-tab panel="code-4-2">React + Tailwind</ui-tab><ui-tab-panel name="code-4-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-text-input</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Small"</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"sm"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-text-input</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-text-input</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Medium"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-text-input</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-text-input</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Large"</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"lg"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-text-input</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-4-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiTextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Small"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiTextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Medium"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiTextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Large"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"lg"</span> /&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-4-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">TextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Small"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">TextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Medium"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">TextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Large"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"lg"</span> /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="passwords">Passwords</h2>
+<p><code>type=&quot;password&quot;</code> adds Carbon's show / hide button at the end of the field. Its tooltip is also its name and says what a press does next: &quot;Show password&quot;, then &quot;Hide password&quot;. Change the words with <code>show-password-label</code> and <code>hide-password-label</code>. Each press fires <code>ui-toggle</code> with <code>detail.visible</code>.</p>
+<div class="doc-demo"><ui-text-input id="text-input-password" label="Password" name="password" type="password" autocomplete="current-password"></ui-text-input>
+<ui-text-input label="PIN" name="pin" type="password" inputmode="numeric" show-password-label="Show PIN" hide-password-label="Hide PIN"></ui-text-input>
+<p>Password shown: <output id="text-input-password-out">no</output></p>
+<script type="text/x-demo">
+  document.getElementById('text-input-password').addEventListener('ui-toggle', (event) => {
+    document.getElementById('text-input-password-out').textContent = event.detail.visible ? 'yes' : 'no';
+  });
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-5-0">HTML</ui-tab><ui-tab panel="code-5-1">React</ui-tab><ui-tab panel="code-5-2">React + Tailwind</ui-tab><ui-tab-panel name="code-5-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-text-input</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"text-input-password"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Password"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"password"</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"password"</span> <span style="color:var(--ui-tag-color-purple)">autocomplete</span>=<span style="color:var(--ui-tag-color-teal)">"current-password"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-text-input</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-text-input</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"PIN"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"pin"</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"password"</span> <span style="color:var(--ui-tag-color-purple)">inputmode</span>=<span style="color:var(--ui-tag-color-teal)">"numeric"</span> <span style="color:var(--ui-tag-color-purple)">show-password-label</span>=<span style="color:var(--ui-tag-color-teal)">"Show PIN"</span> <span style="color:var(--ui-tag-color-purple)">hide-password-label</span>=<span style="color:var(--ui-tag-color-teal)">"Hide PIN"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-text-input</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;Password shown: &lt;<span style="color:var(--ui-tag-color-blue)">output</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"text-input-password-out"</span>&gt;no&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'text-input-password'</span>).<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'ui-toggle'</span>, (event) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'text-input-password-out'</span>).textContent <span style="color:var(--ui-tag-color-magenta)">=</span> event.detail.visible <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-teal)">'yes'</span> <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-teal)">'no'</span>;
+  });
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-5-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiTextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Password"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"password"</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"password"</span> <span style="color:var(--ui-tag-color-purple)">autocomplete</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"current-password"</span> <span style="color:var(--ui-tag-color-purple)">onUiToggle</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">track</span>(e.detail.visible)} /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiTextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"PIN"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"pin"</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"password"</span> <span style="color:var(--ui-tag-color-purple)">inputmode</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"numeric"</span> <span style="color:var(--ui-tag-color-purple)">showPasswordLabel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Show PIN"</span> <span style="color:var(--ui-tag-color-purple)">hidePasswordLabel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Hide PIN"</span> /&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-5-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">TextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Password"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"password"</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"password"</span> <span style="color:var(--ui-tag-color-purple)">autoComplete</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"current-password"</span> <span style="color:var(--ui-tag-color-purple)">onTogglePasswordVisibility</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e, visible) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">track</span>(visible)} /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">TextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"PIN"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"pin"</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"password"</span> <span style="color:var(--ui-tag-color-purple)">inputMode</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"numeric"</span> <span style="color:var(--ui-tag-color-purple)">showPasswordLabel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Show PIN"</span> <span style="color:var(--ui-tag-color-purple)">hidePasswordLabel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Hide PIN"</span> /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="email-phone-and-web-addresses">Email, phone and web addresses</h2>
+<p><code>type</code> also takes <code>email</code>, <code>tel</code>, <code>url</code>, <code>search</code> and <code>number</code>, as on <code>&lt;input&gt;</code>. For the virtual keyboard alone, set <code>inputmode</code> (and <code>enterkeyhint</code> for its Enter key).</p>
+<p>Add <code>autocomplete</code> so the browser can fill the field in. The browser checks an email address; a mask keeps a phone number readable.</p>
+<div class="doc-demo"><ui-text-input label="Work email" name="email" type="email" autocomplete="email"></ui-text-input>
+<ui-text-input label="Mobile" name="mobile" type="tel" autocomplete="tel" mask="000-000-0000" helper-text="Format: 000-000-0000"></ui-text-input>
+<ui-text-input label="Company website" name="website" type="url" placeholder="https://"></ui-text-input>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-6-0">HTML</ui-tab><ui-tab panel="code-6-1">React</ui-tab><ui-tab panel="code-6-2">React + Tailwind</ui-tab><ui-tab-panel name="code-6-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-text-input</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Work email"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"email"</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"email"</span> <span style="color:var(--ui-tag-color-purple)">autocomplete</span>=<span style="color:var(--ui-tag-color-teal)">"email"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-text-input</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-text-input</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Mobile"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"mobile"</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"tel"</span> <span style="color:var(--ui-tag-color-purple)">autocomplete</span>=<span style="color:var(--ui-tag-color-teal)">"tel"</span> <span style="color:var(--ui-tag-color-purple)">mask</span>=<span style="color:var(--ui-tag-color-teal)">"000-000-0000"</span> <span style="color:var(--ui-tag-color-purple)">helper-text</span>=<span style="color:var(--ui-tag-color-teal)">"Format: 000-000-0000"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-text-input</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-text-input</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Company website"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"website"</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"url"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span>=<span style="color:var(--ui-tag-color-teal)">"https://"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-text-input</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-6-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiTextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Work email"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"email"</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"email"</span> <span style="color:var(--ui-tag-color-purple)">autocomplete</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"email"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiTextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Mobile"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"mobile"</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"tel"</span> <span style="color:var(--ui-tag-color-purple)">autocomplete</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"tel"</span> <span style="color:var(--ui-tag-color-purple)">mask</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"000-000-0000"</span> <span style="color:var(--ui-tag-color-purple)">helperText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Format: 000-000-0000"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiTextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Company website"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"website"</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"url"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"https://"</span> /&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-6-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">TextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Work email"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"email"</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"email"</span> <span style="color:var(--ui-tag-color-purple)">autoComplete</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"email"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">TextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Mobile"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"mobile"</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"tel"</span> <span style="color:var(--ui-tag-color-purple)">autoComplete</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"tel"</span> <span style="color:var(--ui-tag-color-purple)">mask</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"000-000-0000"</span> <span style="color:var(--ui-tag-color-purple)">helperText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Format: 000-000-0000"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">TextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Company website"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"website"</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"url"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"https://"</span> /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="currency-units-and-masks">Currency, units and masks</h2>
+<p><code>prefix-text</code> and <code>suffix-text</code> put text inside the field, before or after the value: a currency, a unit. They aren't part of the value, and screen readers hear them as part of the field's description.</p>
+<p><code>mask</code> formats the value as the user types: <code>0</code> is a digit, <code>a</code> a letter, <code>*</code> either, and any other character is a separator the field adds by itself. A mask of digits only brings up the numeric keyboard. Put the format in the helper text too, so people know it before they type.</p>
+<div class="doc-demo"><ui-text-input label="Weight" name="weight" suffix-text="kg"></ui-text-input>
+<ui-text-input label="Citizen ID" name="citizenId" mask="0-0000-00000-00-0" helper-text="13 digits: 0-0000-00000-00-0"></ui-text-input>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-7-0">HTML</ui-tab><ui-tab panel="code-7-1">React</ui-tab><ui-tab panel="code-7-2">React + Tailwind</ui-tab><ui-tab-panel name="code-7-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-text-input</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Weight"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"weight"</span> <span style="color:var(--ui-tag-color-purple)">suffix-text</span>=<span style="color:var(--ui-tag-color-teal)">"kg"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-text-input</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-text-input</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Citizen ID"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"citizenId"</span> <span style="color:var(--ui-tag-color-purple)">mask</span>=<span style="color:var(--ui-tag-color-teal)">"0-0000-00000-00-0"</span> <span style="color:var(--ui-tag-color-purple)">helper-text</span>=<span style="color:var(--ui-tag-color-teal)">"13 digits: 0-0000-00000-00-0"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-text-input</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-7-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiTextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Weight"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"weight"</span> <span style="color:var(--ui-tag-color-purple)">suffixText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"kg"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiTextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Citizen ID"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"citizenId"</span> <span style="color:var(--ui-tag-color-purple)">mask</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0-0000-00000-00-0"</span> <span style="color:var(--ui-tag-color-purple)">helperText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"13 digits: 0-0000-00000-00-0"</span> /&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-7-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">TextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Weight"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"weight"</span> <span style="color:var(--ui-tag-color-purple)">suffixText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"kg"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">TextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Citizen ID"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"citizenId"</span> <span style="color:var(--ui-tag-color-purple)">mask</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0-0000-00000-00-0"</span> <span style="color:var(--ui-tag-color-purple)">helperText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"13 digits: 0-0000-00000-00-0"</span> <span style="color:var(--ui-tag-color-purple)">onChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e, raw) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setCitizenId</span>(raw)} /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<ul>
+<li>The element's <code>value</code> and the submitted form get the formatted text (<code>1-2345-67890-12-3</code>). Its <code>rawValue</code> property gives what was typed, without separators (<code>1234567890123</code>). In React + Tailwind, <code>onChange</code> gets that as its second argument.</li>
+<li>A value your code sets, raw or formatted, shows formatted.</li>
+<li>None of these has a Carbon counterpart (Carbon puts the unit or the format in the label or helper text); they follow USWDS.</li>
+</ul>
+<h2 id="read-the-value">Read the value</h2>
+<p>Listen to <code>input</code> to react on every keystroke, or to <code>change</code> once the user is done. With a mask, <code>value</code> is what the field shows and <code>rawValue</code> is what was typed.</p>
+<div class="doc-demo"><ui-text-input id="text-input-tax" label="Tax ID" name="taxId" mask="0-0000-00000-00-0" helper-text="13 digits"></ui-text-input>
+<p>value: <output id="text-input-tax-value"></output><br>rawValue: <output id="text-input-tax-raw"></output></p>
+<script type="text/x-demo">
+  const tax = document.getElementById('text-input-tax');
+  tax.addEventListener('input', () => {
+    document.getElementById('text-input-tax-value').textContent = tax.value;
+    document.getElementById('text-input-tax-raw').textContent = tax.rawValue;
+  });
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-8-0">HTML</ui-tab><ui-tab panel="code-8-1">React</ui-tab><ui-tab panel="code-8-2">React + Tailwind</ui-tab><ui-tab-panel name="code-8-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-text-input</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"text-input-tax"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Tax ID"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"taxId"</span> <span style="color:var(--ui-tag-color-purple)">mask</span>=<span style="color:var(--ui-tag-color-teal)">"0-0000-00000-00-0"</span> <span style="color:var(--ui-tag-color-purple)">helper-text</span>=<span style="color:var(--ui-tag-color-teal)">"13 digits"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-text-input</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;value: &lt;<span style="color:var(--ui-tag-color-blue)">output</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"text-input-tax-value"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">br</span>&gt;rawValue: &lt;<span style="color:var(--ui-tag-color-blue)">output</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"text-input-tax-raw"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> tax <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'text-input-tax'</span>);
+  tax.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'input'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'text-input-tax-value'</span>).textContent <span style="color:var(--ui-tag-color-magenta)">=</span> tax.value;
+    document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'text-input-tax-raw'</span>).textContent <span style="color:var(--ui-tag-color-magenta)">=</span> tax.rawValue;
+  });
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-8-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> <span style="color:var(--ui-tag-color-magenta)">type</span> { UiTextInput <span style="color:var(--ui-tag-color-magenta)">as</span> UiTextInputElement } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/text-input'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiTextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Tax ID"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"taxId"</span> <span style="color:var(--ui-tag-color-purple)">mask</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0-0000-00000-00-0"</span> <span style="color:var(--ui-tag-color-purple)">helperText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"13 digits"</span> <span style="color:var(--ui-tag-color-purple)">onInput</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setTaxId</span>((e.target <span style="color:var(--ui-tag-color-magenta)">as</span> <span style="color:var(--ui-tag-color-cyan)">UiTextInputElement</span>).rawValue)} /&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-8-2"><ui-code-snippet type="single" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">TextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Tax ID"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"taxId"</span> <span style="color:var(--ui-tag-color-purple)">mask</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0-0000-00000-00-0"</span> <span style="color:var(--ui-tag-color-purple)">helperText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"13 digits"</span> <span style="color:var(--ui-tag-color-purple)">onChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e, raw) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setTaxId</span>(raw)} /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="character-counter">Character counter</h2>
+<p><code>max-count</code> shows a counter above the field. It's a soft limit: people can paste a long text and then trim it. Going over turns the counter red, shows an error at once and blocks the form. Screen readers hear when the limit is near, not on every keystroke.</p>
+<div class="doc-demo"><ui-text-input label="Contract title" name="title" max-count="40" value="Lease of the warehouse on Rama IV Road"></ui-text-input>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-9-0">HTML</ui-tab><ui-tab panel="code-9-1">React</ui-tab><ui-tab panel="code-9-2">React + Tailwind</ui-tab><ui-tab-panel name="code-9-0"><ui-code-snippet type="single" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-text-input</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Contract title"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"title"</span> <span style="color:var(--ui-tag-color-purple)">max-count</span>=<span style="color:var(--ui-tag-color-teal)">"40"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"Lease of the warehouse on Rama IV Road"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-text-input</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-9-1"><ui-code-snippet type="single" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiTextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contract title"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"title"</span> <span style="color:var(--ui-tag-color-purple)">maxCount</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">40</span>} <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Lease of the warehouse on Rama IV Road"</span> /&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-9-2"><ui-code-snippet type="single" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">TextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contract title"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"title"</span> <span style="color:var(--ui-tag-color-purple)">maxCount</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">40</span>} <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Lease of the warehouse on Rama IV Road"</span> /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>Change the messages with <code>too-long-text</code> (<code>{max}</code> becomes the limit) and <code>near-limit-text</code>. For a hard limit that stops typing, use <code>maxlength</code>. More in <a href="/kanok-ui-docs/en/forms/#count-characters-and-words">Forms and validation</a>.</p>
+<h2 id="helper-text-warnings-and-errors">Helper text, warnings and errors</h2>
+<p>One line shows under the field at a time: an error beats a warning, and a warning beats the helper text.</p>
+<div class="doc-demo"><ui-text-input label="Phone" name="phone" helper-text="We only call about this contract"></ui-text-input>
+<ui-text-input label="Email" name="email" value="somchai@gmial.com" warn warn-text="Check the spelling of the domain"></ui-text-input>
+<ui-text-input label="Tax ID" name="taxId" value="12345" invalid invalid-text="A tax ID has 13 digits"></ui-text-input>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-10-0">HTML</ui-tab><ui-tab panel="code-10-1">React</ui-tab><ui-tab panel="code-10-2">React + Tailwind</ui-tab><ui-tab-panel name="code-10-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-text-input</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Phone"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"phone"</span> <span style="color:var(--ui-tag-color-purple)">helper-text</span>=<span style="color:var(--ui-tag-color-teal)">"We only call about this contract"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-text-input</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-text-input</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Email"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"email"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"somchai@gmial.com"</span> <span style="color:var(--ui-tag-color-purple)">warn</span> <span style="color:var(--ui-tag-color-purple)">warn-text</span>=<span style="color:var(--ui-tag-color-teal)">"Check the spelling of the domain"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-text-input</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-text-input</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Tax ID"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"taxId"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"12345"</span> <span style="color:var(--ui-tag-color-purple)">invalid</span> <span style="color:var(--ui-tag-color-purple)">invalid-text</span>=<span style="color:var(--ui-tag-color-teal)">"A tax ID has 13 digits"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-text-input</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-10-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiTextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Phone"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"phone"</span> <span style="color:var(--ui-tag-color-purple)">helperText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"We only call about this contract"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiTextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Email"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"email"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"somchai@gmial.com"</span> <span style="color:var(--ui-tag-color-purple)">warn</span> <span style="color:var(--ui-tag-color-purple)">warnText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Check the spelling of the domain"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiTextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Tax ID"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"taxId"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"12345"</span> <span style="color:var(--ui-tag-color-purple)">invalid</span> <span style="color:var(--ui-tag-color-purple)">invalidText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"A tax ID has 13 digits"</span> /&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-10-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">TextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Phone"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"phone"</span> <span style="color:var(--ui-tag-color-purple)">helperText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"We only call about this contract"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">TextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Email"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"email"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"somchai@gmial.com"</span> <span style="color:var(--ui-tag-color-purple)">warn</span> <span style="color:var(--ui-tag-color-purple)">warnText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Check the spelling of the domain"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">TextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Tax ID"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"taxId"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"12345"</span> <span style="color:var(--ui-tag-color-purple)">invalid</span> <span style="color:var(--ui-tag-color-purple)">invalidText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"A tax ID has 13 digits"</span> /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<ul>
+<li>On the element, <code>required</code>, <code>pattern</code>, <code>minlength</code> and the browser's checks work as on <code>&lt;input&gt;</code>, and their errors wait until the user leaves the field. The React + Tailwind field shows what you pass in <code>invalid</code> and <code>invalidText</code>; validation is your app's, as in Carbon React.</li>
+<li>To put a link in a message, use the slot of the same name (<code>helper-text</code>, <code>warn-text</code>, <code>invalid-text</code>). In React + Tailwind, pass the markup to <code>helperText</code>, <code>warnText</code> or <code>invalidText</code>.</li>
+<li>When errors show, custom validity and server errors: <a href="/kanok-ui-docs/en/forms/">Forms and validation</a>.</li>
+</ul>
+<h2 id="label-and-helper-text-with-markup">Label and helper text with markup</h2>
+<p>For a label or a message with markup, such as a link or an emphasis, use the <code>label</code> and <code>helper-text</code> slots (<code>warn-text</code> and <code>invalid-text</code> work the same way). The React + Tailwind field takes the markup in <code>label</code> and <code>helperText</code>.</p>
+<div class="doc-demo"><ui-text-input name="signerEmail" type="email" required>
+  <span slot="label">Signer's email <em>(required)</em></span>
+  <span slot="helper-text">We send the contract here. <a href="/en/forms/">How fields are checked</a></span>
+</ui-text-input>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-11-0">HTML</ui-tab><ui-tab panel="code-11-1">React</ui-tab><ui-tab panel="code-11-2">React + Tailwind</ui-tab><ui-tab-panel name="code-11-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-text-input</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"signerEmail"</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"email"</span> <span style="color:var(--ui-tag-color-purple)">required</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"label"</span>&gt;Signer's email &lt;<span style="color:var(--ui-tag-color-blue)">em</span>&gt;(required)&lt;/<span style="color:var(--ui-tag-color-blue)">em</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"helper-text"</span>&gt;We send the contract here. &lt;<span style="color:var(--ui-tag-color-blue)">a</span> <span style="color:var(--ui-tag-color-purple)">href</span>=<span style="color:var(--ui-tag-color-teal)">"/en/forms/"</span>&gt;How fields are checked&lt;/<span style="color:var(--ui-tag-color-blue)">a</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-text-input</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-11-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiTextInput</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"signerEmail"</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"email"</span> <span style="color:var(--ui-tag-color-purple)">required</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">slot</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"label"</span>&gt;Signer's email &lt;<span style="color:var(--ui-tag-color-blue)">em</span>&gt;(required)&lt;/<span style="color:var(--ui-tag-color-blue)">em</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">slot</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"helper-text"</span>&gt;We send the contract here. &lt;<span style="color:var(--ui-tag-color-blue)">a</span> <span style="color:var(--ui-tag-color-purple)">href</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"/forms"</span>&gt;How fields are checked&lt;/<span style="color:var(--ui-tag-color-blue)">a</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiTextInput</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-11-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">TextInput</span>
+  <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"signerEmail"</span>
+  <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"email"</span>
+  <span style="color:var(--ui-tag-color-purple)">required</span>
+  <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span>{&lt;&gt;Signer's email &lt;<span style="color:var(--ui-tag-color-blue)">em</span>&gt;(required)&lt;/<span style="color:var(--ui-tag-color-blue)">em</span>&gt;&lt;/&gt;}
+  <span style="color:var(--ui-tag-color-purple)">helperText</span><span style="color:var(--ui-tag-color-magenta)">=</span>{&lt;&gt;We send the contract here. &lt;<span style="color:var(--ui-tag-color-blue)">a</span> <span style="color:var(--ui-tag-color-purple)">href</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"/forms"</span>&gt;How fields are checked&lt;/<span style="color:var(--ui-tag-color-blue)">a</span>&gt;&lt;/&gt;}
+/&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="label-position-read-only-and-disabled">Label position, read-only and disabled</h2>
+<ul>
+<li><code>hide-label</code> keeps the label for screen readers but doesn't show it. Use it only where something else on screen names the field.</li>
+<li><code>inline</code> puts the label before the field and the message after it, in one row (Carbon's inline text input).</li>
+<li><code>fluid</code>, or a fluid form around the field, puts the label inside a 64px box (<a href="/kanok-ui-docs/en/forms/#use-a-fluid-form">fluid forms</a>).</li>
+<li><code>readonly</code> shows and submits the value, but the user can't change it. <code>disabled</code> greys the field out; it isn't submitted.</li>
+</ul>
+<div class="doc-demo"><ui-text-input label="Contract no." value="C-2026-0142" inline></ui-text-input>
+<ui-text-input label="Contract no." value="C-2026-0142" readonly></ui-text-input>
+<ui-text-input label="Branch" value="Bangkok" disabled></ui-text-input>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-12-0">HTML</ui-tab><ui-tab panel="code-12-1">React</ui-tab><ui-tab panel="code-12-2">React + Tailwind</ui-tab><ui-tab-panel name="code-12-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-text-input</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Contract no."</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"C-2026-0142"</span> <span style="color:var(--ui-tag-color-purple)">inline</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-text-input</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-text-input</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Contract no."</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"C-2026-0142"</span> <span style="color:var(--ui-tag-color-purple)">readonly</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-text-input</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-text-input</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Branch"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"Bangkok"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-text-input</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-12-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiTextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contract no."</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"C-2026-0142"</span> <span style="color:var(--ui-tag-color-purple)">inline</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiTextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contract no."</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"C-2026-0142"</span> <span style="color:var(--ui-tag-color-purple)">readonly</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiTextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Branch"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Bangkok"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span> /&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-12-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">TextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contract no."</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"C-2026-0142"</span> <span style="color:var(--ui-tag-color-purple)">inline</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">TextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contract no."</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"C-2026-0142"</span> <span style="color:var(--ui-tag-color-purple)">readOnly</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">TextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Branch"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Bangkok"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span> /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="fluid-fields">Fluid fields</h2>
+<p>A fluid field puts its label inside a 64px box, and an error or a warning shows inside the box below a line; there is no helper text. Set <code>fluid</code> on a field, or put the fields in a <code>&lt;ui-fluid-form&gt;</code> (see <a href="/kanok-ui-docs/en/forms/#use-a-fluid-form">fluid forms</a>).</p>
+<div class="doc-demo"><ui-text-input label="Contract value" name="amount" prefix-text="฿" suffix-text="THB" value="500,000" fluid></ui-text-input>
+<ui-text-input label="Password" name="password" type="password" fluid></ui-text-input>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-13-0">HTML</ui-tab><ui-tab panel="code-13-1">React</ui-tab><ui-tab panel="code-13-2">React + Tailwind</ui-tab><ui-tab-panel name="code-13-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-text-input</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Contract value"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"amount"</span> <span style="color:var(--ui-tag-color-purple)">prefix-text</span>=<span style="color:var(--ui-tag-color-teal)">"฿"</span> <span style="color:var(--ui-tag-color-purple)">suffix-text</span>=<span style="color:var(--ui-tag-color-teal)">"THB"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"500,000"</span> <span style="color:var(--ui-tag-color-purple)">fluid</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-text-input</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-text-input</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Password"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"password"</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"password"</span> <span style="color:var(--ui-tag-color-purple)">fluid</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-text-input</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-13-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiTextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contract value"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"amount"</span> <span style="color:var(--ui-tag-color-purple)">prefixText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"฿"</span> <span style="color:var(--ui-tag-color-purple)">suffixText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"THB"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"500,000"</span> <span style="color:var(--ui-tag-color-purple)">fluid</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiTextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Password"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"password"</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"password"</span> <span style="color:var(--ui-tag-color-purple)">fluid</span> /&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-13-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">TextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contract value"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"amount"</span> <span style="color:var(--ui-tag-color-purple)">prefixText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"฿"</span> <span style="color:var(--ui-tag-color-purple)">suffixText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"THB"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"500,000"</span> <span style="color:var(--ui-tag-color-purple)">fluid</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">TextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Password"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"password"</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"password"</span> <span style="color:var(--ui-tag-color-purple)">fluid</span> /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="outlined-kanok-design">Outlined (Kanok design)</h2>
+<p>In the Kanok design, fields are filled by default: a soft grey fill, no edge. Put <code>data-field-variant=&quot;outlined&quot;</code> on an element around the field (a <code>&lt;form&gt;</code>, or <code>&lt;html&gt;</code> for the whole app) for a 1px edge on no fill; focus is still the soft blue halo. The attribute does nothing in the Carbon design, so the example below sits inside <code>data-design=&quot;kanok&quot;</code>. See <a href="/kanok-ui-docs/en/kanok/#outlined-fields">Kanok design</a> for the details.</p>
+<div class="doc-demo"><div data-design="kanok" data-theme="paper" data-field-variant="outlined">
+  <ui-text-input label="Full name" name="name" helper-text="As it appears on your ID card"></ui-text-input>
+  <ui-text-input label="Password" name="password" type="password"></ui-text-input>
+</div>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-14-0">HTML</ui-tab><ui-tab panel="code-14-1">React</ui-tab><ui-tab panel="code-14-2">React + Tailwind</ui-tab><ui-tab-panel name="code-14-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">data-design</span>=<span style="color:var(--ui-tag-color-teal)">"kanok"</span> <span style="color:var(--ui-tag-color-purple)">data-theme</span>=<span style="color:var(--ui-tag-color-teal)">"paper"</span> <span style="color:var(--ui-tag-color-purple)">data-field-variant</span>=<span style="color:var(--ui-tag-color-teal)">"outlined"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-text-input</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Full name"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"name"</span> <span style="color:var(--ui-tag-color-purple)">helper-text</span>=<span style="color:var(--ui-tag-color-teal)">"As it appears on your ID card"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-text-input</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-text-input</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Password"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"password"</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"password"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-text-input</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-14-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">data-field-variant</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"outlined"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Full name"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"name"</span> <span style="color:var(--ui-tag-color-purple)">helperText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"As it appears on your ID card"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Password"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"password"</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"password"</span> /&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-14-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">data-field-variant</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"outlined"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Full name"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"name"</span> <span style="color:var(--ui-tag-color-purple)">helperText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"As it appears on your ID card"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Password"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"password"</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"password"</span> /&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="check-it-in-a-form">Check it in a form</h2>
+<p>In a <code>&lt;form&gt;</code>, the element checks <code>required</code>, <code>type</code>, <code>pattern</code>, <code>minlength</code> and the counter, as a native input does. A submit with a problem is blocked, every field with a problem shows its error, and the first one gets focus. Try sending this form empty.</p>
+<div class="doc-demo"><form id="text-input-form" method="dialog" style="display: grid; gap: 16px">
+  <ui-text-input label="Supplier name" name="supplier" required></ui-text-input>
+  <ui-text-input label="Email" name="email" type="email" required></ui-text-input>
+  <div><ui-button type="submit" size="md">Add supplier</ui-button></div>
+</form>
+<p>Sent: <output id="text-input-form-out"></output></p>
+<script type="text/x-demo">
+  const form = document.getElementById('text-input-form');
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    document.getElementById('text-input-form-out').textContent = [...new FormData(form)].map(([key, value]) => `${key}=${value}`).join(', ');
+  });
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-15-0">HTML</ui-tab><ui-tab panel="code-15-1">React</ui-tab><ui-tab panel="code-15-2">React + Tailwind</ui-tab><ui-tab-panel name="code-15-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">form</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"text-input-form"</span> <span style="color:var(--ui-tag-color-purple)">method</span>=<span style="color:var(--ui-tag-color-teal)">"dialog"</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"display: grid; gap: 16px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-text-input</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Supplier name"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"supplier"</span> <span style="color:var(--ui-tag-color-purple)">required</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-text-input</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-text-input</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Email"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"email"</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"email"</span> <span style="color:var(--ui-tag-color-purple)">required</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-text-input</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">div</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"submit"</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"md"</span>&gt;Add supplier&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">form</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;Sent: &lt;<span style="color:var(--ui-tag-color-blue)">output</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"text-input-form-out"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> form <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'text-input-form'</span>);
+  form.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'submit'</span>, (event) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    event.<span style="color:var(--ui-tag-color-cyan)">preventDefault</span>();
+    document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'text-input-form-out'</span>).textContent <span style="color:var(--ui-tag-color-magenta)">=</span> [<span style="color:var(--ui-tag-color-magenta)">...new</span> <span style="color:var(--ui-tag-color-cyan)">FormData</span>(form)].<span style="color:var(--ui-tag-color-cyan)">map</span>(([key, value]) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-teal)">`${</span><span style="color:var(--ui-tag-color-teal)">key</span><span style="color:var(--ui-tag-color-teal)">}=${</span><span style="color:var(--ui-tag-color-teal)">value</span><span style="color:var(--ui-tag-color-teal)">}`</span>).<span style="color:var(--ui-tag-color-cyan)">join</span>(<span style="color:var(--ui-tag-color-teal)">', '</span>);
+  });
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-15-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">form</span> <span style="color:var(--ui-tag-color-purple)">onSubmit</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> { e.<span style="color:var(--ui-tag-color-cyan)">preventDefault</span>(); <span style="color:var(--ui-tag-color-cyan)">addSupplier</span>(<span style="color:var(--ui-tag-color-magenta)">new</span> <span style="color:var(--ui-tag-color-cyan)">FormData</span>(e.currentTarget)); }}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Supplier name"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"supplier"</span> <span style="color:var(--ui-tag-color-purple)">required</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Email"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"email"</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"email"</span> <span style="color:var(--ui-tag-color-purple)">required</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiButton</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"submit"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"md"</span>&gt;Add supplier&lt;/<span style="color:var(--ui-tag-color-blue)">UiButton</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">form</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-15-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-ink-muted);font-style:italic">// your validation fills `errors`, as in Carbon React</span>
+&lt;<span style="color:var(--ui-tag-color-blue)">form</span> <span style="color:var(--ui-tag-color-purple)">onSubmit</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> { e.<span style="color:var(--ui-tag-color-cyan)">preventDefault</span>(); <span style="color:var(--ui-tag-color-cyan)">addSupplier</span>(<span style="color:var(--ui-tag-color-magenta)">new</span> <span style="color:var(--ui-tag-color-cyan)">FormData</span>(e.currentTarget)); }} <span style="color:var(--ui-tag-color-purple)">noValidate</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Supplier name"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"supplier"</span> <span style="color:var(--ui-tag-color-purple)">invalid</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-magenta)">!!</span>errors.supplier} <span style="color:var(--ui-tag-color-purple)">invalidText</span><span style="color:var(--ui-tag-color-magenta)">=</span>{errors.supplier} /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Email"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"email"</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"email"</span> <span style="color:var(--ui-tag-color-purple)">invalid</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-magenta)">!!</span>errors.email} <span style="color:var(--ui-tag-color-purple)">invalidText</span><span style="color:var(--ui-tag-color-magenta)">=</span>{errors.email} /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">Button</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"submit"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"md"</span>&gt;Add supplier&lt;/<span style="color:var(--ui-tag-color-blue)">Button</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">form</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="errors-from-your-own-checks">Errors from your own checks</h2>
+<p><code>setCustomValidity(message)</code> makes the field invalid with your message, as on <code>&lt;input&gt;</code>. Use it for a check the browser can't do, such as a contract number that is already in use. The error shows once the user leaves the field; <code>setCustomValidity('')</code> clears it. More in <a href="/kanok-ui-docs/en/forms/#check-a-rule-with-custom-validity">Forms and validation</a>.</p>
+<div class="doc-demo"><ui-text-input id="text-input-contract" label="Contract no." name="contractNo" helper-text="C-2026-0142 is already in use: try it"></ui-text-input>
+<script type="text/x-demo">
+  const contract = document.getElementById('text-input-contract');
+  contract.addEventListener('change', () => {
+    contract.setCustomValidity(contract.value.trim() === 'C-2026-0142' ? 'This contract number is already in use' : '');
+  });
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-16-0">HTML</ui-tab><ui-tab panel="code-16-1">React</ui-tab><ui-tab panel="code-16-2">React + Tailwind</ui-tab><ui-tab-panel name="code-16-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-text-input</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"text-input-contract"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Contract no."</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"contractNo"</span> <span style="color:var(--ui-tag-color-purple)">helper-text</span>=<span style="color:var(--ui-tag-color-teal)">"C-2026-0142 is already in use: try it"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-text-input</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> contract <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'text-input-contract'</span>);
+  contract.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'change'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    contract.<span style="color:var(--ui-tag-color-cyan)">setCustomValidity</span>(contract.value.<span style="color:var(--ui-tag-color-cyan)">trim</span>() <span style="color:var(--ui-tag-color-magenta)">===</span> <span style="color:var(--ui-tag-color-teal)">'C-2026-0142'</span> <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-teal)">'This contract number is already in use'</span> <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-teal)">''</span>);
+  });
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-16-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiTextInput</span>
+  <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contract no."</span>
+  <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"contractNo"</span>
+  <span style="color:var(--ui-tag-color-purple)">onChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    <span style="color:var(--ui-tag-color-magenta)">const</span> field <span style="color:var(--ui-tag-color-magenta)">=</span> e.target <span style="color:var(--ui-tag-color-magenta)">as</span> <span style="color:var(--ui-tag-color-cyan)">UiTextInputElement</span>;
+    field.<span style="color:var(--ui-tag-color-cyan)">setCustomValidity</span>(<span style="color:var(--ui-tag-color-cyan)">isTaken</span>(field.value) <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-teal)">'This contract number is already in use'</span> <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-teal)">''</span>);
+  }}
+/&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-16-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">TextInput</span>
+  <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contract no."</span>
+  <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"contractNo"</span>
+  <span style="color:var(--ui-tag-color-purple)">invalid</span><span style="color:var(--ui-tag-color-magenta)">=</span>{taken}
+  <span style="color:var(--ui-tag-color-purple)">invalidText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"This contract number is already in use"</span>
+  <span style="color:var(--ui-tag-color-purple)">onBlur</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setTaken</span>(<span style="color:var(--ui-tag-color-cyan)">isTaken</span>(e.target.value))}
+/&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="skeleton">Skeleton</h2>
+<p>While the data of a form loads, <code>&lt;ui-text-input-skeleton&gt;</code> keeps the field's place: a label bar and a field bar at its <code>size</code>, or a fluid box with <code>fluid</code>. Screen readers skip it, so say &quot;loading&quot; on the form (for example <code>aria-busy=&quot;true&quot;</code>).</p>
+<div class="doc-demo"><ui-text-input-skeleton></ui-text-input-skeleton>
+<ui-text-input-skeleton fluid></ui-text-input-skeleton>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-17-0">HTML</ui-tab><ui-tab panel="code-17-1">React</ui-tab><ui-tab panel="code-17-2">React + Tailwind</ui-tab><ui-tab-panel name="code-17-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-text-input-skeleton</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-text-input-skeleton</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-text-input-skeleton</span> <span style="color:var(--ui-tag-color-purple)">fluid</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-text-input-skeleton</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-17-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { UiTextInputSkeleton } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/react'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiTextInputSkeleton</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiTextInputSkeleton</span> <span style="color:var(--ui-tag-color-purple)">fluid</span> /&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-17-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { TextInputSkeleton } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@/components/ui/react-tw/text-input'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">TextInputSkeleton</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">TextInputSkeleton</span> <span style="color:var(--ui-tag-color-purple)">fluid</span> /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="keyboard">Keyboard</h2>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Enter</td>
+<td>Submits the form the field sits in, as a native text input does</td>
+</tr>
+<tr>
+<td>Enter or Space on the password button</td>
+<td>Shows or hides the password</td>
+</tr>
+</tbody>
+</table>
+<h2 id="accessibility">Accessibility</h2>
+<ul>
+<li>The label is a real <code>&lt;label&gt;</code> for the inner <code>&lt;input&gt;</code>, and the message line is its <code>aria-describedby</code>. <code>aria-label</code> on the element does not reach the input; use <code>label</code> (with <code>hide-label</code> if it must not show).</li>
+<li>An error sets <code>aria-invalid</code> on the input. On the element it waits until the user leaves the field, so nobody hears &quot;required&quot; while still typing.</li>
+<li>The password button has no <code>aria-pressed</code>: its name changes with what it does next, as in Carbon.</li>
+<li>The prefix and suffix are read as part of the field's description, so &quot;฿&quot; or &quot;kg&quot; isn't lost to screen reader users.</li>
+</ul>
+<p>Unstyled React parts with the same behaviour: <a href="/kanok-ui-docs/en/headless-text-input/">Headless Text input</a>.</p>
+<h2 id="api">API</h2>
+<p>Generated from the package. In React, pass a property as a prop of the same name; events are props too (the React column).</p>
+<h3 id="ui-text-input-react-uitextinput"><code>&lt;ui-text-input&gt;</code> · React <code>UiTextInput</code></h3>
+<h4 id="attributes">Attributes</h4>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>label</code></td>
+<td><code>label</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>Visible label text; the <code>label</code> slot replaces it when markup is needed.</td>
+</tr>
+<tr>
+<td><code>hide-label</code></td>
+<td><code>hideLabel</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Keep the label for screen readers but don't show it.</td>
+</tr>
+<tr>
+<td><code>helper-text</code></td>
+<td><code>helperText</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>Helper text under the field, shown while there is no error or warning.</td>
+</tr>
+<tr>
+<td><code>invalid-text</code></td>
+<td><code>invalidText</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>Message shown when invalid. Falls back to the browser's validation message.</td>
+</tr>
+<tr>
+<td><code>invalid</code></td>
+<td><code>invalid</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Force the error state (e.g. a server-side error).</td>
+</tr>
+<tr>
+<td><code>warn</code></td>
+<td><code>warn</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Non-blocking warning; shown when there is no error.</td>
+</tr>
+<tr>
+<td><code>warn-text</code></td>
+<td><code>warnText</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>Text of the warning shown while <code>warn</code>.</td>
+</tr>
+<tr>
+<td><code>value</code></td>
+<td><code>value</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>Reflected: form-associated elements submit under the <code>name</code> attribute.</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>type</code></td>
+<td><code>TextInputType</code></td>
+<td><code>'text'</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>size</code></td>
+<td><code>size</code></td>
+<td><code>TextInputSize</code></td>
+<td><code>'md'</code></td>
+<td>Field height: sm 32px, md 40px, lg 48px (tokens <code>--ui-field-height-*</code>).</td>
+</tr>
+<tr>
+<td><code>placeholder</code></td>
+<td><code>placeholder</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>autocomplete</code></td>
+<td><code>autocomplete</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>inputmode</code></td>
+<td><code>inputmode</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>Passed to the text box: the virtual keyboard to show (<code>numeric</code>, <code>decimal</code>, <code>email</code>, <code>tel</code>, <code>url</code>, <code>search</code>…).</td>
+</tr>
+<tr>
+<td><code>enterkeyhint</code></td>
+<td><code>enterkeyhint</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>Passed to the text box: the label of the virtual keyboard's Enter key (<code>search</code>, <code>send</code>, <code>next</code>, <code>done</code>…).</td>
+</tr>
+<tr>
+<td><code>pattern</code></td>
+<td><code>pattern</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>prefix-text</code></td>
+<td><code>prefixText</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>Text inside the field before the value, e.g. a currency (<code>฿</code>). Part of the field's description for screen readers.</td>
+</tr>
+<tr>
+<td><code>suffix-text</code></td>
+<td><code>suffixText</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>Text inside the field after the value, e.g. a unit (<code>kg</code>). Part of the field's description for screen readers.</td>
+</tr>
+<tr>
+<td><code>mask</code></td>
+<td><code>mask</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>Formats the value as the user types: <code>0</code> a digit, <code>a</code> a letter, <code>*</code> either; any other character is a separator added for the user (<code>\</code> makes a pattern character one). E.g. <code>0-0000-00000-00-0</code> (Thai citizen ID), <code>000-000-0000</code>. <code>value</code> and the form get the formatted text, <code>rawValue</code> what was typed. Put the format in the helper text too (Carbon).</td>
+</tr>
+<tr>
+<td><code>minlength</code></td>
+<td><code>minlength</code></td>
+<td><code>number | undefined</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>maxlength</code></td>
+<td><code>maxlength</code></td>
+<td><code>number | undefined</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>max-count</code></td>
+<td><code>maxCount</code></td>
+<td><code>number | undefined</code></td>
+<td></td>
+<td>Soft limit with a visible counter (unlike maxlength, extra text isn't blocked).</td>
+</tr>
+<tr>
+<td><code>too-long-text</code></td>
+<td><code>tooLongText</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>Error when over <code>max-count</code>; <code>{max}</code> is replaced with the limit.</td>
+</tr>
+<tr>
+<td><code>near-limit-text</code></td>
+<td><code>nearLimitText</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>Announced once when the remaining characters drop to 10% or less.</td>
+</tr>
+<tr>
+<td><code>disabled</code></td>
+<td><code>disabled</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Disables the control; a disabled <code>&lt;fieldset&gt;</code> ancestor does the same.</td>
+</tr>
+<tr>
+<td><code>readonly</code></td>
+<td><code>readonly</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Shows and submits the value but blocks changes.</td>
+</tr>
+<tr>
+<td><code>fluid</code></td>
+<td><code>fluid</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Carbon <code>FluidTextInput</code>: the label inside a 64px box, an error / warning inside it. <code>&lt;ui-fluid-form&gt;</code> sets it for every field inside.</td>
+</tr>
+<tr>
+<td><code>required</code></td>
+<td><code>required</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Blocks form submission while the field is empty.</td>
+</tr>
+<tr>
+<td><code>show-password-label</code></td>
+<td><code>showPasswordLabel</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>The password toggle's name and tooltip while the password is hidden (Carbon <code>showPasswordLabel</code>; default: the translation's &quot;Show password&quot;).</td>
+</tr>
+<tr>
+<td><code>hide-password-label</code></td>
+<td><code>hidePasswordLabel</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>The password toggle's name and tooltip while the password shows (Carbon <code>hidePasswordLabel</code>; default: the translation's &quot;Hide password&quot;).</td>
+</tr>
+<tr>
+<td><code>inline</code></td>
+<td><code>inline</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Carbon <code>inline</code>: the label before the field, the helper / error text after it (ignored while fluid).</td>
+</tr>
+</tbody>
+</table>
+<h4 id="properties">Properties</h4>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>rawValue</code></td>
+<td></td>
+<td>(read-only) The characters typed, without the mask's separators (<code>value</code> when there is no mask).</td>
+</tr>
+<tr>
+<td><code>willValidate</code></td>
+<td></td>
+<td>(read-only) Whether the field takes part in constraint validation (not while disabled), as natively.</td>
+</tr>
+<tr>
+<td><code>labels</code></td>
+<td></td>
+<td>(read-only) The <code>&lt;label&gt;</code>s that point at this field.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="methods">Methods</h4>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>setCustomValidity(message)</code></td>
+<td>Like <code>&lt;input&gt;.setCustomValidity()</code>: a non-empty message makes the field invalid (and is shown as its error once touched) until cleared with ''.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="events">Events</h4>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>React</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>change</code></td>
+<td><code>onChange</code></td>
+<td>Re-dispatched from the native input (native change is not composed)</td>
+</tr>
+<tr>
+<td><code>ui-toggle</code></td>
+<td><code>onUiToggle</code></td>
+<td>detail: { visible } when the password toggle shows or hides the password (Carbon <code>onTogglePasswordVisibility</code>)</td>
+</tr>
+<tr>
+<td><code>input</code></td>
+<td><code>onInput</code></td>
+<td>Native input event (already composed, so it reaches the host)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="slots">Slots</h4>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>label</code></td>
+<td>Label content with markup; the <code>label</code> attribute is the plain-text fallback</td>
+</tr>
+<tr>
+<td><code>helper-text</code></td>
+<td>Helper text with markup (links, bold); overrides <code>helper-text</code></td>
+</tr>
+<tr>
+<td><code>warn-text</code></td>
+<td>Warning text shown while <code>warn</code>; overrides <code>warn-text</code></td>
+</tr>
+<tr>
+<td><code>invalid-text</code></td>
+<td>Error text shown while invalid; overrides <code>invalid-text</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="css-parts">CSS parts</h4>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>base</code></td>
+<td>The field box around the input</td>
+</tr>
+<tr>
+<td><code>label</code></td>
+<td>The label</td>
+</tr>
+<tr>
+<td><code>input</code></td>
+<td>The native input</td>
+</tr>
+<tr>
+<td><code>prefix</code></td>
+<td>The text before the value</td>
+</tr>
+<tr>
+<td><code>suffix</code></td>
+<td>The text after the value</td>
+</tr>
+<tr>
+<td><code>password-toggle</code></td>
+<td>The show / hide password button</td>
+</tr>
+<tr>
+<td><code>password-tooltip</code></td>
+<td>The <code>&lt;ui-tooltip&gt;</code> around it (its name)</td>
+</tr>
+<tr>
+<td><code>counter</code></td>
+<td>The character counter</td>
+</tr>
+<tr>
+<td><code>status-icon</code></td>
+<td>The error / warning icon</td>
+</tr>
+<tr>
+<td><code>helper-text</code></td>
+<td>The helper line</td>
+</tr>
+<tr>
+<td><code>warning-text</code></td>
+<td>The warning line</td>
+</tr>
+<tr>
+<td><code>warn-text</code></td>
+<td>Same line as <code>warning-text</code> (named after the <code>warn-text</code> attribute / slot)</td>
+</tr>
+<tr>
+<td><code>error-text</code></td>
+<td>The error line</td>
+</tr>
+<tr>
+<td><code>invalid-text</code></td>
+<td>Same line as <code>error-text</code> (named after the <code>invalid-text</code> attribute / slot)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="css-custom-properties">CSS custom properties</h4>
+<table>
+<thead>
+<tr>
+<th>Custom property</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--ui-field-border</code></td>
+<td></td>
+<td>Border on every side of the box (default none: Carbon's underline only; Kanok: a 1px outline)</td>
+</tr>
+<tr>
+<td><code>--ui-field-disabled-border-color</code></td>
+<td></td>
+<td>Border colour when disabled (default: the underline transparent)</td>
+</tr>
+<tr>
+<td><code>--ui-field-readonly-border-color</code></td>
+<td></td>
+<td>Border colour when read-only (default: a hairline underline)</td>
+</tr>
+<tr>
+<td><code>--ui-field-radius</code></td>
+<td></td>
+<td>Corner radius of the box (default 0; Kanok: 6px)</td>
+</tr>
+<tr>
+<td><code>--ui-field-background</code></td>
+<td></td>
+<td>Fill of the box (default <code>--ui-surface-1</code>; Kanok: transparent)</td>
+</tr>
+<tr>
+<td><code>--ui-label-font</code></td>
+<td></td>
+<td>Font of the label (default <code>--ui-font-caption</code>; Kanok: 14px semibold)</td>
+</tr>
+<tr>
+<td><code>--ui-label-color</code></td>
+<td></td>
+<td>Colour of the label (default <code>--ui-ink-muted</code>; Kanok: <code>--ui-ink</code>)</td>
+</tr>
+<tr>
+<td><code>--ui-field-readonly-background</code></td>
+<td></td>
+<td>The box's fill when read-only (default transparent; Kanok: a faint ink tint, so read-only reads as set and never weaker than disabled)</td>
+</tr>
+<tr>
+<td><code>--ui-fluid-background</code></td>
+<td></td>
+<td>/ --ui-fluid-gap - A fluid box's fill and the space under it (default the layer's fill, 0: boxes that touch; Kanok: transparent, 8px)</td>
+</tr>
+<tr>
+<td><code>--ui-icon-control-radius</code></td>
+<td></td>
+<td>Corners of its small icon buttons, their hover fill and ring (default 0; Kanok: round)</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+<nav class="doc-toc" aria-labelledby="doc-toc-title"><p id="doc-toc-title" class="doc-toc-title">On this page</p><ul><li class="doc-toc-h2"><a href="#installation">Installation</a></li><li class="doc-toc-h2"><a href="#use-it">Use it</a></li><li class="doc-toc-h2"><a href="#sizes">Sizes</a></li><li class="doc-toc-h2"><a href="#passwords">Passwords</a></li><li class="doc-toc-h2"><a href="#email-phone-and-web-addresses">Email, phone and web addresses</a></li><li class="doc-toc-h2"><a href="#currency-units-and-masks">Currency, units and masks</a></li><li class="doc-toc-h2"><a href="#read-the-value">Read the value</a></li><li class="doc-toc-h2"><a href="#character-counter">Character counter</a></li><li class="doc-toc-h2"><a href="#helper-text-warnings-and-errors">Helper text, warnings and errors</a></li><li class="doc-toc-h2"><a href="#label-and-helper-text-with-markup">Label and helper text with markup</a></li><li class="doc-toc-h2"><a href="#label-position-read-only-and-disabled">Label position, read-only and disabled</a></li><li class="doc-toc-h2"><a href="#fluid-fields">Fluid fields</a></li><li class="doc-toc-h2"><a href="#outlined-kanok-design">Outlined (Kanok design)</a></li><li class="doc-toc-h2"><a href="#check-it-in-a-form">Check it in a form</a></li><li class="doc-toc-h2"><a href="#errors-from-your-own-checks">Errors from your own checks</a></li><li class="doc-toc-h2"><a href="#skeleton">Skeleton</a></li><li class="doc-toc-h2"><a href="#keyboard">Keyboard</a></li><li class="doc-toc-h2"><a href="#accessibility">Accessibility</a></li><li class="doc-toc-h2"><a href="#api">API</a></li><li class="doc-toc-h3"><a href="#ui-text-input-react-uitextinput">&lt;ui-text-input></a></li></ul></nav>
+</div>
+<nav class="doc-pager" aria-label="Next / Previous"><a class="doc-pager-prev" href="/kanok-ui-docs/en/button/" rel="prev"><span>Previous</span>Button</a><a class="doc-pager-next" href="/kanok-ui-docs/en/text-area/" rel="next"><span>Next</span>Text area</a></nav>
+<footer class="doc-footer">@purpurabog/ui 2.3.0 · MIT · <a href="https://cdn.jsdelivr.net/npm/@purpurabog/ui@2.3.0/THIRD-PARTY-NOTICES.md">Third-party notices</a><br>Built on the Carbon Design System. Not affiliated with or endorsed by IBM; IBM and Carbon are trademarks of IBM Corp.</footer>
+</ui-content>
+<ui-modal id="doc-search" heading="Search" data-count="{n} results" data-empty="No results for “{q}”">
+<ui-search label="Search the docs" placeholder="Search the docs" size="lg"></ui-search>
+<p class="doc-search-status" role="status"></p>
+<ul class="doc-search-results"></ul>
+</ui-modal>
+</body>
+</html>

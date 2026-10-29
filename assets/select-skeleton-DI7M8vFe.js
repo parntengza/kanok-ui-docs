@@ -1,0 +1,1 @@
+import{D as e,wt as t}from"./theme-switcher-BZXGbHfR.js";import{t as n}from"./skeleton-Bt17J2no.js";var r=class extends n{};r=e([t(`ui-select-skeleton`)],r);

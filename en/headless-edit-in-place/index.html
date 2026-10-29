@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Headless Edit in place · @purpurabog/ui</title>
+<link rel="alternate" hreflang="en" href="/kanok-ui-docs/en/headless-edit-in-place/"  /><link rel="alternate" hreflang="th" href="/kanok-ui-docs/th/headless-edit-in-place/"  />
+<script>(function(){try{var q=new URLSearchParams(location.search).get("design"),d=q;if(q==="kanok"||q==="carbon")localStorage.setItem("ui-docs-design",q);else d=localStorage.getItem("ui-docs-design");if(d==="kanok")document.documentElement.setAttribute("data-design","kanok")}catch(e){}})();(function(){try{var m=localStorage.getItem("ui-docs-theme");if(m!=="light"&&m!=="dark"&&m!=="system")return;var d=m==="dark"||(m==="system"&&matchMedia("(prefers-color-scheme: dark)").matches),r=document.documentElement,t=d?"g100":"white";if(r.getAttribute("data-design")==="kanok")t=d?"lacquer":"paper";r.setAttribute("data-theme",t)}catch(e){}})();</script>
+<style>ui-header:not(:defined){z-index:8000;box-sizing:border-box;border-block-end:1px solid var(--ui-border-subtle-1);background:var(--ui-canvas);block-size:48px;display:block;position:fixed;inset:0 0 auto}:is(ui-header:not(:defined)>*,ui-side-nav:not(:defined)>*){visibility:hidden}:is(ui-header-panel:not(:defined),ui-modal:not(:defined)){display:none}ui-side-nav:not(:defined){display:none}ui-content:not(:defined){margin-block-start:48px;padding:32px;display:block}@media (width>=1056px){ui-side-nav[expanded]:not(:defined){background:var(--ui-canvas);inline-size:256px;display:block;position:fixed;inset:48px auto 0 0}ui-side-nav[expanded]:not(:defined)~ui-content:not(:defined){margin-inline-start:256px}}ui-tabs:not(:defined){display:block}ui-tabs:not(:defined)>ui-tab{box-sizing:border-box;border-block-end:2px solid var(--ui-hairline);block-size:40px;color:var(--ui-ink-muted);font:var(--ui-font-body-sm);padding:0 16px;line-height:38px;display:inline-block}ui-tabs:not(:defined)>ui-tab:first-of-type{border-block-end-color:var(--ui-interactive);color:var(--ui-ink)}ui-tabs:not(:defined)>ui-tab-panel{padding:16px;display:block}ui-tabs:not(:defined)>ui-tab-panel~ui-tab-panel{display:none}ui-code-snippet:not(:defined){background:var(--ui-layer-1);max-block-size:272px;font:var(--ui-font-code,12px/16px monospace);white-space:pre;padding:16px;display:block;overflow:hidden}[data-react-example]:empty>*{visibility:hidden}.doc-demo:has(:not(:defined))>*{visibility:hidden}[data-react-example]:empty{box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}.doc-demo:has(:not(:defined)){box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}@keyframes doc-skeleton{to{background-position:-200% 0}}@media (prefers-reduced-motion:reduce){[data-react-example]:empty{animation:none}.doc-demo:has(:not(:defined)){animation:none}}</style>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/index-BmuAGqqO.js"></script>
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/theme-switcher-BZXGbHfR.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/listbox-gjElSjvA.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/headless-CCX6tx99.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/edit-in-place-D7FTGOxx.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/flag-D0Ou26eR.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/edit-in-place-CmFF51Rz.js">
+  <link rel="stylesheet" crossorigin href="/kanok-ui-docs/assets/theme-switcher-BXY5AIvi.css">
+  <link rel="stylesheet" crossorigin href="/kanok-ui-docs/assets/headless-CtsneZec.css">
+</head>
+<body>
+<ui-header label="@purpurabog/ui">
+<ui-skip-to-content></ui-skip-to-content>
+<ui-header-menu-button></ui-header-menu-button>
+<ui-header-name href="/kanok-ui-docs/en/" prefix="@purpurabog">ui</ui-header-name>
+<ui-header-global-bar>
+<ui-header-global-action id="doc-search-open" label="Search" tooltip-placement="bottom"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="m18.5 17.8-4.9-4.9a7 7 0 1 0-.7.7l4.9 4.9zM3 8.5a5.5 5.5 0 1 1 5.5 5.5A5.5 5.5 0 0 1 3 8.5Z" /></svg></ui-header-global-action>
+<ui-header-global-action label="Settings" panel="doc-settings" tooltip-placement="bottom-end"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="M16.9 10.6a7 7 0 0 0 0-1.2l1.8-1.4-1.6-2.8-2.1.8a6.6 6.6 0 0 0-1-.6L13.6 3h-3.2l-.4 2.4a6.6 6.6 0 0 0-1 .6l-2.1-.8L5.3 8l1.8 1.4a7 7 0 0 0 0 1.2L5.3 12l1.6 2.8 2.1-.8a6.6 6.6 0 0 0 1 .6l.4 2.4h3.2l.4-2.4a6.6 6.6 0 0 0 1-.6l2.1.8 1.6-2.8zM12 13a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" /></svg></ui-header-global-action>
+</ui-header-global-bar>
+<ui-header-panel id="doc-settings" label="Settings">
+<div class="doc-settings">
+<span class="doc-settings-label">Theme</span>
+<ui-theme-switcher storage-key="ui-docs-theme" tooltip-placement="bottom"></ui-theme-switcher>
+<span class="doc-settings-label">Style</span>
+<ui-content-switcher id="doc-design" aria-label="Style" size="sm"><ui-content-switcher-item name="carbon">Carbon</ui-content-switcher-item><ui-content-switcher-item name="kanok">Kanok</ui-content-switcher-item></ui-content-switcher>
+<span class="doc-settings-label">Language</span>
+<ui-link href="/kanok-ui-docs/th/headless-edit-in-place/" hreflang="th" lang="th">ไทย</ui-link>
+</div>
+</ui-header-panel>
+</ui-header>
+<ui-side-nav label="Documentation"><ui-side-nav-items><ui-side-nav-menu label="Get started"><ui-side-nav-menu-item href="/kanok-ui-docs/en/">Overview</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/installation/">Installation</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/migration-1-0/">Migrating to 1.0</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Guides"><ui-side-nav-menu-item href="/kanok-ui-docs/en/themes/">Themes and layers</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/kanok/">Kanok design</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/customizing/">Customizing</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/icons/">Icons</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/forms/">Forms and validation</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/frameworks/">Frameworks</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/ai/">Using with AI</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Forms and actions"><ui-side-nav-menu-item href="/kanok-ui-docs/en/button/">Button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/file-uploader/">File uploader</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Overlays"><ui-side-nav-menu-item href="/kanok-ui-docs/en/modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/toggletip/">Toggletip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/menu/">Menu</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Data"><ui-side-nav-menu-item href="/kanok-ui-docs/en/data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/contained-list/">Contained list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tree-view/">Tree view</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Navigation"><ui-side-nav-menu-item href="/kanok-ui-docs/en/tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/breadcrumb/">Breadcrumb</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/link/">Link</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/ui-shell/">UI shell</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Content"><ui-side-nav-menu-item href="/kanok-ui-docs/en/tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tile/">Tile</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/user-avatar/">User avatar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/list/">List</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Status and loading"><ui-side-nav-menu-item href="/kanok-ui-docs/en/loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/inline-loading/">Inline loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/progress-bar/">Progress bar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/skeleton/">Skeleton</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/badge-indicator/">Badge indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/status-indicator/">Status indicator</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Layout"><ui-side-nav-menu-item href="/kanok-ui-docs/en/grid/">Grid</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/heading/">Heading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/layer/">Layer</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/action-set/">Action set</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/page-header/">Page header</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/big-number/">Big number</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Headless" expanded><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless/">Introduction</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-file-uploader/">File uploader</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-menu/">Menu</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-ui-shell/">UI shell</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tree-view/">Tree view</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-edit-in-place/" current>Edit in place</ui-side-nav-menu-item></ui-side-nav-menu></ui-side-nav-items></ui-side-nav><script>if(matchMedia('(min-width: 66rem)').matches)document.currentScript.previousElementSibling.setAttribute('expanded','')</script>
+<ui-content>
+<div class="doc-page">
+<article class="doc">
+<!-- nav: Edit in place -->
+<h1 id="headless-edit-in-place">Headless Edit in place</h1>
+<p><code>EditInPlace</code> is the behaviour of the styled <a href="/kanok-ui-docs/en/edit-in-place/">Edit in place</a> as unstyled React parts: a value shown in a text field that is edited where it is, with Edit, Cancel and Save buttons. The parts hold the value and the value editing started from, start editing on focus or typing, save on Enter, put the value back on Escape, and save or put back when the focus leaves. Each button shows only when it applies, and a press on one keeps the focus in the field.</p>
+<p>You own the markup and every style: the icons, the hover fill, the focus line, the error text and the read-only note. State shows as <code>data-*</code> attributes to style on.</p>
+<h2 id="installation">Installation</h2>
+<p>The headless parts come with the package (there is no shadcn item; the React + Tailwind items are built on them):</p>
+<ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">@purpurabog/ui</span></ui-code-snippet>
+<ui-code-snippet type="single" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { EditInPlace } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;</ui-code-snippet>
+<h2 id="use-it">Use it</h2>
+<div class="doc-demo" data-react-example="0"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { EditInPlace } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> button <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'inline-flex size-10 items-center justify-center text-ink hover:bg-layer-hover-1 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus disabled:cursor-not-allowed disabled:text-ink-disabled disabled:hover:bg-transparent'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"max-w-sm"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">EditInPlace.Root</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Warehouse lease, Bang Na"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">EditInPlace.Group</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"group flex items-center hover:bg-field-1 data-editing:bg-field-1 has-[input:focus]:outline-2 has-[input:focus]:outline-focus"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">EditInPlace.Input</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contract title"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-10 min-w-0 flex-1 cursor-pointer bg-transparent px-4 text-sm text-ink outline-none"</span> /&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">EditInPlace.Action</span> <span style="color:var(--ui-tag-color-purple)">action</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"edit"</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Edit"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-teal)">`${</span><span style="color:var(--ui-tag-color-teal)">button</span><span style="color:var(--ui-tag-color-teal)">} invisible group-hover:visible`</span>}&gt;✎&lt;/<span style="color:var(--ui-tag-color-blue)">EditInPlace.Action</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">EditInPlace.Action</span> <span style="color:var(--ui-tag-color-purple)">action</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"cancel"</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Cancel"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{button}&gt;✕&lt;/<span style="color:var(--ui-tag-color-blue)">EditInPlace.Action</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">EditInPlace.Action</span> <span style="color:var(--ui-tag-color-purple)">action</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"save"</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Save"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{button}&gt;✓&lt;/<span style="color:var(--ui-tag-color-blue)">EditInPlace.Action</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">EditInPlace.Group</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">EditInPlace.Root</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<h2 id="anatomy">Anatomy</h2>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">EditInPlace.Root</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">EditInPlace.Group</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">EditInPlace.Input</span> /&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">EditInPlace.Action</span> <span style="color:var(--ui-tag-color-purple)">action</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"edit"</span> /&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">EditInPlace.Action</span> <span style="color:var(--ui-tag-color-purple)">action</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"cancel"</span> /&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">EditInPlace.Action</span> <span style="color:var(--ui-tag-color-purple)">action</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"save"</span> /&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">EditInPlace.Group</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">EditInPlace.InvalidText</span> /&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">EditInPlace.Root</span>&gt;</ui-code-snippet>
+<p><code>Root</code> renders nothing of its own. <code>Group</code> is the box that hears the focus move between the field and its buttons; put every part that takes focus inside it.</p>
+<h2 id="save-and-cancel">Save and cancel</h2>
+<p><code>onSave</code> gets the value when a change is saved: with Save, with Enter, or when the focus leaves the group with a valid change. <code>onCancel</code> gets the value put back: with Cancel, with Escape, or when the focus leaves without a valid change. Save and Cancel are enabled only once the value has changed (spaces at the ends don't count).</p>
+<div class="doc-demo" data-react-example="1"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { useState } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { EditInPlace } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> button <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'inline-flex size-10 items-center justify-center text-ink hover:bg-layer-hover-1 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus disabled:cursor-not-allowed disabled:text-ink-disabled disabled:hover:bg-transparent'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [last, setLast] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">''</span>);
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid max-w-sm gap-2"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">EditInPlace.Root</span>
+        <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"PO-2026-0815"</span>
+        <span style="color:var(--ui-tag-color-purple)">onSave</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(value) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setLast</span>(<span style="color:var(--ui-tag-color-teal)">`saved "${</span><span style="color:var(--ui-tag-color-teal)">value</span><span style="color:var(--ui-tag-color-teal)">}"`</span>)}
+        <span style="color:var(--ui-tag-color-purple)">onCancel</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(value) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setLast</span>(<span style="color:var(--ui-tag-color-teal)">`put back "${</span><span style="color:var(--ui-tag-color-teal)">value</span><span style="color:var(--ui-tag-color-teal)">}"`</span>)}
+      &gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">EditInPlace.Group</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"group flex items-center hover:bg-field-1 data-editing:bg-field-1 has-[input:focus]:outline-2 has-[input:focus]:outline-focus"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">EditInPlace.Input</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Purchase order number"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-10 min-w-0 flex-1 cursor-pointer bg-transparent px-4 text-sm text-ink outline-none"</span> /&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">EditInPlace.Action</span> <span style="color:var(--ui-tag-color-purple)">action</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"edit"</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Edit"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-teal)">`${</span><span style="color:var(--ui-tag-color-teal)">button</span><span style="color:var(--ui-tag-color-teal)">} invisible group-hover:visible`</span>}&gt;✎&lt;/<span style="color:var(--ui-tag-color-blue)">EditInPlace.Action</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">EditInPlace.Action</span> <span style="color:var(--ui-tag-color-purple)">action</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"cancel"</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Cancel"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{button}&gt;✕&lt;/<span style="color:var(--ui-tag-color-blue)">EditInPlace.Action</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">EditInPlace.Action</span> <span style="color:var(--ui-tag-color-purple)">action</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"save"</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Save"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{button}&gt;✓&lt;/<span style="color:var(--ui-tag-color-blue)">EditInPlace.Action</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">EditInPlace.Group</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">EditInPlace.Root</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-ink-muted"</span>&gt;Last event: {last}&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<h2 id="controlled-value">Controlled value</h2>
+<p>Hold the value with <code>value</code> and <code>onValueChange</code>. <code>onValueChange</code> gets every keystroke, and the value put back on cancel. Send the value to your server in <code>onSave</code>.</p>
+<div class="doc-demo" data-react-example="2"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { useState } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { EditInPlace } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> button <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'inline-flex size-10 items-center justify-center text-ink hover:bg-layer-hover-1 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus disabled:cursor-not-allowed disabled:text-ink-disabled disabled:hover:bg-transparent'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [reference, setReference] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">'REF-104'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [saved, setSaved] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">'REF-104'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid max-w-sm gap-2"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">EditInPlace.Root</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{reference} <span style="color:var(--ui-tag-color-purple)">onValueChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{setReference} <span style="color:var(--ui-tag-color-purple)">onSave</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(value) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setTimeout</span>(() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setSaved</span>(value.<span style="color:var(--ui-tag-color-cyan)">trim</span>()), <span style="color:var(--ui-tag-color-green)">400</span>)}&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">EditInPlace.Group</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"group flex items-center hover:bg-field-1 data-editing:bg-field-1 has-[input:focus]:outline-2 has-[input:focus]:outline-focus"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">EditInPlace.Input</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Reference"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-10 min-w-0 flex-1 cursor-pointer bg-transparent px-4 text-sm text-ink outline-none"</span> /&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">EditInPlace.Action</span> <span style="color:var(--ui-tag-color-purple)">action</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"edit"</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Edit"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-teal)">`${</span><span style="color:var(--ui-tag-color-teal)">button</span><span style="color:var(--ui-tag-color-teal)">} invisible group-hover:visible`</span>}&gt;✎&lt;/<span style="color:var(--ui-tag-color-blue)">EditInPlace.Action</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">EditInPlace.Action</span> <span style="color:var(--ui-tag-color-purple)">action</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"cancel"</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Cancel"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{button}&gt;✕&lt;/<span style="color:var(--ui-tag-color-blue)">EditInPlace.Action</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">EditInPlace.Action</span> <span style="color:var(--ui-tag-color-purple)">action</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"save"</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Save"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{button}&gt;✓&lt;/<span style="color:var(--ui-tag-color-blue)">EditInPlace.Action</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">EditInPlace.Group</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">EditInPlace.Root</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-ink-muted"</span>&gt;Value: {reference} · Saved on the server: {saved}&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<h2 id="invalid-with-an-error-text">Invalid, with an error text</h2>
+<p><code>invalid</code> blocks saving: Save is disabled, Enter doesn't save, and leaving puts the value back. It sets <code>aria-invalid</code> on the field and <code>data-invalid</code> on the group and the field. Put the error text in <code>InvalidText</code>: it shows only while <code>invalid</code> and describes the field (<code>aria-describedby</code>).</p>
+<div class="doc-demo" data-react-example="3"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { useState } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { EditInPlace } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> button <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'inline-flex size-10 items-center justify-center text-ink hover:bg-layer-hover-1 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus disabled:cursor-not-allowed disabled:text-ink-disabled disabled:hover:bg-transparent'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [taxId, setTaxId] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">'0105556012345'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"max-w-sm"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">EditInPlace.Root</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{taxId} <span style="color:var(--ui-tag-color-purple)">onValueChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{setTaxId} <span style="color:var(--ui-tag-color-purple)">invalid</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-magenta)">!</span><span style="color:var(--ui-tag-color-teal)">/</span><span style="color:var(--ui-tag-color-magenta)">^</span><span style="color:var(--ui-tag-color-teal)">\d</span><span style="color:var(--ui-tag-color-magenta)">{13}$</span><span style="color:var(--ui-tag-color-teal)">/</span>.<span style="color:var(--ui-tag-color-cyan)">test</span>(taxId)}&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">EditInPlace.Group</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"group flex items-center hover:bg-field-1 data-editing:bg-field-1 has-[input:focus]:outline-2 has-[input:focus]:outline-focus data-invalid:outline-2 data-invalid:-outline-offset-2 data-invalid:outline-error"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">EditInPlace.Input</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Tax ID"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-10 min-w-0 flex-1 cursor-pointer bg-transparent px-4 text-sm text-ink outline-none"</span> /&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">EditInPlace.Action</span> <span style="color:var(--ui-tag-color-purple)">action</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"edit"</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Edit"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-teal)">`${</span><span style="color:var(--ui-tag-color-teal)">button</span><span style="color:var(--ui-tag-color-teal)">} invisible group-hover:visible`</span>}&gt;✎&lt;/<span style="color:var(--ui-tag-color-blue)">EditInPlace.Action</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">EditInPlace.Action</span> <span style="color:var(--ui-tag-color-purple)">action</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"cancel"</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Cancel"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{button}&gt;✕&lt;/<span style="color:var(--ui-tag-color-blue)">EditInPlace.Action</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">EditInPlace.Action</span> <span style="color:var(--ui-tag-color-purple)">action</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"save"</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Save"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{button}&gt;✓&lt;/<span style="color:var(--ui-tag-color-blue)">EditInPlace.Action</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">EditInPlace.Group</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">EditInPlace.InvalidText</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"mt-2 text-xs text-error-text"</span>&gt;A tax ID has 13 digits&lt;/<span style="color:var(--ui-tag-color-blue)">EditInPlace.InvalidText</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">EditInPlace.Root</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<h2 id="read-only">Read-only</h2>
+<p><code>readOnly</code> keeps the value: the field is <code>readonly</code>, no button shows, and a click on the field sets <code>noteOpen</code> in the context. Show your note with it, for example in a <a href="/kanok-ui-docs/en/headless-popover/">Headless Popover</a>, and close it with <code>setNoteOpen(false)</code>.</p>
+<div class="doc-demo" data-react-example="4"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { EditInPlace } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">ReadOnlyNote</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> { noteOpen, setNoteOpen } <span style="color:var(--ui-tag-color-magenta)">=</span> EditInPlace.<span style="color:var(--ui-tag-color-cyan)">useEditInPlaceContext</span>();
+  <span style="color:var(--ui-tag-color-magenta)">if</span> (<span style="color:var(--ui-tag-color-magenta)">!</span>noteOpen) <span style="color:var(--ui-tag-color-magenta)">return</span> <span style="color:var(--ui-tag-color-green)">null</span>;
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">role</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"status"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"mt-2 flex items-start justify-between gap-4 bg-inverse-surface-1 p-4 text-sm text-inverse-ink"</span>&gt;
+      Contract numbers are set when the contract is signed.
+      &lt;<span style="color:var(--ui-tag-color-blue)">button</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"button"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setNoteOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"underline focus-visible:outline-2 focus-visible:outline-focus-inverse"</span>&gt;Close&lt;/<span style="color:var(--ui-tag-color-blue)">button</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"max-w-sm"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">EditInPlace.Root</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"CT-2026-0142"</span> <span style="color:var(--ui-tag-color-purple)">readOnly</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">EditInPlace.Group</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex items-center data-readonly:cursor-not-allowed"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">EditInPlace.Input</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contract number"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-10 min-w-0 flex-1 bg-transparent px-4 text-sm text-ink outline-none focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus"</span> /&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">EditInPlace.Group</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">ReadOnlyNote</span> /&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">EditInPlace.Root</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<p>The <code>Action</code>s show in their own mode only: <code>edit</code> at rest, <code>cancel</code> and <code>save</code> while editing, none when read-only. For an &quot;Edit off&quot; button beside a read-only field, render your own button that calls <code>setNoteOpen</code>.</p>
+<h2 id="your-own-buttons">Your own buttons</h2>
+<p><code>render</code> on an <code>Action</code> renders your component with the action's props (<code>type</code>, <code>disabled</code>, <code>data-disabled</code>, <code>onMouseDown</code>, <code>onClick</code> and your own), for example a styled icon button with a tooltip. Spread them all onto your button, so the press keeps the focus in the field.</p>
+<div class="doc-demo" data-react-example="5"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> <span style="color:var(--ui-tag-color-magenta)">type</span> { ComponentProps } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { EditInPlace } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">IconButton</span>({ label, children, className, <span style="color:var(--ui-tag-color-magenta)">...</span>props }<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">ComponentProps</span>&lt;<span style="color:var(--ui-tag-color-teal)">'button'</span>&gt; <span style="color:var(--ui-tag-color-magenta)">&amp;</span> { label<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span> }) {
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">button</span> {<span style="color:var(--ui-tag-color-magenta)">...</span>props} <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span>{label} <span style="color:var(--ui-tag-color-purple)">title</span><span style="color:var(--ui-tag-color-magenta)">=</span>{label} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-teal)">`inline-flex size-12 items-center justify-center text-ink hover:bg-layer-hover-1 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus data-disabled:cursor-not-allowed data-disabled:text-ink-disabled ${</span><span style="color:var(--ui-tag-color-teal)">className </span><span style="color:var(--ui-tag-color-magenta)">??</span><span style="color:var(--ui-tag-color-teal)"> </span><span style="color:var(--ui-tag-color-teal)">''}`</span>}&gt;
+      {children}
+    &lt;/<span style="color:var(--ui-tag-color-blue)">button</span>&gt;
+  );
+}
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"max-w-sm"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">EditInPlace.Root</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Siam Logistics"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">EditInPlace.Group</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"group flex items-center hover:bg-field-1 data-editing:bg-field-1 has-[input:focus]:outline-2 has-[input:focus]:outline-focus"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">EditInPlace.Input</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Supplier name"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-12 min-w-0 flex-1 cursor-pointer bg-transparent px-4 text-sm text-ink outline-none"</span> /&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">EditInPlace.Action</span> <span style="color:var(--ui-tag-color-purple)">action</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"edit"</span> <span style="color:var(--ui-tag-color-purple)">render</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(props) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> &lt;<span style="color:var(--ui-tag-color-blue)">IconButton</span> {<span style="color:var(--ui-tag-color-magenta)">...</span>props} <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Edit supplier name"</span>&gt;✎&lt;/<span style="color:var(--ui-tag-color-blue)">IconButton</span>&gt;} /&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">EditInPlace.Action</span> <span style="color:var(--ui-tag-color-purple)">action</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"cancel"</span> <span style="color:var(--ui-tag-color-purple)">render</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(props) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> &lt;<span style="color:var(--ui-tag-color-blue)">IconButton</span> {<span style="color:var(--ui-tag-color-magenta)">...</span>props} <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Undo changes"</span>&gt;✕&lt;/<span style="color:var(--ui-tag-color-blue)">IconButton</span>&gt;} /&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">EditInPlace.Action</span> <span style="color:var(--ui-tag-color-purple)">action</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"save"</span> <span style="color:var(--ui-tag-color-purple)">render</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(props) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> &lt;<span style="color:var(--ui-tag-color-blue)">IconButton</span> {<span style="color:var(--ui-tag-color-magenta)">...</span>props} <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Save supplier name"</span>&gt;✓&lt;/<span style="color:var(--ui-tag-color-blue)">IconButton</span>&gt;} /&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">EditInPlace.Group</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">EditInPlace.Root</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<h2 id="style-it">Style it</h2>
+<div class="doc-demo" data-react-example="6"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { useState } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { EditInPlace } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> button <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'inline-flex size-10 items-center justify-center text-ink hover:bg-layer-hover-1 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus data-disabled:cursor-not-allowed data-disabled:text-ink-disabled data-disabled:hover:bg-transparent'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [invalid, setInvalid] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-green)">false</span>);
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid max-w-sm gap-4"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">EditInPlace.Root</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Malee S."</span> <span style="color:var(--ui-tag-color-purple)">invalid</span><span style="color:var(--ui-tag-color-magenta)">=</span>{invalid}&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">EditInPlace.Group</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"group flex items-center border-b border-transparent hover:bg-field-1 data-editing:border-border-strong-1 data-editing:bg-field-1 has-[input:focus]:outline-2 has-[input:focus]:outline-focus data-invalid:outline-2 data-invalid:-outline-offset-2 data-invalid:outline-error"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">EditInPlace.Input</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Owner"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-10 min-w-0 flex-1 cursor-pointer bg-transparent px-4 text-sm font-semibold text-ink outline-none data-editing:cursor-text data-editing:font-normal"</span> /&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">EditInPlace.Action</span> <span style="color:var(--ui-tag-color-purple)">action</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"edit"</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Edit"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-teal)">`${</span><span style="color:var(--ui-tag-color-teal)">button</span><span style="color:var(--ui-tag-color-teal)">} invisible group-hover:visible`</span>}&gt;✎&lt;/<span style="color:var(--ui-tag-color-blue)">EditInPlace.Action</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">EditInPlace.Action</span> <span style="color:var(--ui-tag-color-purple)">action</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"cancel"</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Cancel"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{button}&gt;✕&lt;/<span style="color:var(--ui-tag-color-blue)">EditInPlace.Action</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">EditInPlace.Action</span> <span style="color:var(--ui-tag-color-purple)">action</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"save"</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Save"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{button}&gt;✓&lt;/<span style="color:var(--ui-tag-color-blue)">EditInPlace.Action</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">EditInPlace.Group</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">EditInPlace.Root</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">label</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex items-center gap-2 text-sm text-ink"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">input</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"checkbox"</span> <span style="color:var(--ui-tag-color-purple)">checked</span><span style="color:var(--ui-tag-color-magenta)">=</span>{invalid} <span style="color:var(--ui-tag-color-purple)">onChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setInvalid</span>(e.target.checked)} /&gt;
+        invalid
+      &lt;/<span style="color:var(--ui-tag-color-blue)">label</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<p>The same in plain CSS, with your own class names on the parts:</p>
+<ui-code-snippet type="multi" class="doc-code" data-lang="css"><span style="color:var(--ui-tag-color-purple)">.eip-group:hover</span>,
+<span style="color:var(--ui-tag-color-purple)">.eip-group</span>[<span style="color:var(--ui-tag-color-purple)">data-editing</span>] { <span style="color:var(--ui-tag-color-purple)">background</span>: #f4f4f4; }
+<span style="color:var(--ui-tag-color-purple)">.eip-group:has</span>(<span style="color:var(--ui-tag-color-blue)">input</span><span style="color:var(--ui-tag-color-purple)">:focus</span>) { <span style="color:var(--ui-tag-color-purple)">outline</span>: <span style="color:var(--ui-tag-color-green)">2px</span> <span style="color:var(--ui-tag-color-green)">solid</span> #0f62fe; }
+<span style="color:var(--ui-tag-color-purple)">.eip-group</span>[<span style="color:var(--ui-tag-color-purple)">data-invalid</span>] { <span style="color:var(--ui-tag-color-purple)">outline</span>: <span style="color:var(--ui-tag-color-green)">2px</span> <span style="color:var(--ui-tag-color-green)">solid</span> #da1e28; <span style="color:var(--ui-tag-color-purple)">outline-offset</span>: <span style="color:var(--ui-tag-color-green)">-2px</span>; }
+<span style="color:var(--ui-tag-color-purple)">.eip-input</span>[<span style="color:var(--ui-tag-color-purple)">data-editing</span>] { <span style="color:var(--ui-tag-color-purple)">cursor</span>: <span style="color:var(--ui-tag-color-green)">text</span>; }
+<span style="color:var(--ui-tag-color-purple)">.eip-action</span>[<span style="color:var(--ui-tag-color-purple)">data-disabled</span>] { <span style="color:var(--ui-tag-color-purple)">color</span>: #c6c6c6; <span style="color:var(--ui-tag-color-purple)">cursor</span>: <span style="color:var(--ui-tag-color-green)">not-allowed</span>; }</ui-code-snippet>
+<h2 id="parts">Parts</h2>
+<h3 id="editinplace-root">EditInPlace.Root</h3>
+<p>Holds the value, the editing state and the value editing started from. Renders only its children.</p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>value</code></td>
+<td><code>string</code></td>
+<td>—</td>
+<td>The value, controlled (pair with <code>onValueChange</code>)</td>
+</tr>
+<tr>
+<td><code>defaultValue</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>The first value, uncontrolled</td>
+</tr>
+<tr>
+<td><code>onValueChange</code></td>
+<td><code>(value: string) =&gt; void</code></td>
+<td>—</td>
+<td>Every keystroke, and the value put back on cancel</td>
+</tr>
+<tr>
+<td><code>onSave</code></td>
+<td><code>(value: string) =&gt; void</code></td>
+<td>—</td>
+<td>A change was saved (Save, Enter, leaving the group)</td>
+</tr>
+<tr>
+<td><code>onCancel</code></td>
+<td><code>(value: string) =&gt; void</code></td>
+<td>—</td>
+<td>The value was put back (Cancel, Escape, leaving without a valid change)</td>
+</tr>
+<tr>
+<td><code>invalid</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Blocks saving; <code>aria-invalid</code> on the field</td>
+</tr>
+<tr>
+<td><code>readOnly</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Shown, not edited</td>
+</tr>
+</tbody>
+</table>
+<h3 id="editinplace-group">EditInPlace.Group</h3>
+<p>Renders a <code>&lt;div&gt;</code>. A focus coming in starts editing; a focus leaving all of it saves a valid change or puts the value back. It takes every <code>&lt;div&gt;</code> prop.</p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-editing</code></td>
+<td>While editing</td>
+</tr>
+<tr>
+<td><code>data-invalid</code></td>
+<td><code>invalid</code> is set</td>
+</tr>
+<tr>
+<td><code>data-readonly</code></td>
+<td><code>readOnly</code> is set</td>
+</tr>
+</tbody>
+</table>
+<h3 id="editinplace-input">EditInPlace.Input</h3>
+<p>Renders an <code>&lt;input type=&quot;text&quot;&gt;</code> with the value. Enter saves, or stops editing when there is nothing to save (the focus stays); Escape puts the value back. A click starts editing, or opens the note when read-only. It takes every <code>&lt;input&gt;</code> prop except <code>value</code>, <code>defaultValue</code>, <code>type</code> and <code>readOnly</code>, which come from <code>Root</code>. Its id is yours when you give one, else <code>${id}input</code>; its <code>aria-describedby</code> is yours when you give one, else the <code>InvalidText</code> shown.</p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-editing</code></td>
+<td>While editing</td>
+</tr>
+<tr>
+<td><code>data-invalid</code></td>
+<td><code>invalid</code> is set</td>
+</tr>
+<tr>
+<td><code>data-readonly</code></td>
+<td><code>readOnly</code> is set</td>
+</tr>
+</tbody>
+</table>
+<h3 id="editinplace-invalidtext">EditInPlace.InvalidText</h3>
+<p>Renders a <code>&lt;p&gt;</code> with your error text while <code>Root</code> is <code>invalid</code>, and nothing otherwise; while it shows, it describes the field. Its id is yours when you give one, else <code>${id}error</code>. It takes every <code>&lt;p&gt;</code> prop.</p>
+<h3 id="editinplace-action">EditInPlace.Action</h3>
+<p>Renders a <code>&lt;button type=&quot;button&quot;&gt;</code>, only in its mode. Its mousedown is cancelled, so a press keeps the focus in the field. It takes every <code>&lt;button&gt;</code> prop except <code>type</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>action</code></td>
+<td><code>'edit' | 'cancel' | 'save'</code></td>
+<td>—</td>
+<td><code>edit</code> at rest: focuses the field. <code>cancel</code> while editing, once the value changed: puts it back. <code>save</code> while editing, once it changed and is valid: saves</td>
+</tr>
+<tr>
+<td><code>render</code></td>
+<td><code>(props) =&gt; ReactElement</code></td>
+<td>—</td>
+<td>Renders your own button with these props</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-disabled</code></td>
+<td><code>disabled</code> is set, or the action can't run yet (<code>cancel</code> without a change, <code>save</code> without a valid change)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="editinplace-useeditinplacecontext">EditInPlace.useEditInPlaceContext()</h3>
+<p>Reads the state of the enclosing <code>Root</code> from any component inside it: <code>id</code> (the field is <code>${id}input</code> and the error text <code>${id}error</code> unless you give them ids), <code>value</code>, <code>editing</code>, <code>mode</code> (<code>'rest'</code>, <code>'editing'</code> or <code>'readonly'</code>), <code>canSave</code>, <code>canCancel</code>, <code>invalid</code>, <code>readOnly</code>, <code>noteOpen</code> and <code>setNoteOpen</code>, and the actions <code>begin</code>, <code>save</code>, <code>cancel</code> and <code>refocus</code>. Outside a <code>Root</code> it throws.</p>
+<h2 id="keyboard-and-accessibility">Keyboard and accessibility</h2>
+<ul>
+<li>Tab into the field starts editing. Tab then reaches Cancel and Save once they are enabled; leaving the group saves a valid change or puts the value back.</li>
+<li>Enter saves a valid change and keeps editing; with nothing to save it stops editing, the focus staying in the field. Escape puts the value back and keeps editing.</li>
+<li>After Save, Cancel or Escape, the focus goes back to the field with the caret at the end.</li>
+<li>The field sets <code>aria-invalid</code> when <code>invalid</code>. <code>InvalidText</code> describes it while it shows. You add its name (<code>aria-label</code>, or a <code>&lt;label&gt;</code> for its id) and names for the buttons, whose content is often only an icon.</li>
+<li>A read-only field is <code>readonly</code>: it still takes focus and is read. Your note should say why it can't be edited.</li>
+</ul>
+<p>The styled <a href="/kanok-ui-docs/en/edit-in-place/">Edit in place</a> is built on these parts.</p>
+
+</article>
+<nav class="doc-toc" aria-labelledby="doc-toc-title"><p id="doc-toc-title" class="doc-toc-title">On this page</p><ul><li class="doc-toc-h2"><a href="#installation">Installation</a></li><li class="doc-toc-h2"><a href="#use-it">Use it</a></li><li class="doc-toc-h2"><a href="#anatomy">Anatomy</a></li><li class="doc-toc-h2"><a href="#save-and-cancel">Save and cancel</a></li><li class="doc-toc-h2"><a href="#controlled-value">Controlled value</a></li><li class="doc-toc-h2"><a href="#invalid-with-an-error-text">Invalid, with an error text</a></li><li class="doc-toc-h2"><a href="#read-only">Read-only</a></li><li class="doc-toc-h2"><a href="#your-own-buttons">Your own buttons</a></li><li class="doc-toc-h2"><a href="#style-it">Style it</a></li><li class="doc-toc-h2"><a href="#parts">Parts</a></li><li class="doc-toc-h3"><a href="#editinplace-root">EditInPlace.Root</a></li><li class="doc-toc-h3"><a href="#editinplace-group">EditInPlace.Group</a></li><li class="doc-toc-h3"><a href="#editinplace-input">EditInPlace.Input</a></li><li class="doc-toc-h3"><a href="#editinplace-invalidtext">EditInPlace.InvalidText</a></li><li class="doc-toc-h3"><a href="#editinplace-action">EditInPlace.Action</a></li><li class="doc-toc-h3"><a href="#editinplace-useeditinplacecontext">EditInPlace.useEditInPlaceContext()</a></li><li class="doc-toc-h2"><a href="#keyboard-and-accessibility">Keyboard and accessibility</a></li></ul></nav>
+</div>
+<nav class="doc-pager" aria-label="Next / Previous"><a class="doc-pager-prev" href="/kanok-ui-docs/en/headless-product-card/" rel="prev"><span>Previous</span>Product card</a><span></span></nav>
+<footer class="doc-footer">@purpurabog/ui 2.3.0 · MIT · <a href="https://cdn.jsdelivr.net/npm/@purpurabog/ui@2.3.0/THIRD-PARTY-NOTICES.md">Third-party notices</a><br>Built on the Carbon Design System. Not affiliated with or endorsed by IBM; IBM and Carbon are trademarks of IBM Corp.</footer>
+</ui-content>
+<ui-modal id="doc-search" heading="Search" data-count="{n} results" data-empty="No results for “{q}”">
+<ui-search label="Search the docs" placeholder="Search the docs" size="lg"></ui-search>
+<p class="doc-search-status" role="status"></p>
+<ul class="doc-search-results"></ul>
+</ui-modal>
+</body>
+</html>

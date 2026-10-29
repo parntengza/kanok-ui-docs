@@ -1,0 +1,925 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Modal · @purpurabog/ui</title>
+<link rel="alternate" hreflang="en" href="/kanok-ui-docs/en/modal/"  /><link rel="alternate" hreflang="th" href="/kanok-ui-docs/th/modal/"  />
+<script>(function(){try{var q=new URLSearchParams(location.search).get("design"),d=q;if(q==="kanok"||q==="carbon")localStorage.setItem("ui-docs-design",q);else d=localStorage.getItem("ui-docs-design");if(d==="kanok")document.documentElement.setAttribute("data-design","kanok")}catch(e){}})();(function(){try{var m=localStorage.getItem("ui-docs-theme");if(m!=="light"&&m!=="dark"&&m!=="system")return;var d=m==="dark"||(m==="system"&&matchMedia("(prefers-color-scheme: dark)").matches),r=document.documentElement,t=d?"g100":"white";if(r.getAttribute("data-design")==="kanok")t=d?"lacquer":"paper";r.setAttribute("data-theme",t)}catch(e){}})();</script>
+<style>ui-header:not(:defined){z-index:8000;box-sizing:border-box;border-block-end:1px solid var(--ui-border-subtle-1);background:var(--ui-canvas);block-size:48px;display:block;position:fixed;inset:0 0 auto}:is(ui-header:not(:defined)>*,ui-side-nav:not(:defined)>*){visibility:hidden}:is(ui-header-panel:not(:defined),ui-modal:not(:defined)){display:none}ui-side-nav:not(:defined){display:none}ui-content:not(:defined){margin-block-start:48px;padding:32px;display:block}@media (width>=1056px){ui-side-nav[expanded]:not(:defined){background:var(--ui-canvas);inline-size:256px;display:block;position:fixed;inset:48px auto 0 0}ui-side-nav[expanded]:not(:defined)~ui-content:not(:defined){margin-inline-start:256px}}ui-tabs:not(:defined){display:block}ui-tabs:not(:defined)>ui-tab{box-sizing:border-box;border-block-end:2px solid var(--ui-hairline);block-size:40px;color:var(--ui-ink-muted);font:var(--ui-font-body-sm);padding:0 16px;line-height:38px;display:inline-block}ui-tabs:not(:defined)>ui-tab:first-of-type{border-block-end-color:var(--ui-interactive);color:var(--ui-ink)}ui-tabs:not(:defined)>ui-tab-panel{padding:16px;display:block}ui-tabs:not(:defined)>ui-tab-panel~ui-tab-panel{display:none}ui-code-snippet:not(:defined){background:var(--ui-layer-1);max-block-size:272px;font:var(--ui-font-code,12px/16px monospace);white-space:pre;padding:16px;display:block;overflow:hidden}[data-react-example]:empty>*{visibility:hidden}.doc-demo:has(:not(:defined))>*{visibility:hidden}[data-react-example]:empty{box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}.doc-demo:has(:not(:defined)){box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}@keyframes doc-skeleton{to{background-position:-200% 0}}@media (prefers-reduced-motion:reduce){[data-react-example]:empty{animation:none}.doc-demo:has(:not(:defined)){animation:none}}</style>
+
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/theme-switcher-BZXGbHfR.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/tab-ChjAM0hz.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/affixes-RbQJ6omC.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/mask-BgmAmoJG.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/text-input-CfhE-rX4.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/button-DGUm7Yxm.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/icon-button-D4pzZab2.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/auto-grow-B4XS1-9c.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/text-area-CDT2bI-K.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/select-Dpy2FROW.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/notification-BnkpnhKh.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/notification-CSDVKFr6.js"></script>
+  <link rel="stylesheet" crossorigin href="/kanok-ui-docs/assets/theme-switcher-BXY5AIvi.css">
+</head>
+<body>
+<ui-header label="@purpurabog/ui">
+<ui-skip-to-content></ui-skip-to-content>
+<ui-header-menu-button></ui-header-menu-button>
+<ui-header-name href="/kanok-ui-docs/en/" prefix="@purpurabog">ui</ui-header-name>
+<ui-header-global-bar>
+<ui-header-global-action id="doc-search-open" label="Search" tooltip-placement="bottom"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="m18.5 17.8-4.9-4.9a7 7 0 1 0-.7.7l4.9 4.9zM3 8.5a5.5 5.5 0 1 1 5.5 5.5A5.5 5.5 0 0 1 3 8.5Z" /></svg></ui-header-global-action>
+<ui-header-global-action label="Settings" panel="doc-settings" tooltip-placement="bottom-end"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="M16.9 10.6a7 7 0 0 0 0-1.2l1.8-1.4-1.6-2.8-2.1.8a6.6 6.6 0 0 0-1-.6L13.6 3h-3.2l-.4 2.4a6.6 6.6 0 0 0-1 .6l-2.1-.8L5.3 8l1.8 1.4a7 7 0 0 0 0 1.2L5.3 12l1.6 2.8 2.1-.8a6.6 6.6 0 0 0 1 .6l.4 2.4h3.2l.4-2.4a6.6 6.6 0 0 0 1-.6l2.1.8 1.6-2.8zM12 13a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" /></svg></ui-header-global-action>
+</ui-header-global-bar>
+<ui-header-panel id="doc-settings" label="Settings">
+<div class="doc-settings">
+<span class="doc-settings-label">Theme</span>
+<ui-theme-switcher storage-key="ui-docs-theme" tooltip-placement="bottom"></ui-theme-switcher>
+<span class="doc-settings-label">Style</span>
+<ui-content-switcher id="doc-design" aria-label="Style" size="sm"><ui-content-switcher-item name="carbon">Carbon</ui-content-switcher-item><ui-content-switcher-item name="kanok">Kanok</ui-content-switcher-item></ui-content-switcher>
+<span class="doc-settings-label">Language</span>
+<ui-link href="/kanok-ui-docs/th/modal/" hreflang="th" lang="th">ไทย</ui-link>
+</div>
+</ui-header-panel>
+</ui-header>
+<ui-side-nav label="Documentation"><ui-side-nav-items><ui-side-nav-menu label="Get started"><ui-side-nav-menu-item href="/kanok-ui-docs/en/">Overview</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/installation/">Installation</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/migration-1-0/">Migrating to 1.0</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Guides"><ui-side-nav-menu-item href="/kanok-ui-docs/en/themes/">Themes and layers</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/kanok/">Kanok design</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/customizing/">Customizing</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/icons/">Icons</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/forms/">Forms and validation</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/frameworks/">Frameworks</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/ai/">Using with AI</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Forms and actions"><ui-side-nav-menu-item href="/kanok-ui-docs/en/button/">Button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/file-uploader/">File uploader</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Overlays" expanded><ui-side-nav-menu-item href="/kanok-ui-docs/en/modal/" current>Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/toggletip/">Toggletip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/menu/">Menu</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Data"><ui-side-nav-menu-item href="/kanok-ui-docs/en/data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/contained-list/">Contained list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tree-view/">Tree view</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Navigation"><ui-side-nav-menu-item href="/kanok-ui-docs/en/tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/breadcrumb/">Breadcrumb</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/link/">Link</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/ui-shell/">UI shell</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Content"><ui-side-nav-menu-item href="/kanok-ui-docs/en/tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tile/">Tile</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/user-avatar/">User avatar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/list/">List</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Status and loading"><ui-side-nav-menu-item href="/kanok-ui-docs/en/loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/inline-loading/">Inline loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/progress-bar/">Progress bar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/skeleton/">Skeleton</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/badge-indicator/">Badge indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/status-indicator/">Status indicator</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Layout"><ui-side-nav-menu-item href="/kanok-ui-docs/en/grid/">Grid</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/heading/">Heading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/layer/">Layer</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/action-set/">Action set</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/page-header/">Page header</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/big-number/">Big number</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Headless"><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless/">Introduction</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-file-uploader/">File uploader</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-menu/">Menu</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-ui-shell/">UI shell</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tree-view/">Tree view</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu></ui-side-nav-items></ui-side-nav><script>if(matchMedia('(min-width: 66rem)').matches)document.currentScript.previousElementSibling.setAttribute('expanded','')</script>
+<ui-content>
+<div class="doc-page">
+<article class="doc">
+<h1 id="modal">Modal</h1>
+<p>A modal asks for the user's full attention: it opens over the page, the page behind it can't be used, and focus stays inside until it closes. Use it for a short task or a decision. For a long form or a flow with steps, use a <a href="/kanok-ui-docs/en/tearsheet/">Tearsheet</a>; for details beside the page, a <a href="/kanok-ui-docs/en/side-panel/">Side panel</a>.</p>
+<div class="doc-demo"><ui-button id="modal-open">Open contract</ui-button>
+<ui-modal id="modal-contract" heading="Contract details">
+  <span slot="label">CT-2026-0142</span>
+  <p style="margin: 0">Master services agreement with Siam Logistics Co., Ltd., effective 2 October 2026.</p>
+  <ui-button slot="footer" kind="secondary">Cancel</ui-button>
+  <ui-button slot="footer">Save</ui-button>
+</ui-modal>
+
+<script type="text/x-demo">
+  const modal = document.getElementById('modal-contract');
+  document.getElementById('modal-open').addEventListener('click', () => modal.show());
+  for (const button of modal.querySelectorAll('[slot="footer"]')) button.addEventListener('click', () => modal.close());
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-1-0">HTML</ui-tab><ui-tab panel="code-1-1">React</ui-tab><ui-tab panel="code-1-2">React + Tailwind</ui-tab><ui-tab-panel name="code-1-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"modal-open"</span>&gt;Open contract&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-modal</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"modal-contract"</span> <span style="color:var(--ui-tag-color-purple)">heading</span>=<span style="color:var(--ui-tag-color-teal)">"Contract details"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"label"</span>&gt;CT-2026-0142&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"margin: 0"</span>&gt;Master services agreement with Siam Logistics Co., Ltd., effective 2 October 2026.&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"footer"</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"secondary"</span>&gt;Cancel&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"footer"</span>&gt;Save&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-modal</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> modal <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'modal-contract'</span>);
+  document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'modal-open'</span>).<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> modal.<span style="color:var(--ui-tag-color-cyan)">show</span>());
+  <span style="color:var(--ui-tag-color-magenta)">for</span> (<span style="color:var(--ui-tag-color-magenta)">const</span> button <span style="color:var(--ui-tag-color-magenta)">of</span> modal.<span style="color:var(--ui-tag-color-cyan)">querySelectorAll</span>(<span style="color:var(--ui-tag-color-teal)">'[slot="footer"]'</span>)) button.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> modal.<span style="color:var(--ui-tag-color-cyan)">close</span>());
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-1-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> [open, setOpen] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-green)">false</span>);
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiButton</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">true</span>)}&gt;Open contract&lt;/<span style="color:var(--ui-tag-color-blue)">UiButton</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiModal</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contract details"</span> <span style="color:var(--ui-tag-color-purple)">onUiClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">slot</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"label"</span>&gt;CT-2026-0142&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;Master services agreement with Siam Logistics Co., Ltd., effective 2 October 2026.&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiButton</span> <span style="color:var(--ui-tag-color-purple)">slot</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"footer"</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"secondary"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}&gt;Cancel&lt;/<span style="color:var(--ui-tag-color-blue)">UiButton</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiButton</span> <span style="color:var(--ui-tag-color-purple)">slot</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"footer"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}&gt;Save&lt;/<span style="color:var(--ui-tag-color-blue)">UiButton</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiModal</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-1-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> [open, setOpen] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-green)">false</span>);
+
+&lt;<span style="color:var(--ui-tag-color-blue)">Button</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">true</span>)}&gt;Open contract&lt;/<span style="color:var(--ui-tag-color-blue)">Button</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">Modal</span>
+  <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open}
+  <span style="color:var(--ui-tag-color-purple)">onClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}
+  <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"CT-2026-0142"</span>
+  <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contract details"</span>
+  <span style="color:var(--ui-tag-color-purple)">footer</span><span style="color:var(--ui-tag-color-magenta)">=</span>{&lt;&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Button</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"secondary"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}&gt;Cancel&lt;/<span style="color:var(--ui-tag-color-blue)">Button</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Button</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}&gt;Save&lt;/<span style="color:var(--ui-tag-color-blue)">Button</span>&gt;
+  &lt;/&gt;}
+&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;Master services agreement with Siam Logistics Co., Ltd., effective 2 October 2026.&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Modal</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="installation">Installation</h2>
+<ui-tabs class="doc-code-tabs" label="Code"><ui-tab panel="code-2-0">npm</ui-tab><ui-tab panel="code-2-1">shadcn · Web component</ui-tab><ui-tab panel="code-2-2">shadcn · React + Tailwind</ui-tab><ui-tab panel="code-2-3">Manual</ui-tab><ui-tab-panel name="code-2-0"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">@purpurabog/ui</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-1"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npx</span> <span style="color:var(--ui-tag-color-teal)">shadcn@4</span> <span style="color:var(--ui-tag-color-teal)">add</span> <span style="color:var(--ui-tag-color-teal)">@kanok-ui/modal</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-2"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npx</span> <span style="color:var(--ui-tag-color-teal)">shadcn@4</span> <span style="color:var(--ui-tag-color-teal)">add</span> <span style="color:var(--ui-tag-color-teal)">@kanok-ui/tw-modal</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-3"><ui-code-snippet type="multi" class="doc-code" data-lang="bash"><span style="color:var(--ui-ink-muted);font-style:italic"># Web component</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 1. Install the dependencies</span>
+<span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">lit@^3.3.0</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 2. Copy each file's "content" from</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    https://cdn.jsdelivr.net/npm/@purpurabog/ui@2.3.0/registry/modal.json</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    to its target:</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/modal/modal.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 3. Do the same for the items it needs (registry/&lt;name&gt;.json):</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    core-modal, core-overlay, shared-element, shared-events, shared-field, shared-focus-ring, shared-localize, shared-quiet-focus, shared-slots, tokens</span>
+
+<span style="color:var(--ui-ink-muted);font-style:italic"># React + Tailwind</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 1. Install the dependencies</span>
+<span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">@purpurabog/ui@^2.3.0</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 2. Copy each file's "content" from</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    https://cdn.jsdelivr.net/npm/@purpurabog/ui@2.3.0/registry/tw-modal.json</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    to its target:</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/react-tw/modal.tsx</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 3. Do the same for the items it needs (registry/&lt;name&gt;.json):</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    core-modal, tw-i18n, tw-theme, tw-utils</span></ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>npm gives you every component from the package. shadcn copies the source into your app instead: a copy pinned to this version that you can change. The shadcn commands need the <code>@kanok-ui</code> registry in your <code>components.json</code> once, see <a href="/kanok-ui-docs/en/installation/#react-tailwind-with-shadcn">Installation</a>.</p>
+<h2 id="use-it">Use it</h2>
+<ui-tabs class="doc-code-tabs" label="Code"><ui-tab panel="code-3-0">HTML</ui-tab><ui-tab panel="code-3-1">React</ui-tab><ui-tab panel="code-3-2">React + Tailwind</ui-tab><ui-tab-panel name="code-3-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;<span style="color:var(--ui-tag-color-magenta)">import</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/modal'</span>;&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">onclick</span>=<span style="color:var(--ui-tag-color-teal)">"document.</span><span style="color:var(--ui-tag-color-cyan)">getElementById</span><span style="color:var(--ui-tag-color-teal)">('contract').</span><span style="color:var(--ui-tag-color-cyan)">show</span><span style="color:var(--ui-tag-color-teal)">()"</span>&gt;Open contract&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-modal</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"contract"</span> <span style="color:var(--ui-tag-color-purple)">heading</span>=<span style="color:var(--ui-tag-color-teal)">"Contract details"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;Master services agreement with Siam Logistics Co., Ltd.&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-modal</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-3-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { UiModal } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/react'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiModal</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contract details"</span> <span style="color:var(--ui-tag-color-purple)">onUiClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;Master services agreement with Siam Logistics Co., Ltd.&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiModal</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-3-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { Modal } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@/components/ui/react-tw/modal'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">Modal</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">onClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)} <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Contract details"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;Master services agreement with Siam Logistics Co., Ltd.&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Modal</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>It is built on the native <code>&lt;dialog&gt;</code>: the browser puts it in the top layer, makes the page behind it inert and keeps Tab inside. Open it with the <code>open</code> attribute, <code>show()</code> or <code>open = true</code>; close it with <code>close()</code> or <code>open = false</code>. <code>ui-close</code> fires after it has closed, however that happened. The page doesn't scroll while it is open.</p>
+<p>React + Tailwind is controlled: <code>onClose(reason)</code> reports ×, Esc, an outside click or a <code>&lt;form method=&quot;dialog&quot;&gt;</code> inside; set <code>open</code> to false to close it, or leave it to keep it open.</p>
+<h2 id="passive-modal">Passive modal</h2>
+<p>A modal with no footer buttons only shows information. It closes with ×, Esc or a click outside it.</p>
+<div class="doc-demo"><ui-button id="modal-passive-open" kind="tertiary">Stamp duty rates</ui-button>
+<ui-modal id="modal-passive" heading="Stamp duty rates" size="sm">
+  <span slot="label">Revenue Department</span>
+  <p style="margin: 0">Lease contracts: 1 baht for every 1,000 baht of rent, or part of it, for the whole term.</p>
+</ui-modal>
+
+<script type="text/x-demo">
+  const modal = document.getElementById('modal-passive');
+  document.getElementById('modal-passive-open').addEventListener('click', () => modal.show());
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-4-0">HTML</ui-tab><ui-tab panel="code-4-1">React</ui-tab><ui-tab panel="code-4-2">React + Tailwind</ui-tab><ui-tab-panel name="code-4-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"modal-passive-open"</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"tertiary"</span>&gt;Stamp duty rates&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-modal</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"modal-passive"</span> <span style="color:var(--ui-tag-color-purple)">heading</span>=<span style="color:var(--ui-tag-color-teal)">"Stamp duty rates"</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"sm"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"label"</span>&gt;Revenue Department&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"margin: 0"</span>&gt;Lease contracts: 1 baht for every 1,000 baht of rent, or part of it, for the whole term.&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-modal</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> modal <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'modal-passive'</span>);
+  document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'modal-passive-open'</span>).<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> modal.<span style="color:var(--ui-tag-color-cyan)">show</span>());
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-4-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiButton</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"tertiary"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">true</span>)}&gt;Stamp duty rates&lt;/<span style="color:var(--ui-tag-color-blue)">UiButton</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiModal</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Stamp duty rates"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">onUiClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">slot</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"label"</span>&gt;Revenue Department&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;Lease contracts: 1 baht for every 1,000 baht of rent, or part of it, for the whole term.&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiModal</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-4-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">Button</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"tertiary"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">true</span>)}&gt;Stamp duty rates&lt;/<span style="color:var(--ui-tag-color-blue)">Button</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">Modal</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">onClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)} <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Revenue Department"</span> <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Stamp duty rates"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;Lease contracts: 1 baht for every 1,000 baht of rent, or part of it, for the whole term.&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Modal</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="sizes">Sizes</h2>
+<p><code>size</code>: <code>sm</code> 480px, <code>md</code> 672px (the default), <code>lg</code> 1056px. It is never wider than the screen minus 16px a side, and never taller than 768px.</p>
+<div class="doc-demo"><div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center">
+  <ui-button kind="tertiary" data-size="sm">Small</ui-button>
+  <ui-button kind="tertiary" data-size="md">Medium</ui-button>
+  <ui-button kind="tertiary" data-size="lg">Large</ui-button>
+</div>
+<ui-modal id="modal-size" heading="Approval history">
+  <p style="margin: 0">Requested by Ananya P. on 2 October 2026, approved by the legal team on 3 October 2026.</p>
+</ui-modal>
+
+<script type="text/x-demo">
+  const modal = document.getElementById('modal-size');
+  for (const button of document.querySelectorAll('[data-size]')) {
+    button.addEventListener('click', () => {
+      modal.size = button.dataset.size;
+      modal.show();
+    });
+  }
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-5-0">HTML</ui-tab><ui-tab panel="code-5-1">React</ui-tab><ui-tab panel="code-5-2">React + Tailwind</ui-tab><ui-tab-panel name="code-5-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"display: flex; flex-wrap: wrap; gap: 16px; align-items: center"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"tertiary"</span> <span style="color:var(--ui-tag-color-purple)">data-size</span>=<span style="color:var(--ui-tag-color-teal)">"sm"</span>&gt;Small&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"tertiary"</span> <span style="color:var(--ui-tag-color-purple)">data-size</span>=<span style="color:var(--ui-tag-color-teal)">"md"</span>&gt;Medium&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"tertiary"</span> <span style="color:var(--ui-tag-color-purple)">data-size</span>=<span style="color:var(--ui-tag-color-teal)">"lg"</span>&gt;Large&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-modal</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"modal-size"</span> <span style="color:var(--ui-tag-color-purple)">heading</span>=<span style="color:var(--ui-tag-color-teal)">"Approval history"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"margin: 0"</span>&gt;Requested by Ananya P. on 2 October 2026, approved by the legal team on 3 October 2026.&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-modal</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> modal <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'modal-size'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">for</span> (<span style="color:var(--ui-tag-color-magenta)">const</span> button <span style="color:var(--ui-tag-color-magenta)">of</span> document.<span style="color:var(--ui-tag-color-cyan)">querySelectorAll</span>(<span style="color:var(--ui-tag-color-teal)">'[data-size]'</span>)) {
+    button.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+      modal.size <span style="color:var(--ui-tag-color-magenta)">=</span> button.dataset.size;
+      modal.<span style="color:var(--ui-tag-color-cyan)">show</span>();
+    });
+  }
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-5-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiModal</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Approval history"</span> <span style="color:var(--ui-tag-color-purple)">onUiClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">UiModal</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiModal</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Approval history"</span> <span style="color:var(--ui-tag-color-purple)">onUiClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">UiModal</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiModal</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"lg"</span> <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Approval history"</span> <span style="color:var(--ui-tag-color-purple)">onUiClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">UiModal</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-5-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">Modal</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">onClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)} <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Approval history"</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">Modal</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">Modal</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">onClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)} <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Approval history"</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">Modal</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">Modal</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">onClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)} <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"lg"</span> <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Approval history"</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">Modal</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="danger-confirm-before-you-delete">Danger: confirm before you delete</h2>
+<p><code>alert</code> is for a confirmation that interrupts, such as deleting something. The dialog gets <code>role=&quot;alertdialog&quot;</code>, the body becomes its description, and focus starts on the safest footer button (the first one whose <code>kind</code> is neither primary nor a danger kind), so Enter doesn't delete by accident.</p>
+<div class="doc-demo"><ui-button id="modal-alert-open" kind="danger">Delete contract</ui-button>
+<ui-modal id="modal-alert" alert heading="Delete this contract?" size="sm">
+  This removes CT-2026-0142 and its signatures for good.
+  <ui-button slot="footer" kind="secondary" data-answer="kept">Cancel</ui-button>
+  <ui-button slot="footer" kind="danger" data-answer="deleted">Delete</ui-button>
+</ui-modal>
+<p>Result: <output id="modal-alert-out"></output></p>
+
+<script type="text/x-demo">
+  const modal = document.getElementById('modal-alert');
+  const out = document.getElementById('modal-alert-out');
+  document.getElementById('modal-alert-open').addEventListener('click', () => modal.show());
+  for (const button of modal.querySelectorAll('[data-answer]')) {
+    button.addEventListener('click', () => {
+      out.value = button.dataset.answer;
+      modal.close();
+    });
+  }
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-6-0">HTML</ui-tab><ui-tab panel="code-6-1">React</ui-tab><ui-tab panel="code-6-2">React + Tailwind</ui-tab><ui-tab-panel name="code-6-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"modal-alert-open"</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"danger"</span>&gt;Delete contract&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-modal</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"modal-alert"</span> <span style="color:var(--ui-tag-color-purple)">alert</span> <span style="color:var(--ui-tag-color-purple)">heading</span>=<span style="color:var(--ui-tag-color-teal)">"Delete this contract?"</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"sm"</span>&gt;
+  This removes CT-2026-0142 and its signatures for good.
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"footer"</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"secondary"</span> <span style="color:var(--ui-tag-color-purple)">data-answer</span>=<span style="color:var(--ui-tag-color-teal)">"kept"</span>&gt;Cancel&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"footer"</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"danger"</span> <span style="color:var(--ui-tag-color-purple)">data-answer</span>=<span style="color:var(--ui-tag-color-teal)">"deleted"</span>&gt;Delete&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-modal</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;Result: &lt;<span style="color:var(--ui-tag-color-blue)">output</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"modal-alert-out"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> modal <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'modal-alert'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> out <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'modal-alert-out'</span>);
+  document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'modal-alert-open'</span>).<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> modal.<span style="color:var(--ui-tag-color-cyan)">show</span>());
+  <span style="color:var(--ui-tag-color-magenta)">for</span> (<span style="color:var(--ui-tag-color-magenta)">const</span> button <span style="color:var(--ui-tag-color-magenta)">of</span> modal.<span style="color:var(--ui-tag-color-cyan)">querySelectorAll</span>(<span style="color:var(--ui-tag-color-teal)">'[data-answer]'</span>)) {
+    button.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+      out.value <span style="color:var(--ui-tag-color-magenta)">=</span> button.dataset.answer;
+      modal.<span style="color:var(--ui-tag-color-cyan)">close</span>();
+    });
+  }
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-6-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiButton</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"danger"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">true</span>)}&gt;Delete contract&lt;/<span style="color:var(--ui-tag-color-blue)">UiButton</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiModal</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">alert</span> <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Delete this contract?"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">onUiClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}&gt;
+  This removes CT-2026-0142 and its signatures for good.
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiButton</span> <span style="color:var(--ui-tag-color-purple)">slot</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"footer"</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"secondary"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}&gt;Cancel&lt;/<span style="color:var(--ui-tag-color-blue)">UiButton</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiButton</span> <span style="color:var(--ui-tag-color-purple)">slot</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"footer"</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"danger"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{remove}&gt;Delete&lt;/<span style="color:var(--ui-tag-color-blue)">UiButton</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiModal</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-6-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">Button</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"danger"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">true</span>)}&gt;Delete contract&lt;/<span style="color:var(--ui-tag-color-blue)">Button</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">Modal</span>
+  <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open}
+  <span style="color:var(--ui-tag-color-purple)">onClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}
+  <span style="color:var(--ui-tag-color-purple)">alert</span>
+  <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Delete this contract?"</span>
+  <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span>
+  <span style="color:var(--ui-tag-color-purple)">footer</span><span style="color:var(--ui-tag-color-magenta)">=</span>{&lt;&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Button</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"secondary"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}&gt;Cancel&lt;/<span style="color:var(--ui-tag-color-blue)">Button</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Button</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"danger"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{remove}&gt;Delete&lt;/<span style="color:var(--ui-tag-color-blue)">Button</span>&gt;
+  &lt;/&gt;}
+&gt;
+  This removes CT-2026-0142 and its signatures for good.
+&lt;/<span style="color:var(--ui-tag-color-blue)">Modal</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="a-click-outside">A click outside</h2>
+<p>As in Carbon, a modal with footer buttons never closes on a click outside it, so nothing typed is lost. A passive modal does, unless it is <code>persistent</code>: then only ×, Esc or your own button close it.</p>
+<div class="doc-demo"><ui-button id="modal-persistent-open" kind="tertiary">Read the terms</ui-button>
+<ui-modal id="modal-persistent" heading="Terms of use" persistent>
+  <p style="margin: 0">A click outside doesn't close this modal. Use × or Esc.</p>
+</ui-modal>
+
+<script type="text/x-demo">
+  const modal = document.getElementById('modal-persistent');
+  document.getElementById('modal-persistent-open').addEventListener('click', () => modal.show());
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-7-0">HTML</ui-tab><ui-tab panel="code-7-1">React</ui-tab><ui-tab panel="code-7-2">React + Tailwind</ui-tab><ui-tab-panel name="code-7-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"modal-persistent-open"</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"tertiary"</span>&gt;Read the terms&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-modal</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"modal-persistent"</span> <span style="color:var(--ui-tag-color-purple)">heading</span>=<span style="color:var(--ui-tag-color-teal)">"Terms of use"</span> <span style="color:var(--ui-tag-color-purple)">persistent</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"margin: 0"</span>&gt;A click outside doesn't close this modal. Use × or Esc.&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-modal</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> modal <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'modal-persistent'</span>);
+  document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'modal-persistent-open'</span>).<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> modal.<span style="color:var(--ui-tag-color-cyan)">show</span>());
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-7-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiModal</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Terms of use"</span> <span style="color:var(--ui-tag-color-purple)">persistent</span> <span style="color:var(--ui-tag-color-purple)">onUiClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;A click outside doesn't close this modal. Use × or Esc.&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiModal</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-7-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">Modal</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">onClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)} <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Terms of use"</span> <span style="color:var(--ui-tag-color-purple)">persistent</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;A click outside doesn't close this modal. Use × or Esc.&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Modal</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="a-form-in-a-modal">A form in a modal</h2>
+<p>On open, focus goes to the first control in the body; with none, to the first footer button; else to ×. Put <code>autofocus</code> on another control to start there. The footer buttons sit outside your <code>&lt;form&gt;</code>, so the primary one calls <code>requestSubmit()</code>: the browser then checks the required fields first. Enter in a field submits too.</p>
+<div class="doc-demo"><ui-button id="modal-form-open">Add a signer</ui-button>
+<ui-modal id="modal-form" heading="Add a signer">
+  <span slot="label">CT-2026-0142</span>
+  <form id="modal-form-fields" style="display: grid; gap: 16px">
+    <ui-text-input label="Full name" name="name" required></ui-text-input>
+    <ui-text-input label="Email" name="email" type="email" required></ui-text-input>
+    <ui-select label="Role" name="role">
+      <option value="signer">Signer</option>
+      <option value="witness">Witness</option>
+    </ui-select>
+  </form>
+  <ui-button slot="footer" kind="secondary" id="modal-form-cancel">Cancel</ui-button>
+  <ui-button slot="footer" id="modal-form-add">Add signer</ui-button>
+</ui-modal>
+<p>Added: <output id="modal-form-out"></output></p>
+
+<script type="text/x-demo">
+  const modal = document.getElementById('modal-form');
+  const form = document.getElementById('modal-form-fields');
+  document.getElementById('modal-form-open').addEventListener('click', () => {
+    form.reset();
+    modal.show();
+  });
+  document.getElementById('modal-form-cancel').addEventListener('click', () => modal.close());
+  document.getElementById('modal-form-add').addEventListener('click', () => form.requestSubmit());
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    document.getElementById('modal-form-out').value = [...new FormData(form)].map(([key, value]) => `${key}=${value}`).join(', ');
+    modal.close();
+  });
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-8-0">HTML</ui-tab><ui-tab panel="code-8-1">React</ui-tab><ui-tab panel="code-8-2">React + Tailwind</ui-tab><ui-tab-panel name="code-8-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"modal-form-open"</span>&gt;Add a signer&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-modal</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"modal-form"</span> <span style="color:var(--ui-tag-color-purple)">heading</span>=<span style="color:var(--ui-tag-color-teal)">"Add a signer"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"label"</span>&gt;CT-2026-0142&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">form</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"modal-form-fields"</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"display: grid; gap: 16px"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-text-input</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Full name"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"name"</span> <span style="color:var(--ui-tag-color-purple)">required</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-text-input</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-text-input</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Email"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"email"</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"email"</span> <span style="color:var(--ui-tag-color-purple)">required</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-text-input</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-select</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Role"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"role"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"signer"</span>&gt;Signer&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"witness"</span>&gt;Witness&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">ui-select</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">form</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"footer"</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"secondary"</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"modal-form-cancel"</span>&gt;Cancel&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"footer"</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"modal-form-add"</span>&gt;Add signer&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-modal</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;Added: &lt;<span style="color:var(--ui-tag-color-blue)">output</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"modal-form-out"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> modal <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'modal-form'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> form <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'modal-form-fields'</span>);
+  document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'modal-form-open'</span>).<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    form.<span style="color:var(--ui-tag-color-cyan)">reset</span>();
+    modal.<span style="color:var(--ui-tag-color-cyan)">show</span>();
+  });
+  document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'modal-form-cancel'</span>).<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> modal.<span style="color:var(--ui-tag-color-cyan)">close</span>());
+  document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'modal-form-add'</span>).<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> form.<span style="color:var(--ui-tag-color-cyan)">requestSubmit</span>());
+  form.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'submit'</span>, (event) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    event.<span style="color:var(--ui-tag-color-cyan)">preventDefault</span>();
+    document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'modal-form-out'</span>).value <span style="color:var(--ui-tag-color-magenta)">=</span> [<span style="color:var(--ui-tag-color-magenta)">...new</span> <span style="color:var(--ui-tag-color-cyan)">FormData</span>(form)].<span style="color:var(--ui-tag-color-cyan)">map</span>(([key, value]) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-teal)">`${</span><span style="color:var(--ui-tag-color-teal)">key</span><span style="color:var(--ui-tag-color-teal)">}=${</span><span style="color:var(--ui-tag-color-teal)">value</span><span style="color:var(--ui-tag-color-teal)">}`</span>).<span style="color:var(--ui-tag-color-cyan)">join</span>(<span style="color:var(--ui-tag-color-teal)">', '</span>);
+    modal.<span style="color:var(--ui-tag-color-cyan)">close</span>();
+  });
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-8-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> form <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useRef</span>&lt;<span style="color:var(--ui-tag-color-cyan)">HTMLFormElement</span>&gt;(<span style="color:var(--ui-tag-color-green)">null</span>);
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiModal</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Add a signer"</span> <span style="color:var(--ui-tag-color-purple)">onUiClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">slot</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"label"</span>&gt;CT-2026-0142&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">form</span> <span style="color:var(--ui-tag-color-purple)">ref</span><span style="color:var(--ui-tag-color-magenta)">=</span>{form} <span style="color:var(--ui-tag-color-purple)">onSubmit</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> { e.<span style="color:var(--ui-tag-color-cyan)">preventDefault</span>(); <span style="color:var(--ui-tag-color-cyan)">add</span>(<span style="color:var(--ui-tag-color-magenta)">new</span> <span style="color:var(--ui-tag-color-cyan)">FormData</span>(e.currentTarget)); <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>); }}&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiTextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Full name"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"name"</span> <span style="color:var(--ui-tag-color-purple)">required</span> /&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiTextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Email"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"email"</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"email"</span> <span style="color:var(--ui-tag-color-purple)">required</span> /&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Role"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"role"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"signer"</span>&gt;Signer&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"witness"</span>&gt;Witness&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">UiSelect</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">form</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiButton</span> <span style="color:var(--ui-tag-color-purple)">slot</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"footer"</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"secondary"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}&gt;Cancel&lt;/<span style="color:var(--ui-tag-color-blue)">UiButton</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiButton</span> <span style="color:var(--ui-tag-color-purple)">slot</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"footer"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> form.current?.<span style="color:var(--ui-tag-color-cyan)">requestSubmit</span>()}&gt;Add signer&lt;/<span style="color:var(--ui-tag-color-blue)">UiButton</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiModal</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-8-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">Modal</span>
+  <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open}
+  <span style="color:var(--ui-tag-color-purple)">onClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}
+  <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"CT-2026-0142"</span>
+  <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Add a signer"</span>
+  <span style="color:var(--ui-tag-color-purple)">footer</span><span style="color:var(--ui-tag-color-magenta)">=</span>{&lt;&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Button</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"secondary"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}&gt;Cancel&lt;/<span style="color:var(--ui-tag-color-blue)">Button</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Button</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"submit"</span> <span style="color:var(--ui-tag-color-purple)">form</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"signer-form"</span>&gt;Add signer&lt;/<span style="color:var(--ui-tag-color-blue)">Button</span>&gt;
+  &lt;/&gt;}
+&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">form</span> <span style="color:var(--ui-tag-color-purple)">id</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"signer-form"</span> <span style="color:var(--ui-tag-color-purple)">onSubmit</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> { e.<span style="color:var(--ui-tag-color-cyan)">preventDefault</span>(); <span style="color:var(--ui-tag-color-cyan)">add</span>(<span style="color:var(--ui-tag-color-magenta)">new</span> <span style="color:var(--ui-tag-color-cyan)">FormData</span>(e.currentTarget)); <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>); }}&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">TextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Full name"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"name"</span> <span style="color:var(--ui-tag-color-purple)">required</span> /&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">TextInput</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Email"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"email"</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"email"</span> <span style="color:var(--ui-tag-color-purple)">required</span> /&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Select</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Role"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"role"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"signer"</span>&gt;Signer&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"witness"</span>&gt;Witness&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">Select</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">form</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Modal</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>In React + Tailwind the footer buttons are native <code>&lt;button&gt;</code>s, so <code>form=&quot;signer-form&quot;</code> connects the submit button to the form.</p>
+<h2 id="ask-before-closing">Ask before closing</h2>
+<p>×, Esc and a click outside first fire <code>ui-request-close</code>, cancelable, with the <code>reason</code>: <code>close-button</code>, <code>escape</code> or <code>backdrop</code>. Call <code>preventDefault()</code> to keep the modal open, for example while there are unsaved changes. Type a note below, then try to close the modal.</p>
+<div class="doc-demo"><ui-button id="modal-guard-open" kind="tertiary">Edit note</ui-button>
+<ui-modal id="modal-guard" heading="Edit note">
+  <ui-notification id="modal-guard-warning" kind="warning" low-contrast open="false" heading="Unsaved changes" subtitle="Close again to discard them."></ui-notification>
+  <ui-text-area id="modal-guard-note" label="Note to the approver"></ui-text-area>
+  <ui-button slot="footer" kind="secondary" id="modal-guard-cancel">Cancel</ui-button>
+  <ui-button slot="footer" id="modal-guard-save">Save</ui-button>
+</ui-modal>
+<p>Closed by: <output id="modal-guard-out"></output></p>
+
+<script type="text/x-demo">
+  const modal = document.getElementById('modal-guard');
+  const note = document.getElementById('modal-guard-note');
+  const warning = document.getElementById('modal-guard-warning');
+  let warned = false;
+  document.getElementById('modal-guard-open').addEventListener('click', () => {
+    note.value = '';
+    warned = false;
+    warning.open = false;
+    modal.show();
+  });
+  modal.addEventListener('ui-request-close', (event) => {
+    if (event.target !== modal) return; // the notification inside asks too
+    document.getElementById('modal-guard-out').value = event.detail.reason;
+    if (note.value && !warned) {
+      event.preventDefault();
+      warned = true;
+      warning.open = true;
+    }
+  });
+  document.getElementById('modal-guard-cancel').addEventListener('click', () => modal.requestClose('close-button'));
+  document.getElementById('modal-guard-save').addEventListener('click', () => modal.close());
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-9-0">HTML</ui-tab><ui-tab panel="code-9-1">React</ui-tab><ui-tab panel="code-9-2">React + Tailwind</ui-tab><ui-tab-panel name="code-9-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"modal-guard-open"</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"tertiary"</span>&gt;Edit note&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-modal</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"modal-guard"</span> <span style="color:var(--ui-tag-color-purple)">heading</span>=<span style="color:var(--ui-tag-color-teal)">"Edit note"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-notification</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"modal-guard-warning"</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"warning"</span> <span style="color:var(--ui-tag-color-purple)">low-contrast</span> <span style="color:var(--ui-tag-color-purple)">open</span>=<span style="color:var(--ui-tag-color-teal)">"false"</span> <span style="color:var(--ui-tag-color-purple)">heading</span>=<span style="color:var(--ui-tag-color-teal)">"Unsaved changes"</span> <span style="color:var(--ui-tag-color-purple)">subtitle</span>=<span style="color:var(--ui-tag-color-teal)">"Close again to discard them."</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-notification</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-text-area</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"modal-guard-note"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Note to the approver"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-text-area</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"footer"</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"secondary"</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"modal-guard-cancel"</span>&gt;Cancel&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"footer"</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"modal-guard-save"</span>&gt;Save&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-modal</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;Closed by: &lt;<span style="color:var(--ui-tag-color-blue)">output</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"modal-guard-out"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> modal <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'modal-guard'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> note <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'modal-guard-note'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> warning <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'modal-guard-warning'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">let</span> warned <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-green)">false</span>;
+  document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'modal-guard-open'</span>).<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    note.value <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">''</span>;
+    warned <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-green)">false</span>;
+    warning.open <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-green)">false</span>;
+    modal.<span style="color:var(--ui-tag-color-cyan)">show</span>();
+  });
+  modal.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'ui-request-close'</span>, (event) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    <span style="color:var(--ui-tag-color-magenta)">if</span> (event.target <span style="color:var(--ui-tag-color-magenta)">!==</span> modal) <span style="color:var(--ui-tag-color-magenta)">return</span>; <span style="color:var(--ui-ink-muted);font-style:italic">// the notification inside asks too</span>
+    document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'modal-guard-out'</span>).value <span style="color:var(--ui-tag-color-magenta)">=</span> event.detail.reason;
+    <span style="color:var(--ui-tag-color-magenta)">if</span> (note.value <span style="color:var(--ui-tag-color-magenta)">&amp;&amp;</span> <span style="color:var(--ui-tag-color-magenta)">!</span>warned) {
+      event.<span style="color:var(--ui-tag-color-cyan)">preventDefault</span>();
+      warned <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-green)">true</span>;
+      warning.open <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-green)">true</span>;
+    }
+  });
+  document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'modal-guard-cancel'</span>).<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> modal.<span style="color:var(--ui-tag-color-cyan)">requestClose</span>(<span style="color:var(--ui-tag-color-teal)">'close-button'</span>));
+  document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'modal-guard-save'</span>).<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> modal.<span style="color:var(--ui-tag-color-cyan)">close</span>());
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-9-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiModal</span>
+  <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open}
+  <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Edit note"</span>
+  <span style="color:var(--ui-tag-color-purple)">onUiRequestClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> { <span style="color:var(--ui-tag-color-magenta)">if</span> (dirty <span style="color:var(--ui-tag-color-magenta)">&amp;&amp;</span> <span style="color:var(--ui-tag-color-magenta)">!</span>warned) { e.<span style="color:var(--ui-tag-color-cyan)">preventDefault</span>(); <span style="color:var(--ui-tag-color-cyan)">setWarned</span>(<span style="color:var(--ui-tag-color-green)">true</span>); } }}
+  <span style="color:var(--ui-tag-color-purple)">onUiClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}
+&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiNotification</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"warning"</span> <span style="color:var(--ui-tag-color-purple)">lowContrast</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{warned} <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Unsaved changes"</span> <span style="color:var(--ui-tag-color-purple)">subtitle</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Close again to discard them."</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTextArea</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Note to the approver"</span> /&gt;
+  …
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiModal</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-9-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-ink-muted);font-style:italic">// onClose only reports: the modal stays open until you set open to false</span>
+&lt;<span style="color:var(--ui-tag-color-blue)">Modal</span>
+  <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open}
+  <span style="color:var(--ui-tag-color-purple)">onClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> { <span style="color:var(--ui-tag-color-magenta)">if</span> (dirty <span style="color:var(--ui-tag-color-magenta)">&amp;&amp;</span> <span style="color:var(--ui-tag-color-magenta)">!</span>warned) <span style="color:var(--ui-tag-color-cyan)">setWarned</span>(<span style="color:var(--ui-tag-color-green)">true</span>); <span style="color:var(--ui-tag-color-magenta)">else</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>); }}
+  <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Edit note"</span>
+  <span style="color:var(--ui-tag-color-purple)">footer</span><span style="color:var(--ui-tag-color-magenta)">=</span>{…}
+&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">Notification</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"warning"</span> <span style="color:var(--ui-tag-color-purple)">lowContrast</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{warned} <span style="color:var(--ui-tag-color-purple)">title</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Unsaved changes"</span> <span style="color:var(--ui-tag-color-purple)">subtitle</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Close again to discard them."</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TextArea</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Note to the approver"</span> /&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Modal</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p><code>ui-request-close</code> and <code>ui-close</code> bubble, and a notification inside the modal fires them too: check that <code>event.target</code> is the modal. React's <code>UiModal</code> does that for you: <code>onUiRequestClose</code> and <code>onUiClose</code> get only the modal's own events. <code>close()</code> and <code>open = false</code> close without asking; <code>requestClose(reason)</code> asks first, as × does. Give feedback inside a modal with an inline <a href="/kanok-ui-docs/en/notification/">Notification</a>, as here: a <a href="/kanok-ui-docs/en/toast/">toast</a> would sit behind the inert page.</p>
+<h2 id="scrolling-content">Scrolling content</h2>
+<p>When the body is taller than the modal, only the body scrolls; the heading and the footer stay. The body then becomes a focusable region named by the heading, so keyboard users can scroll it.</p>
+<div class="doc-demo"><ui-button id="modal-scroll-open" kind="tertiary">Read the agreement</ui-button>
+<ui-modal id="modal-scroll" heading="Data processing agreement">
+  <span slot="label">Version 3, October 2026</span>
+  <div id="modal-scroll-terms"></div>
+  <ui-button slot="footer" kind="secondary">Decline</ui-button>
+  <ui-button slot="footer">Accept</ui-button>
+</ui-modal>
+
+<script type="text/x-demo">
+  const modal = document.getElementById('modal-scroll');
+  const terms = document.getElementById('modal-scroll-terms');
+  for (let n = 1; n <= 12; n++) {
+    const clause = document.createElement('p');
+    clause.textContent = `Clause ${n}. The processor handles personal data only on the controller's written instructions and keeps it confidential.`;
+    terms.append(clause);
+  }
+  document.getElementById('modal-scroll-open').addEventListener('click', () => modal.show());
+  for (const button of modal.querySelectorAll('[slot="footer"]')) button.addEventListener('click', () => modal.close());
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-10-0">HTML</ui-tab><ui-tab panel="code-10-1">React</ui-tab><ui-tab panel="code-10-2">React + Tailwind</ui-tab><ui-tab-panel name="code-10-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"modal-scroll-open"</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"tertiary"</span>&gt;Read the agreement&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-modal</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"modal-scroll"</span> <span style="color:var(--ui-tag-color-purple)">heading</span>=<span style="color:var(--ui-tag-color-teal)">"Data processing agreement"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"label"</span>&gt;Version 3, October 2026&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"modal-scroll-terms"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"footer"</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"secondary"</span>&gt;Decline&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"footer"</span>&gt;Accept&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-modal</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> modal <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'modal-scroll'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> terms <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'modal-scroll-terms'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">for</span> (<span style="color:var(--ui-tag-color-magenta)">let</span> n <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-green)">1</span>; n <span style="color:var(--ui-tag-color-magenta)">&lt;=</span> <span style="color:var(--ui-tag-color-green)">12</span>; n<span style="color:var(--ui-tag-color-magenta)">++</span>) {
+    <span style="color:var(--ui-tag-color-magenta)">const</span> clause <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">createElement</span>(<span style="color:var(--ui-tag-color-teal)">'p'</span>);
+    clause.textContent <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">`Clause ${</span><span style="color:var(--ui-tag-color-teal)">n</span><span style="color:var(--ui-tag-color-teal)">}. The processor handles personal data only on the controller's written instructions and keeps it confidential.`</span>;
+    terms.<span style="color:var(--ui-tag-color-cyan)">append</span>(clause);
+  }
+  document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'modal-scroll-open'</span>).<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> modal.<span style="color:var(--ui-tag-color-cyan)">show</span>());
+  <span style="color:var(--ui-tag-color-magenta)">for</span> (<span style="color:var(--ui-tag-color-magenta)">const</span> button <span style="color:var(--ui-tag-color-magenta)">of</span> modal.<span style="color:var(--ui-tag-color-cyan)">querySelectorAll</span>(<span style="color:var(--ui-tag-color-teal)">'[slot="footer"]'</span>)) button.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> modal.<span style="color:var(--ui-tag-color-cyan)">close</span>());
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-10-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiModal</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Data processing agreement"</span> <span style="color:var(--ui-tag-color-purple)">onUiClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">slot</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"label"</span>&gt;Version 3, October 2026&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+  {clauses.<span style="color:var(--ui-tag-color-cyan)">map</span>((text, n) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{n}&gt;{text}&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;)}
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiButton</span> <span style="color:var(--ui-tag-color-purple)">slot</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"footer"</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"secondary"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}&gt;Decline&lt;/<span style="color:var(--ui-tag-color-blue)">UiButton</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiButton</span> <span style="color:var(--ui-tag-color-purple)">slot</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"footer"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}&gt;Accept&lt;/<span style="color:var(--ui-tag-color-blue)">UiButton</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiModal</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-10-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">Modal</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">onClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)} <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Version 3, October 2026"</span> <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Data processing agreement"</span> <span style="color:var(--ui-tag-color-purple)">footer</span><span style="color:var(--ui-tag-color-magenta)">=</span>{…}&gt;
+  {clauses.<span style="color:var(--ui-tag-color-cyan)">map</span>((text, n) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{n}&gt;{text}&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;)}
+&lt;/<span style="color:var(--ui-tag-color-blue)">Modal</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="header-actions">Header actions</h2>
+<p>The <code>header-actions</code> slot puts controls at the top end of the header, beside ×. One 48px button fits. React + Tailwind takes them in <code>headerActions</code>.</p>
+<div class="doc-demo"><ui-button id="modal-actions-open" kind="tertiary">Open with an action</ui-button>
+<ui-modal id="modal-actions" heading="Lease summary">
+  <ui-icon-button slot="header-actions" label="Edit contract">
+    <svg viewBox="0 0 16 16"><path d="m13.7 4.3-2-2a1 1 0 0 0-1.4 0L2 10.6V14h3.4l8.3-8.3a1 1 0 0 0 0-1.4ZM5 13H3v-2l6-6 2 2Zm7-7-2-2 1-1 2 2Z"/></svg>
+  </ui-icon-button>
+  <p style="margin: 0">Office lease, 3rd floor, 24 months from 1 November 2026, 45,000 baht a month.</p>
+</ui-modal>
+
+<script type="text/x-demo">
+  const modal = document.getElementById('modal-actions');
+  document.getElementById('modal-actions-open').addEventListener('click', () => modal.show());
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-11-0">HTML</ui-tab><ui-tab panel="code-11-1">React</ui-tab><ui-tab panel="code-11-2">React + Tailwind</ui-tab><ui-tab-panel name="code-11-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"modal-actions-open"</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"tertiary"</span>&gt;Open with an action&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-modal</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"modal-actions"</span> <span style="color:var(--ui-tag-color-purple)">heading</span>=<span style="color:var(--ui-tag-color-teal)">"Lease summary"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-button</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"header-actions"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Edit contract"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span>=<span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span>=<span style="color:var(--ui-tag-color-teal)">"m13.7 4.3-2-2a1 1 0 0 0-1.4 0L2 10.6V14h3.4l8.3-8.3a1 1 0 0 0 0-1.4ZM5 13H3v-2l6-6 2 2Zm7-7-2-2 1-1 2 2Z"</span>/&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-button</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"margin: 0"</span>&gt;Office lease, 3rd floor, 24 months from 1 November 2026, 45,000 baht a month.&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-modal</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> modal <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'modal-actions'</span>);
+  document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'modal-actions-open'</span>).<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> modal.<span style="color:var(--ui-tag-color-cyan)">show</span>());
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-11-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { Edit <span style="color:var(--ui-tag-color-magenta)">as</span> EditIcon } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@carbon/icons-react'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiModal</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Lease summary"</span> <span style="color:var(--ui-tag-color-purple)">onUiClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiIconButton</span> <span style="color:var(--ui-tag-color-purple)">slot</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"header-actions"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Edit contract"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">EditIcon</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">UiIconButton</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;Office lease, 3rd floor, 24 months from 1 November 2026, 45,000 baht a month.&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiModal</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-11-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { Edit <span style="color:var(--ui-tag-color-magenta)">as</span> EditIcon } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@carbon/icons-react'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">Modal</span>
+  <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open}
+  <span style="color:var(--ui-tag-color-purple)">onClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}
+  <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Lease summary"</span>
+  <span style="color:var(--ui-tag-color-purple)">headerActions</span><span style="color:var(--ui-tag-color-magenta)">=</span>{&lt;<span style="color:var(--ui-tag-color-blue)">IconButton</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Edit contract"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">EditIcon</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">IconButton</span>&gt;}
+&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;Office lease, 3rd floor, 24 months from 1 November 2026, 45,000 baht a month.&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Modal</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="keyboard">Keyboard</h2>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tab / Shift+Tab</td>
+<td>Moves through the controls inside the modal only</td>
+</tr>
+<tr>
+<td>Esc</td>
+<td>Asks to close (<code>escape</code>); focus goes back to what opened it</td>
+</tr>
+<tr>
+<td>Enter, Space</td>
+<td>Press the focused button</td>
+</tr>
+</tbody>
+</table>
+<h2 id="accessibility">Accessibility</h2>
+<ul>
+<li>The native modal <code>&lt;dialog&gt;</code> makes the rest of the page inert for the mouse, the keyboard and screen readers, and gives focus back to the control that opened it.</li>
+<li>The heading names the dialog. With no heading, the <code>label</code> slot names it; with neither, set <code>label</code> (React + Tailwind: <code>aria-label</code>).</li>
+<li><code>alert</code> makes it an <code>alertdialog</code> described by its body; use it for confirmations only.</li>
+<li>The × button is named &quot;Close&quot; in the page language; <code>close-label</code> (<code>closeLabel</code>) changes it.</li>
+</ul>
+<p>Unstyled React parts with the same behaviour: <a href="/kanok-ui-docs/en/headless-modal/">Headless Modal</a>.</p>
+<h2 id="api">API</h2>
+<p>Generated from the package. In React, pass a property as a prop of the same name; events are props too (the React column).</p>
+<h3 id="ui-modal-react-uimodal"><code>&lt;ui-modal&gt;</code> · React <code>UiModal</code></h3>
+<h4 id="attributes">Attributes</h4>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>open</code></td>
+<td><code>open</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>heading</code></td>
+<td><code>heading</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>label</code></td>
+<td><code>label</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>Accessible name when there is no heading (Carbon <code>aria-label</code>); the <code>label</code> slot is used before it.</td>
+</tr>
+<tr>
+<td><code>size</code></td>
+<td><code>size</code></td>
+<td><code>'sm' | 'md' | 'lg'</code></td>
+<td><code>'md'</code></td>
+<td>Dialog width (Carbon modal sizes): sm 480px, md 672px, lg 1056px — never wider than the viewport minus 16px a side.</td>
+</tr>
+<tr>
+<td><code>persistent</code></td>
+<td><code>persistent</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>A passive modal (no footer) ignores outside clicks too; one with footer buttons always does (Carbon).</td>
+</tr>
+<tr>
+<td><code>close-label</code></td>
+<td><code>closeLabel</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>Accessible name for the close button.</td>
+</tr>
+<tr>
+<td><code>alert</code></td>
+<td><code>alert</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Interrupting confirmation: role=&quot;alertdialog&quot;, focus starts on the safest action.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="methods">Methods</h4>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>requestClose(reason)</code></td>
+<td>Ask to close — fires cancelable <code>ui-request-close</code> first.</td>
+</tr>
+<tr>
+<td><code>focus(options)</code></td>
+<td>Focus inside the open dialog (the least destructive control, as on open).</td>
+</tr>
+</tbody>
+</table>
+<h4 id="events">Events</h4>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>React</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ui-close</code></td>
+<td><code>onUiClose</code></td>
+<td>After the modal has closed</td>
+</tr>
+<tr>
+<td><code>ui-request-close</code></td>
+<td><code>onUiRequestClose</code></td>
+<td>Cancelable; detail: { reason }. preventDefault() keeps it open.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="slots">Slots</h4>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(default)</td>
+<td>Body content</td>
+</tr>
+<tr>
+<td><code>label</code></td>
+<td>Small label above the heading (the row renders only when slotted)</td>
+</tr>
+<tr>
+<td><code>footer</code></td>
+<td>Action buttons (laid out full-bleed, Carbon style)</td>
+</tr>
+<tr>
+<td><code>header-actions</code></td>
+<td>Controls at the top end of the header, beside the close button (one 48px button fits)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="css-parts">CSS parts</h4>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dialog</code></td>
+<td>The native <code>&lt;dialog&gt;</code> panel</td>
+</tr>
+<tr>
+<td><code>header</code></td>
+<td>Header row</td>
+</tr>
+<tr>
+<td><code>header-actions</code></td>
+<td>Wrapper of the <code>header-actions</code> slot</td>
+</tr>
+<tr>
+<td><code>label</code></td>
+<td>The small label above the heading</td>
+</tr>
+<tr>
+<td><code>heading</code></td>
+<td>The heading</td>
+</tr>
+<tr>
+<td><code>close-button</code></td>
+<td>The × button</td>
+</tr>
+<tr>
+<td><code>body</code></td>
+<td>Scrollable body</td>
+</tr>
+<tr>
+<td><code>footer</code></td>
+<td>Footer holding the action buttons</td>
+</tr>
+</tbody>
+</table>
+<h4 id="css-custom-properties">CSS custom properties</h4>
+<table>
+<thead>
+<tr>
+<th>Custom property</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--ui-modal-radius</code></td>
+<td></td>
+<td>Corner radius (default 0; Kanok: 12px)</td>
+</tr>
+<tr>
+<td><code>--ui-modal-shadow</code></td>
+<td></td>
+<td><code>box-shadow</code> of the box (default none)</td>
+</tr>
+<tr>
+<td><code>--ui-modal-scrim</code></td>
+<td></td>
+<td>The overlay behind the box (default <code>rgb(22 22 22 / 0.5)</code>)</td>
+</tr>
+<tr>
+<td><code>--ui-overlay-background</code></td>
+<td></td>
+<td>The box's surface, shared by every floating surface (default layer 1)</td>
+</tr>
+<tr>
+<td><code>--ui-overlay-border</code></td>
+<td></td>
+<td>The box's border, shared by modal, side panel and tearsheet (default none)</td>
+</tr>
+<tr>
+<td><code>--ui-modal-footer-gap</code></td>
+<td></td>
+<td>Gap between footer buttons (default none: they touch)</td>
+</tr>
+<tr>
+<td><code>--ui-modal-footer-height</code></td>
+<td></td>
+<td>Footer <code>min-height</code> (default 64px)</td>
+</tr>
+<tr>
+<td><code>--ui-modal-footer-padding</code></td>
+<td></td>
+<td>Footer padding (default 0: full-bleed buttons)</td>
+</tr>
+<tr>
+<td><code>--ui-modal-footer-border</code></td>
+<td></td>
+<td>Border above the footer (default none)</td>
+</tr>
+<tr>
+<td><code>--ui-modal-button-flex</code></td>
+<td></td>
+<td><code>flex</code> of each footer button (default <code>0 1 50%</code>: halves)</td>
+</tr>
+<tr>
+<td><code>--ui-modal-button-height</code></td>
+<td></td>
+<td>Height of the footer buttons (default 64px)</td>
+</tr>
+<tr>
+<td><code>--ui-modal-button-align</code></td>
+<td></td>
+<td><code>align-items</code> of their content (default <code>flex-start</code>: text at the top)</td>
+</tr>
+<tr>
+<td><code>--ui-modal-button-padding-top</code></td>
+<td></td>
+<td>Their top padding (default 14px)</td>
+</tr>
+<tr>
+<td><code>--ui-close-size</code></td>
+<td></td>
+<td>Size of the × button (default 48px; Kanok: 32px)</td>
+</tr>
+<tr>
+<td><code>--ui-close-inset</code></td>
+<td></td>
+<td>Margin that sets the × in from the corner (default 0; Kanok: 8px)</td>
+</tr>
+<tr>
+<td><code>--ui-icon-control-radius</code></td>
+<td></td>
+<td>Corners of the ×, its hover fill and its ring (default 0; Kanok: round)</td>
+</tr>
+<tr>
+<td><code>--ui-focus-offset</code></td>
+<td></td>
+<td><code>outline-offset</code> of the ×'s focus ring (default -2px: inside; Kanok: 2px outside)</td>
+</tr>
+<tr>
+<td><code>--ui-modal-body-focus-radius</code></td>
+<td></td>
+<td>Corners of the scrolling body's focus ring (default 0; Kanok: 6px)</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+<nav class="doc-toc" aria-labelledby="doc-toc-title"><p id="doc-toc-title" class="doc-toc-title">On this page</p><ul><li class="doc-toc-h2"><a href="#installation">Installation</a></li><li class="doc-toc-h2"><a href="#use-it">Use it</a></li><li class="doc-toc-h2"><a href="#passive-modal">Passive modal</a></li><li class="doc-toc-h2"><a href="#sizes">Sizes</a></li><li class="doc-toc-h2"><a href="#danger-confirm-before-you-delete">Danger: confirm before you delete</a></li><li class="doc-toc-h2"><a href="#a-click-outside">A click outside</a></li><li class="doc-toc-h2"><a href="#a-form-in-a-modal">A form in a modal</a></li><li class="doc-toc-h2"><a href="#ask-before-closing">Ask before closing</a></li><li class="doc-toc-h2"><a href="#scrolling-content">Scrolling content</a></li><li class="doc-toc-h2"><a href="#header-actions">Header actions</a></li><li class="doc-toc-h2"><a href="#keyboard">Keyboard</a></li><li class="doc-toc-h2"><a href="#accessibility">Accessibility</a></li><li class="doc-toc-h2"><a href="#api">API</a></li><li class="doc-toc-h3"><a href="#ui-modal-react-uimodal">&lt;ui-modal></a></li></ul></nav>
+</div>
+<nav class="doc-pager" aria-label="Next / Previous"><a class="doc-pager-prev" href="/kanok-ui-docs/en/file-uploader/" rel="prev"><span>Previous</span>File uploader</a><a class="doc-pager-next" href="/kanok-ui-docs/en/side-panel/" rel="next"><span>Next</span>Side panel</a></nav>
+<footer class="doc-footer">@purpurabog/ui 2.3.0 · MIT · <a href="https://cdn.jsdelivr.net/npm/@purpurabog/ui@2.3.0/THIRD-PARTY-NOTICES.md">Third-party notices</a><br>Built on the Carbon Design System. Not affiliated with or endorsed by IBM; IBM and Carbon are trademarks of IBM Corp.</footer>
+</ui-content>
+<ui-modal id="doc-search" heading="Search" data-count="{n} results" data-empty="No results for “{q}”">
+<ui-search label="Search the docs" placeholder="Search the docs" size="lg"></ui-search>
+<p class="doc-search-status" role="status"></p>
+<ul class="doc-search-results"></ul>
+</ui-modal>
+</body>
+</html>

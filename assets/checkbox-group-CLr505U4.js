@@ -1,0 +1,29 @@
+import{$ as e,B as t,Ct as n,D as r,Et as i,Mt as a,O as o,Q as s,St as c,T as l,U as u,Y as d,bt as f,et as p,kt as m,lt as h,tt as g,ut as _,v,wt as y,z as b}from"./theme-switcher-BZXGbHfR.js";var x=class extends o{constructor(...e){super(...e),this.label=``,this.localize=new l(this),this.hideLabel=!1,this.helperText=``,this.required=!1,this.requiredText=``,this.invalid=!1,this.invalidText=``,this.warn=!1,this.warnText=``,this.disabled=!1,this.readonly=!1,this.orientation=`vertical`,this.touched=!1,this.checkedCount=0,this.formControl=new _(this,{reveal:()=>this.touched=!0}),this.customValidityMessage=``,this.groupId=h(`ui-checkbox-group`),this.onChange=()=>{this.touched=!0,this.recount()},this.onFocusOut=e=>{this.contains(e.relatedTarget)||(this.touched=!0)},this.slots=new v(this)}static{this.hostStates=[`show-error`,`show-warn`]}static{this.formAssociated=!0}static{this.styles=[u,a`
+            :host {
+                display: block;
+                font-family: var(--ui-font-family);
+            }
+
+            .options {
+                display: flex;
+                flex-direction: column;
+            }
+
+            :host([orientation='horizontal']) .options {
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: var(--ui-space-md);
+            }
+        `]}setCustomValidity(e){this.customValidityMessage=e,this.hasUpdated&&(this.syncValidity(),this.requestUpdate())}connectedCallback(){super.connectedCallback(),this.addEventListener(`change`,this.onChange),this.addEventListener(`focusout`,this.onFocusOut)}disconnectedCallback(){super.disconnectedCallback(),this.removeEventListener(`change`,this.onChange),this.removeEventListener(`focusout`,this.onFocusOut)}get form(){return this.internals.form}get validationMessage(){return this.internals.validationMessage}get willValidate(){return this.internals.willValidate}get labels(){return this.internals.labels}reportValidity(){return this.formControl.reportValidity(this.internals)}get validity(){return this.internals.validity}checkValidity(){return this.internals.checkValidity()}focus(e){this.boxes[0]?.focus(e)}formResetCallback(){this.touched=!1,queueMicrotask(()=>this.recount())}formDisabledCallback(e){this.formControl.setFieldsetDisabled(e)}get isDisabled(){return this.formControl.disabled}get interactive(){return!this.isDisabled&&!this.readonly}get showError(){return this.interactive?this.invalid||this.touched&&(!!this.customValidityMessage||this.required&&this.checkedCount===0):!1}willUpdate(){this.recount()}updated(){this.syncBoxes(),this.syncValidity(),this.syncHostState()}syncHostState(){this.toggleAttribute(`data-show-error`,this.shownKind===`error`),this.toggleAttribute(`data-show-warn`,this.shownKind===`warn`)}syncValidity(){if(b(this.internals,this.isDisabled))return;let e=this.boxes[0],n=t(this.invalid,this.invalidText,this.customValidityMessage);n?this.internals.setValidity({customError:!0},n,e):this.required&&this.checkedCount===0&&!this.isDisabled?this.internals.setValidity({valueMissing:!0},this.invalidText||this.requiredText||this.localize.t.field.requiredAtLeastOne,e):this.internals.setValidity({})}recount(){this.checkedCount=this.boxes.filter(e=>e.checked).length}get errorText(){return this.invalidText||this.querySelector(`[slot="invalid-text"]`)?.textContent?.trim()||this.requiredText||this.localize.t.field.requiredAtLeastOne}syncBoxes(){let e=this.showError;for(let t of this.boxes)t.groupDisabled=this.isDisabled,t.groupReadonly=this.readonly,t.toggleAttribute(`data-group-invalid`,e),t.groupMessage=e?this.errorText:``}onSlotChange(){this.recount(),this.syncBoxes()}renderLabel(){return!this.label&&!this.slots.has(`label`)?i:m`<div class=${this.hideLabel?`sr-only`:`label`} part="label" id="${this.groupId}-label">${p(this.label,this.formControl.fallbackName(this.label,this.internals))}</div>`}render(){let t=this.showError,n=e({showError:t,errorText:s(this.invalid,this.customValidityMessage,this.invalidText||this.requiredText||this.localize.t.field.requiredAtLeastOne),showWarn:this.warn&&this.interactive,warnText:this.warnText,helperText:this.helperText,slots:this.slots});return this.shownKind=n?.kind,m`
+            ${this.renderLabel()}
+            <div
+                class="options"
+                part="base"
+                role="group"
+                aria-labelledby=${this.label||this.slots.has(`label`)||this.formControl.fallbackName(this.label,this.internals)?`${this.groupId}-label`:i}
+                aria-describedby=${d(this.groupId,n)??i}
+            >
+                <slot @slotchange=${this.onSlotChange}></slot>
+            </div>
+            ${g(this.groupId,n,!0)}
+        `}};r([n()],x.prototype,`label`,void 0),r([n({type:Boolean,attribute:`hide-label`})],x.prototype,`hideLabel`,void 0),r([n({attribute:`helper-text`})],x.prototype,`helperText`,void 0),r([n({type:Boolean,reflect:!0})],x.prototype,`required`,void 0),r([n({attribute:`required-text`})],x.prototype,`requiredText`,void 0),r([n({type:Boolean,reflect:!0})],x.prototype,`invalid`,void 0),r([n({attribute:`invalid-text`})],x.prototype,`invalidText`,void 0),r([n({type:Boolean,reflect:!0})],x.prototype,`warn`,void 0),r([n({attribute:`warn-text`})],x.prototype,`warnText`,void 0),r([n({type:Boolean,reflect:!0})],x.prototype,`disabled`,void 0),r([n({type:Boolean,reflect:!0})],x.prototype,`readonly`,void 0),r([n({reflect:!0})],x.prototype,`orientation`,void 0),r([c()],x.prototype,`touched`,void 0),r([c()],x.prototype,`checkedCount`,void 0),r([f({selector:`ui-checkbox, ui-selectable-tile`})],x.prototype,`boxes`,void 0),x=r([y(`ui-checkbox-group`)],x);

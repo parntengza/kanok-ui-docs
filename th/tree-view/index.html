@@ -1,0 +1,1103 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Tree view · @purpurabog/ui</title>
+<link rel="alternate" hreflang="en" href="/kanok-ui-docs/en/tree-view/"  /><link rel="alternate" hreflang="th" href="/kanok-ui-docs/th/tree-view/"  />
+<script>(function(){try{var q=new URLSearchParams(location.search).get("design"),d=q;if(q==="kanok"||q==="carbon")localStorage.setItem("ui-docs-design",q);else d=localStorage.getItem("ui-docs-design");if(d==="kanok")document.documentElement.setAttribute("data-design","kanok")}catch(e){}})();(function(){try{var m=localStorage.getItem("ui-docs-theme");if(m!=="light"&&m!=="dark"&&m!=="system")return;var d=m==="dark"||(m==="system"&&matchMedia("(prefers-color-scheme: dark)").matches),r=document.documentElement,t=d?"g100":"white";if(r.getAttribute("data-design")==="kanok")t=d?"lacquer":"paper";r.setAttribute("data-theme",t)}catch(e){}})();</script>
+<style>ui-header:not(:defined){z-index:8000;box-sizing:border-box;border-block-end:1px solid var(--ui-border-subtle-1);background:var(--ui-canvas);block-size:48px;display:block;position:fixed;inset:0 0 auto}:is(ui-header:not(:defined)>*,ui-side-nav:not(:defined)>*){visibility:hidden}:is(ui-header-panel:not(:defined),ui-modal:not(:defined)){display:none}ui-side-nav:not(:defined){display:none}ui-content:not(:defined){margin-block-start:48px;padding:32px;display:block}@media (width>=1056px){ui-side-nav[expanded]:not(:defined){background:var(--ui-canvas);inline-size:256px;display:block;position:fixed;inset:48px auto 0 0}ui-side-nav[expanded]:not(:defined)~ui-content:not(:defined){margin-inline-start:256px}}ui-tabs:not(:defined){display:block}ui-tabs:not(:defined)>ui-tab{box-sizing:border-box;border-block-end:2px solid var(--ui-hairline);block-size:40px;color:var(--ui-ink-muted);font:var(--ui-font-body-sm);padding:0 16px;line-height:38px;display:inline-block}ui-tabs:not(:defined)>ui-tab:first-of-type{border-block-end-color:var(--ui-interactive);color:var(--ui-ink)}ui-tabs:not(:defined)>ui-tab-panel{padding:16px;display:block}ui-tabs:not(:defined)>ui-tab-panel~ui-tab-panel{display:none}ui-code-snippet:not(:defined){background:var(--ui-layer-1);max-block-size:272px;font:var(--ui-font-code,12px/16px monospace);white-space:pre;padding:16px;display:block;overflow:hidden}[data-react-example]:empty>*{visibility:hidden}.doc-demo:has(:not(:defined))>*{visibility:hidden}[data-react-example]:empty{box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}.doc-demo:has(:not(:defined)){box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}@keyframes doc-skeleton{to{background-position:-200% 0}}@media (prefers-reduced-motion:reduce){[data-react-example]:empty{animation:none}.doc-demo:has(:not(:defined)){animation:none}}</style>
+
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/theme-switcher-BZXGbHfR.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/tab-ChjAM0hz.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/button-DGUm7Yxm.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/typeahead-CDCzrGcR.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/tree-h2xfYOIE.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/tree-view-BRMCgz4p.js"></script>
+  <link rel="stylesheet" crossorigin href="/kanok-ui-docs/assets/theme-switcher-BXY5AIvi.css">
+</head>
+<body>
+<ui-header label="@purpurabog/ui">
+<ui-skip-to-content></ui-skip-to-content>
+<ui-header-menu-button></ui-header-menu-button>
+<ui-header-name href="/kanok-ui-docs/th/" prefix="@purpurabog">ui</ui-header-name>
+<ui-header-global-bar>
+<ui-header-global-action id="doc-search-open" label="ค้นหา" tooltip-placement="bottom"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="m18.5 17.8-4.9-4.9a7 7 0 1 0-.7.7l4.9 4.9zM3 8.5a5.5 5.5 0 1 1 5.5 5.5A5.5 5.5 0 0 1 3 8.5Z" /></svg></ui-header-global-action>
+<ui-header-global-action label="ตั้งค่า" panel="doc-settings" tooltip-placement="bottom-end"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="M16.9 10.6a7 7 0 0 0 0-1.2l1.8-1.4-1.6-2.8-2.1.8a6.6 6.6 0 0 0-1-.6L13.6 3h-3.2l-.4 2.4a6.6 6.6 0 0 0-1 .6l-2.1-.8L5.3 8l1.8 1.4a7 7 0 0 0 0 1.2L5.3 12l1.6 2.8 2.1-.8a6.6 6.6 0 0 0 1 .6l.4 2.4h3.2l.4-2.4a6.6 6.6 0 0 0 1-.6l2.1.8 1.6-2.8zM12 13a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" /></svg></ui-header-global-action>
+</ui-header-global-bar>
+<ui-header-panel id="doc-settings" label="ตั้งค่า">
+<div class="doc-settings">
+<span class="doc-settings-label">ธีม</span>
+<ui-theme-switcher storage-key="ui-docs-theme" tooltip-placement="bottom"></ui-theme-switcher>
+<span class="doc-settings-label">รูปแบบ</span>
+<ui-content-switcher id="doc-design" aria-label="รูปแบบ" size="sm"><ui-content-switcher-item name="carbon">Carbon</ui-content-switcher-item><ui-content-switcher-item name="kanok">Kanok</ui-content-switcher-item></ui-content-switcher>
+<span class="doc-settings-label">ภาษา</span>
+<ui-link href="/kanok-ui-docs/en/tree-view/" hreflang="en" lang="en">English</ui-link>
+</div>
+</ui-header-panel>
+</ui-header>
+<ui-side-nav label="เอกสาร"><ui-side-nav-items><ui-side-nav-menu label="เริ่มต้น"><ui-side-nav-menu-item href="/kanok-ui-docs/th/">ภาพรวม</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/installation/">ติดตั้ง</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/migration-1-0/">การย้ายไป 1.0</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="คู่มือ"><ui-side-nav-menu-item href="/kanok-ui-docs/th/themes/">ธีมและ layer</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/kanok/">ดีไซน์ Kanok</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/customizing/">ปรับแต่งหน้าตา</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/icons/">ไอคอน</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/forms/">ฟอร์มและการตรวจค่า</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/frameworks/">ใช้กับ framework</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/ai/">ใช้กับ AI</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="ฟอร์มและปุ่ม"><ui-side-nav-menu-item href="/kanok-ui-docs/th/button/">Button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/file-uploader/">File uploader</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Overlay"><ui-side-nav-menu-item href="/kanok-ui-docs/th/modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/toggletip/">Toggletip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/menu/">Menu</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="ข้อมูล" expanded><ui-side-nav-menu-item href="/kanok-ui-docs/th/data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/contained-list/">Contained list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tree-view/" current>Tree view</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="การนำทาง"><ui-side-nav-menu-item href="/kanok-ui-docs/th/tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/breadcrumb/">Breadcrumb</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/link/">Link</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/ui-shell/">UI shell</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="เนื้อหา"><ui-side-nav-menu-item href="/kanok-ui-docs/th/tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tile/">Tile</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/user-avatar/">User avatar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/list/">List</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="สถานะและการโหลด"><ui-side-nav-menu-item href="/kanok-ui-docs/th/loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/inline-loading/">Inline loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/progress-bar/">Progress bar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/skeleton/">Skeleton</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/badge-indicator/">Badge indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/status-indicator/">Status indicator</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="เลย์เอาต์"><ui-side-nav-menu-item href="/kanok-ui-docs/th/grid/">Grid</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/heading/">Heading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/layer/">Layer</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/action-set/">Action set</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/page-header/">Page header</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/big-number/">Big number</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Headless"><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless/">แนะนำ</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-file-uploader/">File uploader</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-menu/">Menu</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-ui-shell/">UI shell</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tree-view/">Tree view</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu></ui-side-nav-items></ui-side-nav><script>if(matchMedia('(min-width: 66rem)').matches)document.currentScript.previousElementSibling.setAttribute('expanded','')</script>
+<ui-content>
+<div class="doc-page">
+<article class="doc">
+<h1 id="tree-view">Tree view</h1>
+<p>Tree view แสดงรายการซ้อนกันเป็นชั้น เช่น แฟ้ม ผังบัญชี หรือแผนกในองค์กร (Carbon <code>TreeView</code>) กิ่งเปิดปิดได้ ผู้ใช้เลือก node ด้วยการคลิกหรือคีย์บอร์ด</p>
+<div class="doc-demo"><div style="max-width: 360px">
+  <ui-tree-view label="แฟ้ม">
+    <ui-tree-node label="สัญญา" value="contracts" expanded>
+      <ui-tree-node label="2569" value="2569" expanded>
+        <ui-tree-node label="สัญญาบริการ – เอซีเอ็ม" value="c1"></ui-tree-node>
+        <ui-tree-node label="NDA – โกลเบ็กซ์" value="c2"></ui-tree-node>
+      </ui-tree-node>
+      <ui-tree-node label="2568" value="2568">
+        <ui-tree-node label="ต่อสัญญาเช่า" value="c3"></ui-tree-node>
+      </ui-tree-node>
+    </ui-tree-node>
+    <ui-tree-node label="แม่แบบ" value="templates">
+      <ui-tree-node label="NDA มาตรฐาน" value="t1"></ui-tree-node>
+    </ui-tree-node>
+  </ui-tree-view>
+</div>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-1-0">HTML</ui-tab><ui-tab panel="code-1-1">React</ui-tab><ui-tab panel="code-1-2">React + Tailwind</ui-tab><ui-tab-panel name="code-1-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"max-width: 360px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tree-view</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"แฟ้ม"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"สัญญา"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"contracts"</span> <span style="color:var(--ui-tag-color-purple)">expanded</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"2569"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"2569"</span> <span style="color:var(--ui-tag-color-purple)">expanded</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"สัญญาบริการ – เอซีเอ็ม"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"c1"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"NDA – โกลเบ็กซ์"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"c2"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"2568"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"2568"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ต่อสัญญาเช่า"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"c3"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"แม่แบบ"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"templates"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"NDA มาตรฐาน"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"t1"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-tree-view</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-1-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiTreeView</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"แฟ้ม"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTreeNode</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"สัญญา"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"contracts"</span> <span style="color:var(--ui-tag-color-purple)">expanded</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiTreeNode</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"2569"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"2569"</span> <span style="color:var(--ui-tag-color-purple)">expanded</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">UiTreeNode</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"สัญญาบริการ – เอซีเอ็ม"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"c1"</span> /&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">UiTreeNode</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"NDA – โกลเบ็กซ์"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"c2"</span> /&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">UiTreeNode</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiTreeNode</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"2568"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"2568"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">UiTreeNode</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ต่อสัญญาเช่า"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"c3"</span> /&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">UiTreeNode</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiTreeNode</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTreeNode</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"แม่แบบ"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"templates"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiTreeNode</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"NDA มาตรฐาน"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"t1"</span> /&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiTreeNode</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiTreeView</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-1-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">TreeView</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"แฟ้ม"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TreeNode</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"สัญญา"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"contracts"</span> <span style="color:var(--ui-tag-color-purple)">defaultExpanded</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">TreeNode</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"2569"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"2569"</span> <span style="color:var(--ui-tag-color-purple)">defaultExpanded</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">TreeNode</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"สัญญาบริการ – เอซีเอ็ม"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"c1"</span> /&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">TreeNode</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"NDA – โกลเบ็กซ์"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"c2"</span> /&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">TreeNode</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">TreeNode</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"2568"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"2568"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">TreeNode</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ต่อสัญญาเช่า"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"c3"</span> /&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">TreeNode</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">TreeNode</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TreeNode</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"แม่แบบ"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"templates"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">TreeNode</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"NDA มาตรฐาน"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"t1"</span> /&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">TreeNode</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">TreeView</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="ติดตั้ง">ติดตั้ง</h2>
+<ui-tabs class="doc-code-tabs" label="โค้ด"><ui-tab panel="code-2-0">npm</ui-tab><ui-tab panel="code-2-1">shadcn · Web component</ui-tab><ui-tab panel="code-2-2">shadcn · React + Tailwind</ui-tab><ui-tab panel="code-2-3">คัดลอกเอง</ui-tab><ui-tab-panel name="code-2-0"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">@purpurabog/ui</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-1"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npx</span> <span style="color:var(--ui-tag-color-teal)">shadcn@4</span> <span style="color:var(--ui-tag-color-teal)">add</span> <span style="color:var(--ui-tag-color-teal)">@kanok-ui/tree-view</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-2"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npx</span> <span style="color:var(--ui-tag-color-teal)">shadcn@4</span> <span style="color:var(--ui-tag-color-teal)">add</span> <span style="color:var(--ui-tag-color-teal)">@kanok-ui/tw-tree-view</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-3"><ui-code-snippet type="multi" class="doc-code" data-lang="bash"><span style="color:var(--ui-ink-muted);font-style:italic"># Web component</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 1. ติดตั้ง dependency</span>
+<span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">lit@^3.3.0</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 2. คัดลอก "content" ของแต่ละไฟล์จาก</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    https://cdn.jsdelivr.net/npm/@purpurabog/ui@2.3.0/registry/tree-view.json</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    ไปไว้ที่ target ของมัน:</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/tree-view/tree-node.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/tree-view/tree-view-shared.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/tree-view/tree-view.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 3. ทำแบบเดียวกันกับ item ที่มันใช้ (registry/&lt;name&gt;.json):</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    core-tree, core-typeahead, shared-element, shared-field, shared-localize, shared-navigate, shared-slots, tokens</span>
+
+<span style="color:var(--ui-ink-muted);font-style:italic"># React + Tailwind</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 1. ติดตั้ง dependency</span>
+<span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">@purpurabog/ui@^2.3.0</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 2. คัดลอก "content" ของแต่ละไฟล์จาก</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    https://cdn.jsdelivr.net/npm/@purpurabog/ui@2.3.0/registry/tw-tree-view.json</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    ไปไว้ที่ target ของมัน:</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/react-tw/tree-view.tsx</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 3. ทำแบบเดียวกันกับ item ที่มันใช้ (registry/&lt;name&gt;.json):</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    core-tree, tw-field, tw-i18n, tw-theme, tw-utils</span></ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>npm ให้ทุก component จากแพ็กเกจ ส่วน shadcn คัดลอกซอร์สเข้าแอปของคุณแทน เป็นสำเนาที่ล็อกเวอร์ชันนี้และแก้เองได้ คำสั่ง shadcn ต้องตั้ง registry <code>@kanok-ui</code> ใน <code>components.json</code> ครั้งเดียวก่อน ดู <a href="/kanok-ui-docs/th/installation/#react-tailwind-%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2-shadcn">ติดตั้ง</a></p>
+<h2 id="วิธีใช้">วิธีใช้</h2>
+<ui-tabs class="doc-code-tabs" label="โค้ด"><ui-tab panel="code-3-0">HTML</ui-tab><ui-tab panel="code-3-1">React</ui-tab><ui-tab panel="code-3-2">React + Tailwind</ui-tab><ui-tab-panel name="code-3-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;<span style="color:var(--ui-tag-color-magenta)">import</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/tree-view'</span>;&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-tree-view</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"แฟ้ม"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"สัญญา"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"contracts"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"สัญญาบริการ"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"c1"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tree-view</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-3-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { UiTreeView, UiTreeNode } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/react'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiTreeView</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"แฟ้ม"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTreeNode</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"สัญญา"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"contracts"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiTreeNode</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"สัญญาบริการ"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"c1"</span> /&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiTreeNode</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiTreeView</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-3-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { TreeView, TreeNode } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@/components/ui/react-tw/tree-view'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">TreeView</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"แฟ้ม"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TreeNode</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"สัญญา"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"contracts"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">TreeNode</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"สัญญาบริการ"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"c1"</span> /&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">TreeNode</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">TreeView</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>node ที่มี node ลูกคือกิ่ง <code>value</code> ใช้ระบุ node ในการเลือก ถ้าไม่ใส่จะใช้ <code>label</code> แทน</p>
+<h2 id="ไอคอน">ไอคอน</h2>
+<p>ใส่ไอคอน 16px ใน slot <code>icon</code> ของ node (<code>icon</code> ใน React + Tailwind) Carbon ใช้รูปแฟ้มสำหรับกิ่ง และรูปเอกสารสำหรับใบ</p>
+<div class="doc-demo"><div style="max-width: 360px">
+  <ui-tree-view label="แฟ้มสัญญา">
+    <ui-tree-node label="บริษัท เอซีเอ็ม จำกัด" value="acme" expanded>
+      <svg slot="icon" viewBox="0 0 16 16"><path d="M14 4H8.6L7.3 2.3A1 1 0 0 0 6.5 2H2a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1ZM2 3h4.5l1.3 1.7A1 1 0 0 0 8.6 5H14v1H2Zm0 10V7h12v6Z" /></svg>
+      <ui-tree-node label="สัญญาบริการ.pdf" value="acme-sa">
+        <svg slot="icon" viewBox="0 0 16 16"><path d="M13 3.6 10.4 1H3v14h10zM10 2.4 11.6 4H10zM4 14V2h5v3h3v9z" /></svg>
+      </ui-tree-node>
+      <ui-tree-node label="ตารางราคา.pdf" value="acme-pl">
+        <svg slot="icon" viewBox="0 0 16 16"><path d="M13 3.6 10.4 1H3v14h10zM10 2.4 11.6 4H10zM4 14V2h5v3h3v9z" /></svg>
+      </ui-tree-node>
+    </ui-tree-node>
+  </ui-tree-view>
+</div>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-4-0">HTML</ui-tab><ui-tab panel="code-4-1">React</ui-tab><ui-tab panel="code-4-2">React + Tailwind</ui-tab><ui-tab-panel name="code-4-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"max-width: 360px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tree-view</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"แฟ้มสัญญา"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"บริษัท เอซีเอ็ม จำกัด"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"acme"</span> <span style="color:var(--ui-tag-color-purple)">expanded</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"icon"</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span>=<span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span>=<span style="color:var(--ui-tag-color-teal)">"M14 4H8.6L7.3 2.3A1 1 0 0 0 6.5 2H2a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1ZM2 3h4.5l1.3 1.7A1 1 0 0 0 8.6 5H14v1H2Zm0 10V7h12v6Z"</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"สัญญาบริการ.pdf"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"acme-sa"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"icon"</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span>=<span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span>=<span style="color:var(--ui-tag-color-teal)">"M13 3.6 10.4 1H3v14h10zM10 2.4 11.6 4H10zM4 14V2h5v3h3v9z"</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ตารางราคา.pdf"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"acme-pl"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"icon"</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span>=<span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span>=<span style="color:var(--ui-tag-color-teal)">"M13 3.6 10.4 1H3v14h10zM10 2.4 11.6 4H10zM4 14V2h5v3h3v9z"</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-tree-view</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-4-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiTreeView</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"แฟ้มสัญญา"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTreeNode</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"บริษัท เอซีเอ็ม จำกัด"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"acme"</span> <span style="color:var(--ui-tag-color-purple)">expanded</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">slot</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"icon"</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span>&gt;{folderPath}&lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiTreeNode</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"สัญญาบริการ.pdf"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"acme-sa"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">slot</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"icon"</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span>&gt;{documentPath}&lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">UiTreeNode</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiTreeNode</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ตารางราคา.pdf"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"acme-pl"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">slot</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"icon"</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span>&gt;{documentPath}&lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">UiTreeNode</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiTreeNode</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiTreeView</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-4-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">TreeView</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"แฟ้มสัญญา"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TreeNode</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"บริษัท เอซีเอ็ม จำกัด"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"acme"</span> <span style="color:var(--ui-tag-color-purple)">defaultExpanded</span> <span style="color:var(--ui-tag-color-purple)">icon</span><span style="color:var(--ui-tag-color-magenta)">=</span>{&lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span>&gt;{folderPath}&lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;}&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">TreeNode</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"สัญญาบริการ.pdf"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"acme-sa"</span> <span style="color:var(--ui-tag-color-purple)">icon</span><span style="color:var(--ui-tag-color-magenta)">=</span>{&lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span>&gt;{documentPath}&lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;} /&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">TreeNode</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ตารางราคา.pdf"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"acme-pl"</span> <span style="color:var(--ui-tag-color-purple)">icon</span><span style="color:var(--ui-tag-color-magenta)">=</span>{&lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span>&gt;{documentPath}&lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;} /&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">TreeNode</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">TreeView</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="ป้ายแบบ-rich-และเนื้อหาท้ายแถว">ป้ายแบบ rich และเนื้อหาท้ายแถว</h2>
+<p>ถ้าป้ายต้องมีมากกว่าข้อความ ใส่ markup ใน slot <code>label</code> (React + Tailwind: <code>label</code> รับ node แบบ <code>TreeNode</code> ของ Carbon React) โดย attribute <code>label</code> ยังเป็นข้อความสำรอง เกินจาก Carbon: slot <code>end</code> (prop <code>end</code>) ใส่สิ่งที่อยู่ท้ายแถว เช่นยอดเงิน ซึ่งจะไม่ถูกตัดและชิดท้ายแถว ส่วนป้ายที่ยาวจะถูกตัดด้วย &quot;…&quot; screen reader อ่านป้ายเป็นชื่อของ node และอ่านเนื้อหาท้ายแถวเป็นคำอธิบาย และการพิมพ์ตัวอักษรยังค้นจากป้าย</p>
+<div class="doc-demo"><ui-tree-view label="งบประมาณ" style="max-width: 360px">
+  <ui-tree-node expanded>
+    <span slot="label"><b>ค่าใช้จ่ายดำเนินงาน</b></span>
+    <span slot="end">฿124,500</span>
+    <ui-tree-node label="ค่าเช่า"><span slot="end">฿80,000</span></ui-tree-node>
+    <ui-tree-node label="เครื่องเขียนและงานพิมพ์ของทุกสาขา"><span slot="end">฿12,300</span></ui-tree-node>
+  </ui-tree-node>
+</ui-tree-view>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-5-0">HTML</ui-tab><ui-tab panel="code-5-1">React</ui-tab><ui-tab panel="code-5-2">React + Tailwind</ui-tab><ui-tab-panel name="code-5-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-tree-view</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"งบประมาณ"</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"max-width: 360px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span> <span style="color:var(--ui-tag-color-purple)">expanded</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"label"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">b</span>&gt;ค่าใช้จ่ายดำเนินงาน&lt;/<span style="color:var(--ui-tag-color-blue)">b</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"end"</span>&gt;฿124,500&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ค่าเช่า"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"end"</span>&gt;฿80,000&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"เครื่องเขียนและงานพิมพ์ของทุกสาขา"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"end"</span>&gt;฿12,300&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tree-view</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-5-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiTreeView</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"งบประมาณ"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTreeNode</span> <span style="color:var(--ui-tag-color-purple)">expanded</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">slot</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"label"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">b</span>&gt;ค่าใช้จ่ายดำเนินงาน&lt;/<span style="color:var(--ui-tag-color-blue)">b</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">slot</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"end"</span>&gt;฿124,500&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiTreeNode</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ค่าเช่า"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">slot</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"end"</span>&gt;฿80,000&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">UiTreeNode</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiTreeNode</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เครื่องเขียนและงานพิมพ์ของทุกสาขา"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">slot</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"end"</span>&gt;฿12,300&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">UiTreeNode</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiTreeNode</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiTreeView</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-5-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">TreeView</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"งบประมาณ"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TreeNode</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span>{&lt;<span style="color:var(--ui-tag-color-blue)">b</span>&gt;ค่าใช้จ่ายดำเนินงาน&lt;/<span style="color:var(--ui-tag-color-blue)">b</span>&gt;} <span style="color:var(--ui-tag-color-purple)">end</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"฿124,500"</span> <span style="color:var(--ui-tag-color-purple)">defaultExpanded</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">TreeNode</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ค่าเช่า"</span> <span style="color:var(--ui-tag-color-purple)">end</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"฿80,000"</span> /&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">TreeNode</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เครื่องเขียนและงานพิมพ์ของทุกสาขา"</span> <span style="color:var(--ui-tag-color-purple)">end</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"฿12,300"</span> /&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">TreeNode</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">TreeView</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="การเลือกและ-node-ที่-active">การเลือกและ node ที่ active</h2>
+<p>คลิก Space หรือ Enter เลือก node และทำให้มันเป็น node ที่ active (มีแถบ 4px ที่ต้นแถว) <code>ui-select</code> ยิงพร้อม <code>{ selected, value }</code> หลังการเลือกเปลี่ยน <code>ui-activate</code> ยิงพร้อม <code>{ active }</code> ตั้ง <code>selected</code> (property เป็น array ของ value) และ <code>active</code> เพื่อเริ่มด้วย node ที่เลือกไว้ และเปิดกิ่งของมันให้มองเห็น</p>
+<div class="doc-demo"><div style="max-width: 360px">
+  <ui-tree-view id="tree-view-select" label="แผนก" active="legal">
+    <ui-tree-node label="สำนักงานใหญ่" value="hq" expanded>
+      <ui-tree-node label="ฝ่ายกฎหมาย" value="legal"></ui-tree-node>
+      <ui-tree-node label="ฝ่ายการเงิน" value="finance"></ui-tree-node>
+    </ui-tree-node>
+    <ui-tree-node label="สาขา" value="branches">
+      <ui-tree-node label="เชียงใหม่" value="cnx"></ui-tree-node>
+      <ui-tree-node label="ภูเก็ต" value="hkt"></ui-tree-node>
+    </ui-tree-node>
+  </ui-tree-view>
+</div>
+<p>ที่เลือก: <output id="tree-view-select-out">legal</output></p>
+
+<script type="text/x-demo">
+  const tree = document.getElementById('tree-view-select');
+  tree.selected = ['legal'];
+  tree.addEventListener('ui-select', (event) => {
+    document.getElementById('tree-view-select-out').value = event.detail.selected.join(', ');
+  });
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-6-0">HTML</ui-tab><ui-tab panel="code-6-1">React</ui-tab><ui-tab panel="code-6-2">React + Tailwind</ui-tab><ui-tab-panel name="code-6-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"max-width: 360px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tree-view</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"tree-view-select"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"แผนก"</span> <span style="color:var(--ui-tag-color-purple)">active</span>=<span style="color:var(--ui-tag-color-teal)">"legal"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"สำนักงานใหญ่"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"hq"</span> <span style="color:var(--ui-tag-color-purple)">expanded</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ฝ่ายกฎหมาย"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"legal"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ฝ่ายการเงิน"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"finance"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"สาขา"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"branches"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"เชียงใหม่"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"cnx"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ภูเก็ต"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"hkt"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-tree-view</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;ที่เลือก: &lt;<span style="color:var(--ui-tag-color-blue)">output</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"tree-view-select-out"</span>&gt;legal&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> tree <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'tree-view-select'</span>);
+  tree.selected <span style="color:var(--ui-tag-color-magenta)">=</span> [<span style="color:var(--ui-tag-color-teal)">'legal'</span>];
+  tree.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'ui-select'</span>, (event) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'tree-view-select-out'</span>).value <span style="color:var(--ui-tag-color-magenta)">=</span> event.detail.selected.<span style="color:var(--ui-tag-color-cyan)">join</span>(<span style="color:var(--ui-tag-color-teal)">', '</span>);
+  });
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-6-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> [selected, setSelected] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>([<span style="color:var(--ui-tag-color-teal)">'legal'</span>]);
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiTreeView</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"แผนก"</span> <span style="color:var(--ui-tag-color-purple)">selected</span><span style="color:var(--ui-tag-color-magenta)">=</span>{selected} <span style="color:var(--ui-tag-color-purple)">active</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"legal"</span> <span style="color:var(--ui-tag-color-purple)">onUiSelect</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setSelected</span>(e.detail.selected)}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTreeNode</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"สำนักงานใหญ่"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"hq"</span> <span style="color:var(--ui-tag-color-purple)">expanded</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiTreeNode</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ฝ่ายกฎหมาย"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"legal"</span> /&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiTreeNode</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ฝ่ายการเงิน"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"finance"</span> /&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiTreeNode</span>&gt;
+  {<span style="color:var(--ui-ink-muted);font-style:italic">/* … */</span>}
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiTreeView</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;ที่เลือก: &lt;<span style="color:var(--ui-tag-color-blue)">output</span>&gt;{selected.<span style="color:var(--ui-tag-color-cyan)">join</span>(<span style="color:var(--ui-tag-color-teal)">', '</span>)}&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-6-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> [selected, setSelected] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>&lt;<span style="color:var(--ui-tag-color-cyan)">string</span>[]&gt;([<span style="color:var(--ui-tag-color-teal)">'legal'</span>]);
+
+&lt;<span style="color:var(--ui-tag-color-blue)">TreeView</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"แผนก"</span> <span style="color:var(--ui-tag-color-purple)">selected</span><span style="color:var(--ui-tag-color-magenta)">=</span>{selected} <span style="color:var(--ui-tag-color-purple)">defaultActive</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"legal"</span> <span style="color:var(--ui-tag-color-purple)">onSelect</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(next) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setSelected</span>(next)}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TreeNode</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"สำนักงานใหญ่"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"hq"</span> <span style="color:var(--ui-tag-color-purple)">defaultExpanded</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">TreeNode</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ฝ่ายกฎหมาย"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"legal"</span> /&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">TreeNode</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ฝ่ายการเงิน"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"finance"</span> /&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">TreeNode</span>&gt;
+  {<span style="color:var(--ui-ink-muted);font-style:italic">/* … */</span>}
+&lt;/<span style="color:var(--ui-tag-color-blue)">TreeView</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;ที่เลือก: &lt;<span style="color:var(--ui-tag-color-blue)">output</span>&gt;{selected.<span style="color:var(--ui-tag-color-cyan)">join</span>(<span style="color:var(--ui-tag-color-teal)">', '</span>)}&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="เลือกหลาย-node">เลือกหลาย node</h2>
+<p>เมื่อใส่ <code>multiselect</code> Ctrl / ⌘ + คลิก และ Space จะเพิ่มหรือเอา node ออกจากที่เลือก Ctrl + A เลือกทุก node คลิกธรรมดายังเลือกแค่ node นั้น</p>
+<div class="doc-demo"><div style="max-width: 360px">
+  <ui-tree-view id="tree-view-multi" label="แชร์ให้" multiselect>
+    <ui-tree-node label="ฝ่ายกฎหมาย" value="legal" expanded>
+      <ui-tree-node label="ทีมสัญญา" value="contracts"></ui-tree-node>
+      <ui-tree-node label="ทีมคดีความ" value="litigation"></ui-tree-node>
+    </ui-tree-node>
+    <ui-tree-node label="ฝ่ายการเงิน" value="finance" expanded>
+      <ui-tree-node label="บัญชีเจ้าหนี้" value="ap"></ui-tree-node>
+      <ui-tree-node label="ภาษี" value="tax"></ui-tree-node>
+    </ui-tree-node>
+  </ui-tree-view>
+</div>
+<p>ที่เลือก: <output id="tree-view-multi-out"></output></p>
+
+<script type="text/x-demo">
+  const tree = document.getElementById('tree-view-multi');
+  tree.addEventListener('ui-select', (event) => {
+    document.getElementById('tree-view-multi-out').value = event.detail.selected.join(', ');
+  });
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-7-0">HTML</ui-tab><ui-tab panel="code-7-1">React</ui-tab><ui-tab panel="code-7-2">React + Tailwind</ui-tab><ui-tab-panel name="code-7-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"max-width: 360px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tree-view</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"tree-view-multi"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"แชร์ให้"</span> <span style="color:var(--ui-tag-color-purple)">multiselect</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ฝ่ายกฎหมาย"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"legal"</span> <span style="color:var(--ui-tag-color-purple)">expanded</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ทีมสัญญา"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"contracts"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ทีมคดีความ"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"litigation"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ฝ่ายการเงิน"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"finance"</span> <span style="color:var(--ui-tag-color-purple)">expanded</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"บัญชีเจ้าหนี้"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"ap"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ภาษี"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"tax"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-tree-view</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;ที่เลือก: &lt;<span style="color:var(--ui-tag-color-blue)">output</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"tree-view-multi-out"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> tree <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'tree-view-multi'</span>);
+  tree.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'ui-select'</span>, (event) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'tree-view-multi-out'</span>).value <span style="color:var(--ui-tag-color-magenta)">=</span> event.detail.selected.<span style="color:var(--ui-tag-color-cyan)">join</span>(<span style="color:var(--ui-tag-color-teal)">', '</span>);
+  });
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-7-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> [selected, setSelected] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>&lt;<span style="color:var(--ui-tag-color-cyan)">string</span>[]&gt;([]);
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiTreeView</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"แชร์ให้"</span> <span style="color:var(--ui-tag-color-purple)">multiselect</span> <span style="color:var(--ui-tag-color-purple)">selected</span><span style="color:var(--ui-tag-color-magenta)">=</span>{selected} <span style="color:var(--ui-tag-color-purple)">onUiSelect</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setSelected</span>(e.detail.selected)}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTreeNode</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ฝ่ายกฎหมาย"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"legal"</span> <span style="color:var(--ui-tag-color-purple)">expanded</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiTreeNode</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ทีมสัญญา"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"contracts"</span> /&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiTreeNode</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ทีมคดีความ"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"litigation"</span> /&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiTreeNode</span>&gt;
+  {<span style="color:var(--ui-ink-muted);font-style:italic">/* … */</span>}
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiTreeView</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-7-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> [selected, setSelected] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>&lt;<span style="color:var(--ui-tag-color-cyan)">string</span>[]&gt;([]);
+
+&lt;<span style="color:var(--ui-tag-color-blue)">TreeView</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"แชร์ให้"</span> <span style="color:var(--ui-tag-color-purple)">multiselect</span> <span style="color:var(--ui-tag-color-purple)">selected</span><span style="color:var(--ui-tag-color-magenta)">=</span>{selected} <span style="color:var(--ui-tag-color-purple)">onSelect</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(next) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setSelected</span>(next)}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TreeNode</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ฝ่ายกฎหมาย"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"legal"</span> <span style="color:var(--ui-tag-color-purple)">defaultExpanded</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">TreeNode</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ทีมสัญญา"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"contracts"</span> /&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">TreeNode</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ทีมคดีความ"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"litigation"</span> /&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">TreeNode</span>&gt;
+  {<span style="color:var(--ui-ink-muted);font-style:italic">/* … */</span>}
+&lt;/<span style="color:var(--ui-tag-color-blue)">TreeView</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="ขนาด">ขนาด</h2>
+<p><code>size</code>: แถว <code>sm</code> 32px (ค่าเริ่มต้น) หรือ <code>xs</code> 24px สำหรับ tree ที่แน่น</p>
+<div class="doc-demo"><div style="max-width: 360px">
+  <ui-tree-view label="ผังบัญชี" size="xs">
+    <ui-tree-node label="1000 สินทรัพย์" value="1000" expanded>
+      <ui-tree-node label="1100 เงินสด" value="1100"></ui-tree-node>
+      <ui-tree-node label="1200 ลูกหนี้" value="1200"></ui-tree-node>
+    </ui-tree-node>
+    <ui-tree-node label="2000 หนี้สิน" value="2000">
+      <ui-tree-node label="2100 เจ้าหนี้" value="2100"></ui-tree-node>
+    </ui-tree-node>
+  </ui-tree-view>
+</div>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-8-0">HTML</ui-tab><ui-tab panel="code-8-1">React</ui-tab><ui-tab panel="code-8-2">React + Tailwind</ui-tab><ui-tab-panel name="code-8-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"max-width: 360px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tree-view</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ผังบัญชี"</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"xs"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"1000 สินทรัพย์"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"1000"</span> <span style="color:var(--ui-tag-color-purple)">expanded</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"1100 เงินสด"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"1100"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"1200 ลูกหนี้"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"1200"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"2000 หนี้สิน"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"2000"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"2100 เจ้าหนี้"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"2100"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-tree-view</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-8-1"><ui-code-snippet type="single" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiTreeView</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ผังบัญชี"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"xs"</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">UiTreeView</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-8-2"><ui-code-snippet type="single" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">TreeView</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ผังบัญชี"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"xs"</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">TreeView</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="node-ที่ปิดใช้งาน">node ที่ปิดใช้งาน</h2>
+<p><code>disabled</code> ยังแสดง node แต่ใช้ไม่ได้ เลือกหรือเปิดไม่ได้ และปุ่มลูกศรจะข้ามไป</p>
+<div class="doc-demo"><div style="max-width: 360px">
+  <ui-tree-view label="แม่แบบ">
+    <ui-tree-node label="NDA มาตรฐาน" value="nda"></ui-tree-node>
+    <ui-tree-node label="สัญญาบริการหลัก (กำลังปรับปรุง)" value="msa" disabled></ui-tree-node>
+    <ui-tree-node label="สัญญาเช่า" value="lease"></ui-tree-node>
+  </ui-tree-view>
+</div>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-9-0">HTML</ui-tab><ui-tab panel="code-9-1">React</ui-tab><ui-tab panel="code-9-2">React + Tailwind</ui-tab><ui-tab-panel name="code-9-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"max-width: 360px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tree-view</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"แม่แบบ"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"NDA มาตรฐาน"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"nda"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"สัญญาบริการหลัก (กำลังปรับปรุง)"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"msa"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"สัญญาเช่า"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"lease"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-tree-view</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-9-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiTreeView</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"แม่แบบ"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTreeNode</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"NDA มาตรฐาน"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"nda"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTreeNode</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"สัญญาบริการหลัก (กำลังปรับปรุง)"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"msa"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTreeNode</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"สัญญาเช่า"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"lease"</span> /&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiTreeView</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-9-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">TreeView</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"แม่แบบ"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TreeNode</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"NDA มาตรฐาน"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"nda"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TreeNode</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"สัญญาบริการหลัก (กำลังปรับปรุง)"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"msa"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TreeNode</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"สัญญาเช่า"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"lease"</span> /&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">TreeView</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="เปิดปิดกิ่งจากโค้ด">เปิดปิดกิ่งจากโค้ด</h2>
+<p><code>expanded</code> เปิดกิ่ง ตั้งจากโค้ดของคุณได้ เช่น ปุ่ม &quot;ขยายทั้งหมด&quot; <code>ui-toggle</code> ยิงพร้อม <code>{ expanded, value }</code> ทุกครั้งที่กิ่งเปิดหรือปิด (<code>onToggle</code> ที่ <code>TreeNode</code> ของ React + Tailwind)</p>
+<div class="doc-demo"><div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center">
+  <ui-button id="tree-view-expand-all" kind="ghost" size="sm">ขยายทั้งหมด</ui-button>
+  <ui-button id="tree-view-collapse-all" kind="ghost" size="sm">ยุบทั้งหมด</ui-button>
+</div>
+<div style="max-width: 360px">
+  <ui-tree-view id="tree-view-toggle" label="องค์กร">
+    <ui-tree-node label="สำนักงานใหญ่" value="hq">
+      <ui-tree-node label="ฝ่ายกฎหมาย" value="legal">
+        <ui-tree-node label="ทีมสัญญา" value="contracts"></ui-tree-node>
+      </ui-tree-node>
+      <ui-tree-node label="ฝ่ายการเงิน" value="finance"></ui-tree-node>
+    </ui-tree-node>
+    <ui-tree-node label="สาขา" value="branches">
+      <ui-tree-node label="เชียงใหม่" value="cnx"></ui-tree-node>
+    </ui-tree-node>
+  </ui-tree-view>
+</div>
+<p>เปลี่ยนล่าสุด: <output id="tree-view-toggle-out"></output></p>
+
+<script type="text/x-demo">
+  const tree = document.getElementById('tree-view-toggle');
+  const branches = () => [...tree.querySelectorAll('ui-tree-node')].filter((node) => node.querySelector('ui-tree-node'));
+  document.getElementById('tree-view-expand-all').addEventListener('click', () => branches().forEach((node) => (node.expanded = true)));
+  document.getElementById('tree-view-collapse-all').addEventListener('click', () => branches().forEach((node) => (node.expanded = false)));
+  tree.addEventListener('ui-toggle', (event) => {
+    document.getElementById('tree-view-toggle-out').value = `${event.detail.value} ${event.detail.expanded ? 'เปิด' : 'ปิด'}`;
+  });
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-10-0">HTML</ui-tab><ui-tab panel="code-10-1">React</ui-tab><ui-tab panel="code-10-2">React + Tailwind</ui-tab><ui-tab-panel name="code-10-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"display: flex; flex-wrap: wrap; gap: 16px; align-items: center"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"tree-view-expand-all"</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"ghost"</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"sm"</span>&gt;ขยายทั้งหมด&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"tree-view-collapse-all"</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"ghost"</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"sm"</span>&gt;ยุบทั้งหมด&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"max-width: 360px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tree-view</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"tree-view-toggle"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"องค์กร"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"สำนักงานใหญ่"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"hq"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ฝ่ายกฎหมาย"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"legal"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ทีมสัญญา"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"contracts"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ฝ่ายการเงิน"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"finance"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"สาขา"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"branches"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"เชียงใหม่"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"cnx"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-tree-view</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;เปลี่ยนล่าสุด: &lt;<span style="color:var(--ui-tag-color-blue)">output</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"tree-view-toggle-out"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> tree <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'tree-view-toggle'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> <span style="color:var(--ui-tag-color-cyan)">branches</span> <span style="color:var(--ui-tag-color-magenta)">=</span> () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> [<span style="color:var(--ui-tag-color-magenta)">...</span>tree.<span style="color:var(--ui-tag-color-cyan)">querySelectorAll</span>(<span style="color:var(--ui-tag-color-teal)">'ui-tree-node'</span>)].<span style="color:var(--ui-tag-color-cyan)">filter</span>((node) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> node.<span style="color:var(--ui-tag-color-cyan)">querySelector</span>(<span style="color:var(--ui-tag-color-teal)">'ui-tree-node'</span>));
+  document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'tree-view-expand-all'</span>).<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">branches</span>().<span style="color:var(--ui-tag-color-cyan)">forEach</span>((node) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (node.expanded <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-green)">true</span>)));
+  document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'tree-view-collapse-all'</span>).<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">branches</span>().<span style="color:var(--ui-tag-color-cyan)">forEach</span>((node) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (node.expanded <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-green)">false</span>)));
+  tree.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'ui-toggle'</span>, (event) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'tree-view-toggle-out'</span>).value <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">`${</span><span style="color:var(--ui-tag-color-teal)">event.detail.value</span><span style="color:var(--ui-tag-color-teal)">} ${</span><span style="color:var(--ui-tag-color-teal)">event.detail.expanded </span><span style="color:var(--ui-tag-color-magenta)">?</span><span style="color:var(--ui-tag-color-teal)"> </span><span style="color:var(--ui-tag-color-teal)">'เปิด'</span><span style="color:var(--ui-tag-color-teal)"> </span><span style="color:var(--ui-tag-color-magenta)">:</span><span style="color:var(--ui-tag-color-teal)"> </span><span style="color:var(--ui-tag-color-teal)">'ปิด'}`</span>;
+  });
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-10-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> [open, setOpen] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>&lt;<span style="color:var(--ui-tag-color-cyan)">string</span>[]&gt;([]);
+<span style="color:var(--ui-tag-color-magenta)">const</span> <span style="color:var(--ui-tag-color-cyan)">isOpen</span> <span style="color:var(--ui-tag-color-magenta)">=</span> (value<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> open.<span style="color:var(--ui-tag-color-cyan)">includes</span>(value);
+<span style="color:var(--ui-tag-color-magenta)">const</span> <span style="color:var(--ui-tag-color-cyan)">onToggle</span> <span style="color:var(--ui-tag-color-magenta)">=</span> (e<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">CustomEvent</span>&lt;{ expanded<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">boolean</span>; value<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span> }&gt;) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span>
+  <span style="color:var(--ui-tag-color-cyan)">setOpen</span>((now) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (e.detail.expanded <span style="color:var(--ui-tag-color-magenta)">?</span> [<span style="color:var(--ui-tag-color-magenta)">...new</span> <span style="color:var(--ui-tag-color-cyan)">Set</span>([<span style="color:var(--ui-tag-color-magenta)">...</span>now, e.detail.value])] <span style="color:var(--ui-tag-color-magenta)">:</span> now.<span style="color:var(--ui-tag-color-cyan)">filter</span>((v) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> v <span style="color:var(--ui-tag-color-magenta)">!==</span> e.detail.value)));
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiButton</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ghost"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>([<span style="color:var(--ui-tag-color-teal)">'hq'</span>, <span style="color:var(--ui-tag-color-teal)">'legal'</span>, <span style="color:var(--ui-tag-color-teal)">'branches'</span>])}&gt;ขยายทั้งหมด&lt;/<span style="color:var(--ui-tag-color-blue)">UiButton</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiButton</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ghost"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>([])}&gt;ยุบทั้งหมด&lt;/<span style="color:var(--ui-tag-color-blue)">UiButton</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiTreeView</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"องค์กร"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTreeNode</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"สำนักงานใหญ่"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"hq"</span> <span style="color:var(--ui-tag-color-purple)">expanded</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-cyan)">isOpen</span>(<span style="color:var(--ui-tag-color-teal)">'hq'</span>)} <span style="color:var(--ui-tag-color-purple)">onUiToggle</span><span style="color:var(--ui-tag-color-magenta)">=</span>{onToggle}&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiTreeNode</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ฝ่ายกฎหมาย"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"legal"</span> <span style="color:var(--ui-tag-color-purple)">expanded</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-cyan)">isOpen</span>(<span style="color:var(--ui-tag-color-teal)">'legal'</span>)} <span style="color:var(--ui-tag-color-purple)">onUiToggle</span><span style="color:var(--ui-tag-color-magenta)">=</span>{onToggle}&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">UiTreeNode</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiTreeNode</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ฝ่ายการเงิน"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"finance"</span> /&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiTreeNode</span>&gt;
+  {<span style="color:var(--ui-ink-muted);font-style:italic">/* … */</span>}
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiTreeView</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-10-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> [open, setOpen] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>&lt;<span style="color:var(--ui-tag-color-cyan)">string</span>[]&gt;([]);
+<span style="color:var(--ui-tag-color-magenta)">const</span> <span style="color:var(--ui-tag-color-cyan)">toggle</span> <span style="color:var(--ui-tag-color-magenta)">=</span> (value<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (expanded<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">boolean</span>) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>((now) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (expanded <span style="color:var(--ui-tag-color-magenta)">?</span> [<span style="color:var(--ui-tag-color-magenta)">...</span>now, value] <span style="color:var(--ui-tag-color-magenta)">:</span> now.<span style="color:var(--ui-tag-color-cyan)">filter</span>((v) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> v <span style="color:var(--ui-tag-color-magenta)">!==</span> value)));
+
+&lt;<span style="color:var(--ui-tag-color-blue)">Button</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ghost"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>([<span style="color:var(--ui-tag-color-teal)">'hq'</span>, <span style="color:var(--ui-tag-color-teal)">'legal'</span>, <span style="color:var(--ui-tag-color-teal)">'branches'</span>])}&gt;ขยายทั้งหมด&lt;/<span style="color:var(--ui-tag-color-blue)">Button</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">Button</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ghost"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>([])}&gt;ยุบทั้งหมด&lt;/<span style="color:var(--ui-tag-color-blue)">Button</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">TreeView</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"องค์กร"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TreeNode</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"สำนักงานใหญ่"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"hq"</span> <span style="color:var(--ui-tag-color-purple)">expanded</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open.<span style="color:var(--ui-tag-color-cyan)">includes</span>(<span style="color:var(--ui-tag-color-teal)">'hq'</span>)} <span style="color:var(--ui-tag-color-purple)">onToggle</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-cyan)">toggle</span>(<span style="color:var(--ui-tag-color-teal)">'hq'</span>)}&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">TreeNode</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ฝ่ายกฎหมาย"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"legal"</span> <span style="color:var(--ui-tag-color-purple)">expanded</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open.<span style="color:var(--ui-tag-color-cyan)">includes</span>(<span style="color:var(--ui-tag-color-teal)">'legal'</span>)} <span style="color:var(--ui-tag-color-purple)">onToggle</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-cyan)">toggle</span>(<span style="color:var(--ui-tag-color-teal)">'legal'</span>)}&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">TreeNode</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">TreeNode</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ฝ่ายการเงิน"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"finance"</span> /&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">TreeNode</span>&gt;
+  {<span style="color:var(--ui-ink-muted);font-style:italic">/* … */</span>}
+&lt;/<span style="color:var(--ui-tag-color-blue)">TreeView</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p><code>ui-toggle</code> bubble ขึ้นมา listener ตัวเดียวที่ tree จึงได้ยินทุก node</p>
+<h2 id="ลิงก์">ลิงก์</h2>
+<p><code>href</code> ทำให้ label ของ node เป็นลิงก์ Enter หรือคลิกจะไปตามลิงก์ ในแอปหน้าเดียว (SPA) ให้ฟัง <code>ui-navigate</code> (ยกเลิกได้, <code>{ href }</code>) แล้วเปลี่ยนหน้าเอง</p>
+<div class="doc-demo"><div style="max-width: 360px">
+  <ui-tree-view id="tree-view-links" label="นโยบาย">
+    <ui-tree-node label="นโยบายการเก็บเอกสาร" value="retention" href="#links"></ui-tree-node>
+    <ui-tree-node label="อำนาจการลงนาม" value="signing" href="#links"></ui-tree-node>
+  </ui-tree-view>
+</div>
+<p>จะเปิด: <output id="tree-view-links-out"></output></p>
+
+<script type="text/x-demo">
+  document.getElementById('tree-view-links').addEventListener('ui-navigate', (event) => {
+    event.preventDefault(); // ให้แอปเปลี่ยนหน้าเองแทนการโหลดหน้าใหม่
+    document.getElementById('tree-view-links-out').value = event.detail.href;
+  });
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-11-0">HTML</ui-tab><ui-tab panel="code-11-1">React</ui-tab><ui-tab panel="code-11-2">React + Tailwind</ui-tab><ui-tab-panel name="code-11-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"max-width: 360px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tree-view</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"tree-view-links"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"นโยบาย"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"นโยบายการเก็บเอกสาร"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"retention"</span> <span style="color:var(--ui-tag-color-purple)">href</span>=<span style="color:var(--ui-tag-color-teal)">"#links"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"อำนาจการลงนาม"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"signing"</span> <span style="color:var(--ui-tag-color-purple)">href</span>=<span style="color:var(--ui-tag-color-teal)">"#links"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-tree-view</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;จะเปิด: &lt;<span style="color:var(--ui-tag-color-blue)">output</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"tree-view-links-out"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'tree-view-links'</span>).<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'ui-navigate'</span>, (event) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    event.<span style="color:var(--ui-tag-color-cyan)">preventDefault</span>(); <span style="color:var(--ui-ink-muted);font-style:italic">// ให้แอปเปลี่ยนหน้าเองแทนการโหลดหน้าใหม่</span>
+    document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'tree-view-links-out'</span>).value <span style="color:var(--ui-tag-color-magenta)">=</span> event.detail.href;
+  });
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-11-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiTreeView</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"นโยบาย"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTreeNode</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"นโยบายการเก็บเอกสาร"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"retention"</span> <span style="color:var(--ui-tag-color-purple)">href</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"/policies/retention"</span> <span style="color:var(--ui-tag-color-purple)">onUiNavigate</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> { e.<span style="color:var(--ui-tag-color-cyan)">preventDefault</span>(); <span style="color:var(--ui-tag-color-cyan)">navigate</span>(e.detail.href); }} /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTreeNode</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"อำนาจการลงนาม"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"signing"</span> <span style="color:var(--ui-tag-color-purple)">href</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"/policies/signing"</span> <span style="color:var(--ui-tag-color-purple)">onUiNavigate</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> { e.<span style="color:var(--ui-tag-color-cyan)">preventDefault</span>(); <span style="color:var(--ui-tag-color-cyan)">navigate</span>(e.detail.href); }} /&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiTreeView</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-11-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">TreeView</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"นโยบาย"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TreeNode</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"นโยบายการเก็บเอกสาร"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"retention"</span> <span style="color:var(--ui-tag-color-purple)">href</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"/policies/retention"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TreeNode</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"อำนาจการลงนาม"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"signing"</span> <span style="color:var(--ui-tag-color-purple)">href</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"/policies/signing"</span> /&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">TreeView</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>React + Tailwind สร้าง <code>&lt;a&gt;</code> ธรรมดา ให้ router ของคุณจัดการคลิกตามวิธีของมัน</p>
+<h2 id="โหลด-node-ลูกเมื่อเปิด">โหลด node ลูกเมื่อเปิด</h2>
+<p><code>lazy</code> ทำให้ node เป็นกิ่งก่อนจะมีลูก ครั้งแรกที่เปิด จะมี spinner แทนลูกศร และ <code>ui-lazy-load</code> ยิงพร้อม <code>value</code> ของมัน ให้ดึงข้อมูลแล้ว append เป็น <code>&lt;ui-tree-node&gt;</code> ถ้าไม่มีอะไรจะเพิ่ม ให้ตั้ง <code>lazy = false</code> แล้วมันจะกลายเป็นใบ ถ้าโหลดไม่สำเร็จ ให้ตั้ง <code>loading = false</code> มันจะปิดลงให้ผู้ใช้ลองใหม่ได้</p>
+<div class="doc-demo"><div style="max-width: 360px">
+  <ui-tree-view id="tree-view-lazy" label="แฟ้มคดีบน server">
+    <ui-tree-node label="คดีแพ่ง" value="civil" lazy></ui-tree-node>
+    <ui-tree-node label="คดีอาญา" value="criminal" lazy></ui-tree-node>
+    <ui-tree-node label="แฟ้มว่าง" value="empty" lazy></ui-tree-node>
+  </ui-tree-view>
+</div>
+
+<script type="text/x-demo">
+  document.getElementById('tree-view-lazy').addEventListener('ui-lazy-load', (event) => {
+    const node = event.target;
+    setTimeout(() => {
+      // server สมมุติที่ตอบหลัง 800ms
+      if (event.detail.value === 'empty') {
+        node.lazy = false;
+        return;
+      }
+      for (const n of [1, 2, 3]) {
+        const child = document.createElement('ui-tree-node');
+        child.label = `${node.label} ${n}`;
+        child.value = `${event.detail.value}-${n}`;
+        node.append(child);
+      }
+    }, 800);
+  });
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-12-0">HTML</ui-tab><ui-tab panel="code-12-1">React</ui-tab><ui-tab panel="code-12-2">React + Tailwind</ui-tab><ui-tab-panel name="code-12-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"max-width: 360px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tree-view</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"tree-view-lazy"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"แฟ้มคดีบน server"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"คดีแพ่ง"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"civil"</span> <span style="color:var(--ui-tag-color-purple)">lazy</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"คดีอาญา"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"criminal"</span> <span style="color:var(--ui-tag-color-purple)">lazy</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"แฟ้มว่าง"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"empty"</span> <span style="color:var(--ui-tag-color-purple)">lazy</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-tree-view</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'tree-view-lazy'</span>).<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'ui-lazy-load'</span>, (event) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    <span style="color:var(--ui-tag-color-magenta)">const</span> node <span style="color:var(--ui-tag-color-magenta)">=</span> event.target;
+    <span style="color:var(--ui-tag-color-cyan)">setTimeout</span>(() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+      <span style="color:var(--ui-ink-muted);font-style:italic">// server สมมุติที่ตอบหลัง 800ms</span>
+      <span style="color:var(--ui-tag-color-magenta)">if</span> (event.detail.value <span style="color:var(--ui-tag-color-magenta)">===</span> <span style="color:var(--ui-tag-color-teal)">'empty'</span>) {
+        node.lazy <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-green)">false</span>;
+        <span style="color:var(--ui-tag-color-magenta)">return</span>;
+      }
+      <span style="color:var(--ui-tag-color-magenta)">for</span> (<span style="color:var(--ui-tag-color-magenta)">const</span> n <span style="color:var(--ui-tag-color-magenta)">of</span> [<span style="color:var(--ui-tag-color-green)">1</span>, <span style="color:var(--ui-tag-color-green)">2</span>, <span style="color:var(--ui-tag-color-green)">3</span>]) {
+        <span style="color:var(--ui-tag-color-magenta)">const</span> child <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">createElement</span>(<span style="color:var(--ui-tag-color-teal)">'ui-tree-node'</span>);
+        child.label <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">`${</span><span style="color:var(--ui-tag-color-teal)">node.label</span><span style="color:var(--ui-tag-color-teal)">} ${</span><span style="color:var(--ui-tag-color-teal)">n</span><span style="color:var(--ui-tag-color-teal)">}`</span>;
+        child.value <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">`${</span><span style="color:var(--ui-tag-color-teal)">event.detail.value</span><span style="color:var(--ui-tag-color-teal)">}-${</span><span style="color:var(--ui-tag-color-teal)">n</span><span style="color:var(--ui-tag-color-teal)">}`</span>;
+        node.<span style="color:var(--ui-tag-color-cyan)">append</span>(child);
+      }
+    }, <span style="color:var(--ui-tag-color-green)">800</span>);
+  });
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-12-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> [children, setChildren] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>&lt;<span style="color:var(--ui-tag-color-cyan)">Record</span>&lt;<span style="color:var(--ui-tag-color-cyan)">string</span>, <span style="color:var(--ui-tag-color-cyan)">string</span>[]&gt;&gt;({});
+<span style="color:var(--ui-tag-color-magenta)">const</span> <span style="color:var(--ui-tag-color-cyan)">load</span> <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-magenta)">async</span> (e<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">CustomEvent</span>&lt;{ value<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span> }&gt;) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> node <span style="color:var(--ui-tag-color-magenta)">=</span> e.target <span style="color:var(--ui-tag-color-magenta)">as</span> <span style="color:var(--ui-tag-color-cyan)">TreeNodeElement</span>;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> names <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-magenta)">await</span> <span style="color:var(--ui-tag-color-cyan)">fetchFolder</span>(e.detail.value);
+  <span style="color:var(--ui-tag-color-magenta)">if</span> (names.length <span style="color:var(--ui-tag-color-magenta)">===</span> <span style="color:var(--ui-tag-color-green)">0</span>) node.lazy <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-green)">false</span>;
+  <span style="color:var(--ui-tag-color-magenta)">else</span> <span style="color:var(--ui-tag-color-cyan)">setChildren</span>((now) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> ({ <span style="color:var(--ui-tag-color-magenta)">...</span>now, <span style="color:var(--ui-tag-color-purple)">[e.detail.value]:</span> names }));
+};
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiTreeView</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"แฟ้มคดีบน server"</span> <span style="color:var(--ui-tag-color-purple)">onUiLazyLoad</span><span style="color:var(--ui-tag-color-magenta)">=</span>{load}&gt;
+  {[<span style="color:var(--ui-tag-color-teal)">'civil'</span>, <span style="color:var(--ui-tag-color-teal)">'criminal'</span>, <span style="color:var(--ui-tag-color-teal)">'empty'</span>].<span style="color:var(--ui-tag-color-cyan)">map</span>((folder) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiTreeNode</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{folder} <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span>{folder} <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{folder} <span style="color:var(--ui-tag-color-purple)">lazy</span>&gt;
+      {children[folder]?.<span style="color:var(--ui-tag-color-cyan)">map</span>((name) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> &lt;<span style="color:var(--ui-tag-color-blue)">UiTreeNode</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{name} <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span>{name} <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-teal)">`${</span><span style="color:var(--ui-tag-color-teal)">folder</span><span style="color:var(--ui-tag-color-teal)">}/${</span><span style="color:var(--ui-tag-color-teal)">name</span><span style="color:var(--ui-tag-color-teal)">}`</span>} /&gt;)}
+    &lt;/<span style="color:var(--ui-tag-color-blue)">UiTreeNode</span>&gt;
+  ))}
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiTreeView</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-12-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> [children, setChildren] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>&lt;<span style="color:var(--ui-tag-color-cyan)">Record</span>&lt;<span style="color:var(--ui-tag-color-cyan)">string</span>, <span style="color:var(--ui-tag-color-cyan)">string</span>[]&gt;&gt;({});
+<span style="color:var(--ui-ink-muted);font-style:italic">// promise ที่ resolve โดยไม่มีลูกทำให้ node เป็นใบ ส่วนที่ reject จะปิด node ให้ลองใหม่</span>
+<span style="color:var(--ui-tag-color-magenta)">const</span> <span style="color:var(--ui-tag-color-cyan)">load</span> <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-magenta)">async</span> (folder<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> names <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-magenta)">await</span> <span style="color:var(--ui-tag-color-cyan)">fetchFolder</span>(folder);
+  <span style="color:var(--ui-tag-color-cyan)">setChildren</span>((now) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> ({ <span style="color:var(--ui-tag-color-magenta)">...</span>now, <span style="color:var(--ui-tag-color-purple)">[folder]:</span> names }));
+};
+
+&lt;<span style="color:var(--ui-tag-color-blue)">TreeView</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"แฟ้มคดีบน server"</span>&gt;
+  {[<span style="color:var(--ui-tag-color-teal)">'civil'</span>, <span style="color:var(--ui-tag-color-teal)">'criminal'</span>, <span style="color:var(--ui-tag-color-teal)">'empty'</span>].<span style="color:var(--ui-tag-color-cyan)">map</span>((folder) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">TreeNode</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{folder} <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span>{folder} <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{folder} <span style="color:var(--ui-tag-color-purple)">lazy</span> <span style="color:var(--ui-tag-color-purple)">onLazyLoad</span><span style="color:var(--ui-tag-color-magenta)">=</span>{load}&gt;
+      {children[folder]?.<span style="color:var(--ui-tag-color-cyan)">map</span>((name) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> &lt;<span style="color:var(--ui-tag-color-blue)">TreeNode</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{name} <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span>{name} <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-teal)">`${</span><span style="color:var(--ui-tag-color-teal)">folder</span><span style="color:var(--ui-tag-color-teal)">}/${</span><span style="color:var(--ui-tag-color-teal)">name</span><span style="color:var(--ui-tag-color-teal)">}`</span>} /&gt;)}
+    &lt;/<span style="color:var(--ui-tag-color-blue)">TreeNode</span>&gt;
+  ))}
+&lt;/<span style="color:var(--ui-tag-color-blue)">TreeView</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p><code>TreeNodeElement</code> คือ <code>import type { UiTreeNode as TreeNodeElement } from '@purpurabog/ui'</code></p>
+<h2 id="ซ่อน-label">ซ่อน label</h2>
+<p><code>hide-label</code> (<code>hideLabel</code> ใน React + Tailwind) เก็บ label ไว้ให้ screen reader อย่างเดียว ใช้เมื่อมีหัวข้อด้านบนบอกชื่อ tree อยู่แล้ว</p>
+<div class="doc-demo"><div style="max-width: 360px">
+  <ui-tree-view label="แฟ้ม" hide-label>
+    <ui-tree-node label="สัญญา" value="contracts"></ui-tree-node>
+    <ui-tree-node label="แม่แบบ" value="templates"></ui-tree-node>
+  </ui-tree-view>
+</div>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-13-0">HTML</ui-tab><ui-tab panel="code-13-1">React</ui-tab><ui-tab panel="code-13-2">React + Tailwind</ui-tab><ui-tab-panel name="code-13-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"max-width: 360px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-tree-view</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"แฟ้ม"</span> <span style="color:var(--ui-tag-color-purple)">hide-label</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"สัญญา"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"contracts"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"แม่แบบ"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"templates"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tree-node</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-tree-view</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-13-1"><ui-code-snippet type="single" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiTreeView</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"แฟ้ม"</span> <span style="color:var(--ui-tag-color-purple)">hideLabel</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">UiTreeView</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-13-2"><ui-code-snippet type="single" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">TreeView</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"แฟ้ม"</span> <span style="color:var(--ui-tag-color-purple)">hideLabel</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">TreeView</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="คีย์บอร์ด">คีย์บอร์ด</h2>
+<table>
+<thead>
+<tr>
+<th>ปุ่ม</th>
+<th>ทำอะไร</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tab</td>
+<td>เข้าและออกจาก tree: ทั้ง tree หยุด Tab ที่เดียว (node ที่ focus ล่าสุด ถ้าไม่มีก็ node ที่เลือก ถ้าไม่มีอีกก็ node แรก)</td>
+</tr>
+<tr>
+<td>ขึ้น / ลง</td>
+<td>node ที่มองเห็นก่อนหน้า / ถัดไป</td>
+</tr>
+<tr>
+<td>Home / End</td>
+<td>node แรก / สุดท้ายที่มองเห็น</td>
+</tr>
+<tr>
+<td>ขวา</td>
+<td>เปิดกิ่งที่ปิดอยู่ ถ้าเปิดแล้วจะไปที่ลูกตัวแรก</td>
+</tr>
+<tr>
+<td>ซ้าย</td>
+<td>ปิดกิ่งที่เปิดอยู่ ถ้าปิดอยู่แล้วหรือเป็นใบจะไปที่ node แม่</td>
+</tr>
+<tr>
+<td>Enter</td>
+<td>เปิดหรือปิดกิ่ง เลือก node และไปตามลิงก์ของมัน</td>
+</tr>
+<tr>
+<td>Space</td>
+<td>เลือก node ใน tree แบบ <code>multiselect</code> จะเพิ่มหรือเอาออก</td>
+</tr>
+<tr>
+<td>Ctrl / ⌘ + A</td>
+<td>เลือกทุก node (<code>multiselect</code>)</td>
+</tr>
+<tr>
+<td>ตัวอักษร</td>
+<td>ไปที่ node ถัดไปที่มองเห็นและ label ขึ้นต้นด้วยตัวนั้น</td>
+</tr>
+</tbody>
+</table>
+<h2 id="accessibility">Accessibility</h2>
+<ul>
+<li>tree เป็น <code>role=&quot;tree&quot;</code> ของ <code>treeitem</code> กิ่งมี <code>aria-expanded</code> และทุก node มี <code>aria-selected</code> ลูกของแต่ละกิ่งเป็น <code>group</code> ที่ตั้งชื่อด้วยแถวของกิ่ง</li>
+<li><code>label</code> ตั้งชื่อ tree ลูกศรซ่อนจาก screen reader เพราะปุ่มด้านบนทำหน้าที่แทน</li>
+<li>node ที่กำลังโหลดมี <code>aria-busy</code> และบอกว่า &quot;กำลังโหลด&quot;</li>
+</ul>
+<p>ต้องการแค่พฤติกรรมโดยไม่มี style: <a href="/kanok-ui-docs/th/headless-tree-view/">Headless Tree view</a></p>
+<h2 id="api">API</h2>
+<p>สร้างจากแพ็กเกจโดยตรง ใน React ส่ง property เป็น prop ชื่อเดียวกัน ส่วน event ก็เป็น prop เช่นกัน (ดูคอลัมน์ React)</p>
+<h3 id="ui-tree-view-react-uitreeview"><code>&lt;ui-tree-view&gt;</code> · React <code>UiTreeView</code></h3>
+<h4 id="attribute">Attribute</h4>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Property</th>
+<th>ชนิด</th>
+<th>ค่าเริ่มต้น</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>label</code></td>
+<td><code>label</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>hide-label</code></td>
+<td><code>hideLabel</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>size</code></td>
+<td><code>size</code></td>
+<td><code>TreeViewSize</code></td>
+<td><code>'sm'</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>multiselect</code></td>
+<td><code>multiselect</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>active</code></td>
+<td><code>active</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>The node that was last activated (4px marker).</td>
+</tr>
+</tbody>
+</table>
+<h4 id="property">Property</h4>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>ชนิด</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>selected</code></td>
+<td><code>string[]</code></td>
+<td>Selected node values.</td>
+</tr>
+<tr>
+<td><code>nodes</code></td>
+<td><code>UiTreeNode[]</code></td>
+<td>(อ่านอย่างเดียว) Every node, document order.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="event">Event</h4>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>React</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ui-select</code></td>
+<td><code>onUiSelect</code></td>
+<td>detail: { selected: string[], value } after a selection change</td>
+</tr>
+<tr>
+<td><code>ui-activate</code></td>
+<td><code>onUiActivate</code></td>
+<td>detail: { active } when a node becomes the active one</td>
+</tr>
+</tbody>
+</table>
+<h4 id="slot">Slot</h4>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(ค่าเริ่มต้น)</td>
+<td>Top-level <code>&lt;ui-tree-node&gt;</code>s</td>
+</tr>
+</tbody>
+</table>
+<h4 id="css-part">CSS part</h4>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>label</code></td>
+<td>The tree label</td>
+</tr>
+<tr>
+<td><code>tree</code></td>
+<td>The <code>role=tree</code> container</td>
+</tr>
+</tbody>
+</table>
+<h4 id="css-custom-property">CSS custom property</h4>
+<table>
+<thead>
+<tr>
+<th>Custom property</th>
+<th>ค่าเริ่มต้น</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--ui-tree-selected</code></td>
+<td></td>
+<td>/ --ui-tree-mark - The selected row's fill and mark (on <code>&lt;ui-tree-node&gt;</code>, with the other --ui-tree-* settings)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ui-tree-node-react-uitreenode"><code>&lt;ui-tree-node&gt;</code> · React <code>UiTreeNode</code></h3>
+<h4 id="attribute-2">Attribute</h4>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Property</th>
+<th>ชนิด</th>
+<th>ค่าเริ่มต้น</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>label</code></td>
+<td><code>label</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>value</code></td>
+<td><code>value</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>Identifies the node in <code>selected</code> / <code>active</code>; defaults to <code>label</code>.</td>
+</tr>
+<tr>
+<td><code>expanded</code></td>
+<td><code>expanded</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>disabled</code></td>
+<td><code>disabled</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>href</code></td>
+<td><code>href</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>lazy</code></td>
+<td><code>lazy</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>A branch whose children aren't loaded yet: it shows a caret and fires <code>ui-lazy-load</code> when first expanded.</td>
+</tr>
+<tr>
+<td><code>loading</code></td>
+<td><code>loading</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>The children are being fetched; set by the node when a <code>lazy</code> branch opens, cleared when children arrive.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="property-2">Property</h4>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>ชนิด</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>depth</code></td>
+<td><code>number</code></td>
+<td>Set by the tree.</td>
+</tr>
+<tr>
+<td><code>isBranch</code></td>
+<td></td>
+<td>(อ่านอย่างเดียว) Has child nodes, or is <code>lazy</code> and will have them.</td>
+</tr>
+<tr>
+<td><code>treeValue</code></td>
+<td></td>
+<td>(อ่านอย่างเดียว) What identifies the node in the tree's <code>selected</code> / <code>active</code>: <code>value</code>, else <code>label</code>, else the label slot's text. (Was <code>nodeValue</code>, which shadowed DOM <code>Node.nodeValue</code>.)</td>
+</tr>
+<tr>
+<td><code>labelText</code></td>
+<td></td>
+<td>(อ่านอย่างเดียว) The label as text, which type-ahead matches: the <code>label</code> slot's text when it is used, else <code>label</code>.</td>
+</tr>
+<tr>
+<td><code>childTreeNodes</code></td>
+<td><code>UiTreeNode[]</code></td>
+<td>(อ่านอย่างเดียว) Direct child nodes.</td>
+</tr>
+<tr>
+<td><code>parentTreeNode</code></td>
+<td><code>UiTreeNode | null</code></td>
+<td>(อ่านอย่างเดียว) The enclosing node, or null at the top level.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="method">Method</h4>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>toggle(expanded)</code></td>
+<td>Expand / collapse (branches only, including <code>lazy</code> ones).</td>
+</tr>
+</tbody>
+</table>
+<h4 id="event-2">Event</h4>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>React</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ui-toggle</code></td>
+<td><code>onUiToggle</code></td>
+<td>detail: { expanded, value } when the branch opens / closes</td>
+</tr>
+<tr>
+<td><code>ui-lazy-load</code></td>
+<td><code>onUiLazyLoad</code></td>
+<td>detail: { value } when a <code>lazy</code> node is expanded and its children should be fetched</td>
+</tr>
+<tr>
+<td><code>ui-navigate</code></td>
+<td><code>onUiNavigate</code></td>
+<td>detail: { href } (cancelable) on a plain click of the link; cancel it to route client-side (README: SPA router)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="slot-2">Slot</h4>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(ค่าเริ่มต้น)</td>
+<td>Child nodes</td>
+</tr>
+<tr>
+<td><code>icon</code></td>
+<td>16px icon before the label</td>
+</tr>
+<tr>
+<td><code>label</code></td>
+<td>Rich label (Carbon React's <code>label</code> node): replaces the <code>label</code> text, which stays the plain-text fallback</td>
+</tr>
+<tr>
+<td><code>end</code></td>
+<td>Beyond Carbon: content at the end of the row (an amount, a count, a badge), kept whole while the label truncates; it then describes the node, which the label alone names</td>
+</tr>
+</tbody>
+</table>
+<h4 id="css-part-2">CSS part</h4>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>label</code></td>
+<td>The row</td>
+</tr>
+<tr>
+<td><code>toggle</code></td>
+<td>The caret button (branches)</td>
+</tr>
+<tr>
+<td><code>children</code></td>
+<td>The <code>role=group</code> container</td>
+</tr>
+<tr>
+<td><code>end</code></td>
+<td>The end content's wrapper (beyond Carbon)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="css-custom-property-2">CSS custom property</h4>
+<table>
+<thead>
+<tr>
+<th>Custom property</th>
+<th>ค่าเริ่มต้น</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--ui-tree-background</code></td>
+<td></td>
+<td>/ --ui-tree-row-radius - Row fill and corners (default the layer, 0; Kanok: transparent, 6px)</td>
+</tr>
+<tr>
+<td><code>--ui-tree-selected</code></td>
+<td></td>
+<td>/ --ui-tree-selected-hover - The selected row's fill and its hover (default layer-selected, layer-selected-hover; Kanok: the highlight tint)</td>
+</tr>
+<tr>
+<td><code>--ui-tree-mark</code></td>
+<td></td>
+<td>/ --ui-tree-mark-width / --ui-tree-mark-inset / --ui-tree-mark-radius - The selected row's start mark (default interactive, 4px, full height, square; Kanok: none, the tint alone — forced colours still show it)</td>
+</tr>
+<tr>
+<td><code>--ui-tree-pointer-outline</code></td>
+<td></td>
+<td>The ring of a node focused by a click, not the keyboard (default the focus ring, as Carbon; Kanok: none)</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+<nav class="doc-toc" aria-labelledby="doc-toc-title"><p id="doc-toc-title" class="doc-toc-title">ในหน้านี้</p><ul><li class="doc-toc-h2"><a href="#ติดตั้ง">ติดตั้ง</a></li><li class="doc-toc-h2"><a href="#วิธีใช้">วิธีใช้</a></li><li class="doc-toc-h2"><a href="#ไอคอน">ไอคอน</a></li><li class="doc-toc-h2"><a href="#ป้ายแบบ-rich-และเนื้อหาท้ายแถว">ป้ายแบบ rich และเนื้อหาท้ายแถว</a></li><li class="doc-toc-h2"><a href="#การเลือกและ-node-ที่-active">การเลือกและ node ที่ active</a></li><li class="doc-toc-h2"><a href="#เลือกหลาย-node">เลือกหลาย node</a></li><li class="doc-toc-h2"><a href="#ขนาด">ขนาด</a></li><li class="doc-toc-h2"><a href="#node-ที่ปิดใช้งาน">node ที่ปิดใช้งาน</a></li><li class="doc-toc-h2"><a href="#เปิดปิดกิ่งจากโค้ด">เปิดปิดกิ่งจากโค้ด</a></li><li class="doc-toc-h2"><a href="#ลิงก์">ลิงก์</a></li><li class="doc-toc-h2"><a href="#โหลด-node-ลูกเมื่อเปิด">โหลด node ลูกเมื่อเปิด</a></li><li class="doc-toc-h2"><a href="#ซ่อน-label">ซ่อน label</a></li><li class="doc-toc-h2"><a href="#คีย์บอร์ด">คีย์บอร์ด</a></li><li class="doc-toc-h2"><a href="#accessibility">Accessibility</a></li><li class="doc-toc-h2"><a href="#api">API</a></li><li class="doc-toc-h3"><a href="#ui-tree-view-react-uitreeview">&lt;ui-tree-view></a></li><li class="doc-toc-h3"><a href="#ui-tree-node-react-uitreenode">&lt;ui-tree-node></a></li></ul></nav>
+</div>
+<nav class="doc-pager" aria-label="ถัดไป / ก่อนหน้า"><a class="doc-pager-prev" href="/kanok-ui-docs/th/contained-list/" rel="prev"><span>ก่อนหน้า</span>Contained list</a><a class="doc-pager-next" href="/kanok-ui-docs/th/tabs/" rel="next"><span>ถัดไป</span>Tabs</a></nav>
+<footer class="doc-footer">@purpurabog/ui 2.3.0 · MIT · <a href="https://cdn.jsdelivr.net/npm/@purpurabog/ui@2.3.0/THIRD-PARTY-NOTICES.md">ประกาศของบุคคลที่สาม</a><br>สร้างตาม Carbon Design System ไม่ได้เกี่ยวข้องหรือได้รับการรับรองจาก IBM — IBM และ Carbon เป็นเครื่องหมายการค้าของ IBM Corp.</footer>
+</ui-content>
+<ui-modal id="doc-search" heading="ค้นหา" data-count="พบ {n} รายการ" data-empty="ไม่พบ “{q}”">
+<ui-search label="ค้นหาในเอกสาร" placeholder="ค้นหาในเอกสาร" size="lg"></ui-search>
+<p class="doc-search-status" role="status"></p>
+<ul class="doc-search-results"></ul>
+</ui-modal>
+</body>
+</html>

@@ -1,0 +1,768 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Progress indicator · @purpurabog/ui</title>
+<link rel="alternate" hreflang="en" href="/kanok-ui-docs/en/progress-indicator/"  /><link rel="alternate" hreflang="th" href="/kanok-ui-docs/th/progress-indicator/"  />
+<script>(function(){try{var q=new URLSearchParams(location.search).get("design"),d=q;if(q==="kanok"||q==="carbon")localStorage.setItem("ui-docs-design",q);else d=localStorage.getItem("ui-docs-design");if(d==="kanok")document.documentElement.setAttribute("data-design","kanok")}catch(e){}})();(function(){try{var m=localStorage.getItem("ui-docs-theme");if(m!=="light"&&m!=="dark"&&m!=="system")return;var d=m==="dark"||(m==="system"&&matchMedia("(prefers-color-scheme: dark)").matches),r=document.documentElement,t=d?"g100":"white";if(r.getAttribute("data-design")==="kanok")t=d?"lacquer":"paper";r.setAttribute("data-theme",t)}catch(e){}})();</script>
+<style>ui-header:not(:defined){z-index:8000;box-sizing:border-box;border-block-end:1px solid var(--ui-border-subtle-1);background:var(--ui-canvas);block-size:48px;display:block;position:fixed;inset:0 0 auto}:is(ui-header:not(:defined)>*,ui-side-nav:not(:defined)>*){visibility:hidden}:is(ui-header-panel:not(:defined),ui-modal:not(:defined)){display:none}ui-side-nav:not(:defined){display:none}ui-content:not(:defined){margin-block-start:48px;padding:32px;display:block}@media (width>=1056px){ui-side-nav[expanded]:not(:defined){background:var(--ui-canvas);inline-size:256px;display:block;position:fixed;inset:48px auto 0 0}ui-side-nav[expanded]:not(:defined)~ui-content:not(:defined){margin-inline-start:256px}}ui-tabs:not(:defined){display:block}ui-tabs:not(:defined)>ui-tab{box-sizing:border-box;border-block-end:2px solid var(--ui-hairline);block-size:40px;color:var(--ui-ink-muted);font:var(--ui-font-body-sm);padding:0 16px;line-height:38px;display:inline-block}ui-tabs:not(:defined)>ui-tab:first-of-type{border-block-end-color:var(--ui-interactive);color:var(--ui-ink)}ui-tabs:not(:defined)>ui-tab-panel{padding:16px;display:block}ui-tabs:not(:defined)>ui-tab-panel~ui-tab-panel{display:none}ui-code-snippet:not(:defined){background:var(--ui-layer-1);max-block-size:272px;font:var(--ui-font-code,12px/16px monospace);white-space:pre;padding:16px;display:block;overflow:hidden}[data-react-example]:empty>*{visibility:hidden}.doc-demo:has(:not(:defined))>*{visibility:hidden}[data-react-example]:empty{box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}.doc-demo:has(:not(:defined)){box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}@keyframes doc-skeleton{to{background-position:-200% 0}}@media (prefers-reduced-motion:reduce){[data-react-example]:empty{animation:none}.doc-demo:has(:not(:defined)){animation:none}}</style>
+
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/theme-switcher-BZXGbHfR.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/tab-ChjAM0hz.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/button-DGUm7Yxm.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/skeleton-Bt17J2no.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/progress-indicator-skeleton-CIUWfBd8.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/progress-indicator-H1lxgtl4.js"></script>
+  <link rel="stylesheet" crossorigin href="/kanok-ui-docs/assets/theme-switcher-BXY5AIvi.css">
+</head>
+<body>
+<ui-header label="@purpurabog/ui">
+<ui-skip-to-content></ui-skip-to-content>
+<ui-header-menu-button></ui-header-menu-button>
+<ui-header-name href="/kanok-ui-docs/th/" prefix="@purpurabog">ui</ui-header-name>
+<ui-header-global-bar>
+<ui-header-global-action id="doc-search-open" label="ค้นหา" tooltip-placement="bottom"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="m18.5 17.8-4.9-4.9a7 7 0 1 0-.7.7l4.9 4.9zM3 8.5a5.5 5.5 0 1 1 5.5 5.5A5.5 5.5 0 0 1 3 8.5Z" /></svg></ui-header-global-action>
+<ui-header-global-action label="ตั้งค่า" panel="doc-settings" tooltip-placement="bottom-end"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="M16.9 10.6a7 7 0 0 0 0-1.2l1.8-1.4-1.6-2.8-2.1.8a6.6 6.6 0 0 0-1-.6L13.6 3h-3.2l-.4 2.4a6.6 6.6 0 0 0-1 .6l-2.1-.8L5.3 8l1.8 1.4a7 7 0 0 0 0 1.2L5.3 12l1.6 2.8 2.1-.8a6.6 6.6 0 0 0 1 .6l.4 2.4h3.2l.4-2.4a6.6 6.6 0 0 0 1-.6l2.1.8 1.6-2.8zM12 13a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" /></svg></ui-header-global-action>
+</ui-header-global-bar>
+<ui-header-panel id="doc-settings" label="ตั้งค่า">
+<div class="doc-settings">
+<span class="doc-settings-label">ธีม</span>
+<ui-theme-switcher storage-key="ui-docs-theme" tooltip-placement="bottom"></ui-theme-switcher>
+<span class="doc-settings-label">รูปแบบ</span>
+<ui-content-switcher id="doc-design" aria-label="รูปแบบ" size="sm"><ui-content-switcher-item name="carbon">Carbon</ui-content-switcher-item><ui-content-switcher-item name="kanok">Kanok</ui-content-switcher-item></ui-content-switcher>
+<span class="doc-settings-label">ภาษา</span>
+<ui-link href="/kanok-ui-docs/en/progress-indicator/" hreflang="en" lang="en">English</ui-link>
+</div>
+</ui-header-panel>
+</ui-header>
+<ui-side-nav label="เอกสาร"><ui-side-nav-items><ui-side-nav-menu label="เริ่มต้น"><ui-side-nav-menu-item href="/kanok-ui-docs/th/">ภาพรวม</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/installation/">ติดตั้ง</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/migration-1-0/">การย้ายไป 1.0</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="คู่มือ"><ui-side-nav-menu-item href="/kanok-ui-docs/th/themes/">ธีมและ layer</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/kanok/">ดีไซน์ Kanok</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/customizing/">ปรับแต่งหน้าตา</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/icons/">ไอคอน</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/forms/">ฟอร์มและการตรวจค่า</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/frameworks/">ใช้กับ framework</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/ai/">ใช้กับ AI</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="ฟอร์มและปุ่ม"><ui-side-nav-menu-item href="/kanok-ui-docs/th/button/">Button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/file-uploader/">File uploader</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Overlay"><ui-side-nav-menu-item href="/kanok-ui-docs/th/modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/toggletip/">Toggletip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/menu/">Menu</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="ข้อมูล"><ui-side-nav-menu-item href="/kanok-ui-docs/th/data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/contained-list/">Contained list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tree-view/">Tree view</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="การนำทาง" expanded><ui-side-nav-menu-item href="/kanok-ui-docs/th/tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/breadcrumb/">Breadcrumb</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/link/">Link</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/progress-indicator/" current>Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/ui-shell/">UI shell</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="เนื้อหา"><ui-side-nav-menu-item href="/kanok-ui-docs/th/tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tile/">Tile</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/user-avatar/">User avatar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/list/">List</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="สถานะและการโหลด"><ui-side-nav-menu-item href="/kanok-ui-docs/th/loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/inline-loading/">Inline loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/progress-bar/">Progress bar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/skeleton/">Skeleton</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/badge-indicator/">Badge indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/status-indicator/">Status indicator</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="เลย์เอาต์"><ui-side-nav-menu-item href="/kanok-ui-docs/th/grid/">Grid</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/heading/">Heading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/layer/">Layer</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/action-set/">Action set</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/page-header/">Page header</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/big-number/">Big number</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Headless"><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless/">แนะนำ</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-file-uploader/">File uploader</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-menu/">Menu</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-ui-shell/">UI shell</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tree-view/">Tree view</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu></ui-side-nav-items></ui-side-nav><script>if(matchMedia('(min-width: 66rem)').matches)document.currentScript.previousElementSibling.setAttribute('expanded','')</script>
+<ui-content>
+<div class="doc-page">
+<article class="doc">
+<h1 id="progress-indicator">Progress indicator</h1>
+<p>Progress indicator บอกว่าผู้ใช้อยู่ตรงไหนของงานที่มีหลายขั้นตอน ขั้นไหนเสร็จแล้ว ขั้นไหนเป็นขั้นปัจจุบัน และอะไรจะตามมา ใช้เหนือฟอร์มหลายขั้นตอนหรือ wizard</p>
+<div class="doc-demo"><ui-progress-indicator current-index="1">
+  <ui-progress-step label="รายละเอียดสัญญา"></ui-progress-step>
+  <ui-progress-step label="ผู้ลงนาม"></ui-progress-step>
+  <ui-progress-step label="ตรวจทาน"></ui-progress-step>
+  <ui-progress-step label="ส่ง"></ui-progress-step>
+</ui-progress-indicator>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-1-0">HTML</ui-tab><ui-tab panel="code-1-1">React</ui-tab><ui-tab panel="code-1-2">React + Tailwind</ui-tab><ui-tab-panel name="code-1-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-indicator</span> <span style="color:var(--ui-tag-color-purple)">current-index</span>=<span style="color:var(--ui-tag-color-teal)">"1"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"รายละเอียดสัญญา"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ผู้ลงนาม"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ตรวจทาน"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ส่ง"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-indicator</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-1-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiProgressIndicator</span> <span style="color:var(--ui-tag-color-purple)">currentIndex</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">1</span>}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"รายละเอียดสัญญา"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ผู้ลงนาม"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ตรวจทาน"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ส่ง"</span> /&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiProgressIndicator</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-1-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">ProgressIndicator</span> <span style="color:var(--ui-tag-color-purple)">currentIndex</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">1</span>}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"รายละเอียดสัญญา"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ผู้ลงนาม"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ตรวจทาน"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ส่ง"</span> /&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ProgressIndicator</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="ติดตั้ง">ติดตั้ง</h2>
+<ui-tabs class="doc-code-tabs" label="โค้ด"><ui-tab panel="code-2-0">npm</ui-tab><ui-tab panel="code-2-1">shadcn · Web component</ui-tab><ui-tab panel="code-2-2">shadcn · React + Tailwind</ui-tab><ui-tab panel="code-2-3">คัดลอกเอง</ui-tab><ui-tab-panel name="code-2-0"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">@purpurabog/ui</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-1"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npx</span> <span style="color:var(--ui-tag-color-teal)">shadcn@4</span> <span style="color:var(--ui-tag-color-teal)">add</span> <span style="color:var(--ui-tag-color-teal)">@kanok-ui/progress-indicator</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-2"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npx</span> <span style="color:var(--ui-tag-color-teal)">shadcn@4</span> <span style="color:var(--ui-tag-color-teal)">add</span> <span style="color:var(--ui-tag-color-teal)">@kanok-ui/tw-progress-indicator</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-3"><ui-code-snippet type="multi" class="doc-code" data-lang="bash"><span style="color:var(--ui-ink-muted);font-style:italic"># Web component</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 1. ติดตั้ง dependency</span>
+<span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">lit@^3.3.0</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 2. คัดลอก "content" ของแต่ละไฟล์จาก</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    https://cdn.jsdelivr.net/npm/@purpurabog/ui@2.3.0/registry/progress-indicator.json</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    ไปไว้ที่ target ของมัน:</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/progress-indicator/progress-indicator-skeleton.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/progress-indicator/progress-indicator.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/progress-indicator/progress-step.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 3. ทำแบบเดียวกันกับ item ที่มันใช้ (registry/&lt;name&gt;.json):</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    shared-element, shared-localize, shared-skeleton, tokens</span>
+
+<span style="color:var(--ui-ink-muted);font-style:italic"># React + Tailwind</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 1. ติดตั้ง dependency</span>
+<span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">@purpurabog/ui@^2.3.0</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 2. คัดลอก "content" ของแต่ละไฟล์จาก</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    https://cdn.jsdelivr.net/npm/@purpurabog/ui@2.3.0/registry/tw-progress-indicator.json</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    ไปไว้ที่ target ของมัน:</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/react-tw/progress-indicator.tsx</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 3. ทำแบบเดียวกันกับ item ที่มันใช้ (registry/&lt;name&gt;.json):</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    tw-i18n, tw-theme, tw-utils</span></ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>npm ให้ทุก component จากแพ็กเกจ ส่วน shadcn คัดลอกซอร์สเข้าแอปของคุณแทน เป็นสำเนาที่ล็อกเวอร์ชันนี้และแก้เองได้ คำสั่ง shadcn ต้องตั้ง registry <code>@kanok-ui</code> ใน <code>components.json</code> ครั้งเดียวก่อน ดู <a href="/kanok-ui-docs/th/installation/#react-tailwind-%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2-shadcn">ติดตั้ง</a></p>
+<h2 id="วิธีใช้">วิธีใช้</h2>
+<ui-tabs class="doc-code-tabs" label="โค้ด"><ui-tab panel="code-3-0">HTML</ui-tab><ui-tab panel="code-3-1">React</ui-tab><ui-tab panel="code-3-2">React + Tailwind</ui-tab><ui-tab-panel name="code-3-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;<span style="color:var(--ui-tag-color-magenta)">import</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/progress-indicator'</span>;&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-indicator</span> <span style="color:var(--ui-tag-color-purple)">current-index</span>=<span style="color:var(--ui-tag-color-teal)">"0"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"รายละเอียดสัญญา"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ผู้ลงนาม"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-indicator</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-3-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { UiProgressIndicator, UiProgressStep } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/react'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiProgressIndicator</span> <span style="color:var(--ui-tag-color-purple)">currentIndex</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">0</span>}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"รายละเอียดสัญญา"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ผู้ลงนาม"</span> /&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiProgressIndicator</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-3-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { ProgressIndicator, ProgressStep } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@/components/ui/react-tw/progress-indicator'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">ProgressIndicator</span> <span style="color:var(--ui-tag-color-purple)">currentIndex</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">0</span>}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"รายละเอียดสัญญา"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ผู้ลงนาม"</span> /&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ProgressIndicator</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="สถานะของขั้นตอน">สถานะของขั้นตอน</h2>
+<p><code>current-index</code> (เริ่มที่ 0) กำหนดสถานะของแต่ละขั้น: ขั้นก่อนหน้าเสร็จแล้ว (เครื่องหมายถูก) ขั้นที่ตำแหน่งนั้นเป็นขั้นปัจจุบัน (วงกลมครึ่งวง) ขั้นหลังจากนั้นยังไม่ถึง (วงกลมว่าง) มี flag สองตัวที่ใส่เพิ่มที่ขั้นได้:</p>
+<ul>
+<li><code>invalid</code> แสดงไอคอนเตือนสีแดง แปลว่าขั้นนี้มี error ต้องแก้</li>
+<li><code>disabled</code> ทำให้ขั้นเป็นสีเทา คลิกไม่ได้ แม้ indicator จะเป็นแบบ interactive</li>
+</ul>
+<div class="doc-demo"><ui-progress-indicator current-index="1">
+  <ui-progress-step label="รายละเอียดสัญญา"></ui-progress-step>
+  <ui-progress-step label="ผู้ลงนาม"></ui-progress-step>
+  <ui-progress-step label="ตรวจทาน" invalid></ui-progress-step>
+  <ui-progress-step label="ส่ง" disabled></ui-progress-step>
+</ui-progress-indicator>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-4-0">HTML</ui-tab><ui-tab panel="code-4-1">React</ui-tab><ui-tab panel="code-4-2">React + Tailwind</ui-tab><ui-tab-panel name="code-4-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-indicator</span> <span style="color:var(--ui-tag-color-purple)">current-index</span>=<span style="color:var(--ui-tag-color-teal)">"1"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"รายละเอียดสัญญา"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ผู้ลงนาม"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ตรวจทาน"</span> <span style="color:var(--ui-tag-color-purple)">invalid</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ส่ง"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-indicator</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-4-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiProgressIndicator</span> <span style="color:var(--ui-tag-color-purple)">currentIndex</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">1</span>}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"รายละเอียดสัญญา"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ผู้ลงนาม"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ตรวจทาน"</span> <span style="color:var(--ui-tag-color-purple)">invalid</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ส่ง"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span> /&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiProgressIndicator</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-4-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">ProgressIndicator</span> <span style="color:var(--ui-tag-color-purple)">currentIndex</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">1</span>}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"รายละเอียดสัญญา"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ผู้ลงนาม"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ตรวจทาน"</span> <span style="color:var(--ui-tag-color-purple)">invalid</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ส่ง"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span> /&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ProgressIndicator</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="ข้อความรอง">ข้อความรอง</h2>
+<p><code>secondary-label</code> เพิ่มบรรทัดตัวเล็กใต้ label เช่น &quot;ไม่บังคับ&quot; วันที่ หรือจำนวน</p>
+<div class="doc-demo"><ui-progress-indicator current-index="2">
+  <ui-progress-step label="คำขอ" secondary-label="1 ต.ค."></ui-progress-step>
+  <ui-progress-step label="ฝ่ายกฎหมายตรวจ" secondary-label="3 ต.ค."></ui-progress-step>
+  <ui-progress-step label="ไฟล์แนบ" secondary-label="ไม่บังคับ"></ui-progress-step>
+  <ui-progress-step label="อนุมัติ"></ui-progress-step>
+</ui-progress-indicator>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-5-0">HTML</ui-tab><ui-tab panel="code-5-1">React</ui-tab><ui-tab panel="code-5-2">React + Tailwind</ui-tab><ui-tab-panel name="code-5-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-indicator</span> <span style="color:var(--ui-tag-color-purple)">current-index</span>=<span style="color:var(--ui-tag-color-teal)">"2"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"คำขอ"</span> <span style="color:var(--ui-tag-color-purple)">secondary-label</span>=<span style="color:var(--ui-tag-color-teal)">"1 ต.ค."</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ฝ่ายกฎหมายตรวจ"</span> <span style="color:var(--ui-tag-color-purple)">secondary-label</span>=<span style="color:var(--ui-tag-color-teal)">"3 ต.ค."</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ไฟล์แนบ"</span> <span style="color:var(--ui-tag-color-purple)">secondary-label</span>=<span style="color:var(--ui-tag-color-teal)">"ไม่บังคับ"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"อนุมัติ"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-indicator</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-5-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiProgressIndicator</span> <span style="color:var(--ui-tag-color-purple)">currentIndex</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">2</span>}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"คำขอ"</span> <span style="color:var(--ui-tag-color-purple)">secondaryLabel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"1 ต.ค."</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ฝ่ายกฎหมายตรวจ"</span> <span style="color:var(--ui-tag-color-purple)">secondaryLabel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"3 ต.ค."</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ไฟล์แนบ"</span> <span style="color:var(--ui-tag-color-purple)">secondaryLabel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ไม่บังคับ"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"อนุมัติ"</span> /&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiProgressIndicator</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-5-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">ProgressIndicator</span> <span style="color:var(--ui-tag-color-purple)">currentIndex</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">2</span>}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"คำขอ"</span> <span style="color:var(--ui-tag-color-purple)">secondaryLabel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"1 ต.ค."</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ฝ่ายกฎหมายตรวจ"</span> <span style="color:var(--ui-tag-color-purple)">secondaryLabel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"3 ต.ค."</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ไฟล์แนบ"</span> <span style="color:var(--ui-tag-color-purple)">secondaryLabel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ไม่บังคับ"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"อนุมัติ"</span> /&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ProgressIndicator</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="เสร็จไม่ตามลำดับ">เสร็จไม่ตามลำดับ</h2>
+<p><code>complete</code> ที่ขั้นทำให้ขั้นนั้นเสร็จแล้วไม่ว่า <code>current-index</code> จะเป็นเท่าไร ใช้เมื่อผู้ใช้ทำขั้นตอนไม่เรียงลำดับได้ ในตัวอย่างนี้ไฟล์แนบส่งมาแล้ว ขณะที่ผู้ใช้ยังอยู่ที่ขั้นผู้ลงนาม</p>
+<div class="doc-demo"><ui-progress-indicator current-index="1">
+  <ui-progress-step label="รายละเอียดสัญญา"></ui-progress-step>
+  <ui-progress-step label="ผู้ลงนาม"></ui-progress-step>
+  <ui-progress-step label="ไฟล์แนบ" complete></ui-progress-step>
+  <ui-progress-step label="ส่ง"></ui-progress-step>
+</ui-progress-indicator>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-6-0">HTML</ui-tab><ui-tab panel="code-6-1">React</ui-tab><ui-tab panel="code-6-2">React + Tailwind</ui-tab><ui-tab-panel name="code-6-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-indicator</span> <span style="color:var(--ui-tag-color-purple)">current-index</span>=<span style="color:var(--ui-tag-color-teal)">"1"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"รายละเอียดสัญญา"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ผู้ลงนาม"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ไฟล์แนบ"</span> <span style="color:var(--ui-tag-color-purple)">complete</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ส่ง"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-indicator</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-6-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiProgressIndicator</span> <span style="color:var(--ui-tag-color-purple)">currentIndex</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">1</span>}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"รายละเอียดสัญญา"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ผู้ลงนาม"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ไฟล์แนบ"</span> <span style="color:var(--ui-tag-color-purple)">complete</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ส่ง"</span> /&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiProgressIndicator</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-6-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">ProgressIndicator</span> <span style="color:var(--ui-tag-color-purple)">currentIndex</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">1</span>}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"รายละเอียดสัญญา"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ผู้ลงนาม"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ไฟล์แนบ"</span> <span style="color:var(--ui-tag-color-purple)">complete</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ส่ง"</span> /&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ProgressIndicator</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="ให้ผู้ใช้กระโดดไปขั้นอื่น">ให้ผู้ใช้กระโดดไปขั้นอื่น</h2>
+<p><code>interactive</code> ทำให้ขั้นตอนเป็นปุ่ม คลิกที่ขั้น (ที่ไม่ใช่ขั้นปัจจุบันและไม่ได้ปิดใช้งาน) จะทำให้ขั้นนั้นเป็นขั้นปัจจุบัน และเกิด <code>ui-change</code> พร้อม <code>detail.index</code> ใน React + Tailwind <code>onChange</code> ได้ index ใช้เมื่อย้อนกลับไปขั้นก่อนหน้าได้อย่างปลอดภัย เช่น แก้รายละเอียดก่อนส่ง</p>
+<div class="doc-demo"><ui-progress-indicator id="progress-jump" current-index="2" interactive>
+  <ui-progress-step label="รายละเอียดสัญญา"></ui-progress-step>
+  <ui-progress-step label="ผู้ลงนาม"></ui-progress-step>
+  <ui-progress-step label="ตรวจทาน"></ui-progress-step>
+  <ui-progress-step label="ส่ง" disabled></ui-progress-step>
+</ui-progress-indicator>
+<p>ขั้นปัจจุบัน: <output id="progress-jump-out">2</output></p>
+
+<script type="text/x-demo">
+  const steps = document.getElementById('progress-jump');
+  const out = document.getElementById('progress-jump-out');
+  steps.addEventListener('ui-change', (event) => (out.value = event.detail.index));
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-7-0">HTML</ui-tab><ui-tab panel="code-7-1">React</ui-tab><ui-tab panel="code-7-2">React + Tailwind</ui-tab><ui-tab-panel name="code-7-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-indicator</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"progress-jump"</span> <span style="color:var(--ui-tag-color-purple)">current-index</span>=<span style="color:var(--ui-tag-color-teal)">"2"</span> <span style="color:var(--ui-tag-color-purple)">interactive</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"รายละเอียดสัญญา"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ผู้ลงนาม"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ตรวจทาน"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ส่ง"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-indicator</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;ขั้นปัจจุบัน: &lt;<span style="color:var(--ui-tag-color-blue)">output</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"progress-jump-out"</span>&gt;2&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> steps <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'progress-jump'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> out <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'progress-jump-out'</span>);
+  steps.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'ui-change'</span>, (event) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (out.value <span style="color:var(--ui-tag-color-magenta)">=</span> event.detail.index));
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-7-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> [step, setStep] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-green)">2</span>);
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiProgressIndicator</span> <span style="color:var(--ui-tag-color-purple)">currentIndex</span><span style="color:var(--ui-tag-color-magenta)">=</span>{step} <span style="color:var(--ui-tag-color-purple)">interactive</span> <span style="color:var(--ui-tag-color-purple)">onUiChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setStep</span>(e.detail.index)}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"รายละเอียดสัญญา"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ผู้ลงนาม"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ตรวจทาน"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ส่ง"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span> /&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiProgressIndicator</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;ขั้นปัจจุบัน: &lt;<span style="color:var(--ui-tag-color-blue)">output</span>&gt;{step}&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-7-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> [step, setStep] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-green)">2</span>);
+
+&lt;<span style="color:var(--ui-tag-color-blue)">ProgressIndicator</span> <span style="color:var(--ui-tag-color-purple)">currentIndex</span><span style="color:var(--ui-tag-color-magenta)">=</span>{step} <span style="color:var(--ui-tag-color-purple)">interactive</span> <span style="color:var(--ui-tag-color-purple)">onChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{setStep}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"รายละเอียดสัญญา"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ผู้ลงนาม"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ตรวจทาน"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ส่ง"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span> /&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ProgressIndicator</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;ขั้นปัจจุบัน: &lt;<span style="color:var(--ui-tag-color-blue)">output</span>&gt;{step}&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>React + Tailwind รับ <code>defaultCurrentIndex</code> ด้วย เมื่อไม่ต้องเก็บขั้นปัจจุบันเอง</p>
+<h2 id="ปุ่มย้อนกลับและถัดไป">ปุ่มย้อนกลับและถัดไป</h2>
+<p>ส่วนใหญ่หน้าจะพาผู้ใช้ไปทีละขั้นเอง: ตั้ง <code>current-index</code> จากปุ่มย้อนกลับและถัดไปของคุณ indicator แค่แสดงตำแหน่ง ไม่เปลี่ยนเองถ้าไม่ได้เป็น <code>interactive</code></p>
+<div class="doc-demo"><ui-progress-indicator id="progress-wizard" current-index="0">
+  <ui-progress-step label="รายละเอียดสัญญา"></ui-progress-step>
+  <ui-progress-step label="ผู้ลงนาม"></ui-progress-step>
+  <ui-progress-step label="ตรวจทาน"></ui-progress-step>
+  <ui-progress-step label="ส่ง"></ui-progress-step>
+</ui-progress-indicator>
+<p id="progress-wizard-text">ขั้นที่ 1 จาก 4: รายละเอียดสัญญา</p>
+<div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center">
+  <ui-button id="progress-wizard-back" kind="secondary" disabled>ย้อนกลับ</ui-button>
+  <ui-button id="progress-wizard-next">ถัดไป</ui-button>
+</div>
+
+<script type="text/x-demo">
+  const indicator = document.getElementById('progress-wizard');
+  const text = document.getElementById('progress-wizard-text');
+  const back = document.getElementById('progress-wizard-back');
+  const next = document.getElementById('progress-wizard-next');
+  const labels = [...indicator.querySelectorAll('ui-progress-step')].map((step) => step.label);
+  const go = (index) => {
+    indicator.currentIndex = index;
+    text.textContent = `ขั้นที่ ${index + 1} จาก ${labels.length}: ${labels[index]}`;
+    back.disabled = index === 0;
+    next.disabled = index === labels.length - 1;
+  };
+  back.addEventListener('click', () => go(indicator.currentIndex - 1));
+  next.addEventListener('click', () => go(indicator.currentIndex + 1));
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-8-0">HTML</ui-tab><ui-tab panel="code-8-1">React</ui-tab><ui-tab panel="code-8-2">React + Tailwind</ui-tab><ui-tab-panel name="code-8-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-indicator</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"progress-wizard"</span> <span style="color:var(--ui-tag-color-purple)">current-index</span>=<span style="color:var(--ui-tag-color-teal)">"0"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"รายละเอียดสัญญา"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ผู้ลงนาม"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ตรวจทาน"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ส่ง"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-indicator</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"progress-wizard-text"</span>&gt;ขั้นที่ 1 จาก 4: รายละเอียดสัญญา&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"display: flex; flex-wrap: wrap; gap: 16px; align-items: center"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"progress-wizard-back"</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"secondary"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span>&gt;ย้อนกลับ&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"progress-wizard-next"</span>&gt;ถัดไป&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> indicator <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'progress-wizard'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> text <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'progress-wizard-text'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> back <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'progress-wizard-back'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> next <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'progress-wizard-next'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> labels <span style="color:var(--ui-tag-color-magenta)">=</span> [<span style="color:var(--ui-tag-color-magenta)">...</span>indicator.<span style="color:var(--ui-tag-color-cyan)">querySelectorAll</span>(<span style="color:var(--ui-tag-color-teal)">'ui-progress-step'</span>)].<span style="color:var(--ui-tag-color-cyan)">map</span>((step) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> step.label);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> <span style="color:var(--ui-tag-color-cyan)">go</span> <span style="color:var(--ui-tag-color-magenta)">=</span> (index) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    indicator.currentIndex <span style="color:var(--ui-tag-color-magenta)">=</span> index;
+    text.textContent <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">`ขั้นที่ ${</span><span style="color:var(--ui-tag-color-teal)">index </span><span style="color:var(--ui-tag-color-magenta)">+</span><span style="color:var(--ui-tag-color-teal)"> </span><span style="color:var(--ui-tag-color-green)">1</span><span style="color:var(--ui-tag-color-teal)">} จาก ${</span><span style="color:var(--ui-tag-color-teal)">labels.length</span><span style="color:var(--ui-tag-color-teal)">}: ${</span><span style="color:var(--ui-tag-color-teal)">labels[index]</span><span style="color:var(--ui-tag-color-teal)">}`</span>;
+    back.disabled <span style="color:var(--ui-tag-color-magenta)">=</span> index <span style="color:var(--ui-tag-color-magenta)">===</span> <span style="color:var(--ui-tag-color-green)">0</span>;
+    next.disabled <span style="color:var(--ui-tag-color-magenta)">=</span> index <span style="color:var(--ui-tag-color-magenta)">===</span> labels.length <span style="color:var(--ui-tag-color-magenta)">-</span> <span style="color:var(--ui-tag-color-green)">1</span>;
+  };
+  back.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">go</span>(indicator.currentIndex <span style="color:var(--ui-tag-color-magenta)">-</span> <span style="color:var(--ui-tag-color-green)">1</span>));
+  next.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">go</span>(indicator.currentIndex <span style="color:var(--ui-tag-color-magenta)">+</span> <span style="color:var(--ui-tag-color-green)">1</span>));
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-8-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> labels <span style="color:var(--ui-tag-color-magenta)">=</span> [<span style="color:var(--ui-tag-color-teal)">'รายละเอียดสัญญา'</span>, <span style="color:var(--ui-tag-color-teal)">'ผู้ลงนาม'</span>, <span style="color:var(--ui-tag-color-teal)">'ตรวจทาน'</span>, <span style="color:var(--ui-tag-color-teal)">'ส่ง'</span>];
+<span style="color:var(--ui-tag-color-magenta)">const</span> [step, setStep] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-green)">0</span>);
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiProgressIndicator</span> <span style="color:var(--ui-tag-color-purple)">currentIndex</span><span style="color:var(--ui-tag-color-magenta)">=</span>{step}&gt;
+  {labels.<span style="color:var(--ui-tag-color-cyan)">map</span>((label) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> &lt;<span style="color:var(--ui-tag-color-blue)">UiProgressStep</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{label} <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span>{label} /&gt;)}
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiProgressIndicator</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;ขั้นที่ {step <span style="color:var(--ui-tag-color-magenta)">+</span> <span style="color:var(--ui-tag-color-green)">1</span>} จาก {labels.length}: {labels[step]}&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiButton</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"secondary"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span><span style="color:var(--ui-tag-color-magenta)">=</span>{step <span style="color:var(--ui-tag-color-magenta)">===</span> <span style="color:var(--ui-tag-color-green)">0</span>} <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setStep</span>(step <span style="color:var(--ui-tag-color-magenta)">-</span> <span style="color:var(--ui-tag-color-green)">1</span>)}&gt;ย้อนกลับ&lt;/<span style="color:var(--ui-tag-color-blue)">UiButton</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiButton</span> <span style="color:var(--ui-tag-color-purple)">disabled</span><span style="color:var(--ui-tag-color-magenta)">=</span>{step <span style="color:var(--ui-tag-color-magenta)">===</span> labels.length <span style="color:var(--ui-tag-color-magenta)">-</span> <span style="color:var(--ui-tag-color-green)">1</span>} <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setStep</span>(step <span style="color:var(--ui-tag-color-magenta)">+</span> <span style="color:var(--ui-tag-color-green)">1</span>)}&gt;ถัดไป&lt;/<span style="color:var(--ui-tag-color-blue)">UiButton</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-8-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> labels <span style="color:var(--ui-tag-color-magenta)">=</span> [<span style="color:var(--ui-tag-color-teal)">'รายละเอียดสัญญา'</span>, <span style="color:var(--ui-tag-color-teal)">'ผู้ลงนาม'</span>, <span style="color:var(--ui-tag-color-teal)">'ตรวจทาน'</span>, <span style="color:var(--ui-tag-color-teal)">'ส่ง'</span>];
+<span style="color:var(--ui-tag-color-magenta)">const</span> [step, setStep] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-green)">0</span>);
+
+&lt;<span style="color:var(--ui-tag-color-blue)">ProgressIndicator</span> <span style="color:var(--ui-tag-color-purple)">currentIndex</span><span style="color:var(--ui-tag-color-magenta)">=</span>{step}&gt;
+  {labels.<span style="color:var(--ui-tag-color-cyan)">map</span>((label) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> &lt;<span style="color:var(--ui-tag-color-blue)">ProgressStep</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{label} <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span>{label} /&gt;)}
+&lt;/<span style="color:var(--ui-tag-color-blue)">ProgressIndicator</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;ขั้นที่ {step <span style="color:var(--ui-tag-color-magenta)">+</span> <span style="color:var(--ui-tag-color-green)">1</span>} จาก {labels.length}: {labels[step]}&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">Button</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"secondary"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span><span style="color:var(--ui-tag-color-magenta)">=</span>{step <span style="color:var(--ui-tag-color-magenta)">===</span> <span style="color:var(--ui-tag-color-green)">0</span>} <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setStep</span>(step <span style="color:var(--ui-tag-color-magenta)">-</span> <span style="color:var(--ui-tag-color-green)">1</span>)}&gt;ย้อนกลับ&lt;/<span style="color:var(--ui-tag-color-blue)">Button</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">Button</span> <span style="color:var(--ui-tag-color-purple)">disabled</span><span style="color:var(--ui-tag-color-magenta)">=</span>{step <span style="color:var(--ui-tag-color-magenta)">===</span> labels.length <span style="color:var(--ui-tag-color-magenta)">-</span> <span style="color:var(--ui-tag-color-green)">1</span>} <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setStep</span>(step <span style="color:var(--ui-tag-color-magenta)">+</span> <span style="color:var(--ui-tag-color-green)">1</span>)}&gt;ถัดไป&lt;/<span style="color:var(--ui-tag-color-blue)">Button</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="แนวตั้ง">แนวตั้ง</h2>
+<p><code>vertical</code> เรียงขั้นตอนลงมา ใช้ในคอลัมน์แคบข้างฟอร์ม หรือเมื่อ label ยาว</p>
+<div class="doc-demo"><ui-progress-indicator current-index="1" vertical>
+  <ui-progress-step label="ส่งคำขอแล้ว" secondary-label="1 ต.ค. 09:12"></ui-progress-step>
+  <ui-progress-step label="ฝ่ายกฎหมายตรวจ" secondary-label="กำลังดำเนินการ"></ui-progress-step>
+  <ui-progress-step label="กรรมการผู้จัดการอนุมัติ"></ui-progress-step>
+  <ui-progress-step label="ลงนาม"></ui-progress-step>
+</ui-progress-indicator>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-9-0">HTML</ui-tab><ui-tab panel="code-9-1">React</ui-tab><ui-tab panel="code-9-2">React + Tailwind</ui-tab><ui-tab-panel name="code-9-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-indicator</span> <span style="color:var(--ui-tag-color-purple)">current-index</span>=<span style="color:var(--ui-tag-color-teal)">"1"</span> <span style="color:var(--ui-tag-color-purple)">vertical</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ส่งคำขอแล้ว"</span> <span style="color:var(--ui-tag-color-purple)">secondary-label</span>=<span style="color:var(--ui-tag-color-teal)">"1 ต.ค. 09:12"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ฝ่ายกฎหมายตรวจ"</span> <span style="color:var(--ui-tag-color-purple)">secondary-label</span>=<span style="color:var(--ui-tag-color-teal)">"กำลังดำเนินการ"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"กรรมการผู้จัดการอนุมัติ"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ลงนาม"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-indicator</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-9-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiProgressIndicator</span> <span style="color:var(--ui-tag-color-purple)">currentIndex</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">1</span>} <span style="color:var(--ui-tag-color-purple)">vertical</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ส่งคำขอแล้ว"</span> <span style="color:var(--ui-tag-color-purple)">secondaryLabel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"1 ต.ค. 09:12"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ฝ่ายกฎหมายตรวจ"</span> <span style="color:var(--ui-tag-color-purple)">secondaryLabel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"กำลังดำเนินการ"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"กรรมการผู้จัดการอนุมัติ"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ลงนาม"</span> /&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiProgressIndicator</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-9-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">ProgressIndicator</span> <span style="color:var(--ui-tag-color-purple)">currentIndex</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">1</span>} <span style="color:var(--ui-tag-color-purple)">vertical</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ส่งคำขอแล้ว"</span> <span style="color:var(--ui-tag-color-purple)">secondaryLabel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"1 ต.ค. 09:12"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ฝ่ายกฎหมายตรวจ"</span> <span style="color:var(--ui-tag-color-purple)">secondaryLabel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"กำลังดำเนินการ"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"กรรมการผู้จัดการอนุมัติ"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ลงนาม"</span> /&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ProgressIndicator</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="กระจายเต็มความกว้าง">กระจายเต็มความกว้าง</h2>
+<p>ปกติแต่ละขั้นกว้าง 128px และ label ที่ยาวกว่าจะขึ้นบรรทัดใหม่ที่ 88px (Carbon ตัดด้วย ... แต่ที่นี่ไม่ซ่อนชื่อขั้นตอน) <code>space-equally</code> ยืดขั้นตอนให้แบ่งความกว้างทั้งหมดเท่า ๆ กัน ใช้คู่กับ <code>vertical</code> ไม่ได้ผล</p>
+<div class="doc-demo"><ui-progress-indicator current-index="2" space-equally>
+  <ui-progress-step label="รายละเอียด"></ui-progress-step>
+  <ui-progress-step label="ผู้ลงนาม"></ui-progress-step>
+  <ui-progress-step label="ตรวจทาน"></ui-progress-step>
+  <ui-progress-step label="ส่ง"></ui-progress-step>
+</ui-progress-indicator>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-10-0">HTML</ui-tab><ui-tab panel="code-10-1">React</ui-tab><ui-tab panel="code-10-2">React + Tailwind</ui-tab><ui-tab-panel name="code-10-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-indicator</span> <span style="color:var(--ui-tag-color-purple)">current-index</span>=<span style="color:var(--ui-tag-color-teal)">"2"</span> <span style="color:var(--ui-tag-color-purple)">space-equally</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"รายละเอียด"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ผู้ลงนาม"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ตรวจทาน"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ส่ง"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-step</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-indicator</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-10-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiProgressIndicator</span> <span style="color:var(--ui-tag-color-purple)">currentIndex</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">2</span>} <span style="color:var(--ui-tag-color-purple)">spaceEqually</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"รายละเอียด"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ผู้ลงนาม"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ตรวจทาน"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ส่ง"</span> /&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiProgressIndicator</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-10-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">ProgressIndicator</span> <span style="color:var(--ui-tag-color-purple)">currentIndex</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">2</span>} <span style="color:var(--ui-tag-color-purple)">spaceEqually</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"รายละเอียด"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ผู้ลงนาม"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ตรวจทาน"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ProgressStep</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ส่ง"</span> /&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ProgressIndicator</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="skeleton">Skeleton</h2>
+<p>ระหว่างโหลดขั้นตอน ให้แสดง <code>ui-progress-indicator-skeleton</code>: ขั้นว่าง <code>steps</code> ขั้น (ค่าเริ่มต้น 4) เรียงเป็นแถว หรือเรียงลงมาด้วย <code>vertical</code> skeleton ถูกซ่อนจาก screen reader จึงควรบอกว่า &quot;กำลังโหลด&quot; ที่ container (เช่น <code>aria-busy</code>)</p>
+<div class="doc-demo"><ui-progress-indicator-skeleton></ui-progress-indicator-skeleton>
+<ui-progress-indicator-skeleton steps="3" vertical></ui-progress-indicator-skeleton>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-11-0">HTML</ui-tab><ui-tab panel="code-11-1">React</ui-tab><ui-tab panel="code-11-2">React + Tailwind</ui-tab><ui-tab-panel name="code-11-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-indicator-skeleton</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-indicator-skeleton</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-progress-indicator-skeleton</span> <span style="color:var(--ui-tag-color-purple)">steps</span>=<span style="color:var(--ui-tag-color-teal)">"3"</span> <span style="color:var(--ui-tag-color-purple)">vertical</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-progress-indicator-skeleton</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-11-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { UiProgressIndicatorSkeleton } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/react'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiProgressIndicatorSkeleton</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiProgressIndicatorSkeleton</span> <span style="color:var(--ui-tag-color-purple)">steps</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">3</span>} <span style="color:var(--ui-tag-color-purple)">vertical</span> /&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-11-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { ProgressIndicatorSkeleton } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@/components/ui/react-tw/progress-indicator'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">ProgressIndicatorSkeleton</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ProgressIndicatorSkeleton</span> <span style="color:var(--ui-tag-color-purple)">steps</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">3</span>} <span style="color:var(--ui-tag-color-purple)">vertical</span> /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>สำหรับ web component ให้ import จาก <code>@purpurabog/ui/progress-indicator-skeleton</code></p>
+<h2 id="คีย์บอร์ด">คีย์บอร์ด</h2>
+<table>
+<thead>
+<tr>
+<th>ปุ่ม</th>
+<th>ทำอะไร</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tab / Shift+Tab</td>
+<td>เมื่อเป็น <code>interactive</code>: ย้ายไปมาระหว่างขั้นตอน (ข้ามขั้นที่ปิดใช้งาน) ถ้าไม่ได้เป็น <code>interactive</code> ขั้นตอนจะไม่รับ Tab</td>
+</tr>
+<tr>
+<td>Enter, Space</td>
+<td>เมื่อเป็น <code>interactive</code>: ทำให้ขั้นที่โฟกัสอยู่เป็นขั้นปัจจุบัน (ขั้นปัจจุบันเองไม่มีผล)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="accessibility">Accessibility</h2>
+<ul>
+<li>indicator เป็น list และแต่ละขั้นเป็น list item เหมือน <code>&lt;ul&gt;</code> / <code>&lt;li&gt;</code> ของ Carbon</li>
+<li>ขั้นปัจจุบันมี <code>aria-current=&quot;step&quot;</code> หลัง label แต่ละขั้น screen reader จะอ่านสถานะ: &quot;เสร็จแล้ว&quot; &quot;ขั้นปัจจุบัน&quot; &quot;ยังไม่ถึง&quot; หรือ &quot;ไม่ถูกต้อง&quot; (ภาษาอังกฤษเมื่อ <code>lang=&quot;en&quot;</code>)</li>
+<li>ปุ่มของขั้นที่ปิดใช้งานเป็น disabled และมี <code>aria-disabled</code></li>
+<li>indicator แสดงความคืบหน้า แต่ไม่ได้บอกว่างานคืออะไร ให้ใส่หัวข้อไว้ด้านบน และบอกขั้นปัจจุบันเป็นข้อความด้วย (เช่น &quot;ขั้นที่ 2 จาก 4&quot; ด้านบน) สำหรับคนที่มองไม่เห็นไอคอน</li>
+</ul>
+<p>ต้องการแค่พฤติกรรมโดยไม่มี style: <a href="/kanok-ui-docs/th/headless-progress-indicator/">Headless Progress indicator</a></p>
+<h2 id="api">API</h2>
+<p>สร้างจากแพ็กเกจโดยตรง ใน React ส่ง property เป็น prop ชื่อเดียวกัน ส่วน event ก็เป็น prop เช่นกัน (ดูคอลัมน์ React)</p>
+<h3 id="ui-progress-indicator-react-uiprogressindicator"><code>&lt;ui-progress-indicator&gt;</code> · React <code>UiProgressIndicator</code></h3>
+<h4 id="attribute">Attribute</h4>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Property</th>
+<th>ชนิด</th>
+<th>ค่าเริ่มต้น</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>current-index</code></td>
+<td><code>currentIndex</code></td>
+<td><code>number</code></td>
+<td><code>0</code></td>
+<td>Index of the current step (0-based).</td>
+</tr>
+<tr>
+<td><code>vertical</code></td>
+<td><code>vertical</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>space-equally</code></td>
+<td><code>spaceEqually</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Stretch the steps to share the width (horizontal only).</td>
+</tr>
+<tr>
+<td><code>interactive</code></td>
+<td><code>interactive</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Let the user jump between steps (fires <code>ui-change</code>).</td>
+</tr>
+</tbody>
+</table>
+<h4 id="method">Method</h4>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>focus(options)</code></td>
+<td>Interactive indicators: focus the current step.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="event">Event</h4>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>React</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ui-change</code></td>
+<td><code>onUiChange</code></td>
+<td>detail: { index } when the user picks another step</td>
+</tr>
+</tbody>
+</table>
+<h4 id="slot">Slot</h4>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(ค่าเริ่มต้น)</td>
+<td><code>&lt;ui-progress-step&gt;</code> elements</td>
+</tr>
+</tbody>
+</table>
+<h4 id="css-part">CSS part</h4>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>base</code></td>
+<td>The list</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ui-progress-step-react-uiprogressstep"><code>&lt;ui-progress-step&gt;</code> · React <code>UiProgressStep</code></h3>
+<h4 id="attribute-2">Attribute</h4>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Property</th>
+<th>ชนิด</th>
+<th>ค่าเริ่มต้น</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>label</code></td>
+<td><code>label</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>secondary-label</code></td>
+<td><code>secondaryLabel</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>Smaller text under the label (Carbon <code>secondaryLabel</code>).</td>
+</tr>
+<tr>
+<td><code>complete</code></td>
+<td><code>complete</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Marks the step done regardless of <code>current-index</code>.</td>
+</tr>
+<tr>
+<td><code>invalid</code></td>
+<td><code>invalid</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>disabled</code></td>
+<td><code>disabled</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>data-state</code></td>
+<td><code>state</code></td>
+<td><code>ProgressStepState</code></td>
+<td><code>'incomplete'</code></td>
+<td>Set by the indicator: the resolved state.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="property">Property</h4>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>ชนิด</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>clickable</code></td>
+<td><code>boolean</code></td>
+<td>Set by the indicator: whether steps are clickable.</td>
+</tr>
+<tr>
+<td><code>index</code></td>
+<td><code>number</code></td>
+<td>Set by the indicator: this step's position.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="event-2">Event</h4>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>React</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ui-step-click</code></td>
+<td>ไม่มี (ใช้ ref)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="slot-2">Slot</h4>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(ค่าเริ่มต้น)</td>
+<td>Nothing; use <code>label</code> and <code>secondary-label</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="css-part-2">CSS part</h4>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>button</code></td>
+<td>The clickable step</td>
+</tr>
+<tr>
+<td><code>icon</code></td>
+<td>The state icon</td>
+</tr>
+<tr>
+<td><code>label</code></td>
+<td>The label</td>
+</tr>
+<tr>
+<td><code>secondary-label</code></td>
+<td>The secondary label</td>
+</tr>
+<tr>
+<td><code>line</code></td>
+<td>The progress line</td>
+</tr>
+</tbody>
+</table>
+<h4 id="css-custom-property">CSS custom property</h4>
+<table>
+<thead>
+<tr>
+<th>Custom property</th>
+<th>ค่าเริ่มต้น</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--ui-progress-step-flex</code></td>
+<td></td>
+<td>/ --ui-progress-step-min-width - A horizontal step's <code>flex</code> and least width (default <code>0 1 auto</code>, 112px: Carbon's 128px steps; Kanok: <code>1 1 0</code>, 120px)</td>
+</tr>
+<tr>
+<td><code>--ui-progress-label-max-width</code></td>
+<td></td>
+<td>/ --ui-progress-label-gap - Its label's <code>max-width</code> and end margin (default 88px, 0)</td>
+</tr>
+<tr>
+<td><code>--ui-progress-label-white-space</code></td>
+<td></td>
+<td>/ --ui-progress-label-overflow / --ui-progress-label-text-overflow - Its label on one line (default normal, visible, clip: it wraps; Kanok: one line, an ellipsis)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ui-progress-indicator-skeleton-react-uiprogressindicatorskeleton"><code>&lt;ui-progress-indicator-skeleton&gt;</code> · React <code>UiProgressIndicatorSkeleton</code></h3>
+<h4 id="attribute-3">Attribute</h4>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Property</th>
+<th>ชนิด</th>
+<th>ค่าเริ่มต้น</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>steps</code></td>
+<td><code>steps</code></td>
+<td><code>number</code></td>
+<td><code>4</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>vertical</code></td>
+<td><code>vertical</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="css-part-3">CSS part</h4>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>step</code></td>
+<td>Each step</td>
+</tr>
+<tr>
+<td><code>label</code></td>
+<td>Each label bar</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+<nav class="doc-toc" aria-labelledby="doc-toc-title"><p id="doc-toc-title" class="doc-toc-title">ในหน้านี้</p><ul><li class="doc-toc-h2"><a href="#ติดตั้ง">ติดตั้ง</a></li><li class="doc-toc-h2"><a href="#วิธีใช้">วิธีใช้</a></li><li class="doc-toc-h2"><a href="#สถานะของขั้นตอน">สถานะของขั้นตอน</a></li><li class="doc-toc-h2"><a href="#ข้อความรอง">ข้อความรอง</a></li><li class="doc-toc-h2"><a href="#เสร็จไม่ตามลำดับ">เสร็จไม่ตามลำดับ</a></li><li class="doc-toc-h2"><a href="#ให้ผู้ใช้กระโดดไปขั้นอื่น">ให้ผู้ใช้กระโดดไปขั้นอื่น</a></li><li class="doc-toc-h2"><a href="#ปุ่มย้อนกลับและถัดไป">ปุ่มย้อนกลับและถัดไป</a></li><li class="doc-toc-h2"><a href="#แนวตั้ง">แนวตั้ง</a></li><li class="doc-toc-h2"><a href="#กระจายเต็มความกว้าง">กระจายเต็มความกว้าง</a></li><li class="doc-toc-h2"><a href="#skeleton">Skeleton</a></li><li class="doc-toc-h2"><a href="#คีย์บอร์ด">คีย์บอร์ด</a></li><li class="doc-toc-h2"><a href="#accessibility">Accessibility</a></li><li class="doc-toc-h2"><a href="#api">API</a></li><li class="doc-toc-h3"><a href="#ui-progress-indicator-react-uiprogressindicator">&lt;ui-progress-indicator></a></li><li class="doc-toc-h3"><a href="#ui-progress-step-react-uiprogressstep">&lt;ui-progress-step></a></li><li class="doc-toc-h3"><a href="#ui-progress-indicator-skeleton-react-uiprogressindicatorskeleton">&lt;ui-progress-indicator-skeleton></a></li></ul></nav>
+</div>
+<nav class="doc-pager" aria-label="ถัดไป / ก่อนหน้า"><a class="doc-pager-prev" href="/kanok-ui-docs/th/accordion/" rel="prev"><span>ก่อนหน้า</span>Accordion</a><a class="doc-pager-next" href="/kanok-ui-docs/th/ui-shell/" rel="next"><span>ถัดไป</span>UI shell</a></nav>
+<footer class="doc-footer">@purpurabog/ui 2.3.0 · MIT · <a href="https://cdn.jsdelivr.net/npm/@purpurabog/ui@2.3.0/THIRD-PARTY-NOTICES.md">ประกาศของบุคคลที่สาม</a><br>สร้างตาม Carbon Design System ไม่ได้เกี่ยวข้องหรือได้รับการรับรองจาก IBM — IBM และ Carbon เป็นเครื่องหมายการค้าของ IBM Corp.</footer>
+</ui-content>
+<ui-modal id="doc-search" heading="ค้นหา" data-count="พบ {n} รายการ" data-empty="ไม่พบ “{q}”">
+<ui-search label="ค้นหาในเอกสาร" placeholder="ค้นหาในเอกสาร" size="lg"></ui-search>
+<p class="doc-search-status" role="status"></p>
+<ul class="doc-search-results"></ul>
+</ui-modal>
+</body>
+</html>

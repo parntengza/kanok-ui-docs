@@ -1,0 +1,562 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Edit in place · @purpurabog/ui</title>
+<link rel="alternate" hreflang="en" href="/kanok-ui-docs/en/edit-in-place/"  /><link rel="alternate" hreflang="th" href="/kanok-ui-docs/th/edit-in-place/"  />
+<script>(function(){try{var q=new URLSearchParams(location.search).get("design"),d=q;if(q==="kanok"||q==="carbon")localStorage.setItem("ui-docs-design",q);else d=localStorage.getItem("ui-docs-design");if(d==="kanok")document.documentElement.setAttribute("data-design","kanok")}catch(e){}})();(function(){try{var m=localStorage.getItem("ui-docs-theme");if(m!=="light"&&m!=="dark"&&m!=="system")return;var d=m==="dark"||(m==="system"&&matchMedia("(prefers-color-scheme: dark)").matches),r=document.documentElement,t=d?"g100":"white";if(r.getAttribute("data-design")==="kanok")t=d?"lacquer":"paper";r.setAttribute("data-theme",t)}catch(e){}})();</script>
+<style>ui-header:not(:defined){z-index:8000;box-sizing:border-box;border-block-end:1px solid var(--ui-border-subtle-1);background:var(--ui-canvas);block-size:48px;display:block;position:fixed;inset:0 0 auto}:is(ui-header:not(:defined)>*,ui-side-nav:not(:defined)>*){visibility:hidden}:is(ui-header-panel:not(:defined),ui-modal:not(:defined)){display:none}ui-side-nav:not(:defined){display:none}ui-content:not(:defined){margin-block-start:48px;padding:32px;display:block}@media (width>=1056px){ui-side-nav[expanded]:not(:defined){background:var(--ui-canvas);inline-size:256px;display:block;position:fixed;inset:48px auto 0 0}ui-side-nav[expanded]:not(:defined)~ui-content:not(:defined){margin-inline-start:256px}}ui-tabs:not(:defined){display:block}ui-tabs:not(:defined)>ui-tab{box-sizing:border-box;border-block-end:2px solid var(--ui-hairline);block-size:40px;color:var(--ui-ink-muted);font:var(--ui-font-body-sm);padding:0 16px;line-height:38px;display:inline-block}ui-tabs:not(:defined)>ui-tab:first-of-type{border-block-end-color:var(--ui-interactive);color:var(--ui-ink)}ui-tabs:not(:defined)>ui-tab-panel{padding:16px;display:block}ui-tabs:not(:defined)>ui-tab-panel~ui-tab-panel{display:none}ui-code-snippet:not(:defined){background:var(--ui-layer-1);max-block-size:272px;font:var(--ui-font-code,12px/16px monospace);white-space:pre;padding:16px;display:block;overflow:hidden}[data-react-example]:empty>*{visibility:hidden}.doc-demo:has(:not(:defined))>*{visibility:hidden}[data-react-example]:empty{box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}.doc-demo:has(:not(:defined)){box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}@keyframes doc-skeleton{to{background-position:-200% 0}}@media (prefers-reduced-motion:reduce){[data-react-example]:empty{animation:none}.doc-demo:has(:not(:defined)){animation:none}}</style>
+
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/theme-switcher-BZXGbHfR.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/tab-ChjAM0hz.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/button-DGUm7Yxm.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/icon-button-D4pzZab2.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/popover-CTlBEkAq.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/events-IQD1_DyD.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/edit-in-place-D7FTGOxx.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/edit-in-place-j_QzGNAv.js"></script>
+  <link rel="stylesheet" crossorigin href="/kanok-ui-docs/assets/theme-switcher-BXY5AIvi.css">
+</head>
+<body>
+<ui-header label="@purpurabog/ui">
+<ui-skip-to-content></ui-skip-to-content>
+<ui-header-menu-button></ui-header-menu-button>
+<ui-header-name href="/kanok-ui-docs/th/" prefix="@purpurabog">ui</ui-header-name>
+<ui-header-global-bar>
+<ui-header-global-action id="doc-search-open" label="ค้นหา" tooltip-placement="bottom"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="m18.5 17.8-4.9-4.9a7 7 0 1 0-.7.7l4.9 4.9zM3 8.5a5.5 5.5 0 1 1 5.5 5.5A5.5 5.5 0 0 1 3 8.5Z" /></svg></ui-header-global-action>
+<ui-header-global-action label="ตั้งค่า" panel="doc-settings" tooltip-placement="bottom-end"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="M16.9 10.6a7 7 0 0 0 0-1.2l1.8-1.4-1.6-2.8-2.1.8a6.6 6.6 0 0 0-1-.6L13.6 3h-3.2l-.4 2.4a6.6 6.6 0 0 0-1 .6l-2.1-.8L5.3 8l1.8 1.4a7 7 0 0 0 0 1.2L5.3 12l1.6 2.8 2.1-.8a6.6 6.6 0 0 0 1 .6l.4 2.4h3.2l.4-2.4a6.6 6.6 0 0 0 1-.6l2.1.8 1.6-2.8zM12 13a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" /></svg></ui-header-global-action>
+</ui-header-global-bar>
+<ui-header-panel id="doc-settings" label="ตั้งค่า">
+<div class="doc-settings">
+<span class="doc-settings-label">ธีม</span>
+<ui-theme-switcher storage-key="ui-docs-theme" tooltip-placement="bottom"></ui-theme-switcher>
+<span class="doc-settings-label">รูปแบบ</span>
+<ui-content-switcher id="doc-design" aria-label="รูปแบบ" size="sm"><ui-content-switcher-item name="carbon">Carbon</ui-content-switcher-item><ui-content-switcher-item name="kanok">Kanok</ui-content-switcher-item></ui-content-switcher>
+<span class="doc-settings-label">ภาษา</span>
+<ui-link href="/kanok-ui-docs/en/edit-in-place/" hreflang="en" lang="en">English</ui-link>
+</div>
+</ui-header-panel>
+</ui-header>
+<ui-side-nav label="เอกสาร"><ui-side-nav-items><ui-side-nav-menu label="เริ่มต้น"><ui-side-nav-menu-item href="/kanok-ui-docs/th/">ภาพรวม</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/installation/">ติดตั้ง</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/migration-1-0/">การย้ายไป 1.0</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="คู่มือ"><ui-side-nav-menu-item href="/kanok-ui-docs/th/themes/">ธีมและ layer</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/kanok/">ดีไซน์ Kanok</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/customizing/">ปรับแต่งหน้าตา</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/icons/">ไอคอน</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/forms/">ฟอร์มและการตรวจค่า</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/frameworks/">ใช้กับ framework</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/ai/">ใช้กับ AI</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="ฟอร์มและปุ่ม"><ui-side-nav-menu-item href="/kanok-ui-docs/th/button/">Button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/file-uploader/">File uploader</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Overlay"><ui-side-nav-menu-item href="/kanok-ui-docs/th/modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/toggletip/">Toggletip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/menu/">Menu</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="ข้อมูล"><ui-side-nav-menu-item href="/kanok-ui-docs/th/data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/contained-list/">Contained list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tree-view/">Tree view</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="การนำทาง"><ui-side-nav-menu-item href="/kanok-ui-docs/th/tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/breadcrumb/">Breadcrumb</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/link/">Link</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/ui-shell/">UI shell</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="เนื้อหา"><ui-side-nav-menu-item href="/kanok-ui-docs/th/tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tile/">Tile</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/user-avatar/">User avatar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/list/">List</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="สถานะและการโหลด"><ui-side-nav-menu-item href="/kanok-ui-docs/th/loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/inline-loading/">Inline loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/progress-bar/">Progress bar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/skeleton/">Skeleton</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/badge-indicator/">Badge indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/status-indicator/">Status indicator</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="เลย์เอาต์" expanded><ui-side-nav-menu-item href="/kanok-ui-docs/th/grid/">Grid</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/heading/">Heading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/layer/">Layer</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/action-set/">Action set</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/page-header/">Page header</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/big-number/">Big number</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/edit-in-place/" current>Edit in place</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Headless"><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless/">แนะนำ</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-file-uploader/">File uploader</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-menu/">Menu</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-ui-shell/">UI shell</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tree-view/">Tree view</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu></ui-side-nav-items></ui-side-nav><script>if(matchMedia('(min-width: 66rem)').matches)document.currentScript.previousElementSibling.setAttribute('expanded','')</script>
+<ui-content>
+<div class="doc-page">
+<article class="doc">
+<h1 id="edit-in-place">Edit in place</h1>
+<p>Edit in place แสดงค่าเป็นข้อความธรรมดาที่แก้ไขได้ตรงที่มันอยู่ ไม่ต้องเปิดฟอร์ม (<code>EditInPlace</code> ของ Carbon for IBM Products) เมื่อ hover จะมีพื้นสีของช่องกรอกและปุ่ม &quot;แก้ไข&quot; เมื่อคลิกหรือ Tab เข้าไป จะกลายเป็นช่องกรอกที่มีปุ่ม &quot;ยกเลิก&quot; และ &quot;บันทึก&quot; ใช้กับค่าเดียวในหน้าที่ส่วนใหญ่ใช้อ่าน เช่น ชื่อสัญญาหรือเลขอ้างอิง</p>
+<div class="doc-demo"><div style="max-width: 360px">
+  <ui-edit-in-place label="ชื่อสัญญา" value="สัญญาเช่าคลังสินค้า บางนา"></ui-edit-in-place>
+</div>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-1-0">HTML</ui-tab><ui-tab panel="code-1-1">React</ui-tab><ui-tab panel="code-1-2">React + Tailwind</ui-tab><ui-tab-panel name="code-1-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"max-width: 360px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-edit-in-place</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ชื่อสัญญา"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"สัญญาเช่าคลังสินค้า บางนา"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-edit-in-place</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-1-1"><ui-code-snippet type="single" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiEditInPlace</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ชื่อสัญญา"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"สัญญาเช่าคลังสินค้า บางนา"</span> /&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-1-2"><ui-code-snippet type="single" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">EditInPlace</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ชื่อสัญญา"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"สัญญาเช่าคลังสินค้า บางนา"</span> /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="ติดตั้ง">ติดตั้ง</h2>
+<ui-tabs class="doc-code-tabs" label="โค้ด"><ui-tab panel="code-2-0">npm</ui-tab><ui-tab panel="code-2-1">shadcn · Web component</ui-tab><ui-tab panel="code-2-2">shadcn · React + Tailwind</ui-tab><ui-tab panel="code-2-3">คัดลอกเอง</ui-tab><ui-tab-panel name="code-2-0"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">@purpurabog/ui</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-1"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npx</span> <span style="color:var(--ui-tag-color-teal)">shadcn@4</span> <span style="color:var(--ui-tag-color-teal)">add</span> <span style="color:var(--ui-tag-color-teal)">@kanok-ui/edit-in-place</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-2"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npx</span> <span style="color:var(--ui-tag-color-teal)">shadcn@4</span> <span style="color:var(--ui-tag-color-teal)">add</span> <span style="color:var(--ui-tag-color-teal)">@kanok-ui/tw-edit-in-place</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-3"><ui-code-snippet type="multi" class="doc-code" data-lang="bash"><span style="color:var(--ui-ink-muted);font-style:italic"># Web component</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 1. ติดตั้ง dependency</span>
+<span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">lit@^3.3.0</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 2. คัดลอก "content" ของแต่ละไฟล์จาก</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    https://cdn.jsdelivr.net/npm/@purpurabog/ui@2.3.0/registry/edit-in-place.json</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    ไปไว้ที่ target ของมัน:</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/edit-in-place/edit-in-place.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 3. ทำแบบเดียวกันกับ item ที่มันใช้ (registry/&lt;name&gt;.json):</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    core-edit-in-place, icon-button, popover, shared-element, shared-events, shared-field, shared-localize, shared-position, tokens</span>
+
+<span style="color:var(--ui-ink-muted);font-style:italic"># React + Tailwind</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 1. ติดตั้ง dependency</span>
+<span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">@purpurabog/ui@^2.3.0</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 2. คัดลอก "content" ของแต่ละไฟล์จาก</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    https://cdn.jsdelivr.net/npm/@purpurabog/ui@2.3.0/registry/tw-edit-in-place.json</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    ไปไว้ที่ target ของมัน:</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/react-tw/edit-in-place.tsx</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 3. ทำแบบเดียวกันกับ item ที่มันใช้ (registry/&lt;name&gt;.json):</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    core-edit-in-place, core-position, tw-i18n, tw-icon-button, tw-popover, tw-theme, tw-utils</span></ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>npm ให้ทุก component จากแพ็กเกจ ส่วน shadcn คัดลอกซอร์สเข้าแอปของคุณแทน เป็นสำเนาที่ล็อกเวอร์ชันนี้และแก้เองได้ คำสั่ง shadcn ต้องตั้ง registry <code>@kanok-ui</code> ใน <code>components.json</code> ครั้งเดียวก่อน ดู <a href="/kanok-ui-docs/th/installation/#react-tailwind-%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2-shadcn">ติดตั้ง</a></p>
+<h2 id="วิธีใช้">วิธีใช้</h2>
+<p><code>label</code> คือชื่อของช่องสำหรับ assistive tech ไม่มี label ที่มองเห็น ข้อความรอบ ๆ ค่าจึงต้องบอกว่าค่านี้คืออะไร</p>
+<ui-tabs class="doc-code-tabs" label="โค้ด"><ui-tab panel="code-3-0">HTML</ui-tab><ui-tab panel="code-3-1">React</ui-tab><ui-tab panel="code-3-2">React + Tailwind</ui-tab><ui-tab-panel name="code-3-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;<span style="color:var(--ui-tag-color-magenta)">import</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/edit-in-place'</span>;&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-edit-in-place</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ชื่อสัญญา"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"สัญญาเช่าคลังสินค้า"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-edit-in-place</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-3-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { UiEditInPlace } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/react'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiEditInPlace</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ชื่อสัญญา"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"สัญญาเช่าคลังสินค้า"</span> /&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-3-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { EditInPlace } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@/components/ui/react-tw/edit-in-place'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">EditInPlace</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ชื่อสัญญา"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"สัญญาเช่าคลังสินค้า"</span> /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="บันทึกและยกเลิก">บันทึกและยกเลิก</h2>
+<p><code>ui-save</code> เกิดเมื่อบันทึกการเปลี่ยนแปลง: กดบันทึก กด Enter หรือ focus ออกไปพร้อมการเปลี่ยนแปลงที่ถูกต้อง <code>ui-cancel</code> เกิดเมื่อค่าถูกคืนกลับ: กดยกเลิก กด Escape หรือ focus ออกไปโดยไม่มีการเปลี่ยนแปลงที่ถูกต้อง ทั้งคู่ส่งค่ามาใน <code>detail.value</code> ปุ่มบันทึกและยกเลิกกดได้เมื่อค่าเปลี่ยนแล้วเท่านั้น (ช่องว่างหัวท้ายไม่นับ)</p>
+<div class="doc-demo"><div style="max-width: 360px">
+  <ui-edit-in-place id="edit-in-place-po" label="เลขที่ใบสั่งซื้อ" value="PO-2026-0815"></ui-edit-in-place>
+</div>
+<p>เหตุการณ์ล่าสุด: <output id="edit-in-place-po-out"></output></p>
+
+<script type="text/x-demo">
+  const field = document.getElementById('edit-in-place-po');
+  const out = document.getElementById('edit-in-place-po-out');
+  field.addEventListener('ui-save', (event) => (out.value = `บันทึก "${event.detail.value}"`));
+  field.addEventListener('ui-cancel', (event) => (out.value = `คืนค่าเป็น "${event.detail.value}"`));
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-4-0">HTML</ui-tab><ui-tab panel="code-4-1">React</ui-tab><ui-tab panel="code-4-2">React + Tailwind</ui-tab><ui-tab-panel name="code-4-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"max-width: 360px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-edit-in-place</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"edit-in-place-po"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"เลขที่ใบสั่งซื้อ"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"PO-2026-0815"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-edit-in-place</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;เหตุการณ์ล่าสุด: &lt;<span style="color:var(--ui-tag-color-blue)">output</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"edit-in-place-po-out"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> field <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'edit-in-place-po'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> out <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'edit-in-place-po-out'</span>);
+  field.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'ui-save'</span>, (event) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (out.value <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">`บันทึก "${</span><span style="color:var(--ui-tag-color-teal)">event.detail.value</span><span style="color:var(--ui-tag-color-teal)">}"`</span>));
+  field.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'ui-cancel'</span>, (event) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (out.value <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">`คืนค่าเป็น "${</span><span style="color:var(--ui-tag-color-teal)">event.detail.value</span><span style="color:var(--ui-tag-color-teal)">}"`</span>));
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-4-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> [last, setLast] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">''</span>);
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiEditInPlace</span>
+  <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เลขที่ใบสั่งซื้อ"</span>
+  <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"PO-2026-0815"</span>
+  <span style="color:var(--ui-tag-color-purple)">onUiSave</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setLast</span>(<span style="color:var(--ui-tag-color-teal)">`บันทึก "${</span><span style="color:var(--ui-tag-color-teal)">e.detail.value</span><span style="color:var(--ui-tag-color-teal)">}"`</span>)}
+  <span style="color:var(--ui-tag-color-purple)">onUiCancel</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setLast</span>(<span style="color:var(--ui-tag-color-teal)">`คืนค่าเป็น "${</span><span style="color:var(--ui-tag-color-teal)">e.detail.value</span><span style="color:var(--ui-tag-color-teal)">}"`</span>)}
+/&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;เหตุการณ์ล่าสุด: &lt;<span style="color:var(--ui-tag-color-blue)">output</span>&gt;{last}&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-4-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> [last, setLast] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">''</span>);
+
+&lt;<span style="color:var(--ui-tag-color-blue)">EditInPlace</span>
+  <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เลขที่ใบสั่งซื้อ"</span>
+  <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"PO-2026-0815"</span>
+  <span style="color:var(--ui-tag-color-purple)">onSave</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(value) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setLast</span>(<span style="color:var(--ui-tag-color-teal)">`บันทึก "${</span><span style="color:var(--ui-tag-color-teal)">value</span><span style="color:var(--ui-tag-color-teal)">}"`</span>)}
+  <span style="color:var(--ui-tag-color-purple)">onCancel</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(value) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setLast</span>(<span style="color:var(--ui-tag-color-teal)">`คืนค่าเป็น "${</span><span style="color:var(--ui-tag-color-teal)">value</span><span style="color:var(--ui-tag-color-teal)">}"`</span>)}
+/&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;เหตุการณ์ล่าสุด: &lt;<span style="color:var(--ui-tag-color-blue)">output</span>&gt;{last}&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>event <code>input</code> เกิดทุกครั้งที่พิมพ์ โดย <code>value</code> อัปเดตแล้ว ใน React + Tailwind <code>onChange</code> ได้รับค่าใหม่ทุกครั้ง และค่าที่คืนกลับเมื่อยกเลิก</p>
+<h2 id="บันทึกไปที่-server">บันทึกไปที่ server</h2>
+<p>การบันทึกเป็นงานของแอปคุณ: ส่งค่าไป server ใน <code>ui-save</code> ระหว่างนั้น element เก็บค่าที่แก้ไว้ ยกเลิกและ Escape จะคืนเป็นค่าที่บันทึกล่าสุด <code>value</code> ที่คุณตั้งตอนที่ไม่ได้แก้ไขอยู่จะเป็นจุดเริ่มต้นใหม่</p>
+<div class="doc-demo"><div style="max-width: 360px">
+  <ui-edit-in-place id="edit-in-place-ref" label="เลขอ้างอิง" value="REF-104"></ui-edit-in-place>
+</div>
+<p>บันทึกบน server แล้ว: <output id="edit-in-place-ref-out">REF-104</output></p>
+
+<script type="text/x-demo">
+  const field = document.getElementById('edit-in-place-ref');
+  const out = document.getElementById('edit-in-place-ref-out');
+  field.addEventListener('ui-save', (event) => {
+    const sent = event.detail.value.trim();
+    setTimeout(() => (out.value = sent), 400); // คำตอบจาก server
+  });
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-5-0">HTML</ui-tab><ui-tab panel="code-5-1">React</ui-tab><ui-tab panel="code-5-2">React + Tailwind</ui-tab><ui-tab-panel name="code-5-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"max-width: 360px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-edit-in-place</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"edit-in-place-ref"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"เลขอ้างอิง"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"REF-104"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-edit-in-place</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;บันทึกบน server แล้ว: &lt;<span style="color:var(--ui-tag-color-blue)">output</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"edit-in-place-ref-out"</span>&gt;REF-104&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> field <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'edit-in-place-ref'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> out <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'edit-in-place-ref-out'</span>);
+  field.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'ui-save'</span>, (event) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    <span style="color:var(--ui-tag-color-magenta)">const</span> sent <span style="color:var(--ui-tag-color-magenta)">=</span> event.detail.value.<span style="color:var(--ui-tag-color-cyan)">trim</span>();
+    <span style="color:var(--ui-tag-color-cyan)">setTimeout</span>(() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (out.value <span style="color:var(--ui-tag-color-magenta)">=</span> sent), <span style="color:var(--ui-tag-color-green)">400</span>); <span style="color:var(--ui-ink-muted);font-style:italic">// คำตอบจาก server</span>
+  });
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-5-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> [reference, setReference] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">'REF-104'</span>);
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiEditInPlace</span>
+  <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เลขอ้างอิง"</span>
+  <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{reference}
+  <span style="color:var(--ui-tag-color-purple)">onUiSave</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-magenta)">async</span> (e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setReference</span>(<span style="color:var(--ui-tag-color-magenta)">await</span> <span style="color:var(--ui-tag-color-cyan)">saveReference</span>(e.detail.value))}
+/&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-5-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> [reference, setReference] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">'REF-104'</span>);
+
+&lt;<span style="color:var(--ui-tag-color-blue)">EditInPlace</span>
+  <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เลขอ้างอิง"</span>
+  <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{reference}
+  <span style="color:var(--ui-tag-color-purple)">onChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{setReference}
+  <span style="color:var(--ui-tag-color-purple)">onSave</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-magenta)">async</span> (value) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setReference</span>(<span style="color:var(--ui-tag-color-magenta)">await</span> <span style="color:var(--ui-tag-color-cyan)">saveReference</span>(value))}
+/&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p><code>saveReference</code> แทนการเรียก server ของคุณเอง <code>value</code> ของ React + Tailwind เป็นแบบ controlled ให้ใช้คู่กับ <code>onChange</code></p>
+<h2 id="ขนาด">ขนาด</h2>
+<p><code>size</code>: <code>sm</code> 40px (ค่าเริ่มต้น) <code>md</code> 48px <code>lg</code> 64px ปุ่มเป็นสี่เหลี่ยมจัตุรัสสูงเท่ากัน</p>
+<div class="doc-demo"><div style="max-width: 360px; display: grid; gap: 16px">
+  <ui-edit-in-place label="เล็ก" value="เล็ก 40px" edit-always-visible></ui-edit-in-place>
+  <ui-edit-in-place label="กลาง" value="กลาง 48px" size="md" edit-always-visible></ui-edit-in-place>
+  <ui-edit-in-place label="ใหญ่" value="ใหญ่ 64px" size="lg" edit-always-visible></ui-edit-in-place>
+</div>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-6-0">HTML</ui-tab><ui-tab panel="code-6-1">React</ui-tab><ui-tab panel="code-6-2">React + Tailwind</ui-tab><ui-tab-panel name="code-6-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"max-width: 360px; display: grid; gap: 16px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-edit-in-place</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"เล็ก"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"เล็ก 40px"</span> <span style="color:var(--ui-tag-color-purple)">edit-always-visible</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-edit-in-place</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-edit-in-place</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"กลาง"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"กลาง 48px"</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"md"</span> <span style="color:var(--ui-tag-color-purple)">edit-always-visible</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-edit-in-place</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-edit-in-place</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ใหญ่"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"ใหญ่ 64px"</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"lg"</span> <span style="color:var(--ui-tag-color-purple)">edit-always-visible</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-edit-in-place</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-6-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiEditInPlace</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เล็ก"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เล็ก 40px"</span> <span style="color:var(--ui-tag-color-purple)">editAlwaysVisible</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiEditInPlace</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"กลาง"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"กลาง 48px"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"md"</span> <span style="color:var(--ui-tag-color-purple)">editAlwaysVisible</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiEditInPlace</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ใหญ่"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ใหญ่ 64px"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"lg"</span> <span style="color:var(--ui-tag-color-purple)">editAlwaysVisible</span> /&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-6-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">EditInPlace</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เล็ก"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เล็ก 40px"</span> <span style="color:var(--ui-tag-color-purple)">editAlwaysVisible</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">EditInPlace</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"กลาง"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"กลาง 48px"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"md"</span> <span style="color:var(--ui-tag-color-purple)">editAlwaysVisible</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">EditInPlace</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ใหญ่"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ใหญ่ 64px"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"lg"</span> <span style="color:var(--ui-tag-color-purple)">editAlwaysVisible</span> /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="แสดงปุ่มแก้ไขตลอด">แสดงปุ่มแก้ไขตลอด</h2>
+<p>โดยปริยายปุ่มแก้ไขแสดงเมื่อ hover เท่านั้น <code>edit-always-visible</code> (<code>editAlwaysVisible</code>) ให้แสดงตลอด คนที่ใช้จอสัมผัสหรือไม่ได้ hover จะเห็นว่าค่านี้แก้ได้</p>
+<div class="doc-demo"><div style="max-width: 360px">
+  <ui-edit-in-place label="ศูนย์ต้นทุน" value="CC-4410 ฝ่ายกฎหมาย" edit-always-visible></ui-edit-in-place>
+</div>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-7-0">HTML</ui-tab><ui-tab panel="code-7-1">React</ui-tab><ui-tab panel="code-7-2">React + Tailwind</ui-tab><ui-tab-panel name="code-7-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"max-width: 360px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-edit-in-place</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ศูนย์ต้นทุน"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"CC-4410 ฝ่ายกฎหมาย"</span> <span style="color:var(--ui-tag-color-purple)">edit-always-visible</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-edit-in-place</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-7-1"><ui-code-snippet type="single" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiEditInPlace</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ศูนย์ต้นทุน"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"CC-4410 ฝ่ายกฎหมาย"</span> <span style="color:var(--ui-tag-color-purple)">editAlwaysVisible</span> /&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-7-2"><ui-code-snippet type="single" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">EditInPlace</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ศูนย์ต้นทุน"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"CC-4410 ฝ่ายกฎหมาย"</span> <span style="color:var(--ui-tag-color-purple)">editAlwaysVisible</span> /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="placeholder">Placeholder</h2>
+<p><code>placeholder</code> แสดงในช่องว่าง สำหรับค่าที่ยังไม่ได้ตั้ง</p>
+<div class="doc-demo"><div style="max-width: 360px">
+  <ui-edit-in-place label="รหัสโครงการ" placeholder="เพิ่มรหัสโครงการ" edit-always-visible></ui-edit-in-place>
+</div>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-8-0">HTML</ui-tab><ui-tab panel="code-8-1">React</ui-tab><ui-tab panel="code-8-2">React + Tailwind</ui-tab><ui-tab-panel name="code-8-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"max-width: 360px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-edit-in-place</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"รหัสโครงการ"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span>=<span style="color:var(--ui-tag-color-teal)">"เพิ่มรหัสโครงการ"</span> <span style="color:var(--ui-tag-color-purple)">edit-always-visible</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-edit-in-place</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-8-1"><ui-code-snippet type="single" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiEditInPlace</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"รหัสโครงการ"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เพิ่มรหัสโครงการ"</span> <span style="color:var(--ui-tag-color-purple)">editAlwaysVisible</span> /&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-8-2"><ui-code-snippet type="single" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">EditInPlace</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"รหัสโครงการ"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เพิ่มรหัสโครงการ"</span> <span style="color:var(--ui-tag-color-purple)">editAlwaysVisible</span> /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="ค่าไม่ถูกต้อง">ค่าไม่ถูกต้อง</h2>
+<p><code>invalid</code> วาดกรอบสีแดงและไอคอนเตือน และไม่ให้บันทึก: ปุ่มบันทึกกดไม่ได้ Enter ไม่บันทึก และ focus ออกไปจะคืนค่า <code>invalid-text</code> (<code>invalidText</code>) แสดงใต้ช่องและเป็นคำอธิบายของช่อง ตรวจค่าใน <code>input</code> แล้วตั้ง <code>invalid</code> เอง</p>
+<div class="doc-demo"><div style="max-width: 360px">
+  <ui-edit-in-place id="edit-in-place-tax" label="เลขประจำตัวผู้เสียภาษี" value="0105556012345" invalid-text="เลขประจำตัวผู้เสียภาษีมี 13 หลัก"></ui-edit-in-place>
+</div>
+
+<script type="text/x-demo">
+  const field = document.getElementById('edit-in-place-tax');
+  const check = () => (field.invalid = !/^\d{13}$/.test(field.value));
+  field.addEventListener('input', check);
+  field.addEventListener('ui-cancel', check);
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-9-0">HTML</ui-tab><ui-tab panel="code-9-1">React</ui-tab><ui-tab panel="code-9-2">React + Tailwind</ui-tab><ui-tab-panel name="code-9-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"max-width: 360px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-edit-in-place</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"edit-in-place-tax"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"เลขประจำตัวผู้เสียภาษี"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"0105556012345"</span> <span style="color:var(--ui-tag-color-purple)">invalid-text</span>=<span style="color:var(--ui-tag-color-teal)">"เลขประจำตัวผู้เสียภาษีมี 13 หลัก"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-edit-in-place</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> field <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'edit-in-place-tax'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> <span style="color:var(--ui-tag-color-cyan)">check</span> <span style="color:var(--ui-tag-color-magenta)">=</span> () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (field.invalid <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-magenta)">!</span><span style="color:var(--ui-tag-color-teal)">/</span><span style="color:var(--ui-tag-color-magenta)">^</span><span style="color:var(--ui-tag-color-teal)">\d</span><span style="color:var(--ui-tag-color-magenta)">{13}$</span><span style="color:var(--ui-tag-color-teal)">/</span>.<span style="color:var(--ui-tag-color-cyan)">test</span>(field.value));
+  field.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'input'</span>, check);
+  field.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'ui-cancel'</span>, check);
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-9-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> [taxId, setTaxId] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">'0105556012345'</span>);
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiEditInPlace</span>
+  <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เลขประจำตัวผู้เสียภาษี"</span>
+  <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{taxId}
+  <span style="color:var(--ui-tag-color-purple)">invalid</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-magenta)">!</span><span style="color:var(--ui-tag-color-teal)">/</span><span style="color:var(--ui-tag-color-magenta)">^</span><span style="color:var(--ui-tag-color-teal)">\d</span><span style="color:var(--ui-tag-color-magenta)">{13}$</span><span style="color:var(--ui-tag-color-teal)">/</span>.<span style="color:var(--ui-tag-color-cyan)">test</span>(taxId)}
+  <span style="color:var(--ui-tag-color-purple)">invalidText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เลขประจำตัวผู้เสียภาษีมี 13 หลัก"</span>
+  <span style="color:var(--ui-tag-color-purple)">onInput</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setTaxId</span>((e.target <span style="color:var(--ui-tag-color-magenta)">as</span> <span style="color:var(--ui-tag-color-cyan)">HTMLInputElement</span>).value)}
+  <span style="color:var(--ui-tag-color-purple)">onUiCancel</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setTaxId</span>(e.detail.value)}
+/&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-9-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> [taxId, setTaxId] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">'0105556012345'</span>);
+
+&lt;<span style="color:var(--ui-tag-color-blue)">EditInPlace</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เลขประจำตัวผู้เสียภาษี"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{taxId} <span style="color:var(--ui-tag-color-purple)">onChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{setTaxId} <span style="color:var(--ui-tag-color-purple)">invalid</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-magenta)">!</span><span style="color:var(--ui-tag-color-teal)">/</span><span style="color:var(--ui-tag-color-magenta)">^</span><span style="color:var(--ui-tag-color-teal)">\d</span><span style="color:var(--ui-tag-color-magenta)">{13}$</span><span style="color:var(--ui-tag-color-teal)">/</span>.<span style="color:var(--ui-tag-color-cyan)">test</span>(taxId)} <span style="color:var(--ui-tag-color-purple)">invalidText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เลขประจำตัวผู้เสียภาษีมี 13 หลัก"</span> /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>ลองลบตัวเลขออกหนึ่งตัวเพื่อดู error การยกเลิกคืนค่าโดยไม่เกิด event <code>input</code> จึงต้องตรวจอีกครั้งใน <code>ui-cancel</code> ส่วน <code>onChange</code> ของ React + Tailwind ได้รับค่าที่คืนกลับ</p>
+<h2 id="อ่านอย่างเดียว">อ่านอย่างเดียว</h2>
+<p><code>readonly</code> (<code>readOnly</code>) แสดงค่าพร้อมปุ่ม &quot;แก้ไขไม่ได้&quot; แทนปุ่ม &quot;แก้ไข&quot; คลิกที่ช่องหรือที่ปุ่มจะเปิดข้อความสั้น ๆ ว่าแก้ไขไม่ได้ <code>readonly-text</code> (<code>readOnlyText</code>) บอกเหตุผลด้วยคำของคุณเอง</p>
+<div class="doc-demo"><div style="max-width: 360px">
+  <ui-edit-in-place label="เลขที่สัญญา" value="CT-2026-0142" readonly readonly-text="เลขที่สัญญากำหนดตอนลงนามสัญญา"></ui-edit-in-place>
+</div>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-10-0">HTML</ui-tab><ui-tab panel="code-10-1">React</ui-tab><ui-tab panel="code-10-2">React + Tailwind</ui-tab><ui-tab-panel name="code-10-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"max-width: 360px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-edit-in-place</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"เลขที่สัญญา"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"CT-2026-0142"</span> <span style="color:var(--ui-tag-color-purple)">readonly</span> <span style="color:var(--ui-tag-color-purple)">readonly-text</span>=<span style="color:var(--ui-tag-color-teal)">"เลขที่สัญญากำหนดตอนลงนามสัญญา"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-edit-in-place</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-10-1"><ui-code-snippet type="single" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiEditInPlace</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เลขที่สัญญา"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"CT-2026-0142"</span> <span style="color:var(--ui-tag-color-purple)">readonly</span> <span style="color:var(--ui-tag-color-purple)">readonlyText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เลขที่สัญญากำหนดตอนลงนามสัญญา"</span> /&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-10-2"><ui-code-snippet type="single" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">EditInPlace</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เลขที่สัญญา"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"CT-2026-0142"</span> <span style="color:var(--ui-tag-color-purple)">readOnly</span> <span style="color:var(--ui-tag-color-purple)">readOnlyText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เลขที่สัญญากำหนดตอนลงนามสัญญา"</span> /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="หัวข้อที่แก้ไขได้">หัวข้อที่แก้ไขได้</h2>
+<p><code>inherit-typography</code> (<code>inheritTypography</code>) ให้ช่องกรอกใช้ขนาดและน้ำหนักตัวอักษรของข้อความรอบ ๆ ชื่อหน้าจึงแก้ได้ในรูปเดิม</p>
+<div class="doc-demo"><div style="max-width: 480px; font: var(--ui-font-heading-03)">
+  <ui-edit-in-place label="ชื่อรายงาน" value="รายงานสัญญารายไตรมาส" size="md" inherit-typography></ui-edit-in-place>
+</div>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-11-0">HTML</ui-tab><ui-tab panel="code-11-1">React</ui-tab><ui-tab panel="code-11-2">React + Tailwind</ui-tab><ui-tab-panel name="code-11-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"max-width: 480px; font: var(--ui-font-heading-03)"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-edit-in-place</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ชื่อรายงาน"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"รายงานสัญญารายไตรมาส"</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"md"</span> <span style="color:var(--ui-tag-color-purple)">inherit-typography</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-edit-in-place</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-11-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span><span style="color:var(--ui-tag-color-magenta)">=</span>{{ <span style="color:var(--ui-tag-color-purple)">maxWidth:</span> <span style="color:var(--ui-tag-color-green)">480</span>, <span style="color:var(--ui-tag-color-purple)">font:</span> <span style="color:var(--ui-tag-color-teal)">'var(--ui-font-heading-03)'</span> }}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiEditInPlace</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ชื่อรายงาน"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"รายงานสัญญารายไตรมาส"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"md"</span> <span style="color:var(--ui-tag-color-purple)">inheritTypography</span> /&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-11-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"max-w-120 type-heading-03"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">EditInPlace</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ชื่อรายงาน"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"รายงานสัญญารายไตรมาส"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"md"</span> <span style="color:var(--ui-tag-color-purple)">inheritTypography</span> /&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>ในหน้าจริง ให้ใส่ไว้ใน element หัวข้อ (<code>&lt;h2&gt;</code>) เลย หัวข้อจะได้คงระดับไว้</p>
+<h2 id="ชื่อปุ่มและตำแหน่ง-tooltip">ชื่อปุ่มและตำแหน่ง tooltip</h2>
+<p>ชื่อปุ่มมาจากภาษาของหน้า (&quot;แก้ไข&quot; &quot;บันทึก&quot; &quot;ยกเลิก&quot; &quot;แก้ไขไม่ได้&quot;) เปลี่ยนได้ด้วย <code>edit-label</code> <code>save-label</code> <code>cancel-label</code> และ <code>readonly-label</code> (<code>editLabel</code> <code>saveLabel</code> <code>cancelLabel</code> <code>readOnlyLabel</code> ใน React + Tailwind) <code>tooltip-placement</code> ย้าย tooltip ของปุ่ม (ค่าเริ่มต้นด้านบน) และ <code>note-placement</code> ย้ายข้อความของโหมดอ่านอย่างเดียว (ค่าเริ่มต้นด้านล่าง)</p>
+<div class="doc-demo"><div style="max-width: 360px">
+  <ui-edit-in-place label="ชื่อผู้ขาย" value="สยามโลจิสติกส์" save-label="บันทึกชื่อผู้ขาย" cancel-label="ย้อนการแก้ไข" tooltip-placement="bottom" edit-always-visible></ui-edit-in-place>
+</div>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-12-0">HTML</ui-tab><ui-tab panel="code-12-1">React</ui-tab><ui-tab panel="code-12-2">React + Tailwind</ui-tab><ui-tab-panel name="code-12-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"max-width: 360px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-edit-in-place</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ชื่อผู้ขาย"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"สยามโลจิสติกส์"</span> <span style="color:var(--ui-tag-color-purple)">save-label</span>=<span style="color:var(--ui-tag-color-teal)">"บันทึกชื่อผู้ขาย"</span> <span style="color:var(--ui-tag-color-purple)">cancel-label</span>=<span style="color:var(--ui-tag-color-teal)">"ย้อนการแก้ไข"</span> <span style="color:var(--ui-tag-color-purple)">tooltip-placement</span>=<span style="color:var(--ui-tag-color-teal)">"bottom"</span> <span style="color:var(--ui-tag-color-purple)">edit-always-visible</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-edit-in-place</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-12-1"><ui-code-snippet type="single" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiEditInPlace</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ชื่อผู้ขาย"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"สยามโลจิสติกส์"</span> <span style="color:var(--ui-tag-color-purple)">saveLabel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"บันทึกชื่อผู้ขาย"</span> <span style="color:var(--ui-tag-color-purple)">cancelLabel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ย้อนการแก้ไข"</span> <span style="color:var(--ui-tag-color-purple)">tooltipPlacement</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"bottom"</span> <span style="color:var(--ui-tag-color-purple)">editAlwaysVisible</span> /&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-12-2"><ui-code-snippet type="single" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">EditInPlace</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ชื่อผู้ขาย"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"สยามโลจิสติกส์"</span> <span style="color:var(--ui-tag-color-purple)">saveLabel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"บันทึกชื่อผู้ขาย"</span> <span style="color:var(--ui-tag-color-purple)">cancelLabel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ย้อนการแก้ไข"</span> <span style="color:var(--ui-tag-color-purple)">tooltipPlacement</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"bottom"</span> <span style="color:var(--ui-tag-color-purple)">editAlwaysVisible</span> /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="แต่ง-style">แต่ง style</h2>
+<p>part มี <code>base</code> (กล่องของช่อง) <code>input</code> <code>actions</code> (กล่องของปุ่ม) และ <code>invalid-text</code> host มี <code>data-editing</code> ตอนที่เป็นช่องกรอก</p>
+<div class="doc-demo"><style>.edit-in-place-styled::part(input){font-weight:600}.edit-in-place-styled[data-editing]::part(base){background:var(--ui-field-2)}</style>
+<div style="max-width: 360px">
+  <ui-edit-in-place class="edit-in-place-styled" label="ผู้รับผิดชอบ" value="มาลี ส."></ui-edit-in-place>
+</div>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-13-0">HTML</ui-tab><ui-tab panel="code-13-1">React</ui-tab><ui-tab panel="code-13-2">React + Tailwind</ui-tab><ui-tab-panel name="code-13-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">style</span>&gt;
+  <span style="color:var(--ui-tag-color-purple)">.edit-in-place-styled</span>::part(<span style="color:var(--ui-tag-color-blue)">input</span>) { <span style="color:var(--ui-tag-color-purple)">font-weight</span>: <span style="color:var(--ui-tag-color-green)">600</span>; }
+  <span style="color:var(--ui-tag-color-purple)">.edit-in-place-styled</span>[<span style="color:var(--ui-tag-color-purple)">data-editing</span>]::part(<span style="color:var(--ui-tag-color-blue)">base</span>) { <span style="color:var(--ui-tag-color-purple)">background</span>: <span style="color:var(--ui-tag-color-cyan)">var</span>(--ui-field-2); }
+&lt;/<span style="color:var(--ui-tag-color-blue)">style</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"max-width: 360px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-edit-in-place</span> <span style="color:var(--ui-tag-color-purple)">class</span>=<span style="color:var(--ui-tag-color-teal)">"edit-in-place-styled"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ผู้รับผิดชอบ"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"มาลี ส."</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-edit-in-place</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-13-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-ink-muted);font-style:italic">// .edit-in-place-styled::part(input) { font-weight: 600; }</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">// .edit-in-place-styled[data-editing]::part(base) { background: var(--ui-field-2); }</span>
+&lt;<span style="color:var(--ui-tag-color-blue)">UiEditInPlace</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"edit-in-place-styled"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ผู้รับผิดชอบ"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"มาลี ส."</span> /&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-13-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-ink-muted);font-style:italic">// หน้าตาอยู่ใน components/ui/react-tw/edit-in-place.tsx: แก้ class ในไฟล์นั้น</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">// หรือสร้างหน้าตาของคุณเองบน Headless parts</span>
+&lt;<span style="color:var(--ui-tag-color-blue)">EditInPlace</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"max-w-90"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ผู้รับผิดชอบ"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"มาลี ส."</span> /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p><code>className</code> ใน React + Tailwind อยู่ที่กล่องด้านนอก ที่ครอบช่องกรอกและข้อความ error</p>
+<h2 id="คีย์บอร์ด">คีย์บอร์ด</h2>
+<table>
+<thead>
+<tr>
+<th>ปุ่ม</th>
+<th>ระหว่างแก้ไข</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tab</td>
+<td>เข้าไปในช่อง ซึ่งเริ่มการแก้ไข จากนั้นไปที่ยกเลิกและบันทึกเมื่อกดได้แล้ว แล้วออกไป (ออกไปพร้อมการเปลี่ยนแปลงที่ถูกต้องจะบันทึก ไม่เช่นนั้นจะคืนค่า)</td>
+</tr>
+<tr>
+<td>Enter</td>
+<td>บันทึกการเปลี่ยนแปลงที่ถูกต้องและแก้ไขต่อ ถ้าไม่มีอะไรให้บันทึก จะหยุดแก้ไข โดย focus ยังอยู่ในช่อง</td>
+</tr>
+<tr>
+<td>Escape</td>
+<td>คืนค่าและแก้ไขต่อ</td>
+</tr>
+</tbody>
+</table>
+<h2 id="accessibility">Accessibility</h2>
+<ul>
+<li>ช่องเป็น text box ที่มีชื่อจาก <code>label</code> ให้ตั้ง label ที่บอกชื่อค่า (&quot;ชื่อสัญญา&quot;) เพราะไม่มีอะไรที่มองเห็นบอกไว้</li>
+<li><code>invalid</code> ตั้ง <code>aria-invalid</code> และ <code>invalid-text</code> เป็นคำอธิบายของช่อง จึงถูกอ่านไปด้วย</li>
+<li>ปุ่มมีชื่อและ tooltip การกดบันทึกหรือยกเลิก focus ยังคงอยู่ในช่อง</li>
+<li>ออกจากช่องพร้อมการเปลี่ยนแปลงที่ถูกต้องจะบันทึกโดยไม่ต้องคลิก ถ้าอาจทำให้ผู้ใช้แปลกใจ ให้บอกไว้ในคำอธิบายของหน้า หรือใช้ <a href="/kanok-ui-docs/th/text-input/">text input</a> ปกติกับปุ่มบันทึกสำหรับค่าที่มีผลตามมา</li>
+</ul>
+<p>ต้องการแค่พฤติกรรมโดยไม่มี style: <a href="/kanok-ui-docs/th/headless-edit-in-place/">Headless Edit in place</a></p>
+<h2 id="api">API</h2>
+<p>สร้างจากแพ็กเกจโดยตรง ใน React ส่ง property เป็น prop ชื่อเดียวกัน ส่วน event ก็เป็น prop เช่นกัน (ดูคอลัมน์ React)</p>
+<h3 id="ui-edit-in-place-react-uieditinplace"><code>&lt;ui-edit-in-place&gt;</code> · React <code>UiEditInPlace</code></h3>
+<h4 id="attribute">Attribute</h4>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Property</th>
+<th>ชนิด</th>
+<th>ค่าเริ่มต้น</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>value</code></td>
+<td><code>value</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>The value (as <code>&lt;input&gt;.value</code>).</td>
+</tr>
+<tr>
+<td><code>label</code></td>
+<td><code>label</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>The field's accessible name (Carbon <code>labelText</code>; there is no visible label).</td>
+</tr>
+<tr>
+<td><code>placeholder</code></td>
+<td><code>placeholder</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>size</code></td>
+<td><code>size</code></td>
+<td><code>EditInPlaceSize</code></td>
+<td><code>'sm'</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>invalid</code></td>
+<td><code>invalid</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>invalid-text</code></td>
+<td><code>invalidText</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>readonly</code></td>
+<td><code>readonly</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>edit-always-visible</code></td>
+<td><code>editAlwaysVisible</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Show &quot;Edit&quot; without hovering.</td>
+</tr>
+<tr>
+<td><code>inherit-typography</code></td>
+<td><code>inheritTypography</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>The field takes the surrounding type (a heading made editable).</td>
+</tr>
+<tr>
+<td><code>tooltip-placement</code></td>
+<td><code>tooltipPlacement</code></td>
+<td><code>Placement</code></td>
+<td><code>'top'</code></td>
+<td>Where the buttons' tooltips go (Carbon <code>tooltipAlignment</code>).</td>
+</tr>
+<tr>
+<td><code>note-placement</code></td>
+<td><code>notePlacement</code></td>
+<td><code>Placement</code></td>
+<td><code>'bottom'</code></td>
+<td>Where the read-only note goes (Carbon <code>toggleTipAlignment</code>).</td>
+</tr>
+<tr>
+<td><code>edit-label</code></td>
+<td><code>editLabel</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>The buttons' names and the read-only note (defaults: the translation's &quot;Edit&quot;, &quot;Save&quot;, &quot;Cancel&quot;, &quot;Edit off&quot;, …).</td>
+</tr>
+<tr>
+<td><code>save-label</code></td>
+<td><code>saveLabel</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>cancel-label</code></td>
+<td><code>cancelLabel</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>readonly-label</code></td>
+<td><code>readonlyLabel</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>readonly-text</code></td>
+<td><code>readonlyText</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="event">Event</h4>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>React</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>type</code></td>
+<td>ไม่มี (ใช้ ref)</td>
+<td></td>
+</tr>
+<tr>
+<td><code>input</code></td>
+<td><code>onInput</code></td>
+<td>On every keystroke (<code>value</code> already updated)</td>
+</tr>
+<tr>
+<td><code>ui-save</code></td>
+<td><code>onUiSave</code></td>
+<td>detail: { value } a change was saved (Save, Enter, leaving it)</td>
+</tr>
+<tr>
+<td><code>ui-cancel</code></td>
+<td><code>onUiCancel</code></td>
+<td>detail: { value } the value was put back (Cancel, Escape, leaving it without a valid change)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="css-part">CSS part</h4>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>base</code></td>
+<td>The field box</td>
+</tr>
+<tr>
+<td><code>input</code></td>
+<td>The <code>&lt;input&gt;</code></td>
+</tr>
+<tr>
+<td><code>actions</code></td>
+<td>The buttons' box</td>
+</tr>
+<tr>
+<td><code>invalid-text</code></td>
+<td>The error message</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+<nav class="doc-toc" aria-labelledby="doc-toc-title"><p id="doc-toc-title" class="doc-toc-title">ในหน้านี้</p><ul><li class="doc-toc-h2"><a href="#ติดตั้ง">ติดตั้ง</a></li><li class="doc-toc-h2"><a href="#วิธีใช้">วิธีใช้</a></li><li class="doc-toc-h2"><a href="#บันทึกและยกเลิก">บันทึกและยกเลิก</a></li><li class="doc-toc-h2"><a href="#บันทึกไปที่-server">บันทึกไปที่ server</a></li><li class="doc-toc-h2"><a href="#ขนาด">ขนาด</a></li><li class="doc-toc-h2"><a href="#แสดงปุ่มแก้ไขตลอด">แสดงปุ่มแก้ไขตลอด</a></li><li class="doc-toc-h2"><a href="#placeholder">Placeholder</a></li><li class="doc-toc-h2"><a href="#ค่าไม่ถูกต้อง">ค่าไม่ถูกต้อง</a></li><li class="doc-toc-h2"><a href="#อ่านอย่างเดียว">อ่านอย่างเดียว</a></li><li class="doc-toc-h2"><a href="#หัวข้อที่แก้ไขได้">หัวข้อที่แก้ไขได้</a></li><li class="doc-toc-h2"><a href="#ชื่อปุ่มและตำแหน่ง-tooltip">ชื่อปุ่มและตำแหน่ง tooltip</a></li><li class="doc-toc-h2"><a href="#แต่ง-style">แต่ง style</a></li><li class="doc-toc-h2"><a href="#คีย์บอร์ด">คีย์บอร์ด</a></li><li class="doc-toc-h2"><a href="#accessibility">Accessibility</a></li><li class="doc-toc-h2"><a href="#api">API</a></li><li class="doc-toc-h3"><a href="#ui-edit-in-place-react-uieditinplace">&lt;ui-edit-in-place></a></li></ul></nav>
+</div>
+<nav class="doc-pager" aria-label="ถัดไป / ก่อนหน้า"><a class="doc-pager-prev" href="/kanok-ui-docs/th/big-number/" rel="prev"><span>ก่อนหน้า</span>Big number</a><a class="doc-pager-next" href="/kanok-ui-docs/th/headless/" rel="next"><span>ถัดไป</span>แนะนำ</a></nav>
+<footer class="doc-footer">@purpurabog/ui 2.3.0 · MIT · <a href="https://cdn.jsdelivr.net/npm/@purpurabog/ui@2.3.0/THIRD-PARTY-NOTICES.md">ประกาศของบุคคลที่สาม</a><br>สร้างตาม Carbon Design System ไม่ได้เกี่ยวข้องหรือได้รับการรับรองจาก IBM — IBM และ Carbon เป็นเครื่องหมายการค้าของ IBM Corp.</footer>
+</ui-content>
+<ui-modal id="doc-search" heading="ค้นหา" data-count="พบ {n} รายการ" data-empty="ไม่พบ “{q}”">
+<ui-search label="ค้นหาในเอกสาร" placeholder="ค้นหาในเอกสาร" size="lg"></ui-search>
+<p class="doc-search-status" role="status"></p>
+<ul class="doc-search-results"></ul>
+</ui-modal>
+</body>
+</html>

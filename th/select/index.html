@@ -1,0 +1,928 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Select · @purpurabog/ui</title>
+<link rel="alternate" hreflang="en" href="/kanok-ui-docs/en/select/"  /><link rel="alternate" hreflang="th" href="/kanok-ui-docs/th/select/"  />
+<script>(function(){try{var q=new URLSearchParams(location.search).get("design"),d=q;if(q==="kanok"||q==="carbon")localStorage.setItem("ui-docs-design",q);else d=localStorage.getItem("ui-docs-design");if(d==="kanok")document.documentElement.setAttribute("data-design","kanok")}catch(e){}})();(function(){try{var m=localStorage.getItem("ui-docs-theme");if(m!=="light"&&m!=="dark"&&m!=="system")return;var d=m==="dark"||(m==="system"&&matchMedia("(prefers-color-scheme: dark)").matches),r=document.documentElement,t=d?"g100":"white";if(r.getAttribute("data-design")==="kanok")t=d?"lacquer":"paper";r.setAttribute("data-theme",t)}catch(e){}})();</script>
+<style>ui-header:not(:defined){z-index:8000;box-sizing:border-box;border-block-end:1px solid var(--ui-border-subtle-1);background:var(--ui-canvas);block-size:48px;display:block;position:fixed;inset:0 0 auto}:is(ui-header:not(:defined)>*,ui-side-nav:not(:defined)>*){visibility:hidden}:is(ui-header-panel:not(:defined),ui-modal:not(:defined)){display:none}ui-side-nav:not(:defined){display:none}ui-content:not(:defined){margin-block-start:48px;padding:32px;display:block}@media (width>=1056px){ui-side-nav[expanded]:not(:defined){background:var(--ui-canvas);inline-size:256px;display:block;position:fixed;inset:48px auto 0 0}ui-side-nav[expanded]:not(:defined)~ui-content:not(:defined){margin-inline-start:256px}}ui-tabs:not(:defined){display:block}ui-tabs:not(:defined)>ui-tab{box-sizing:border-box;border-block-end:2px solid var(--ui-hairline);block-size:40px;color:var(--ui-ink-muted);font:var(--ui-font-body-sm);padding:0 16px;line-height:38px;display:inline-block}ui-tabs:not(:defined)>ui-tab:first-of-type{border-block-end-color:var(--ui-interactive);color:var(--ui-ink)}ui-tabs:not(:defined)>ui-tab-panel{padding:16px;display:block}ui-tabs:not(:defined)>ui-tab-panel~ui-tab-panel{display:none}ui-code-snippet:not(:defined){background:var(--ui-layer-1);max-block-size:272px;font:var(--ui-font-code,12px/16px monospace);white-space:pre;padding:16px;display:block;overflow:hidden}[data-react-example]:empty>*{visibility:hidden}.doc-demo:has(:not(:defined))>*{visibility:hidden}[data-react-example]:empty{box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}.doc-demo:has(:not(:defined)){box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}@keyframes doc-skeleton{to{background-position:-200% 0}}@media (prefers-reduced-motion:reduce){[data-react-example]:empty{animation:none}.doc-demo:has(:not(:defined)){animation:none}}</style>
+
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/theme-switcher-BZXGbHfR.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/tab-ChjAM0hz.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/button-DGUm7Yxm.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/skeleton-Bt17J2no.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/select-skeleton-DI7M8vFe.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/select-Dpy2FROW.js"></script>
+  <link rel="stylesheet" crossorigin href="/kanok-ui-docs/assets/theme-switcher-BXY5AIvi.css">
+</head>
+<body>
+<ui-header label="@purpurabog/ui">
+<ui-skip-to-content></ui-skip-to-content>
+<ui-header-menu-button></ui-header-menu-button>
+<ui-header-name href="/kanok-ui-docs/th/" prefix="@purpurabog">ui</ui-header-name>
+<ui-header-global-bar>
+<ui-header-global-action id="doc-search-open" label="ค้นหา" tooltip-placement="bottom"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="m18.5 17.8-4.9-4.9a7 7 0 1 0-.7.7l4.9 4.9zM3 8.5a5.5 5.5 0 1 1 5.5 5.5A5.5 5.5 0 0 1 3 8.5Z" /></svg></ui-header-global-action>
+<ui-header-global-action label="ตั้งค่า" panel="doc-settings" tooltip-placement="bottom-end"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="M16.9 10.6a7 7 0 0 0 0-1.2l1.8-1.4-1.6-2.8-2.1.8a6.6 6.6 0 0 0-1-.6L13.6 3h-3.2l-.4 2.4a6.6 6.6 0 0 0-1 .6l-2.1-.8L5.3 8l1.8 1.4a7 7 0 0 0 0 1.2L5.3 12l1.6 2.8 2.1-.8a6.6 6.6 0 0 0 1 .6l.4 2.4h3.2l.4-2.4a6.6 6.6 0 0 0 1-.6l2.1.8 1.6-2.8zM12 13a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" /></svg></ui-header-global-action>
+</ui-header-global-bar>
+<ui-header-panel id="doc-settings" label="ตั้งค่า">
+<div class="doc-settings">
+<span class="doc-settings-label">ธีม</span>
+<ui-theme-switcher storage-key="ui-docs-theme" tooltip-placement="bottom"></ui-theme-switcher>
+<span class="doc-settings-label">รูปแบบ</span>
+<ui-content-switcher id="doc-design" aria-label="รูปแบบ" size="sm"><ui-content-switcher-item name="carbon">Carbon</ui-content-switcher-item><ui-content-switcher-item name="kanok">Kanok</ui-content-switcher-item></ui-content-switcher>
+<span class="doc-settings-label">ภาษา</span>
+<ui-link href="/kanok-ui-docs/en/select/" hreflang="en" lang="en">English</ui-link>
+</div>
+</ui-header-panel>
+</ui-header>
+<ui-side-nav label="เอกสาร"><ui-side-nav-items><ui-side-nav-menu label="เริ่มต้น"><ui-side-nav-menu-item href="/kanok-ui-docs/th/">ภาพรวม</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/installation/">ติดตั้ง</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/migration-1-0/">การย้ายไป 1.0</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="คู่มือ"><ui-side-nav-menu-item href="/kanok-ui-docs/th/themes/">ธีมและ layer</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/kanok/">ดีไซน์ Kanok</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/customizing/">ปรับแต่งหน้าตา</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/icons/">ไอคอน</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/forms/">ฟอร์มและการตรวจค่า</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/frameworks/">ใช้กับ framework</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/ai/">ใช้กับ AI</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="ฟอร์มและปุ่ม" expanded><ui-side-nav-menu-item href="/kanok-ui-docs/th/button/">Button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/select/" current>Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/file-uploader/">File uploader</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Overlay"><ui-side-nav-menu-item href="/kanok-ui-docs/th/modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/toggletip/">Toggletip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/menu/">Menu</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="ข้อมูล"><ui-side-nav-menu-item href="/kanok-ui-docs/th/data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/contained-list/">Contained list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tree-view/">Tree view</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="การนำทาง"><ui-side-nav-menu-item href="/kanok-ui-docs/th/tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/breadcrumb/">Breadcrumb</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/link/">Link</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/ui-shell/">UI shell</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="เนื้อหา"><ui-side-nav-menu-item href="/kanok-ui-docs/th/tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tile/">Tile</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/user-avatar/">User avatar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/list/">List</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="สถานะและการโหลด"><ui-side-nav-menu-item href="/kanok-ui-docs/th/loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/inline-loading/">Inline loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/progress-bar/">Progress bar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/skeleton/">Skeleton</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/badge-indicator/">Badge indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/status-indicator/">Status indicator</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="เลย์เอาต์"><ui-side-nav-menu-item href="/kanok-ui-docs/th/grid/">Grid</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/heading/">Heading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/layer/">Layer</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/action-set/">Action set</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/page-header/">Page header</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/big-number/">Big number</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Headless"><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless/">แนะนำ</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-file-uploader/">File uploader</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-menu/">Menu</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-ui-shell/">UI shell</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tree-view/">Tree view</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu></ui-side-nav-items></ui-side-nav><script>if(matchMedia('(min-width: 66rem)').matches)document.currentScript.previousElementSibling.setAttribute('expanded','')</script>
+<ui-content>
+<div class="doc-page">
+<article class="doc">
+<h1 id="select">Select</h1>
+<p>Select ใช้เลือกหนึ่งรายการจากรายการทั้งหมด ข้างในเป็น <code>&lt;select&gt;</code> ของ browser เอง มือถือจึงเปิดตัวเลือกแบบ native และ screen reader คุ้นเคยดี</p>
+<div class="doc-demo"><ui-select label="แผนก" name="department" placeholder="เลือกแผนก" helper-text="แผนกที่เก็บสัญญานี้">
+  <option value="sales">ฝ่ายขาย</option>
+  <option value="legal">ฝ่ายกฎหมาย</option>
+  <option value="finance">ฝ่ายการเงิน</option>
+</ui-select>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-1-0">HTML</ui-tab><ui-tab panel="code-1-1">React</ui-tab><ui-tab panel="code-1-2">React + Tailwind</ui-tab><ui-tab-panel name="code-1-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-select</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"แผนก"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"department"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span>=<span style="color:var(--ui-tag-color-teal)">"เลือกแผนก"</span> <span style="color:var(--ui-tag-color-purple)">helper-text</span>=<span style="color:var(--ui-tag-color-teal)">"แผนกที่เก็บสัญญานี้"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"sales"</span>&gt;ฝ่ายขาย&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"legal"</span>&gt;ฝ่ายกฎหมาย&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"finance"</span>&gt;ฝ่ายการเงิน&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-select</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-1-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"แผนก"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"department"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เลือกแผนก"</span> <span style="color:var(--ui-tag-color-purple)">helperText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"แผนกที่เก็บสัญญานี้"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sales"</span>&gt;ฝ่ายขาย&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"legal"</span>&gt;ฝ่ายกฎหมาย&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"finance"</span>&gt;ฝ่ายการเงิน&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiSelect</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-1-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">Select</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"แผนก"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"department"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เลือกแผนก"</span> <span style="color:var(--ui-tag-color-purple)">helperText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"แผนกที่เก็บสัญญานี้"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sales"</span>&gt;ฝ่ายขาย&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"legal"</span>&gt;ฝ่ายกฎหมาย&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"finance"</span>&gt;ฝ่ายการเงิน&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Select</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="ติดตั้ง">ติดตั้ง</h2>
+<ui-tabs class="doc-code-tabs" label="โค้ด"><ui-tab panel="code-2-0">npm</ui-tab><ui-tab panel="code-2-1">shadcn · Web component</ui-tab><ui-tab panel="code-2-2">shadcn · React + Tailwind</ui-tab><ui-tab panel="code-2-3">คัดลอกเอง</ui-tab><ui-tab-panel name="code-2-0"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">@purpurabog/ui</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-1"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npx</span> <span style="color:var(--ui-tag-color-teal)">shadcn@4</span> <span style="color:var(--ui-tag-color-teal)">add</span> <span style="color:var(--ui-tag-color-teal)">@kanok-ui/select</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-2"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npx</span> <span style="color:var(--ui-tag-color-teal)">shadcn@4</span> <span style="color:var(--ui-tag-color-teal)">add</span> <span style="color:var(--ui-tag-color-teal)">@kanok-ui/tw-select</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-3"><ui-code-snippet type="multi" class="doc-code" data-lang="bash"><span style="color:var(--ui-ink-muted);font-style:italic"># Web component</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 1. ติดตั้ง dependency</span>
+<span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">lit@^3.3.0</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 2. คัดลอก "content" ของแต่ละไฟล์จาก</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    https://cdn.jsdelivr.net/npm/@purpurabog/ui@2.3.0/registry/select.json</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    ไปไว้ที่ target ของมัน:</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/select/select-skeleton.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/select/select.styles.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/select/select.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 3. ทำแบบเดียวกันกับ item ที่มันใช้ (registry/&lt;name&gt;.json):</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    shared-element, shared-field, shared-form-control, shared-localize, shared-skeleton, shared-slots, tokens</span>
+
+<span style="color:var(--ui-ink-muted);font-style:italic"># React + Tailwind</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 1. ติดตั้ง dependency</span>
+<span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">@purpurabog/ui@^2.3.0</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 2. คัดลอก "content" ของแต่ละไฟล์จาก</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    https://cdn.jsdelivr.net/npm/@purpurabog/ui@2.3.0/registry/tw-select.json</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    ไปไว้ที่ target ของมัน:</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/react-tw/select.tsx</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 3. ทำแบบเดียวกันกับ item ที่มันใช้ (registry/&lt;name&gt;.json):</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    core-field, tw-field, tw-skeleton, tw-theme, tw-utils</span></ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>npm ให้ทุก component จากแพ็กเกจ ส่วน shadcn คัดลอกซอร์สเข้าแอปของคุณแทน เป็นสำเนาที่ล็อกเวอร์ชันนี้และแก้เองได้ คำสั่ง shadcn ต้องตั้ง registry <code>@kanok-ui</code> ใน <code>components.json</code> ครั้งเดียวก่อน ดู <a href="/kanok-ui-docs/th/installation/#react-tailwind-%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2-shadcn">ติดตั้ง</a></p>
+<h2 id="วิธีใช้">วิธีใช้</h2>
+<ui-tabs class="doc-code-tabs" label="โค้ด"><ui-tab panel="code-3-0">HTML</ui-tab><ui-tab panel="code-3-1">React</ui-tab><ui-tab panel="code-3-2">React + Tailwind</ui-tab><ui-tab-panel name="code-3-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;<span style="color:var(--ui-tag-color-magenta)">import</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/select'</span>;&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-select</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"แผนก"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"department"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span>=<span style="color:var(--ui-tag-color-teal)">"เลือกแผนก"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"sales"</span>&gt;ฝ่ายขาย&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"legal"</span>&gt;ฝ่ายกฎหมาย&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-select</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-3-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { UiSelect } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/react'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"แผนก"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"department"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เลือกแผนก"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sales"</span>&gt;ฝ่ายขาย&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"legal"</span>&gt;ฝ่ายกฎหมาย&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiSelect</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-3-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { Select } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@/components/ui/react-tw/select'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">Select</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"แผนก"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"department"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เลือกแผนก"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sales"</span>&gt;ฝ่ายขาย&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"legal"</span>&gt;ฝ่ายกฎหมาย&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Select</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="select-dropdown-combobox-หรือ-multiselect">Select, Dropdown, Combobox หรือ MultiSelect?</h2>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>ใช้เมื่อ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="/kanok-ui-docs/th/select/">Select</a></td>
+<td>ช่องในฟอร์มธรรมดา browser เป็นคนวาดรายการ มือถือเปิดตัวเลือกแบบ native และ screen reader คุ้นเคยที่สุด แต่ละรายการเป็นข้อความบรรทัดเดียว</td>
+</tr>
+<tr>
+<td><a href="/kanok-ui-docs/th/dropdown/">Dropdown</a></td>
+<td>อยากให้รายการหน้าตาเหมือนกันทุก browser หรือรายการต้องมีบรรทัดที่สอง (<code>data-description</code>)</td>
+</tr>
+<tr>
+<td><a href="/kanok-ui-docs/th/combobox/">Combobox</a></td>
+<td>รายการยาวจนพิมพ์หาเร็วกว่าเลื่อนหา รายการมาจากการค้นหาบน server หรือยอมให้พิมพ์ค่าเองได้</td>
+</tr>
+<tr>
+<td><a href="/kanok-ui-docs/th/multi-select/">Multi-select</a></td>
+<td>ผู้ใช้เลือกได้หลายค่า</td>
+</tr>
+</tbody>
+</table>
+<p>ถ้ามีสองถึงห้าตัวเลือกที่ควรเห็นพร้อมกันทั้งหมด ให้ใช้ <a href="/kanok-ui-docs/th/radio/">radio group</a> (เลือกหนึ่ง) หรือ <a href="/kanok-ui-docs/th/checkbox/">checkbox</a> (เลือกหลายอัน)</p>
+<h2 id="placeholder-และค่าเริ่มต้น">Placeholder และค่าเริ่มต้น</h2>
+<p><code>placeholder</code> เพิ่มตัวเลือกว่างเป็นอันแรกด้วยสีจาง ถ้าใส่ <code>required</code> ด้วย ผู้ใช้ต้องเลือกอย่างอื่นก่อนจึงจะส่งฟอร์มได้</p>
+<p>ถ้าไม่มี placeholder ค่าเริ่มต้นคือ <code>value</code> ถ้าไม่มีก็เป็น <code>&lt;option selected&gt;</code> ถ้าไม่มีอีกก็เป็นรายการแรก เหมือน select แบบ native การ reset จะกลับไปที่ค่าเริ่มต้นนี้ event <code>change</code> ยิงเมื่อผู้ใช้เลือกรายการ</p>
+<div class="doc-demo"><ui-select id="select-currency" label="สกุลเงิน" name="currency" value="thb">
+  <option value="usd">ดอลลาร์สหรัฐ</option>
+  <option value="thb">บาท</option>
+  <option value="eur">ยูโร</option>
+</ui-select>
+<p>ค่า: <output id="select-currency-out"></output></p>
+
+<script type="text/x-demo">
+  const currency = document.getElementById('select-currency');
+  const out = document.getElementById('select-currency-out');
+  out.value = currency.value;
+  currency.addEventListener('change', () => (out.value = currency.value));
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-4-0">HTML</ui-tab><ui-tab panel="code-4-1">React</ui-tab><ui-tab panel="code-4-2">React + Tailwind</ui-tab><ui-tab-panel name="code-4-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-select</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"select-currency"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"สกุลเงิน"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"currency"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"thb"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"usd"</span>&gt;ดอลลาร์สหรัฐ&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"thb"</span>&gt;บาท&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"eur"</span>&gt;ยูโร&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-select</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;ค่า: &lt;<span style="color:var(--ui-tag-color-blue)">output</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"select-currency-out"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> currency <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'select-currency'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> out <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'select-currency-out'</span>);
+  out.value <span style="color:var(--ui-tag-color-magenta)">=</span> currency.value;
+  currency.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'change'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (out.value <span style="color:var(--ui-tag-color-magenta)">=</span> currency.value));
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-4-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> <span style="color:var(--ui-tag-color-magenta)">type</span> { UiSelect <span style="color:var(--ui-tag-color-magenta)">as</span> SelectElement } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> [currency, setCurrency] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">'thb'</span>);
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"สกุลเงิน"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"currency"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{currency} <span style="color:var(--ui-tag-color-purple)">onChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setCurrency</span>((e.target <span style="color:var(--ui-tag-color-magenta)">as</span> <span style="color:var(--ui-tag-color-cyan)">SelectElement</span>).value)}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"usd"</span>&gt;ดอลลาร์สหรัฐ&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"thb"</span>&gt;บาท&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"eur"</span>&gt;ยูโร&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiSelect</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;ค่า: &lt;<span style="color:var(--ui-tag-color-blue)">output</span>&gt;{currency}&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-4-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> [currency, setCurrency] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">'thb'</span>);
+
+&lt;<span style="color:var(--ui-tag-color-blue)">Select</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"สกุลเงิน"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"currency"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{currency} <span style="color:var(--ui-tag-color-purple)">onChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setCurrency</span>(e.target.value)}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"usd"</span>&gt;ดอลลาร์สหรัฐ&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"thb"</span>&gt;บาท&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"eur"</span>&gt;ยูโร&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Select</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;ค่า: &lt;<span style="color:var(--ui-tag-color-blue)">output</span>&gt;{currency}&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>React + Tailwind สร้าง <code>&lt;select&gt;</code> จริง <code>onChange</code> จึงเป็นของ React เอง และรับ <code>defaultValue</code> ได้ด้วย</p>
+<h2 id="กลุ่มและรายการที่ปิดใช้งาน">กลุ่มและรายการที่ปิดใช้งาน</h2>
+<p>ใส่รายการไว้ใน <code>&lt;optgroup label&gt;</code> เพื่อจัดกลุ่ม <code>disabled</code> ที่ option หรือ <code>&lt;optgroup&gt;</code> จะยังแสดงอยู่แต่เลือกไม่ได้ web component คอยดู children ของตัวเอง จึงเพิ่มหรือลบ <code>&lt;option&gt;</code> ได้ทุกเมื่อ</p>
+<div class="doc-demo"><ui-select label="สาขา" name="office" placeholder="เลือกสาขา">
+  <optgroup label="กรุงเทพฯ">
+    <option value="silom">สีลม</option>
+    <option value="asok">อโศก</option>
+  </optgroup>
+  <optgroup label="ภาคเหนือ">
+    <option value="chiangmai">เชียงใหม่</option>
+    <option value="lampang" disabled>ลำปาง (ปิดแล้ว)</option>
+  </optgroup>
+</ui-select>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-5-0">HTML</ui-tab><ui-tab panel="code-5-1">React</ui-tab><ui-tab panel="code-5-2">React + Tailwind</ui-tab><ui-tab-panel name="code-5-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-select</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"สาขา"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"office"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span>=<span style="color:var(--ui-tag-color-teal)">"เลือกสาขา"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">optgroup</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"กรุงเทพฯ"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"silom"</span>&gt;สีลม&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"asok"</span>&gt;อโศก&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">optgroup</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">optgroup</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ภาคเหนือ"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"chiangmai"</span>&gt;เชียงใหม่&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"lampang"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span>&gt;ลำปาง (ปิดแล้ว)&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">optgroup</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-select</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-5-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"สาขา"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"office"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เลือกสาขา"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">optgroup</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"กรุงเทพฯ"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"silom"</span>&gt;สีลม&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"asok"</span>&gt;อโศก&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">optgroup</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">optgroup</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ภาคเหนือ"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"chiangmai"</span>&gt;เชียงใหม่&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"lampang"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span>&gt;ลำปาง (ปิดแล้ว)&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">optgroup</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiSelect</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-5-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">Select</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"สาขา"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"office"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เลือกสาขา"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">optgroup</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"กรุงเทพฯ"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"silom"</span>&gt;สีลม&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"asok"</span>&gt;อโศก&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">optgroup</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">optgroup</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ภาคเหนือ"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"chiangmai"</span>&gt;เชียงใหม่&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"lampang"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span>&gt;ลำปาง (ปิดแล้ว)&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">optgroup</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Select</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="รายการที่ขึ้นกับช่องอื่น">รายการที่ขึ้นกับช่องอื่น</h2>
+<p>ฟอร์มที่อยู่เติมรายการเขต/อำเภอตามจังหวัดที่เลือก ให้เปลี่ยน option เมื่อ select ตัวแรกเปลี่ยน web component จะรับ children ใหม่เอง และปิด select ตัวที่สองไว้จนกว่าจะมีรายการให้เลือก</p>
+<div class="doc-demo"><ui-select id="select-province" label="จังหวัด" name="province" placeholder="เลือกจังหวัด">
+  <option value="bkk">กรุงเทพมหานคร</option>
+  <option value="cnx">เชียงใหม่</option>
+</ui-select>
+<ui-select id="select-district" label="เขต/อำเภอ" name="district" placeholder="เลือกเขต/อำเภอ" disabled></ui-select>
+
+<script type="text/x-demo">
+  const districts = {
+    bkk: [['bangrak', 'บางรัก'], ['pathumwan', 'ปทุมวัน'], ['chatuchak', 'จตุจักร']],
+    cnx: [['mueang', 'เมืองเชียงใหม่'], ['hangdong', 'หางดง'], ['sansai', 'สันทราย']],
+  };
+  const province = document.getElementById('select-province');
+  const district = document.getElementById('select-district');
+  province.addEventListener('change', () => {
+    district.replaceChildren(...districts[province.value].map(([value, label]) => new Option(label, value)));
+    district.value = '';
+    district.disabled = false;
+  });
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-6-0">HTML</ui-tab><ui-tab panel="code-6-1">React</ui-tab><ui-tab panel="code-6-2">React + Tailwind</ui-tab><ui-tab-panel name="code-6-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-select</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"select-province"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"จังหวัด"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"province"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span>=<span style="color:var(--ui-tag-color-teal)">"เลือกจังหวัด"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"bkk"</span>&gt;กรุงเทพมหานคร&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"cnx"</span>&gt;เชียงใหม่&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-select</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-select</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"select-district"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"เขต/อำเภอ"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"district"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span>=<span style="color:var(--ui-tag-color-teal)">"เลือกเขต/อำเภอ"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-select</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> districts <span style="color:var(--ui-tag-color-magenta)">=</span> {
+    <span style="color:var(--ui-tag-color-purple)">bkk:</span> [[<span style="color:var(--ui-tag-color-teal)">'bangrak'</span>, <span style="color:var(--ui-tag-color-teal)">'บางรัก'</span>], [<span style="color:var(--ui-tag-color-teal)">'pathumwan'</span>, <span style="color:var(--ui-tag-color-teal)">'ปทุมวัน'</span>], [<span style="color:var(--ui-tag-color-teal)">'chatuchak'</span>, <span style="color:var(--ui-tag-color-teal)">'จตุจักร'</span>]],
+    <span style="color:var(--ui-tag-color-purple)">cnx:</span> [[<span style="color:var(--ui-tag-color-teal)">'mueang'</span>, <span style="color:var(--ui-tag-color-teal)">'เมืองเชียงใหม่'</span>], [<span style="color:var(--ui-tag-color-teal)">'hangdong'</span>, <span style="color:var(--ui-tag-color-teal)">'หางดง'</span>], [<span style="color:var(--ui-tag-color-teal)">'sansai'</span>, <span style="color:var(--ui-tag-color-teal)">'สันทราย'</span>]],
+  };
+  <span style="color:var(--ui-tag-color-magenta)">const</span> province <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'select-province'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> district <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'select-district'</span>);
+  province.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'change'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    district.<span style="color:var(--ui-tag-color-cyan)">replaceChildren</span>(<span style="color:var(--ui-tag-color-magenta)">...</span>districts[province.value].<span style="color:var(--ui-tag-color-cyan)">map</span>(([value, label]) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-magenta)">new</span> <span style="color:var(--ui-tag-color-cyan)">Option</span>(label, value)));
+    district.value <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">''</span>;
+    district.disabled <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-green)">false</span>;
+  });
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-6-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> districts<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">Record</span>&lt;<span style="color:var(--ui-tag-color-cyan)">string</span>, [<span style="color:var(--ui-tag-color-cyan)">string</span>, <span style="color:var(--ui-tag-color-cyan)">string</span>][]&gt; <span style="color:var(--ui-tag-color-magenta)">=</span> {
+  <span style="color:var(--ui-tag-color-purple)">bkk:</span> [[<span style="color:var(--ui-tag-color-teal)">'bangrak'</span>, <span style="color:var(--ui-tag-color-teal)">'บางรัก'</span>], [<span style="color:var(--ui-tag-color-teal)">'pathumwan'</span>, <span style="color:var(--ui-tag-color-teal)">'ปทุมวัน'</span>], [<span style="color:var(--ui-tag-color-teal)">'chatuchak'</span>, <span style="color:var(--ui-tag-color-teal)">'จตุจักร'</span>]],
+  <span style="color:var(--ui-tag-color-purple)">cnx:</span> [[<span style="color:var(--ui-tag-color-teal)">'mueang'</span>, <span style="color:var(--ui-tag-color-teal)">'เมืองเชียงใหม่'</span>], [<span style="color:var(--ui-tag-color-teal)">'hangdong'</span>, <span style="color:var(--ui-tag-color-teal)">'หางดง'</span>], [<span style="color:var(--ui-tag-color-teal)">'sansai'</span>, <span style="color:var(--ui-tag-color-teal)">'สันทราย'</span>]],
+};
+<span style="color:var(--ui-tag-color-magenta)">const</span> [province, setProvince] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">''</span>);
+<span style="color:var(--ui-tag-color-magenta)">const</span> [district, setDistrict] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">''</span>);
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"จังหวัด"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"province"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เลือกจังหวัด"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{province} <span style="color:var(--ui-tag-color-purple)">onChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> { <span style="color:var(--ui-tag-color-cyan)">setProvince</span>((e.target <span style="color:var(--ui-tag-color-magenta)">as</span> <span style="color:var(--ui-tag-color-cyan)">SelectElement</span>).value); <span style="color:var(--ui-tag-color-cyan)">setDistrict</span>(<span style="color:var(--ui-tag-color-teal)">''</span>); }}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"bkk"</span>&gt;กรุงเทพมหานคร&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"cnx"</span>&gt;เชียงใหม่&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiSelect</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เขต/อำเภอ"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"district"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เลือกเขต/อำเภอ"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-magenta)">!</span>province} <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{district} <span style="color:var(--ui-tag-color-purple)">onChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setDistrict</span>((e.target <span style="color:var(--ui-tag-color-magenta)">as</span> <span style="color:var(--ui-tag-color-cyan)">SelectElement</span>).value)}&gt;
+  {districts[province]?.<span style="color:var(--ui-tag-color-cyan)">map</span>(([value, label]) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{value} <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{value}&gt;{label}&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;)}
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiSelect</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-6-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">Select</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"จังหวัด"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"province"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เลือกจังหวัด"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{province} <span style="color:var(--ui-tag-color-purple)">onChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> { <span style="color:var(--ui-tag-color-cyan)">setProvince</span>(e.target.value); <span style="color:var(--ui-tag-color-cyan)">setDistrict</span>(<span style="color:var(--ui-tag-color-teal)">''</span>); }}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"bkk"</span>&gt;กรุงเทพมหานคร&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"cnx"</span>&gt;เชียงใหม่&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Select</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">Select</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เขต/อำเภอ"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"district"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เลือกเขต/อำเภอ"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-magenta)">!</span>province} <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{district} <span style="color:var(--ui-tag-color-purple)">onChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setDistrict</span>(e.target.value)}&gt;
+  {districts[province]?.<span style="color:var(--ui-tag-color-cyan)">map</span>(([value, label]) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{value} <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{value}&gt;{label}&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;)}
+&lt;/<span style="color:var(--ui-tag-color-blue)">Select</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p><code>districts</code>, <code>province</code> และ <code>district</code> เหมือนกันใน React ทุกแบบ</p>
+<h2 id="ขนาด">ขนาด</h2>
+<p><code>size</code>: <code>sm</code> 32px, <code>md</code> 40px (ค่าเริ่มต้น เหมือน Carbon), <code>lg</code> 48px</p>
+<div class="doc-demo"><ui-select label="เล็ก" size="sm">
+  <option>ฝ่ายกฎหมาย</option>
+</ui-select>
+<ui-select label="กลาง">
+  <option>ฝ่ายกฎหมาย</option>
+</ui-select>
+<ui-select label="ใหญ่" size="lg">
+  <option>ฝ่ายกฎหมาย</option>
+</ui-select>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-7-0">HTML</ui-tab><ui-tab panel="code-7-1">React</ui-tab><ui-tab panel="code-7-2">React + Tailwind</ui-tab><ui-tab-panel name="code-7-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-select</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"เล็ก"</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"sm"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span>&gt;ฝ่ายกฎหมาย&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-select</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-select</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"กลาง"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span>&gt;ฝ่ายกฎหมาย&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-select</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-select</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ใหญ่"</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"lg"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span>&gt;ฝ่ายกฎหมาย&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-select</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-7-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เล็ก"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">option</span>&gt;ฝ่ายกฎหมาย&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">UiSelect</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"กลาง"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">option</span>&gt;ฝ่ายกฎหมาย&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">UiSelect</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ใหญ่"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"lg"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">option</span>&gt;ฝ่ายกฎหมาย&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">UiSelect</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-7-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">Select</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เล็ก"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">option</span>&gt;ฝ่ายกฎหมาย&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">Select</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">Select</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"กลาง"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">option</span>&gt;ฝ่ายกฎหมาย&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">Select</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">Select</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ใหญ่"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"lg"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">option</span>&gt;ฝ่ายกฎหมาย&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">Select</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="แบบ-inline">แบบ inline</h2>
+<p><code>inline</code> วาง label ไว้ข้าง select ที่กะทัดรัดและไม่มีขอบ ใช้ในแถบเครื่องมือหรือเหนือตาราง ไม่ใช่ในฟอร์ม</p>
+<div class="doc-demo"><ui-select inline label="แถวต่อหน้า" value="25">
+  <option value="10">10</option>
+  <option value="25">25</option>
+  <option value="50">50</option>
+</ui-select>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-8-0">HTML</ui-tab><ui-tab panel="code-8-1">React</ui-tab><ui-tab panel="code-8-2">React + Tailwind</ui-tab><ui-tab-panel name="code-8-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-select</span> <span style="color:var(--ui-tag-color-purple)">inline</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"แถวต่อหน้า"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"25"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"10"</span>&gt;10&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"25"</span>&gt;25&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"50"</span>&gt;50&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-select</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-8-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiSelect</span> <span style="color:var(--ui-tag-color-purple)">inline</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"แถวต่อหน้า"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"25"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"10"</span>&gt;10&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"25"</span>&gt;25&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"50"</span>&gt;50&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiSelect</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-8-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">Select</span> <span style="color:var(--ui-tag-color-purple)">inline</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"แถวต่อหน้า"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"25"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"10"</span>&gt;10&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"25"</span>&gt;25&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"50"</span>&gt;50&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Select</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="แบบ-fluid">แบบ fluid</h2>
+<p><code>fluid</code> วาง label ไว้ในกล่องสูง 64px (<code>FluidSelect</code> ของ Carbon) ถ้าครอบด้วย fluid form ทุกช่องข้างในจะเป็นแบบนี้ ดู <a href="/kanok-ui-docs/th/forms/#%E0%B9%83%E0%B8%8A%E0%B9%89%E0%B8%9F%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%A1%E0%B9%81%E0%B8%9A%E0%B8%9A-fluid">fluid form</a> ช่องแบบ fluid ไม่มีบรรทัดข้อความช่วยเหลือ</p>
+<div class="doc-demo"><ui-select fluid label="แผนก" name="department" placeholder="เลือกแผนก">
+  <option value="sales">ฝ่ายขาย</option>
+  <option value="legal">ฝ่ายกฎหมาย</option>
+  <option value="finance">ฝ่ายการเงิน</option>
+</ui-select>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-9-0">HTML</ui-tab><ui-tab panel="code-9-1">React</ui-tab><ui-tab panel="code-9-2">React + Tailwind</ui-tab><ui-tab-panel name="code-9-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-select</span> <span style="color:var(--ui-tag-color-purple)">fluid</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"แผนก"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"department"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span>=<span style="color:var(--ui-tag-color-teal)">"เลือกแผนก"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"sales"</span>&gt;ฝ่ายขาย&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"legal"</span>&gt;ฝ่ายกฎหมาย&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"finance"</span>&gt;ฝ่ายการเงิน&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-select</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-9-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiSelect</span> <span style="color:var(--ui-tag-color-purple)">fluid</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"แผนก"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"department"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เลือกแผนก"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sales"</span>&gt;ฝ่ายขาย&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"legal"</span>&gt;ฝ่ายกฎหมาย&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"finance"</span>&gt;ฝ่ายการเงิน&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiSelect</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-9-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">Select</span> <span style="color:var(--ui-tag-color-purple)">fluid</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"แผนก"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"department"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เลือกแผนก"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sales"</span>&gt;ฝ่ายขาย&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"legal"</span>&gt;ฝ่ายกฎหมาย&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"finance"</span>&gt;ฝ่ายการเงิน&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Select</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="แบบมีขอบ-ดีไซน์-kanok">แบบมีขอบ (ดีไซน์ Kanok)</h2>
+<p>ในดีไซน์ Kanok ช่องกรอกเป็นแบบ filled โดยปกติ คือพื้นเทาอ่อน ไม่มีขอบ ใส่ <code>data-field-variant=&quot;outlined&quot;</code> ที่ element ที่ครอบช่อง (เช่น <code>&lt;form&gt;</code> หรือ <code>&lt;html&gt;</code> ถ้าต้องการทั้งแอป) จะเปลี่ยนเป็นขอบ 1px บนพื้นใส ส่วน focus ยังเป็นวงแสงสีฟ้าเหมือนเดิม attribute นี้ไม่มีผลในดีไซน์ Carbon ตัวอย่างด้านล่างจึงครอบด้วย <code>data-design=&quot;kanok&quot;</code> ดูรายละเอียดทั้งหมดที่ <a href="/kanok-ui-docs/th/kanok/#%E0%B8%8A%E0%B9%88%E0%B8%AD%E0%B8%87%E0%B8%81%E0%B8%A3%E0%B8%AD%E0%B8%81%E0%B9%81%E0%B8%9A%E0%B8%9A%E0%B8%A1%E0%B8%B5%E0%B8%82%E0%B8%AD%E0%B8%9A">ดีไซน์ Kanok</a></p>
+<div class="doc-demo"><div data-design="kanok" data-theme="paper" data-field-variant="outlined">
+  <ui-select label="แผนก" name="department" placeholder="เลือกแผนก" helper-text="แผนกที่เก็บสัญญานี้">
+    <option value="sales">ฝ่ายขาย</option>
+    <option value="legal">ฝ่ายกฎหมาย</option>
+    <option value="finance">ฝ่ายการเงิน</option>
+  </ui-select>
+</div>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-10-0">HTML</ui-tab><ui-tab panel="code-10-1">React</ui-tab><ui-tab panel="code-10-2">React + Tailwind</ui-tab><ui-tab-panel name="code-10-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">data-design</span>=<span style="color:var(--ui-tag-color-teal)">"kanok"</span> <span style="color:var(--ui-tag-color-purple)">data-theme</span>=<span style="color:var(--ui-tag-color-teal)">"paper"</span> <span style="color:var(--ui-tag-color-purple)">data-field-variant</span>=<span style="color:var(--ui-tag-color-teal)">"outlined"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-select</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"แผนก"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"department"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span>=<span style="color:var(--ui-tag-color-teal)">"เลือกแผนก"</span> <span style="color:var(--ui-tag-color-purple)">helper-text</span>=<span style="color:var(--ui-tag-color-teal)">"แผนกที่เก็บสัญญานี้"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"sales"</span>&gt;ฝ่ายขาย&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"legal"</span>&gt;ฝ่ายกฎหมาย&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"finance"</span>&gt;ฝ่ายการเงิน&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-select</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-10-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">data-field-variant</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"outlined"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"แผนก"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"department"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เลือกแผนก"</span> <span style="color:var(--ui-tag-color-purple)">helperText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"แผนกที่เก็บสัญญานี้"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sales"</span>&gt;ฝ่ายขาย&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"legal"</span>&gt;ฝ่ายกฎหมาย&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"finance"</span>&gt;ฝ่ายการเงิน&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiSelect</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-10-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">data-field-variant</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"outlined"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">Select</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"แผนก"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"department"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เลือกแผนก"</span> <span style="color:var(--ui-tag-color-purple)">helperText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"แผนกที่เก็บสัญญานี้"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sales"</span>&gt;ฝ่ายขาย&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"legal"</span>&gt;ฝ่ายกฎหมาย&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"finance"</span>&gt;ฝ่ายการเงิน&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">Select</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="ข้อความช่วยเหลือ-คำเตือน-และ-error">ข้อความช่วยเหลือ คำเตือน และ error</h2>
+<p>ใต้ช่องแสดงได้ทีละบรรทัด error มาก่อนคำเตือน และคำเตือนมาก่อนข้อความช่วยเหลือ <code>warn</code> เป็นคำเตือนที่ไม่บล็อกการส่ง <code>invalid</code> บังคับให้แสดง error เช่น หลัง server ปฏิเสธค่า</p>
+<div class="doc-demo"><ui-select label="ผู้อนุมัติ" name="approver" helper-text="ผู้อนุมัติจะได้รับสัญญาเป็นลำดับถัดไป">
+  <option value="somchai">สมชาย ก.</option>
+  <option value="malee">มาลี ส.</option>
+</ui-select>
+<ui-select label="ผู้อนุมัติ" name="approver2" value="malee" warn warn-text="มาลีลาพักถึงวันที่ 20 ตุลาคม">
+  <option value="somchai">สมชาย ก.</option>
+  <option value="malee">มาลี ส.</option>
+</ui-select>
+<ui-select label="ผู้อนุมัติ" name="approver3" value="somchai" invalid invalid-text="สมชายเป็นผู้ร่างสัญญานี้ จึงอนุมัติเองไม่ได้">
+  <option value="somchai">สมชาย ก.</option>
+  <option value="malee">มาลี ส.</option>
+</ui-select>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-11-0">HTML</ui-tab><ui-tab panel="code-11-1">React</ui-tab><ui-tab panel="code-11-2">React + Tailwind</ui-tab><ui-tab-panel name="code-11-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-select</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ผู้อนุมัติ"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"approver"</span> <span style="color:var(--ui-tag-color-purple)">helper-text</span>=<span style="color:var(--ui-tag-color-teal)">"ผู้อนุมัติจะได้รับสัญญาเป็นลำดับถัดไป"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"somchai"</span>&gt;สมชาย ก.&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"malee"</span>&gt;มาลี ส.&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-select</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-select</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ผู้อนุมัติ"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"approver2"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"malee"</span> <span style="color:var(--ui-tag-color-purple)">warn</span> <span style="color:var(--ui-tag-color-purple)">warn-text</span>=<span style="color:var(--ui-tag-color-teal)">"มาลีลาพักถึงวันที่ 20 ตุลาคม"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"somchai"</span>&gt;สมชาย ก.&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"malee"</span>&gt;มาลี ส.&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-select</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-select</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ผู้อนุมัติ"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"approver3"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"somchai"</span> <span style="color:var(--ui-tag-color-purple)">invalid</span> <span style="color:var(--ui-tag-color-purple)">invalid-text</span>=<span style="color:var(--ui-tag-color-teal)">"สมชายเป็นผู้ร่างสัญญานี้ จึงอนุมัติเองไม่ได้"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"somchai"</span>&gt;สมชาย ก.&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"malee"</span>&gt;มาลี ส.&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-select</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-11-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ผู้อนุมัติ"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"approver"</span> <span style="color:var(--ui-tag-color-purple)">helperText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ผู้อนุมัติจะได้รับสัญญาเป็นลำดับถัดไป"</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">UiSelect</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ผู้อนุมัติ"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"approver2"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"malee"</span> <span style="color:var(--ui-tag-color-purple)">warn</span> <span style="color:var(--ui-tag-color-purple)">warnText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"มาลีลาพักถึงวันที่ 20 ตุลาคม"</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">UiSelect</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ผู้อนุมัติ"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"approver3"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"somchai"</span> <span style="color:var(--ui-tag-color-purple)">invalid</span> <span style="color:var(--ui-tag-color-purple)">invalidText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"สมชายเป็นผู้ร่างสัญญานี้ จึงอนุมัติเองไม่ได้"</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">UiSelect</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-11-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">Select</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ผู้อนุมัติ"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"approver"</span> <span style="color:var(--ui-tag-color-purple)">helperText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ผู้อนุมัติจะได้รับสัญญาเป็นลำดับถัดไป"</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">Select</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">Select</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ผู้อนุมัติ"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"approver2"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"malee"</span> <span style="color:var(--ui-tag-color-purple)">warn</span> <span style="color:var(--ui-tag-color-purple)">warnText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"มาลีลาพักถึงวันที่ 20 ตุลาคม"</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">Select</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">Select</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ผู้อนุมัติ"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"approver3"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"somchai"</span> <span style="color:var(--ui-tag-color-purple)">invalid</span> <span style="color:var(--ui-tag-color-purple)">invalidText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"สมชายเป็นผู้ร่างสัญญานี้ จึงอนุมัติเองไม่ได้"</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">Select</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="ลิงก์ในข้อความช่วยเหลือ">ลิงก์ในข้อความช่วยเหลือ</h2>
+<p>attribute <code>helper-text</code>, <code>warn-text</code> และ <code>invalid-text</code> เป็นข้อความธรรมดา ถ้าต้องการลิงก์หรือตัวหนา ให้ใส่ markup ใน slot ชื่อเดียวกัน ใน React + Tailwind ส่ง markup ให้ <code>helperText</code>, <code>warnText</code> หรือ <code>invalidText</code></p>
+<div class="doc-demo"><ui-select label="ระยะเวลาเก็บเอกสาร" name="retention" value="10">
+  <option value="5">5 ปี</option>
+  <option value="10">10 ปี</option>
+  <option value="forever">เก็บตลอดไป</option>
+  <span slot="helper-text">ทำตาม<a href="#accessibility">นโยบายการเก็บรักษาเอกสาร</a></span>
+</ui-select>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-12-0">HTML</ui-tab><ui-tab panel="code-12-1">React</ui-tab><ui-tab panel="code-12-2">React + Tailwind</ui-tab><ui-tab-panel name="code-12-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-select</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ระยะเวลาเก็บเอกสาร"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"retention"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"10"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"5"</span>&gt;5 ปี&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"10"</span>&gt;10 ปี&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"forever"</span>&gt;เก็บตลอดไป&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"helper-text"</span>&gt;ทำตาม&lt;<span style="color:var(--ui-tag-color-blue)">a</span> <span style="color:var(--ui-tag-color-purple)">href</span>=<span style="color:var(--ui-tag-color-teal)">"#accessibility"</span>&gt;นโยบายการเก็บรักษาเอกสาร&lt;/<span style="color:var(--ui-tag-color-blue)">a</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-select</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-12-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ระยะเวลาเก็บเอกสาร"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"retention"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"10"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"5"</span>&gt;5 ปี&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"10"</span>&gt;10 ปี&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"forever"</span>&gt;เก็บตลอดไป&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">slot</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"helper-text"</span>&gt;ทำตาม&lt;<span style="color:var(--ui-tag-color-blue)">a</span> <span style="color:var(--ui-tag-color-purple)">href</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"/policies/retention"</span>&gt;นโยบายการเก็บรักษาเอกสาร&lt;/<span style="color:var(--ui-tag-color-blue)">a</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiSelect</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-12-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">Select</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ระยะเวลาเก็บเอกสาร"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"retention"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"10"</span> <span style="color:var(--ui-tag-color-purple)">helperText</span><span style="color:var(--ui-tag-color-magenta)">=</span>{&lt;&gt;ทำตาม&lt;<span style="color:var(--ui-tag-color-blue)">a</span> <span style="color:var(--ui-tag-color-purple)">href</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"/policies/retention"</span>&gt;นโยบายการเก็บรักษาเอกสาร&lt;/<span style="color:var(--ui-tag-color-blue)">a</span>&gt;&lt;/&gt;}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"5"</span>&gt;5 ปี&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"10"</span>&gt;10 ปี&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"forever"</span>&gt;เก็บตลอดไป&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Select</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="อ่านอย่างเดียวและปิดใช้งาน">อ่านอย่างเดียวและปิดใช้งาน</h2>
+<ul>
+<li><code>readonly</code> (<code>readOnly</code> ใน React + Tailwind) แสดงค่าและส่งค่าไปกับฟอร์ม แต่เมาส์และคีย์บอร์ดเปลี่ยนค่าไม่ได้ กด Tab ผ่านได้ตามปกติ</li>
+<li><code>disabled</code> ทำให้ select เป็นสีเทาและไม่ถูกส่งไปกับฟอร์ม</li>
+</ul>
+<div class="doc-demo"><ui-select label="แผนก" value="legal" readonly>
+  <option value="sales">ฝ่ายขาย</option>
+  <option value="legal">ฝ่ายกฎหมาย</option>
+</ui-select>
+<ui-select label="แผนก" disabled>
+  <option value="sales">ฝ่ายขาย</option>
+  <option value="legal">ฝ่ายกฎหมาย</option>
+</ui-select>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-13-0">HTML</ui-tab><ui-tab panel="code-13-1">React</ui-tab><ui-tab panel="code-13-2">React + Tailwind</ui-tab><ui-tab-panel name="code-13-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-select</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"แผนก"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"legal"</span> <span style="color:var(--ui-tag-color-purple)">readonly</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"sales"</span>&gt;ฝ่ายขาย&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"legal"</span>&gt;ฝ่ายกฎหมาย&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-select</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-select</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"แผนก"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"sales"</span>&gt;ฝ่ายขาย&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"legal"</span>&gt;ฝ่ายกฎหมาย&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-select</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-13-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"แผนก"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"legal"</span> <span style="color:var(--ui-tag-color-purple)">readonly</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">UiSelect</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"แผนก"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">UiSelect</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-13-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">Select</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"แผนก"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"legal"</span> <span style="color:var(--ui-tag-color-purple)">readOnly</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">Select</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">Select</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"แผนก"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">Select</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="บังคับเลือกในฟอร์ม">บังคับเลือกในฟอร์ม</h2>
+<p>ถ้าใส่ <code>required</code> คู่กับ <code>placeholder</code> ฟอร์มจะส่งไม่ได้จนกว่าผู้ใช้จะเลือกรายการ ลองกดส่งโดยยังไม่เลือกเพื่อดู error ถ้าไม่ใส่ <code>invalid-text</code> จะเห็นข้อความในตัว &quot;กรุณาเลือกรายการ&quot; ตามภาษาของหน้า</p>
+<div class="doc-demo"><form id="select-form" style="display: grid; gap: 16px">
+  <ui-select label="ประเภทสัญญา" name="type" placeholder="เลือกประเภท" required invalid-text="เลือกประเภทสัญญา">
+    <option value="sale">ซื้อขาย</option>
+    <option value="lease">เช่า</option>
+    <option value="service">จ้างบริการ</option>
+  </ui-select>
+  <div><ui-button type="submit">ส่ง</ui-button></div>
+</form>
+<p>ค่าที่ส่ง: <output id="select-form-out"></output></p>
+
+<script type="text/x-demo">
+  const form = document.getElementById('select-form');
+  const out = document.getElementById('select-form-out');
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    out.value = [...new FormData(form)].map(([key, value]) => `${key}=${value}`).join(', ');
+  });
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-14-0">HTML</ui-tab><ui-tab panel="code-14-1">React</ui-tab><ui-tab panel="code-14-2">React + Tailwind</ui-tab><ui-tab-panel name="code-14-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">form</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"select-form"</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"display: grid; gap: 16px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-select</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ประเภทสัญญา"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"type"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span>=<span style="color:var(--ui-tag-color-teal)">"เลือกประเภท"</span> <span style="color:var(--ui-tag-color-purple)">required</span> <span style="color:var(--ui-tag-color-purple)">invalid-text</span>=<span style="color:var(--ui-tag-color-teal)">"เลือกประเภทสัญญา"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"sale"</span>&gt;ซื้อขาย&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"lease"</span>&gt;เช่า&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"service"</span>&gt;จ้างบริการ&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-select</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">div</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"submit"</span>&gt;ส่ง&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">form</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;ค่าที่ส่ง: &lt;<span style="color:var(--ui-tag-color-blue)">output</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"select-form-out"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> form <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'select-form'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> out <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'select-form-out'</span>);
+  form.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'submit'</span>, (event) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    event.<span style="color:var(--ui-tag-color-cyan)">preventDefault</span>();
+    out.value <span style="color:var(--ui-tag-color-magenta)">=</span> [<span style="color:var(--ui-tag-color-magenta)">...new</span> <span style="color:var(--ui-tag-color-cyan)">FormData</span>(form)].<span style="color:var(--ui-tag-color-cyan)">map</span>(([key, value]) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-teal)">`${</span><span style="color:var(--ui-tag-color-teal)">key</span><span style="color:var(--ui-tag-color-teal)">}=${</span><span style="color:var(--ui-tag-color-teal)">value</span><span style="color:var(--ui-tag-color-teal)">}`</span>).<span style="color:var(--ui-tag-color-cyan)">join</span>(<span style="color:var(--ui-tag-color-teal)">', '</span>);
+  });
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-14-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> [sent, setSent] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">''</span>);
+<span style="color:var(--ui-tag-color-magenta)">const</span> <span style="color:var(--ui-tag-color-cyan)">submit</span> <span style="color:var(--ui-tag-color-magenta)">=</span> (event<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">FormEvent</span>&lt;<span style="color:var(--ui-tag-color-cyan)">HTMLFormElement</span>&gt;) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+  event.<span style="color:var(--ui-tag-color-cyan)">preventDefault</span>();
+  <span style="color:var(--ui-tag-color-cyan)">setSent</span>([<span style="color:var(--ui-tag-color-magenta)">...new</span> <span style="color:var(--ui-tag-color-cyan)">FormData</span>(event.currentTarget)].<span style="color:var(--ui-tag-color-cyan)">map</span>(([key, value]) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-teal)">`${</span><span style="color:var(--ui-tag-color-teal)">key</span><span style="color:var(--ui-tag-color-teal)">}=${</span><span style="color:var(--ui-tag-color-teal)">value</span><span style="color:var(--ui-tag-color-teal)">}`</span>).<span style="color:var(--ui-tag-color-cyan)">join</span>(<span style="color:var(--ui-tag-color-teal)">', '</span>));
+};
+
+&lt;<span style="color:var(--ui-tag-color-blue)">form</span> <span style="color:var(--ui-tag-color-purple)">onSubmit</span><span style="color:var(--ui-tag-color-magenta)">=</span>{submit}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ประเภทสัญญา"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"type"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เลือกประเภท"</span> <span style="color:var(--ui-tag-color-purple)">required</span> <span style="color:var(--ui-tag-color-purple)">invalidText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เลือกประเภทสัญญา"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sale"</span>&gt;ซื้อขาย&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"lease"</span>&gt;เช่า&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"service"</span>&gt;จ้างบริการ&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiSelect</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiButton</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"submit"</span>&gt;ส่ง&lt;/<span style="color:var(--ui-tag-color-blue)">UiButton</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">form</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;ค่าที่ส่ง: &lt;<span style="color:var(--ui-tag-color-blue)">output</span>&gt;{sent}&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-14-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-ink-muted);font-style:italic">// การตรวจค่าเป็นของแอป: `type` คือค่าของช่อง `tried` เป็น true หลังกดส่งครั้งแรก</span>
+&lt;<span style="color:var(--ui-tag-color-blue)">form</span> <span style="color:var(--ui-tag-color-purple)">onSubmit</span><span style="color:var(--ui-tag-color-magenta)">=</span>{submit}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">Select</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ประเภทสัญญา"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"type"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เลือกประเภท"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{type} <span style="color:var(--ui-tag-color-purple)">onChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setType</span>(e.target.value)} <span style="color:var(--ui-tag-color-purple)">invalid</span><span style="color:var(--ui-tag-color-magenta)">=</span>{tried <span style="color:var(--ui-tag-color-magenta)">&amp;&amp;</span> <span style="color:var(--ui-tag-color-magenta)">!</span>type} <span style="color:var(--ui-tag-color-purple)">invalidText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เลือกประเภทสัญญา"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sale"</span>&gt;ซื้อขาย&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"lease"</span>&gt;เช่า&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"service"</span>&gt;จ้างบริการ&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">Select</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">Button</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"submit"</span>&gt;ส่ง&lt;/<span style="color:var(--ui-tag-color-blue)">Button</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">form</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;ค่าที่ส่ง: &lt;<span style="color:var(--ui-tag-color-blue)">output</span>&gt;{sent}&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>select ของ React + Tailwind แสดงตามที่ส่งให้ <code>invalid</code> และ <code>invalidText</code> การตรวจค่าเป็นหน้าที่ของแอป เหมือน Carbon React ดูเพิ่มที่ <a href="/kanok-ui-docs/th/forms/">ฟอร์มและการตรวจค่า</a></p>
+<h2 id="skeleton">Skeleton</h2>
+<p>ระหว่างโหลดรายการ ให้แสดง <code>ui-select-skeleton</code> แทนช่อง เป็นแถบ label กับแถบช่องที่ <code>size</code> เดียวกัน skeleton ถูกซ่อนจาก screen reader จึงต้องบอกว่ากำลังโหลดที่ container เช่น <code>aria-busy</code></p>
+<div class="doc-demo"><ui-select-skeleton></ui-select-skeleton>
+<ui-select-skeleton size="sm" hide-label></ui-select-skeleton>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-15-0">HTML</ui-tab><ui-tab panel="code-15-1">React</ui-tab><ui-tab panel="code-15-2">React + Tailwind</ui-tab><ui-tab-panel name="code-15-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-select-skeleton</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-select-skeleton</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-select-skeleton</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">hide-label</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-select-skeleton</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-15-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { UiSelectSkeleton } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/react'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiSelectSkeleton</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiSelectSkeleton</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">hideLabel</span> /&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-15-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { SelectSkeleton } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@/components/ui/react-tw/select'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">SelectSkeleton</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">SelectSkeleton</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">hideLabel</span> /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>ใน web component ให้ import จาก <code>@purpurabog/ui/select-skeleton</code></p>
+<h2 id="accessibility">Accessibility</h2>
+<ul>
+<li>ตัวควบคุมเป็น <code>&lt;select&gt;</code> จริง ใช้ปุ่มของ browser เปิดและเปลี่ยนค่า และมือถือแสดงตัวเลือกของระบบ</li>
+<li><code>label</code> ผูกกับ select ไว้แล้ว ใช้ <code>hide-label</code> เพื่อให้เหลือไว้ให้ screen reader อ่านอย่างเดียว เฉพาะเมื่อบริบทรอบ ๆ บอกอยู่แล้วว่าช่องนี้คืออะไร</li>
+<li>ข้อความช่วยเหลือ คำเตือน และ error เป็นคำอธิบายของ select จึงถูกอ่านเมื่อโฟกัสเข้ามา</li>
+<li>รายการใส่ markup หรือบรรทัดที่สองไม่ได้ ถ้าต้องการ ให้ใช้ <a href="/kanok-ui-docs/th/dropdown/">Dropdown</a></li>
+</ul>
+<p>ต้องการแค่พฤติกรรมโดยไม่มี style: <a href="/kanok-ui-docs/th/headless-select/">Headless Select</a></p>
+<h2 id="api">API</h2>
+<p>สร้างจากแพ็กเกจโดยตรง ใน React ส่ง property เป็น prop ชื่อเดียวกัน ส่วน event ก็เป็น prop เช่นกัน (ดูคอลัมน์ React)</p>
+<h3 id="ui-select-react-uiselect"><code>&lt;ui-select&gt;</code> · React <code>UiSelect</code></h3>
+<h4 id="attribute">Attribute</h4>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Property</th>
+<th>ชนิด</th>
+<th>ค่าเริ่มต้น</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>label</code></td>
+<td><code>label</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>Visible label text; the <code>label</code> slot replaces it when markup is needed.</td>
+</tr>
+<tr>
+<td><code>hide-label</code></td>
+<td><code>hideLabel</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Keep the label for screen readers but don't show it.</td>
+</tr>
+<tr>
+<td><code>helper-text</code></td>
+<td><code>helperText</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>Helper text under the field, shown while there is no error or warning.</td>
+</tr>
+<tr>
+<td><code>invalid-text</code></td>
+<td><code>invalidText</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>Error text shown while <code>invalid</code> or while the field fails validation.</td>
+</tr>
+<tr>
+<td><code>invalid</code></td>
+<td><code>invalid</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Forces the error state, e.g. after server-side validation.</td>
+</tr>
+<tr>
+<td><code>warn</code></td>
+<td><code>warn</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Non-blocking warning; shown when there is no error.</td>
+</tr>
+<tr>
+<td><code>warn-text</code></td>
+<td><code>warnText</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>Text of the warning shown while <code>warn</code>.</td>
+</tr>
+<tr>
+<td><code>placeholder</code></td>
+<td><code>placeholder</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>Shown as an empty first choice; with <code>required</code> the user must pick something else.</td>
+</tr>
+<tr>
+<td><code>value</code></td>
+<td><code>value</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>Reflected: form-associated elements submit under the <code>name</code> attribute.</td>
+</tr>
+<tr>
+<td><code>size</code></td>
+<td><code>size</code></td>
+<td><code>'sm' | 'md' | 'lg'</code></td>
+<td><code>'md'</code></td>
+<td>Field height: sm 32px, md 40px, lg 48px (tokens <code>--ui-field-height-*</code>).</td>
+</tr>
+<tr>
+<td><code>disabled</code></td>
+<td><code>disabled</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Disables the control; a disabled <code>&lt;fieldset&gt;</code> ancestor does the same.</td>
+</tr>
+<tr>
+<td><code>required</code></td>
+<td><code>required</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Blocks form submission while the field is empty.</td>
+</tr>
+<tr>
+<td><code>readonly</code></td>
+<td><code>readonly</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Shows and submits the value but blocks changes.</td>
+</tr>
+<tr>
+<td><code>fluid</code></td>
+<td><code>fluid</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Carbon <code>FluidSelect</code>: the label inside a 64px box, an error / warning inside it. <code>&lt;ui-fluid-form&gt;</code> sets it for every field inside.</td>
+</tr>
+<tr>
+<td><code>inline</code></td>
+<td><code>inline</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Label beside a compact, borderless select.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="property">Property</h4>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>ชนิด</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>willValidate</code></td>
+<td></td>
+<td>(อ่านอย่างเดียว) Whether the field takes part in constraint validation (not while disabled), as natively.</td>
+</tr>
+<tr>
+<td><code>labels</code></td>
+<td></td>
+<td>(อ่านอย่างเดียว) The <code>&lt;label&gt;</code>s that point at this field.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="method">Method</h4>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>setCustomValidity(message)</code></td>
+<td>Like <code>&lt;input&gt;.setCustomValidity()</code>: a non-empty message makes the field invalid (and is shown as its error once touched) until cleared with ''.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="event">Event</h4>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>React</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>change</code></td>
+<td>ไม่มี (ใช้ ref)</td>
+<td>When the user picks an option</td>
+</tr>
+</tbody>
+</table>
+<h4 id="slot">Slot</h4>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>label</code></td>
+<td>Label content with markup; the <code>label</code> attribute is the plain-text fallback</td>
+</tr>
+<tr>
+<td><code>helper-text</code></td>
+<td>Helper text with markup (links, bold); overrides <code>helper-text</code></td>
+</tr>
+<tr>
+<td><code>warn-text</code></td>
+<td>Warning text shown while <code>warn</code>; overrides <code>warn-text</code></td>
+</tr>
+<tr>
+<td><code>invalid-text</code></td>
+<td>Error text shown while invalid; overrides <code>invalid-text</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="css-part">CSS part</h4>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>base</code></td>
+<td>The field box</td>
+</tr>
+<tr>
+<td><code>label</code></td>
+<td>The label</td>
+</tr>
+<tr>
+<td><code>input</code></td>
+<td>The native select</td>
+</tr>
+<tr>
+<td><code>chevron</code></td>
+<td>The arrow icon</td>
+</tr>
+<tr>
+<td><code>status-icon</code></td>
+<td>The error / warning icon</td>
+</tr>
+<tr>
+<td><code>helper-text</code></td>
+<td>The helper line</td>
+</tr>
+<tr>
+<td><code>warning-text</code></td>
+<td>The warning line</td>
+</tr>
+<tr>
+<td><code>warn-text</code></td>
+<td>Same line as <code>warning-text</code> (named after the <code>warn-text</code> attribute / slot)</td>
+</tr>
+<tr>
+<td><code>error-text</code></td>
+<td>The error line</td>
+</tr>
+<tr>
+<td><code>invalid-text</code></td>
+<td>Same line as <code>error-text</code> (named after the <code>invalid-text</code> attribute / slot)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="css-custom-property">CSS custom property</h4>
+<table>
+<thead>
+<tr>
+<th>Custom property</th>
+<th>ค่าเริ่มต้น</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--ui-field-border</code></td>
+<td></td>
+<td>Border on every side of the box (default none: Carbon's underline only; Kanok: a 1px outline)</td>
+</tr>
+<tr>
+<td><code>--ui-field-disabled-border-color</code></td>
+<td></td>
+<td>Border colour when disabled (default: the underline transparent)</td>
+</tr>
+<tr>
+<td><code>--ui-field-readonly-border-color</code></td>
+<td></td>
+<td>Border colour when read-only (default: a hairline underline)</td>
+</tr>
+<tr>
+<td><code>--ui-field-inline-border-color</code></td>
+<td></td>
+<td>Border colour of the <code>inline</code> variant (default: no underline)</td>
+</tr>
+<tr>
+<td><code>--ui-field-radius</code></td>
+<td></td>
+<td>Corner radius of the box (default 0; Kanok: 6px)</td>
+</tr>
+<tr>
+<td><code>--ui-select-appearance</code></td>
+<td></td>
+<td><code>base-select</code> opens the list in the menu look of the dropdowns (<code>--ui-menu-*</code>) where the browser supports a customizable select (Chrome 135+); default <code>none</code>, the native list (Kanok: base-select)</td>
+</tr>
+<tr>
+<td><code>--ui-field-background</code></td>
+<td></td>
+<td>Fill of the box (default <code>--ui-surface-1</code>; Kanok: transparent)</td>
+</tr>
+<tr>
+<td><code>--ui-label-font</code></td>
+<td></td>
+<td>Font of the label (default <code>--ui-font-caption</code>; Kanok: 14px semibold)</td>
+</tr>
+<tr>
+<td><code>--ui-label-color</code></td>
+<td></td>
+<td>Colour of the label (default <code>--ui-ink-muted</code>; Kanok: <code>--ui-ink</code>)</td>
+</tr>
+<tr>
+<td><code>--ui-field-readonly-background</code></td>
+<td></td>
+<td>The box's fill when read-only (default transparent; Kanok: a faint ink tint, so read-only reads as set and never weaker than disabled)</td>
+</tr>
+<tr>
+<td><code>--ui-fluid-background</code></td>
+<td></td>
+<td>/ --ui-fluid-gap - A fluid box's fill and the space under it (default the layer's fill, 0: boxes that touch; Kanok: transparent, 8px)</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+<nav class="doc-toc" aria-labelledby="doc-toc-title"><p id="doc-toc-title" class="doc-toc-title">ในหน้านี้</p><ul><li class="doc-toc-h2"><a href="#ติดตั้ง">ติดตั้ง</a></li><li class="doc-toc-h2"><a href="#วิธีใช้">วิธีใช้</a></li><li class="doc-toc-h2"><a href="#select-dropdown-combobox-หรือ-multiselect">Select, Dropdown, Combobox หรือ MultiSelect?</a></li><li class="doc-toc-h2"><a href="#placeholder-และค่าเริ่มต้น">Placeholder และค่าเริ่มต้น</a></li><li class="doc-toc-h2"><a href="#กลุ่มและรายการที่ปิดใช้งาน">กลุ่มและรายการที่ปิดใช้งาน</a></li><li class="doc-toc-h2"><a href="#รายการที่ขึ้นกับช่องอื่น">รายการที่ขึ้นกับช่องอื่น</a></li><li class="doc-toc-h2"><a href="#ขนาด">ขนาด</a></li><li class="doc-toc-h2"><a href="#แบบ-inline">แบบ inline</a></li><li class="doc-toc-h2"><a href="#แบบ-fluid">แบบ fluid</a></li><li class="doc-toc-h2"><a href="#แบบมีขอบ-ดีไซน์-kanok">แบบมีขอบ (ดีไซน์ Kanok)</a></li><li class="doc-toc-h2"><a href="#ข้อความช่วยเหลือ-คำเตือน-และ-error">ข้อความช่วยเหลือ คำเตือน และ error</a></li><li class="doc-toc-h2"><a href="#ลิงก์ในข้อความช่วยเหลือ">ลิงก์ในข้อความช่วยเหลือ</a></li><li class="doc-toc-h2"><a href="#อ่านอย่างเดียวและปิดใช้งาน">อ่านอย่างเดียวและปิดใช้งาน</a></li><li class="doc-toc-h2"><a href="#บังคับเลือกในฟอร์ม">บังคับเลือกในฟอร์ม</a></li><li class="doc-toc-h2"><a href="#skeleton">Skeleton</a></li><li class="doc-toc-h2"><a href="#accessibility">Accessibility</a></li><li class="doc-toc-h2"><a href="#api">API</a></li><li class="doc-toc-h3"><a href="#ui-select-react-uiselect">&lt;ui-select></a></li></ul></nav>
+</div>
+<nav class="doc-pager" aria-label="ถัดไป / ก่อนหน้า"><a class="doc-pager-prev" href="/kanok-ui-docs/th/search/" rel="prev"><span>ก่อนหน้า</span>Search</a><a class="doc-pager-next" href="/kanok-ui-docs/th/dropdown/" rel="next"><span>ถัดไป</span>Dropdown</a></nav>
+<footer class="doc-footer">@purpurabog/ui 2.3.0 · MIT · <a href="https://cdn.jsdelivr.net/npm/@purpurabog/ui@2.3.0/THIRD-PARTY-NOTICES.md">ประกาศของบุคคลที่สาม</a><br>สร้างตาม Carbon Design System ไม่ได้เกี่ยวข้องหรือได้รับการรับรองจาก IBM — IBM และ Carbon เป็นเครื่องหมายการค้าของ IBM Corp.</footer>
+</ui-content>
+<ui-modal id="doc-search" heading="ค้นหา" data-count="พบ {n} รายการ" data-empty="ไม่พบ “{q}”">
+<ui-search label="ค้นหาในเอกสาร" placeholder="ค้นหาในเอกสาร" size="lg"></ui-search>
+<p class="doc-search-status" role="status"></p>
+<ul class="doc-search-results"></ul>
+</ui-modal>
+</body>
+</html>

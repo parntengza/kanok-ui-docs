@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Headless Popover · @purpurabog/ui</title>
+<link rel="alternate" hreflang="en" href="/kanok-ui-docs/en/headless-popover/"  /><link rel="alternate" hreflang="th" href="/kanok-ui-docs/th/headless-popover/"  />
+<script>(function(){try{var q=new URLSearchParams(location.search).get("design"),d=q;if(q==="kanok"||q==="carbon")localStorage.setItem("ui-docs-design",q);else d=localStorage.getItem("ui-docs-design");if(d==="kanok")document.documentElement.setAttribute("data-design","kanok")}catch(e){}})();(function(){try{var m=localStorage.getItem("ui-docs-theme");if(m!=="light"&&m!=="dark"&&m!=="system")return;var d=m==="dark"||(m==="system"&&matchMedia("(prefers-color-scheme: dark)").matches),r=document.documentElement,t=d?"g100":"white";if(r.getAttribute("data-design")==="kanok")t=d?"lacquer":"paper";r.setAttribute("data-theme",t)}catch(e){}})();</script>
+<style>ui-header:not(:defined){z-index:8000;box-sizing:border-box;border-block-end:1px solid var(--ui-border-subtle-1);background:var(--ui-canvas);block-size:48px;display:block;position:fixed;inset:0 0 auto}:is(ui-header:not(:defined)>*,ui-side-nav:not(:defined)>*){visibility:hidden}:is(ui-header-panel:not(:defined),ui-modal:not(:defined)){display:none}ui-side-nav:not(:defined){display:none}ui-content:not(:defined){margin-block-start:48px;padding:32px;display:block}@media (width>=1056px){ui-side-nav[expanded]:not(:defined){background:var(--ui-canvas);inline-size:256px;display:block;position:fixed;inset:48px auto 0 0}ui-side-nav[expanded]:not(:defined)~ui-content:not(:defined){margin-inline-start:256px}}ui-tabs:not(:defined){display:block}ui-tabs:not(:defined)>ui-tab{box-sizing:border-box;border-block-end:2px solid var(--ui-hairline);block-size:40px;color:var(--ui-ink-muted);font:var(--ui-font-body-sm);padding:0 16px;line-height:38px;display:inline-block}ui-tabs:not(:defined)>ui-tab:first-of-type{border-block-end-color:var(--ui-interactive);color:var(--ui-ink)}ui-tabs:not(:defined)>ui-tab-panel{padding:16px;display:block}ui-tabs:not(:defined)>ui-tab-panel~ui-tab-panel{display:none}ui-code-snippet:not(:defined){background:var(--ui-layer-1);max-block-size:272px;font:var(--ui-font-code,12px/16px monospace);white-space:pre;padding:16px;display:block;overflow:hidden}[data-react-example]:empty>*{visibility:hidden}.doc-demo:has(:not(:defined))>*{visibility:hidden}[data-react-example]:empty{box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}.doc-demo:has(:not(:defined)){box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}@keyframes doc-skeleton{to{background-position:-200% 0}}@media (prefers-reduced-motion:reduce){[data-react-example]:empty{animation:none}.doc-demo:has(:not(:defined)){animation:none}}</style>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/index-pF_WfsIa.js"></script>
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/theme-switcher-BZXGbHfR.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/listbox-gjElSjvA.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/headless-CCX6tx99.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/flag-D0Ou26eR.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/popup-position-SaIiGkPq.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/focus-BL85e9Ck.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/popover-Cta3yxAO.js">
+  <link rel="stylesheet" crossorigin href="/kanok-ui-docs/assets/theme-switcher-BXY5AIvi.css">
+  <link rel="stylesheet" crossorigin href="/kanok-ui-docs/assets/headless-CtsneZec.css">
+</head>
+<body>
+<ui-header label="@purpurabog/ui">
+<ui-skip-to-content></ui-skip-to-content>
+<ui-header-menu-button></ui-header-menu-button>
+<ui-header-name href="/kanok-ui-docs/th/" prefix="@purpurabog">ui</ui-header-name>
+<ui-header-global-bar>
+<ui-header-global-action id="doc-search-open" label="ค้นหา" tooltip-placement="bottom"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="m18.5 17.8-4.9-4.9a7 7 0 1 0-.7.7l4.9 4.9zM3 8.5a5.5 5.5 0 1 1 5.5 5.5A5.5 5.5 0 0 1 3 8.5Z" /></svg></ui-header-global-action>
+<ui-header-global-action label="ตั้งค่า" panel="doc-settings" tooltip-placement="bottom-end"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="M16.9 10.6a7 7 0 0 0 0-1.2l1.8-1.4-1.6-2.8-2.1.8a6.6 6.6 0 0 0-1-.6L13.6 3h-3.2l-.4 2.4a6.6 6.6 0 0 0-1 .6l-2.1-.8L5.3 8l1.8 1.4a7 7 0 0 0 0 1.2L5.3 12l1.6 2.8 2.1-.8a6.6 6.6 0 0 0 1 .6l.4 2.4h3.2l.4-2.4a6.6 6.6 0 0 0 1-.6l2.1.8 1.6-2.8zM12 13a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" /></svg></ui-header-global-action>
+</ui-header-global-bar>
+<ui-header-panel id="doc-settings" label="ตั้งค่า">
+<div class="doc-settings">
+<span class="doc-settings-label">ธีม</span>
+<ui-theme-switcher storage-key="ui-docs-theme" tooltip-placement="bottom"></ui-theme-switcher>
+<span class="doc-settings-label">รูปแบบ</span>
+<ui-content-switcher id="doc-design" aria-label="รูปแบบ" size="sm"><ui-content-switcher-item name="carbon">Carbon</ui-content-switcher-item><ui-content-switcher-item name="kanok">Kanok</ui-content-switcher-item></ui-content-switcher>
+<span class="doc-settings-label">ภาษา</span>
+<ui-link href="/kanok-ui-docs/en/headless-popover/" hreflang="en" lang="en">English</ui-link>
+</div>
+</ui-header-panel>
+</ui-header>
+<ui-side-nav label="เอกสาร"><ui-side-nav-items><ui-side-nav-menu label="เริ่มต้น"><ui-side-nav-menu-item href="/kanok-ui-docs/th/">ภาพรวม</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/installation/">ติดตั้ง</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/migration-1-0/">การย้ายไป 1.0</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="คู่มือ"><ui-side-nav-menu-item href="/kanok-ui-docs/th/themes/">ธีมและ layer</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/kanok/">ดีไซน์ Kanok</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/customizing/">ปรับแต่งหน้าตา</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/icons/">ไอคอน</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/forms/">ฟอร์มและการตรวจค่า</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/frameworks/">ใช้กับ framework</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/ai/">ใช้กับ AI</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="ฟอร์มและปุ่ม"><ui-side-nav-menu-item href="/kanok-ui-docs/th/button/">Button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/file-uploader/">File uploader</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Overlay"><ui-side-nav-menu-item href="/kanok-ui-docs/th/modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/toggletip/">Toggletip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/menu/">Menu</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="ข้อมูล"><ui-side-nav-menu-item href="/kanok-ui-docs/th/data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/contained-list/">Contained list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tree-view/">Tree view</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="การนำทาง"><ui-side-nav-menu-item href="/kanok-ui-docs/th/tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/breadcrumb/">Breadcrumb</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/link/">Link</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/ui-shell/">UI shell</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="เนื้อหา"><ui-side-nav-menu-item href="/kanok-ui-docs/th/tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tile/">Tile</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/user-avatar/">User avatar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/list/">List</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="สถานะและการโหลด"><ui-side-nav-menu-item href="/kanok-ui-docs/th/loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/inline-loading/">Inline loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/progress-bar/">Progress bar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/skeleton/">Skeleton</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/badge-indicator/">Badge indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/status-indicator/">Status indicator</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="เลย์เอาต์"><ui-side-nav-menu-item href="/kanok-ui-docs/th/grid/">Grid</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/heading/">Heading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/layer/">Layer</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/action-set/">Action set</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/page-header/">Page header</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/big-number/">Big number</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Headless" expanded><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless/">แนะนำ</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-file-uploader/">File uploader</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-popover/" current>Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-menu/">Menu</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-ui-shell/">UI shell</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tree-view/">Tree view</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu></ui-side-nav-items></ui-side-nav><script>if(matchMedia('(min-width: 66rem)').matches)document.currentScript.previousElementSibling.setAttribute('expanded','')</script>
+<ui-content>
+<div class="doc-page">
+<article class="doc">
+<!-- nav: Popover -->
+<h1 id="headless-popover">Headless Popover</h1>
+<p>part ของ <code>Popover</code> ให้พฤติกรรมเดียวกับ <a href="/kanok-ui-docs/th/popover/">Popover</a> และ <a href="/kanok-ui-docs/th/toggletip/">Toggletip</a> แบบมี style แต่ไม่มี style เลย ได้แก่ เนื้อหาของคุณใน popup ใน top layer ข้าง trigger พลิกเมื่อที่ไม่พอ และวางตำแหน่งใหม่เมื่อเลื่อนหน้า trigger ได้ <code>aria-expanded</code> และ <code>aria-controls</code> Esc ที่ trigger หรือใน popup และการกดข้างนอกปิด popup และหลังกด Esc โฟกัสจะกลับไปที่ trigger</p>
+<p>ส่วนที่คุณทำเองคือหน้าตาของ trigger เนื้อหา ลูกศร และ style ทั้งหมด part ต่าง ๆ บอกสถานะผ่าน attribute <code>data-*</code> ให้คุณใช้ใส่ style</p>
+<h2 id="ติดตั้ง">ติดตั้ง</h2>
+<p>ส่วน headless มากับแพ็กเกจเลย (ไม่มี item ของ shadcn; item ของ React + Tailwind สร้างบนมัน):</p>
+<ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">@purpurabog/ui</span></ui-code-snippet>
+<ui-code-snippet type="single" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { Popover } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;</ui-code-snippet>
+<h2 id="วิธีใช้">วิธีใช้</h2>
+<div class="doc-demo" data-react-example="0"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { Popover } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> filters <span style="color:var(--ui-tag-color-magenta)">=</span> [<span style="color:var(--ui-tag-color-teal)">'ของฉัน'</span>, <span style="color:var(--ui-tag-color-teal)">'รอลงนาม'</span>, <span style="color:var(--ui-tag-color-teal)">'เก็บถาวรแล้ว'</span>];
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">Popover.Root</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Popover.Trigger</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-10 border border-interactive px-4 text-sm text-interactive hover:bg-interactive hover:text-on-primary focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-focus data-open:bg-interactive data-open:text-on-primary"</span>&gt;
+        ตัวกรอง
+      &lt;/<span style="color:var(--ui-tag-color-blue)">Popover.Trigger</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Popover.Popup</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"กรองคำขอ"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"w-60 bg-layer-1 p-4 text-sm text-ink shadow-lg"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"mb-2 font-semibold"</span>&gt;กรองคำขอ&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+        {filters.<span style="color:var(--ui-tag-color-cyan)">map</span>((filter) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+          &lt;<span style="color:var(--ui-tag-color-blue)">label</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{filter} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex items-center gap-2 py-1"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">input</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"checkbox"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"filter"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{filter} <span style="color:var(--ui-tag-color-purple)">defaultChecked</span><span style="color:var(--ui-tag-color-magenta)">=</span>{filter <span style="color:var(--ui-tag-color-magenta)">===</span> <span style="color:var(--ui-tag-color-teal)">'ของฉัน'</span>} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-4 accent-interactive"</span> /&gt;
+            {filter}
+          &lt;/<span style="color:var(--ui-tag-color-blue)">label</span>&gt;
+        ))}
+      &lt;/<span style="color:var(--ui-tag-color-blue)">Popover.Popup</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">Popover.Root</span>&gt;
+  );
+}</ui-code-snippet>
+<p>เนื้อหาของ popup ยัง render อยู่ตอนปิด checkbox จึงจำค่าไว้ ตั้งชื่อ popup ด้วย <code>aria-label</code> เพราะมันเป็น <code>role=&quot;group&quot;</code></p>
+<h2 id="โครงสร้าง">โครงสร้าง</h2>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">Popover.Root</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">Popover.Trigger</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">Popover.Popup</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Popover.Close</span> /&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">Popover.Popup</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Popover.Root</span>&gt;
+
+<span style="color:var(--ui-ink-muted);font-style:italic">// หรือใช้ trigger ของคุณเอง</span>
+&lt;<span style="color:var(--ui-tag-color-blue)">Popover.Root</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">Popover.Anchor</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">YourTrigger</span> /&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Popover.Popup</span> /&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">Popover.Anchor</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Popover.Root</span>&gt;</ui-code-snippet>
+<h2 id="ฟอร์มข้างใน">ฟอร์มข้างใน</h2>
+<p><code>Close</code> คือปุ่มที่ปิด popup แล้วคืนโฟกัสไปที่ trigger ถ้าเป็นโค้ดของคุณเองข้างใน popup ให้เรียก <code>dismiss('close')</code> จาก <code>Popover.usePopoverContext()</code> ซึ่งทำงานเหมือนกัน ใช้หลัง submit</p>
+<div class="doc-demo" data-react-example="1"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { useState, <span style="color:var(--ui-tag-color-magenta)">type</span> FormEvent } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { Popover } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">RenameForm</span>({ name, onSave }<span style="color:var(--ui-tag-color-magenta)">:</span> { name<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>; <span style="color:var(--ui-tag-color-cyan)">onSave</span><span style="color:var(--ui-tag-color-magenta)">:</span> (name<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">void</span> }) {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> { dismiss } <span style="color:var(--ui-tag-color-magenta)">=</span> Popover.<span style="color:var(--ui-tag-color-cyan)">usePopoverContext</span>();
+  <span style="color:var(--ui-tag-color-magenta)">const</span> <span style="color:var(--ui-tag-color-cyan)">save</span> <span style="color:var(--ui-tag-color-magenta)">=</span> (e<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">FormEvent</span>&lt;<span style="color:var(--ui-tag-color-cyan)">HTMLFormElement</span>&gt;) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    e.<span style="color:var(--ui-tag-color-cyan)">preventDefault</span>();
+    <span style="color:var(--ui-tag-color-cyan)">onSave</span>(<span style="color:var(--ui-tag-color-cyan)">String</span>(<span style="color:var(--ui-tag-color-magenta)">new</span> <span style="color:var(--ui-tag-color-cyan)">FormData</span>(e.currentTarget).<span style="color:var(--ui-tag-color-cyan)">get</span>(<span style="color:var(--ui-tag-color-teal)">'name'</span>)));
+    <span style="color:var(--ui-tag-color-cyan)">dismiss</span>(<span style="color:var(--ui-tag-color-teal)">'close'</span>);
+  };
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">form</span> <span style="color:var(--ui-tag-color-purple)">onSubmit</span><span style="color:var(--ui-tag-color-magenta)">=</span>{save} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid gap-4"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">label</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid gap-2 text-xs text-ink-muted"</span>&gt;
+        ชื่อสัญญา
+        &lt;<span style="color:var(--ui-tag-color-blue)">input</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"name"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span>{name} <span style="color:var(--ui-tag-color-purple)">required</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-10 border-b border-border-strong-1 bg-field-1 px-4 text-sm text-ink focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus"</span> /&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">label</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex gap-2"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">button</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"submit"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-8 bg-interactive px-4 text-sm text-on-primary hover:bg-blue-hover focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-focus"</span>&gt;บันทึก&lt;/<span style="color:var(--ui-tag-color-blue)">button</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Popover.Close</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-8 bg-secondary px-4 text-sm text-on-primary hover:bg-secondary-hover focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-focus"</span>&gt;ยกเลิก&lt;/<span style="color:var(--ui-tag-color-blue)">Popover.Close</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">form</span>&gt;
+  );
+}
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [name, setName] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">'สัญญาเช่า สำนักงานสีลม'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid justify-items-start gap-2"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Popover.Root</span> <span style="color:var(--ui-tag-color-purple)">placement</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"bottom-start"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Popover.Trigger</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-8 px-3 text-sm text-link hover:bg-ghost-hover focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus"</span>&gt;เปลี่ยนชื่อ&lt;/<span style="color:var(--ui-tag-color-blue)">Popover.Trigger</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Popover.Popup</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เปลี่ยนชื่อสัญญา"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"w-72 bg-layer-1 p-4 shadow-lg"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">RenameForm</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span>{name} <span style="color:var(--ui-tag-color-purple)">onSave</span><span style="color:var(--ui-tag-color-magenta)">=</span>{setName} /&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Popover.Popup</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">Popover.Root</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-ink-muted"</span>&gt;ชื่อ: {name}&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<h2 id="ตำแหน่งและลูกศร">ตำแหน่งและลูกศร</h2>
+<p><code>placement</code> รับ <code>bottom</code> (ค่าเริ่มต้น), <code>top</code>, <code>left</code>, <code>right</code> แต่ละแบบเติม <code>-start</code> / <code>-end</code> ได้ ถ้าที่ไม่พอ popup จะพลิก และ <code>data-side</code> บอกว่าไปอยู่ฝั่งไหน <code>gap</code> คือระยะห่างจาก trigger (ค่าเริ่มต้น 8px แบบมี style ใช้ 10 เมื่อมีลูกศร และ 0 เมื่อไม่มี) เมื่อมี <code>caret</code> popup จะได้ <code>--_caret-start</code> คือจุดเริ่มของลูกศรที่กว้าง <code>--_caret-w</code> (12px ถ้าไม่ตั้ง) เพื่อให้ชี้ไปกลาง trigger</p>
+<div class="doc-demo" data-react-example="2"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { Popover } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> caret <span style="color:var(--ui-tag-color-magenta)">=</span> [
+  <span style="color:var(--ui-tag-color-teal)">'pointer-events-none absolute h-1.5 w-3 bg-inherit'</span>,
+  <span style="color:var(--ui-tag-color-teal)">'group-data-[side=top]:top-full group-data-[side=top]:left-(--_caret-start) group-data-[side=top]:[clip-path:polygon(0_0,100%_0,50%_100%)]'</span>,
+  <span style="color:var(--ui-tag-color-teal)">'group-data-[side=bottom]:bottom-full group-data-[side=bottom]:left-(--_caret-start) group-data-[side=bottom]:[clip-path:polygon(50%_0,100%_100%,0_100%)]'</span>,
+  <span style="color:var(--ui-tag-color-teal)">'group-data-[side=left]:top-(--_caret-start) group-data-[side=left]:left-full group-data-[side=left]:h-3 group-data-[side=left]:w-1.5 group-data-[side=left]:[clip-path:polygon(0_0,100%_50%,0_100%)]'</span>,
+  <span style="color:var(--ui-tag-color-teal)">'group-data-[side=right]:top-(--_caret-start) group-data-[side=right]:right-full group-data-[side=right]:h-3 group-data-[side=right]:w-1.5 group-data-[side=right]:[clip-path:polygon(100%_0,0_50%,100%_100%)]'</span>,
+].<span style="color:var(--ui-tag-color-cyan)">join</span>(<span style="color:var(--ui-tag-color-teal)">' '</span>);
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> placements <span style="color:var(--ui-tag-color-magenta)">=</span> [
+  { <span style="color:var(--ui-tag-color-purple)">placement:</span> <span style="color:var(--ui-tag-color-teal)">'top'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'บน'</span>, <span style="color:var(--ui-tag-color-purple)">text:</span> <span style="color:var(--ui-tag-color-teal)">'เปิดด้านบน'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">placement:</span> <span style="color:var(--ui-tag-color-teal)">'bottom-start'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'ล่าง ชิดต้น'</span>, <span style="color:var(--ui-tag-color-purple)">text:</span> <span style="color:var(--ui-tag-color-teal)">'ชิดขอบต้นของปุ่ม'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">placement:</span> <span style="color:var(--ui-tag-color-teal)">'right'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'ขวา'</span>, <span style="color:var(--ui-tag-color-purple)">text:</span> <span style="color:var(--ui-tag-color-teal)">'เปิดด้านขวา'</span> },
+] <span style="color:var(--ui-tag-color-magenta)">as</span> <span style="color:var(--ui-tag-color-magenta)">const</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex flex-wrap items-center gap-4"</span>&gt;
+      {placements.<span style="color:var(--ui-tag-color-cyan)">map</span>(({ placement, label, text }) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+        &lt;<span style="color:var(--ui-tag-color-blue)">Popover.Root</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{placement} <span style="color:var(--ui-tag-color-purple)">placement</span><span style="color:var(--ui-tag-color-magenta)">=</span>{placement} <span style="color:var(--ui-tag-color-purple)">gap</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">10</span>} <span style="color:var(--ui-tag-color-purple)">caret</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Popover.Trigger</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-8 border border-interactive px-3 text-sm text-interactive hover:bg-interactive hover:text-on-primary focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-focus"</span>&gt;
+            {label}
+          &lt;/<span style="color:var(--ui-tag-color-blue)">Popover.Trigger</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Popover.Popup</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span>{text} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"group w-max overflow-visible bg-layer-1 p-4 text-sm text-ink drop-shadow-md"</span>&gt;
+            {text}
+            &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{caret} /&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">Popover.Popup</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Popover.Root</span>&gt;
+      ))}
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<h2 id="trigger-ของคุณเอง">Trigger ของคุณเอง</h2>
+<p>ถ้า trigger เป็น component ของคุณเอง ให้ครอบด้วย <code>Anchor</code> แทนการใช้ <code>Trigger</code> popup จะวางข้าง element ตัวแรกใน anchor และการกดตรงไหนก็ได้ใน anchor ไม่นับเป็นการกดข้างนอก ส่ง <code>triggerProps</code> (<code>aria-expanded</code>, <code>aria-controls</code>) ให้ trigger ของคุณ และสลับเปิดปิดด้วย <code>setOpen</code> จาก <code>Popover.usePopoverContext()</code> <code>onOpenChange</code> บอกว่าเปลี่ยนเพราะอะไร</p>
+<div class="doc-demo" data-react-example="3"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { useState } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { Popover } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">AssigneeChip</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> { open, setOpen, triggerProps } <span style="color:var(--ui-tag-color-magenta)">=</span> Popover.<span style="color:var(--ui-tag-color-cyan)">usePopoverContext</span>();
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">button</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"button"</span> {<span style="color:var(--ui-tag-color-magenta)">...</span>triggerProps} <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-magenta)">!</span>open, <span style="color:var(--ui-tag-color-teal)">'trigger'</span>)} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex h-8 items-center gap-2 rounded-full bg-layer-2 pe-3 ps-1 text-sm text-ink hover:bg-layer-hover-2 focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-focus"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid size-6 place-items-center rounded-full bg-interactive text-xs text-on-primary"</span>&gt;อน&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+      อนัญญา พ.
+    &lt;/<span style="color:var(--ui-tag-color-blue)">button</span>&gt;
+  );
+}
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [last, setLast] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">'ยังไม่มี'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> <span style="color:var(--ui-tag-color-cyan)">log</span> <span style="color:var(--ui-tag-color-magenta)">=</span> (open<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">boolean</span>, reason<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">Popover</span>.<span style="color:var(--ui-tag-color-cyan)">PopoverChangeReason</span>) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setLast</span>(<span style="color:var(--ui-tag-color-teal)">`${</span><span style="color:var(--ui-tag-color-teal)">open </span><span style="color:var(--ui-tag-color-magenta)">?</span><span style="color:var(--ui-tag-color-teal)"> </span><span style="color:var(--ui-tag-color-teal)">'เปิด'</span><span style="color:var(--ui-tag-color-teal)"> </span><span style="color:var(--ui-tag-color-magenta)">:</span><span style="color:var(--ui-tag-color-teal)"> </span><span style="color:var(--ui-tag-color-teal)">'ปิด'} เพราะ ${</span><span style="color:var(--ui-tag-color-teal)">reason</span><span style="color:var(--ui-tag-color-teal)">}`</span>);
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid justify-items-start gap-2"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Popover.Root</span> <span style="color:var(--ui-tag-color-purple)">onOpenChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{log}&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Popover.Anchor</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"inline-block"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">AssigneeChip</span> /&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Popover.Popup</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"อนัญญา พ."</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"w-64 bg-layer-1 p-4 text-sm text-ink shadow-lg"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"font-semibold"</span>&gt;อนัญญา พ.&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-ink-muted"</span>&gt;ฝ่ายกฎหมาย สำนักงานกรุงเทพฯ&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"mt-2 text-ink-muted"</span>&gt;มี 3 สัญญารอให้เธอลงนาม&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">Popover.Popup</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Popover.Anchor</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">Popover.Root</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-ink-muted"</span>&gt;เปลี่ยนล่าสุด: {last}&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<p><code>Popover.PopoverChangeReason</code> คือ <code>'trigger'</code>, <code>'escape'</code>, <code>'outside'</code>, <code>'focus-out'</code> หรือ <code>'close'</code></p>
+<h2 id="ปิดเอง">ปิดเอง</h2>
+<p><code>dismissible={false}</code> ปิดการทำงานของ Esc และการกดข้างนอก จะเหลือแค่ trigger, <code>Close</code> หรือ <code>open</code> ของคุณที่ปิด popup ได้ ใช้เมื่อผู้ใช้ต้องตอบ เช่น คำแนะนำฟีเจอร์ใหม่</p>
+<div class="doc-demo" data-react-example="4"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { Popover } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">Popover.Root</span> <span style="color:var(--ui-tag-color-purple)">dismissible</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">false</span>} <span style="color:var(--ui-tag-color-purple)">placement</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"right"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Popover.Trigger</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-10 border border-interactive px-4 text-sm text-interactive hover:bg-interactive hover:text-on-primary focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-focus"</span>&gt;
+        ลงนามหลายฉบับ
+      &lt;/<span style="color:var(--ui-tag-color-blue)">Popover.Trigger</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Popover.Popup</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ฟีเจอร์ใหม่"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid w-60 gap-2 bg-layer-1 p-4 text-sm text-ink shadow-lg"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"font-semibold"</span>&gt;ใหม่: ลงนามได้ครั้งละ 50 สัญญา&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-ink-muted"</span>&gt;เลือกสัญญาในรายการ แล้วกด ลงนาม&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Popover.Close</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"h-8 justify-self-start bg-interactive px-4 text-sm text-on-primary hover:bg-blue-hover focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-focus"</span>&gt;เข้าใจแล้ว&lt;/<span style="color:var(--ui-tag-color-blue)">Popover.Close</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">Popover.Popup</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">Popover.Root</span>&gt;
+  );
+}</ui-code-snippet>
+<h2 id="toggletip">Toggletip</h2>
+<p>toggletip คือ popover ที่อยู่หลังปุ่ม &quot;i&quot; และปิดทันทีที่โฟกัสออกไป <code>closeOnFocusOut</code> เพิ่มกฎนี้ คือโฟกัสออกจากทั้ง trigger และ popup แล้วปิด (<code>focus-out</code>) วาง popup ต่อจาก trigger เพื่อให้กด Tab ครั้งถัดไปไปถึงลิงก์ข้างใน และตั้งชื่อให้ทั้ง trigger และ popup</p>
+<div class="doc-demo" data-react-example="5"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { Popover } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex items-center gap-1 text-sm text-ink"</span>&gt;
+      ระยะเวลาเก็บเอกสาร
+      &lt;<span style="color:var(--ui-tag-color-blue)">Popover.Root</span> <span style="color:var(--ui-tag-color-purple)">closeOnFocusOut</span> <span style="color:var(--ui-tag-color-purple)">gap</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">10</span>} <span style="color:var(--ui-tag-color-purple)">caret</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Popover.Trigger</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เกี่ยวกับระยะเวลาเก็บเอกสาร"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid size-6 place-items-center text-ink-muted hover:text-ink aria-expanded:text-ink focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-4 fill-current"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M8.5 11V6.5h-2v1h1V11H6v1h4v-1h-1.5ZM8 3.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Z"</span> /&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14ZM8 2a6 6 0 1 0 0 12A6 6 0 0 0 8 2Z"</span> /&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Popover.Trigger</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Popover.Popup</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เกี่ยวกับระยะเวลาเก็บเอกสาร"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"group w-max max-w-72 overflow-visible bg-layer-1 p-4 text-sm text-ink drop-shadow-md"</span>&gt;
+          สำเนาที่ลงนามแล้วเก็บไว้ 10 ปี{<span style="color:var(--ui-tag-color-teal)">' '</span>}
+          &lt;<span style="color:var(--ui-tag-color-blue)">a</span> <span style="color:var(--ui-tag-color-purple)">href</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"#toggletip"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-link underline focus-visible:outline-2 focus-visible:outline-focus"</span>&gt;อ่านนโยบาย&lt;/<span style="color:var(--ui-tag-color-blue)">a</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"pointer-events-none absolute bottom-full left-(--_caret-start) h-1.5 w-3 bg-inherit [clip-path:polygon(50%_0,100%_100%,0_100%)] group-data-[side=top]:top-full group-data-[side=top]:bottom-auto group-data-[side=top]:[clip-path:polygon(0_0,100%_0,50%_100%)]"</span> /&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Popover.Popup</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">Popover.Root</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<h2 id="ใส่-style">ใส่ style</h2>
+<div class="doc-demo" data-react-example="6"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { Popover } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">Popover.Root</span> <span style="color:var(--ui-tag-color-purple)">placement</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"bottom-end"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Popover.Trigger</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ตั้งค่าตาราง"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid size-12 place-items-center text-ink hover:bg-ghost-hover focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus data-open:bg-layer-1 data-open:shadow-md"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-4 fill-current"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M13.5 8.4a5.4 5.4 0 0 0 0-.8l1.4-1.1-1.3-2.3-1.7.6a5 5 0 0 0-.7-.4L10.9 2.6H8.3L8 4.4l-.7.4-1.7-.6-1.3 2.3 1.4 1.1a5.4 5.4 0 0 0 0 .8L4.3 9.5l1.3 2.3 1.7-.6.7.4.3 1.8h2.6l.3-1.8.7-.4 1.7.6 1.3-2.3zM9.6 10a2 2 0 1 1 0-4 2 2 0 0 1 0 4Z"</span> /&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">Popover.Trigger</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Popover.Popup</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ตั้งค่าตาราง"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"w-52 bg-layer-1 p-4 text-sm text-ink shadow-md data-[side=top]:shadow-[0_-2px_6px_rgb(0_0_0/0.3)]"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"mb-2 font-semibold"</span>&gt;คอลัมน์&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">label</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex items-center gap-2 py-1"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">input</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"checkbox"</span> <span style="color:var(--ui-tag-color-purple)">defaultChecked</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-4 accent-interactive"</span> /&gt;เจ้าของ&lt;/<span style="color:var(--ui-tag-color-blue)">label</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">label</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex items-center gap-2 py-1"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">input</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"checkbox"</span> <span style="color:var(--ui-tag-color-purple)">defaultChecked</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-4 accent-interactive"</span> /&gt;วันหมดอายุ&lt;/<span style="color:var(--ui-tag-color-blue)">label</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">label</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex items-center gap-2 py-1"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">input</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"checkbox"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-4 accent-interactive"</span> /&gt;แผนก&lt;/<span style="color:var(--ui-tag-color-blue)">label</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">Popover.Popup</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">Popover.Root</span>&gt;
+  );
+}</ui-code-snippet>
+<ui-code-snippet type="multi" class="doc-code" data-lang="css"><span style="color:var(--ui-ink-muted);font-style:italic">/* className="trigger" ที่ Trigger, "box" ที่ Popup */</span>
+<span style="color:var(--ui-tag-color-purple)">.trigger</span>[<span style="color:var(--ui-tag-color-purple)">data-open</span>] { <span style="color:var(--ui-tag-color-purple)">background</span>: #f4f4f4; <span style="color:var(--ui-tag-color-purple)">box-shadow</span>: <span style="color:var(--ui-tag-color-green)">0</span> <span style="color:var(--ui-tag-color-green)">2px</span> <span style="color:var(--ui-tag-color-green)">6px</span> <span style="color:var(--ui-tag-color-cyan)">rgb</span>(<span style="color:var(--ui-tag-color-green)">0</span> <span style="color:var(--ui-tag-color-green)">0</span> <span style="color:var(--ui-tag-color-green)">0</span> / <span style="color:var(--ui-tag-color-green)">0.3</span>); }
+<span style="color:var(--ui-tag-color-purple)">.box</span> { <span style="color:var(--ui-tag-color-purple)">width</span>: <span style="color:var(--ui-tag-color-green)">208px</span>; <span style="color:var(--ui-tag-color-purple)">padding</span>: <span style="color:var(--ui-tag-color-green)">16px</span>; <span style="color:var(--ui-tag-color-purple)">background</span>: #f4f4f4; <span style="color:var(--ui-tag-color-purple)">box-shadow</span>: <span style="color:var(--ui-tag-color-green)">0</span> <span style="color:var(--ui-tag-color-green)">2px</span> <span style="color:var(--ui-tag-color-green)">6px</span> <span style="color:var(--ui-tag-color-cyan)">rgb</span>(<span style="color:var(--ui-tag-color-green)">0</span> <span style="color:var(--ui-tag-color-green)">0</span> <span style="color:var(--ui-tag-color-green)">0</span> / <span style="color:var(--ui-tag-color-green)">0.3</span>); }
+<span style="color:var(--ui-tag-color-purple)">.box</span>[<span style="color:var(--ui-tag-color-purple)">data-side</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">'top'</span>] { <span style="color:var(--ui-tag-color-purple)">box-shadow</span>: <span style="color:var(--ui-tag-color-green)">0</span> <span style="color:var(--ui-tag-color-green)">-2px</span> <span style="color:var(--ui-tag-color-green)">6px</span> <span style="color:var(--ui-tag-color-cyan)">rgb</span>(<span style="color:var(--ui-tag-color-green)">0</span> <span style="color:var(--ui-tag-color-green)">0</span> <span style="color:var(--ui-tag-color-green)">0</span> / <span style="color:var(--ui-tag-color-green)">0.3</span>); }</ui-code-snippet>
+<h2 id="parts">Parts</h2>
+<h3 id="popover-root">Popover.Root</h3>
+<p>ไม่ render element ของตัวเอง เก็บสถานะเปิด วาง popup และปิดเมื่อกด Esc หรือกดข้างนอก</p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>ค่าเริ่มต้น</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>open</code></td>
+<td><code>boolean</code></td>
+<td></td>
+<td>แสดงอยู่ (ควบคุมเอง)</td>
+</tr>
+<tr>
+<td><code>defaultOpen</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>แสดงตั้งแต่แรก (ไม่ควบคุมเอง)</td>
+</tr>
+<tr>
+<td><code>onOpenChange</code></td>
+<td><code>(open: boolean, reason: PopoverChangeReason) =&gt; void</code></td>
+<td></td>
+<td>หลังเปิดหรือปิด (เฉพาะเมื่อเปลี่ยน) พร้อมเหตุผล</td>
+</tr>
+<tr>
+<td><code>dismissible</code></td>
+<td><code>boolean</code></td>
+<td><code>true</code></td>
+<td>Esc ที่ trigger หรือใน popup และการกดนอกทั้งสอง ปิด popup</td>
+</tr>
+<tr>
+<td><code>closeOnFocusOut</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>โฟกัสออกจาก trigger และ popup แล้วปิด (toggletip)</td>
+</tr>
+<tr>
+<td><code>placement</code></td>
+<td><code>Placement</code></td>
+<td><code>'bottom'</code></td>
+<td><code>top</code>, <code>bottom</code>, <code>left</code>, <code>right</code> แต่ละแบบเติม <code>-start</code> / <code>-end</code> ได้</td>
+</tr>
+<tr>
+<td><code>gap</code></td>
+<td><code>number</code></td>
+<td><code>8</code></td>
+<td>ระยะห่างระหว่าง trigger กับ popup หน่วย px</td>
+</tr>
+<tr>
+<td><code>caret</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>เขียน <code>--_caret-start</code> ที่ popup</td>
+</tr>
+</tbody>
+</table>
+<p><code>Popover.usePopoverContext()</code> คืนสถานะของ <code>Root</code> ให้ component ใดก็ได้ที่อยู่ข้างใน ได้แก่ <code>open</code>, <code>popupId</code>, <code>triggerProps</code>, <code>setOpen(open, reason)</code> และ <code>dismiss(reason)</code> (ปิด และคืนโฟกัสไปที่ trigger ถ้าโฟกัสอยู่ข้างใน ยกเว้นหลังการกดข้างนอก)</p>
+<h3 id="popover-trigger">Popover.Trigger</h3>
+<p><code>&lt;button type=&quot;button&quot;&gt;</code> ที่สลับเปิดปิด popup (เหตุผล <code>trigger</code>) มี <code>aria-expanded</code> และ <code>aria-controls</code> popup วางข้างมัน รับ prop ทุกตัวของ button ยกเว้น <code>type</code></p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>เมื่อ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-open</code></td>
+<td>popup เปิดอยู่</td>
+</tr>
+</tbody>
+</table>
+<h3 id="popover-anchor">Popover.Anchor</h3>
+<p><code>&lt;span&gt;</code> ที่ครอบ trigger ของคุณเอง ใช้แทน <code>Trigger</code> popup วางข้าง element ลูกตัวแรกของมัน การกดตรงไหนก็ได้ข้างในไม่นับเป็นการกดข้างนอก หลังกด Esc โฟกัสจะกลับไปที่ element ลูกตัวนั้น (หรือ element แรกที่รับโฟกัสได้ข้างใน)</p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>เมื่อ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-open</code></td>
+<td>popup เปิดอยู่</td>
+</tr>
+</tbody>
+</table>
+<h3 id="popover-popup">Popover.Popup</h3>
+<p><code>&lt;div role=&quot;group&quot; popover=&quot;manual&quot;&gt;</code> ใน top layer มี id ที่ <code>aria-controls</code> ของ trigger ชี้มา <code>role</code> ของคุณมาก่อน เนื้อหายัง render อยู่ตอนปิด รับ prop ทุกตัวของ div ยกเว้น <code>popover</code> และ <code>id</code></p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>เมื่อ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-open</code></td>
+<td>เปิดอยู่</td>
+</tr>
+<tr>
+<td><code>data-side</code></td>
+<td><code>top</code>, <code>bottom</code>, <code>left</code> หรือ <code>right</code> คือฝั่งที่ไปอยู่</td>
+</tr>
+</tbody>
+</table>
+<p>เมื่อ <code>Root</code> มี <code>caret</code> popup จะได้ CSS variable <code>--_caret-start</code> ด้วย</p>
+<h3 id="popover-close">Popover.Close</h3>
+<p><code>&lt;button type=&quot;button&quot;&gt;</code> ที่ปิด popup (เหตุผล <code>close</code>) แล้วคืนโฟกัสไปที่ trigger รับ prop ทุกตัวของ button ยกเว้น <code>type</code> และไม่มี data attribute</p>
+<h2 id="คีย์บอร์ดและ-accessibility">คีย์บอร์ดและ accessibility</h2>
+<table>
+<thead>
+<tr>
+<th>ปุ่ม</th>
+<th>ผลลัพธ์</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Enter, Space</td>
+<td>ที่ trigger: เปิดหรือปิด</td>
+</tr>
+<tr>
+<td>Tab</td>
+<td>ไล่ผ่าน trigger และเนื้อหาตามลำดับในหน้า ถ้ามี <code>closeOnFocusOut</code> ออกจากทั้งสองแล้วปิด</td>
+</tr>
+<tr>
+<td>Esc</td>
+<td>เมื่อ <code>dismissible</code> และกดจาก trigger หรือใน popup: ปิด popup เว้นแต่มีอย่างอื่นจัดการปุ่มนี้ไปก่อน (ตรวจ <code>defaultPrevented</code>) และคืนโฟกัสไปที่ trigger</td>
+</tr>
+</tbody>
+</table>
+<p>part ต่าง ๆ ตั้ง <code>aria-expanded</code> และ <code>aria-controls</code> ที่ trigger และ <code>role=&quot;group&quot;</code> ที่ popup โฟกัสไม่ย้ายเข้า popup ตอนเปิด</p>
+<p>ส่วนที่คุณเพิ่มเอง</p>
+<ul>
+<li>ชื่อของ popup (<code>aria-label</code> หรือ <code>aria-labelledby</code>) และชื่อของ trigger ที่มีแต่ไอคอน</li>
+<li>วาง popup ต่อจาก trigger ใน DOM เพื่อให้กด Tab ครั้งถัดไปไปถึงเนื้อหา</li>
+<li>ถ้าเป็นงานที่ผู้ใช้ต้องทำให้เสร็จก่อนไปต่อ ให้ใช้ modal แทน</li>
+</ul>
+
+</article>
+<nav class="doc-toc" aria-labelledby="doc-toc-title"><p id="doc-toc-title" class="doc-toc-title">ในหน้านี้</p><ul><li class="doc-toc-h2"><a href="#ติดตั้ง">ติดตั้ง</a></li><li class="doc-toc-h2"><a href="#วิธีใช้">วิธีใช้</a></li><li class="doc-toc-h2"><a href="#โครงสร้าง">โครงสร้าง</a></li><li class="doc-toc-h2"><a href="#ฟอร์มข้างใน">ฟอร์มข้างใน</a></li><li class="doc-toc-h2"><a href="#ตำแหน่งและลูกศร">ตำแหน่งและลูกศร</a></li><li class="doc-toc-h2"><a href="#trigger-ของคุณเอง">Trigger ของคุณเอง</a></li><li class="doc-toc-h2"><a href="#ปิดเอง">ปิดเอง</a></li><li class="doc-toc-h2"><a href="#toggletip">Toggletip</a></li><li class="doc-toc-h2"><a href="#ใส่-style">ใส่ style</a></li><li class="doc-toc-h2"><a href="#parts">Parts</a></li><li class="doc-toc-h3"><a href="#popover-root">Popover.Root</a></li><li class="doc-toc-h3"><a href="#popover-trigger">Popover.Trigger</a></li><li class="doc-toc-h3"><a href="#popover-anchor">Popover.Anchor</a></li><li class="doc-toc-h3"><a href="#popover-popup">Popover.Popup</a></li><li class="doc-toc-h3"><a href="#popover-close">Popover.Close</a></li><li class="doc-toc-h2"><a href="#คีย์บอร์ดและ-accessibility">คีย์บอร์ดและ accessibility</a></li></ul></nav>
+</div>
+<nav class="doc-pager" aria-label="ถัดไป / ก่อนหน้า"><a class="doc-pager-prev" href="/kanok-ui-docs/th/headless-definition-tooltip/" rel="prev"><span>ก่อนหน้า</span>Definition tooltip</a><a class="doc-pager-next" href="/kanok-ui-docs/th/headless-menu/" rel="next"><span>ถัดไป</span>Menu</a></nav>
+<footer class="doc-footer">@purpurabog/ui 2.3.0 · MIT · <a href="https://cdn.jsdelivr.net/npm/@purpurabog/ui@2.3.0/THIRD-PARTY-NOTICES.md">ประกาศของบุคคลที่สาม</a><br>สร้างตาม Carbon Design System ไม่ได้เกี่ยวข้องหรือได้รับการรับรองจาก IBM — IBM และ Carbon เป็นเครื่องหมายการค้าของ IBM Corp.</footer>
+</ui-content>
+<ui-modal id="doc-search" heading="ค้นหา" data-count="พบ {n} รายการ" data-empty="ไม่พบ “{q}”">
+<ui-search label="ค้นหาในเอกสาร" placeholder="ค้นหาในเอกสาร" size="lg"></ui-search>
+<p class="doc-search-status" role="status"></p>
+<ul class="doc-search-results"></ul>
+</ui-modal>
+</body>
+</html>

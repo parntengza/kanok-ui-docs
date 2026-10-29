@@ -1,0 +1,1185 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Multi-select · @purpurabog/ui</title>
+<link rel="alternate" hreflang="en" href="/kanok-ui-docs/en/multi-select/"  /><link rel="alternate" hreflang="th" href="/kanok-ui-docs/th/multi-select/"  />
+<script>(function(){try{var q=new URLSearchParams(location.search).get("design"),d=q;if(q==="kanok"||q==="carbon")localStorage.setItem("ui-docs-design",q);else d=localStorage.getItem("ui-docs-design");if(d==="kanok")document.documentElement.setAttribute("data-design","kanok")}catch(e){}})();(function(){try{var m=localStorage.getItem("ui-docs-theme");if(m!=="light"&&m!=="dark"&&m!=="system")return;var d=m==="dark"||(m==="system"&&matchMedia("(prefers-color-scheme: dark)").matches),r=document.documentElement,t=d?"g100":"white";if(r.getAttribute("data-design")==="kanok")t=d?"lacquer":"paper";r.setAttribute("data-theme",t)}catch(e){}})();</script>
+<style>ui-header:not(:defined){z-index:8000;box-sizing:border-box;border-block-end:1px solid var(--ui-border-subtle-1);background:var(--ui-canvas);block-size:48px;display:block;position:fixed;inset:0 0 auto}:is(ui-header:not(:defined)>*,ui-side-nav:not(:defined)>*){visibility:hidden}:is(ui-header-panel:not(:defined),ui-modal:not(:defined)){display:none}ui-side-nav:not(:defined){display:none}ui-content:not(:defined){margin-block-start:48px;padding:32px;display:block}@media (width>=1056px){ui-side-nav[expanded]:not(:defined){background:var(--ui-canvas);inline-size:256px;display:block;position:fixed;inset:48px auto 0 0}ui-side-nav[expanded]:not(:defined)~ui-content:not(:defined){margin-inline-start:256px}}ui-tabs:not(:defined){display:block}ui-tabs:not(:defined)>ui-tab{box-sizing:border-box;border-block-end:2px solid var(--ui-hairline);block-size:40px;color:var(--ui-ink-muted);font:var(--ui-font-body-sm);padding:0 16px;line-height:38px;display:inline-block}ui-tabs:not(:defined)>ui-tab:first-of-type{border-block-end-color:var(--ui-interactive);color:var(--ui-ink)}ui-tabs:not(:defined)>ui-tab-panel{padding:16px;display:block}ui-tabs:not(:defined)>ui-tab-panel~ui-tab-panel{display:none}ui-code-snippet:not(:defined){background:var(--ui-layer-1);max-block-size:272px;font:var(--ui-font-code,12px/16px monospace);white-space:pre;padding:16px;display:block;overflow:hidden}[data-react-example]:empty>*{visibility:hidden}.doc-demo:has(:not(:defined))>*{visibility:hidden}[data-react-example]:empty{box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}.doc-demo:has(:not(:defined)){box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}@keyframes doc-skeleton{to{background-position:-200% 0}}@media (prefers-reduced-motion:reduce){[data-react-example]:empty{animation:none}.doc-demo:has(:not(:defined)){animation:none}}</style>
+
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/theme-switcher-BZXGbHfR.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/tab-ChjAM0hz.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/button-DGUm7Yxm.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/listbox-CFmtgLSJ.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/typeahead-CDCzrGcR.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/listbox-gjElSjvA.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/multi-select-BIi7R0qk.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/multi-select-DhmWAC23.js"></script>
+  <link rel="stylesheet" crossorigin href="/kanok-ui-docs/assets/theme-switcher-BXY5AIvi.css">
+</head>
+<body>
+<ui-header label="@purpurabog/ui">
+<ui-skip-to-content></ui-skip-to-content>
+<ui-header-menu-button></ui-header-menu-button>
+<ui-header-name href="/kanok-ui-docs/en/" prefix="@purpurabog">ui</ui-header-name>
+<ui-header-global-bar>
+<ui-header-global-action id="doc-search-open" label="Search" tooltip-placement="bottom"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="m18.5 17.8-4.9-4.9a7 7 0 1 0-.7.7l4.9 4.9zM3 8.5a5.5 5.5 0 1 1 5.5 5.5A5.5 5.5 0 0 1 3 8.5Z" /></svg></ui-header-global-action>
+<ui-header-global-action label="Settings" panel="doc-settings" tooltip-placement="bottom-end"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="M16.9 10.6a7 7 0 0 0 0-1.2l1.8-1.4-1.6-2.8-2.1.8a6.6 6.6 0 0 0-1-.6L13.6 3h-3.2l-.4 2.4a6.6 6.6 0 0 0-1 .6l-2.1-.8L5.3 8l1.8 1.4a7 7 0 0 0 0 1.2L5.3 12l1.6 2.8 2.1-.8a6.6 6.6 0 0 0 1 .6l.4 2.4h3.2l.4-2.4a6.6 6.6 0 0 0 1-.6l2.1.8 1.6-2.8zM12 13a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" /></svg></ui-header-global-action>
+</ui-header-global-bar>
+<ui-header-panel id="doc-settings" label="Settings">
+<div class="doc-settings">
+<span class="doc-settings-label">Theme</span>
+<ui-theme-switcher storage-key="ui-docs-theme" tooltip-placement="bottom"></ui-theme-switcher>
+<span class="doc-settings-label">Style</span>
+<ui-content-switcher id="doc-design" aria-label="Style" size="sm"><ui-content-switcher-item name="carbon">Carbon</ui-content-switcher-item><ui-content-switcher-item name="kanok">Kanok</ui-content-switcher-item></ui-content-switcher>
+<span class="doc-settings-label">Language</span>
+<ui-link href="/kanok-ui-docs/th/multi-select/" hreflang="th" lang="th">ไทย</ui-link>
+</div>
+</ui-header-panel>
+</ui-header>
+<ui-side-nav label="Documentation"><ui-side-nav-items><ui-side-nav-menu label="Get started"><ui-side-nav-menu-item href="/kanok-ui-docs/en/">Overview</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/installation/">Installation</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/migration-1-0/">Migrating to 1.0</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Guides"><ui-side-nav-menu-item href="/kanok-ui-docs/en/themes/">Themes and layers</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/kanok/">Kanok design</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/customizing/">Customizing</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/icons/">Icons</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/forms/">Forms and validation</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/frameworks/">Frameworks</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/ai/">Using with AI</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Forms and actions" expanded><ui-side-nav-menu-item href="/kanok-ui-docs/en/button/">Button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/multi-select/" current>Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/file-uploader/">File uploader</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Overlays"><ui-side-nav-menu-item href="/kanok-ui-docs/en/modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/toggletip/">Toggletip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/menu/">Menu</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Data"><ui-side-nav-menu-item href="/kanok-ui-docs/en/data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/contained-list/">Contained list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tree-view/">Tree view</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Navigation"><ui-side-nav-menu-item href="/kanok-ui-docs/en/tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/breadcrumb/">Breadcrumb</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/link/">Link</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/ui-shell/">UI shell</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Content"><ui-side-nav-menu-item href="/kanok-ui-docs/en/tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tile/">Tile</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/user-avatar/">User avatar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/list/">List</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Status and loading"><ui-side-nav-menu-item href="/kanok-ui-docs/en/loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/inline-loading/">Inline loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/progress-bar/">Progress bar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/skeleton/">Skeleton</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/badge-indicator/">Badge indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/status-indicator/">Status indicator</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Layout"><ui-side-nav-menu-item href="/kanok-ui-docs/en/grid/">Grid</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/heading/">Heading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/layer/">Layer</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/action-set/">Action set</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/page-header/">Page header</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/big-number/">Big number</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Headless"><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless/">Introduction</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-file-uploader/">File uploader</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-menu/">Menu</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-ui-shell/">UI shell</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tree-view/">Tree view</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu></ui-side-nav-items></ui-side-nav><script>if(matchMedia('(min-width: 66rem)').matches)document.currentScript.previousElementSibling.setAttribute('expanded','')</script>
+<ui-content>
+<div class="doc-page">
+<article class="doc">
+<h1 id="multi-select">Multi-select</h1>
+<p>A multi-select picks several options from a list of checkbox rows. The list stays open while people choose, and a tag in the field shows how many are chosen.</p>
+<div class="doc-demo"><ui-multi-select label="Notify" name="notify" placeholder="Choose people" select-all>
+  <option value="owner" selected>Contract owner</option>
+  <option value="legal">Legal team</option>
+  <option value="finance">Finance team</option>
+  <option value="signer" data-description="Only after both parties sign">Signers</option>
+</ui-multi-select>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-1-0">HTML</ui-tab><ui-tab panel="code-1-1">React</ui-tab><ui-tab panel="code-1-2">React + Tailwind</ui-tab><ui-tab-panel name="code-1-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-multi-select</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Notify"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"notify"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span>=<span style="color:var(--ui-tag-color-teal)">"Choose people"</span> <span style="color:var(--ui-tag-color-purple)">select-all</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"owner"</span> <span style="color:var(--ui-tag-color-purple)">selected</span>&gt;Contract owner&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"legal"</span>&gt;Legal team&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"finance"</span>&gt;Finance team&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"signer"</span> <span style="color:var(--ui-tag-color-purple)">data-description</span>=<span style="color:var(--ui-tag-color-teal)">"Only after both parties sign"</span>&gt;Signers&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-multi-select</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-1-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> <span style="color:var(--ui-tag-color-magenta)">type</span> { UiMultiSelect <span style="color:var(--ui-tag-color-magenta)">as</span> MultiSelectElement } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> [notify, setNotify] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>([<span style="color:var(--ui-tag-color-teal)">'owner'</span>]);
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiMultiSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Notify"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"notify"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Choose people"</span> <span style="color:var(--ui-tag-color-purple)">selectAll</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{notify} <span style="color:var(--ui-tag-color-purple)">onChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setNotify</span>((e.target <span style="color:var(--ui-tag-color-magenta)">as</span> <span style="color:var(--ui-tag-color-cyan)">MultiSelectElement</span>).value)}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"owner"</span>&gt;Contract owner&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"legal"</span>&gt;Legal team&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"finance"</span>&gt;Finance team&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"signer"</span> <span style="color:var(--ui-tag-color-purple)">data-description</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Only after both parties sign"</span>&gt;Signers&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiMultiSelect</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-1-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> people <span style="color:var(--ui-tag-color-magenta)">=</span> [
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'owner'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Contract owner'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'legal'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Legal team'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'finance'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Finance team'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'signer'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Signers'</span>, <span style="color:var(--ui-tag-color-purple)">description:</span> <span style="color:var(--ui-tag-color-teal)">'Only after both parties sign'</span> },
+];
+
+&lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Notify"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"notify"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Choose people"</span> <span style="color:var(--ui-tag-color-purple)">items</span><span style="color:var(--ui-tag-color-magenta)">=</span>{people} <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span>{[<span style="color:var(--ui-tag-color-teal)">'owner'</span>]} <span style="color:var(--ui-tag-color-purple)">selectAll</span> /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="installation">Installation</h2>
+<ui-tabs class="doc-code-tabs" label="Code"><ui-tab panel="code-2-0">npm</ui-tab><ui-tab panel="code-2-1">shadcn · Web component</ui-tab><ui-tab panel="code-2-2">shadcn · React + Tailwind</ui-tab><ui-tab panel="code-2-3">Manual</ui-tab><ui-tab-panel name="code-2-0"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">@purpurabog/ui</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-1"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npx</span> <span style="color:var(--ui-tag-color-teal)">shadcn@4</span> <span style="color:var(--ui-tag-color-teal)">add</span> <span style="color:var(--ui-tag-color-teal)">@kanok-ui/multi-select</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-2"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npx</span> <span style="color:var(--ui-tag-color-teal)">shadcn@4</span> <span style="color:var(--ui-tag-color-teal)">add</span> <span style="color:var(--ui-tag-color-teal)">@kanok-ui/tw-multi-select</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-3"><ui-code-snippet type="multi" class="doc-code" data-lang="bash"><span style="color:var(--ui-ink-muted);font-style:italic"># Web component</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 1. Install the dependencies</span>
+<span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">lit@^3.3.0</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 2. Copy each file's "content" from</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    https://cdn.jsdelivr.net/npm/@purpurabog/ui@2.3.0/registry/multi-select.json</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    to its target:</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/multi-select/multi-select.styles.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/multi-select/multi-select.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 3. Do the same for the items it needs (registry/&lt;name&gt;.json):</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    core-field, core-listbox, core-multi-select, core-popup, core-typeahead, shared-element, shared-events, shared-field, shared-form-control, shared-listbox, shared-localize, shared-position, shared-quiet-focus, shared-slots, tokens</span>
+
+<span style="color:var(--ui-ink-muted);font-style:italic"># React + Tailwind</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 1. Install the dependencies</span>
+<span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">@purpurabog/ui@^2.3.0</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 2. Copy each file's "content" from</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    https://cdn.jsdelivr.net/npm/@purpurabog/ui@2.3.0/registry/tw-multi-select.json</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    to its target:</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/react-tw/multi-select.tsx</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 3. Do the same for the items it needs (registry/&lt;name&gt;.json):</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    core-field, core-listbox, core-multi-select, tw-field, tw-i18n, tw-list, tw-theme, tw-utils</span></ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>npm gives you every component from the package. shadcn copies the source into your app instead: a copy pinned to this version that you can change. The shadcn commands need the <code>@kanok-ui</code> registry in your <code>components.json</code> once, see <a href="/kanok-ui-docs/en/installation/#react-tailwind-with-shadcn">Installation</a>.</p>
+<h2 id="use-it">Use it</h2>
+<ui-tabs class="doc-code-tabs" label="Code"><ui-tab panel="code-3-0">HTML</ui-tab><ui-tab panel="code-3-1">React</ui-tab><ui-tab panel="code-3-2">React + Tailwind</ui-tab><ui-tab-panel name="code-3-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;<span style="color:var(--ui-tag-color-magenta)">import</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/multi-select'</span>;&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-multi-select</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Notify"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"notify"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span>=<span style="color:var(--ui-tag-color-teal)">"Choose people"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"owner"</span>&gt;Contract owner&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"legal"</span>&gt;Legal team&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-multi-select</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-3-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { UiMultiSelect } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/react'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiMultiSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Notify"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"notify"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Choose people"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"owner"</span>&gt;Contract owner&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"legal"</span>&gt;Legal team&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiMultiSelect</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-3-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { MultiSelect } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@/components/ui/react-tw/multi-select'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> people <span style="color:var(--ui-tag-color-magenta)">=</span> [
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'owner'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Contract owner'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'legal'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Legal team'</span> },
+];
+
+&lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Notify"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"notify"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Choose people"</span> <span style="color:var(--ui-tag-color-purple)">items</span><span style="color:var(--ui-tag-color-magenta)">=</span>{people} /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>Choosing one value from many? See <a href="/kanok-ui-docs/en/select/#select-dropdown-combobox-or-multiselect">Select, Dropdown, Combobox or MultiSelect?</a></p>
+<h2 id="read-and-submit-the-value">Read and submit the value</h2>
+<p><code>value</code> is the array of chosen values. Mark the starting choices with <code>&lt;option selected&gt;</code> (or <code>defaultValue</code> in React + Tailwind). The form gets one entry per chosen value under <code>name</code>, so read it with <code>FormData.getAll()</code>. <code>change</code> fires whenever the set of chosen values changes. With <code>required</code>, the form won't submit until at least one option is chosen.</p>
+<div class="doc-demo"><form id="multi-select-form" style="display: grid; gap: 16px">
+  <ui-multi-select id="multi-select-docs" label="Attached documents" name="docs" placeholder="Choose documents" required invalid-text="Choose at least one document">
+    <option value="id" selected>Copy of ID card</option>
+    <option value="poa">Power of attorney</option>
+    <option value="cert">Company certificate</option>
+    <option value="map">Map</option>
+  </ui-multi-select>
+  <div><ui-button type="submit">Submit</ui-button></div>
+</form>
+<p>value: <output id="multi-select-docs-out"></output></p>
+<p>Submitted: <output id="multi-select-form-out"></output></p>
+
+<script type="text/x-demo">
+  const form = document.getElementById('multi-select-form');
+  const docs = document.getElementById('multi-select-docs');
+  const valueOut = document.getElementById('multi-select-docs-out');
+  const show = () => (valueOut.value = JSON.stringify(docs.value));
+  show();
+  docs.addEventListener('change', show);
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    document.getElementById('multi-select-form-out').value = JSON.stringify(new FormData(form).getAll('docs'));
+  });
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-4-0">HTML</ui-tab><ui-tab panel="code-4-1">React</ui-tab><ui-tab panel="code-4-2">React + Tailwind</ui-tab><ui-tab-panel name="code-4-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">form</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"multi-select-form"</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"display: grid; gap: 16px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-multi-select</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"multi-select-docs"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Attached documents"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"docs"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span>=<span style="color:var(--ui-tag-color-teal)">"Choose documents"</span> <span style="color:var(--ui-tag-color-purple)">required</span> <span style="color:var(--ui-tag-color-purple)">invalid-text</span>=<span style="color:var(--ui-tag-color-teal)">"Choose at least one document"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"id"</span> <span style="color:var(--ui-tag-color-purple)">selected</span>&gt;Copy of ID card&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"poa"</span>&gt;Power of attorney&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"cert"</span>&gt;Company certificate&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"map"</span>&gt;Map&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-multi-select</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">div</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"submit"</span>&gt;Submit&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">form</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;value: &lt;<span style="color:var(--ui-tag-color-blue)">output</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"multi-select-docs-out"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;Submitted: &lt;<span style="color:var(--ui-tag-color-blue)">output</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"multi-select-form-out"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> form <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'multi-select-form'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> docs <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'multi-select-docs'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> valueOut <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'multi-select-docs-out'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> <span style="color:var(--ui-tag-color-cyan)">show</span> <span style="color:var(--ui-tag-color-magenta)">=</span> () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (valueOut.value <span style="color:var(--ui-tag-color-magenta)">=</span> JSON.<span style="color:var(--ui-tag-color-cyan)">stringify</span>(docs.value));
+  <span style="color:var(--ui-tag-color-cyan)">show</span>();
+  docs.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'change'</span>, show);
+  form.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'submit'</span>, (event) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    event.<span style="color:var(--ui-tag-color-cyan)">preventDefault</span>();
+    document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'multi-select-form-out'</span>).value <span style="color:var(--ui-tag-color-magenta)">=</span> JSON.<span style="color:var(--ui-tag-color-cyan)">stringify</span>(<span style="color:var(--ui-tag-color-magenta)">new</span> <span style="color:var(--ui-tag-color-cyan)">FormData</span>(form).<span style="color:var(--ui-tag-color-cyan)">getAll</span>(<span style="color:var(--ui-tag-color-teal)">'docs'</span>));
+  });
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-4-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> <span style="color:var(--ui-tag-color-magenta)">type</span> { UiMultiSelect <span style="color:var(--ui-tag-color-magenta)">as</span> MultiSelectElement } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> [docs, setDocs] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>([<span style="color:var(--ui-tag-color-teal)">'id'</span>]);
+<span style="color:var(--ui-tag-color-magenta)">const</span> [sent, setSent] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>&lt;<span style="color:var(--ui-tag-color-cyan)">string</span>[]&gt;([]);
+<span style="color:var(--ui-tag-color-magenta)">const</span> <span style="color:var(--ui-tag-color-cyan)">submit</span> <span style="color:var(--ui-tag-color-magenta)">=</span> (event<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">FormEvent</span>&lt;<span style="color:var(--ui-tag-color-cyan)">HTMLFormElement</span>&gt;) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+  event.<span style="color:var(--ui-tag-color-cyan)">preventDefault</span>();
+  <span style="color:var(--ui-tag-color-cyan)">setSent</span>(<span style="color:var(--ui-tag-color-magenta)">new</span> <span style="color:var(--ui-tag-color-cyan)">FormData</span>(event.currentTarget).<span style="color:var(--ui-tag-color-cyan)">getAll</span>(<span style="color:var(--ui-tag-color-teal)">'docs'</span>) <span style="color:var(--ui-tag-color-magenta)">as</span> <span style="color:var(--ui-tag-color-cyan)">string</span>[]);
+};
+
+&lt;<span style="color:var(--ui-tag-color-blue)">form</span> <span style="color:var(--ui-tag-color-purple)">onSubmit</span><span style="color:var(--ui-tag-color-magenta)">=</span>{submit}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiMultiSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Attached documents"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"docs"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Choose documents"</span> <span style="color:var(--ui-tag-color-purple)">required</span> <span style="color:var(--ui-tag-color-purple)">invalidText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Choose at least one document"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{docs} <span style="color:var(--ui-tag-color-purple)">onChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setDocs</span>((e.target <span style="color:var(--ui-tag-color-magenta)">as</span> <span style="color:var(--ui-tag-color-cyan)">MultiSelectElement</span>).value)}&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"id"</span>&gt;Copy of ID card&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"poa"</span>&gt;Power of attorney&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"cert"</span>&gt;Company certificate&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"map"</span>&gt;Map&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiMultiSelect</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiButton</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"submit"</span>&gt;Submit&lt;/<span style="color:var(--ui-tag-color-blue)">UiButton</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">form</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;value: &lt;<span style="color:var(--ui-tag-color-blue)">output</span>&gt;{JSON.<span style="color:var(--ui-tag-color-cyan)">stringify</span>(docs)}&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;Submitted: &lt;<span style="color:var(--ui-tag-color-blue)">output</span>&gt;{JSON.<span style="color:var(--ui-tag-color-cyan)">stringify</span>(sent)}&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-4-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-ink-muted);font-style:italic">// validation is your app's: `tried` is set on the first submit</span>
+&lt;<span style="color:var(--ui-tag-color-blue)">form</span> <span style="color:var(--ui-tag-color-purple)">onSubmit</span><span style="color:var(--ui-tag-color-magenta)">=</span>{submit}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Attached documents"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"docs"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Choose documents"</span> <span style="color:var(--ui-tag-color-purple)">items</span><span style="color:var(--ui-tag-color-magenta)">=</span>{documents} <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{docs} <span style="color:var(--ui-tag-color-purple)">onChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{setDocs} <span style="color:var(--ui-tag-color-purple)">required</span> <span style="color:var(--ui-tag-color-purple)">invalid</span><span style="color:var(--ui-tag-color-magenta)">=</span>{tried <span style="color:var(--ui-tag-color-magenta)">&amp;&amp;</span> docs.length <span style="color:var(--ui-tag-color-magenta)">===</span> <span style="color:var(--ui-tag-color-green)">0</span>} <span style="color:var(--ui-tag-color-purple)">invalidText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Choose at least one document"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">Button</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"submit"</span>&gt;Submit&lt;/<span style="color:var(--ui-tag-color-blue)">Button</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">form</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;value: &lt;<span style="color:var(--ui-tag-color-blue)">output</span>&gt;{JSON.<span style="color:var(--ui-tag-color-cyan)">stringify</span>(docs)}&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;Submitted: &lt;<span style="color:var(--ui-tag-color-blue)">output</span>&gt;{JSON.<span style="color:var(--ui-tag-color-cyan)">stringify</span>(sent)}&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p><code>value</code> is a property, not an attribute: in HTML, set it from JavaScript or use <code>&lt;option selected&gt;</code>. The placeholder stays in the field even after a choice (Carbon's <code>label</code>), next to the count tag.</p>
+<h2 id="select-all">Select all</h2>
+<p><code>select-all</code> adds a first row that checks or unchecks every enabled option. It shows a mixed state while only some are chosen.</p>
+<div class="doc-demo"><ui-multi-select label="Departments to review" name="review" placeholder="Choose departments" select-all>
+  <option value="legal">Legal</option>
+  <option value="finance">Finance</option>
+  <option value="procurement">Procurement</option>
+  <option value="hr" disabled>Human resources (not involved)</option>
+</ui-multi-select>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-5-0">HTML</ui-tab><ui-tab panel="code-5-1">React</ui-tab><ui-tab panel="code-5-2">React + Tailwind</ui-tab><ui-tab-panel name="code-5-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-multi-select</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Departments to review"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"review"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span>=<span style="color:var(--ui-tag-color-teal)">"Choose departments"</span> <span style="color:var(--ui-tag-color-purple)">select-all</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"legal"</span>&gt;Legal&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"finance"</span>&gt;Finance&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"procurement"</span>&gt;Procurement&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"hr"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span>&gt;Human resources (not involved)&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-multi-select</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-5-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiMultiSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Departments to review"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"review"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Choose departments"</span> <span style="color:var(--ui-tag-color-purple)">selectAll</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"legal"</span>&gt;Legal&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"finance"</span>&gt;Finance&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"procurement"</span>&gt;Procurement&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"hr"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span>&gt;Human resources (not involved)&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiMultiSelect</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-5-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> departments <span style="color:var(--ui-tag-color-magenta)">=</span> [
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'legal'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Legal'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'finance'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Finance'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'procurement'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Procurement'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'hr'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Human resources (not involved)'</span>, <span style="color:var(--ui-tag-color-purple)">disabled:</span> <span style="color:var(--ui-tag-color-green)">true</span> },
+];
+
+&lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Departments to review"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"review"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Choose departments"</span> <span style="color:var(--ui-tag-color-purple)">items</span><span style="color:var(--ui-tag-color-magenta)">=</span>{departments} <span style="color:var(--ui-tag-color-purple)">selectAll</span> /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="where-chosen-options-go">Where chosen options go</h2>
+<p><code>selection-feedback</code> decides when chosen rows move to the top of the list:</p>
+<table>
+<thead>
+<tr>
+<th><code>selection-feedback</code></th>
+<th>Chosen rows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>top-after-reopen</code> (default)</td>
+<td>Move to the top the next time the list opens, so nothing jumps while choosing</td>
+</tr>
+<tr>
+<td><code>top</code></td>
+<td>Move to the top at once</td>
+</tr>
+<tr>
+<td><code>fixed</code></td>
+<td>Stay where they are</td>
+</tr>
+</tbody>
+</table>
+<p>Otherwise the order is yours (Carbon also sorts alphabetically; this library keeps your <code>&lt;option&gt;</code> order). With <code>&lt;optgroup&gt;</code>s, the groups stay as written and nothing moves. Choose the last rows in each field below, then close and reopen the lists.</p>
+<div class="doc-demo"><ui-multi-select label="Approval steps (default)" placeholder="Choose steps">
+  <option value="draft">Draft check</option>
+  <option value="legal">Legal review</option>
+  <option value="finance">Finance review</option>
+  <option value="sign">Signature</option>
+</ui-multi-select>
+<ui-multi-select label="Approval steps (fixed)" placeholder="Choose steps" selection-feedback="fixed">
+  <option value="draft">Draft check</option>
+  <option value="legal">Legal review</option>
+  <option value="finance">Finance review</option>
+  <option value="sign">Signature</option>
+</ui-multi-select>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-6-0">HTML</ui-tab><ui-tab panel="code-6-1">React</ui-tab><ui-tab panel="code-6-2">React + Tailwind</ui-tab><ui-tab-panel name="code-6-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-multi-select</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Approval steps (default)"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span>=<span style="color:var(--ui-tag-color-teal)">"Choose steps"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"draft"</span>&gt;Draft check&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"legal"</span>&gt;Legal review&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"finance"</span>&gt;Finance review&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"sign"</span>&gt;Signature&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-multi-select</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-multi-select</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Approval steps (fixed)"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span>=<span style="color:var(--ui-tag-color-teal)">"Choose steps"</span> <span style="color:var(--ui-tag-color-purple)">selection-feedback</span>=<span style="color:var(--ui-tag-color-teal)">"fixed"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"draft"</span>&gt;Draft check&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"legal"</span>&gt;Legal review&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"finance"</span>&gt;Finance review&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"sign"</span>&gt;Signature&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-multi-select</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-6-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiMultiSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Approval steps (default)"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Choose steps"</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">UiMultiSelect</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiMultiSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Approval steps (fixed)"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Choose steps"</span> <span style="color:var(--ui-tag-color-purple)">selectionFeedback</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"fixed"</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">UiMultiSelect</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-6-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Approval steps (default)"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Choose steps"</span> <span style="color:var(--ui-tag-color-purple)">items</span><span style="color:var(--ui-tag-color-magenta)">=</span>{steps} /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Approval steps (fixed)"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Choose steps"</span> <span style="color:var(--ui-tag-color-purple)">items</span><span style="color:var(--ui-tag-color-magenta)">=</span>{steps} <span style="color:var(--ui-tag-color-purple)">selectionFeedback</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"fixed"</span> /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="filterable">Filterable</h2>
+<p><code>filterable</code> turns the field into a text box that narrows the list as people type (Carbon's <code>FilterableMultiSelect</code>). <code>filter</code> is <code>contains</code> (the default, as Carbon) or <code>starts-with</code>. Choosing keeps the text and the list open; leaving the field clears the text. &quot;Select all&quot; then acts on the rows shown.</p>
+<div class="doc-demo"><ui-multi-select label="Provinces" name="provinces" placeholder="Type to filter" filterable>
+  <option value="bkk">Bangkok</option>
+  <option value="cnx">Chiang Mai</option>
+  <option value="cri">Chiang Rai</option>
+  <option value="hkt">Phuket</option>
+  <option value="kkn">Khon Kaen</option>
+</ui-multi-select>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-7-0">HTML</ui-tab><ui-tab panel="code-7-1">React</ui-tab><ui-tab panel="code-7-2">React + Tailwind</ui-tab><ui-tab-panel name="code-7-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-multi-select</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Provinces"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"provinces"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span>=<span style="color:var(--ui-tag-color-teal)">"Type to filter"</span> <span style="color:var(--ui-tag-color-purple)">filterable</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"bkk"</span>&gt;Bangkok&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"cnx"</span>&gt;Chiang Mai&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"cri"</span>&gt;Chiang Rai&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"hkt"</span>&gt;Phuket&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"kkn"</span>&gt;Khon Kaen&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-multi-select</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-7-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiMultiSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Provinces"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"provinces"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Type to filter"</span> <span style="color:var(--ui-tag-color-purple)">filterable</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"bkk"</span>&gt;Bangkok&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"cnx"</span>&gt;Chiang Mai&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"cri"</span>&gt;Chiang Rai&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"hkt"</span>&gt;Phuket&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"kkn"</span>&gt;Khon Kaen&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiMultiSelect</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-7-2"><ui-code-snippet type="single" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Provinces"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"provinces"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Type to filter"</span> <span style="color:var(--ui-tag-color-purple)">items</span><span style="color:var(--ui-tag-color-magenta)">=</span>{provinces} <span style="color:var(--ui-tag-color-purple)">filterable</span> /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="search-on-a-server">Search on a server</h2>
+<p>For a server search, set <code>filter=&quot;none&quot;</code>, listen to the typed text, replace the options and set <code>loading</code> (the list shows &quot;Searching…&quot;). Keep the chosen options in the list so their rows stay. In the demo, a short timer stands in for the server.</p>
+<div class="doc-demo"><ui-multi-select id="multi-select-branches" label="Branches" name="branches" placeholder="Search branches" helper-text="Searches as you type" filterable filter="none"></ui-multi-select>
+
+<script type="text/x-demo">
+  // stands in for fetch(`/api/branches?q=${encodeURIComponent(text)}`).then((response) => response.json())
+  const all = ['Silom', 'Siam', 'Sathorn', 'Bang Na', 'Bang Rak', 'Lat Phrao', 'Chiang Mai', 'Khon Kaen', 'Phuket', 'Hat Yai'];
+  const search = (text) =>
+    new Promise((resolve) => setTimeout(() => resolve(all.filter((b) => b.toLowerCase().includes(text.toLowerCase()))), 600));
+
+  const branches = document.getElementById('multi-select-branches');
+  const show = (found) => {
+    const chosen = [...branches.querySelectorAll('option')].filter((o) => branches.value.includes(o.value));
+    const rest = found.filter((b) => !branches.value.includes(b)).map((b) => new Option(b, b));
+    branches.replaceChildren(...chosen, ...rest);
+  };
+  show(all);
+
+  branches.addEventListener('input', async () => {
+    const text = branches.inputValue;
+    branches.loading = true;
+    const found = await search(text);
+    if (branches.inputValue !== text) return; // a newer search is running
+    show(found);
+    branches.loading = false;
+  });
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-8-0">HTML</ui-tab><ui-tab panel="code-8-1">React</ui-tab><ui-tab panel="code-8-2">React + Tailwind</ui-tab><ui-tab-panel name="code-8-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-multi-select</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"multi-select-branches"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Branches"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"branches"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span>=<span style="color:var(--ui-tag-color-teal)">"Search branches"</span> <span style="color:var(--ui-tag-color-purple)">helper-text</span>=<span style="color:var(--ui-tag-color-teal)">"Searches as you type"</span> <span style="color:var(--ui-tag-color-purple)">filterable</span> <span style="color:var(--ui-tag-color-purple)">filter</span>=<span style="color:var(--ui-tag-color-teal)">"none"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-multi-select</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-ink-muted);font-style:italic">// stands in for fetch(`/api/branches?q=${encodeURIComponent(text)}`).then((response) =&gt; response.json())</span>
+  <span style="color:var(--ui-tag-color-magenta)">const</span> all <span style="color:var(--ui-tag-color-magenta)">=</span> [<span style="color:var(--ui-tag-color-teal)">'Silom'</span>, <span style="color:var(--ui-tag-color-teal)">'Siam'</span>, <span style="color:var(--ui-tag-color-teal)">'Sathorn'</span>, <span style="color:var(--ui-tag-color-teal)">'Bang Na'</span>, <span style="color:var(--ui-tag-color-teal)">'Bang Rak'</span>, <span style="color:var(--ui-tag-color-teal)">'Lat Phrao'</span>, <span style="color:var(--ui-tag-color-teal)">'Chiang Mai'</span>, <span style="color:var(--ui-tag-color-teal)">'Khon Kaen'</span>, <span style="color:var(--ui-tag-color-teal)">'Phuket'</span>, <span style="color:var(--ui-tag-color-teal)">'Hat Yai'</span>];
+  <span style="color:var(--ui-tag-color-magenta)">const</span> <span style="color:var(--ui-tag-color-cyan)">search</span> <span style="color:var(--ui-tag-color-magenta)">=</span> (text) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span>
+    <span style="color:var(--ui-tag-color-magenta)">new</span> Promise((resolve) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setTimeout</span>(() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">resolve</span>(all.<span style="color:var(--ui-tag-color-cyan)">filter</span>((b) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> b.<span style="color:var(--ui-tag-color-cyan)">toLowerCase</span>().<span style="color:var(--ui-tag-color-cyan)">includes</span>(text.<span style="color:var(--ui-tag-color-cyan)">toLowerCase</span>()))), <span style="color:var(--ui-tag-color-green)">600</span>));
+
+  <span style="color:var(--ui-tag-color-magenta)">const</span> branches <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'multi-select-branches'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> <span style="color:var(--ui-tag-color-cyan)">show</span> <span style="color:var(--ui-tag-color-magenta)">=</span> (found) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    <span style="color:var(--ui-tag-color-magenta)">const</span> chosen <span style="color:var(--ui-tag-color-magenta)">=</span> [<span style="color:var(--ui-tag-color-magenta)">...</span>branches.<span style="color:var(--ui-tag-color-cyan)">querySelectorAll</span>(<span style="color:var(--ui-tag-color-teal)">'option'</span>)].<span style="color:var(--ui-tag-color-cyan)">filter</span>((o) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> branches.value.<span style="color:var(--ui-tag-color-cyan)">includes</span>(o.value));
+    <span style="color:var(--ui-tag-color-magenta)">const</span> rest <span style="color:var(--ui-tag-color-magenta)">=</span> found.<span style="color:var(--ui-tag-color-cyan)">filter</span>((b) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-magenta)">!</span>branches.value.<span style="color:var(--ui-tag-color-cyan)">includes</span>(b)).<span style="color:var(--ui-tag-color-cyan)">map</span>((b) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-magenta)">new</span> <span style="color:var(--ui-tag-color-cyan)">Option</span>(b, b));
+    branches.<span style="color:var(--ui-tag-color-cyan)">replaceChildren</span>(<span style="color:var(--ui-tag-color-magenta)">...</span>chosen, <span style="color:var(--ui-tag-color-magenta)">...</span>rest);
+  };
+  <span style="color:var(--ui-tag-color-cyan)">show</span>(all);
+
+  branches.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'input'</span>, <span style="color:var(--ui-tag-color-magenta)">async</span> () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    <span style="color:var(--ui-tag-color-magenta)">const</span> text <span style="color:var(--ui-tag-color-magenta)">=</span> branches.inputValue;
+    branches.loading <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-green)">true</span>;
+    <span style="color:var(--ui-tag-color-magenta)">const</span> found <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-magenta)">await</span> <span style="color:var(--ui-tag-color-cyan)">search</span>(text);
+    <span style="color:var(--ui-tag-color-magenta)">if</span> (branches.inputValue <span style="color:var(--ui-tag-color-magenta)">!==</span> text) <span style="color:var(--ui-tag-color-magenta)">return</span>; <span style="color:var(--ui-ink-muted);font-style:italic">// a newer search is running</span>
+    <span style="color:var(--ui-tag-color-cyan)">show</span>(found);
+    branches.loading <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-green)">false</span>;
+  });
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-8-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiMultiSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Branches"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"branches"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Search branches"</span> <span style="color:var(--ui-tag-color-purple)">filterable</span> <span style="color:var(--ui-tag-color-purple)">filter</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"none"</span> <span style="color:var(--ui-tag-color-purple)">loading</span><span style="color:var(--ui-tag-color-magenta)">=</span>{loading} <span style="color:var(--ui-tag-color-purple)">onInput</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">onText</span>((e.target <span style="color:var(--ui-tag-color-magenta)">as</span> <span style="color:var(--ui-tag-color-cyan)">MultiSelectElement</span>).inputValue)}&gt;
+  {rows.<span style="color:var(--ui-tag-color-cyan)">map</span>((b) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{b} <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{b}&gt;{b}&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;)}
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiMultiSelect</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-8-2"><ui-code-snippet type="single" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Branches"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"branches"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Search branches"</span> <span style="color:var(--ui-tag-color-purple)">items</span><span style="color:var(--ui-tag-color-magenta)">=</span>{rows.<span style="color:var(--ui-tag-color-cyan)">map</span>((b) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> ({ <span style="color:var(--ui-tag-color-purple)">value:</span> b, <span style="color:var(--ui-tag-color-purple)">label:</span> b }))} <span style="color:var(--ui-tag-color-purple)">filterable</span> <span style="color:var(--ui-tag-color-purple)">filter</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"none"</span> <span style="color:var(--ui-tag-color-purple)">loading</span><span style="color:var(--ui-tag-color-magenta)">=</span>{loading} <span style="color:var(--ui-tag-color-purple)">onInputChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{onText} /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>In the React versions, <code>onText</code> sets <code>loading</code>, calls <code>search()</code>, and puts the result in <code>rows</code> together with the chosen options. <code>search()</code> fetches the matches, as on <a href="/kanok-ui-docs/en/combobox/#search-on-a-server">Combobox</a>.</p>
+<h2 id="load-the-options-when-the-list-opens">Load the options when the list opens</h2>
+<p>Without <code>filterable</code>, <code>loading</code> shows one &quot;Loading…&quot; row and the keys pick nothing. Use it with the open event to fetch the options on first open, exactly as on <a href="/kanok-ui-docs/en/dropdown/#load-the-options-when-the-list-opens">Dropdown</a>: <code>ui-toggle</code> on the web component, <code>onUiToggle</code> in React, <code>onMenuChange</code> in React + Tailwind.</p>
+<div class="doc-demo"><ui-multi-select id="multi-select-witnesses" label="Witnesses" name="witnesses" placeholder="Choose witnesses" helper-text="The names load the first time the list opens" loading></ui-multi-select>
+
+<script type="text/x-demo">
+  // stands in for fetch('/api/staff').then((response) => response.json())
+  const loadStaff = () =>
+    new Promise((resolve) =>
+      setTimeout(() => resolve([
+        { value: 'anong', label: 'Anong P.' },
+        { value: 'boonmee', label: 'Boonmee S.' },
+        { value: 'chaiya', label: 'Chaiya R.' },
+      ]), 1000),
+    );
+
+  const witnesses = document.getElementById('multi-select-witnesses');
+  witnesses.addEventListener('ui-toggle', async (event) => {
+    if (!event.detail.open || !witnesses.loading) return;
+    const staff = await loadStaff();
+    witnesses.replaceChildren(...staff.map((s) => new Option(s.label, s.value)));
+    witnesses.loading = false;
+  });
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-9-0">HTML</ui-tab><ui-tab panel="code-9-1">React</ui-tab><ui-tab panel="code-9-2">React + Tailwind</ui-tab><ui-tab-panel name="code-9-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-multi-select</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"multi-select-witnesses"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Witnesses"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"witnesses"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span>=<span style="color:var(--ui-tag-color-teal)">"Choose witnesses"</span> <span style="color:var(--ui-tag-color-purple)">helper-text</span>=<span style="color:var(--ui-tag-color-teal)">"The names load the first time the list opens"</span> <span style="color:var(--ui-tag-color-purple)">loading</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-multi-select</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-ink-muted);font-style:italic">// stands in for fetch('/api/staff').then((response) =&gt; response.json())</span>
+  <span style="color:var(--ui-tag-color-magenta)">const</span> <span style="color:var(--ui-tag-color-cyan)">loadStaff</span> <span style="color:var(--ui-tag-color-magenta)">=</span> () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span>
+    <span style="color:var(--ui-tag-color-magenta)">new</span> Promise((resolve) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span>
+      <span style="color:var(--ui-tag-color-cyan)">setTimeout</span>(() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">resolve</span>([
+        { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'anong'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Anong P.'</span> },
+        { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'boonmee'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Boonmee S.'</span> },
+        { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'chaiya'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Chaiya R.'</span> },
+      ]), <span style="color:var(--ui-tag-color-green)">1000</span>),
+    );
+
+  <span style="color:var(--ui-tag-color-magenta)">const</span> witnesses <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'multi-select-witnesses'</span>);
+  witnesses.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'ui-toggle'</span>, <span style="color:var(--ui-tag-color-magenta)">async</span> (event) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    <span style="color:var(--ui-tag-color-magenta)">if</span> (<span style="color:var(--ui-tag-color-magenta)">!</span>event.detail.open <span style="color:var(--ui-tag-color-magenta)">||</span> <span style="color:var(--ui-tag-color-magenta)">!</span>witnesses.loading) <span style="color:var(--ui-tag-color-magenta)">return</span>;
+    <span style="color:var(--ui-tag-color-magenta)">const</span> staff <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-magenta)">await</span> <span style="color:var(--ui-tag-color-cyan)">loadStaff</span>();
+    witnesses.<span style="color:var(--ui-tag-color-cyan)">replaceChildren</span>(<span style="color:var(--ui-tag-color-magenta)">...</span>staff.<span style="color:var(--ui-tag-color-cyan)">map</span>((s) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-magenta)">new</span> <span style="color:var(--ui-tag-color-cyan)">Option</span>(s.label, s.value)));
+    witnesses.loading <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-green)">false</span>;
+  });
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-9-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> [staff, setStaff] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>&lt;{ value<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>; label<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span> }[]&gt;();
+<span style="color:var(--ui-tag-color-magenta)">const</span> <span style="color:var(--ui-tag-color-cyan)">load</span> <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-magenta)">async</span> (open<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">boolean</span>) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+  <span style="color:var(--ui-tag-color-magenta)">if</span> (open <span style="color:var(--ui-tag-color-magenta)">&amp;&amp;</span> <span style="color:var(--ui-tag-color-magenta)">!</span>staff) <span style="color:var(--ui-tag-color-cyan)">setStaff</span>(<span style="color:var(--ui-tag-color-magenta)">await</span> <span style="color:var(--ui-tag-color-cyan)">loadStaff</span>());
+};
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiMultiSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Witnesses"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"witnesses"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Choose witnesses"</span> <span style="color:var(--ui-tag-color-purple)">loading</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-magenta)">!</span>staff} <span style="color:var(--ui-tag-color-purple)">onUiToggle</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">load</span>(e.detail.open)}&gt;
+  {staff?.<span style="color:var(--ui-tag-color-cyan)">map</span>((s) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{s.value} <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{s.value}&gt;{s.label}&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;)}
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiMultiSelect</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-9-2"><ui-code-snippet type="single" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Witnesses"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"witnesses"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Choose witnesses"</span> <span style="color:var(--ui-tag-color-purple)">items</span><span style="color:var(--ui-tag-color-magenta)">=</span>{staff <span style="color:var(--ui-tag-color-magenta)">??</span> []} <span style="color:var(--ui-tag-color-purple)">loading</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-magenta)">!</span>staff} <span style="color:var(--ui-tag-color-purple)">onMenuChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{load} /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="groups-and-descriptions">Groups and descriptions</h2>
+<p>As in <a href="/kanok-ui-docs/en/dropdown/">Dropdown</a>: <code>&lt;optgroup label&gt;</code> groups options, <code>data-description</code> adds a second line (typing and filtering only search the labels), and <code>disabled</code> options can't be chosen. React + Tailwind takes groups <code>{ label, options }</code> and <code>description</code> in <code>items</code>.</p>
+<div class="doc-demo"><ui-multi-select label="Send copies to" name="cc" placeholder="Choose recipients">
+  <optgroup label="Inside the company">
+    <option value="legal" data-description="legal@example.co.th">Legal team</option>
+    <option value="finance" data-description="finance@example.co.th">Finance team</option>
+  </optgroup>
+  <optgroup label="Outside">
+    <option value="party" data-description="The other party's contact">Counterparty</option>
+    <option value="notary" disabled>Notary (not needed for this contract)</option>
+  </optgroup>
+</ui-multi-select>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-10-0">HTML</ui-tab><ui-tab panel="code-10-1">React</ui-tab><ui-tab panel="code-10-2">React + Tailwind</ui-tab><ui-tab-panel name="code-10-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-multi-select</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Send copies to"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"cc"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span>=<span style="color:var(--ui-tag-color-teal)">"Choose recipients"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">optgroup</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Inside the company"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"legal"</span> <span style="color:var(--ui-tag-color-purple)">data-description</span>=<span style="color:var(--ui-tag-color-teal)">"legal@example.co.th"</span>&gt;Legal team&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"finance"</span> <span style="color:var(--ui-tag-color-purple)">data-description</span>=<span style="color:var(--ui-tag-color-teal)">"finance@example.co.th"</span>&gt;Finance team&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">optgroup</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">optgroup</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Outside"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"party"</span> <span style="color:var(--ui-tag-color-purple)">data-description</span>=<span style="color:var(--ui-tag-color-teal)">"The other party's contact"</span>&gt;Counterparty&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"notary"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span>&gt;Notary (not needed for this contract)&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">optgroup</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-multi-select</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-10-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiMultiSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Send copies to"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"cc"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Choose recipients"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">optgroup</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Inside the company"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"legal"</span> <span style="color:var(--ui-tag-color-purple)">data-description</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"legal@example.co.th"</span>&gt;Legal team&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"finance"</span> <span style="color:var(--ui-tag-color-purple)">data-description</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"finance@example.co.th"</span>&gt;Finance team&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">optgroup</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">optgroup</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Outside"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"party"</span> <span style="color:var(--ui-tag-color-purple)">data-description</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"The other party's contact"</span>&gt;Counterparty&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"notary"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span>&gt;Notary (not needed for this contract)&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">optgroup</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiMultiSelect</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-10-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> recipients <span style="color:var(--ui-tag-color-magenta)">=</span> [
+  { <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Inside the company'</span>, <span style="color:var(--ui-tag-color-purple)">options:</span> [
+    { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'legal'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Legal team'</span>, <span style="color:var(--ui-tag-color-purple)">description:</span> <span style="color:var(--ui-tag-color-teal)">'legal@example.co.th'</span> },
+    { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'finance'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Finance team'</span>, <span style="color:var(--ui-tag-color-purple)">description:</span> <span style="color:var(--ui-tag-color-teal)">'finance@example.co.th'</span> },
+  ] },
+  { <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Outside'</span>, <span style="color:var(--ui-tag-color-purple)">options:</span> [
+    { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'party'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Counterparty'</span>, <span style="color:var(--ui-tag-color-purple)">description:</span> <span style="color:var(--ui-tag-color-teal)">"The other party's contact"</span> },
+    { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'notary'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Notary (not needed for this contract)'</span>, <span style="color:var(--ui-tag-color-purple)">disabled:</span> <span style="color:var(--ui-tag-color-green)">true</span> },
+  ] },
+];
+
+&lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Send copies to"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"cc"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Choose recipients"</span> <span style="color:var(--ui-tag-color-purple)">items</span><span style="color:var(--ui-tag-color-magenta)">=</span>{recipients} /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="sizes-and-direction">Sizes and direction</h2>
+<p><code>size</code>: <code>sm</code> 32px, <code>md</code> 40px (the default), <code>lg</code> 48px; <code>direction=&quot;top&quot;</code> opens the list above.</p>
+<div class="doc-demo"><ui-multi-select label="Small" size="sm" placeholder="Choose people">
+  <option value="legal" selected>Legal team</option>
+  <option value="finance">Finance team</option>
+</ui-multi-select>
+<ui-multi-select label="Medium" placeholder="Choose people">
+  <option value="legal" selected>Legal team</option>
+  <option value="finance">Finance team</option>
+</ui-multi-select>
+<ui-multi-select label="Large, opens above" size="lg" direction="top" placeholder="Choose people">
+  <option value="legal" selected>Legal team</option>
+  <option value="finance">Finance team</option>
+</ui-multi-select>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-11-0">HTML</ui-tab><ui-tab panel="code-11-1">React</ui-tab><ui-tab panel="code-11-2">React + Tailwind</ui-tab><ui-tab-panel name="code-11-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-multi-select</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Small"</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span>=<span style="color:var(--ui-tag-color-teal)">"Choose people"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"legal"</span> <span style="color:var(--ui-tag-color-purple)">selected</span>&gt;Legal team&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"finance"</span>&gt;Finance team&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-multi-select</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-multi-select</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Medium"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span>=<span style="color:var(--ui-tag-color-teal)">"Choose people"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"legal"</span> <span style="color:var(--ui-tag-color-purple)">selected</span>&gt;Legal team&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"finance"</span>&gt;Finance team&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-multi-select</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-multi-select</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Large, opens above"</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"lg"</span> <span style="color:var(--ui-tag-color-purple)">direction</span>=<span style="color:var(--ui-tag-color-teal)">"top"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span>=<span style="color:var(--ui-tag-color-teal)">"Choose people"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"legal"</span> <span style="color:var(--ui-tag-color-purple)">selected</span>&gt;Legal team&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"finance"</span>&gt;Finance team&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-multi-select</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-11-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiMultiSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Small"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Choose people"</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">UiMultiSelect</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiMultiSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Medium"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Choose people"</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">UiMultiSelect</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiMultiSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Large, opens above"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"lg"</span> <span style="color:var(--ui-tag-color-purple)">direction</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"top"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Choose people"</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">UiMultiSelect</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-11-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Small"</span> <span style="color:var(--ui-tag-color-purple)">items</span><span style="color:var(--ui-tag-color-magenta)">=</span>{people} <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Choose people"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span>{[<span style="color:var(--ui-tag-color-teal)">'legal'</span>]} /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Medium"</span> <span style="color:var(--ui-tag-color-purple)">items</span><span style="color:var(--ui-tag-color-magenta)">=</span>{people} <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Choose people"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span>{[<span style="color:var(--ui-tag-color-teal)">'legal'</span>]} /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Large, opens above"</span> <span style="color:var(--ui-tag-color-purple)">items</span><span style="color:var(--ui-tag-color-magenta)">=</span>{people} <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"lg"</span> <span style="color:var(--ui-tag-color-purple)">direction</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"top"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Choose people"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span>{[<span style="color:var(--ui-tag-color-teal)">'legal'</span>]} /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="fluid">Fluid</h2>
+<p><code>fluid</code> puts the label inside a 64px box (Carbon's <code>FluidMultiSelect</code>); the open list keeps the usual row height. A fluid form around the field does the same; see <a href="/kanok-ui-docs/en/forms/#use-a-fluid-form">fluid forms</a>.</p>
+<div class="doc-demo"><ui-multi-select fluid label="Notify" name="notify" placeholder="Choose people">
+  <option value="owner" selected>Contract owner</option>
+  <option value="legal">Legal team</option>
+  <option value="finance">Finance team</option>
+</ui-multi-select>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-12-0">HTML</ui-tab><ui-tab panel="code-12-1">React</ui-tab><ui-tab panel="code-12-2">React + Tailwind</ui-tab><ui-tab-panel name="code-12-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-multi-select</span> <span style="color:var(--ui-tag-color-purple)">fluid</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Notify"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"notify"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span>=<span style="color:var(--ui-tag-color-teal)">"Choose people"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"owner"</span> <span style="color:var(--ui-tag-color-purple)">selected</span>&gt;Contract owner&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"legal"</span>&gt;Legal team&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"finance"</span>&gt;Finance team&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-multi-select</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-12-1"><ui-code-snippet type="single" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiMultiSelect</span> <span style="color:var(--ui-tag-color-purple)">fluid</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Notify"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"notify"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Choose people"</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">UiMultiSelect</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-12-2"><ui-code-snippet type="single" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect</span> <span style="color:var(--ui-tag-color-purple)">fluid</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Notify"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"notify"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Choose people"</span> <span style="color:var(--ui-tag-color-purple)">items</span><span style="color:var(--ui-tag-color-magenta)">=</span>{people} <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span>{[<span style="color:var(--ui-tag-color-teal)">'owner'</span>]} /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="outlined-kanok-design">Outlined (Kanok design)</h2>
+<p>In the Kanok design, fields are filled by default: a soft grey fill, no edge. Put <code>data-field-variant=&quot;outlined&quot;</code> on an element around the field (a <code>&lt;form&gt;</code>, or <code>&lt;html&gt;</code> for the whole app) for a 1px edge on no fill; focus is still the soft blue halo. The attribute does nothing in the Carbon design, so the example below sits inside <code>data-design=&quot;kanok&quot;</code>. See <a href="/kanok-ui-docs/en/kanok/#outlined-fields">Kanok design</a> for the details.</p>
+<div class="doc-demo"><div data-design="kanok" data-theme="paper" data-field-variant="outlined">
+  <ui-multi-select label="Notify" name="notify" placeholder="Choose people" select-all>
+    <option value="owner" selected>Contract owner</option>
+    <option value="legal">Legal team</option>
+    <option value="finance">Finance team</option>
+    <option value="signer" data-description="Only after both parties sign">Signers</option>
+  </ui-multi-select>
+</div>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-13-0">HTML</ui-tab><ui-tab panel="code-13-1">React</ui-tab><ui-tab panel="code-13-2">React + Tailwind</ui-tab><ui-tab-panel name="code-13-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">data-design</span>=<span style="color:var(--ui-tag-color-teal)">"kanok"</span> <span style="color:var(--ui-tag-color-purple)">data-theme</span>=<span style="color:var(--ui-tag-color-teal)">"paper"</span> <span style="color:var(--ui-tag-color-purple)">data-field-variant</span>=<span style="color:var(--ui-tag-color-teal)">"outlined"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-multi-select</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Notify"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"notify"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span>=<span style="color:var(--ui-tag-color-teal)">"Choose people"</span> <span style="color:var(--ui-tag-color-purple)">select-all</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"owner"</span> <span style="color:var(--ui-tag-color-purple)">selected</span>&gt;Contract owner&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"legal"</span>&gt;Legal team&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"finance"</span>&gt;Finance team&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"signer"</span> <span style="color:var(--ui-tag-color-purple)">data-description</span>=<span style="color:var(--ui-tag-color-teal)">"Only after both parties sign"</span>&gt;Signers&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-multi-select</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-13-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> <span style="color:var(--ui-tag-color-magenta)">type</span> { UiMultiSelect <span style="color:var(--ui-tag-color-magenta)">as</span> MultiSelectElement } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> [notify, setNotify] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>([<span style="color:var(--ui-tag-color-teal)">'owner'</span>]);
+
+&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">data-field-variant</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"outlined"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiMultiSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Notify"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"notify"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Choose people"</span> <span style="color:var(--ui-tag-color-purple)">selectAll</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{notify} <span style="color:var(--ui-tag-color-purple)">onChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setNotify</span>((e.target <span style="color:var(--ui-tag-color-magenta)">as</span> <span style="color:var(--ui-tag-color-cyan)">MultiSelectElement</span>).value)}&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"owner"</span>&gt;Contract owner&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"legal"</span>&gt;Legal team&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"finance"</span>&gt;Finance team&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"signer"</span> <span style="color:var(--ui-tag-color-purple)">data-description</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Only after both parties sign"</span>&gt;Signers&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiMultiSelect</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-13-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> people <span style="color:var(--ui-tag-color-magenta)">=</span> [
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'owner'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Contract owner'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'legal'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Legal team'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'finance'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Finance team'</span> },
+  { <span style="color:var(--ui-tag-color-purple)">value:</span> <span style="color:var(--ui-tag-color-teal)">'signer'</span>, <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Signers'</span>, <span style="color:var(--ui-tag-color-purple)">description:</span> <span style="color:var(--ui-tag-color-teal)">'Only after both parties sign'</span> },
+];
+
+&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">data-field-variant</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"outlined"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Notify"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"notify"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Choose people"</span> <span style="color:var(--ui-tag-color-purple)">items</span><span style="color:var(--ui-tag-color-magenta)">=</span>{people} <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span>{[<span style="color:var(--ui-tag-color-teal)">'owner'</span>]} <span style="color:var(--ui-tag-color-purple)">selectAll</span> /&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="helper-text-warnings-and-errors">Helper text, warnings and errors</h2>
+<p>One line shows under the field at a time: an error beats a warning, and a warning beats the helper text. <code>warn</code> doesn't block the form; <code>invalid</code> forces the error.</p>
+<div class="doc-demo"><ui-multi-select label="Approvers" name="approvers" placeholder="Choose approvers" helper-text="Each approver signs in turn">
+  <option value="somchai">Somchai K.</option>
+  <option value="malee">Malee S.</option>
+</ui-multi-select>
+<ui-multi-select label="Approvers" name="approvers2" placeholder="Choose approvers" warn warn-text="Malee is on leave until 20 October">
+  <option value="somchai">Somchai K.</option>
+  <option value="malee" selected>Malee S.</option>
+</ui-multi-select>
+<ui-multi-select label="Approvers" name="approvers3" placeholder="Choose approvers" invalid invalid-text="A contract over 1 million baht needs two approvers">
+  <option value="somchai" selected>Somchai K.</option>
+  <option value="malee">Malee S.</option>
+</ui-multi-select>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-14-0">HTML</ui-tab><ui-tab panel="code-14-1">React</ui-tab><ui-tab panel="code-14-2">React + Tailwind</ui-tab><ui-tab-panel name="code-14-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-multi-select</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Approvers"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"approvers"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span>=<span style="color:var(--ui-tag-color-teal)">"Choose approvers"</span> <span style="color:var(--ui-tag-color-purple)">helper-text</span>=<span style="color:var(--ui-tag-color-teal)">"Each approver signs in turn"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"somchai"</span>&gt;Somchai K.&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"malee"</span>&gt;Malee S.&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-multi-select</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-multi-select</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Approvers"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"approvers2"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span>=<span style="color:var(--ui-tag-color-teal)">"Choose approvers"</span> <span style="color:var(--ui-tag-color-purple)">warn</span> <span style="color:var(--ui-tag-color-purple)">warn-text</span>=<span style="color:var(--ui-tag-color-teal)">"Malee is on leave until 20 October"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"somchai"</span>&gt;Somchai K.&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"malee"</span> <span style="color:var(--ui-tag-color-purple)">selected</span>&gt;Malee S.&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-multi-select</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-multi-select</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Approvers"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"approvers3"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span>=<span style="color:var(--ui-tag-color-teal)">"Choose approvers"</span> <span style="color:var(--ui-tag-color-purple)">invalid</span> <span style="color:var(--ui-tag-color-purple)">invalid-text</span>=<span style="color:var(--ui-tag-color-teal)">"A contract over 1 million baht needs two approvers"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"somchai"</span> <span style="color:var(--ui-tag-color-purple)">selected</span>&gt;Somchai K.&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"malee"</span>&gt;Malee S.&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-multi-select</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-14-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiMultiSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Approvers"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"approvers"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Choose approvers"</span> <span style="color:var(--ui-tag-color-purple)">helperText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Each approver signs in turn"</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">UiMultiSelect</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiMultiSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Approvers"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"approvers2"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Choose approvers"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{[<span style="color:var(--ui-tag-color-teal)">'malee'</span>]} <span style="color:var(--ui-tag-color-purple)">warn</span> <span style="color:var(--ui-tag-color-purple)">warnText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Malee is on leave until 20 October"</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">UiMultiSelect</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiMultiSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Approvers"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"approvers3"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Choose approvers"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{[<span style="color:var(--ui-tag-color-teal)">'somchai'</span>]} <span style="color:var(--ui-tag-color-purple)">invalid</span> <span style="color:var(--ui-tag-color-purple)">invalidText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"A contract over 1 million baht needs two approvers"</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">UiMultiSelect</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-14-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Approvers"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"approvers"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Choose approvers"</span> <span style="color:var(--ui-tag-color-purple)">items</span><span style="color:var(--ui-tag-color-magenta)">=</span>{approvers} <span style="color:var(--ui-tag-color-purple)">helperText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Each approver signs in turn"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Approvers"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"approvers2"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Choose approvers"</span> <span style="color:var(--ui-tag-color-purple)">items</span><span style="color:var(--ui-tag-color-magenta)">=</span>{approvers} <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span>{[<span style="color:var(--ui-tag-color-teal)">'malee'</span>]} <span style="color:var(--ui-tag-color-purple)">warn</span> <span style="color:var(--ui-tag-color-purple)">warnText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Malee is on leave until 20 October"</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Approvers"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"approvers3"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Choose approvers"</span> <span style="color:var(--ui-tag-color-purple)">items</span><span style="color:var(--ui-tag-color-magenta)">=</span>{approvers} <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span>{[<span style="color:var(--ui-tag-color-teal)">'somchai'</span>]} <span style="color:var(--ui-tag-color-purple)">invalid</span> <span style="color:var(--ui-tag-color-purple)">invalidText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"A contract over 1 million baht needs two approvers"</span> /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="read-only-and-disabled">Read-only and disabled</h2>
+<p><code>readonly</code> (<code>readOnly</code> in React + Tailwind) shows and submits the choice but blocks changes. <code>disabled</code> greys the field out, and it isn't submitted.</p>
+<div class="doc-demo"><ui-multi-select label="Notify" placeholder="Choose people" readonly>
+  <option value="owner" selected>Contract owner</option>
+  <option value="legal" selected>Legal team</option>
+  <option value="finance">Finance team</option>
+</ui-multi-select>
+<ui-multi-select label="Notify" placeholder="Choose people" disabled>
+  <option value="owner">Contract owner</option>
+  <option value="legal">Legal team</option>
+</ui-multi-select>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-15-0">HTML</ui-tab><ui-tab panel="code-15-1">React</ui-tab><ui-tab panel="code-15-2">React + Tailwind</ui-tab><ui-tab-panel name="code-15-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-multi-select</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Notify"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span>=<span style="color:var(--ui-tag-color-teal)">"Choose people"</span> <span style="color:var(--ui-tag-color-purple)">readonly</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"owner"</span> <span style="color:var(--ui-tag-color-purple)">selected</span>&gt;Contract owner&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"legal"</span> <span style="color:var(--ui-tag-color-purple)">selected</span>&gt;Legal team&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"finance"</span>&gt;Finance team&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-multi-select</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-multi-select</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Notify"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span>=<span style="color:var(--ui-tag-color-teal)">"Choose people"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"owner"</span>&gt;Contract owner&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"legal"</span>&gt;Legal team&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-multi-select</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-15-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiMultiSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Notify"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Choose people"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{[<span style="color:var(--ui-tag-color-teal)">'owner'</span>, <span style="color:var(--ui-tag-color-teal)">'legal'</span>]} <span style="color:var(--ui-tag-color-purple)">readonly</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">UiMultiSelect</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiMultiSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Notify"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Choose people"</span> <span style="color:var(--ui-tag-color-purple)">disabled</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">UiMultiSelect</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-15-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Notify"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Choose people"</span> <span style="color:var(--ui-tag-color-purple)">items</span><span style="color:var(--ui-tag-color-magenta)">=</span>{people} <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span>{[<span style="color:var(--ui-tag-color-teal)">'owner'</span>, <span style="color:var(--ui-tag-color-teal)">'legal'</span>]} <span style="color:var(--ui-tag-color-purple)">readOnly</span> /&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">MultiSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Notify"</span> <span style="color:var(--ui-tag-color-purple)">placeholder</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Choose people"</span> <span style="color:var(--ui-tag-color-purple)">items</span><span style="color:var(--ui-tag-color-magenta)">=</span>{people} <span style="color:var(--ui-tag-color-purple)">disabled</span> /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>Required fields, errors and warnings: <a href="/kanok-ui-docs/en/forms/">Forms and validation</a>.</p>
+<h2 id="keyboard">Keyboard</h2>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>List closed</th>
+<th>List open</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>↓, Enter, Space</td>
+<td>Open the list</td>
+<td>Enter and Space check or uncheck the highlighted row; the list stays open</td>
+</tr>
+<tr>
+<td>↓ / ↑, Page Down / Page Up, Home / End</td>
+<td>↑ does nothing; Home / End open on the first / last row</td>
+<td>Move the highlight</td>
+</tr>
+<tr>
+<td>Letters</td>
+<td>Open on the next option that starts with them</td>
+<td>Jump to the next option that starts with them</td>
+</tr>
+<tr>
+<td>Delete, Backspace, Esc</td>
+<td>Clear every choice</td>
+<td>Esc closes</td>
+</tr>
+<tr>
+<td>Tab</td>
+<td>Moves on</td>
+<td>Closes and moves on</td>
+</tr>
+</tbody>
+</table>
+<p>With <code>filterable</code>, the field is a text box: letters, Space, Home, End, Delete and Backspace edit the text, ↓ or Enter open the list, Enter checks the highlighted row, and Esc on a closed list clears the choices and the text.</p>
+<h2 id="accessibility">Accessibility</h2>
+<ul>
+<li>The list is a <code>listbox</code> with <code>aria-multiselectable</code>; the highlight is announced through <code>aria-activedescendant</code>, so focus stays on the field.</li>
+<li>The × buttons are not Tab stops (as in Carbon). Delete, Backspace or Esc clear the choices from the keyboard.</li>
+<li>&quot;Loading…&quot;, &quot;Searching…&quot; and &quot;No matching items&quot; are announced.</li>
+</ul>
+<p>Unstyled React parts with the same behaviour: <a href="/kanok-ui-docs/en/headless-multi-select/">Headless Multi-select</a>.</p>
+<h2 id="api">API</h2>
+<p>Generated from the package. In React, pass a property as a prop of the same name; events are props too (the React column).</p>
+<h3 id="ui-multi-select-react-uimultiselect"><code>&lt;ui-multi-select&gt;</code> · React <code>UiMultiSelect</code></h3>
+<h4 id="attributes">Attributes</h4>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>label</code></td>
+<td><code>label</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>Visible label text; the <code>label</code> slot replaces it when markup is needed.</td>
+</tr>
+<tr>
+<td><code>hide-label</code></td>
+<td><code>hideLabel</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Keep the label for screen readers but don't show it.</td>
+</tr>
+<tr>
+<td><code>helper-text</code></td>
+<td><code>helperText</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>Helper text under the field, shown while there is no error or warning.</td>
+</tr>
+<tr>
+<td><code>invalid-text</code></td>
+<td><code>invalidText</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>Error text shown while <code>invalid</code> or while the field fails validation.</td>
+</tr>
+<tr>
+<td><code>invalid</code></td>
+<td><code>invalid</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Forces the error state, e.g. after server-side validation.</td>
+</tr>
+<tr>
+<td><code>warn</code></td>
+<td><code>warn</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Non-blocking warning; shown when there is no error.</td>
+</tr>
+<tr>
+<td><code>warn-text</code></td>
+<td><code>warnText</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>Text of the warning shown while <code>warn</code>.</td>
+</tr>
+<tr>
+<td><code>placeholder</code></td>
+<td><code>placeholder</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>Text always shown in the field (Carbon's <code>label</code>), e.g. &quot;Choose options&quot;.</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>Reflected: form-associated elements submit under the <code>name</code> attribute.</td>
+</tr>
+<tr>
+<td><code>size</code></td>
+<td><code>size</code></td>
+<td><code>'sm' | 'md' | 'lg'</code></td>
+<td><code>'md'</code></td>
+<td>Field height: sm 32px, md 40px, lg 48px (tokens <code>--ui-field-height-*</code>).</td>
+</tr>
+<tr>
+<td><code>direction</code></td>
+<td><code>direction</code></td>
+<td><code>'bottom' | 'top'</code></td>
+<td><code>'bottom'</code></td>
+<td>Preferred side for the list; it flips when there is no room.</td>
+</tr>
+<tr>
+<td><code>selection-feedback</code></td>
+<td><code>selectionFeedback</code></td>
+<td><code>SelectionFeedback</code></td>
+<td><code>'top-after-reopen'</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>select-all</code></td>
+<td><code>selectAll</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Adds a &quot;Select all&quot; row.</td>
+</tr>
+<tr>
+<td><code>filterable</code></td>
+<td><code>filterable</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>The field is a text box that narrows the list (Carbon <code>FilterableMultiSelect</code> / <code>filterable</code>).</td>
+</tr>
+<tr>
+<td><code>filter</code></td>
+<td><code>filter</code></td>
+<td><code>MultiSelectFilter</code></td>
+<td><code>'contains'</code></td>
+<td>With <code>filterable</code>: <code>contains</code> (Carbon), <code>starts-with</code>, or <code>none</code> to leave the list to a server search.</td>
+</tr>
+<tr>
+<td><code>loading</code></td>
+<td><code>loading</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>The options are on their way: &quot;Searching…&quot; with <code>filterable</code> (a server search), else &quot;Loading…&quot;; the keys pick nothing.</td>
+</tr>
+<tr>
+<td><code>disabled</code></td>
+<td><code>disabled</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Disables the control; a disabled <code>&lt;fieldset&gt;</code> ancestor does the same.</td>
+</tr>
+<tr>
+<td><code>required</code></td>
+<td><code>required</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Blocks form submission while the field is empty.</td>
+</tr>
+<tr>
+<td><code>readonly</code></td>
+<td><code>readonly</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Shows and submits the value but blocks changes.</td>
+</tr>
+<tr>
+<td><code>fluid</code></td>
+<td><code>fluid</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Carbon <code>FluidMultiSelect</code>: the label inside a 64px box, an error / warning inside it. <code>&lt;ui-fluid-form&gt;</code> sets it for every field inside.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="properties">Properties</h4>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>value</code></td>
+<td><code>string[]</code></td>
+<td>Chosen option values. Initial choices can also come from <code>&lt;option selected&gt;</code>.</td>
+</tr>
+<tr>
+<td><code>inputValue</code></td>
+<td></td>
+<td>With <code>filterable</code>, what the user typed; set it to search for something.</td>
+</tr>
+<tr>
+<td><code>willValidate</code></td>
+<td></td>
+<td>(read-only) Whether the field takes part in constraint validation (not while disabled), as natively.</td>
+</tr>
+<tr>
+<td><code>labels</code></td>
+<td></td>
+<td>(read-only) The <code>&lt;label&gt;</code>s that point at this field.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="methods">Methods</h4>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>setCustomValidity(message)</code></td>
+<td>Like <code>&lt;input&gt;.setCustomValidity()</code>: a non-empty message makes the field invalid (and is shown as its error once touched) until cleared with ''.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="events">Events</h4>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>React</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ui-toggle</code></td>
+<td><code>onUiToggle</code></td>
+<td>detail: { open } after the list opens or closes (Carbon React <code>onMenuChange</code>)</td>
+</tr>
+<tr>
+<td><code>input</code></td>
+<td><code>onInput</code></td>
+<td>Whenever the set of chosen values changes, as ui-dropdown and ui-combobox; with <code>filterable</code>, also native and composed as the user types, where <code>value</code> is unchanged (kept for compatibility: listen to <code>ui-input</code> for the typing)</td>
+</tr>
+<tr>
+<td><code>ui-input</code></td>
+<td><code>onUiInput</code></td>
+<td>detail: { value } the typed text (<code>inputValue</code>) with <code>filterable</code>, as the user types or when the text is emptied</td>
+</tr>
+<tr>
+<td><code>change</code></td>
+<td><code>onChange</code></td>
+<td>Whenever the set of chosen values changes</td>
+</tr>
+</tbody>
+</table>
+<h4 id="slots">Slots</h4>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>label</code></td>
+<td>Label content with markup; the <code>label</code> attribute is the plain-text fallback</td>
+</tr>
+<tr>
+<td><code>helper-text</code></td>
+<td>Helper text with markup (links, bold); overrides <code>helper-text</code></td>
+</tr>
+<tr>
+<td><code>warn-text</code></td>
+<td>Warning text shown while <code>warn</code>; overrides <code>warn-text</code></td>
+</tr>
+<tr>
+<td><code>invalid-text</code></td>
+<td>Error text shown while invalid; overrides <code>invalid-text</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="css-parts">CSS parts</h4>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>option-description</code></td>
+<td>Second line of an option (<code>&lt;option data-description&gt;</code>)</td>
+</tr>
+<tr>
+<td><code>base</code></td>
+<td>The field box</td>
+</tr>
+<tr>
+<td><code>label</code></td>
+<td>The label</td>
+</tr>
+<tr>
+<td><code>input</code></td>
+<td>The field button, or the text box with <code>filterable</code> (role=combobox)</td>
+</tr>
+<tr>
+<td><code>toggle</code></td>
+<td>The chevron button (<code>filterable</code>)</td>
+</tr>
+<tr>
+<td><code>clear-filter-button</code></td>
+<td>The × that clears the text (<code>filterable</code>)</td>
+</tr>
+<tr>
+<td><code>empty</code></td>
+<td>The &quot;searching&quot; / &quot;no results&quot; row (<code>filterable</code>)</td>
+</tr>
+<tr>
+<td><code>tag</code></td>
+<td>The selected-count pill</td>
+</tr>
+<tr>
+<td><code>clear-button</code></td>
+<td>The × inside the pill</td>
+</tr>
+<tr>
+<td><code>chevron</code></td>
+<td>The arrow icon</td>
+</tr>
+<tr>
+<td><code>status-icon</code></td>
+<td>The error / warning icon</td>
+</tr>
+<tr>
+<td><code>helper-text</code></td>
+<td>The helper line</td>
+</tr>
+<tr>
+<td><code>warning-text</code></td>
+<td>The warning line</td>
+</tr>
+<tr>
+<td><code>warn-text</code></td>
+<td>Same line as <code>warning-text</code> (named after the <code>warn-text</code> attribute / slot)</td>
+</tr>
+<tr>
+<td><code>error-text</code></td>
+<td>The error line</td>
+</tr>
+<tr>
+<td><code>invalid-text</code></td>
+<td>Same line as <code>error-text</code> (named after the <code>invalid-text</code> attribute / slot)</td>
+</tr>
+<tr>
+<td><code>menu</code></td>
+<td>The floating list</td>
+</tr>
+<tr>
+<td><code>option</code></td>
+<td>Each row</td>
+</tr>
+<tr>
+<td><code>select-all</code></td>
+<td>The &quot;Select all&quot; row</td>
+</tr>
+<tr>
+<td><code>checkbox</code></td>
+<td>The box drawn in each row</td>
+</tr>
+<tr>
+<td><code>group-label</code></td>
+<td>An <code>&lt;optgroup&gt;</code> heading</td>
+</tr>
+</tbody>
+</table>
+<h4 id="css-custom-properties">CSS custom properties</h4>
+<table>
+<thead>
+<tr>
+<th>Custom property</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--ui-count-tag-background</code></td>
+<td></td>
+<td>The count pill's fill (default <code>--ui-ink</code>); also <code>--ui-count-tag-ink</code> (<code>--ui-inverse-ink</code>) and <code>--ui-count-tag-hover</code> (its ×, <code>--ui-secondary-hover</code>)</td>
+</tr>
+<tr>
+<td><code>--ui-field-border</code></td>
+<td></td>
+<td>Border on every side of the box (default none: Carbon's underline only; Kanok: a 1px outline)</td>
+</tr>
+<tr>
+<td><code>--ui-field-disabled-border-color</code></td>
+<td></td>
+<td>Border colour when disabled (default: the underline transparent)</td>
+</tr>
+<tr>
+<td><code>--ui-field-readonly-border-color</code></td>
+<td></td>
+<td>Border colour when read-only (default: a hairline underline)</td>
+</tr>
+<tr>
+<td><code>--ui-field-radius</code></td>
+<td></td>
+<td>Corner radius of the box (default 0; Kanok: 6px)</td>
+</tr>
+<tr>
+<td><code>--ui-field-background</code></td>
+<td></td>
+<td>Fill of the box (default <code>--ui-surface-1</code>; Kanok: transparent)</td>
+</tr>
+<tr>
+<td><code>--ui-label-font</code></td>
+<td></td>
+<td>Font of the label (default <code>--ui-font-caption</code>; Kanok: 14px semibold)</td>
+</tr>
+<tr>
+<td><code>--ui-label-color</code></td>
+<td></td>
+<td>Colour of the label (default <code>--ui-ink-muted</code>; Kanok: <code>--ui-ink</code>)</td>
+</tr>
+<tr>
+<td><code>--ui-menu-radius</code></td>
+<td></td>
+<td>Corner radius of the open list (default 0; Kanok: 8px)</td>
+</tr>
+<tr>
+<td><code>--ui-menu-border</code></td>
+<td></td>
+<td>Border around the list (default none; Kanok: a hairline)</td>
+</tr>
+<tr>
+<td><code>--ui-menu-shadow</code></td>
+<td></td>
+<td><code>box-shadow</code> of the list (default Carbon's 0 2px 6px)</td>
+</tr>
+<tr>
+<td><code>--ui-menu-padding</code></td>
+<td></td>
+<td>Padding of the open list (default 0; Kanok: 4px, rows inset)</td>
+</tr>
+<tr>
+<td><code>--ui-menu-item-radius</code></td>
+<td></td>
+<td>Corner radius of a row (default 0; Kanok: 6px)</td>
+</tr>
+<tr>
+<td><code>--ui-menu-item-ink</code></td>
+<td></td>
+<td>Text of a row at rest (default <code>--ui-ink-muted</code>; Kanok: <code>--ui-ink</code>)</td>
+</tr>
+<tr>
+<td><code>--ui-menu-divider</code></td>
+<td></td>
+<td>Rule between rows (default <code>--ui-row-divider</code>; Kanok: none)</td>
+</tr>
+<tr>
+<td><code>--ui-menu-item-selected</code></td>
+<td></td>
+<td>Fill of the chosen row (default <code>--ui-surface-2</code>; Kanok: <code>--ui-highlight</code>)</td>
+</tr>
+<tr>
+<td><code>--ui-menu-item-selected-hover</code></td>
+<td></td>
+<td>The chosen row under the pointer (default <code>--ui-layer-selected-hover</code>; Kanok: the highlight a shade deeper)</td>
+</tr>
+<tr>
+<td><code>--ui-field-readonly-background</code></td>
+<td></td>
+<td>The box's fill when read-only (default transparent; Kanok: a faint ink tint, so read-only reads as set and never weaker than disabled)</td>
+</tr>
+<tr>
+<td><code>--ui-field-open-background</code></td>
+<td></td>
+<td>The box's fill while its list is open (default the field's hover fill; Kanok: transparent)</td>
+</tr>
+<tr>
+<td><code>--ui-fluid-background</code></td>
+<td></td>
+<td>/ --ui-fluid-gap - A fluid box's fill and the space under it (default the layer's fill, 0: boxes that touch; Kanok: transparent, 8px)</td>
+</tr>
+<tr>
+<td><code>--ui-menu-item-active-outline</code></td>
+<td></td>
+<td>/ --ui-menu-item-active-background - The keyboard-highlighted row: its ring and its fill (default focus, transparent)</td>
+</tr>
+<tr>
+<td><code>--ui-option-box-align</code></td>
+<td></td>
+<td>/ --ui-option-box-offset - A two-line row's checkbox: <code>align-self</code> and top margin (default auto, 0: centred; Kanok: beside the label line)</td>
+</tr>
+<tr>
+<td><code>--ui-icon-control-radius</code></td>
+<td></td>
+<td>Corners of its small icon buttons, their hover fill and ring (default 0; Kanok: round)</td>
+</tr>
+<tr>
+<td><code>--ui-menu-item-pressed</code></td>
+<td></td>
+<td>Fill of a pressed option (default <code>--ui-surface-2</code>; Kanok: the 20% pressed tint)</td>
+</tr>
+<tr>
+<td><code>--ui-focus-offset</code></td>
+<td></td>
+<td><code>outline-offset</code> of its focus ring (default -2px: inside; Kanok: 2px outside)</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+<nav class="doc-toc" aria-labelledby="doc-toc-title"><p id="doc-toc-title" class="doc-toc-title">On this page</p><ul><li class="doc-toc-h2"><a href="#installation">Installation</a></li><li class="doc-toc-h2"><a href="#use-it">Use it</a></li><li class="doc-toc-h2"><a href="#read-and-submit-the-value">Read and submit the value</a></li><li class="doc-toc-h2"><a href="#select-all">Select all</a></li><li class="doc-toc-h2"><a href="#where-chosen-options-go">Where chosen options go</a></li><li class="doc-toc-h2"><a href="#filterable">Filterable</a></li><li class="doc-toc-h2"><a href="#search-on-a-server">Search on a server</a></li><li class="doc-toc-h2"><a href="#load-the-options-when-the-list-opens">Load the options when the list opens</a></li><li class="doc-toc-h2"><a href="#groups-and-descriptions">Groups and descriptions</a></li><li class="doc-toc-h2"><a href="#sizes-and-direction">Sizes and direction</a></li><li class="doc-toc-h2"><a href="#fluid">Fluid</a></li><li class="doc-toc-h2"><a href="#outlined-kanok-design">Outlined (Kanok design)</a></li><li class="doc-toc-h2"><a href="#helper-text-warnings-and-errors">Helper text, warnings and errors</a></li><li class="doc-toc-h2"><a href="#read-only-and-disabled">Read-only and disabled</a></li><li class="doc-toc-h2"><a href="#keyboard">Keyboard</a></li><li class="doc-toc-h2"><a href="#accessibility">Accessibility</a></li><li class="doc-toc-h2"><a href="#api">API</a></li><li class="doc-toc-h3"><a href="#ui-multi-select-react-uimultiselect">&lt;ui-multi-select></a></li></ul></nav>
+</div>
+<nav class="doc-pager" aria-label="Next / Previous"><a class="doc-pager-prev" href="/kanok-ui-docs/en/combobox/" rel="prev"><span>Previous</span>Combobox</a><a class="doc-pager-next" href="/kanok-ui-docs/en/checkbox/" rel="next"><span>Next</span>Checkbox</a></nav>
+<footer class="doc-footer">@purpurabog/ui 2.3.0 · MIT · <a href="https://cdn.jsdelivr.net/npm/@purpurabog/ui@2.3.0/THIRD-PARTY-NOTICES.md">Third-party notices</a><br>Built on the Carbon Design System. Not affiliated with or endorsed by IBM; IBM and Carbon are trademarks of IBM Corp.</footer>
+</ui-content>
+<ui-modal id="doc-search" heading="Search" data-count="{n} results" data-empty="No results for “{q}”">
+<ui-search label="Search the docs" placeholder="Search the docs" size="lg"></ui-search>
+<p class="doc-search-status" role="status"></p>
+<ul class="doc-search-results"></ul>
+</ui-modal>
+</body>
+</html>

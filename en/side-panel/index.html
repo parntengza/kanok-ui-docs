@@ -1,0 +1,1072 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Side panel · @purpurabog/ui</title>
+<link rel="alternate" hreflang="en" href="/kanok-ui-docs/en/side-panel/"  /><link rel="alternate" hreflang="th" href="/kanok-ui-docs/th/side-panel/"  />
+<script>(function(){try{var q=new URLSearchParams(location.search).get("design"),d=q;if(q==="kanok"||q==="carbon")localStorage.setItem("ui-docs-design",q);else d=localStorage.getItem("ui-docs-design");if(d==="kanok")document.documentElement.setAttribute("data-design","kanok")}catch(e){}})();(function(){try{var m=localStorage.getItem("ui-docs-theme");if(m!=="light"&&m!=="dark"&&m!=="system")return;var d=m==="dark"||(m==="system"&&matchMedia("(prefers-color-scheme: dark)").matches),r=document.documentElement,t=d?"g100":"white";if(r.getAttribute("data-design")==="kanok")t=d?"lacquer":"paper";r.setAttribute("data-theme",t)}catch(e){}})();</script>
+<style>ui-header:not(:defined){z-index:8000;box-sizing:border-box;border-block-end:1px solid var(--ui-border-subtle-1);background:var(--ui-canvas);block-size:48px;display:block;position:fixed;inset:0 0 auto}:is(ui-header:not(:defined)>*,ui-side-nav:not(:defined)>*){visibility:hidden}:is(ui-header-panel:not(:defined),ui-modal:not(:defined)){display:none}ui-side-nav:not(:defined){display:none}ui-content:not(:defined){margin-block-start:48px;padding:32px;display:block}@media (width>=1056px){ui-side-nav[expanded]:not(:defined){background:var(--ui-canvas);inline-size:256px;display:block;position:fixed;inset:48px auto 0 0}ui-side-nav[expanded]:not(:defined)~ui-content:not(:defined){margin-inline-start:256px}}ui-tabs:not(:defined){display:block}ui-tabs:not(:defined)>ui-tab{box-sizing:border-box;border-block-end:2px solid var(--ui-hairline);block-size:40px;color:var(--ui-ink-muted);font:var(--ui-font-body-sm);padding:0 16px;line-height:38px;display:inline-block}ui-tabs:not(:defined)>ui-tab:first-of-type{border-block-end-color:var(--ui-interactive);color:var(--ui-ink)}ui-tabs:not(:defined)>ui-tab-panel{padding:16px;display:block}ui-tabs:not(:defined)>ui-tab-panel~ui-tab-panel{display:none}ui-code-snippet:not(:defined){background:var(--ui-layer-1);max-block-size:272px;font:var(--ui-font-code,12px/16px monospace);white-space:pre;padding:16px;display:block;overflow:hidden}[data-react-example]:empty>*{visibility:hidden}.doc-demo:has(:not(:defined))>*{visibility:hidden}[data-react-example]:empty{box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}.doc-demo:has(:not(:defined)){box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}@keyframes doc-skeleton{to{background-position:-200% 0}}@media (prefers-reduced-motion:reduce){[data-react-example]:empty{animation:none}.doc-demo:has(:not(:defined)){animation:none}}</style>
+
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/theme-switcher-BZXGbHfR.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/tab-ChjAM0hz.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/affixes-RbQJ6omC.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/mask-BgmAmoJG.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/text-input-CfhE-rX4.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/button-DGUm7Yxm.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/icon-button-D4pzZab2.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/auto-grow-B4XS1-9c.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/text-area-CDT2bI-K.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/select-Dpy2FROW.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/checkbox-jjWDPkAK.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/radio-2PVxQnjG.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/motion-C95bcdt7.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/action-set-Dh8aCanf.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/side-panel-DKbKE1AY.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/tag-CInHDJH1.js"></script>
+  <link rel="stylesheet" crossorigin href="/kanok-ui-docs/assets/theme-switcher-BXY5AIvi.css">
+</head>
+<body>
+<ui-header label="@purpurabog/ui">
+<ui-skip-to-content></ui-skip-to-content>
+<ui-header-menu-button></ui-header-menu-button>
+<ui-header-name href="/kanok-ui-docs/en/" prefix="@purpurabog">ui</ui-header-name>
+<ui-header-global-bar>
+<ui-header-global-action id="doc-search-open" label="Search" tooltip-placement="bottom"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="m18.5 17.8-4.9-4.9a7 7 0 1 0-.7.7l4.9 4.9zM3 8.5a5.5 5.5 0 1 1 5.5 5.5A5.5 5.5 0 0 1 3 8.5Z" /></svg></ui-header-global-action>
+<ui-header-global-action label="Settings" panel="doc-settings" tooltip-placement="bottom-end"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="M16.9 10.6a7 7 0 0 0 0-1.2l1.8-1.4-1.6-2.8-2.1.8a6.6 6.6 0 0 0-1-.6L13.6 3h-3.2l-.4 2.4a6.6 6.6 0 0 0-1 .6l-2.1-.8L5.3 8l1.8 1.4a7 7 0 0 0 0 1.2L5.3 12l1.6 2.8 2.1-.8a6.6 6.6 0 0 0 1 .6l.4 2.4h3.2l.4-2.4a6.6 6.6 0 0 0 1-.6l2.1.8 1.6-2.8zM12 13a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" /></svg></ui-header-global-action>
+</ui-header-global-bar>
+<ui-header-panel id="doc-settings" label="Settings">
+<div class="doc-settings">
+<span class="doc-settings-label">Theme</span>
+<ui-theme-switcher storage-key="ui-docs-theme" tooltip-placement="bottom"></ui-theme-switcher>
+<span class="doc-settings-label">Style</span>
+<ui-content-switcher id="doc-design" aria-label="Style" size="sm"><ui-content-switcher-item name="carbon">Carbon</ui-content-switcher-item><ui-content-switcher-item name="kanok">Kanok</ui-content-switcher-item></ui-content-switcher>
+<span class="doc-settings-label">Language</span>
+<ui-link href="/kanok-ui-docs/th/side-panel/" hreflang="th" lang="th">ไทย</ui-link>
+</div>
+</ui-header-panel>
+</ui-header>
+<ui-side-nav label="Documentation"><ui-side-nav-items><ui-side-nav-menu label="Get started"><ui-side-nav-menu-item href="/kanok-ui-docs/en/">Overview</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/installation/">Installation</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/migration-1-0/">Migrating to 1.0</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Guides"><ui-side-nav-menu-item href="/kanok-ui-docs/en/themes/">Themes and layers</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/kanok/">Kanok design</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/customizing/">Customizing</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/icons/">Icons</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/forms/">Forms and validation</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/frameworks/">Frameworks</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/ai/">Using with AI</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Forms and actions"><ui-side-nav-menu-item href="/kanok-ui-docs/en/button/">Button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/file-uploader/">File uploader</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Overlays" expanded><ui-side-nav-menu-item href="/kanok-ui-docs/en/modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/side-panel/" current>Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/toggletip/">Toggletip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/menu/">Menu</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Data"><ui-side-nav-menu-item href="/kanok-ui-docs/en/data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/contained-list/">Contained list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tree-view/">Tree view</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Navigation"><ui-side-nav-menu-item href="/kanok-ui-docs/en/tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/breadcrumb/">Breadcrumb</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/link/">Link</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/ui-shell/">UI shell</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Content"><ui-side-nav-menu-item href="/kanok-ui-docs/en/tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tile/">Tile</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/user-avatar/">User avatar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/list/">List</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Status and loading"><ui-side-nav-menu-item href="/kanok-ui-docs/en/loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/inline-loading/">Inline loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/progress-bar/">Progress bar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/skeleton/">Skeleton</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/badge-indicator/">Badge indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/status-indicator/">Status indicator</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Layout"><ui-side-nav-menu-item href="/kanok-ui-docs/en/grid/">Grid</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/heading/">Heading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/layer/">Layer</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/action-set/">Action set</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/page-header/">Page header</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/big-number/">Big number</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Headless"><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless/">Introduction</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-file-uploader/">File uploader</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-menu/">Menu</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-ui-shell/">UI shell</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tree-view/">Tree view</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu></ui-side-nav-items></ui-side-nav><script>if(matchMedia('(min-width: 66rem)').matches)document.currentScript.previousElementSibling.setAttribute('expanded','')</script>
+<ui-content>
+<div class="doc-page">
+<article class="doc">
+<h1 id="side-panel">Side panel</h1>
+<p>A side panel slides in from the edge of the screen, under the 48px UI shell header, to show details or a short form while the page stays in view. It is Carbon for IBM Products' <code>SidePanel</code>. For a task that needs the whole screen, use a <a href="/kanok-ui-docs/en/tearsheet/">Tearsheet</a>; for a short decision, a <a href="/kanok-ui-docs/en/modal/">Modal</a>.</p>
+<p>The panel is <code>position: fixed</code>. The live examples below sit in a box that holds it, with <code>--ui-side-panel-top: 0px</code> because the box has no header above it.</p>
+<div class="doc-demo"><div style="transform: translateZ(0); position: relative; height: 420px; overflow: hidden; border: 1px solid var(--ui-hairline); --ui-side-panel-top: 0px">
+  <div style="padding: 16px"><ui-button id="side-panel-open">Edit incident</ui-button></div>
+  <ui-side-panel id="side-panel-edit" heading="Incident INC-2041" size="sm" selector-initial-focus="#side-panel-edit-title">
+    <span slot="subtitle">Reported by the finance team on 8 October 2026.</span>
+    <div style="display: grid; gap: 16px; padding-block: 16px">
+      <ui-text-input id="side-panel-edit-title" label="Title" value="Invoice export fails"></ui-text-input>
+      <ui-select label="Priority" value="high">
+        <option value="low">Low</option>
+        <option value="high">High</option>
+      </ui-select>
+      <ui-text-area label="Notes"></ui-text-area>
+    </div>
+    <ui-button slot="actions" kind="secondary">Cancel</ui-button>
+    <ui-button slot="actions">Save</ui-button>
+  </ui-side-panel>
+</div>
+
+<script type="text/x-demo">
+  const panel = document.getElementById('side-panel-edit');
+  document.getElementById('side-panel-open').addEventListener('click', () => (panel.open = true));
+  for (const button of panel.querySelectorAll('[slot="actions"]')) button.addEventListener('click', () => (panel.open = false));
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-1-0">HTML</ui-tab><ui-tab panel="code-1-1">React</ui-tab><ui-tab panel="code-1-2">React + Tailwind</ui-tab><ui-tab-panel name="code-1-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"transform: translateZ(0); position: relative; height: 420px; overflow: hidden; border: 1px solid var(--ui-hairline); --ui-side-panel-top: 0px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"padding: 16px"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"side-panel-open"</span>&gt;Edit incident&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-side-panel</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"side-panel-edit"</span> <span style="color:var(--ui-tag-color-purple)">heading</span>=<span style="color:var(--ui-tag-color-teal)">"Incident INC-2041"</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">selector-initial-focus</span>=<span style="color:var(--ui-tag-color-teal)">"#side-panel-edit-title"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"subtitle"</span>&gt;Reported by the finance team on 8 October 2026.&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"display: grid; gap: 16px; padding-block: 16px"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-text-input</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"side-panel-edit-title"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Title"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"Invoice export fails"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-text-input</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-select</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Priority"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"high"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"low"</span>&gt;Low&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">option</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"high"</span>&gt;High&lt;/<span style="color:var(--ui-tag-color-blue)">option</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">ui-select</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-text-area</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Notes"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-text-area</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"actions"</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"secondary"</span>&gt;Cancel&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"actions"</span>&gt;Save&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-side-panel</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> panel <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'side-panel-edit'</span>);
+  document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'side-panel-open'</span>).<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (panel.open <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-green)">true</span>));
+  <span style="color:var(--ui-tag-color-magenta)">for</span> (<span style="color:var(--ui-tag-color-magenta)">const</span> button <span style="color:var(--ui-tag-color-magenta)">of</span> panel.<span style="color:var(--ui-tag-color-cyan)">querySelectorAll</span>(<span style="color:var(--ui-tag-color-teal)">'[slot="actions"]'</span>)) button.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (panel.open <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-green)">false</span>));
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-1-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> [open, setOpen] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-green)">false</span>);
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiButton</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">true</span>)}&gt;Edit incident&lt;/<span style="color:var(--ui-tag-color-blue)">UiButton</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiSidePanel</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Incident INC-2041"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">selectorInitialFocus</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"#incident-title"</span> <span style="color:var(--ui-tag-color-purple)">onUiClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">slot</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"subtitle"</span>&gt;Reported by the finance team on 8 October 2026.&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTextInput</span> <span style="color:var(--ui-tag-color-purple)">id</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"incident-title"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Title"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Invoice export fails"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiSelect</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Priority"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"high"</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">UiSelect</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiTextArea</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Notes"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiButton</span> <span style="color:var(--ui-tag-color-purple)">slot</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"actions"</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"secondary"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}&gt;Cancel&lt;/<span style="color:var(--ui-tag-color-blue)">UiButton</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiButton</span> <span style="color:var(--ui-tag-color-purple)">slot</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"actions"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}&gt;Save&lt;/<span style="color:var(--ui-tag-color-blue)">UiButton</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiSidePanel</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-1-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> [open, setOpen] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-green)">false</span>);
+
+&lt;<span style="color:var(--ui-tag-color-blue)">Button</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">true</span>)}&gt;Edit incident&lt;/<span style="color:var(--ui-tag-color-blue)">Button</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">SidePanel</span>
+  <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open}
+  <span style="color:var(--ui-tag-color-purple)">onRequestClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}
+  <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Incident INC-2041"</span>
+  <span style="color:var(--ui-tag-color-purple)">subtitle</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Reported by the finance team on 8 October 2026."</span>
+  <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span>
+  <span style="color:var(--ui-tag-color-purple)">selectorInitialFocus</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"#incident-title"</span>
+  <span style="color:var(--ui-tag-color-purple)">actions</span><span style="color:var(--ui-tag-color-magenta)">=</span>{[
+    { <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Cancel'</span>, <span style="color:var(--ui-tag-color-purple)">kind:</span> <span style="color:var(--ui-tag-color-teal)">'secondary'</span>, <span style="color:var(--ui-tag-color-cyan)">onClick</span><span style="color:var(--ui-tag-color-purple)">:</span> () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>) },
+    { <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Save'</span>, <span style="color:var(--ui-tag-color-cyan)">onClick</span><span style="color:var(--ui-tag-color-purple)">:</span> () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>) },
+  ]}
+&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TextInput</span> <span style="color:var(--ui-tag-color-purple)">id</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"incident-title"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Title"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Invoice export fails"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">Select</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Priority"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"high"</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">Select</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">TextArea</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Notes"</span> /&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">SidePanel</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="installation">Installation</h2>
+<ui-tabs class="doc-code-tabs" label="Code"><ui-tab panel="code-2-0">npm</ui-tab><ui-tab panel="code-2-1">shadcn · Web component</ui-tab><ui-tab panel="code-2-2">shadcn · React + Tailwind</ui-tab><ui-tab panel="code-2-3">Manual</ui-tab><ui-tab-panel name="code-2-0"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">@purpurabog/ui</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-1"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npx</span> <span style="color:var(--ui-tag-color-teal)">shadcn@4</span> <span style="color:var(--ui-tag-color-teal)">add</span> <span style="color:var(--ui-tag-color-teal)">@kanok-ui/side-panel</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-2"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npx</span> <span style="color:var(--ui-tag-color-teal)">shadcn@4</span> <span style="color:var(--ui-tag-color-teal)">add</span> <span style="color:var(--ui-tag-color-teal)">@kanok-ui/tw-side-panel</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-3"><ui-code-snippet type="multi" class="doc-code" data-lang="bash"><span style="color:var(--ui-ink-muted);font-style:italic"># Web component</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 1. Install the dependencies</span>
+<span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">lit@^3.3.0</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 2. Copy each file's "content" from</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    https://cdn.jsdelivr.net/npm/@purpurabog/ui@2.3.0/registry/side-panel.json</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    to its target:</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/side-panel/side-panel.styles.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/side-panel/side-panel.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 3. Do the same for the items it needs (registry/&lt;name&gt;.json):</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    core-action-set, core-modal, core-motion, core-overlay, core-position, icon-button, layer, shared-action-set, shared-element, shared-events, shared-field, shared-localize, shared-quiet-focus, tokens</span>
+
+<span style="color:var(--ui-ink-muted);font-style:italic"># React + Tailwind</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 1. Install the dependencies</span>
+<span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">@purpurabog/ui@^2.3.0</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 2. Copy each file's "content" from</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    https://cdn.jsdelivr.net/npm/@purpurabog/ui@2.3.0/registry/tw-side-panel.json</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    to its target:</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/react-tw/side-panel.tsx</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 3. Do the same for the items it needs (registry/&lt;name&gt;.json):</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    core-action-set, core-motion, core-position, tw-action-set, tw-i18n, tw-icon-button, tw-layer, tw-refs, tw-theme, tw-utils</span></ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>npm gives you every component from the package. shadcn copies the source into your app instead: a copy pinned to this version that you can change. The shadcn commands need the <code>@kanok-ui</code> registry in your <code>components.json</code> once, see <a href="/kanok-ui-docs/en/installation/#react-tailwind-with-shadcn">Installation</a>.</p>
+<h2 id="use-it">Use it</h2>
+<ui-tabs class="doc-code-tabs" label="Code"><ui-tab panel="code-3-0">HTML</ui-tab><ui-tab panel="code-3-1">React</ui-tab><ui-tab panel="code-3-2">React + Tailwind</ui-tab><ui-tab-panel name="code-3-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;<span style="color:var(--ui-tag-color-magenta)">import</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/side-panel'</span>;&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">onclick</span>=<span style="color:var(--ui-tag-color-teal)">"document.</span><span style="color:var(--ui-tag-color-cyan)">getElementById</span><span style="color:var(--ui-tag-color-teal)">('incident').open </span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)"> </span><span style="color:var(--ui-tag-color-green)">true</span><span style="color:var(--ui-tag-color-teal)">"</span>&gt;Edit incident&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-side-panel</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"incident"</span> <span style="color:var(--ui-tag-color-purple)">heading</span>=<span style="color:var(--ui-tag-color-teal)">"Incident INC-2041"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;Invoice export fails.&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-side-panel</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-3-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { UiSidePanel } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/react'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiSidePanel</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Incident INC-2041"</span> <span style="color:var(--ui-tag-color-purple)">onUiClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;Invoice export fails.&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiSidePanel</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-3-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { SidePanel } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@/components/ui/react-tw/side-panel'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">SidePanel</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">onRequestClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)} <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Incident INC-2041"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;Invoice export fails.&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">SidePanel</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>Set <code>open</code> to show it and back to false to hide it; it slides 320px in from its edge while fading in, and out the same way (150ms each, as Carbon), with no movement when the reader asks for reduced motion. <code>heading</code> is also the panel's accessible name. On open, focus goes to <code>selector-initial-focus</code> (a selector inside the panel), else to the first control. On close it goes back to what had it.</p>
+<p>×, Esc and a click on the overlay ask to close first (see <a href="#ask-before-closing">Ask before closing</a>); <code>ui-close</code> fires after the panel has slid out. React + Tailwind is controlled: <code>onRequestClose(reason)</code> reports them, and you set <code>open</code> to false.</p>
+<h2 id="sizes">Sizes</h2>
+<p><code>size</code>: <code>xs</code> 16rem, <code>sm</code> 20rem, <code>md</code> 30rem (the default), <code>lg</code> 40rem, <code>xl</code> 65rem, <code>2xl</code> 80rem. From medium screens up a panel is never wider than 75% of the screen, and never wider than its container.</p>
+<div class="doc-demo"><div style="transform: translateZ(0); position: relative; height: 360px; overflow: hidden; border: 1px solid var(--ui-hairline); --ui-side-panel-top: 0px">
+  <div style="display: flex; flex-wrap: wrap; gap: 16px; padding: 16px">
+    <ui-button kind="tertiary" data-side-panel-size="xs">xs</ui-button>
+    <ui-button kind="tertiary" data-side-panel-size="sm">sm</ui-button>
+    <ui-button kind="tertiary" data-side-panel-size="md">md</ui-button>
+    <ui-button kind="tertiary" data-side-panel-size="lg">lg</ui-button>
+  </div>
+  <ui-side-panel id="side-panel-size" heading="Vendor details">
+    <p>Siam Logistics Co., Ltd. Tax ID 0105556000000.</p>
+  </ui-side-panel>
+</div>
+
+<script type="text/x-demo">
+  const panel = document.getElementById('side-panel-size');
+  for (const button of document.querySelectorAll('[data-side-panel-size]')) {
+    button.addEventListener('click', () => {
+      panel.size = button.dataset.sidePanelSize;
+      panel.heading = `Vendor details (${panel.size})`;
+      panel.open = true;
+    });
+  }
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-4-0">HTML</ui-tab><ui-tab panel="code-4-1">React</ui-tab><ui-tab panel="code-4-2">React + Tailwind</ui-tab><ui-tab-panel name="code-4-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"transform: translateZ(0); position: relative; height: 360px; overflow: hidden; border: 1px solid var(--ui-hairline); --ui-side-panel-top: 0px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"display: flex; flex-wrap: wrap; gap: 16px; padding: 16px"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"tertiary"</span> <span style="color:var(--ui-tag-color-purple)">data-side-panel-size</span>=<span style="color:var(--ui-tag-color-teal)">"xs"</span>&gt;xs&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"tertiary"</span> <span style="color:var(--ui-tag-color-purple)">data-side-panel-size</span>=<span style="color:var(--ui-tag-color-teal)">"sm"</span>&gt;sm&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"tertiary"</span> <span style="color:var(--ui-tag-color-purple)">data-side-panel-size</span>=<span style="color:var(--ui-tag-color-teal)">"md"</span>&gt;md&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"tertiary"</span> <span style="color:var(--ui-tag-color-purple)">data-side-panel-size</span>=<span style="color:var(--ui-tag-color-teal)">"lg"</span>&gt;lg&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-side-panel</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"side-panel-size"</span> <span style="color:var(--ui-tag-color-purple)">heading</span>=<span style="color:var(--ui-tag-color-teal)">"Vendor details"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;Siam Logistics Co., Ltd. Tax ID 0105556000000.&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-side-panel</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> panel <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'side-panel-size'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">for</span> (<span style="color:var(--ui-tag-color-magenta)">const</span> button <span style="color:var(--ui-tag-color-magenta)">of</span> document.<span style="color:var(--ui-tag-color-cyan)">querySelectorAll</span>(<span style="color:var(--ui-tag-color-teal)">'[data-side-panel-size]'</span>)) {
+    button.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+      panel.size <span style="color:var(--ui-tag-color-magenta)">=</span> button.dataset.sidePanelSize;
+      panel.heading <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">`Vendor details (${</span><span style="color:var(--ui-tag-color-teal)">panel.size</span><span style="color:var(--ui-tag-color-teal)">})`</span>;
+      panel.open <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-green)">true</span>;
+    });
+  }
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-4-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiSidePanel</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"xs"</span> <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Vendor details"</span> <span style="color:var(--ui-tag-color-purple)">onUiClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">UiSidePanel</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiSidePanel</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"lg"</span> <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Vendor details"</span> <span style="color:var(--ui-tag-color-purple)">onUiClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">UiSidePanel</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-4-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">SidePanel</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">onRequestClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)} <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"xs"</span> <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Vendor details"</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">SidePanel</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">SidePanel</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">onRequestClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)} <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"lg"</span> <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Vendor details"</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">SidePanel</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="from-the-left">From the left</h2>
+<p><code>placement=&quot;left&quot;</code> slides the panel in from the start edge instead of the end.</p>
+<div class="doc-demo"><div style="transform: translateZ(0); position: relative; height: 320px; overflow: hidden; border: 1px solid var(--ui-hairline); --ui-side-panel-top: 0px">
+  <div style="display: flex; justify-content: flex-end; padding: 16px"><ui-button id="side-panel-left-open" kind="tertiary">Filters</ui-button></div>
+  <ui-side-panel id="side-panel-left" heading="Filters" placement="left" size="sm">
+    <div style="display: grid; gap: 16px; padding-block: 16px">
+      <ui-checkbox>Open</ui-checkbox>
+      <ui-checkbox>Waiting for approval</ui-checkbox>
+      <ui-checkbox>Closed</ui-checkbox>
+    </div>
+  </ui-side-panel>
+</div>
+
+<script type="text/x-demo">
+  const panel = document.getElementById('side-panel-left');
+  document.getElementById('side-panel-left-open').addEventListener('click', () => (panel.open = true));
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-5-0">HTML</ui-tab><ui-tab panel="code-5-1">React</ui-tab><ui-tab panel="code-5-2">React + Tailwind</ui-tab><ui-tab-panel name="code-5-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"transform: translateZ(0); position: relative; height: 320px; overflow: hidden; border: 1px solid var(--ui-hairline); --ui-side-panel-top: 0px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"display: flex; justify-content: flex-end; padding: 16px"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"side-panel-left-open"</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"tertiary"</span>&gt;Filters&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-side-panel</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"side-panel-left"</span> <span style="color:var(--ui-tag-color-purple)">heading</span>=<span style="color:var(--ui-tag-color-teal)">"Filters"</span> <span style="color:var(--ui-tag-color-purple)">placement</span>=<span style="color:var(--ui-tag-color-teal)">"left"</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"sm"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"display: grid; gap: 16px; padding-block: 16px"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-checkbox</span>&gt;Open&lt;/<span style="color:var(--ui-tag-color-blue)">ui-checkbox</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-checkbox</span>&gt;Waiting for approval&lt;/<span style="color:var(--ui-tag-color-blue)">ui-checkbox</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-checkbox</span>&gt;Closed&lt;/<span style="color:var(--ui-tag-color-blue)">ui-checkbox</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-side-panel</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> panel <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'side-panel-left'</span>);
+  document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'side-panel-left-open'</span>).<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (panel.open <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-green)">true</span>));
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-5-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiSidePanel</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Filters"</span> <span style="color:var(--ui-tag-color-purple)">placement</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"left"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">onUiClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCheckbox</span>&gt;Open&lt;/<span style="color:var(--ui-tag-color-blue)">UiCheckbox</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCheckbox</span>&gt;Waiting for approval&lt;/<span style="color:var(--ui-tag-color-blue)">UiCheckbox</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiCheckbox</span>&gt;Closed&lt;/<span style="color:var(--ui-tag-color-blue)">UiCheckbox</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiSidePanel</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-5-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">SidePanel</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">onRequestClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)} <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Filters"</span> <span style="color:var(--ui-tag-color-purple)">placement</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"left"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">Checkbox</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Open"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">Checkbox</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Waiting for approval"</span> /&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">Checkbox</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Closed"</span> /&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">SidePanel</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="dim-the-page">Dim the page</h2>
+<p><code>include-overlay</code> dims the page behind the panel and stops it scrolling. A click on the overlay asks to close (<code>overlay</code>), unless <code>prevent-close-on-click-outside</code> is set.</p>
+<div class="doc-demo"><div style="transform: translateZ(0); position: relative; height: 320px; overflow: hidden; border: 1px solid var(--ui-hairline); --ui-side-panel-top: 0px">
+  <div style="padding: 16px"><ui-button id="side-panel-overlay-open">Assign reviewer</ui-button></div>
+  <ui-side-panel id="side-panel-overlay" heading="Assign reviewer" include-overlay size="sm">
+    <div style="padding-block: 16px">
+      <ui-radio-group label="Reviewer" name="reviewer" value="ananya">
+        <ui-radio value="ananya">Ananya P.</ui-radio>
+        <ui-radio value="boonmee">Boonmee S.</ui-radio>
+      </ui-radio-group>
+    </div>
+    <ui-button slot="actions" kind="secondary">Cancel</ui-button>
+    <ui-button slot="actions">Assign</ui-button>
+  </ui-side-panel>
+</div>
+
+<script type="text/x-demo">
+  const panel = document.getElementById('side-panel-overlay');
+  document.getElementById('side-panel-overlay-open').addEventListener('click', () => (panel.open = true));
+  for (const button of panel.querySelectorAll('[slot="actions"]')) button.addEventListener('click', () => (panel.open = false));
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-6-0">HTML</ui-tab><ui-tab panel="code-6-1">React</ui-tab><ui-tab panel="code-6-2">React + Tailwind</ui-tab><ui-tab-panel name="code-6-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"transform: translateZ(0); position: relative; height: 320px; overflow: hidden; border: 1px solid var(--ui-hairline); --ui-side-panel-top: 0px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"padding: 16px"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"side-panel-overlay-open"</span>&gt;Assign reviewer&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-side-panel</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"side-panel-overlay"</span> <span style="color:var(--ui-tag-color-purple)">heading</span>=<span style="color:var(--ui-tag-color-teal)">"Assign reviewer"</span> <span style="color:var(--ui-tag-color-purple)">include-overlay</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"sm"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"padding-block: 16px"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-radio-group</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Reviewer"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"reviewer"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"ananya"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">ui-radio</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"ananya"</span>&gt;Ananya P.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-radio</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">ui-radio</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"boonmee"</span>&gt;Boonmee S.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-radio</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">ui-radio-group</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"actions"</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"secondary"</span>&gt;Cancel&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"actions"</span>&gt;Assign&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-side-panel</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> panel <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'side-panel-overlay'</span>);
+  document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'side-panel-overlay-open'</span>).<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (panel.open <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-green)">true</span>));
+  <span style="color:var(--ui-tag-color-magenta)">for</span> (<span style="color:var(--ui-tag-color-magenta)">const</span> button <span style="color:var(--ui-tag-color-magenta)">of</span> panel.<span style="color:var(--ui-tag-color-cyan)">querySelectorAll</span>(<span style="color:var(--ui-tag-color-teal)">'[slot="actions"]'</span>)) button.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (panel.open <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-green)">false</span>));
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-6-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiSidePanel</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Assign reviewer"</span> <span style="color:var(--ui-tag-color-purple)">includeOverlay</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">onUiClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiRadioGroup</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Reviewer"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"reviewer"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ananya"</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">UiRadioGroup</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiButton</span> <span style="color:var(--ui-tag-color-purple)">slot</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"actions"</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"secondary"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}&gt;Cancel&lt;/<span style="color:var(--ui-tag-color-blue)">UiButton</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiButton</span> <span style="color:var(--ui-tag-color-purple)">slot</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"actions"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}&gt;Assign&lt;/<span style="color:var(--ui-tag-color-blue)">UiButton</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiSidePanel</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-6-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">SidePanel</span>
+  <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open}
+  <span style="color:var(--ui-tag-color-purple)">onRequestClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}
+  <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Assign reviewer"</span>
+  <span style="color:var(--ui-tag-color-purple)">includeOverlay</span>
+  <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span>
+  <span style="color:var(--ui-tag-color-purple)">actions</span><span style="color:var(--ui-tag-color-magenta)">=</span>{[
+    { <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Cancel'</span>, <span style="color:var(--ui-tag-color-purple)">kind:</span> <span style="color:var(--ui-tag-color-teal)">'secondary'</span>, <span style="color:var(--ui-tag-color-cyan)">onClick</span><span style="color:var(--ui-tag-color-purple)">:</span> () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>) },
+    { <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Assign'</span>, <span style="color:var(--ui-tag-color-cyan)">onClick</span><span style="color:var(--ui-tag-color-purple)">:</span> () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>) },
+  ]}
+&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">RadioGroup</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Reviewer"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"reviewer"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ananya"</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">RadioGroup</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">SidePanel</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="push-the-page-aside">Push the page aside</h2>
+<p><code>slide-in</code> makes room for the panel instead of covering the page: the element that <code>selector-page-content</code> points to gets a margin as wide as the panel. A slide-in panel doesn't take focus, keep Tab inside or close on Esc, so the page stays usable beside it.</p>
+<div class="doc-demo"><div style="transform: translateZ(0); position: relative; height: 300px; overflow: hidden; border: 1px solid var(--ui-hairline); --ui-side-panel-top: 0px">
+  <div id="side-panel-page" style="display: grid; gap: 16px; padding: 16px">
+    <p style="margin: 0">Contract list: 24 contracts waiting for a signature.</p>
+    <div><ui-button id="side-panel-push-open" kind="tertiary">Show summary</ui-button></div>
+  </div>
+  <ui-side-panel id="side-panel-push" heading="Summary" slide-in selector-page-content="#side-panel-page" size="xs">
+    <p>8 sale, 12 lease, 4 service contracts.</p>
+  </ui-side-panel>
+</div>
+
+<script type="text/x-demo">
+  const panel = document.getElementById('side-panel-push');
+  document.getElementById('side-panel-push-open').addEventListener('click', () => (panel.open = !panel.open));
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-7-0">HTML</ui-tab><ui-tab panel="code-7-1">React</ui-tab><ui-tab panel="code-7-2">React + Tailwind</ui-tab><ui-tab-panel name="code-7-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"transform: translateZ(0); position: relative; height: 300px; overflow: hidden; border: 1px solid var(--ui-hairline); --ui-side-panel-top: 0px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"side-panel-page"</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"display: grid; gap: 16px; padding: 16px"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"margin: 0"</span>&gt;Contract list: 24 contracts waiting for a signature.&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"side-panel-push-open"</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"tertiary"</span>&gt;Show summary&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-side-panel</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"side-panel-push"</span> <span style="color:var(--ui-tag-color-purple)">heading</span>=<span style="color:var(--ui-tag-color-teal)">"Summary"</span> <span style="color:var(--ui-tag-color-purple)">slide-in</span> <span style="color:var(--ui-tag-color-purple)">selector-page-content</span>=<span style="color:var(--ui-tag-color-teal)">"#side-panel-page"</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"xs"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;8 sale, 12 lease, 4 service contracts.&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-side-panel</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> panel <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'side-panel-push'</span>);
+  document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'side-panel-push-open'</span>).<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (panel.open <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-magenta)">!</span>panel.open));
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-7-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">main</span> <span style="color:var(--ui-tag-color-purple)">id</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"contracts"</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">main</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiSidePanel</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Summary"</span> <span style="color:var(--ui-tag-color-purple)">slideIn</span> <span style="color:var(--ui-tag-color-purple)">selectorPageContent</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"#contracts"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"xs"</span> <span style="color:var(--ui-tag-color-purple)">onUiClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;8 sale, 12 lease, 4 service contracts.&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiSidePanel</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-7-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">main</span> <span style="color:var(--ui-tag-color-purple)">id</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"contracts"</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">main</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">SidePanel</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">onRequestClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)} <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Summary"</span> <span style="color:var(--ui-tag-color-purple)">slideIn</span> <span style="color:var(--ui-tag-color-purple)">selectorPageContent</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"#contracts"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"xs"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;8 sale, 12 lease, 4 service contracts.&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">SidePanel</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="action-buttons">Action buttons</h2>
+<p>Up to four <code>&lt;ui-button slot=&quot;actions&quot;&gt;</code> sit at the foot of the panel, laid out as Carbon's ActionSet for the panel's size: side by side, or one per row in an <code>xs</code> or <code>sm</code> panel and in an <code>md</code> panel with more than two. They are 64px tall; <code>condensed-actions</code> makes them 48px. React + Tailwind takes them as data in <code>actions</code>.</p>
+<div class="doc-demo"><div style="transform: translateZ(0); position: relative; height: 380px; overflow: hidden; border: 1px solid var(--ui-hairline); --ui-side-panel-top: 0px">
+  <div style="display: flex; flex-wrap: wrap; gap: 16px; padding: 16px">
+    <ui-button id="side-panel-actions-open" kind="tertiary">Three actions</ui-button>
+    <ui-button id="side-panel-actions-condensed" kind="tertiary">Condensed</ui-button>
+  </div>
+  <ui-side-panel id="side-panel-actions" heading="Approve request" size="lg">
+    <p>Purchase request PR-2026-0318, 128,500 baht, from the IT department.</p>
+    <ui-button slot="actions" kind="ghost">Cancel</ui-button>
+    <ui-button slot="actions" kind="secondary">Return</ui-button>
+    <ui-button slot="actions">Approve</ui-button>
+  </ui-side-panel>
+</div>
+
+<script type="text/x-demo">
+  const panel = document.getElementById('side-panel-actions');
+  const show = (condensed) => {
+    panel.condensedActions = condensed;
+    panel.open = true;
+  };
+  document.getElementById('side-panel-actions-open').addEventListener('click', () => show(false));
+  document.getElementById('side-panel-actions-condensed').addEventListener('click', () => show(true));
+  for (const button of panel.querySelectorAll('[slot="actions"]')) button.addEventListener('click', () => (panel.open = false));
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-8-0">HTML</ui-tab><ui-tab panel="code-8-1">React</ui-tab><ui-tab panel="code-8-2">React + Tailwind</ui-tab><ui-tab-panel name="code-8-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"transform: translateZ(0); position: relative; height: 380px; overflow: hidden; border: 1px solid var(--ui-hairline); --ui-side-panel-top: 0px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"display: flex; flex-wrap: wrap; gap: 16px; padding: 16px"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"side-panel-actions-open"</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"tertiary"</span>&gt;Three actions&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"side-panel-actions-condensed"</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"tertiary"</span>&gt;Condensed&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-side-panel</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"side-panel-actions"</span> <span style="color:var(--ui-tag-color-purple)">heading</span>=<span style="color:var(--ui-tag-color-teal)">"Approve request"</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"lg"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;Purchase request PR-2026-0318, 128,500 baht, from the IT department.&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"actions"</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"ghost"</span>&gt;Cancel&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"actions"</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"secondary"</span>&gt;Return&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"actions"</span>&gt;Approve&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-side-panel</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> panel <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'side-panel-actions'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> <span style="color:var(--ui-tag-color-cyan)">show</span> <span style="color:var(--ui-tag-color-magenta)">=</span> (condensed) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    panel.condensedActions <span style="color:var(--ui-tag-color-magenta)">=</span> condensed;
+    panel.open <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-green)">true</span>;
+  };
+  document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'side-panel-actions-open'</span>).<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">show</span>(<span style="color:var(--ui-tag-color-green)">false</span>));
+  document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'side-panel-actions-condensed'</span>).<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">show</span>(<span style="color:var(--ui-tag-color-green)">true</span>));
+  <span style="color:var(--ui-tag-color-magenta)">for</span> (<span style="color:var(--ui-tag-color-magenta)">const</span> button <span style="color:var(--ui-tag-color-magenta)">of</span> panel.<span style="color:var(--ui-tag-color-cyan)">querySelectorAll</span>(<span style="color:var(--ui-tag-color-teal)">'[slot="actions"]'</span>)) button.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (panel.open <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-green)">false</span>));
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-8-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiSidePanel</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Approve request"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"lg"</span> <span style="color:var(--ui-tag-color-purple)">condensedActions</span> <span style="color:var(--ui-tag-color-purple)">onUiClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;Purchase request PR-2026-0318, 128,500 baht, from the IT department.&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiButton</span> <span style="color:var(--ui-tag-color-purple)">slot</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"actions"</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ghost"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{close}&gt;Cancel&lt;/<span style="color:var(--ui-tag-color-blue)">UiButton</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiButton</span> <span style="color:var(--ui-tag-color-purple)">slot</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"actions"</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"secondary"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{sendBack}&gt;Return&lt;/<span style="color:var(--ui-tag-color-blue)">UiButton</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiButton</span> <span style="color:var(--ui-tag-color-purple)">slot</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"actions"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{approve}&gt;Approve&lt;/<span style="color:var(--ui-tag-color-blue)">UiButton</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiSidePanel</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-8-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">SidePanel</span>
+  <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open}
+  <span style="color:var(--ui-tag-color-purple)">onRequestClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}
+  <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Approve request"</span>
+  <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"lg"</span>
+  <span style="color:var(--ui-tag-color-purple)">condensedActions</span>
+  <span style="color:var(--ui-tag-color-purple)">actions</span><span style="color:var(--ui-tag-color-magenta)">=</span>{[
+    { <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Cancel'</span>, <span style="color:var(--ui-tag-color-purple)">kind:</span> <span style="color:var(--ui-tag-color-teal)">'ghost'</span>, <span style="color:var(--ui-tag-color-purple)">onClick:</span> close },
+    { <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Return'</span>, <span style="color:var(--ui-tag-color-purple)">kind:</span> <span style="color:var(--ui-tag-color-teal)">'secondary'</span>, <span style="color:var(--ui-tag-color-purple)">onClick:</span> sendBack },
+    { <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Approve'</span>, <span style="color:var(--ui-tag-color-purple)">onClick:</span> approve },
+  ]}
+&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;Purchase request PR-2026-0318, 128,500 baht, from the IT department.&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">SidePanel</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="toolbar-under-the-header">Toolbar under the header</h2>
+<p><code>slot=&quot;action-toolbar&quot;</code> puts small buttons under the header: the first one with its label, the rest as icon buttons. React + Tailwind takes them in <code>actionToolbar</code>.</p>
+<div class="doc-demo"><div style="transform: translateZ(0); position: relative; height: 340px; overflow: hidden; border: 1px solid var(--ui-hairline); --ui-side-panel-top: 0px">
+  <div style="padding: 16px"><ui-button id="side-panel-toolbar-open" kind="tertiary">Open contract</ui-button></div>
+  <ui-side-panel id="side-panel-toolbar" heading="CT-2026-0142" size="md">
+    <span slot="subtitle">Office lease, 3rd floor</span>
+    <ui-button slot="action-toolbar" kind="ghost" size="sm">Copy link</ui-button>
+    <ui-icon-button slot="action-toolbar" kind="ghost" size="sm" label="Edit contract">
+      <svg viewBox="0 0 16 16"><path d="m13.7 4.3-2-2a1 1 0 0 0-1.4 0L2 10.6V14h3.4l8.3-8.3a1 1 0 0 0 0-1.4ZM5 13H3v-2l6-6 2 2Zm7-7-2-2 1-1 2 2Z"/></svg>
+    </ui-icon-button>
+    <p>24 months from 1 November 2026, 45,000 baht a month.</p>
+  </ui-side-panel>
+</div>
+
+<script type="text/x-demo">
+  const panel = document.getElementById('side-panel-toolbar');
+  document.getElementById('side-panel-toolbar-open').addEventListener('click', () => (panel.open = true));
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-9-0">HTML</ui-tab><ui-tab panel="code-9-1">React</ui-tab><ui-tab panel="code-9-2">React + Tailwind</ui-tab><ui-tab-panel name="code-9-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"transform: translateZ(0); position: relative; height: 340px; overflow: hidden; border: 1px solid var(--ui-hairline); --ui-side-panel-top: 0px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"padding: 16px"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"side-panel-toolbar-open"</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"tertiary"</span>&gt;Open contract&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-side-panel</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"side-panel-toolbar"</span> <span style="color:var(--ui-tag-color-purple)">heading</span>=<span style="color:var(--ui-tag-color-teal)">"CT-2026-0142"</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"md"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"subtitle"</span>&gt;Office lease, 3rd floor&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"action-toolbar"</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"ghost"</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"sm"</span>&gt;Copy link&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-icon-button</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"action-toolbar"</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"ghost"</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Edit contract"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span>=<span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span>=<span style="color:var(--ui-tag-color-teal)">"m13.7 4.3-2-2a1 1 0 0 0-1.4 0L2 10.6V14h3.4l8.3-8.3a1 1 0 0 0 0-1.4ZM5 13H3v-2l6-6 2 2Zm7-7-2-2 1-1 2 2Z"</span>/&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">ui-icon-button</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;24 months from 1 November 2026, 45,000 baht a month.&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-side-panel</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> panel <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'side-panel-toolbar'</span>);
+  document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'side-panel-toolbar-open'</span>).<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (panel.open <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-green)">true</span>));
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-9-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { Edit <span style="color:var(--ui-tag-color-magenta)">as</span> EditIcon } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@carbon/icons-react'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiSidePanel</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"CT-2026-0142"</span> <span style="color:var(--ui-tag-color-purple)">onUiClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">slot</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"subtitle"</span>&gt;Office lease, 3rd floor&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiButton</span> <span style="color:var(--ui-tag-color-purple)">slot</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"action-toolbar"</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ghost"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span>&gt;Copy link&lt;/<span style="color:var(--ui-tag-color-blue)">UiButton</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiIconButton</span> <span style="color:var(--ui-tag-color-purple)">slot</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"action-toolbar"</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ghost"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Edit contract"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">EditIcon</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">UiIconButton</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;24 months from 1 November 2026, 45,000 baht a month.&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiSidePanel</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-9-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { Edit <span style="color:var(--ui-tag-color-magenta)">as</span> EditIcon } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@carbon/icons-react'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">SidePanel</span>
+  <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open}
+  <span style="color:var(--ui-tag-color-purple)">onRequestClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}
+  <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"CT-2026-0142"</span>
+  <span style="color:var(--ui-tag-color-purple)">subtitle</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Office lease, 3rd floor"</span>
+  <span style="color:var(--ui-tag-color-purple)">actionToolbar</span><span style="color:var(--ui-tag-color-magenta)">=</span>{&lt;&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Button</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ghost"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span>&gt;Copy link&lt;/<span style="color:var(--ui-tag-color-blue)">Button</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">IconButton</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ghost"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Edit contract"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">EditIcon</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">IconButton</span>&gt;
+  &lt;/&gt;}
+&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;24 months from 1 November 2026, 45,000 baht a month.&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">SidePanel</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="heading-that-shrinks-on-scroll">Heading that shrinks on scroll</h2>
+<p>With a <code>label-text</code>, a subtitle or a toolbar, and enough content to scroll, the label and subtitle fade as the content scrolls and the heading shrinks into a compact bar (Carbon's default). <code>animate-title=&quot;false&quot;</code> keeps the header still; reduced motion turns it off too. Scroll the panel below.</p>
+<div class="doc-demo"><div style="transform: translateZ(0); position: relative; height: 420px; overflow: hidden; border: 1px solid var(--ui-hairline); --ui-side-panel-top: 0px">
+  <div style="padding: 16px"><ui-button id="side-panel-title-open" kind="tertiary">Open audit</ui-button></div>
+  <ui-side-panel id="side-panel-title" heading="Annual audit 2026" label-text="Internal audit" size="md">
+    <span slot="subtitle">Answer every question before you submit.</span>
+    <div style="display: grid; gap: 16px; padding-block: 16px">
+      <ui-text-input label="Auditor"></ui-text-input>
+      <ui-text-input label="Department"></ui-text-input>
+      <ui-text-area label="Findings"></ui-text-area>
+      <ui-text-area label="Risks"></ui-text-area>
+      <ui-text-area label="Recommendations"></ui-text-area>
+    </div>
+    <ui-button slot="actions" kind="secondary">Save draft</ui-button>
+    <ui-button slot="actions">Submit</ui-button>
+  </ui-side-panel>
+</div>
+
+<script type="text/x-demo">
+  const panel = document.getElementById('side-panel-title');
+  document.getElementById('side-panel-title-open').addEventListener('click', () => (panel.open = true));
+  for (const button of panel.querySelectorAll('[slot="actions"]')) button.addEventListener('click', () => (panel.open = false));
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-10-0">HTML</ui-tab><ui-tab panel="code-10-1">React</ui-tab><ui-tab panel="code-10-2">React + Tailwind</ui-tab><ui-tab-panel name="code-10-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"transform: translateZ(0); position: relative; height: 420px; overflow: hidden; border: 1px solid var(--ui-hairline); --ui-side-panel-top: 0px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"padding: 16px"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"side-panel-title-open"</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"tertiary"</span>&gt;Open audit&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-side-panel</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"side-panel-title"</span> <span style="color:var(--ui-tag-color-purple)">heading</span>=<span style="color:var(--ui-tag-color-teal)">"Annual audit 2026"</span> <span style="color:var(--ui-tag-color-purple)">label-text</span>=<span style="color:var(--ui-tag-color-teal)">"Internal audit"</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"md"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"subtitle"</span>&gt;Answer every question before you submit.&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"display: grid; gap: 16px; padding-block: 16px"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-text-input</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Auditor"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-text-input</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-text-input</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Department"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-text-input</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-text-area</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Findings"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-text-area</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-text-area</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Risks"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-text-area</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-text-area</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Recommendations"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-text-area</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"actions"</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"secondary"</span>&gt;Save draft&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"actions"</span>&gt;Submit&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-side-panel</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> panel <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'side-panel-title'</span>);
+  document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'side-panel-title-open'</span>).<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (panel.open <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-green)">true</span>));
+  <span style="color:var(--ui-tag-color-magenta)">for</span> (<span style="color:var(--ui-tag-color-magenta)">const</span> button <span style="color:var(--ui-tag-color-magenta)">of</span> panel.<span style="color:var(--ui-tag-color-cyan)">querySelectorAll</span>(<span style="color:var(--ui-tag-color-teal)">'[slot="actions"]'</span>)) button.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (panel.open <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-green)">false</span>));
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-10-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiSidePanel</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Annual audit 2026"</span> <span style="color:var(--ui-tag-color-purple)">labelText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Internal audit"</span> <span style="color:var(--ui-tag-color-purple)">onUiClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">slot</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"subtitle"</span>&gt;Answer every question before you submit.&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+  …
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiSidePanel</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-10-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">SidePanel</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">onRequestClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)} <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Annual audit 2026"</span> <span style="color:var(--ui-tag-color-purple)">labelText</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Internal audit"</span> <span style="color:var(--ui-tag-color-purple)">subtitle</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Answer every question before you submit."</span> <span style="color:var(--ui-tag-color-purple)">actions</span><span style="color:var(--ui-tag-color-magenta)">=</span>{…}&gt;
+  …
+&lt;/<span style="color:var(--ui-tag-color-blue)">SidePanel</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="steps">Steps</h2>
+<p>A panel can hold a short flow. <code>current-step</code> above 0 shows a back button at the top; pressing it fires <code>ui-navigate-back</code> (React + Tailwind: <code>onNavigationBack</code>), and you change the step and the content. The content scrolls back to the top when the step changes.</p>
+<div class="doc-demo"><div style="transform: translateZ(0); position: relative; height: 360px; overflow: hidden; border: 1px solid var(--ui-hairline); --ui-side-panel-top: 0px">
+  <div style="padding: 16px"><ui-button id="side-panel-steps-open">New request</ui-button></div>
+  <ui-side-panel id="side-panel-steps" heading="Choose a template" size="sm">
+    <div id="side-panel-step-0" style="padding-block: 16px">
+      <ui-radio-group label="Template" name="template" value="purchase">
+        <ui-radio value="purchase">Purchase request</ui-radio>
+        <ui-radio value="travel">Travel request</ui-radio>
+      </ui-radio-group>
+    </div>
+    <div id="side-panel-step-1" hidden style="padding-block: 16px">
+      <ui-text-input label="Amount" suffix-text="THB"></ui-text-input>
+    </div>
+    <ui-button slot="actions" id="side-panel-steps-next">Next</ui-button>
+  </ui-side-panel>
+</div>
+
+<script type="text/x-demo">
+  const panel = document.getElementById('side-panel-steps');
+  const next = document.getElementById('side-panel-steps-next');
+  const step = (n) => {
+    panel.currentStep = n;
+    panel.heading = n ? 'Request details' : 'Choose a template';
+    document.getElementById('side-panel-step-0').hidden = n !== 0;
+    document.getElementById('side-panel-step-1').hidden = n !== 1;
+    next.textContent = n ? 'Send' : 'Next';
+  };
+  document.getElementById('side-panel-steps-open').addEventListener('click', () => {
+    step(0);
+    panel.open = true;
+  });
+  next.addEventListener('click', () => {
+    if (panel.currentStep === 0) step(1);
+    else panel.open = false;
+  });
+  panel.addEventListener('ui-navigate-back', () => step(panel.currentStep - 1));
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-11-0">HTML</ui-tab><ui-tab panel="code-11-1">React</ui-tab><ui-tab panel="code-11-2">React + Tailwind</ui-tab><ui-tab-panel name="code-11-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"transform: translateZ(0); position: relative; height: 360px; overflow: hidden; border: 1px solid var(--ui-hairline); --ui-side-panel-top: 0px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"padding: 16px"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"side-panel-steps-open"</span>&gt;New request&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-side-panel</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"side-panel-steps"</span> <span style="color:var(--ui-tag-color-purple)">heading</span>=<span style="color:var(--ui-tag-color-teal)">"Choose a template"</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"sm"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"side-panel-step-0"</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"padding-block: 16px"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-radio-group</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Template"</span> <span style="color:var(--ui-tag-color-purple)">name</span>=<span style="color:var(--ui-tag-color-teal)">"template"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"purchase"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">ui-radio</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"purchase"</span>&gt;Purchase request&lt;/<span style="color:var(--ui-tag-color-blue)">ui-radio</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">ui-radio</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"travel"</span>&gt;Travel request&lt;/<span style="color:var(--ui-tag-color-blue)">ui-radio</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">ui-radio-group</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"side-panel-step-1"</span> <span style="color:var(--ui-tag-color-purple)">hidden</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"padding-block: 16px"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-text-input</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"Amount"</span> <span style="color:var(--ui-tag-color-purple)">suffix-text</span>=<span style="color:var(--ui-tag-color-teal)">"THB"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-text-input</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"actions"</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"side-panel-steps-next"</span>&gt;Next&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-side-panel</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> panel <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'side-panel-steps'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> next <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'side-panel-steps-next'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> <span style="color:var(--ui-tag-color-cyan)">step</span> <span style="color:var(--ui-tag-color-magenta)">=</span> (n) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    panel.currentStep <span style="color:var(--ui-tag-color-magenta)">=</span> n;
+    panel.heading <span style="color:var(--ui-tag-color-magenta)">=</span> n <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-teal)">'Request details'</span> <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-teal)">'Choose a template'</span>;
+    document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'side-panel-step-0'</span>).hidden <span style="color:var(--ui-tag-color-magenta)">=</span> n <span style="color:var(--ui-tag-color-magenta)">!==</span> <span style="color:var(--ui-tag-color-green)">0</span>;
+    document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'side-panel-step-1'</span>).hidden <span style="color:var(--ui-tag-color-magenta)">=</span> n <span style="color:var(--ui-tag-color-magenta)">!==</span> <span style="color:var(--ui-tag-color-green)">1</span>;
+    next.textContent <span style="color:var(--ui-tag-color-magenta)">=</span> n <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-teal)">'Send'</span> <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-teal)">'Next'</span>;
+  };
+  document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'side-panel-steps-open'</span>).<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    <span style="color:var(--ui-tag-color-cyan)">step</span>(<span style="color:var(--ui-tag-color-green)">0</span>);
+    panel.open <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-green)">true</span>;
+  });
+  next.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    <span style="color:var(--ui-tag-color-magenta)">if</span> (panel.currentStep <span style="color:var(--ui-tag-color-magenta)">===</span> <span style="color:var(--ui-tag-color-green)">0</span>) <span style="color:var(--ui-tag-color-cyan)">step</span>(<span style="color:var(--ui-tag-color-green)">1</span>);
+    <span style="color:var(--ui-tag-color-magenta)">else</span> panel.open <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-green)">false</span>;
+  });
+  panel.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'ui-navigate-back'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">step</span>(panel.currentStep <span style="color:var(--ui-tag-color-magenta)">-</span> <span style="color:var(--ui-tag-color-green)">1</span>));
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-11-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> [step, setStep] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-green)">0</span>);
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiSidePanel</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span>{step <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-teal)">'Request details'</span> <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-teal)">'Choose a template'</span>} <span style="color:var(--ui-tag-color-purple)">currentStep</span><span style="color:var(--ui-tag-color-magenta)">=</span>{step} <span style="color:var(--ui-tag-color-purple)">onUiNavigateBack</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setStep</span>(step <span style="color:var(--ui-tag-color-magenta)">-</span> <span style="color:var(--ui-tag-color-green)">1</span>)} <span style="color:var(--ui-tag-color-purple)">onUiClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}&gt;
+  {step <span style="color:var(--ui-tag-color-magenta)">===</span> <span style="color:var(--ui-tag-color-green)">0</span> <span style="color:var(--ui-tag-color-magenta)">?</span> &lt;<span style="color:var(--ui-tag-color-blue)">TemplateStep</span> /&gt; <span style="color:var(--ui-tag-color-magenta)">:</span> &lt;<span style="color:var(--ui-tag-color-blue)">DetailsStep</span> /&gt;}
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiButton</span> <span style="color:var(--ui-tag-color-purple)">slot</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"actions"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (step <span style="color:var(--ui-tag-color-magenta)">===</span> <span style="color:var(--ui-tag-color-green)">0</span> <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-cyan)">setStep</span>(<span style="color:var(--ui-tag-color-green)">1</span>) <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">send</span>())}&gt;{step <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-teal)">'Send'</span> <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-teal)">'Next'</span>}&lt;/<span style="color:var(--ui-tag-color-blue)">UiButton</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiSidePanel</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-11-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> [step, setStep] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-green)">0</span>);
+
+&lt;<span style="color:var(--ui-tag-color-blue)">SidePanel</span>
+  <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open}
+  <span style="color:var(--ui-tag-color-purple)">onRequestClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}
+  <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span>{step <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-teal)">'Request details'</span> <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-teal)">'Choose a template'</span>}
+  <span style="color:var(--ui-tag-color-purple)">currentStep</span><span style="color:var(--ui-tag-color-magenta)">=</span>{step}
+  <span style="color:var(--ui-tag-color-purple)">onNavigationBack</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setStep</span>(step <span style="color:var(--ui-tag-color-magenta)">-</span> <span style="color:var(--ui-tag-color-green)">1</span>)}
+  <span style="color:var(--ui-tag-color-purple)">actions</span><span style="color:var(--ui-tag-color-magenta)">=</span>{[{ <span style="color:var(--ui-tag-color-purple)">label:</span> step <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-teal)">'Send'</span> <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-teal)">'Next'</span>, <span style="color:var(--ui-tag-color-cyan)">onClick</span><span style="color:var(--ui-tag-color-purple)">:</span> () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (step <span style="color:var(--ui-tag-color-magenta)">===</span> <span style="color:var(--ui-tag-color-green)">0</span> <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-cyan)">setStep</span>(<span style="color:var(--ui-tag-color-green)">1</span>) <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">send</span>()) }]}
+&gt;
+  {step <span style="color:var(--ui-tag-color-magenta)">===</span> <span style="color:var(--ui-tag-color-green)">0</span> <span style="color:var(--ui-tag-color-magenta)">?</span> &lt;<span style="color:var(--ui-tag-color-blue)">TemplateStep</span> /&gt; <span style="color:var(--ui-tag-color-magenta)">:</span> &lt;<span style="color:var(--ui-tag-color-blue)">DetailsStep</span> /&gt;}
+&lt;/<span style="color:var(--ui-tag-color-blue)">SidePanel</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>The back button is named &quot;Back&quot; in the page language; <code>navigation-back-icon-description</code> changes it.</p>
+<h2 id="content-above-and-below-the-title">Content above and below the title</h2>
+<p><code>slot=&quot;above-title&quot;</code> goes above the label and heading, <code>slot=&quot;below-title&quot;</code> under the subtitle: a status tag, a search field. React + Tailwind has neither: put the content at the start of the panel's children.</p>
+<div class="doc-demo"><div style="transform: translateZ(0); position: relative; height: 320px; overflow: hidden; border: 1px solid var(--ui-hairline); --ui-side-panel-top: 0px">
+  <div style="padding: 16px"><ui-button id="side-panel-slots-open" kind="tertiary">Open request</ui-button></div>
+  <ui-side-panel id="side-panel-slots" heading="PR-2026-0318" size="sm">
+    <span slot="subtitle">Laptops for the IT department</span>
+    <div slot="below-title" style="padding-block-end: 16px"><ui-tag type="green">Approved</ui-tag></div>
+    <p>128,500 baht, approved by Chaiya R. on 9 October 2026.</p>
+  </ui-side-panel>
+</div>
+
+<script type="text/x-demo">
+  const panel = document.getElementById('side-panel-slots');
+  document.getElementById('side-panel-slots-open').addEventListener('click', () => (panel.open = true));
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-12-0">HTML</ui-tab><ui-tab panel="code-12-1">React</ui-tab><ui-tab panel="code-12-2">React + Tailwind</ui-tab><ui-tab-panel name="code-12-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"transform: translateZ(0); position: relative; height: 320px; overflow: hidden; border: 1px solid var(--ui-hairline); --ui-side-panel-top: 0px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"padding: 16px"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"side-panel-slots-open"</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"tertiary"</span>&gt;Open request&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-side-panel</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"side-panel-slots"</span> <span style="color:var(--ui-tag-color-purple)">heading</span>=<span style="color:var(--ui-tag-color-teal)">"PR-2026-0318"</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"sm"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"subtitle"</span>&gt;Laptops for the IT department&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"below-title"</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"padding-block-end: 16px"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">ui-tag</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"green"</span>&gt;Approved&lt;/<span style="color:var(--ui-tag-color-blue)">ui-tag</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;128,500 baht, approved by Chaiya R. on 9 October 2026.&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-side-panel</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> panel <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'side-panel-slots'</span>);
+  document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'side-panel-slots-open'</span>).<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (panel.open <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-green)">true</span>));
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-12-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiSidePanel</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"PR-2026-0318"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">onUiClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">slot</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"subtitle"</span>&gt;Laptops for the IT department&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">slot</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"below-title"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">UiTag</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"green"</span>&gt;Approved&lt;/<span style="color:var(--ui-tag-color-blue)">UiTag</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;128,500 baht, approved by Chaiya R. on 9 October 2026.&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiSidePanel</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-12-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">SidePanel</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">onRequestClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)} <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"PR-2026-0318"</span> <span style="color:var(--ui-tag-color-purple)">subtitle</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Laptops for the IT department"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">Tag</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"green"</span>&gt;Approved&lt;/<span style="color:var(--ui-tag-color-blue)">Tag</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;128,500 baht, approved by Chaiya R. on 9 October 2026.&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">SidePanel</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="ask-before-closing">Ask before closing</h2>
+<p>×, Esc and a click on the overlay fire <code>ui-request-close</code>, cancelable, with the <code>reason</code>: <code>close-button</code>, <code>escape</code> or <code>overlay</code>. Call <code>preventDefault()</code> to keep the panel open. <code>requestClose(reason)</code> asks the same way from your own button; setting <code>open</code> to false closes without asking. The panel below only closes with its Done button.</p>
+<div class="doc-demo"><div style="transform: translateZ(0); position: relative; height: 300px; overflow: hidden; border: 1px solid var(--ui-hairline); --ui-side-panel-top: 0px">
+  <div style="padding: 16px">
+    <ui-button id="side-panel-guard-open" kind="tertiary">Open checklist</ui-button>
+    <p>Asked to close by: <output id="side-panel-guard-out"></output></p>
+  </div>
+  <ui-side-panel id="side-panel-guard" heading="Signing checklist" size="sm" include-overlay>
+    <p>Tick every item, then press Done.</p>
+    <ui-button slot="actions" id="side-panel-guard-done">Done</ui-button>
+  </ui-side-panel>
+</div>
+
+<script type="text/x-demo">
+  const panel = document.getElementById('side-panel-guard');
+  document.getElementById('side-panel-guard-open').addEventListener('click', () => (panel.open = true));
+  document.getElementById('side-panel-guard-done').addEventListener('click', () => (panel.open = false));
+  panel.addEventListener('ui-request-close', (event) => {
+    event.preventDefault();
+    document.getElementById('side-panel-guard-out').value = event.detail.reason;
+  });
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="Code"><ui-tab panel="code-13-0">HTML</ui-tab><ui-tab panel="code-13-1">React</ui-tab><ui-tab panel="code-13-2">React + Tailwind</ui-tab><ui-tab-panel name="code-13-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"transform: translateZ(0); position: relative; height: 300px; overflow: hidden; border: 1px solid var(--ui-hairline); --ui-side-panel-top: 0px"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"padding: 16px"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"side-panel-guard-open"</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"tertiary"</span>&gt;Open checklist&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;Asked to close by: &lt;<span style="color:var(--ui-tag-color-blue)">output</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"side-panel-guard-out"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-side-panel</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"side-panel-guard"</span> <span style="color:var(--ui-tag-color-purple)">heading</span>=<span style="color:var(--ui-tag-color-teal)">"Signing checklist"</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">include-overlay</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;Tick every item, then press Done.&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">slot</span>=<span style="color:var(--ui-tag-color-teal)">"actions"</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"side-panel-guard-done"</span>&gt;Done&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-side-panel</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> panel <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'side-panel-guard'</span>);
+  document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'side-panel-guard-open'</span>).<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (panel.open <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-green)">true</span>));
+  document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'side-panel-guard-done'</span>).<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (panel.open <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-green)">false</span>));
+  panel.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'ui-request-close'</span>, (event) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    event.<span style="color:var(--ui-tag-color-cyan)">preventDefault</span>();
+    document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'side-panel-guard-out'</span>).value <span style="color:var(--ui-tag-color-magenta)">=</span> event.detail.reason;
+  });
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-13-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiSidePanel</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Signing checklist"</span> <span style="color:var(--ui-tag-color-purple)">includeOverlay</span> <span style="color:var(--ui-tag-color-purple)">onUiRequestClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> { e.<span style="color:var(--ui-tag-color-cyan)">preventDefault</span>(); <span style="color:var(--ui-tag-color-cyan)">setReason</span>(e.detail.reason); }} <span style="color:var(--ui-tag-color-purple)">onUiClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;Tick every item, then press Done.&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiButton</span> <span style="color:var(--ui-tag-color-purple)">slot</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"actions"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>)}&gt;Done&lt;/<span style="color:var(--ui-tag-color-blue)">UiButton</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiSidePanel</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-13-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-ink-muted);font-style:italic">// onRequestClose only reports: the panel stays open until you set open to false</span>
+&lt;<span style="color:var(--ui-tag-color-blue)">SidePanel</span> <span style="color:var(--ui-tag-color-purple)">open</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">onRequestClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{setReason} <span style="color:var(--ui-tag-color-purple)">heading</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Signing checklist"</span> <span style="color:var(--ui-tag-color-purple)">includeOverlay</span> <span style="color:var(--ui-tag-color-purple)">actions</span><span style="color:var(--ui-tag-color-magenta)">=</span>{[{ <span style="color:var(--ui-tag-color-purple)">label:</span> <span style="color:var(--ui-tag-color-teal)">'Done'</span>, <span style="color:var(--ui-tag-color-cyan)">onClick</span><span style="color:var(--ui-tag-color-purple)">:</span> () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>) }]}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;Tick every item, then press Done.&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">SidePanel</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p><code>ui-request-close</code> and <code>ui-close</code> bubble, so a notification inside fires them on the panel too: check that <code>event.target</code> is the panel. React's <code>UiSidePanel</code> does that for you: <code>onUiRequestClose</code> and <code>onUiClose</code> get only the panel's own events.</p>
+<p><code>hide-close-button</code> removes ×; then give the panel another way to close.</p>
+<h2 id="keyboard">Keyboard</h2>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tab / Shift+Tab</td>
+<td>Moves through the panel's controls and wraps around inside it (not with <code>slide-in</code>)</td>
+</tr>
+<tr>
+<td>Esc</td>
+<td>Asks to close (<code>escape</code>; not with <code>slide-in</code>); focus goes back to what opened it</td>
+</tr>
+</tbody>
+</table>
+<h2 id="accessibility">Accessibility</h2>
+<ul>
+<li>The panel is a <code>complementary</code> landmark named by its <code>heading</code>.</li>
+<li>× is named &quot;Close&quot; and the back button &quot;Back&quot;, in the page language, with a tooltip; <code>close-icon-description</code> and <code>navigation-back-icon-description</code> change them.</li>
+<li>A slide-over panel keeps Tab inside, but the page behind it is not inert: screen reader users can still reach it with their reading keys. Use a <a href="/kanok-ui-docs/en/modal/">Modal</a> when the page must be out of reach.</li>
+</ul>
+<p>Unstyled React parts with the same behaviour: <a href="/kanok-ui-docs/en/headless-side-panel/">Headless Side panel</a>.</p>
+<h2 id="api">API</h2>
+<p>Generated from the package. In React, pass a property as a prop of the same name; events are props too (the React column).</p>
+<h3 id="ui-side-panel-react-uisidepanel"><code>&lt;ui-side-panel&gt;</code> · React <code>UiSidePanel</code></h3>
+<h4 id="attributes">Attributes</h4>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>open</code></td>
+<td><code>open</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>placement</code></td>
+<td><code>placement</code></td>
+<td><code>'right' | 'left'</code></td>
+<td><code>'right'</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>size</code></td>
+<td><code>size</code></td>
+<td><code>SidePanelSize</code></td>
+<td><code>'md'</code></td>
+<td>xs 16rem, sm 20rem, md 30rem, lg 40rem, xl 65rem, 2xl 80rem.</td>
+</tr>
+<tr>
+<td><code>heading</code></td>
+<td><code>heading</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>The heading (Carbon <code>title</code>); also the panel's accessible name.</td>
+</tr>
+<tr>
+<td><code>label-text</code></td>
+<td><code>labelText</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>A small label above the heading.</td>
+</tr>
+<tr>
+<td><code>slide-in</code></td>
+<td><code>slideIn</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Push the page aside (<code>selector-page-content</code>) instead of covering it; no focus trap, no Esc.</td>
+</tr>
+<tr>
+<td><code>include-overlay</code></td>
+<td><code>includeOverlay</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Dim the page; a click on it closes the panel (unless <code>prevent-close-on-click-outside</code>).</td>
+</tr>
+<tr>
+<td><code>prevent-close-on-click-outside</code></td>
+<td><code>preventCloseOnClickOutside</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>selector-initial-focus</code></td>
+<td><code>selectorInitialFocus</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>What takes focus on open (a selector in the content), else the first control.</td>
+</tr>
+<tr>
+<td><code>selector-page-content</code></td>
+<td><code>selectorPageContent</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>The page element a slide-in panel pushes aside.</td>
+</tr>
+<tr>
+<td><code>hide-close-button</code></td>
+<td><code>hideCloseButton</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>close-icon-description</code></td>
+<td><code>closeIconDescription</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>The × button's name and tooltip (default &quot;Close&quot;, translated).</td>
+</tr>
+<tr>
+<td><code>close-icon-tooltip-alignment</code></td>
+<td><code>closeIconTooltipAlignment</code></td>
+<td><code>Placement</code></td>
+<td><code>'left'</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>navigation-back-icon-description</code></td>
+<td><code>navigationBackIconDescription</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>The back button's name and tooltip (default &quot;Back&quot;, translated).</td>
+</tr>
+<tr>
+<td><code>current-step</code></td>
+<td><code>currentStep</code></td>
+<td><code>number</code></td>
+<td><code>0</code></td>
+<td>Above 0 shows the back button (a panel with steps).</td>
+</tr>
+<tr>
+<td><code>condensed-actions</code></td>
+<td><code>condensedActions</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>48px action buttons instead of 64px.</td>
+</tr>
+<tr>
+<td><code>animate-title</code></td>
+<td><code>animateTitle</code></td>
+<td><code>boolean</code></td>
+<td><code>true</code></td>
+<td>Shrink the heading as the content scrolls (Carbon's default).</td>
+</tr>
+</tbody>
+</table>
+<h4 id="methods">Methods</h4>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>requestClose(reason)</code></td>
+<td>Asks to close (cancelable <code>ui-request-close</code>), then closes.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="events">Events</h4>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>React</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ui-close</code></td>
+<td><code>onUiClose</code></td>
+<td>After it closed</td>
+</tr>
+<tr>
+<td><code>ui-navigate-back</code></td>
+<td><code>onUiNavigateBack</code></td>
+<td>The back button (<code>current-step</code> &gt; 0) was pressed</td>
+</tr>
+<tr>
+<td><code>ui-request-close</code></td>
+<td><code>onUiRequestClose</code></td>
+<td>Cancelable; detail: { reason: 'escape' | 'close-button' | 'overlay' }</td>
+</tr>
+</tbody>
+</table>
+<h4 id="slots">Slots</h4>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(default)</td>
+<td>The content</td>
+</tr>
+<tr>
+<td><code>subtitle</code></td>
+<td>Text under the heading</td>
+</tr>
+<tr>
+<td><code>above-title</code></td>
+<td>Content above the label and heading</td>
+</tr>
+<tr>
+<td><code>below-title</code></td>
+<td>Content under the subtitle</td>
+</tr>
+<tr>
+<td><code>action-toolbar</code></td>
+<td>Small buttons under the header (the first one with its label)</td>
+</tr>
+<tr>
+<td><code>actions</code></td>
+<td>The action buttons</td>
+</tr>
+</tbody>
+</table>
+<h4 id="css-parts">CSS parts</h4>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>panel</code></td>
+<td>The panel</td>
+</tr>
+<tr>
+<td><code>overlay</code></td>
+<td>The overlay of <code>include-overlay</code></td>
+</tr>
+<tr>
+<td><code>header</code></td>
+<td>The header</td>
+</tr>
+<tr>
+<td><code>heading</code></td>
+<td>The heading</td>
+</tr>
+<tr>
+<td><code>body</code></td>
+<td>The content's box</td>
+</tr>
+<tr>
+<td><code>actions</code></td>
+<td>The row of action buttons</td>
+</tr>
+</tbody>
+</table>
+<h4 id="css-custom-properties">CSS custom properties</h4>
+<table>
+<thead>
+<tr>
+<th>Custom property</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--ui-side-panel-top</code></td>
+<td></td>
+<td>Where the panel starts (default 3rem, under the UI shell header)</td>
+</tr>
+<tr>
+<td><code>--ui-side-panel-radius</code></td>
+<td></td>
+<td>Corner radius of the edge facing the page (default 0; Kanok: 12px)</td>
+</tr>
+<tr>
+<td><code>--ui-actions-gap</code></td>
+<td></td>
+<td>/ --ui-actions-padding - Gap between the action buttons and padding round them (default none: full-bleed buttons that touch; Kanok: 8px / 16px 20px)</td>
+</tr>
+<tr>
+<td><code>--ui-actions-button-flex</code></td>
+<td></td>
+<td><code>flex</code> of each action button (default: Carbon's widths by count; Kanok: their own width)</td>
+</tr>
+<tr>
+<td><code>--ui-actions-button-align</code></td>
+<td></td>
+<td>/ --ui-actions-button-padding-top - Where a button's label sits (default: at the top, 16px in)</td>
+</tr>
+<tr>
+<td><code>--ui-actions-stacked-direction</code></td>
+<td></td>
+<td>/ --ui-actions-stacked-wrap / --ui-actions-stacked-width - Where Carbon stacks the actions (narrow): <code>flex-direction</code>, <code>flex-wrap</code> and each button's width (default column-reverse, nowrap, 100%; Kanok: one row that wraps)</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+<nav class="doc-toc" aria-labelledby="doc-toc-title"><p id="doc-toc-title" class="doc-toc-title">On this page</p><ul><li class="doc-toc-h2"><a href="#installation">Installation</a></li><li class="doc-toc-h2"><a href="#use-it">Use it</a></li><li class="doc-toc-h2"><a href="#sizes">Sizes</a></li><li class="doc-toc-h2"><a href="#from-the-left">From the left</a></li><li class="doc-toc-h2"><a href="#dim-the-page">Dim the page</a></li><li class="doc-toc-h2"><a href="#push-the-page-aside">Push the page aside</a></li><li class="doc-toc-h2"><a href="#action-buttons">Action buttons</a></li><li class="doc-toc-h2"><a href="#toolbar-under-the-header">Toolbar under the header</a></li><li class="doc-toc-h2"><a href="#heading-that-shrinks-on-scroll">Heading that shrinks on scroll</a></li><li class="doc-toc-h2"><a href="#steps">Steps</a></li><li class="doc-toc-h2"><a href="#content-above-and-below-the-title">Content above and below the title</a></li><li class="doc-toc-h2"><a href="#ask-before-closing">Ask before closing</a></li><li class="doc-toc-h2"><a href="#keyboard">Keyboard</a></li><li class="doc-toc-h2"><a href="#accessibility">Accessibility</a></li><li class="doc-toc-h2"><a href="#api">API</a></li><li class="doc-toc-h3"><a href="#ui-side-panel-react-uisidepanel">&lt;ui-side-panel></a></li></ul></nav>
+</div>
+<nav class="doc-pager" aria-label="Next / Previous"><a class="doc-pager-prev" href="/kanok-ui-docs/en/modal/" rel="prev"><span>Previous</span>Modal</a><a class="doc-pager-next" href="/kanok-ui-docs/en/tearsheet/" rel="next"><span>Next</span>Tearsheet</a></nav>
+<footer class="doc-footer">@purpurabog/ui 2.3.0 · MIT · <a href="https://cdn.jsdelivr.net/npm/@purpurabog/ui@2.3.0/THIRD-PARTY-NOTICES.md">Third-party notices</a><br>Built on the Carbon Design System. Not affiliated with or endorsed by IBM; IBM and Carbon are trademarks of IBM Corp.</footer>
+</ui-content>
+<ui-modal id="doc-search" heading="Search" data-count="{n} results" data-empty="No results for “{q}”">
+<ui-search label="Search the docs" placeholder="Search the docs" size="lg"></ui-search>
+<p class="doc-search-status" role="status"></p>
+<ul class="doc-search-results"></ul>
+</ui-modal>
+</body>
+</html>

@@ -1,0 +1,1 @@
+function e(e){let t=e.trim().toLowerCase(),n=0;if(t.endsWith(`ms`)?n=1:t.endsWith(`s`)&&(n=1e3),n===0)return 0;let r=Number(t.slice(0,n===1?-2:-1))*n;return Number.isFinite(r)?Math.max(r,0):0}export{e as t};

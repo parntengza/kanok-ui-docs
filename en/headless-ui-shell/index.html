@@ -1,0 +1,1026 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Headless UI shell · @purpurabog/ui</title>
+<link rel="alternate" hreflang="en" href="/kanok-ui-docs/en/headless-ui-shell/"  /><link rel="alternate" hreflang="th" href="/kanok-ui-docs/th/headless-ui-shell/"  />
+<script>(function(){try{var q=new URLSearchParams(location.search).get("design"),d=q;if(q==="kanok"||q==="carbon")localStorage.setItem("ui-docs-design",q);else d=localStorage.getItem("ui-docs-design");if(d==="kanok")document.documentElement.setAttribute("data-design","kanok")}catch(e){}})();(function(){try{var m=localStorage.getItem("ui-docs-theme");if(m!=="light"&&m!=="dark"&&m!=="system")return;var d=m==="dark"||(m==="system"&&matchMedia("(prefers-color-scheme: dark)").matches),r=document.documentElement,t=d?"g100":"white";if(r.getAttribute("data-design")==="kanok")t=d?"lacquer":"paper";r.setAttribute("data-theme",t)}catch(e){}})();</script>
+<style>ui-header:not(:defined){z-index:8000;box-sizing:border-box;border-block-end:1px solid var(--ui-border-subtle-1);background:var(--ui-canvas);block-size:48px;display:block;position:fixed;inset:0 0 auto}:is(ui-header:not(:defined)>*,ui-side-nav:not(:defined)>*){visibility:hidden}:is(ui-header-panel:not(:defined),ui-modal:not(:defined)){display:none}ui-side-nav:not(:defined){display:none}ui-content:not(:defined){margin-block-start:48px;padding:32px;display:block}@media (width>=1056px){ui-side-nav[expanded]:not(:defined){background:var(--ui-canvas);inline-size:256px;display:block;position:fixed;inset:48px auto 0 0}ui-side-nav[expanded]:not(:defined)~ui-content:not(:defined){margin-inline-start:256px}}ui-tabs:not(:defined){display:block}ui-tabs:not(:defined)>ui-tab{box-sizing:border-box;border-block-end:2px solid var(--ui-hairline);block-size:40px;color:var(--ui-ink-muted);font:var(--ui-font-body-sm);padding:0 16px;line-height:38px;display:inline-block}ui-tabs:not(:defined)>ui-tab:first-of-type{border-block-end-color:var(--ui-interactive);color:var(--ui-ink)}ui-tabs:not(:defined)>ui-tab-panel{padding:16px;display:block}ui-tabs:not(:defined)>ui-tab-panel~ui-tab-panel{display:none}ui-code-snippet:not(:defined){background:var(--ui-layer-1);max-block-size:272px;font:var(--ui-font-code,12px/16px monospace);white-space:pre;padding:16px;display:block;overflow:hidden}[data-react-example]:empty>*{visibility:hidden}.doc-demo:has(:not(:defined))>*{visibility:hidden}[data-react-example]:empty{box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}.doc-demo:has(:not(:defined)){box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}@keyframes doc-skeleton{to{background-position:-200% 0}}@media (prefers-reduced-motion:reduce){[data-react-example]:empty{animation:none}.doc-demo:has(:not(:defined)){animation:none}}</style>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/index-Bvox6zVo.js"></script>
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/theme-switcher-BZXGbHfR.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/listbox-gjElSjvA.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/headless-CCX6tx99.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/flag-D0Ou26eR.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/focus-BL85e9Ck.js">
+  <link rel="modulepreload" crossorigin href="/kanok-ui-docs/assets/side-nav-yGiDM6NU.js">
+  <link rel="stylesheet" crossorigin href="/kanok-ui-docs/assets/theme-switcher-BXY5AIvi.css">
+  <link rel="stylesheet" crossorigin href="/kanok-ui-docs/assets/headless-CtsneZec.css">
+</head>
+<body>
+<ui-header label="@purpurabog/ui">
+<ui-skip-to-content></ui-skip-to-content>
+<ui-header-menu-button></ui-header-menu-button>
+<ui-header-name href="/kanok-ui-docs/en/" prefix="@purpurabog">ui</ui-header-name>
+<ui-header-global-bar>
+<ui-header-global-action id="doc-search-open" label="Search" tooltip-placement="bottom"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="m18.5 17.8-4.9-4.9a7 7 0 1 0-.7.7l4.9 4.9zM3 8.5a5.5 5.5 0 1 1 5.5 5.5A5.5 5.5 0 0 1 3 8.5Z" /></svg></ui-header-global-action>
+<ui-header-global-action label="Settings" panel="doc-settings" tooltip-placement="bottom-end"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="M16.9 10.6a7 7 0 0 0 0-1.2l1.8-1.4-1.6-2.8-2.1.8a6.6 6.6 0 0 0-1-.6L13.6 3h-3.2l-.4 2.4a6.6 6.6 0 0 0-1 .6l-2.1-.8L5.3 8l1.8 1.4a7 7 0 0 0 0 1.2L5.3 12l1.6 2.8 2.1-.8a6.6 6.6 0 0 0 1 .6l.4 2.4h3.2l.4-2.4a6.6 6.6 0 0 0 1-.6l2.1.8 1.6-2.8zM12 13a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" /></svg></ui-header-global-action>
+</ui-header-global-bar>
+<ui-header-panel id="doc-settings" label="Settings">
+<div class="doc-settings">
+<span class="doc-settings-label">Theme</span>
+<ui-theme-switcher storage-key="ui-docs-theme" tooltip-placement="bottom"></ui-theme-switcher>
+<span class="doc-settings-label">Style</span>
+<ui-content-switcher id="doc-design" aria-label="Style" size="sm"><ui-content-switcher-item name="carbon">Carbon</ui-content-switcher-item><ui-content-switcher-item name="kanok">Kanok</ui-content-switcher-item></ui-content-switcher>
+<span class="doc-settings-label">Language</span>
+<ui-link href="/kanok-ui-docs/th/headless-ui-shell/" hreflang="th" lang="th">ไทย</ui-link>
+</div>
+</ui-header-panel>
+</ui-header>
+<ui-side-nav label="Documentation"><ui-side-nav-items><ui-side-nav-menu label="Get started"><ui-side-nav-menu-item href="/kanok-ui-docs/en/">Overview</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/installation/">Installation</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/migration-1-0/">Migrating to 1.0</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Guides"><ui-side-nav-menu-item href="/kanok-ui-docs/en/themes/">Themes and layers</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/kanok/">Kanok design</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/customizing/">Customizing</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/icons/">Icons</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/forms/">Forms and validation</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/frameworks/">Frameworks</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/ai/">Using with AI</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Forms and actions"><ui-side-nav-menu-item href="/kanok-ui-docs/en/button/">Button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/file-uploader/">File uploader</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Overlays"><ui-side-nav-menu-item href="/kanok-ui-docs/en/modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/toggletip/">Toggletip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/menu/">Menu</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Data"><ui-side-nav-menu-item href="/kanok-ui-docs/en/data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/contained-list/">Contained list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tree-view/">Tree view</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Navigation"><ui-side-nav-menu-item href="/kanok-ui-docs/en/tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/breadcrumb/">Breadcrumb</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/link/">Link</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/ui-shell/">UI shell</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Content"><ui-side-nav-menu-item href="/kanok-ui-docs/en/tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/tile/">Tile</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/user-avatar/">User avatar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/list/">List</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Status and loading"><ui-side-nav-menu-item href="/kanok-ui-docs/en/loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/inline-loading/">Inline loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/progress-bar/">Progress bar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/skeleton/">Skeleton</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/badge-indicator/">Badge indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/status-indicator/">Status indicator</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Layout"><ui-side-nav-menu-item href="/kanok-ui-docs/en/grid/">Grid</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/heading/">Heading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/layer/">Layer</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/action-set/">Action set</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/page-header/">Page header</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/big-number/">Big number</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Headless" expanded><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless/">Introduction</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-file-uploader/">File uploader</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-menu/">Menu</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-ui-shell/" current>UI shell</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tree-view/">Tree view</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/en/headless-edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu></ui-side-nav-items></ui-side-nav><script>if(matchMedia('(min-width: 66rem)').matches)document.currentScript.previousElementSibling.setAttribute('expanded','')</script>
+<ui-content>
+<div class="doc-page">
+<article class="doc">
+<!-- nav: UI shell -->
+<h1 id="headless-ui-shell">Headless UI shell</h1>
+<p>Three namespaces give you the behaviour of the styled <a href="/kanok-ui-docs/en/ui-shell/">UI shell</a> with no styles:</p>
+<ul>
+<li><code>Shell</code>: <code>Shell.Root</code> holds whether the side nav is open, so the hamburger and the side nav wire themselves to each other; <code>Shell.Content</code> is the <code>&lt;main&gt;</code> that tells how the side nav beside it lays out.</li>
+<li><code>Header</code>: the <code>&lt;header&gt;</code>, the skip link, the hamburger, menus of links that open and close, icon buttons and the panel under the header, with Esc, clicks outside and focus return.</li>
+<li><code>SideNav</code>: the <code>&lt;nav&gt;</code> with its modes (default, rail, fixed, collapsible), the overlay, links and menus, with Esc and focus leaving.</li>
+</ul>
+<p>You own every element's look and position: the 48px bar, the 256px nav, the offsets of the content, the icons and the words. The parts show their state as <code>data-*</code> attributes for you to style on.</p>
+<p>The examples sit in a box whose <code>transform</code> keeps their <code>position: fixed</code> parts inside it, and their links only change the example's state, so a click doesn't leave this page. In your app the header and the nav are fixed to the window.</p>
+<h2 id="installation">Installation</h2>
+<p>The headless parts come with the package (there is no shadcn item; the React + Tailwind items are built on them):</p>
+<ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">@purpurabog/ui</span></ui-code-snippet>
+<ui-code-snippet type="single" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { Header, Shell, SideNav } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;</ui-code-snippet>
+<h2 id="use-it">Use it</h2>
+<div class="doc-demo" data-react-example="0"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { useState, <span style="color:var(--ui-tag-color-magenta)">type</span> MouseEvent } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { Header, Shell, SideNav } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> link <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'flex h-8 items-center px-4 text-sm whitespace-nowrap text-ink-muted hover:bg-canvas-hover hover:text-ink focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus data-current:border-s-4 data-current:border-interactive data-current:bg-canvas-selected data-current:ps-3 data-current:font-semibold data-current:text-ink'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [page, setPage] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">'Dashboard'</span>);
+  <span style="color:var(--ui-ink-muted);font-style:italic">// a router stand-in: the links change the example's page instead of loading one</span>
+  <span style="color:var(--ui-tag-color-magenta)">const</span> <span style="color:var(--ui-tag-color-cyan)">go</span> <span style="color:var(--ui-tag-color-magenta)">=</span> (name<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>, path<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> ({
+    <span style="color:var(--ui-tag-color-purple)">href:</span> <span style="color:var(--ui-tag-color-teal)">`#${</span><span style="color:var(--ui-tag-color-teal)">path</span><span style="color:var(--ui-tag-color-teal)">}`</span>,
+    <span style="color:var(--ui-tag-color-purple)">current:</span> page <span style="color:var(--ui-tag-color-magenta)">===</span> name,
+    <span style="color:var(--ui-tag-color-cyan)">onClick</span><span style="color:var(--ui-tag-color-purple)">:</span> (event<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">MouseEvent</span>) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+      event.<span style="color:var(--ui-tag-color-cyan)">preventDefault</span>();
+      <span style="color:var(--ui-tag-color-cyan)">setPage</span>(name);
+    },
+  });
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"relative h-80 overflow-hidden border border-hairline bg-canvas text-ink [transform:translateZ(0)]"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Shell.Root</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Header.Root</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Metro Contracts"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"fixed inset-x-0 top-0 z-20 flex h-12 items-center border-b border-border-subtle-1 bg-canvas"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Header.SkipToContent</span> <span style="color:var(--ui-tag-color-purple)">href</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"#headless-shell-main"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"absolute -translate-y-full bg-canvas px-4 py-3 text-sm focus:translate-y-0 focus:outline-2 focus:outline-focus"</span>&gt;
+            Skip to main content
+          &lt;/<span style="color:var(--ui-tag-color-blue)">Header.SkipToContent</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Header.MenuButton</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Menu"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"group flex size-12 items-center justify-center text-icon-primary hover:bg-canvas-hover focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus data-active:bg-surface-1 min-[1056px]:hidden"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 20 20"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-5 fill-current group-data-active:hidden"</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M2 14.8h16v1.2H2zm0-5.4h16v1.2H2zM2 4h16v1.2H2z"</span> /&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 20 20"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"hidden size-5 fill-current group-data-active:block"</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M15 5.8 14.2 5 10 9.2 5.8 5 5 5.8 9.2 10 5 14.2l.8.8 4.2-4.2 4.2 4.2.8-.8L10.8 10z"</span> /&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">Header.MenuButton</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">a</span> {<span style="color:var(--ui-tag-color-magenta)">...</span><span style="color:var(--ui-tag-color-cyan)">go</span>(<span style="color:var(--ui-tag-color-teal)">'Dashboard'</span>, <span style="color:var(--ui-tag-color-teal)">'dashboard'</span>)} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"px-4 text-sm font-semibold focus-visible:outline-2 focus-visible:outline-focus"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"font-normal"</span>&gt;Metro&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt; Contracts
+          &lt;/<span style="color:var(--ui-tag-color-blue)">a</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Header.Root</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">SideNav.Root</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">SideNav.Overlay</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"fixed inset-x-0 top-12 bottom-0 z-10 hidden bg-overlay data-open:block min-[1056px]:data-open:hidden"</span> /&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">SideNav.Nav</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Sections"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"fixed start-0 top-12 bottom-0 z-20 w-0 overflow-hidden bg-canvas transition-[width] data-open:w-64"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">ul</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"pt-4"</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">li</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">SideNav.Link</span> {<span style="color:var(--ui-tag-color-magenta)">...</span><span style="color:var(--ui-tag-color-cyan)">go</span>(<span style="color:var(--ui-tag-color-teal)">'Dashboard'</span>, <span style="color:var(--ui-tag-color-teal)">'dashboard'</span>)} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{link}&gt;Dashboard&lt;/<span style="color:var(--ui-tag-color-blue)">SideNav.Link</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">li</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">SideNav.Menu</span> <span style="color:var(--ui-tag-color-purple)">defaultExpanded</span>&gt;
+                &lt;<span style="color:var(--ui-tag-color-blue)">SideNav.MenuTrigger</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"group flex h-8 w-full items-center justify-between px-4 text-start text-sm font-semibold whitespace-nowrap text-ink-muted hover:bg-canvas-hover hover:text-ink focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus"</span>&gt;
+                  Requests
+                  &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-4 fill-current transition-transform group-data-open:rotate-180"</span>&gt;
+                    &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M8 11 3 6l.7-.7L8 9.6l4.3-4.3.7.7z"</span> /&gt;
+                  &lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+                &lt;/<span style="color:var(--ui-tag-color-blue)">SideNav.MenuTrigger</span>&gt;
+                &lt;<span style="color:var(--ui-tag-color-blue)">SideNav.MenuPopup</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"hidden data-open:block"</span>&gt;
+                  &lt;<span style="color:var(--ui-tag-color-blue)">li</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">SideNav.MenuItem</span> {<span style="color:var(--ui-tag-color-magenta)">...</span><span style="color:var(--ui-tag-color-cyan)">go</span>(<span style="color:var(--ui-tag-color-teal)">'Open'</span>, <span style="color:var(--ui-tag-color-teal)">'open'</span>)} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-teal)">`${</span><span style="color:var(--ui-tag-color-teal)">link</span><span style="color:var(--ui-tag-color-teal)">} ps-8 data-current:ps-7`</span>}&gt;Open&lt;/<span style="color:var(--ui-tag-color-blue)">SideNav.MenuItem</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">li</span>&gt;
+                  &lt;<span style="color:var(--ui-tag-color-blue)">li</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">SideNav.MenuItem</span> {<span style="color:var(--ui-tag-color-magenta)">...</span><span style="color:var(--ui-tag-color-cyan)">go</span>(<span style="color:var(--ui-tag-color-teal)">'Awaiting signature'</span>, <span style="color:var(--ui-tag-color-teal)">'signing'</span>)} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-teal)">`${</span><span style="color:var(--ui-tag-color-teal)">link</span><span style="color:var(--ui-tag-color-teal)">} ps-8 data-current:ps-7`</span>}&gt;Awaiting signature&lt;/<span style="color:var(--ui-tag-color-blue)">SideNav.MenuItem</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">li</span>&gt;
+                &lt;/<span style="color:var(--ui-tag-color-blue)">SideNav.MenuPopup</span>&gt;
+              &lt;/<span style="color:var(--ui-tag-color-blue)">SideNav.Menu</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">li</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">SideNav.Link</span> {<span style="color:var(--ui-tag-color-magenta)">...</span><span style="color:var(--ui-tag-color-cyan)">go</span>(<span style="color:var(--ui-tag-color-teal)">'Settings'</span>, <span style="color:var(--ui-tag-color-teal)">'settings'</span>)} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{link}&gt;Settings&lt;/<span style="color:var(--ui-tag-color-blue)">SideNav.Link</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">li</span>&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">ul</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">SideNav.Nav</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">SideNav.Root</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Shell.Content</span> <span style="color:var(--ui-tag-color-purple)">id</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"headless-shell-main"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"mt-12 p-8 transition-[margin] min-[1056px]:data-[side-nav=default]:ms-64"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-2xl"</span>&gt;{page}&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Shell.Content</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">Shell.Root</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<p>Inside <code>Shell.Root</code> the <code>MenuButton</code> opens and closes the side nav with no props, and gets <code>aria-expanded</code> and <code>aria-controls</code>. The nav is open beside the content from Carbon's <code>lg</code> breakpoint, 1056px (<code>data-open</code>); below it, the hamburger opens it over the page with the overlay.</p>
+<h2 id="anatomy">Anatomy</h2>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">Shell.Root</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">Header.Root</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Header.SkipToContent</span> /&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Header.MenuButton</span> /&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">nav</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ul</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">li</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">Header.MenuItem</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">li</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Header.Menu</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Header.MenuTrigger</span> /&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Header.MenuPopup</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">li</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">Header.MenuItem</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">li</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">Header.MenuPopup</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Header.Menu</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">ul</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">nav</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Header.GlobalAction</span> /&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">Header.Panel</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Header.PanelContent</span> /&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">Header.Panel</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">Header.Root</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">SideNav.Root</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">SideNav.Overlay</span> /&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">SideNav.Nav</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ul</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">li</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">SideNav.Link</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">li</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">SideNav.Menu</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">SideNav.MenuTrigger</span> /&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">SideNav.MenuPopup</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">li</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">SideNav.MenuItem</span> /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">li</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">SideNav.MenuPopup</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">SideNav.Menu</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">ul</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">SideNav.Nav</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">SideNav.Root</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">Shell.Content</span> /&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">Shell.Root</span>&gt;</ui-code-snippet>
+<p>The product name link, the menu bar's <code>&lt;nav&gt;</code> and the group around the global actions have no behaviour: they are your own elements.</p>
+<h2 id="header-menus">Header menus</h2>
+<p><code>Header.Menu</code> is an <code>&lt;li&gt;</code> holding a <code>MenuTrigger</code> button and a <code>MenuPopup</code> list of <code>MenuItem</code> links: a disclosure, not an ARIA menu. Click, Enter or Space toggle it; Esc closes it and focuses the trigger; a press outside or focus leaving closes it; following one of its links closes it and focuses the trigger. A closed menu has <code>data-current</code> when one of its items is <code>current</code>.</p>
+<div class="doc-demo" data-react-example="1"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { useState, <span style="color:var(--ui-tag-color-magenta)">type</span> MouseEvent } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { Header } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> bar <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'relative flex h-12 items-center px-4 text-sm whitespace-nowrap text-ink-muted hover:bg-canvas-hover hover:text-ink focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus data-current:border-b-[3px] data-current:border-interactive data-current:text-ink'</span>;
+<span style="color:var(--ui-tag-color-magenta)">const</span> row <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'flex h-12 items-center px-4 text-sm text-ink-muted hover:bg-layer-hover-1 hover:text-ink focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus data-current:bg-layer-selected-1 data-current:text-ink'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [page, setPage] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">'Monthly'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> <span style="color:var(--ui-tag-color-cyan)">go</span> <span style="color:var(--ui-tag-color-magenta)">=</span> (name<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>, path<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> ({
+    <span style="color:var(--ui-tag-color-purple)">href:</span> <span style="color:var(--ui-tag-color-teal)">`#${</span><span style="color:var(--ui-tag-color-teal)">path</span><span style="color:var(--ui-tag-color-teal)">}`</span>,
+    <span style="color:var(--ui-tag-color-purple)">current:</span> page <span style="color:var(--ui-tag-color-magenta)">===</span> name,
+    <span style="color:var(--ui-tag-color-cyan)">onClick</span><span style="color:var(--ui-tag-color-purple)">:</span> (event<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">MouseEvent</span>) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+      event.<span style="color:var(--ui-tag-color-cyan)">preventDefault</span>();
+      <span style="color:var(--ui-tag-color-cyan)">setPage</span>(name);
+    },
+  });
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"relative h-60 overflow-hidden border border-hairline bg-canvas text-ink [transform:translateZ(0)]"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Header.Root</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Metro Contracts"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"fixed inset-x-0 top-0 flex h-12 items-center border-b border-border-subtle-1 bg-canvas"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"px-4 text-sm font-semibold"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"font-normal"</span>&gt;Metro&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt; Contracts&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">nav</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Metro Contracts"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">ul</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">li</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">Header.MenuItem</span> {<span style="color:var(--ui-tag-color-magenta)">...</span><span style="color:var(--ui-tag-color-cyan)">go</span>(<span style="color:var(--ui-tag-color-teal)">'Requests'</span>, <span style="color:var(--ui-tag-color-teal)">'requests'</span>)} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{bar}&gt;Requests&lt;/<span style="color:var(--ui-tag-color-blue)">Header.MenuItem</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">li</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">Header.Menu</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"relative"</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">Header.MenuTrigger</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-teal)">`${</span><span style="color:var(--ui-tag-color-teal)">bar</span><span style="color:var(--ui-tag-color-teal)">} group gap-2`</span>}&gt;
+                Reports
+                &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-4 fill-current transition-transform group-data-open:rotate-180"</span>&gt;
+                  &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M8 11 3 6l.7-.7L8 9.6l4.3-4.3.7.7z"</span> /&gt;
+                &lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+              &lt;/<span style="color:var(--ui-tag-color-blue)">Header.MenuTrigger</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">Header.MenuPopup</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Reports"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"absolute start-0 top-12 hidden w-50 bg-surface-1 shadow-lg data-open:block"</span>&gt;
+                &lt;<span style="color:var(--ui-tag-color-blue)">li</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">Header.MenuItem</span> {<span style="color:var(--ui-tag-color-magenta)">...</span><span style="color:var(--ui-tag-color-cyan)">go</span>(<span style="color:var(--ui-tag-color-teal)">'Monthly'</span>, <span style="color:var(--ui-tag-color-teal)">'monthly'</span>)} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{row}&gt;Monthly&lt;/<span style="color:var(--ui-tag-color-blue)">Header.MenuItem</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">li</span>&gt;
+                &lt;<span style="color:var(--ui-tag-color-blue)">li</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">Header.MenuItem</span> {<span style="color:var(--ui-tag-color-magenta)">...</span><span style="color:var(--ui-tag-color-cyan)">go</span>(<span style="color:var(--ui-tag-color-teal)">'Yearly'</span>, <span style="color:var(--ui-tag-color-teal)">'yearly'</span>)} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{row}&gt;Yearly&lt;/<span style="color:var(--ui-tag-color-blue)">Header.MenuItem</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">li</span>&gt;
+                &lt;<span style="color:var(--ui-tag-color-blue)">li</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">Header.MenuItem</span> {<span style="color:var(--ui-tag-color-magenta)">...</span><span style="color:var(--ui-tag-color-cyan)">go</span>(<span style="color:var(--ui-tag-color-teal)">'Audit log'</span>, <span style="color:var(--ui-tag-color-teal)">'audit'</span>)} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{row}&gt;Audit log&lt;/<span style="color:var(--ui-tag-color-blue)">Header.MenuItem</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">li</span>&gt;
+              &lt;/<span style="color:var(--ui-tag-color-blue)">Header.MenuPopup</span>&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">Header.Menu</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">ul</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">nav</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">Header.Root</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"mt-12 p-8 text-sm text-ink-muted"</span>&gt;Page: {page}&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<p><code>current</code> on a <code>Menu</code> shows the mark even while it is open (Carbon's <code>isActive</code>). The menu finds a <code>current</code> item by reading the props of the elements written inside it, so set <code>current</code> on the <code>MenuItem</code> itself, not on a wrapper component under another name.</p>
+<h2 id="global-actions-and-a-panel">Global actions and a panel</h2>
+<p><code>Header.GlobalAction</code> is an icon button of two kinds: with <code>active</code> it is a toggle (<code>aria-pressed</code>); with <code>expanded</code> it is a disclosure (<code>aria-expanded</code>) for a panel. <code>Header.Panel</code> is controlled: it asks to close with <code>onClose(reason)</code> on Esc (focus goes back to what opened it), when focus leaves it, or on a press outside, but not on the action whose <code>aria-controls</code> is the panel's <code>id</code>, which toggles it.</p>
+<div class="doc-demo" data-react-example="2"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { useState } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { Header } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> action <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'flex size-12 items-center justify-center text-icon-secondary hover:bg-canvas-hover hover:text-icon-primary focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus data-active:bg-surface-1 data-active:text-icon-primary'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [muted, setMuted] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-green)">false</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [open, setOpen] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-green)">false</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [reason, setReason] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">''</span>);
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid gap-4"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"relative h-72 overflow-hidden border border-hairline bg-canvas text-ink [transform:translateZ(0)]"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Header.Root</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Metro Contracts"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"fixed inset-x-0 top-0 flex h-12 items-center border-b border-border-subtle-1 bg-canvas"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"px-4 text-sm font-semibold"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"font-normal"</span>&gt;Metro&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt; Contracts&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">role</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"group"</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Global actions"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ms-auto flex"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">Header.GlobalAction</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Mute notifications"</span> <span style="color:var(--ui-tag-color-purple)">active</span><span style="color:var(--ui-tag-color-magenta)">=</span>{muted} <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setMuted</span>(<span style="color:var(--ui-tag-color-magenta)">!</span>muted)} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{action}&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 20 20"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-5 fill-current"</span>&gt;
+                &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M17 14.3V13l-1.5-1.5V8a5.5 5.5 0 0 0-4.6-5.4V1.4H9.1v1.2A5.5 5.5 0 0 0 4.5 8v3.5L3 13v1.3h4.4a2.6 2.6 0 0 0 5.2 0ZM10 15.9a1.3 1.3 0 0 1-1.3-1.3h2.6a1.3 1.3 0 0 1-1.3 1.3Z"</span> /&gt;
+              &lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">Header.GlobalAction</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">Header.GlobalAction</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Applications"</span> <span style="color:var(--ui-tag-color-purple)">expanded</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">aria-controls</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"headless-shell-apps"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-magenta)">!</span>open)} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{action}&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 20 20"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-5 fill-current"</span>&gt;
+                &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M4 4h3v3H4zm4.5 0h3v3h-3zM13 4h3v3h-3zM4 8.5h3v3H4zm4.5 0h3v3h-3zm4.5 0h3v3h-3zM4 13h3v3H4zm4.5 0h3v3h-3zm4.5 0h3v3h-3z"</span> /&gt;
+              &lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">Header.GlobalAction</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Header.Panel</span>
+            <span style="color:var(--ui-tag-color-purple)">id</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"headless-shell-apps"</span>
+            <span style="color:var(--ui-tag-color-purple)">expanded</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open}
+            <span style="color:var(--ui-tag-color-purple)">onClose</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(why) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+              <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(<span style="color:var(--ui-tag-color-green)">false</span>);
+              <span style="color:var(--ui-tag-color-cyan)">setReason</span>(why);
+            }}
+            <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"fixed end-0 top-12 bottom-0 w-0 overflow-hidden border-hairline bg-surface-1 transition-[width] data-open:w-64 data-open:border-s"</span>
+          &gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">Header.PanelContent</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Applications"</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">ul</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"py-2"</span>&gt;
+                &lt;<span style="color:var(--ui-tag-color-blue)">li</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">a</span> <span style="color:var(--ui-tag-color-purple)">href</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"#contracts"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> e.<span style="color:var(--ui-tag-color-cyan)">preventDefault</span>()} <span style="color:var(--ui-tag-color-purple)">aria-current</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"page"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"block px-4 py-2 text-sm font-semibold text-ink hover:bg-layer-hover-1 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus"</span>&gt;Contracts&lt;/<span style="color:var(--ui-tag-color-blue)">a</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">li</span>&gt;
+                &lt;<span style="color:var(--ui-tag-color-blue)">li</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">a</span> <span style="color:var(--ui-tag-color-purple)">href</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"#audit"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> e.<span style="color:var(--ui-tag-color-cyan)">preventDefault</span>()} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"block px-4 py-2 text-sm text-ink-muted hover:bg-layer-hover-1 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus"</span>&gt;Audit management&lt;/<span style="color:var(--ui-tag-color-blue)">a</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">li</span>&gt;
+              &lt;/<span style="color:var(--ui-tag-color-blue)">ul</span>&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">Header.PanelContent</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">Header.Panel</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Header.Root</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-ink-muted"</span>&gt;Muted: {muted <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-teal)">'yes'</span> <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-teal)">'no'</span>} · Panel: {open <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-teal)">'open'</span> <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-teal)">'closed'</span>}{reason <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-teal)">` · last close: ${</span><span style="color:var(--ui-tag-color-teal)">reason</span><span style="color:var(--ui-tag-color-teal)">}`</span> <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-teal)">''</span>}&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<p><code>PanelContent</code> is a <code>&lt;section&gt;</code>: named with <code>aria-label</code>, it is a region landmark. It has <code>hidden</code> while the panel is closed.</p>
+<h2 id="side-nav-modes">Side nav modes</h2>
+<p><code>SideNav.Root</code> takes the mode; <code>Nav</code> writes it in <code>data-ui-side-nav</code>, and <code>Shell.Content</code> copies it to its <code>data-side-nav</code> so you can offset the page:</p>
+<ul>
+<li>default: over the page below <code>lg</code>, beside it from <code>lg</code> (<code>data-open</code> from 1056px).</li>
+<li><code>rail</code>: a strip of icons that is <code>data-open</code> while the pointer is on it or focus is inside (<code>data-expanded</code> too).</li>
+<li><code>fixed</code>: always <code>data-open</code>, never an overlay.</li>
+<li><code>collapsible</code>: closed at every width until the hamburger opens it over the page.</li>
+</ul>
+<p>Pick a mode, then point at the nav, use the hamburger and press Esc.</p>
+<div class="doc-demo" data-react-example="3"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { useState, <span style="color:var(--ui-tag-color-magenta)">type</span> MouseEvent } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { Header, Shell, SideNav } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> modes<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">SideNav</span>.<span style="color:var(--ui-tag-color-cyan)">SideNavMode</span>[] <span style="color:var(--ui-tag-color-magenta)">=</span> [<span style="color:var(--ui-tag-color-teal)">'default'</span>, <span style="color:var(--ui-tag-color-teal)">'rail'</span>, <span style="color:var(--ui-tag-color-teal)">'fixed'</span>, <span style="color:var(--ui-tag-color-teal)">'collapsible'</span>];
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> link <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'flex h-8 items-center gap-6 px-4 text-sm whitespace-nowrap text-ink-muted hover:bg-canvas-hover hover:text-ink focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus data-current:border-s-4 data-current:border-interactive data-current:bg-canvas-selected data-current:ps-3 data-current:font-semibold data-current:text-ink'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">const</span> icons <span style="color:var(--ui-tag-color-magenta)">=</span> {
+  <span style="color:var(--ui-tag-color-purple)">Dashboard:</span> <span style="color:var(--ui-tag-color-teal)">'M2 2h5v5H2zm7 0h5v5H9zM2 9h5v5H2zm7 0h5v5H9z'</span>,
+  <span style="color:var(--ui-tag-color-purple)">Requests:</span> <span style="color:var(--ui-tag-color-teal)">'M13 3.6 10.4 1H3v14h10zM10 2.4 11.6 4H10zM4 14V2h5v3h3v9z'</span>,
+  <span style="color:var(--ui-tag-color-purple)">Settings:</span> <span style="color:var(--ui-tag-color-teal)">'M13.5 8.4a5.4 5.4 0 0 0 0-.8l1.4-1.1-1.3-2.3-1.7.6a5 5 0 0 0-.7-.4L10.9 2.6H8.3L8 4.4l-.7.4-1.7-.6-1.3 2.3 1.4 1.1a5.4 5.4 0 0 0 0 .8L4.3 9.5l1.3 2.3 1.7-.6.7.4.3 1.8h2.6l.3-1.8.7-.4 1.7.6 1.3-2.3zM9.6 10a2 2 0 1 1 0-4 2 2 0 0 1 0 4Z'</span>,
+};
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [mode, setMode] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>&lt;<span style="color:var(--ui-tag-color-cyan)">SideNav</span>.<span style="color:var(--ui-tag-color-cyan)">SideNavMode</span>&gt;(<span style="color:var(--ui-tag-color-teal)">'rail'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [page, setPage] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">'Dashboard'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> hamburger <span style="color:var(--ui-tag-color-magenta)">=</span> mode <span style="color:var(--ui-tag-color-magenta)">===</span> <span style="color:var(--ui-tag-color-teal)">'collapsible'</span> <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-teal)">''</span> <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-teal)">'min-[1056px]:hidden'</span>;
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid gap-4"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">fieldset</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex flex-wrap gap-4 text-sm text-ink"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">legend</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"mb-2 text-xs text-ink-muted"</span>&gt;Mode&lt;/<span style="color:var(--ui-tag-color-blue)">legend</span>&gt;
+        {modes.<span style="color:var(--ui-tag-color-cyan)">map</span>((m) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+          &lt;<span style="color:var(--ui-tag-color-blue)">label</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{m} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex items-center gap-2"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">input</span> <span style="color:var(--ui-tag-color-purple)">type</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"radio"</span> <span style="color:var(--ui-tag-color-purple)">name</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"headless-shell-mode"</span> <span style="color:var(--ui-tag-color-purple)">checked</span><span style="color:var(--ui-tag-color-magenta)">=</span>{mode <span style="color:var(--ui-tag-color-magenta)">===</span> m} <span style="color:var(--ui-tag-color-purple)">onChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setMode</span>(m)} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"accent-interactive"</span> /&gt;
+            {m}
+          &lt;/<span style="color:var(--ui-tag-color-blue)">label</span>&gt;
+        ))}
+      &lt;/<span style="color:var(--ui-tag-color-blue)">fieldset</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"relative h-80 overflow-hidden border border-hairline bg-canvas text-ink [transform:translateZ(0)]"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Shell.Root</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{mode}&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Header.Root</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Metro Contracts"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"fixed inset-x-0 top-0 z-20 flex h-12 items-center border-b border-border-subtle-1 bg-canvas"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">Header.MenuButton</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Menu"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-teal)">`flex size-12 items-center justify-center text-icon-primary hover:bg-canvas-hover focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus data-active:bg-surface-1 ${</span><span style="color:var(--ui-tag-color-teal)">hamburger</span><span style="color:var(--ui-tag-color-teal)">}`</span>}&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 20 20"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-5 fill-current"</span>&gt;
+                &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M2 14.8h16v1.2H2zm0-5.4h16v1.2H2zM2 4h16v1.2H2z"</span> /&gt;
+              &lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">Header.MenuButton</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"px-4 text-sm font-semibold"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"font-normal"</span>&gt;Metro&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt; Contracts&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">Header.Root</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">SideNav.Root</span> <span style="color:var(--ui-tag-color-purple)">rail</span><span style="color:var(--ui-tag-color-magenta)">=</span>{mode <span style="color:var(--ui-tag-color-magenta)">===</span> <span style="color:var(--ui-tag-color-teal)">'rail'</span>} <span style="color:var(--ui-tag-color-purple)">fixed</span><span style="color:var(--ui-tag-color-magenta)">=</span>{mode <span style="color:var(--ui-tag-color-magenta)">===</span> <span style="color:var(--ui-tag-color-teal)">'fixed'</span>} <span style="color:var(--ui-tag-color-purple)">collapsible</span><span style="color:var(--ui-tag-color-magenta)">=</span>{mode <span style="color:var(--ui-tag-color-magenta)">===</span> <span style="color:var(--ui-tag-color-teal)">'collapsible'</span>}&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">SideNav.Overlay</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"fixed inset-x-0 top-12 bottom-0 z-10 hidden bg-overlay data-open:block min-[1056px]:data-open:hidden"</span> /&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">SideNav.Nav</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Sections"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"fixed start-0 top-12 bottom-0 z-20 w-0 overflow-hidden bg-canvas transition-[width] data-[ui-side-nav=rail]:w-12 data-open:w-64!"</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">ul</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"pt-4"</span>&gt;
+                {Object.<span style="color:var(--ui-tag-color-cyan)">entries</span>(icons).<span style="color:var(--ui-tag-color-cyan)">map</span>(([name, d]) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+                  &lt;<span style="color:var(--ui-tag-color-blue)">li</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{name}&gt;
+                    &lt;<span style="color:var(--ui-tag-color-blue)">SideNav.Link</span>
+                      <span style="color:var(--ui-tag-color-purple)">href</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-teal)">`#${</span><span style="color:var(--ui-tag-color-teal)">name.</span><span style="color:var(--ui-tag-color-cyan)">toLowerCase</span><span style="color:var(--ui-tag-color-teal)">()</span><span style="color:var(--ui-tag-color-teal)">}`</span>}
+                      <span style="color:var(--ui-tag-color-purple)">current</span><span style="color:var(--ui-tag-color-magenta)">=</span>{page <span style="color:var(--ui-tag-color-magenta)">===</span> name}
+                      <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(event<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">MouseEvent</span>) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+                        event.<span style="color:var(--ui-tag-color-cyan)">preventDefault</span>();
+                        <span style="color:var(--ui-tag-color-cyan)">setPage</span>(name);
+                      }}
+                      <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span>{link}
+                    &gt;
+                      &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 16 16"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-4 shrink-0 fill-current"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span>{d} /&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+                      {name}
+                    &lt;/<span style="color:var(--ui-tag-color-blue)">SideNav.Link</span>&gt;
+                  &lt;/<span style="color:var(--ui-tag-color-blue)">li</span>&gt;
+                ))}
+              &lt;/<span style="color:var(--ui-tag-color-blue)">ul</span>&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">SideNav.Nav</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">SideNav.Root</span>&gt;
+          {<span style="color:var(--ui-ink-muted);font-style:italic">/* several shells share this page: say the mode instead of letting Content look for it */</span>}
+          &lt;<span style="color:var(--ui-tag-color-blue)">Shell.Content</span> <span style="color:var(--ui-tag-color-purple)">sideNav</span><span style="color:var(--ui-tag-color-magenta)">=</span>{mode} <span style="color:var(--ui-tag-color-purple)">id</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"headless-shell-modes-main"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"mt-12 p-8 transition-[margin] data-[side-nav=fixed]:ms-64 data-[side-nav=rail]:ms-12 min-[1056px]:data-[side-nav=default]:ms-64"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-2xl"</span>&gt;{page}&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-ink-muted"</span>&gt;data-side-nav="{mode}"&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">Shell.Content</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Shell.Root</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<p>Left without <code>sideNav</code>, <code>Content</code> looks for the first <code>[data-ui-side-nav]</code> in the document (and in its own shadow root) after each render. One shell per page, as in an app, needs no prop; this page holds several, so the examples after the first say it.</p>
+<h2 id="without-shell-root">Without Shell.Root</h2>
+<p>Leave out <code>Shell.Root</code> to hold the state yourself: <code>active</code> and <code>onToggle</code> on the <code>MenuButton</code>, <code>expanded</code> and <code>onToggle</code> on <code>SideNav.Root</code>. The side nav's <code>onToggle</code> asks to close on Esc, a click on the overlay, or focus leaving it while it is over the page; nothing changes until you pass the new state back.</p>
+<div class="doc-demo" data-react-example="4"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { useState } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { Header, SideNav } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [open, setOpen] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-green)">false</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [asked, setAsked] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">'nothing yet'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> <span style="color:var(--ui-tag-color-cyan)">toggle</span> <span style="color:var(--ui-tag-color-magenta)">=</span> (next<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">boolean</span>) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+    <span style="color:var(--ui-tag-color-cyan)">setOpen</span>(next);
+    <span style="color:var(--ui-tag-color-cyan)">setAsked</span>(next <span style="color:var(--ui-tag-color-magenta)">?</span> <span style="color:var(--ui-tag-color-teal)">'open'</span> <span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-teal)">'close'</span>);
+  };
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid gap-4"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"relative h-64 overflow-hidden border border-hairline bg-canvas text-ink [transform:translateZ(0)]"</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Header.Root</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Metro Contracts"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"fixed inset-x-0 top-0 z-20 flex h-12 items-center border-b border-border-subtle-1 bg-canvas"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Header.MenuButton</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Menu"</span> <span style="color:var(--ui-tag-color-purple)">aria-controls</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"headless-shell-own-nav"</span> <span style="color:var(--ui-tag-color-purple)">active</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">onToggle</span><span style="color:var(--ui-tag-color-magenta)">=</span>{toggle} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex size-12 items-center justify-center text-icon-primary hover:bg-canvas-hover focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus data-active:bg-surface-1"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 20 20"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-5 fill-current"</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M2 14.8h16v1.2H2zm0-5.4h16v1.2H2zM2 4h16v1.2H2z"</span> /&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">Header.MenuButton</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"px-4 text-sm font-semibold"</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"font-normal"</span>&gt;Metro&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt; Contracts&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Header.Root</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">SideNav.Root</span> <span style="color:var(--ui-tag-color-purple)">collapsible</span> <span style="color:var(--ui-tag-color-purple)">expanded</span><span style="color:var(--ui-tag-color-magenta)">=</span>{open} <span style="color:var(--ui-tag-color-purple)">onToggle</span><span style="color:var(--ui-tag-color-magenta)">=</span>{toggle}&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">SideNav.Overlay</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"fixed inset-x-0 top-12 bottom-0 z-10 hidden bg-overlay data-open:block"</span> /&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">SideNav.Nav</span> <span style="color:var(--ui-tag-color-purple)">id</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"headless-shell-own-nav"</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Sections"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"fixed start-0 top-12 bottom-0 z-20 w-0 overflow-hidden bg-canvas transition-[width] data-open:w-64"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">ul</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"pt-4"</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">li</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">SideNav.Link</span> <span style="color:var(--ui-tag-color-purple)">href</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"#requests"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> e.<span style="color:var(--ui-tag-color-cyan)">preventDefault</span>()} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex h-8 items-center px-4 text-sm whitespace-nowrap text-ink-muted hover:bg-canvas-hover focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus"</span>&gt;Requests&lt;/<span style="color:var(--ui-tag-color-blue)">SideNav.Link</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">li</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">li</span>&gt;&lt;<span style="color:var(--ui-tag-color-blue)">SideNav.Link</span> <span style="color:var(--ui-tag-color-purple)">href</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"#templates"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> e.<span style="color:var(--ui-tag-color-cyan)">preventDefault</span>()} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex h-8 items-center px-4 text-sm whitespace-nowrap text-ink-muted hover:bg-canvas-hover focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus"</span>&gt;Templates&lt;/<span style="color:var(--ui-tag-color-blue)">SideNav.Link</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">li</span>&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">ul</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">SideNav.Nav</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">SideNav.Root</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"mt-12 p-8 text-sm text-ink-muted"</span>&gt;The overlay covers this box while the nav is open.&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-xs text-ink-muted"</span>&gt;Last asked: {asked}&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<h2 id="style-it">Style it</h2>
+<div class="doc-demo" data-react-example="5"></div>
+<ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { useState, <span style="color:var(--ui-tag-color-magenta)">type</span> MouseEvent } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'react'</span>;
+<span style="color:var(--ui-tag-color-magenta)">import</span> { Header, Shell, SideNav } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/headless'</span>;
+
+<span style="color:var(--ui-tag-color-magenta)">export</span> <span style="color:var(--ui-tag-color-magenta)">default</span> <span style="color:var(--ui-tag-color-magenta)">function</span> <span style="color:var(--ui-tag-color-cyan)">Example</span>() {
+  <span style="color:var(--ui-tag-color-magenta)">const</span> [page, setPage] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">'Requests'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> <span style="color:var(--ui-tag-color-cyan)">go</span> <span style="color:var(--ui-tag-color-magenta)">=</span> (name<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>, path<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">string</span>) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> ({
+    <span style="color:var(--ui-tag-color-purple)">href:</span> <span style="color:var(--ui-tag-color-teal)">`#${</span><span style="color:var(--ui-tag-color-teal)">path</span><span style="color:var(--ui-tag-color-teal)">}`</span>,
+    <span style="color:var(--ui-tag-color-purple)">current:</span> page <span style="color:var(--ui-tag-color-magenta)">===</span> name,
+    <span style="color:var(--ui-tag-color-cyan)">onClick</span><span style="color:var(--ui-tag-color-purple)">:</span> (event<span style="color:var(--ui-tag-color-magenta)">:</span> <span style="color:var(--ui-tag-color-cyan)">MouseEvent</span>) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> {
+      event.<span style="color:var(--ui-tag-color-cyan)">preventDefault</span>();
+      <span style="color:var(--ui-tag-color-cyan)">setPage</span>(name);
+    },
+  });
+  <span style="color:var(--ui-tag-color-magenta)">return</span> (
+    &lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"relative h-72 overflow-hidden border border-hairline bg-canvas text-ink [transform:translateZ(0)]"</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">Shell.Root</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Header.Root</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Metro Contracts"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"fixed inset-x-0 top-0 z-20 flex h-12 items-center bg-inverse-canvas text-inverse-ink"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">Header.MenuButton</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Menu"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex size-12 items-center justify-center hover:bg-inverse-hover focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus-inverse data-active:bg-interactive"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">svg</span> <span style="color:var(--ui-tag-color-purple)">viewBox</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"0 0 20 20"</span> <span style="color:var(--ui-tag-color-purple)">aria-hidden</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"true"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"size-5 fill-current"</span>&gt;
+              &lt;<span style="color:var(--ui-tag-color-blue)">path</span> <span style="color:var(--ui-tag-color-purple)">d</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"M2 14.8h16v1.2H2zm0-5.4h16v1.2H2zM2 4h16v1.2H2z"</span> /&gt;
+            &lt;/<span style="color:var(--ui-tag-color-blue)">svg</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">Header.MenuButton</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">span</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"px-4 text-sm font-semibold"</span>&gt;Contracts&lt;/<span style="color:var(--ui-tag-color-blue)">span</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Header.Root</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">SideNav.Root</span> <span style="color:var(--ui-tag-color-purple)">collapsible</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">SideNav.Nav</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"Sections"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"fixed start-0 top-12 bottom-0 z-20 w-0 overflow-hidden bg-layer-1 shadow-lg transition-[width] data-open:w-56"</span>&gt;
+            &lt;<span style="color:var(--ui-tag-color-blue)">ul</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"grid gap-1 p-2"</span>&gt;
+              {[<span style="color:var(--ui-tag-color-teal)">'Requests'</span>, <span style="color:var(--ui-tag-color-teal)">'Templates'</span>, <span style="color:var(--ui-tag-color-teal)">'Settings'</span>].<span style="color:var(--ui-tag-color-cyan)">map</span>((name) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (
+                &lt;<span style="color:var(--ui-tag-color-blue)">li</span> <span style="color:var(--ui-tag-color-purple)">key</span><span style="color:var(--ui-tag-color-magenta)">=</span>{name}&gt;
+                  &lt;<span style="color:var(--ui-tag-color-blue)">SideNav.Link</span> {<span style="color:var(--ui-tag-color-magenta)">...</span><span style="color:var(--ui-tag-color-cyan)">go</span>(name, name.<span style="color:var(--ui-tag-color-cyan)">toLowerCase</span>())} <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"flex h-8 items-center rounded px-3 text-sm whitespace-nowrap text-ink-muted hover:bg-layer-hover-1 focus-visible:outline-2 focus-visible:outline-focus data-current:bg-interactive data-current:text-on-primary"</span>&gt;
+                    {name}
+                  &lt;/<span style="color:var(--ui-tag-color-blue)">SideNav.Link</span>&gt;
+                &lt;/<span style="color:var(--ui-tag-color-blue)">li</span>&gt;
+              ))}
+            &lt;/<span style="color:var(--ui-tag-color-blue)">ul</span>&gt;
+          &lt;/<span style="color:var(--ui-tag-color-blue)">SideNav.Nav</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">SideNav.Root</span>&gt;
+        &lt;<span style="color:var(--ui-tag-color-blue)">Shell.Content</span> <span style="color:var(--ui-tag-color-purple)">sideNav</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"collapsible"</span> <span style="color:var(--ui-tag-color-purple)">id</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"headless-shell-style-main"</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"mt-12 p-8"</span>&gt;
+          &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">className</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"text-2xl"</span>&gt;{page}&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+        &lt;/<span style="color:var(--ui-tag-color-blue)">Shell.Content</span>&gt;
+      &lt;/<span style="color:var(--ui-tag-color-blue)">Shell.Root</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  );
+}</ui-code-snippet>
+<ui-code-snippet type="multi" class="doc-code" data-lang="css"><span style="color:var(--ui-ink-muted);font-style:italic">/* className="menu-button" on MenuButton, "nav" on Nav, "overlay" on Overlay, "link" on Link and MenuItem, "content" on Content */</span>
+<span style="color:var(--ui-tag-color-purple)">.menu-button</span>[<span style="color:var(--ui-tag-color-purple)">data-active</span>] { <span style="color:var(--ui-tag-color-purple)">background</span>: #0f62fe; }
+<span style="color:var(--ui-tag-color-purple)">.nav</span> { <span style="color:var(--ui-tag-color-purple)">inline-size</span>: <span style="color:var(--ui-tag-color-green)">0</span>; <span style="color:var(--ui-tag-color-purple)">overflow</span>: <span style="color:var(--ui-tag-color-green)">hidden</span>; }
+<span style="color:var(--ui-tag-color-purple)">.nav</span>[<span style="color:var(--ui-tag-color-purple)">data-open</span>] { <span style="color:var(--ui-tag-color-purple)">inline-size</span>: <span style="color:var(--ui-tag-color-green)">256px</span>; }
+<span style="color:var(--ui-tag-color-purple)">.nav</span>[<span style="color:var(--ui-tag-color-purple)">data-ui-side-nav</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">'rail'</span>]<span style="color:var(--ui-tag-color-purple)">:not</span>([<span style="color:var(--ui-tag-color-purple)">data-open</span>]) { <span style="color:var(--ui-tag-color-purple)">inline-size</span>: <span style="color:var(--ui-tag-color-green)">48px</span>; }
+<span style="color:var(--ui-tag-color-purple)">.overlay</span>[<span style="color:var(--ui-tag-color-purple)">data-open</span>] { <span style="color:var(--ui-tag-color-purple)">position</span>: <span style="color:var(--ui-tag-color-green)">fixed</span>; <span style="color:var(--ui-tag-color-purple)">inset</span>: <span style="color:var(--ui-tag-color-green)">48px</span> <span style="color:var(--ui-tag-color-green)">0</span> <span style="color:var(--ui-tag-color-green)">0</span>; <span style="color:var(--ui-tag-color-purple)">background</span>: <span style="color:var(--ui-tag-color-cyan)">rgb</span>(<span style="color:var(--ui-tag-color-green)">22</span> <span style="color:var(--ui-tag-color-green)">22</span> <span style="color:var(--ui-tag-color-green)">22</span> / <span style="color:var(--ui-tag-color-green)">0.5</span>); }
+<span style="color:var(--ui-tag-color-purple)">.link</span>[<span style="color:var(--ui-tag-color-purple)">data-current</span>] { <span style="color:var(--ui-tag-color-purple)">font-weight</span>: <span style="color:var(--ui-tag-color-green)">600</span>; <span style="color:var(--ui-tag-color-purple)">box-shadow</span>: <span style="color:var(--ui-tag-color-green)">inset</span> <span style="color:var(--ui-tag-color-green)">3px</span> <span style="color:var(--ui-tag-color-green)">0</span> #0f62fe; }
+<span style="color:var(--ui-tag-color-purple)">.content</span>[<span style="color:var(--ui-tag-color-purple)">data-side-nav</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">'fixed'</span>] { <span style="color:var(--ui-tag-color-purple)">margin-inline-start</span>: <span style="color:var(--ui-tag-color-green)">256px</span>; }
+<span style="color:var(--ui-tag-color-purple)">.content</span>[<span style="color:var(--ui-tag-color-purple)">data-side-nav</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">'rail'</span>] { <span style="color:var(--ui-tag-color-purple)">margin-inline-start</span>: <span style="color:var(--ui-tag-color-green)">48px</span>; }
+<span style="color:var(--ui-tag-color-magenta)">@media</span> (<span style="color:var(--ui-tag-color-purple)">min-width</span>: <span style="color:var(--ui-tag-color-green)">1056px</span>) {
+  <span style="color:var(--ui-tag-color-purple)">.content</span>[<span style="color:var(--ui-tag-color-purple)">data-side-nav</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">'default'</span>] { <span style="color:var(--ui-tag-color-purple)">margin-inline-start</span>: <span style="color:var(--ui-tag-color-green)">256px</span>; }
+  <span style="color:var(--ui-tag-color-purple)">.overlay</span>[<span style="color:var(--ui-tag-color-purple)">data-open</span>] { <span style="color:var(--ui-tag-color-purple)">display</span>: <span style="color:var(--ui-tag-color-green)">none</span>; }
+}</ui-code-snippet>
+<h2 id="parts">Parts</h2>
+<h3 id="shell-root">Shell.Root</h3>
+<p>Renders no element: only its children. It holds the side nav's expanded state for a <code>Header.MenuButton</code> and a <code>SideNav.Root</code> inside it.</p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sideNavExpanded</code></td>
+<td><code>boolean</code></td>
+<td></td>
+<td>The side nav is open (controlled)</td>
+</tr>
+<tr>
+<td><code>defaultSideNavExpanded</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Open on the first render (uncontrolled)</td>
+</tr>
+<tr>
+<td><code>onSideNavExpandedChange</code></td>
+<td><code>(expanded: boolean) =&gt; void</code></td>
+<td></td>
+<td>The hamburger, Esc, the overlay or focus leaving asked for this state</td>
+</tr>
+</tbody>
+</table>
+<p><code>Shell.useShellContext()</code> returns <code>{ sideNavExpanded, setSideNavExpanded, sideNavId }</code>, or <code>null</code> outside a <code>Shell.Root</code>.</p>
+<h3 id="shell-content">Shell.Content</h3>
+<p>A <code>&lt;main&gt;</code> with the id <code>main-content</code> (the skip link's default target).</p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sideNav</code></td>
+<td><code>'default' | 'rail' | 'fixed' | 'collapsible' | 'none'</code></td>
+<td>found on the page</td>
+<td>How the side nav beside it lays out</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td><code>'main-content'</code></td>
+<td>The skip link's target</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-side-nav</code></td>
+<td>The mode: <code>sideNav</code>, else the first <code>[data-ui-side-nav]</code> in the document (or its shadow root), else <code>none</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="header-root">Header.Root</h3>
+<p>A <code>&lt;header&gt;</code>, the banner landmark: name it with <code>aria-label</code>. It sets <code>data-ui-header</code>, which a toaster uses to start below the header. No props of its own.</p>
+<h3 id="header-skiptocontent">Header.SkipToContent</h3>
+<p>An <code>&lt;a&gt;</code> to the content; hide it until it has focus. Inside a shadow root (a micro app) a click moves focus to the target itself, which the browser can't find there.</p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>href</code></td>
+<td><code>string</code></td>
+<td><code>'#main-content'</code></td>
+<td>The content's id as a fragment</td>
+</tr>
+</tbody>
+</table>
+<h3 id="header-menubutton">Header.MenuButton</h3>
+<p>A <code>&lt;button type=&quot;button&quot;&gt;</code> with <code>aria-expanded</code> and <code>aria-controls</code> (the <code>Shell.Root</code>'s side nav id unless you pass your own). Name it with <code>aria-label</code>, by its state if you like (&quot;Open menu&quot; / &quot;Close menu&quot;).</p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>active</code></td>
+<td><code>boolean</code></td>
+<td>the shell's state, else <code>false</code></td>
+<td>The side nav it controls is open</td>
+</tr>
+<tr>
+<td><code>onToggle</code></td>
+<td><code>(active: boolean) =&gt; void</code></td>
+<td></td>
+<td>The user asked for the other state</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-active</code></td>
+<td>The side nav is open</td>
+</tr>
+</tbody>
+</table>
+<h3 id="header-menu">Header.Menu</h3>
+<p>An <code>&lt;li&gt;</code> holding a <code>MenuTrigger</code> and a <code>MenuPopup</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>open</code></td>
+<td><code>boolean</code></td>
+<td></td>
+<td>Open (controlled)</td>
+</tr>
+<tr>
+<td><code>defaultOpen</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Open on the first render</td>
+</tr>
+<tr>
+<td><code>onOpenChange</code></td>
+<td><code>(open: boolean) =&gt; void</code></td>
+<td></td>
+<td>The user opened or closed it</td>
+</tr>
+<tr>
+<td><code>current</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Show the current-section mark even while open (Carbon <code>isActive</code>)</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-open</code></td>
+<td>It is open</td>
+</tr>
+<tr>
+<td><code>data-current</code></td>
+<td><code>current</code>, or closed with a <code>current</code> item inside</td>
+</tr>
+</tbody>
+</table>
+<p><code>Header.useMenuContext()</code> returns the menu's state; <code>Header.useOptionalMenuContext()</code> returns it or <code>null</code> in the menu bar.</p>
+<h3 id="header-menutrigger">Header.MenuTrigger</h3>
+<p>A <code>&lt;button type=&quot;button&quot;&gt;</code> with <code>aria-expanded</code>, <code>aria-controls</code> (its popup) and <code>tabindex=&quot;0&quot;</code> (so Safari focuses it on click and Tab reaches it). It has the same <code>data-open</code> and <code>data-current</code> as its menu.</p>
+<h3 id="header-menupopup">Header.MenuPopup</h3>
+<p>A <code>&lt;ul&gt;</code> with the menu's id: name it with <code>aria-label</code> (the trigger's text) and hide it while <code>data-open</code> is absent.</p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-open</code></td>
+<td>The menu is open</td>
+</tr>
+</tbody>
+</table>
+<h3 id="header-menuitem">Header.MenuItem</h3>
+<p>An <code>&lt;a&gt;</code> of the menu bar or of a menu. Following it inside a menu closes the menu and focuses its trigger. It keeps <code>target</code> and <code>rel</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>current</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>The current page (<code>aria-current=&quot;page&quot;</code>)</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-current</code></td>
+<td><code>current</code> is set</td>
+</tr>
+</tbody>
+</table>
+<h3 id="header-globalaction">Header.GlobalAction</h3>
+<p>A <code>&lt;button type=&quot;button&quot;&gt;</code> with <code>tabindex=&quot;0&quot;</code>. Name it with <code>aria-label</code> (or a tooltip that labels it).</p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>active</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Pressed: a toggle (<code>aria-pressed</code>)</td>
+</tr>
+<tr>
+<td><code>expanded</code></td>
+<td><code>boolean</code></td>
+<td></td>
+<td>Its panel is open: a disclosure (<code>aria-expanded</code>); pair it with <code>aria-controls</code> = the panel's <code>id</code></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-active</code></td>
+<td>Pressed, or its panel is open</td>
+</tr>
+</tbody>
+</table>
+<h3 id="header-panel">Header.Panel</h3>
+<p>A <code>&lt;div&gt;</code>: the panel under the header. Give it the <code>id</code> its action's <code>aria-controls</code> names.</p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>expanded</code></td>
+<td><code>boolean</code></td>
+<td></td>
+<td>Open (required, controlled)</td>
+</tr>
+<tr>
+<td><code>onClose</code></td>
+<td><code>(reason: 'escape' | 'blur' | 'outside') =&gt; void</code></td>
+<td></td>
+<td>Asks to close: Esc (focus goes back to what opened it), focus leaving, a press outside (not on its action)</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-open</code></td>
+<td>It is open</td>
+</tr>
+</tbody>
+</table>
+<h3 id="header-panelcontent">Header.PanelContent</h3>
+<p>A <code>&lt;section&gt;</code> inside the panel, <code>hidden</code> while it is closed. Name it (<code>aria-label</code>) to make it a region landmark.</p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-open</code></td>
+<td>The panel is open</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sidenav-root">SideNav.Root</h3>
+<p>Renders no element: only its children. It holds the expanded, hover and breakpoint state.</p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>expanded</code></td>
+<td><code>boolean</code></td>
+<td>the shell's state, else <code>false</code></td>
+<td>Open (controlled)</td>
+</tr>
+<tr>
+<td><code>onToggle</code></td>
+<td><code>(expanded: boolean) =&gt; void</code></td>
+<td></td>
+<td>Esc, the overlay or focus leaving asked for this state</td>
+</tr>
+<tr>
+<td><code>rail</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>A strip of icons that opens on hover / focus</td>
+</tr>
+<tr>
+<td><code>fixed</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Always open beside the page</td>
+</tr>
+<tr>
+<td><code>collapsible</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Closed at every width until opened over the page</td>
+</tr>
+</tbody>
+</table>
+<p><code>SideNav.useSideNavContext()</code> returns <code>{ expanded, hoverOpen, open, hidden, mode, rail, fixed, collapsible, large, … }</code>.</p>
+<h3 id="sidenav-overlay">SideNav.Overlay</h3>
+<p>A <code>&lt;div aria-hidden=&quot;true&quot;&gt;</code> that covers the page while the nav is expanded; a click on it asks to close. Show it below <code>lg</code> only.</p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-open</code></td>
+<td>The nav is expanded and not <code>fixed</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="sidenav-nav">SideNav.Nav</h3>
+<p>A <code>&lt;nav tabindex=&quot;-1&quot;&gt;</code>: name it with <code>aria-label</code>. Its id is the shell's side nav id unless you pass one. Hover and focus open a rail; Esc asks to close and gives focus back to what opened it; over the page (below <code>lg</code>, or <code>collapsible</code>), focus leaving it asks to close. While neither shown nor a rail it is <code>inert</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-ui-side-nav</code></td>
+<td>The mode: <code>default</code>, <code>rail</code>, <code>fixed</code> or <code>collapsible</code></td>
+</tr>
+<tr>
+<td><code>data-open</code></td>
+<td>Shown at full width: expanded, a hovered rail, <code>fixed</code>, or the default nav from <code>lg</code></td>
+</tr>
+<tr>
+<td><code>data-expanded</code></td>
+<td>Asked open, or a rail under the pointer or holding focus</td>
+</tr>
+<tr>
+<td><code>data-collapsed</code></td>
+<td>Hidden and <code>inert</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="sidenav-link">SideNav.Link</h3>
+<p>An <code>&lt;a&gt;</code>, out of the Tab order while the nav is hidden. It keeps <code>target</code> and <code>rel</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>current</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>The current page (<code>aria-current=&quot;page&quot;</code>)</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-current</code></td>
+<td><code>current</code> is set</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sidenav-menu-menutrigger-menupopup-menuitem">SideNav.Menu, MenuTrigger, MenuPopup, MenuItem</h3>
+<p><code>Menu</code> is an <code>&lt;li&gt;</code>; <code>MenuTrigger</code> a <code>&lt;button type=&quot;button&quot;&gt;</code> with <code>aria-expanded</code> and <code>aria-controls</code>; <code>MenuPopup</code> a <code>&lt;ul&gt;</code> to hide while <code>data-open</code> is absent; <code>MenuItem</code> an <code>&lt;a&gt;</code> with <code>current</code> (<code>aria-current=&quot;page&quot;</code>, <code>data-current</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Prop of <code>Menu</code></th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>expanded</code></td>
+<td><code>boolean</code></td>
+<td></td>
+<td>Open (controlled)</td>
+</tr>
+<tr>
+<td><code>defaultExpanded</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Open on the first render</td>
+</tr>
+<tr>
+<td><code>onExpandedChange</code></td>
+<td><code>(expanded: boolean) =&gt; void</code></td>
+<td></td>
+<td>The user opened or closed it</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>On</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-open</code></td>
+<td><code>Menu</code>, <code>MenuTrigger</code>, <code>MenuPopup</code></td>
+<td>The menu is open</td>
+</tr>
+<tr>
+<td><code>data-current</code></td>
+<td><code>Menu</code>, <code>MenuTrigger</code></td>
+<td>One of its items is <code>current</code> (open or closed)</td>
+</tr>
+</tbody>
+</table>
+<p><code>SideNav.useMenuContext()</code> returns <code>{ expanded, current, menuId, toggle }</code>.</p>
+<h2 id="keyboard-and-accessibility">Keyboard and accessibility</h2>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Where</th>
+<th>Does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Enter, Space</td>
+<td><code>MenuButton</code></td>
+<td>Opens or closes the side nav</td>
+</tr>
+<tr>
+<td>Enter, Space</td>
+<td><code>Header.MenuTrigger</code></td>
+<td>Opens or closes the menu</td>
+</tr>
+<tr>
+<td>Esc</td>
+<td>Open header menu</td>
+<td>Closes it, focus back on its trigger</td>
+</tr>
+<tr>
+<td>Esc</td>
+<td>Open panel</td>
+<td>Asks to close (<code>'escape'</code>), focus back on what opened it</td>
+</tr>
+<tr>
+<td>Esc</td>
+<td>Open side nav</td>
+<td>Asks to close, focus back on what opened it</td>
+</tr>
+<tr>
+<td>Tab</td>
+<td>Out of a header menu, a panel, or a side nav over the page</td>
+<td>Closes it (asks to)</td>
+</tr>
+<tr>
+<td>Enter, Space</td>
+<td><code>SideNav.MenuTrigger</code></td>
+<td>Opens or closes the menu</td>
+</tr>
+</tbody>
+</table>
+<p>The parts set <code>aria-expanded</code>, <code>aria-controls</code>, <code>aria-pressed</code>, <code>aria-current=&quot;page&quot;</code>, <code>inert</code> on a hidden nav and <code>tabindex=&quot;-1&quot;</code> on its links, and <code>aria-hidden</code> on the overlay.</p>
+<p>You add:</p>
+<ul>
+<li>The names: <code>aria-label</code> on <code>Header.Root</code>, the menu bar's <code>&lt;nav&gt;</code>, <code>SideNav.Nav</code>, <code>MenuButton</code>, each <code>GlobalAction</code> and <code>MenuPopup</code>.</li>
+<li>The skip link's text and a style that shows it on focus.</li>
+<li>The icons, with <code>aria-hidden=&quot;true&quot;</code>.</li>
+</ul>
+
+</article>
+<nav class="doc-toc" aria-labelledby="doc-toc-title"><p id="doc-toc-title" class="doc-toc-title">On this page</p><ul><li class="doc-toc-h2"><a href="#installation">Installation</a></li><li class="doc-toc-h2"><a href="#use-it">Use it</a></li><li class="doc-toc-h2"><a href="#anatomy">Anatomy</a></li><li class="doc-toc-h2"><a href="#header-menus">Header menus</a></li><li class="doc-toc-h2"><a href="#global-actions-and-a-panel">Global actions and a panel</a></li><li class="doc-toc-h2"><a href="#side-nav-modes">Side nav modes</a></li><li class="doc-toc-h2"><a href="#without-shell-root">Without Shell.Root</a></li><li class="doc-toc-h2"><a href="#style-it">Style it</a></li><li class="doc-toc-h2"><a href="#parts">Parts</a></li><li class="doc-toc-h3"><a href="#shell-root">Shell.Root</a></li><li class="doc-toc-h3"><a href="#shell-content">Shell.Content</a></li><li class="doc-toc-h3"><a href="#header-root">Header.Root</a></li><li class="doc-toc-h3"><a href="#header-skiptocontent">Header.SkipToContent</a></li><li class="doc-toc-h3"><a href="#header-menubutton">Header.MenuButton</a></li><li class="doc-toc-h3"><a href="#header-menu">Header.Menu</a></li><li class="doc-toc-h3"><a href="#header-menutrigger">Header.MenuTrigger</a></li><li class="doc-toc-h3"><a href="#header-menupopup">Header.MenuPopup</a></li><li class="doc-toc-h3"><a href="#header-menuitem">Header.MenuItem</a></li><li class="doc-toc-h3"><a href="#header-globalaction">Header.GlobalAction</a></li><li class="doc-toc-h3"><a href="#header-panel">Header.Panel</a></li><li class="doc-toc-h3"><a href="#header-panelcontent">Header.PanelContent</a></li><li class="doc-toc-h3"><a href="#sidenav-root">SideNav.Root</a></li><li class="doc-toc-h3"><a href="#sidenav-overlay">SideNav.Overlay</a></li><li class="doc-toc-h3"><a href="#sidenav-nav">SideNav.Nav</a></li><li class="doc-toc-h3"><a href="#sidenav-link">SideNav.Link</a></li><li class="doc-toc-h3"><a href="#sidenav-menu-menutrigger-menupopup-menuitem">SideNav.Menu, MenuTrigger, MenuPopup, MenuItem</a></li><li class="doc-toc-h2"><a href="#keyboard-and-accessibility">Keyboard and accessibility</a></li></ul></nav>
+</div>
+<nav class="doc-pager" aria-label="Next / Previous"><a class="doc-pager-prev" href="/kanok-ui-docs/en/headless-progress-indicator/" rel="prev"><span>Previous</span>Progress indicator</a><a class="doc-pager-next" href="/kanok-ui-docs/en/headless-modal/" rel="next"><span>Next</span>Modal</a></nav>
+<footer class="doc-footer">@purpurabog/ui 2.3.0 · MIT · <a href="https://cdn.jsdelivr.net/npm/@purpurabog/ui@2.3.0/THIRD-PARTY-NOTICES.md">Third-party notices</a><br>Built on the Carbon Design System. Not affiliated with or endorsed by IBM; IBM and Carbon are trademarks of IBM Corp.</footer>
+</ui-content>
+<ui-modal id="doc-search" heading="Search" data-count="{n} results" data-empty="No results for “{q}”">
+<ui-search label="Search the docs" placeholder="Search the docs" size="lg"></ui-search>
+<p class="doc-search-status" role="status"></p>
+<ul class="doc-search-results"></ul>
+</ui-modal>
+</body>
+</html>

@@ -1,0 +1,1063 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Structured list · @purpurabog/ui</title>
+<link rel="alternate" hreflang="en" href="/kanok-ui-docs/en/structured-list/"  /><link rel="alternate" hreflang="th" href="/kanok-ui-docs/th/structured-list/"  />
+<script>(function(){try{var q=new URLSearchParams(location.search).get("design"),d=q;if(q==="kanok"||q==="carbon")localStorage.setItem("ui-docs-design",q);else d=localStorage.getItem("ui-docs-design");if(d==="kanok")document.documentElement.setAttribute("data-design","kanok")}catch(e){}})();(function(){try{var m=localStorage.getItem("ui-docs-theme");if(m!=="light"&&m!=="dark"&&m!=="system")return;var d=m==="dark"||(m==="system"&&matchMedia("(prefers-color-scheme: dark)").matches),r=document.documentElement,t=d?"g100":"white";if(r.getAttribute("data-design")==="kanok")t=d?"lacquer":"paper";r.setAttribute("data-theme",t)}catch(e){}})();</script>
+<style>ui-header:not(:defined){z-index:8000;box-sizing:border-box;border-block-end:1px solid var(--ui-border-subtle-1);background:var(--ui-canvas);block-size:48px;display:block;position:fixed;inset:0 0 auto}:is(ui-header:not(:defined)>*,ui-side-nav:not(:defined)>*){visibility:hidden}:is(ui-header-panel:not(:defined),ui-modal:not(:defined)){display:none}ui-side-nav:not(:defined){display:none}ui-content:not(:defined){margin-block-start:48px;padding:32px;display:block}@media (width>=1056px){ui-side-nav[expanded]:not(:defined){background:var(--ui-canvas);inline-size:256px;display:block;position:fixed;inset:48px auto 0 0}ui-side-nav[expanded]:not(:defined)~ui-content:not(:defined){margin-inline-start:256px}}ui-tabs:not(:defined){display:block}ui-tabs:not(:defined)>ui-tab{box-sizing:border-box;border-block-end:2px solid var(--ui-hairline);block-size:40px;color:var(--ui-ink-muted);font:var(--ui-font-body-sm);padding:0 16px;line-height:38px;display:inline-block}ui-tabs:not(:defined)>ui-tab:first-of-type{border-block-end-color:var(--ui-interactive);color:var(--ui-ink)}ui-tabs:not(:defined)>ui-tab-panel{padding:16px;display:block}ui-tabs:not(:defined)>ui-tab-panel~ui-tab-panel{display:none}ui-code-snippet:not(:defined){background:var(--ui-layer-1);max-block-size:272px;font:var(--ui-font-code,12px/16px monospace);white-space:pre;padding:16px;display:block;overflow:hidden}[data-react-example]:empty>*{visibility:hidden}.doc-demo:has(:not(:defined))>*{visibility:hidden}[data-react-example]:empty{box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}.doc-demo:has(:not(:defined)){box-sizing:border-box;background:linear-gradient(90deg, var(--ui-skeleton-background) 25%, var(--ui-skeleton-element) 50%, var(--ui-skeleton-background) 75%) 0 0 / 200% 100%;min-block-size:88px;animation:3s linear infinite doc-skeleton}@keyframes doc-skeleton{to{background-position:-200% 0}}@media (prefers-reduced-motion:reduce){[data-react-example]:empty{animation:none}.doc-demo:has(:not(:defined)){animation:none}}</style>
+
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/theme-switcher-BZXGbHfR.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/tab-ChjAM0hz.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/button-DGUm7Yxm.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/structured-list-B-c_iWSO.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/skeleton-Bt17J2no.js"></script>
+  <script type="module" crossorigin src="/kanok-ui-docs/assets/structured-list-skeleton-CIOEAp_K.js"></script>
+  <link rel="stylesheet" crossorigin href="/kanok-ui-docs/assets/theme-switcher-BXY5AIvi.css">
+</head>
+<body>
+<ui-header label="@purpurabog/ui">
+<ui-skip-to-content></ui-skip-to-content>
+<ui-header-menu-button></ui-header-menu-button>
+<ui-header-name href="/kanok-ui-docs/th/" prefix="@purpurabog">ui</ui-header-name>
+<ui-header-global-bar>
+<ui-header-global-action id="doc-search-open" label="ค้นหา" tooltip-placement="bottom"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="m18.5 17.8-4.9-4.9a7 7 0 1 0-.7.7l4.9 4.9zM3 8.5a5.5 5.5 0 1 1 5.5 5.5A5.5 5.5 0 0 1 3 8.5Z" /></svg></ui-header-global-action>
+<ui-header-global-action label="ตั้งค่า" panel="doc-settings" tooltip-placement="bottom-end"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="M16.9 10.6a7 7 0 0 0 0-1.2l1.8-1.4-1.6-2.8-2.1.8a6.6 6.6 0 0 0-1-.6L13.6 3h-3.2l-.4 2.4a6.6 6.6 0 0 0-1 .6l-2.1-.8L5.3 8l1.8 1.4a7 7 0 0 0 0 1.2L5.3 12l1.6 2.8 2.1-.8a6.6 6.6 0 0 0 1 .6l.4 2.4h3.2l.4-2.4a6.6 6.6 0 0 0 1-.6l2.1.8 1.6-2.8zM12 13a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" /></svg></ui-header-global-action>
+</ui-header-global-bar>
+<ui-header-panel id="doc-settings" label="ตั้งค่า">
+<div class="doc-settings">
+<span class="doc-settings-label">ธีม</span>
+<ui-theme-switcher storage-key="ui-docs-theme" tooltip-placement="bottom"></ui-theme-switcher>
+<span class="doc-settings-label">รูปแบบ</span>
+<ui-content-switcher id="doc-design" aria-label="รูปแบบ" size="sm"><ui-content-switcher-item name="carbon">Carbon</ui-content-switcher-item><ui-content-switcher-item name="kanok">Kanok</ui-content-switcher-item></ui-content-switcher>
+<span class="doc-settings-label">ภาษา</span>
+<ui-link href="/kanok-ui-docs/en/structured-list/" hreflang="en" lang="en">English</ui-link>
+</div>
+</ui-header-panel>
+</ui-header>
+<ui-side-nav label="เอกสาร"><ui-side-nav-items><ui-side-nav-menu label="เริ่มต้น"><ui-side-nav-menu-item href="/kanok-ui-docs/th/">ภาพรวม</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/installation/">ติดตั้ง</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/migration-1-0/">การย้ายไป 1.0</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="คู่มือ"><ui-side-nav-menu-item href="/kanok-ui-docs/th/themes/">ธีมและ layer</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/kanok/">ดีไซน์ Kanok</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/customizing/">ปรับแต่งหน้าตา</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/icons/">ไอคอน</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/forms/">ฟอร์มและการตรวจค่า</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/frameworks/">ใช้กับ framework</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/ai/">ใช้กับ AI</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="ฟอร์มและปุ่ม"><ui-side-nav-menu-item href="/kanok-ui-docs/th/button/">Button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/file-uploader/">File uploader</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Overlay"><ui-side-nav-menu-item href="/kanok-ui-docs/th/modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/toggletip/">Toggletip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/menu/">Menu</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="ข้อมูล" expanded><ui-side-nav-menu-item href="/kanok-ui-docs/th/data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/structured-list/" current>Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/contained-list/">Contained list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tree-view/">Tree view</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="การนำทาง"><ui-side-nav-menu-item href="/kanok-ui-docs/th/tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/breadcrumb/">Breadcrumb</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/link/">Link</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/ui-shell/">UI shell</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="เนื้อหา"><ui-side-nav-menu-item href="/kanok-ui-docs/th/tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/tile/">Tile</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/user-avatar/">User avatar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/list/">List</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="สถานะและการโหลด"><ui-side-nav-menu-item href="/kanok-ui-docs/th/loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/inline-loading/">Inline loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/progress-bar/">Progress bar</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/skeleton/">Skeleton</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/badge-indicator/">Badge indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/status-indicator/">Status indicator</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="เลย์เอาต์"><ui-side-nav-menu-item href="/kanok-ui-docs/th/grid/">Grid</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/heading/">Heading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/layer/">Layer</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/action-set/">Action set</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/page-header/">Page header</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/big-number/">Big number</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu><ui-side-nav-menu label="Headless"><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless/">แนะนำ</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-text-input/">Text input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-text-area/">Text area</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-number-input/">Number input</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-search/">Search</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-select/">Select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-dropdown/">Dropdown</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-combobox/">Combobox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-multi-select/">Multi-select</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-checkbox/">Checkbox</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-radio/">Radio button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-toggle/">Toggle</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-date-picker/">Date picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-time-picker/">Time picker</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-slider/">Slider</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-file-uploader/">File uploader</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tabs/">Tabs</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-pagination-nav/">Pagination nav</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-content-switcher/">Content switcher</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tooltip/">Tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-definition-tooltip/">Definition tooltip</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-popover/">Popover</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-menu/">Menu</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-accordion/">Accordion</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-progress-indicator/">Progress indicator</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-ui-shell/">UI shell</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-modal/">Modal</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-side-panel/">Side panel</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tearsheet/">Tearsheet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-notification/">Notification</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-toast/">Toast</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-data-table/">Data table</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-structured-list/">Structured list</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-pagination/">Pagination</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tree-view/">Tree view</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-code-snippet/">Code snippet</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-copy-button/">Copy button</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-truncated-text/">Truncated text</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-loading/">Loading</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-tag/">Tag</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-card/">Card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-product-card/">Product card</ui-side-nav-menu-item><ui-side-nav-menu-item href="/kanok-ui-docs/th/headless-edit-in-place/">Edit in place</ui-side-nav-menu-item></ui-side-nav-menu></ui-side-nav-items></ui-side-nav><script>if(matchMedia('(min-width: 66rem)').matches)document.currentScript.previousElementSibling.setAttribute('expanded','')</script>
+<ui-content>
+<div class="doc-page">
+<article class="doc">
+<h1 id="structured-list">Structured list</h1>
+<p>Structured list แสดงข้อความไม่กี่แถวเป็นคอลัมน์ เช่น เปรียบเทียบแพ็กเกจ หรือแสดงเงื่อนไขของสัญญา เบากว่า <a href="/kanok-ui-docs/th/data-table/">data table</a> คือไม่มีการเรียงลำดับและไม่มี toolbar ถ้าใส่ <code>selection</code> ผู้ใช้จะเลือกได้หนึ่งแถว</p>
+<div class="doc-demo"><ui-structured-list label="แพ็กเกจ">
+  <ui-structured-list-row head>
+    <ui-structured-list-cell>แพ็กเกจ</ui-structured-list-cell>
+    <ui-structured-list-cell>ผู้ใช้</ui-structured-list-cell>
+    <ui-structured-list-cell>ราคา</ui-structured-list-cell>
+    <ui-structured-list-cell>สิ่งที่ได้</ui-structured-list-cell>
+  </ui-structured-list-row>
+  <ui-structured-list-row>
+    <ui-structured-list-cell nowrap>พื้นฐาน</ui-structured-list-cell>
+    <ui-structured-list-cell>ไม่เกิน 5 คน</ui-structured-list-cell>
+    <ui-structured-list-cell>ฟรี</ui-structured-list-cell>
+    <ui-structured-list-cell>แม่แบบใช้ร่วมกัน เก็บประวัติการใช้งาน 30 วัน</ui-structured-list-cell>
+  </ui-structured-list-row>
+  <ui-structured-list-row>
+    <ui-structured-list-cell nowrap>ทีม</ui-structured-list-cell>
+    <ui-structured-list-cell>ไม่เกิน 50 คน</ui-structured-list-cell>
+    <ui-structured-list-cell>฿390 / คน</ui-structured-list-cell>
+    <ui-structured-list-cell>ขั้นตอนอนุมัติ SSO เก็บประวัติการใช้งาน 1 ปี</ui-structured-list-cell>
+  </ui-structured-list-row>
+  <ui-structured-list-row>
+    <ui-structured-list-cell nowrap>องค์กร</ui-structured-list-cell>
+    <ui-structured-list-cell>ไม่จำกัด</ui-structured-list-cell>
+    <ui-structured-list-cell>ติดต่อฝ่ายขาย</ui-structured-list-cell>
+    <ui-structured-list-cell>เลือก region เอง กำหนดระยะเก็บข้อมูลเอง มี SLA</ui-structured-list-cell>
+  </ui-structured-list-row>
+</ui-structured-list>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-1-0">HTML</ui-tab><ui-tab panel="code-1-1">React</ui-tab><ui-tab panel="code-1-2">React + Tailwind</ui-tab><ui-tab-panel name="code-1-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"แพ็กเกจ"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span> <span style="color:var(--ui-tag-color-purple)">head</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;แพ็กเกจ&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;ผู้ใช้&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;ราคา&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;สิ่งที่ได้&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span> <span style="color:var(--ui-tag-color-purple)">nowrap</span>&gt;พื้นฐาน&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;ไม่เกิน 5 คน&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;ฟรี&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;แม่แบบใช้ร่วมกัน เก็บประวัติการใช้งาน 30 วัน&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span> <span style="color:var(--ui-tag-color-purple)">nowrap</span>&gt;ทีม&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;ไม่เกิน 50 คน&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;฿390 / คน&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;ขั้นตอนอนุมัติ SSO เก็บประวัติการใช้งาน 1 ปี&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span> <span style="color:var(--ui-tag-color-purple)">nowrap</span>&gt;องค์กร&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;ไม่จำกัด&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;ติดต่อฝ่ายขาย&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;เลือก region เอง กำหนดระยะเก็บข้อมูลเอง มี SLA&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-1-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredList</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"แพ็กเกจ"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListRow</span> <span style="color:var(--ui-tag-color-purple)">head</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;แพ็กเกจ&lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;ผู้ใช้&lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;ราคา&lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;สิ่งที่ได้&lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListRow</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListRow</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span> <span style="color:var(--ui-tag-color-purple)">nowrap</span>&gt;พื้นฐาน&lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;ไม่เกิน 5 คน&lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;ฟรี&lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;แม่แบบใช้ร่วมกัน เก็บประวัติการใช้งาน 30 วัน&lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListRow</span>&gt;
+  {<span style="color:var(--ui-ink-muted);font-style:italic">/* … ทีม, องค์กร */</span>}
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredList</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-1-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">StructuredList</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"แพ็กเกจ"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListRow</span> <span style="color:var(--ui-tag-color-purple)">head</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;แพ็กเกจ&lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;ผู้ใช้&lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;ราคา&lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;สิ่งที่ได้&lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListRow</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListRow</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span> <span style="color:var(--ui-tag-color-purple)">nowrap</span>&gt;พื้นฐาน&lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;ไม่เกิน 5 คน&lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;ฟรี&lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;แม่แบบใช้ร่วมกัน เก็บประวัติการใช้งาน 30 วัน&lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListRow</span>&gt;
+  {<span style="color:var(--ui-ink-muted);font-style:italic">/* … ทีม, องค์กร */</span>}
+&lt;/<span style="color:var(--ui-tag-color-blue)">StructuredList</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="ติดตั้ง">ติดตั้ง</h2>
+<ui-tabs class="doc-code-tabs" label="โค้ด"><ui-tab panel="code-2-0">npm</ui-tab><ui-tab panel="code-2-1">shadcn · Web component</ui-tab><ui-tab panel="code-2-2">shadcn · React + Tailwind</ui-tab><ui-tab panel="code-2-3">คัดลอกเอง</ui-tab><ui-tab-panel name="code-2-0"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">@purpurabog/ui</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-1"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npx</span> <span style="color:var(--ui-tag-color-teal)">shadcn@4</span> <span style="color:var(--ui-tag-color-teal)">add</span> <span style="color:var(--ui-tag-color-teal)">@kanok-ui/structured-list</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-2"><ui-code-snippet type="single" class="doc-code" data-lang="bash"><span style="color:var(--ui-tag-color-cyan)">npx</span> <span style="color:var(--ui-tag-color-teal)">shadcn@4</span> <span style="color:var(--ui-tag-color-teal)">add</span> <span style="color:var(--ui-tag-color-teal)">@kanok-ui/tw-structured-list</span></ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-2-3"><ui-code-snippet type="multi" class="doc-code" data-lang="bash"><span style="color:var(--ui-ink-muted);font-style:italic"># Web component</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 1. ติดตั้ง dependency</span>
+<span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">lit@^3.3.0</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 2. คัดลอก "content" ของแต่ละไฟล์จาก</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    https://cdn.jsdelivr.net/npm/@purpurabog/ui@2.3.0/registry/structured-list.json</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    ไปไว้ที่ target ของมัน:</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/structured-list/structured-list-cell.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/structured-list/structured-list-row.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/structured-list/structured-list-skeleton.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/primitives/structured-list/structured-list.ts</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 3. ทำแบบเดียวกันกับ item ที่มันใช้ (registry/&lt;name&gt;.json):</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    core-roving, shared-element, shared-field, shared-localize, shared-skeleton, tokens</span>
+
+<span style="color:var(--ui-ink-muted);font-style:italic"># React + Tailwind</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 1. ติดตั้ง dependency</span>
+<span style="color:var(--ui-tag-color-cyan)">npm</span> <span style="color:var(--ui-tag-color-teal)">install</span> <span style="color:var(--ui-tag-color-teal)">@purpurabog/ui@^2.3.0</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 2. คัดลอก "content" ของแต่ละไฟล์จาก</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    https://cdn.jsdelivr.net/npm/@purpurabog/ui@2.3.0/registry/tw-structured-list.json</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    ไปไว้ที่ target ของมัน:</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    components/ui/react-tw/structured-list.tsx</span>
+<span style="color:var(--ui-ink-muted);font-style:italic"># 3. ทำแบบเดียวกันกับ item ที่มันใช้ (registry/&lt;name&gt;.json):</span>
+<span style="color:var(--ui-ink-muted);font-style:italic">#    tw-i18n, tw-refs, tw-theme, tw-utils</span></ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>npm ให้ทุก component จากแพ็กเกจ ส่วน shadcn คัดลอกซอร์สเข้าแอปของคุณแทน เป็นสำเนาที่ล็อกเวอร์ชันนี้และแก้เองได้ คำสั่ง shadcn ต้องตั้ง registry <code>@kanok-ui</code> ใน <code>components.json</code> ครั้งเดียวก่อน ดู <a href="/kanok-ui-docs/th/installation/#react-tailwind-%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2-shadcn">ติดตั้ง</a></p>
+<h2 id="วิธีใช้">วิธีใช้</h2>
+<ui-tabs class="doc-code-tabs" label="โค้ด"><ui-tab panel="code-3-0">HTML</ui-tab><ui-tab panel="code-3-1">React</ui-tab><ui-tab panel="code-3-2">React + Tailwind</ui-tab><ui-tab-panel name="code-3-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;<span style="color:var(--ui-tag-color-magenta)">import</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/structured-list'</span>;&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"เงื่อนไขสัญญา"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span> <span style="color:var(--ui-tag-color-purple)">head</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;หัวข้อ&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;ค่า&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;ระยะเวลา&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;12 เดือน&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-3-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { UiStructuredList, UiStructuredListRow, UiStructuredListCell } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/react'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredList</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เงื่อนไขสัญญา"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListRow</span> <span style="color:var(--ui-tag-color-purple)">head</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;หัวข้อ&lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;ค่า&lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListRow</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListRow</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;ระยะเวลา&lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;12 เดือน&lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListRow</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredList</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-3-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { StructuredList, StructuredListRow, StructuredListCell } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@/components/ui/react-tw/structured-list'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">StructuredList</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เงื่อนไขสัญญา"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListRow</span> <span style="color:var(--ui-tag-color-purple)">head</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;หัวข้อ&lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;ค่า&lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListRow</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListRow</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;ระยะเวลา&lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;12 เดือน&lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListRow</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">StructuredList</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="structured-list-หรือ-data-table">Structured list หรือ data table?</h2>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>ใช้เมื่อ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Structured list</td>
+<td>มีไม่กี่แถวให้อ่าน เปรียบเทียบ หรือเลือกหนึ่งแถว ข้อความในเซลล์ตัดบรรทัดได้และใส่อะไรก็ได้</td>
+</tr>
+<tr>
+<td><a href="/kanok-ui-docs/th/data-table/">Data table</a></td>
+<td>มีหลายแถว ผู้ใช้ต้องเรียงลำดับ ค้นหา เลือกหลายแถว หรือเปลี่ยนหน้า</td>
+</tr>
+<tr>
+<td><a href="/kanok-ui-docs/th/contained-list/">Contained list</a></td>
+<td>รายการคอลัมน์เดียว แต่ละรายการมีปุ่มของตัวเอง อยู่ใน panel หรือ tile</td>
+</tr>
+</tbody>
+</table>
+<h2 id="แถวหัวตาราง">แถวหัวตาราง</h2>
+<p><code>head</code> ที่แถวแรกทำให้เซลล์ในแถวนั้นเป็นหัวคอลัมน์ (ตัวหนา, <code>columnheader</code>) ไม่ต้องใส่ถ้าเป็นรายการคู่ ชื่อ–ค่า ที่คอลัมน์แรกบอกอยู่แล้วว่าแต่ละแถวคืออะไร</p>
+<div class="doc-demo"><ui-structured-list label="สรุปสัญญา">
+  <ui-structured-list-row>
+    <ui-structured-list-cell nowrap>คู่สัญญา</ui-structured-list-cell>
+    <ui-structured-list-cell>บริษัท เอซีเอ็ม จำกัด</ui-structured-list-cell>
+  </ui-structured-list-row>
+  <ui-structured-list-row>
+    <ui-structured-list-cell nowrap>ลงนามเมื่อ</ui-structured-list-cell>
+    <ui-structured-list-cell>30 กันยายน 2569</ui-structured-list-cell>
+  </ui-structured-list-row>
+  <ui-structured-list-row>
+    <ui-structured-list-cell nowrap>ผู้รับผิดชอบ</ui-structured-list-cell>
+    <ui-structured-list-cell>ฝ่ายกฎหมาย คุณสมชาย ก.</ui-structured-list-cell>
+  </ui-structured-list-row>
+</ui-structured-list>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-4-0">HTML</ui-tab><ui-tab panel="code-4-1">React</ui-tab><ui-tab panel="code-4-2">React + Tailwind</ui-tab><ui-tab-panel name="code-4-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"สรุปสัญญา"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span> <span style="color:var(--ui-tag-color-purple)">nowrap</span>&gt;คู่สัญญา&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;บริษัท เอซีเอ็ม จำกัด&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span> <span style="color:var(--ui-tag-color-purple)">nowrap</span>&gt;ลงนามเมื่อ&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;30 กันยายน 2569&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span> <span style="color:var(--ui-tag-color-purple)">nowrap</span>&gt;ผู้รับผิดชอบ&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;ฝ่ายกฎหมาย คุณสมชาย ก.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-4-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredList</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"สรุปสัญญา"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListRow</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span> <span style="color:var(--ui-tag-color-purple)">nowrap</span>&gt;คู่สัญญา&lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;บริษัท เอซีเอ็ม จำกัด&lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListRow</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListRow</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span> <span style="color:var(--ui-tag-color-purple)">nowrap</span>&gt;ลงนามเมื่อ&lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;30 กันยายน 2569&lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListRow</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListRow</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span> <span style="color:var(--ui-tag-color-purple)">nowrap</span>&gt;ผู้รับผิดชอบ&lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;ฝ่ายกฎหมาย คุณสมชาย ก.&lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListRow</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredList</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-4-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">StructuredList</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"สรุปสัญญา"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListRow</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span> <span style="color:var(--ui-tag-color-purple)">nowrap</span>&gt;คู่สัญญา&lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;บริษัท เอซีเอ็ม จำกัด&lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListRow</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListRow</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span> <span style="color:var(--ui-tag-color-purple)">nowrap</span>&gt;ลงนามเมื่อ&lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;30 กันยายน 2569&lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListRow</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListRow</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span> <span style="color:var(--ui-tag-color-purple)">nowrap</span>&gt;ผู้รับผิดชอบ&lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;ฝ่ายกฎหมาย คุณสมชาย ก.&lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListRow</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">StructuredList</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="ข้อความยาวและ-nowrap">ข้อความยาวและ nowrap</h2>
+<p>ข้อความในเซลล์ตัดบรรทัดเอง แต่ละเซลล์กว้างได้ถึง 576px <code>nowrap</code> ทำให้เซลล์อยู่บรรทัดเดียว ใช้กับเซลล์สั้น ๆ อย่างชื่อหรือจำนวนเงิน เซลล์ยาวข้าง ๆ จะตัดบรรทัดแทน</p>
+<div class="doc-demo"><ui-structured-list label="ข้อสัญญา">
+  <ui-structured-list-row head>
+    <ui-structured-list-cell>ข้อ</ui-structured-list-cell>
+    <ui-structured-list-cell>สรุป</ui-structured-list-cell>
+  </ui-structured-list-row>
+  <ui-structured-list-row>
+    <ui-structured-list-cell nowrap>5.1 การชำระเงิน</ui-structured-list-cell>
+    <ui-structured-list-cell>ผู้ว่าจ้างชำระใบแจ้งหนี้ภายใน 30 วันนับจากวันที่ได้รับ ถ้าชำระช้าคิดดอกเบี้ยร้อยละ 1.25 ต่อเดือนของยอดที่ค้าง</ui-structured-list-cell>
+  </ui-structured-list-row>
+  <ui-structured-list-row>
+    <ui-structured-list-cell nowrap>9.2 การเลิกสัญญา</ui-structured-list-cell>
+    <ui-structured-list-cell>คู่สัญญาฝ่ายใดก็เลิกสัญญาได้โดยแจ้งเป็นหนังสือล่วงหน้า 60 วัน งานที่ทำไปแล้วจ่ายตามอัตราที่ตกลงกัน</ui-structured-list-cell>
+  </ui-structured-list-row>
+</ui-structured-list>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-5-0">HTML</ui-tab><ui-tab panel="code-5-1">React</ui-tab><ui-tab panel="code-5-2">React + Tailwind</ui-tab><ui-tab-panel name="code-5-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ข้อสัญญา"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span> <span style="color:var(--ui-tag-color-purple)">head</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;ข้อ&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;สรุป&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span> <span style="color:var(--ui-tag-color-purple)">nowrap</span>&gt;5.1 การชำระเงิน&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;ผู้ว่าจ้างชำระใบแจ้งหนี้ภายใน 30 วันนับจากวันที่ได้รับ ถ้าชำระช้าคิดดอกเบี้ยร้อยละ 1.25 ต่อเดือนของยอดที่ค้าง&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span> <span style="color:var(--ui-tag-color-purple)">nowrap</span>&gt;9.2 การเลิกสัญญา&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;คู่สัญญาฝ่ายใดก็เลิกสัญญาได้โดยแจ้งเป็นหนังสือล่วงหน้า 60 วัน งานที่ทำไปแล้วจ่ายตามอัตราที่ตกลงกัน&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-5-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredList</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ข้อสัญญา"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListRow</span> <span style="color:var(--ui-tag-color-purple)">head</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;ข้อ&lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;สรุป&lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListRow</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListRow</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span> <span style="color:var(--ui-tag-color-purple)">nowrap</span>&gt;5.1 การชำระเงิน&lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;ผู้ว่าจ้างชำระใบแจ้งหนี้ภายใน 30 วันนับจากวันที่ได้รับ …&lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListRow</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListRow</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span> <span style="color:var(--ui-tag-color-purple)">nowrap</span>&gt;9.2 การเลิกสัญญา&lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;คู่สัญญาฝ่ายใดก็เลิกสัญญาได้โดยแจ้งเป็นหนังสือล่วงหน้า 60 วัน …&lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListRow</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredList</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-5-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">StructuredList</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ข้อสัญญา"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListRow</span> <span style="color:var(--ui-tag-color-purple)">head</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;ข้อ&lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;สรุป&lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListRow</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListRow</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span> <span style="color:var(--ui-tag-color-purple)">nowrap</span>&gt;5.1 การชำระเงิน&lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;ผู้ว่าจ้างชำระใบแจ้งหนี้ภายใน 30 วันนับจากวันที่ได้รับ …&lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListRow</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListRow</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span> <span style="color:var(--ui-tag-color-purple)">nowrap</span>&gt;9.2 การเลิกสัญญา&lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;คู่สัญญาฝ่ายใดก็เลิกสัญญาได้โดยแจ้งเป็นหนังสือล่วงหน้า 60 วัน …&lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListRow</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">StructuredList</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="แบบกระชับ">แบบกระชับ</h2>
+<p><code>condensed</code> ลด padding ของเซลล์ลงครึ่งหนึ่ง (condensed list ของ Carbon) ใช้เมื่อมีแถวสั้น ๆ หลายแถว เช่น ใน side panel</p>
+<div class="doc-demo"><ui-structured-list label="ผู้ลงนาม" condensed>
+  <ui-structured-list-row head>
+    <ui-structured-list-cell>ชื่อ</ui-structured-list-cell>
+    <ui-structured-list-cell>บทบาท</ui-structured-list-cell>
+    <ui-structured-list-cell>ลงนาม</ui-structured-list-cell>
+  </ui-structured-list-row>
+  <ui-structured-list-row>
+    <ui-structured-list-cell>อนันต์ พ.</ui-structured-list-cell>
+    <ui-structured-list-cell>กรรมการผู้จัดการ</ui-structured-list-cell>
+    <ui-structured-list-cell>1 ต.ค. 2569</ui-structured-list-cell>
+  </ui-structured-list-row>
+  <ui-structured-list-row>
+    <ui-structured-list-cell>กัญญา ศ.</ui-structured-list-cell>
+    <ui-structured-list-cell>ที่ปรึกษากฎหมาย</ui-structured-list-cell>
+    <ui-structured-list-cell>2 ต.ค. 2569</ui-structured-list-cell>
+  </ui-structured-list-row>
+  <ui-structured-list-row>
+    <ui-structured-list-cell>สมชาย ด.</ui-structured-list-cell>
+    <ui-structured-list-cell>พยาน</ui-structured-list-cell>
+    <ui-structured-list-cell>—</ui-structured-list-cell>
+  </ui-structured-list-row>
+</ui-structured-list>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-6-0">HTML</ui-tab><ui-tab panel="code-6-1">React</ui-tab><ui-tab panel="code-6-2">React + Tailwind</ui-tab><ui-tab-panel name="code-6-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ผู้ลงนาม"</span> <span style="color:var(--ui-tag-color-purple)">condensed</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span> <span style="color:var(--ui-tag-color-purple)">head</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;ชื่อ&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;บทบาท&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;ลงนาม&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;อนันต์ พ.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;กรรมการผู้จัดการ&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;1 ต.ค. 2569&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;กัญญา ศ.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;ที่ปรึกษากฎหมาย&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;2 ต.ค. 2569&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;สมชาย ด.&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;พยาน&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;—&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-6-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredList</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ผู้ลงนาม"</span> <span style="color:var(--ui-tag-color-purple)">condensed</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListRow</span> <span style="color:var(--ui-tag-color-purple)">head</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;ชื่อ&lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;บทบาท&lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;ลงนาม&lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListRow</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListRow</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;อนันต์ พ.&lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;กรรมการผู้จัดการ&lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;1 ต.ค. 2569&lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListRow</span>&gt;
+  {<span style="color:var(--ui-ink-muted);font-style:italic">/* … */</span>}
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredList</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-6-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">StructuredList</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ผู้ลงนาม"</span> <span style="color:var(--ui-tag-color-purple)">condensed</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListRow</span> <span style="color:var(--ui-tag-color-purple)">head</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;ชื่อ&lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;บทบาท&lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;ลงนาม&lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListRow</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListRow</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;อนันต์ พ.&lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;กรรมการผู้จัดการ&lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;1 ต.ค. 2569&lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListRow</span>&gt;
+  {<span style="color:var(--ui-ink-muted);font-style:italic">/* … */</span>}
+&lt;/<span style="color:var(--ui-tag-color-blue)">StructuredList</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="ชิดขอบ-flush">ชิดขอบ (flush)</h2>
+<p><code>flush</code> เอา padding หน้าคอลัมน์แรกออก ข้อความจึงตรงกับหัวข้อหรือข้อความด้านบน ไม่มีผลเมื่อใส่ <code>selection</code> เพราะคอลัมน์ radio ต้องใช้ padding นี้</p>
+<div class="doc-demo"><div>
+  <p style="margin: 0 0 8px; font: var(--ui-font-body-emphasis)">การออกใบแจ้งหนี้</p>
+  <ui-structured-list label="การออกใบแจ้งหนี้" flush>
+    <ui-structured-list-row>
+      <ui-structured-list-cell nowrap>ออกในนาม</ui-structured-list-cell>
+      <ui-structured-list-cell>ฝ่ายบัญชีเจ้าหนี้ บริษัท เอซีเอ็ม จำกัด</ui-structured-list-cell>
+    </ui-structured-list-row>
+    <ui-structured-list-row>
+      <ui-structured-list-cell nowrap>เลขประจำตัวผู้เสียภาษี</ui-structured-list-cell>
+      <ui-structured-list-cell>0105556012345</ui-structured-list-cell>
+    </ui-structured-list-row>
+  </ui-structured-list>
+</div>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-7-0">HTML</ui-tab><ui-tab panel="code-7-1">React</ui-tab><ui-tab panel="code-7-2">React + Tailwind</ui-tab><ui-tab-panel name="code-7-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">p</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"margin: 0 0 8px; font: var(--ui-font-body-emphasis)"</span>&gt;การออกใบแจ้งหนี้&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"การออกใบแจ้งหนี้"</span> <span style="color:var(--ui-tag-color-purple)">flush</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span> <span style="color:var(--ui-tag-color-purple)">nowrap</span>&gt;ออกในนาม&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;ฝ่ายบัญชีเจ้าหนี้ บริษัท เอซีเอ็ม จำกัด&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span> <span style="color:var(--ui-tag-color-purple)">nowrap</span>&gt;เลขประจำตัวผู้เสียภาษี&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+      &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;0105556012345&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+    &lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-7-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">h3</span>&gt;การออกใบแจ้งหนี้&lt;/<span style="color:var(--ui-tag-color-blue)">h3</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredList</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"การออกใบแจ้งหนี้"</span> <span style="color:var(--ui-tag-color-purple)">flush</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListRow</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span> <span style="color:var(--ui-tag-color-purple)">nowrap</span>&gt;ออกในนาม&lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;ฝ่ายบัญชีเจ้าหนี้ บริษัท เอซีเอ็ม จำกัด&lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListRow</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListRow</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span> <span style="color:var(--ui-tag-color-purple)">nowrap</span>&gt;เลขประจำตัวผู้เสียภาษี&lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;0105556012345&lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListRow</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredList</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-7-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">h3</span>&gt;การออกใบแจ้งหนี้&lt;/<span style="color:var(--ui-tag-color-blue)">h3</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">StructuredList</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"การออกใบแจ้งหนี้"</span> <span style="color:var(--ui-tag-color-purple)">flush</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListRow</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span> <span style="color:var(--ui-tag-color-purple)">nowrap</span>&gt;ออกในนาม&lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;ฝ่ายบัญชีเจ้าหนี้ บริษัท เอซีเอ็ม จำกัด&lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListRow</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListRow</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span> <span style="color:var(--ui-tag-color-purple)">nowrap</span>&gt;เลขประจำตัวผู้เสียภาษี&lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;0105556012345&lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListRow</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">StructuredList</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="เลือกหนึ่งแถว">เลือกหนึ่งแถว</h2>
+<p><code>selection</code> ทำให้แถวในตัวตารางเป็นตัวเลือกเดียว แต่ละแถวมี radio ในเซลล์แรก คลิกตรงไหนของแถวก็ได้ หรือกด Space หรือปุ่มลูกศรเพื่อเลือก ใส่ <code>value</code> ให้ทุกแถว <code>value</code> ของ list คือแถวที่เลือกอยู่ และ <code>ui-change</code> (<code>onChange</code> ใน React + Tailwind) ยิงเมื่อผู้ใช้เลือกแถวอื่น</p>
+<div class="doc-demo"><ui-structured-list id="structured-list-plan" label="เลือกแพ็กเกจ" selection value="team">
+  <ui-structured-list-row head>
+    <ui-structured-list-cell>แพ็กเกจ</ui-structured-list-cell>
+    <ui-structured-list-cell>ผู้ใช้</ui-structured-list-cell>
+    <ui-structured-list-cell>ราคา</ui-structured-list-cell>
+  </ui-structured-list-row>
+  <ui-structured-list-row value="basic">
+    <ui-structured-list-cell>พื้นฐาน</ui-structured-list-cell>
+    <ui-structured-list-cell>ไม่เกิน 5 คน</ui-structured-list-cell>
+    <ui-structured-list-cell>ฟรี</ui-structured-list-cell>
+  </ui-structured-list-row>
+  <ui-structured-list-row value="team">
+    <ui-structured-list-cell>ทีม</ui-structured-list-cell>
+    <ui-structured-list-cell>ไม่เกิน 50 คน</ui-structured-list-cell>
+    <ui-structured-list-cell>฿390 / คน</ui-structured-list-cell>
+  </ui-structured-list-row>
+  <ui-structured-list-row value="enterprise">
+    <ui-structured-list-cell>องค์กร</ui-structured-list-cell>
+    <ui-structured-list-cell>ไม่จำกัด</ui-structured-list-cell>
+    <ui-structured-list-cell>ติดต่อฝ่ายขาย</ui-structured-list-cell>
+  </ui-structured-list-row>
+</ui-structured-list>
+<p>ค่า: <output id="structured-list-plan-out">team</output></p>
+
+<script type="text/x-demo">
+  const list = document.getElementById('structured-list-plan');
+  const out = document.getElementById('structured-list-plan-out');
+  list.addEventListener('ui-change', (event) => (out.value = event.detail.value));
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-8-0">HTML</ui-tab><ui-tab panel="code-8-1">React</ui-tab><ui-tab panel="code-8-2">React + Tailwind</ui-tab><ui-tab-panel name="code-8-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"structured-list-plan"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"เลือกแพ็กเกจ"</span> <span style="color:var(--ui-tag-color-purple)">selection</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"team"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span> <span style="color:var(--ui-tag-color-purple)">head</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;แพ็กเกจ&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;ผู้ใช้&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;ราคา&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"basic"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;พื้นฐาน&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;ไม่เกิน 5 คน&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;ฟรี&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"team"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;ทีม&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;ไม่เกิน 50 คน&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;฿390 / คน&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"enterprise"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;องค์กร&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;ไม่จำกัด&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;ติดต่อฝ่ายขาย&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;ค่า: &lt;<span style="color:var(--ui-tag-color-blue)">output</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"structured-list-plan-out"</span>&gt;team&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> list <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'structured-list-plan'</span>);
+  <span style="color:var(--ui-tag-color-magenta)">const</span> out <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'structured-list-plan-out'</span>);
+  list.<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'ui-change'</span>, (event) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (out.value <span style="color:var(--ui-tag-color-magenta)">=</span> event.detail.value));
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-8-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> [plan, setPlan] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">'team'</span>);
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredList</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เลือกแพ็กเกจ"</span> <span style="color:var(--ui-tag-color-purple)">selection</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{plan} <span style="color:var(--ui-tag-color-purple)">onUiChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setPlan</span>(e.detail.value)}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListRow</span> <span style="color:var(--ui-tag-color-purple)">head</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;แพ็กเกจ&lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;ผู้ใช้&lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;ราคา&lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListRow</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListRow</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"basic"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;พื้นฐาน&lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;ไม่เกิน 5 คน&lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;ฟรี&lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListCell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListRow</span>&gt;
+  {<span style="color:var(--ui-ink-muted);font-style:italic">/* … team, enterprise */</span>}
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredList</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;ค่า: &lt;<span style="color:var(--ui-tag-color-blue)">output</span>&gt;{plan}&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-8-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> [plan, setPlan] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">'team'</span>);
+
+&lt;<span style="color:var(--ui-tag-color-blue)">StructuredList</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"เลือกแพ็กเกจ"</span> <span style="color:var(--ui-tag-color-purple)">selection</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{plan} <span style="color:var(--ui-tag-color-purple)">onChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{setPlan}&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListRow</span> <span style="color:var(--ui-tag-color-purple)">head</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;แพ็กเกจ&lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;ผู้ใช้&lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;ราคา&lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListRow</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListRow</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"basic"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;พื้นฐาน&lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;ไม่เกิน 5 คน&lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;ฟรี&lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListCell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListRow</span>&gt;
+  {<span style="color:var(--ui-ink-muted);font-style:italic">/* … team, enterprise */</span>}
+&lt;/<span style="color:var(--ui-tag-color-blue)">StructuredList</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">p</span>&gt;ค่า: &lt;<span style="color:var(--ui-tag-color-blue)">output</span>&gt;{plan}&lt;/<span style="color:var(--ui-tag-color-blue)">output</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">p</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>React + Tailwind รับ <code>defaultValue</code> สำหรับ list ที่ไม่ควบคุมค่าเองได้ด้วย ถ้าไม่มี <code>value</code> (หรือไม่มีแถวไหนมีค่านั้น) จะไม่มีแถวที่ถูกเลือก และ Tab จะหยุดที่แถวแรก</p>
+<h2 id="เปลี่ยนตัวเลือกจากโค้ด">เปลี่ยนตัวเลือกจากโค้ด</h2>
+<p>ตั้ง <code>value</code> เพื่อเลือกแถวจากโค้ดของคุณเอง เช่น จากปุ่ม &quot;ใช้วิธีที่แนะนำ&quot; การตั้งค่าแบบนี้ไม่ยิง <code>ui-change</code> event นั้นมีไว้สำหรับการเลือกของผู้ใช้เท่านั้น</p>
+<div class="doc-demo"><ui-structured-list id="structured-list-method" label="วิธีส่งเอกสาร" selection condensed>
+  <ui-structured-list-row head>
+    <ui-structured-list-cell>วิธีส่ง</ui-structured-list-cell>
+    <ui-structured-list-cell>ถึงภายใน</ui-structured-list-cell>
+  </ui-structured-list-row>
+  <ui-structured-list-row value="email">
+    <ui-structured-list-cell>PDF ที่ลงนามแล้วทางอีเมล</ui-structured-list-cell>
+    <ui-structured-list-cell>วันนี้</ui-structured-list-cell>
+  </ui-structured-list-row>
+  <ui-structured-list-row value="post">
+    <ui-structured-list-cell>ไปรษณีย์ลงทะเบียน</ui-structured-list-cell>
+    <ui-structured-list-cell>3–5 วัน</ui-structured-list-cell>
+  </ui-structured-list-row>
+  <ui-structured-list-row value="courier">
+    <ui-structured-list-cell>แมสเซนเจอร์</ui-structured-list-cell>
+    <ui-structured-list-cell>วันถัดไป</ui-structured-list-cell>
+  </ui-structured-list-row>
+</ui-structured-list>
+<div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center">
+  <ui-button id="structured-list-method-recommend" kind="tertiary" size="sm">ใช้วิธีที่แนะนำ</ui-button>
+  <ui-button id="structured-list-method-clear" kind="ghost" size="sm">ล้าง</ui-button>
+</div>
+
+<script type="text/x-demo">
+  const list = document.getElementById('structured-list-method');
+  document.getElementById('structured-list-method-recommend').addEventListener('click', () => (list.value = 'email'));
+  document.getElementById('structured-list-method-clear').addEventListener('click', () => (list.value = ''));
+</script>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-9-0">HTML</ui-tab><ui-tab panel="code-9-1">React</ui-tab><ui-tab panel="code-9-2">React + Tailwind</ui-tab><ui-tab-panel name="code-9-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"structured-list-method"</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"วิธีส่งเอกสาร"</span> <span style="color:var(--ui-tag-color-purple)">selection</span> <span style="color:var(--ui-tag-color-purple)">condensed</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span> <span style="color:var(--ui-tag-color-purple)">head</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;วิธีส่ง&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;ถึงภายใน&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"email"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;PDF ที่ลงนามแล้วทางอีเมล&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;วันนี้&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"post"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;ไปรษณีย์ลงทะเบียน&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;3–5 วัน&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"courier"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;แมสเซนเจอร์&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;วันถัดไป&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">div</span> <span style="color:var(--ui-tag-color-purple)">style</span>=<span style="color:var(--ui-tag-color-teal)">"display: flex; flex-wrap: wrap; gap: 16px; align-items: center"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"structured-list-method-recommend"</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"tertiary"</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"sm"</span>&gt;ใช้วิธีที่แนะนำ&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-button</span> <span style="color:var(--ui-tag-color-purple)">id</span>=<span style="color:var(--ui-tag-color-teal)">"structured-list-method-clear"</span> <span style="color:var(--ui-tag-color-purple)">kind</span>=<span style="color:var(--ui-tag-color-teal)">"ghost"</span> <span style="color:var(--ui-tag-color-purple)">size</span>=<span style="color:var(--ui-tag-color-teal)">"sm"</span>&gt;ล้าง&lt;/<span style="color:var(--ui-tag-color-blue)">ui-button</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">div</span>&gt;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">script</span> <span style="color:var(--ui-tag-color-purple)">type</span>=<span style="color:var(--ui-tag-color-teal)">"module"</span>&gt;
+  <span style="color:var(--ui-tag-color-magenta)">const</span> list <span style="color:var(--ui-tag-color-magenta)">=</span> document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'structured-list-method'</span>);
+  document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'structured-list-method-recommend'</span>).<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (list.value <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">'email'</span>));
+  document.<span style="color:var(--ui-tag-color-cyan)">getElementById</span>(<span style="color:var(--ui-tag-color-teal)">'structured-list-method-clear'</span>).<span style="color:var(--ui-tag-color-cyan)">addEventListener</span>(<span style="color:var(--ui-tag-color-teal)">'click'</span>, () <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> (list.value <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-teal)">''</span>));
+&lt;/<span style="color:var(--ui-tag-color-blue)">script</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-9-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> [method, setMethod] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">''</span>);
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredList</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"วิธีส่งเอกสาร"</span> <span style="color:var(--ui-tag-color-purple)">selection</span> <span style="color:var(--ui-tag-color-purple)">condensed</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{method} <span style="color:var(--ui-tag-color-purple)">onUiChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{(e) <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setMethod</span>(e.detail.value)}&gt;
+  {<span style="color:var(--ui-ink-muted);font-style:italic">/* แถวหัว แล้วตามด้วยแถว value="email", "post", "courier" */</span>}
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredList</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiButton</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"tertiary"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setMethod</span>(<span style="color:var(--ui-tag-color-teal)">'email'</span>)}&gt;ใช้วิธีที่แนะนำ&lt;/<span style="color:var(--ui-tag-color-blue)">UiButton</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">UiButton</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ghost"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setMethod</span>(<span style="color:var(--ui-tag-color-teal)">''</span>)}&gt;ล้าง&lt;/<span style="color:var(--ui-tag-color-blue)">UiButton</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-9-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">const</span> [method, setMethod] <span style="color:var(--ui-tag-color-magenta)">=</span> <span style="color:var(--ui-tag-color-cyan)">useState</span>(<span style="color:var(--ui-tag-color-teal)">''</span>);
+
+&lt;<span style="color:var(--ui-tag-color-blue)">StructuredList</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"วิธีส่งเอกสาร"</span> <span style="color:var(--ui-tag-color-purple)">selection</span> <span style="color:var(--ui-tag-color-purple)">condensed</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span>{method} <span style="color:var(--ui-tag-color-purple)">onChange</span><span style="color:var(--ui-tag-color-magenta)">=</span>{setMethod}&gt;
+  {<span style="color:var(--ui-ink-muted);font-style:italic">/* แถวหัว แล้วตามด้วยแถว value="email", "post", "courier" */</span>}
+&lt;/<span style="color:var(--ui-tag-color-blue)">StructuredList</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">Button</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"tertiary"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setMethod</span>(<span style="color:var(--ui-tag-color-teal)">'email'</span>)}&gt;ใช้วิธีที่แนะนำ&lt;/<span style="color:var(--ui-tag-color-blue)">Button</span>&gt;
+&lt;<span style="color:var(--ui-tag-color-blue)">Button</span> <span style="color:var(--ui-tag-color-purple)">kind</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ghost"</span> <span style="color:var(--ui-tag-color-purple)">size</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"sm"</span> <span style="color:var(--ui-tag-color-purple)">onClick</span><span style="color:var(--ui-tag-color-magenta)">=</span>{() <span style="color:var(--ui-tag-color-magenta)">=&gt;</span> <span style="color:var(--ui-tag-color-cyan)">setMethod</span>(<span style="color:var(--ui-tag-color-teal)">''</span>)}&gt;ล้าง&lt;/<span style="color:var(--ui-tag-color-blue)">Button</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="ชื่อสำหรับ-screen-reader">ชื่อสำหรับ screen reader</h2>
+<p><code>label</code> ตั้งชื่อตาราง (ค่าเริ่มต้นคือ &quot;รายการแบบตาราง&quot;) ใน list ที่เลือกได้ radio ของแต่ละแถวใช้ข้อความของแถวเป็นชื่อ ถ้าข้อความยาว ให้ใส่ <code>aria-label</code> สั้น ๆ ที่แถว <code>selection-label</code> (<code>selectionLabel</code> ใน React + Tailwind) ตั้งชื่อคอลัมน์ radio (ค่าเริ่มต้นคือ &quot;เลือก&quot;)</p>
+<div class="doc-demo"><ui-structured-list label="ลำดับการลงนาม" selection selection-label="ลงนามก่อน" value="md">
+  <ui-structured-list-row head>
+    <ui-structured-list-cell>ผู้ลงนาม</ui-structured-list-cell>
+    <ui-structured-list-cell>เหตุผล</ui-structured-list-cell>
+  </ui-structured-list-row>
+  <ui-structured-list-row value="md" aria-label="กรรมการผู้จัดการ">
+    <ui-structured-list-cell nowrap>กรรมการผู้จัดการ</ui-structured-list-cell>
+    <ui-structured-list-cell>ลงนามในนามบริษัท ผู้ลงนามคนอื่นลงตามฉบับของกรรมการ</ui-structured-list-cell>
+  </ui-structured-list-row>
+  <ui-structured-list-row value="counsel" aria-label="ที่ปรึกษากฎหมาย">
+    <ui-structured-list-cell nowrap>ที่ปรึกษากฎหมาย</ui-structured-list-cell>
+    <ui-structured-list-cell>ตรวจถ้อยคำสุดท้ายก่อนทุกคนลงนาม แล้วลงชื่อย่อทุกหน้า</ui-structured-list-cell>
+  </ui-structured-list-row>
+</ui-structured-list>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-10-0">HTML</ui-tab><ui-tab panel="code-10-1">React</ui-tab><ui-tab panel="code-10-2">React + Tailwind</ui-tab><ui-tab-panel name="code-10-0"><ui-code-snippet type="multi" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list</span> <span style="color:var(--ui-tag-color-purple)">label</span>=<span style="color:var(--ui-tag-color-teal)">"ลำดับการลงนาม"</span> <span style="color:var(--ui-tag-color-purple)">selection</span> <span style="color:var(--ui-tag-color-purple)">selection-label</span>=<span style="color:var(--ui-tag-color-teal)">"ลงนามก่อน"</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"md"</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span> <span style="color:var(--ui-tag-color-purple)">head</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;ผู้ลงนาม&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;เหตุผล&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"md"</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span>=<span style="color:var(--ui-tag-color-teal)">"กรรมการผู้จัดการ"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span> <span style="color:var(--ui-tag-color-purple)">nowrap</span>&gt;กรรมการผู้จัดการ&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;ลงนามในนามบริษัท ผู้ลงนามคนอื่นลงตามฉบับของกรรมการ&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span> <span style="color:var(--ui-tag-color-purple)">value</span>=<span style="color:var(--ui-tag-color-teal)">"counsel"</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span>=<span style="color:var(--ui-tag-color-teal)">"ที่ปรึกษากฎหมาย"</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span> <span style="color:var(--ui-tag-color-purple)">nowrap</span>&gt;ที่ปรึกษากฎหมาย&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+    &lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;ตรวจถ้อยคำสุดท้ายก่อนทุกคนลงนาม แล้วลงชื่อย่อทุกหน้า&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-cell</span>&gt;
+  &lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-row</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-10-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredList</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ลำดับการลงนาม"</span> <span style="color:var(--ui-tag-color-purple)">selection</span> <span style="color:var(--ui-tag-color-purple)">selectionLabel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ลงนามก่อน"</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"md"</span>&gt;
+  {<span style="color:var(--ui-ink-muted);font-style:italic">/* แถวหัว */</span>}
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListRow</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"md"</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"กรรมการผู้จัดการ"</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListRow</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListRow</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"counsel"</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ที่ปรึกษากฎหมาย"</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredListRow</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">UiStructuredList</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-10-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx">&lt;<span style="color:var(--ui-tag-color-blue)">StructuredList</span> <span style="color:var(--ui-tag-color-purple)">label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ลำดับการลงนาม"</span> <span style="color:var(--ui-tag-color-purple)">selection</span> <span style="color:var(--ui-tag-color-purple)">selectionLabel</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ลงนามก่อน"</span> <span style="color:var(--ui-tag-color-purple)">defaultValue</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"md"</span>&gt;
+  {<span style="color:var(--ui-ink-muted);font-style:italic">/* แถวหัว */</span>}
+  &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListRow</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"md"</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"กรรมการผู้จัดการ"</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListRow</span>&gt;
+  &lt;<span style="color:var(--ui-tag-color-blue)">StructuredListRow</span> <span style="color:var(--ui-tag-color-purple)">value</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"counsel"</span> <span style="color:var(--ui-tag-color-purple)">aria-label</span><span style="color:var(--ui-tag-color-magenta)">=</span><span style="color:var(--ui-tag-color-teal)">"ที่ปรึกษากฎหมาย"</span>&gt;…&lt;/<span style="color:var(--ui-tag-color-blue)">StructuredListRow</span>&gt;
+&lt;/<span style="color:var(--ui-tag-color-blue)">StructuredList</span>&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<h2 id="skeleton">Skeleton</h2>
+<p>ระหว่างโหลดแถว ให้แสดง <code>ui-structured-list-skeleton</code> แทน คือหัวตารางเป็นแถบสามแถบ และแถวว่าง <code>rows</code> แถว (ค่าเริ่มต้น 5) มันซ่อนจาก screen reader จึงต้องบอก &quot;กำลังโหลด&quot; ที่ตัวที่ครอบอยู่ (เช่น <code>aria-busy</code>)</p>
+<div class="doc-demo"><ui-structured-list-skeleton rows="3"></ui-structured-list-skeleton>
+</div>
+<ui-tabs class="doc-code-tabs doc-demo-code" label="โค้ด"><ui-tab panel="code-11-0">HTML</ui-tab><ui-tab panel="code-11-1">React</ui-tab><ui-tab panel="code-11-2">React + Tailwind</ui-tab><ui-tab-panel name="code-11-0"><ui-code-snippet type="single" class="doc-code" data-lang="html">&lt;<span style="color:var(--ui-tag-color-blue)">ui-structured-list-skeleton</span> <span style="color:var(--ui-tag-color-purple)">rows</span>=<span style="color:var(--ui-tag-color-teal)">"3"</span>&gt;&lt;/<span style="color:var(--ui-tag-color-blue)">ui-structured-list-skeleton</span>&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-11-1"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { UiStructuredListSkeleton } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@purpurabog/ui/react'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">UiStructuredListSkeleton</span> <span style="color:var(--ui-tag-color-purple)">rows</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">3</span>} /&gt;</ui-code-snippet>
+</ui-tab-panel><ui-tab-panel name="code-11-2"><ui-code-snippet type="multi" class="doc-code" data-lang="tsx"><span style="color:var(--ui-tag-color-magenta)">import</span> { StructuredListSkeleton } <span style="color:var(--ui-tag-color-magenta)">from</span> <span style="color:var(--ui-tag-color-teal)">'@/components/ui/react-tw/structured-list'</span>;
+
+&lt;<span style="color:var(--ui-tag-color-blue)">StructuredListSkeleton</span> <span style="color:var(--ui-tag-color-purple)">rows</span><span style="color:var(--ui-tag-color-magenta)">=</span>{<span style="color:var(--ui-tag-color-green)">3</span>} /&gt;</ui-code-snippet>
+</ui-tab-panel></ui-tabs>
+<p>สำหรับ web component ให้ import จาก <code>@purpurabog/ui/structured-list-skeleton</code></p>
+<h2 id="accessibility">Accessibility</h2>
+<ul>
+<li>list เป็น <code>role=&quot;table&quot;</code> มี role <code>row</code>, <code>cell</code> และ <code>columnheader</code> ส่วน React + Tailwind สร้าง <code>&lt;table&gt;</code> จริง</li>
+<li>ใน list ที่เลือกได้ radio ของทุกแถวเป็นกลุ่มเดียวกัน Tab ไปถึงแถวที่เลือกอยู่ (ถ้าไม่มีก็แถวแรก) ปุ่มลูกศรย้ายและเลือก วนกลับเมื่อสุดปลาย แต่ละ radio บอกลำดับ เช่น &quot;1 จาก 3&quot;</li>
+<li>แถวที่เลือกมี <code>aria-selected</code> เมื่อ focus จะมีเส้นขอบ 2px รอบทั้งแถว</li>
+<li>list ที่เลือกได้ไม่ใช่ช่องในฟอร์ม ให้อ่าน <code>value</code> แล้วส่งเอง</li>
+</ul>
+<p>ต้องการแค่พฤติกรรมโดยไม่มี style: <a href="/kanok-ui-docs/th/headless-structured-list/">Headless Structured list</a></p>
+<h2 id="api">API</h2>
+<p>สร้างจากแพ็กเกจโดยตรง ใน React ส่ง property เป็น prop ชื่อเดียวกัน ส่วน event ก็เป็น prop เช่นกัน (ดูคอลัมน์ React)</p>
+<h3 id="ui-structured-list-react-uistructuredlist"><code>&lt;ui-structured-list&gt;</code> · React <code>UiStructuredList</code></h3>
+<h4 id="attribute">Attribute</h4>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Property</th>
+<th>ชนิด</th>
+<th>ค่าเริ่มต้น</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>selection</code></td>
+<td><code>selection</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>condensed</code></td>
+<td><code>condensed</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>flush</code></td>
+<td><code>flush</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>value</code></td>
+<td><code>value</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>Selected row's <code>value</code> (selection lists).</td>
+</tr>
+<tr>
+<td><code>label</code></td>
+<td><code>label</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>selection-label</code></td>
+<td><code>selectionLabel</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>Screen-reader name of the radio column (selection lists).</td>
+</tr>
+</tbody>
+</table>
+<h4 id="method">Method</h4>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>focus(options)</code></td>
+<td>Selection lists: focus the selected (or first) row's radio.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="event">Event</h4>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>React</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ui-change</code></td>
+<td><code>onUiChange</code></td>
+<td>detail: { value } when the user selects another row</td>
+</tr>
+</tbody>
+</table>
+<h4 id="slot">Slot</h4>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(ค่าเริ่มต้น)</td>
+<td><code>&lt;ui-structured-list-row&gt;</code> elements (first one usually <code>head</code>)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ui-structured-list-row-react-uistructuredlistrow"><code>&lt;ui-structured-list-row&gt;</code> · React <code>UiStructuredListRow</code></h3>
+<h4 id="attribute-2">Attribute</h4>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Property</th>
+<th>ชนิด</th>
+<th>ค่าเริ่มต้น</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>head</code></td>
+<td><code>head</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>value</code></td>
+<td><code>value</code></td>
+<td><code>string</code></td>
+<td><code>''</code></td>
+<td>Identifies the row in the list's <code>value</code> / <code>ui-change</code>.</td>
+</tr>
+<tr>
+<td><code>selected</code></td>
+<td><code>selected</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Set by the list.</td>
+</tr>
+<tr>
+<td><code>data-selection</code></td>
+<td><code>selection</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Set by the list: <code>selection</code> mode renders the radio cell.</td>
+</tr>
+<tr>
+<td><code>data-condensed</code></td>
+<td><code>condensed</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Set by the list.</td>
+</tr>
+<tr>
+<td><code>data-flush</code></td>
+<td><code>flush</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Set by the list.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="property">Property</h4>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>ชนิด</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>focusable</code></td>
+<td><code>boolean</code></td>
+<td>Set by the list: the hidden radio is the row's tab stop.</td>
+</tr>
+<tr>
+<td><code>selectionLabel</code></td>
+<td><code>string</code></td>
+<td>Set by the list: screen-reader name of the radio column header.</td>
+</tr>
+<tr>
+<td><code>position</code></td>
+<td><code>number</code></td>
+<td>Set by the list: position among the selectable rows and their count. Each radio sits in its own shadow root, so the browser would count &quot;1 of 1&quot;.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="method-2">Method</h4>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>focus(options)</code></td>
+<td>Focus the row's radio (selection lists).</td>
+</tr>
+</tbody>
+</table>
+<h4 id="event-2">Event</h4>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>React</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ui-row-select</code></td>
+<td>ไม่มี (ใช้ ref)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="slot-2">Slot</h4>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(ค่าเริ่มต้น)</td>
+<td><code>&lt;ui-structured-list-cell&gt;</code> elements</td>
+</tr>
+</tbody>
+</table>
+<h4 id="css-part">CSS part</h4>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>radio-cell</code></td>
+<td>The leading cell with the radio icon (selection lists)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="css-custom-property">CSS custom property</h4>
+<table>
+<thead>
+<tr>
+<th>Custom property</th>
+<th>ค่าเริ่มต้น</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--ui-structured-list-selected</code></td>
+<td></td>
+<td>Fill of the chosen row of a selection list (default <code>--ui-surface-2</code>; Kanok: <code>--ui-highlight</code>)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ui-structured-list-cell-react-uistructuredlistcell"><code>&lt;ui-structured-list-cell&gt;</code> · React <code>UiStructuredListCell</code></h3>
+<h4 id="attribute-3">Attribute</h4>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Property</th>
+<th>ชนิด</th>
+<th>ค่าเริ่มต้น</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>head</code></td>
+<td><code>head</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Set by the row: this cell is a column header.</td>
+</tr>
+<tr>
+<td><code>nowrap</code></td>
+<td><code>nowrap</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="slot-3">Slot</h4>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(ค่าเริ่มต้น)</td>
+<td>Cell content</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ui-structured-list-skeleton-react-uistructuredlistskeleton"><code>&lt;ui-structured-list-skeleton&gt;</code> · React <code>UiStructuredListSkeleton</code></h3>
+<h4 id="attribute-4">Attribute</h4>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Property</th>
+<th>ชนิด</th>
+<th>ค่าเริ่มต้น</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>rows</code></td>
+<td><code>rows</code></td>
+<td><code>number</code></td>
+<td><code>5</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="css-part-2">CSS part</h4>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>คำอธิบาย</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>header</code></td>
+<td>The header bars</td>
+</tr>
+<tr>
+<td><code>row</code></td>
+<td>Each empty row</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+<nav class="doc-toc" aria-labelledby="doc-toc-title"><p id="doc-toc-title" class="doc-toc-title">ในหน้านี้</p><ul><li class="doc-toc-h2"><a href="#ติดตั้ง">ติดตั้ง</a></li><li class="doc-toc-h2"><a href="#วิธีใช้">วิธีใช้</a></li><li class="doc-toc-h2"><a href="#structured-list-หรือ-data-table">Structured list หรือ data table?</a></li><li class="doc-toc-h2"><a href="#แถวหัวตาราง">แถวหัวตาราง</a></li><li class="doc-toc-h2"><a href="#ข้อความยาวและ-nowrap">ข้อความยาวและ nowrap</a></li><li class="doc-toc-h2"><a href="#แบบกระชับ">แบบกระชับ</a></li><li class="doc-toc-h2"><a href="#ชิดขอบ-flush">ชิดขอบ (flush)</a></li><li class="doc-toc-h2"><a href="#เลือกหนึ่งแถว">เลือกหนึ่งแถว</a></li><li class="doc-toc-h2"><a href="#เปลี่ยนตัวเลือกจากโค้ด">เปลี่ยนตัวเลือกจากโค้ด</a></li><li class="doc-toc-h2"><a href="#ชื่อสำหรับ-screen-reader">ชื่อสำหรับ screen reader</a></li><li class="doc-toc-h2"><a href="#skeleton">Skeleton</a></li><li class="doc-toc-h2"><a href="#accessibility">Accessibility</a></li><li class="doc-toc-h2"><a href="#api">API</a></li><li class="doc-toc-h3"><a href="#ui-structured-list-react-uistructuredlist">&lt;ui-structured-list></a></li><li class="doc-toc-h3"><a href="#ui-structured-list-row-react-uistructuredlistrow">&lt;ui-structured-list-row></a></li><li class="doc-toc-h3"><a href="#ui-structured-list-cell-react-uistructuredlistcell">&lt;ui-structured-list-cell></a></li><li class="doc-toc-h3"><a href="#ui-structured-list-skeleton-react-uistructuredlistskeleton">&lt;ui-structured-list-skeleton></a></li></ul></nav>
+</div>
+<nav class="doc-pager" aria-label="ถัดไป / ก่อนหน้า"><a class="doc-pager-prev" href="/kanok-ui-docs/th/data-table/" rel="prev"><span>ก่อนหน้า</span>Data table</a><a class="doc-pager-next" href="/kanok-ui-docs/th/pagination/" rel="next"><span>ถัดไป</span>Pagination</a></nav>
+<footer class="doc-footer">@purpurabog/ui 2.3.0 · MIT · <a href="https://cdn.jsdelivr.net/npm/@purpurabog/ui@2.3.0/THIRD-PARTY-NOTICES.md">ประกาศของบุคคลที่สาม</a><br>สร้างตาม Carbon Design System ไม่ได้เกี่ยวข้องหรือได้รับการรับรองจาก IBM — IBM และ Carbon เป็นเครื่องหมายการค้าของ IBM Corp.</footer>
+</ui-content>
+<ui-modal id="doc-search" heading="ค้นหา" data-count="พบ {n} รายการ" data-empty="ไม่พบ “{q}”">
+<ui-search label="ค้นหาในเอกสาร" placeholder="ค้นหาในเอกสาร" size="lg"></ui-search>
+<p class="doc-search-status" role="status"></p>
+<ul class="doc-search-results"></ul>
+</ui-modal>
+</body>
+</html>
